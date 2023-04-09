@@ -6,6 +6,7 @@ import 'views/static/splashscreen.dart';
 void main() {
   runApp(
     const GetMaterialApp(
+      debugShowCheckedModeBanner: false,
       home: SplashScreen(),
     ),
   );

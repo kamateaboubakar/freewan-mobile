@@ -8,9 +8,11 @@ class CButton extends StatelessWidget {
   final Color? color;
   final double? elevation;
   final Color? textColor;
+  final double borderRadius;
   final void Function()? onPressed;
   const CButton(
       {this.elevation = 0,
+      this.borderRadius = 10,
       required this.onPressed,
       this.textColor = Colors.white,
       this.color = Const.primaryColor,
@@ -32,7 +34,7 @@ class CButton extends StatelessWidget {
       height: height,
       minWidth: minWidth,
       shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.circular(5),
+        borderRadius: BorderRadius.circular(borderRadius),
       ),
       onPressed: onPressed,
       child: child,

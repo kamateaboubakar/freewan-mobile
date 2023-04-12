@@ -1,3 +1,4 @@
+import 'package:flutter/material.dart';
 import 'package:wan_mobile/views/controllers/abstracts/view_controller.dart';
 
 class HomePageVctl extends ViewController {
@@ -7,5 +8,17 @@ class HomePageVctl extends ViewController {
     "https://www.shutterstock.com/image-vector/deluxe-king-size-burger-ads-260nw-1121447561.jpg"
   ];
 
+  final ScrollController scrollController = ScrollController();
+
   int currentAds = 0;
+  double fabSize = 56.0;
+
+  @override
+  void onInit() {
+    super.onInit();
+    scrollController.addListener(() {
+      fabSize = scrollController.offset > 100 ? 40.0 : 56.0;
+      update();
+    });
+  }
 }

@@ -12,11 +12,29 @@ class HomePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: GetBuilder<HomePageVctl>(
-          init: HomePageVctl(),
-          builder: (ctl) {
-            return CustomScrollView(
+    return GetBuilder<HomePageVctl>(
+        init: HomePageVctl(),
+        builder: (ctl) {
+          return Scaffold(
+            floatingActionButtonLocation:
+                FloatingActionButtonLocation.centerFloat,
+            floatingActionButton: AnimatedContainer(
+              duration: const Duration(milliseconds: 100),
+              height: ctl.fabSize,
+              child: ctl.fabSize == 40.0
+                  ? FloatingActionButton(
+                      isExtended: true,
+                      onPressed: () {},
+                      child: const Icon(Icons.qr_code),
+                    )
+                  : FloatingActionButton.extended(
+                      onPressed: () {},
+                      label: const Text("Scanner un code"),
+                      icon: const Icon(Icons.qr_code),
+                    ),
+            ),
+            body: CustomScrollView(
+              controller: ctl.scrollController,
               physics: const BouncingScrollPhysics(),
               slivers: [
                 SliverAppBar(
@@ -195,8 +213,8 @@ class HomePage extends StatelessWidget {
                   ),
                 ),
               ],
-            );
-          }),
-    );
+            ),
+          );
+        });
   }
 }

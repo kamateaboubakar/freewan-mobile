@@ -1,11 +1,14 @@
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:shimmer/shimmer.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 import 'package:wan_mobile/tools/const/const.dart';
 import 'package:wan_mobile/tools/widgets/button_menu.dart';
 import 'package:wan_mobile/tools/widgets/card_menu.dart';
 import 'package:wan_mobile/views/controllers/home/home_page_vctl.dart';
+import 'package:wan_mobile/views/static/home/home_drawer.dart';
+import 'package:badges/badges.dart' as badges;
 
 class HomePage extends StatelessWidget {
   const HomePage({super.key});
@@ -16,6 +19,7 @@ class HomePage extends StatelessWidget {
         init: HomePageVctl(),
         builder: (ctl) {
           return Scaffold(
+            drawer: const HomeDrawer(),
             floatingActionButtonLocation:
                 FloatingActionButtonLocation.centerFloat,
             floatingActionButton: AnimatedContainer(
@@ -42,13 +46,31 @@ class HomePage extends StatelessWidget {
                   title: const Text(
                     'WAN Logo',
                   ),
-                  leading: Container(
-                    padding: const EdgeInsets.all(12),
-                    child: const CircleAvatar(
-                      radius: 15,
-                      child: Icon(Icons.person, size: 20),
-                    ),
-                  ),
+                  leading: Builder(builder: (context) {
+                    return Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: badges.Badge(
+                        position:
+                            badges.BadgePosition.bottomEnd(bottom: -6, end: -3),
+                        badgeStyle: badges.BadgeStyle(
+                          badgeColor: Colors.grey.shade200,
+                        ),
+                        badgeContent: const Icon(Icons.menu,
+                            color: Colors.black, size: 10),
+                        child: CircleAvatar(
+                          backgroundColor: Colors.grey,
+                          child: IconButton(
+                            color: Colors.white,
+                            splashRadius: 20,
+                            icon: const Center(child: Icon(Icons.person)),
+                            onPressed: () {
+                              Scaffold.of(context).openDrawer();
+                            },
+                          ),
+                        ),
+                      ),
+                    );
+                  }),
                   actions: [
                     IconButton(
                       splashRadius: 20,
@@ -69,11 +91,23 @@ class HomePage extends StatelessWidget {
                   ],
                   pinned: true,
                   elevation: 0,
-                  expandedHeight: 250.0,
+                  expandedHeight: 220.0,
                   flexibleSpace: FlexibleSpaceBar(
-                    background: Image.network(
-                      'https://cdn.mos.cms.futurecdn.net/V6LCHNxfSPT2Sxpr4bAzD.jpg',
-                      fit: BoxFit.fill,
+                    background: Stack(
+                      fit: StackFit.expand,
+                      children: [
+                        Shimmer.fromColors(
+                          baseColor: Colors.grey[300]!,
+                          highlightColor: Colors.grey[100]!,
+                          child: Container(
+                            color: Colors.white,
+                          ),
+                        ),
+                        Image.network(
+                          'https://cdn.mos.cms.futurecdn.net/V6LCHNxfSPT2Sxpr4bAzD.jpg',
+                          fit: BoxFit.fill,
+                        ),
+                      ],
                     ),
                   ),
                 ),
@@ -98,14 +132,25 @@ class HomePage extends StatelessWidget {
                                   margin: const EdgeInsets.symmetric(
                                       horizontal: 5.0),
                                   decoration: BoxDecoration(
-                                    color: Colors.amber,
                                     borderRadius: BorderRadius.circular(10),
                                   ),
                                   child: ClipRRect(
                                     borderRadius: BorderRadius.circular(10),
-                                    child: Image.network(
-                                      e,
-                                      fit: BoxFit.fill,
+                                    child: Stack(
+                                      fit: StackFit.expand,
+                                      children: [
+                                        Shimmer.fromColors(
+                                          baseColor: Colors.grey[300]!,
+                                          highlightColor: Colors.grey[100]!,
+                                          child: Container(
+                                            color: Colors.white,
+                                          ),
+                                        ),
+                                        Image.network(
+                                          e,
+                                          fit: BoxFit.fill,
+                                        ),
+                                      ],
                                     ),
                                   ),
                                 );

@@ -60,7 +60,7 @@ class CTextFormField extends StatelessWidget {
           border: border ??
               OutlineInputBorder(
                 borderSide: const BorderSide(width: 0.5),
-                borderRadius: BorderRadius.circular(20),
+                borderRadius: BorderRadius.circular(5),
               ),
         ),
       ),

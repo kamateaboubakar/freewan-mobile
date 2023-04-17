@@ -58,6 +58,7 @@ class HomePage extends StatelessWidget {
                         badgeContent: const Icon(Icons.menu,
                             color: Colors.black, size: 10),
                         child: CircleAvatar(
+                          radius: 30,
                           backgroundColor: Colors.grey,
                           child: IconButton(
                             color: Colors.white,

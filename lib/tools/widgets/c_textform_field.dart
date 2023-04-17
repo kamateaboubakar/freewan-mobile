@@ -13,11 +13,17 @@ class CTextFormField extends StatelessWidget {
   final int? maxLines;
   final bool readOnly;
   final String? initialValue;
+  final int? maxLength;
+  final bool obscureText;
+  final TextInputType? keyboardType;
 
   const CTextFormField(
       {this.controller,
+      this.keyboardType,
       this.initialValue,
+      this.obscureText = false,
       this.readOnly = false,
+      this.maxLength,
       this.maxLines = 1,
       this.onChanged,
       this.margin = const EdgeInsets.only(bottom: 10),
@@ -37,7 +43,10 @@ class CTextFormField extends StatelessWidget {
         initialValue: initialValue,
         readOnly: readOnly,
         maxLines: maxLines,
+        obscureText: obscureText,
+        maxLength: maxLength,
         onChanged: onChanged,
+        keyboardType: keyboardType,
         controller: controller,
         cursorHeight: 27,
         style: const TextStyle(

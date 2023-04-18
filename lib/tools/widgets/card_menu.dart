@@ -5,8 +5,10 @@ class CardMenu extends StatelessWidget {
   final String title;
   final List<ButtonMenu> children;
   final double height;
+  final EdgeInsetsGeometry? margin;
   const CardMenu(
       {this.height = 200,
+      this.margin = const EdgeInsets.only(bottom: 20),
       required this.title,
       this.children = const [],
       super.key});
@@ -15,6 +17,7 @@ class CardMenu extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       height: height,
+      margin: margin,
       padding: const EdgeInsets.all(15),
       decoration: BoxDecoration(
         border: Border.all(width: .5, color: Colors.grey),

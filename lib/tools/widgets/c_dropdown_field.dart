@@ -57,9 +57,29 @@ class CDropdownField<T> extends StatelessWidget {
             hintText: (require && hintText != null) ? "$hintText" : hintText,
             prefixIcon: prefixIcon,
             filled: true,
+            focusedBorder: border ??
+                OutlineInputBorder(
+                  borderSide: const BorderSide(
+                    width: 0.5,
+                    color: Color.fromRGBO(181, 196, 216, 1),
+                  ),
+                  borderRadius: BorderRadius.circular(5),
+                ),
+            enabledBorder: border ??
+                OutlineInputBorder(
+                  borderSide: const BorderSide(
+                    width: 1,
+                    color: Color.fromRGBO(181, 196, 216, 1),
+                  ),
+                  borderRadius: BorderRadius.circular(5),
+                ),
             border: border ??
                 OutlineInputBorder(
-                  borderRadius: BorderRadius.circular(10),
+                  borderSide: const BorderSide(
+                    width: 1,
+                    color: Color.fromRGBO(181, 196, 216, 1),
+                  ),
+                  borderRadius: BorderRadius.circular(5),
                 ),
           ),
         ),

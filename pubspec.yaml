@@ -41,6 +41,10 @@ dependencies:
   progress_dialog_null_safe: ^1.0.6
   flutter_otp_text_field: ^1.1.1
   graphql_flutter: ^5.1.2
+  google_fonts: ^4.0.3
+  shared_preferences: ^2.0.15
+  date_format: ^2.0.5
+  advance_expansion_tile: ^1.0.2
 
 
   # The following adds the Cupertino Icons font to your application.

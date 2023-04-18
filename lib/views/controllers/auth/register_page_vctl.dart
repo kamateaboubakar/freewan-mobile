@@ -17,14 +17,15 @@ class RegisterPageVctl extends ViewController {
   List<Pays> pays = [];
   Pays? selectedPays;
   List<SecurityQuestion> securityQuestions = [];
-  List<SecurityQuestion> selectedQuestions = [];
+  List<SecurityQuestion> selectedQuestions =
+      List.generate(5, (index) => SecurityQuestion());
   var form1 = GlobalKey<FormState>();
   var form2 = GlobalKey<FormState>();
   late ProgressDialog pr;
   var emailCtl = TextEditingController();
   var passwordCtl = TextEditingController();
+  var confirmPasswordCtl = TextEditingController();
   var telCtl = TextEditingController();
-  var hidePass = true;
 
   RegisterPageVctl() : pr = Tools.progressDialog();
 
@@ -117,5 +118,21 @@ class RegisterPageVctl extends ViewController {
     emailCtl.dispose();
     passwordCtl.dispose();
     super.dispose();
+  }
+
+  List<SecurityQuestion> get getAvailaibleQuestions => securityQuestions
+      .where((e) => selectedQuestions
+          .where((q) => e.securityQuestionId == q.securityQuestionId)
+          .isEmpty)
+      .toList();
+
+  void selectQuestion({required SecurityQuestion e, required int index}) {
+    var state = selectedQuestions.contains(e);
+    if (!state) {
+      selectedQuestions[index] = e;
+      update();
+    } else {
+      Tools.messageBox(message: "Cette question est déjà utilisée.");
+    }
   }
 }

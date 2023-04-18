@@ -1,11 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:wan_mobile/tools/utils/tools.dart';
 import 'package:wan_mobile/tools/widgets/c_button.dart';
-import 'package:wan_mobile/tools/widgets/c_dropdown_field.dart';
 import 'package:wan_mobile/tools/widgets/c_textform_field.dart';
-import 'package:wan_mobile/views/controllers/auth/choose_language_page.dart';
 import 'package:wan_mobile/views/controllers/auth/phone_auth_vctl.dart';
-import 'package:wan_mobile/views/static/home/home_page.dart';
 
 class PhoneAuth extends StatelessWidget {
   const PhoneAuth({super.key});
@@ -21,10 +19,9 @@ class PhoneAuth extends StatelessWidget {
       bottomNavigationBar: const Padding(
         padding: EdgeInsets.all(12),
         child: Text(
-          "Le lorem ipsum est, en imprimerie, une suite de mots sans "
-          "signification utilisée à titre provisoire pour calibrer une"
-          " mise en page, le texte définitif venant remplacer",
+          "Wwan 2023 - V0.0.1",
           style: TextStyle(fontSize: 11),
+          textAlign: TextAlign.center,
         ),
       ),
       body: GetBuilder<PhoneAuthVctl>(
@@ -35,87 +32,182 @@ class PhoneAuth extends StatelessWidget {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.end,
-                    children: [
-                      MaterialButton(
-                        shape: RoundedRectangleBorder(
-                          side: const BorderSide(color: Colors.grey),
-                          borderRadius: BorderRadius.circular(50),
-                        ),
-                        onPressed: () =>
-                            Get.to(() => const ChooseLanguagePage()),
-                        child: const Text("Change Language"),
-                      ),
-                      const SizedBox(width: 10),
-                      MaterialButton(
-                        shape: RoundedRectangleBorder(
-                          side: const BorderSide(color: Colors.grey),
-                          borderRadius: BorderRadius.circular(50),
-                        ),
-                        onPressed: () => Get.offAll(() => const HomePage()),
-                        child: const Text("Skip"),
-                      )
-                    ],
+                  Image.asset(
+                    "assets/images/logo_bedoo.png",
+                    width: 94,
+                    height: 43,
                   ),
                   const SizedBox(height: 20),
                   const Text(
-                    "Connectez-vous ou créez votre compte",
-                    style: TextStyle(fontWeight: FontWeight.bold, fontSize: 24),
+                    "Login or Create an account",
+                    style: TextStyle(
+                      fontWeight: FontWeight.bold,
+                      fontSize: 20,
+                    ),
                   ),
                   const SizedBox(height: 5),
                   const Text(
-                      "Payez en utilisant UPI, portefeuille, comptes bancaires et cartes"),
+                    "Pay using UPI, Wallet, Bank Account and Cards",
+                    style: TextStyle(
+                      fontSize: 13,
+                    ),
+                  ),
                   const SizedBox(height: 20),
                   Row(
+                    crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      Expanded(
-                        child: Center(
-                          child: CDropdownField(
-                            hintText: "--",
-                            items: ctl.pays,
-                            selectedItem: ctl.selectedPays,
-                            itemAsString: (e) => e.libelle,
-                            onChanged: (e) {
-                              ctl.selectedPays = e;
-                              ctl.update();
-                            },
+                      Container(
+                        height: 54,
+                        width: 90,
+                        padding: const EdgeInsets.symmetric(horizontal: 3),
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(5),
+                          border: Border.all(
+                            color: const Color.fromRGBO(181, 196, 216, 1),
+                          ),
+                        ),
+                        child: GestureDetector(
+                          onTap: () => Tools.openBottomSheet(
+                            Container(
+                              padding: const EdgeInsets.only(
+                                  top: 10, left: 24, right: 24),
+                              decoration: const BoxDecoration(
+                                color: Colors.white,
+                                borderRadius: BorderRadius.only(
+                                  topLeft: Radius.circular(30),
+                                  topRight: Radius.circular(30),
+                                ),
+                              ),
+                              child: Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  Center(
+                                    child: Container(
+                                      height: 5,
+                                      width: 50,
+                                      margin: const EdgeInsets.only(
+                                          top: 10, bottom: 10),
+                                      decoration: const BoxDecoration(
+                                        color: Colors.grey,
+                                        borderRadius: BorderRadius.horizontal(
+                                          left: Radius.circular(5),
+                                          right: Radius.circular(5),
+                                        ),
+                                      ),
+                                    ),
+                                  ),
+                                  const SizedBox(height: 20),
+                                  const Text(
+                                    "Select country code",
+                                    style: TextStyle(
+                                      fontSize: 20,
+                                      fontWeight: FontWeight.bold,
+                                    ),
+                                  ),
+                                  const SizedBox(height: 14),
+                                  const CTextFormField(
+                                    fillColor: Color.fromRGBO(247, 250, 255, 1),
+                                    hintText: "Search for your country code",
+                                  ),
+                                  Visibility(
+                                    visible: ctl.selectedPays != null,
+                                    child: ListTile(
+                                      title: Text(
+                                        ctl.selectedPays?.label ?? "",
+                                      ),
+                                      leading: Text(
+                                        ctl.selectedPays?.callingCode ?? "",
+                                      ),
+                                      trailing: const Icon(
+                                        Icons.check_outlined,
+                                        color: Color.fromRGBO(0, 159, 249, 1),
+                                      ),
+                                      onTap: () {
+                                        ctl.selectedPays = null;
+                                        ctl.update();
+                                        Get.back();
+                                      },
+                                    ),
+                                  ),
+                                  const Divider(
+                                    thickness: 1,
+                                    color: Color.fromRGBO(237, 242, 249, 1),
+                                  ),
+                                  Expanded(
+                                    child: ListView(
+                                      physics: const BouncingScrollPhysics(),
+                                      children: ctl.pays
+                                          .map(
+                                            (e) => ListTile(
+                                              title: Text(
+                                                e.label ?? "",
+                                              ),
+                                              leading: Text(
+                                                e.callingCode ?? "",
+                                              ),
+                                              onTap: () {
+                                                ctl.selectedPays = e;
+                                                ctl.update();
+                                                Get.back();
+                                              },
+                                            ),
+                                          )
+                                          .toList(),
+                                    ),
+                                  )
+                                ],
+                              ),
+                            ),
+                          ),
+                          child: Row(
+                            children: [
+                              Expanded(
+                                child: Padding(
+                                  padding: const EdgeInsets.symmetric(
+                                      horizontal: 10),
+                                  child: Text(
+                                    ctl.selectedPays?.libelle ?? "--",
+                                    textAlign: TextAlign.center,
+                                  ),
+                                ),
+                              ),
+                              const Icon(Icons.arrow_drop_down)
+                            ],
                           ),
                         ),
                       ),
+                      const SizedBox(width: 10),
                       Expanded(
-                        flex: 2,
-                        child: Padding(
-                          padding: const EdgeInsets.only(left: 5),
-                          child: CTextFormField(
-                            controller: ctl.telCtl,
-                            keyboardType: TextInputType.number,
-                            maxLength: ctl.selectedPays?.phoneNumberLength,
-                            margin: EdgeInsets.zero,
-                            hintText: "Numéro de téléphone",
-                          ),
+                        flex: 4,
+                        child: CTextFormField(
+                          keyboardType: TextInputType.phone,
+                          controller: ctl.telCtl,
+                          hintText: "Numéro de téléphone",
+                          onChanged: (value) {},
+                          maxLength: ctl.selectedPays?.phoneNumberLength,
                         ),
-                      )
-                    ],
-                  ),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.end,
-                    children: [
-                      TextButton(
-                        onPressed: () {},
-                        child: const Text("Besoin d'aide?"),
                       )
                     ],
                   ),
                   const SizedBox(height: 20),
                   CheckboxListTile(
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(5),
+                    ),
+                    controlAffinity: ListTileControlAffinity.leading,
+                    checkboxShape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(2),
+                    ),
+                    checkColor: const Color.fromRGBO(229, 229, 229, 1),
                     value: true,
                     dense: true,
                     onChanged: (value) {},
                     title: const Text(
-                      "Le lorem ipsum est, en imprimerie, une suite de mots sans "
-                      "signification utilisée à titre provisoire pour calibrer une"
-                      " mise en page, le texte définitif venant remplacer",
+                      "Get updates on Whatsapp. I authorize Paytm "
+                      "to access my credit reports from credit bureaus",
+                      style: TextStyle(
+                        fontSize: 10,
+                      ),
                     ),
                   ),
                   const SizedBox(height: 10),
@@ -124,17 +216,14 @@ class PhoneAuth extends StatelessWidget {
                     height: 70,
                     padding: const EdgeInsets.all(8.0),
                     child: CButton(
+                      color: const Color.fromRGBO(96, 198, 255, 1),
                       onPressed: () => ctl.submit(),
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: const [
-                          Icon(Icons.lock, size: 16),
-                          SizedBox(width: 10),
-                          Text(
-                            "CONNEXION",
-                            style: TextStyle(fontSize: 18),
-                          ),
-                        ],
+                      child: const Text(
+                        "Send me an OTP",
+                        style: TextStyle(
+                          fontSize: 18,
+                          color: Color.fromRGBO(7, 21, 60, 1),
+                        ),
                       ),
                     ),
                   ),

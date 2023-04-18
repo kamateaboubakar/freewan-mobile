@@ -4,7 +4,7 @@ import 'package:get/get.dart';
 import 'package:wan_mobile/tools/const/const.dart';
 import 'package:wan_mobile/tools/widgets/c_button.dart';
 import 'package:wan_mobile/views/static/auth/phone_auth.dart';
-import 'package:wan_mobile/views/static/auth/register_page.dart';
+import 'package:wan_mobile/views/static/auth/register/register_page.dart';
 
 class HomeDrawer extends StatelessWidget {
   const HomeDrawer({super.key});

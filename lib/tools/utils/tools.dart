@@ -73,15 +73,20 @@ class Tools {
         ),
       );
 
-  static Future messageBox(
-          {required String? message,
-          bool barrierDismissible = true,
-          List<Widget>? actions,
-          Widget? confirm,
-          TextStyle? titleStyle,
-          void Function()? onConfirm,
-          double radius = 10,
-          String? title}) =>
+  static Future<T?> openBottomSheet<T>(Widget widget) => Get.bottomSheet<T>(
+        widget,
+      );
+
+  static Future messageBox({
+    required String? message,
+    bool barrierDismissible = true,
+    List<Widget>? actions,
+    Widget? confirm,
+    TextStyle? titleStyle,
+    void Function()? onConfirm,
+    double radius = 10,
+    String? title,
+  }) =>
       Get.defaultDialog(
           textConfirm: "OK",
           buttonColor: Const.primaryColor,

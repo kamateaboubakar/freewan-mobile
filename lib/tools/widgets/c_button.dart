@@ -12,10 +12,10 @@ class CButton extends StatelessWidget {
   final void Function()? onPressed;
   const CButton(
       {this.elevation = 0,
-      this.borderRadius = 10,
+      this.borderRadius = 5,
       required this.onPressed,
       this.textColor = Colors.white,
-      this.color = Const.primaryColor,
+      this.color = const Color.fromRGBO(96, 198, 255, 1),
       this.minWidth,
       this.height,
       this.child,

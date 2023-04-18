@@ -8,17 +8,24 @@ class HomePageVctl extends ViewController {
     "https://www.shutterstock.com/image-vector/deluxe-king-size-burger-ads-260nw-1121447561.jpg"
   ];
 
-  final ScrollController scrollController = ScrollController();
+  final DraggableScrollableController scrollController =
+      DraggableScrollableController();
 
   int currentAds = 0;
-  double fabSize = 56.0;
+  bool smallButton = false;
 
   @override
   void onInit() {
     super.onInit();
+
     scrollController.addListener(() {
-      fabSize = scrollController.offset > 100 ? 40.0 : 56.0;
-      update();
+      if (scrollController.pixels == 754.4) {
+        smallButton = true;
+        update();
+      } else if (scrollController.pixels == 565.8) {
+        smallButton = false;
+        update();
+      }
     });
   }
 }

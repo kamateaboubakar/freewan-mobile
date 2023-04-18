@@ -13,20 +13,24 @@ class SplashScreen extends StatelessWidget {
           builder: (ctl) {
             return Center(
               child: Column(
-                children: const [
+                children: [
                   Expanded(
                     child: Center(
-                      child: Text("Logo"),
+                      child: Image.asset(
+                        "assets/images/logo_bedoo.png",
+                        width: 141,
+                        height: 63,
+                      ),
                     ),
                   ),
-                  Padding(
+                  const Padding(
                     padding: EdgeInsets.all(8.0),
                     child: CircularProgressIndicator(strokeWidth: 1.2),
                   ),
-                  Padding(
+                  const Padding(
                     padding: EdgeInsets.all(8.0),
                     child: Text(
-                      "Version 1.0.0",
+                      "Wwan 2023 - V0.0.1",
                       textAlign: TextAlign.center,
                     ),
                   ),

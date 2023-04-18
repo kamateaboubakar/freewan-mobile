@@ -45,7 +45,8 @@ class UserApiCtl extends WebController {
     }
   }
 
-  Future<void> verifyOtp(String code) async {
+  Future<HttpResponse<bool>> verifyOtp(
+      {required String code, required String phone}) async {
     try {
       var response = await client.post(
         baseUrl(module: "verify-otp"),
@@ -53,10 +54,16 @@ class UserApiCtl extends WebController {
           "Content-Type": "application/json",
           "Accept": "application/json"
         },
-        body: jsonEncode({"code": code, "login": ""}),
+        body: jsonEncode({"code": code, "login": phone}),
       );
+      var body = HttpResponse.decodeBody(response);
+      if (body.status) {
+        return HttpResponse.success(data: true);
+      } else {
+        return HttpResponse.error();
+      }
     } catch (e) {
-      // return HttpResponse.error();
+      return HttpResponse.error();
     }
   }
 }

@@ -58,20 +58,20 @@ class HomeDrawer extends StatelessWidget {
               child: const Text("Login"),
             ),
             const SizedBox(height: 20),
-            Text.rich(
-              TextSpan(
-                text: "Don't have an account yet? ",
-                style: const TextStyle(fontSize: 13),
-                children: [
-                  TextSpan(
-                    text: "Create an account",
-                    style: const TextStyle(color: Const.primaryColor),
-                    recognizer: TapGestureRecognizer()
-                      ..onTap = () => Get.to(() => const RegisterPage()),
-                  )
-                ],
-              ),
-            ),
+            // Text.rich(
+            //   TextSpan(
+            //     text: "Don't have an account yet? ",
+            //     style: const TextStyle(fontSize: 13),
+            //     children: [
+            //       TextSpan(
+            //         text: "Create an account",
+            //         style: const TextStyle(color: Const.primaryColor),
+            //         recognizer: TapGestureRecognizer()
+            //           ..onTap = () => Get.to(() => const RegisterPage()),
+            //       )
+            //     ],
+            //   ),
+            // ),
             const SizedBox(height: 20),
             Container(
               decoration: BoxDecoration(

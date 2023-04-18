@@ -76,6 +76,14 @@ class CTextFormField extends StatelessWidget {
           prefixIcon: prefixIcon,
           fillColor: fillColor,
           filled: true,
+          errorBorder: border ??
+              OutlineInputBorder(
+                borderSide: const BorderSide(
+                  width: 0.5,
+                  color: Colors.red,
+                ),
+                borderRadius: BorderRadius.circular(5),
+              ),
           focusedBorder: border ??
               OutlineInputBorder(
                 borderSide: const BorderSide(

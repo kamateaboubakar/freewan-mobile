@@ -1,13 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_otp_text_field/flutter_otp_text_field.dart';
 import 'package:get/get.dart';
+import 'package:wan_mobile/models/pays.dart';
 import 'package:wan_mobile/tools/const/const.dart';
 import 'package:wan_mobile/views/controllers/auth/opt_auth_vctl.dart';
-import 'package:wan_mobile/views/static/auth/register/register_page.dart';
 
 class OPTAuth extends StatelessWidget {
   final String phone;
-  const OPTAuth({required this.phone, super.key});
+  final Pays selectedPays;
+  const OPTAuth({required this.selectedPays, required this.phone, super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -19,8 +20,8 @@ class OPTAuth extends StatelessWidget {
         automaticallyImplyLeading: false,
       ),
       body: GetBuilder<OptAuthVctl>(
-          init: OptAuthVctl(phone),
-          builder: (context) {
+          init: OptAuthVctl(selectedPays: selectedPays),
+          builder: (ctl) {
             return SingleChildScrollView(
               padding: const EdgeInsets.all(20),
               child: Column(
@@ -62,9 +63,8 @@ class OPTAuth extends StatelessWidget {
                     borderColor: Const.primaryColor,
                     showFieldAsBox: true,
                     onCodeChanged: (String code) {},
-                    onSubmit: (String verificationCode) {
-                      Get.to(() => const RegisterPage());
-                    },
+                    onSubmit: (String code) =>
+                        ctl.submit(phone: phone, code: code),
                   ),
                   const SizedBox(height: 20),
                   const Text.rich(

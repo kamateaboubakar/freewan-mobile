@@ -20,18 +20,21 @@ class PhoneAuthVctl extends ViewController {
   Future<void> submit() async {
     if (selectedPays != null) {
       if (telCtl.text.isNotEmpty) {
-        // await pr.show();
-        // var codePays = selectedPays!.callingCode;
+        await pr.show();
+        var codePays = selectedPays!.callingCode;
 
-        // var phone = "$codePays${telCtl.text}";
-        // var res = await UserApiCtl().loginPhone(phone);
-        // await pr.hide();
-        // if (res.status) {
-        //   Get.to(() => OPTAuth(phone: phone));
-        // } else {
-        //   Tools.messageBox(message: res.message);
-        // }
-        Get.to(() => OPTAuth(phone: telCtl.text));
+        var phone = "$codePays${telCtl.text}";
+        var res = await UserApiCtl().loginPhone(phone);
+        await pr.hide();
+        if (res.status) {
+          Get.to(() => OPTAuth(phone: phone, selectedPays: selectedPays!));
+        } else {
+          Tools.messageBox(message: res.message);
+        }
+        Get.to(() => OPTAuth(
+              phone: telCtl.text,
+              selectedPays: selectedPays!,
+            ));
       } else {
         Tools.messageBox(
             message: "Veuillez entrer un numéro de téléphone valide SVP.");
@@ -46,8 +49,6 @@ class PhoneAuthVctl extends ViewController {
     if (res.status) {
       pays = res.data!;
       update();
-    } else {
-      print(res.message);
     }
   }
 

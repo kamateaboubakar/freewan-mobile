@@ -14,7 +14,7 @@ class PasswordRegister extends StatelessWidget {
         padding: const EdgeInsets.all(20),
         children: [
           const Text(
-            "Enter your email address",
+            "Enter your password",
             style: TextStyle(
               fontSize: 20,
               fontWeight: FontWeight.bold,

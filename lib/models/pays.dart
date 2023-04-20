@@ -21,7 +21,7 @@ class Pays {
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
+    final Map<String, dynamic> data = {};
     data['countryId'] = this.countryId;
     data['code'] = this.code;
     data['label'] = this.label;
@@ -31,4 +31,7 @@ class Pays {
   }
 
   String get libelle => (callingCode ?? "").replaceAll("00", "+");
+
+  String? get flag =>
+      (code == null) ? null : "assets/images/flags/${code?.toLowerCase()}.png";
 }

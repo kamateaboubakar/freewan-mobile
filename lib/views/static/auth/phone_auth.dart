@@ -56,107 +56,114 @@ class PhoneAuth extends StatelessWidget {
                   Row(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      Container(
-                        height: 54,
-                        width: 90,
-                        padding: const EdgeInsets.symmetric(horizontal: 3),
-                        decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(5),
-                          border: Border.all(
-                            color: const Color.fromRGBO(181, 196, 216, 1),
+                      GestureDetector(
+                        onTap: () => Tools.openBottomSheet(
+                          Container(
+                            padding: const EdgeInsets.only(
+                                top: 10, left: 24, right: 24),
+                            decoration: const BoxDecoration(
+                              color: Colors.white,
+                              borderRadius: BorderRadius.only(
+                                topLeft: Radius.circular(30),
+                                topRight: Radius.circular(30),
+                              ),
+                            ),
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Center(
+                                  child: Container(
+                                    height: 5,
+                                    width: 50,
+                                    margin: const EdgeInsets.only(
+                                        top: 10, bottom: 10),
+                                    decoration: const BoxDecoration(
+                                      color: Colors.grey,
+                                      borderRadius: BorderRadius.horizontal(
+                                        left: Radius.circular(5),
+                                        right: Radius.circular(5),
+                                      ),
+                                    ),
+                                  ),
+                                ),
+                                const SizedBox(height: 20),
+                                const Text(
+                                  "Select country code",
+                                  style: TextStyle(
+                                    fontSize: 20,
+                                    fontWeight: FontWeight.bold,
+                                  ),
+                                ),
+                                const SizedBox(height: 14),
+                                const CTextFormField(
+                                  fillColor: Color.fromRGBO(247, 250, 255, 1),
+                                  hintText: "Search for your country code",
+                                ),
+                                (ctl.selectedPays != null)
+                                    ? ListTile(
+                                        leading:
+                                            (ctl.selectedPays!.flag != null)
+                                                ? Image.asset(
+                                                    ctl.selectedPays!.flag!)
+                                                : null,
+                                        title: Text(
+                                          ctl.selectedPays?.label ?? "",
+                                        ),
+                                        subtitle: Text(
+                                          ctl.selectedPays?.callingCode ?? "",
+                                        ),
+                                        trailing: const Icon(
+                                          Icons.check_outlined,
+                                          color: Color.fromRGBO(0, 159, 249, 1),
+                                        ),
+                                        onTap: () {
+                                          ctl.selectedPays = null;
+                                          ctl.update();
+                                          Get.back();
+                                        },
+                                      )
+                                    : const SizedBox.shrink(),
+                                const Divider(
+                                  thickness: 1,
+                                  color: Color.fromRGBO(237, 242, 249, 1),
+                                ),
+                                Expanded(
+                                  child: ListView(
+                                    physics: const BouncingScrollPhysics(),
+                                    children: ctl.pays
+                                        .map(
+                                          (e) => ListTile(
+                                            leading: (e.flag != null)
+                                                ? Image.asset(e.flag!)
+                                                : null,
+                                            title: Text(
+                                              e.label ?? "",
+                                            ),
+                                            subtitle: Text(
+                                              e.callingCode ?? "",
+                                            ),
+                                            onTap: () {
+                                              ctl.selectedPays = e;
+                                              ctl.update();
+                                              Get.back();
+                                            },
+                                          ),
+                                        )
+                                        .toList(),
+                                  ),
+                                )
+                              ],
+                            ),
                           ),
                         ),
-                        child: GestureDetector(
-                          onTap: () => Tools.openBottomSheet(
-                            Container(
-                              padding: const EdgeInsets.only(
-                                  top: 10, left: 24, right: 24),
-                              decoration: const BoxDecoration(
-                                color: Colors.white,
-                                borderRadius: BorderRadius.only(
-                                  topLeft: Radius.circular(30),
-                                  topRight: Radius.circular(30),
-                                ),
-                              ),
-                              child: Column(
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: [
-                                  Center(
-                                    child: Container(
-                                      height: 5,
-                                      width: 50,
-                                      margin: const EdgeInsets.only(
-                                          top: 10, bottom: 10),
-                                      decoration: const BoxDecoration(
-                                        color: Colors.grey,
-                                        borderRadius: BorderRadius.horizontal(
-                                          left: Radius.circular(5),
-                                          right: Radius.circular(5),
-                                        ),
-                                      ),
-                                    ),
-                                  ),
-                                  const SizedBox(height: 20),
-                                  const Text(
-                                    "Select country code",
-                                    style: TextStyle(
-                                      fontSize: 20,
-                                      fontWeight: FontWeight.bold,
-                                    ),
-                                  ),
-                                  const SizedBox(height: 14),
-                                  const CTextFormField(
-                                    fillColor: Color.fromRGBO(247, 250, 255, 1),
-                                    hintText: "Search for your country code",
-                                  ),
-                                  Visibility(
-                                    visible: ctl.selectedPays != null,
-                                    child: ListTile(
-                                      title: Text(
-                                        ctl.selectedPays?.label ?? "",
-                                      ),
-                                      leading: Text(
-                                        ctl.selectedPays?.callingCode ?? "",
-                                      ),
-                                      trailing: const Icon(
-                                        Icons.check_outlined,
-                                        color: Color.fromRGBO(0, 159, 249, 1),
-                                      ),
-                                      onTap: () {
-                                        ctl.selectedPays = null;
-                                        ctl.update();
-                                        Get.back();
-                                      },
-                                    ),
-                                  ),
-                                  const Divider(
-                                    thickness: 1,
-                                    color: Color.fromRGBO(237, 242, 249, 1),
-                                  ),
-                                  Expanded(
-                                    child: ListView(
-                                      physics: const BouncingScrollPhysics(),
-                                      children: ctl.pays
-                                          .map(
-                                            (e) => ListTile(
-                                              title: Text(
-                                                e.label ?? "",
-                                              ),
-                                              leading: Text(
-                                                e.callingCode ?? "",
-                                              ),
-                                              onTap: () {
-                                                ctl.selectedPays = e;
-                                                ctl.update();
-                                                Get.back();
-                                              },
-                                            ),
-                                          )
-                                          .toList(),
-                                    ),
-                                  )
-                                ],
-                              ),
+                        child: Container(
+                          height: 54,
+                          width: 90,
+                          padding: const EdgeInsets.symmetric(horizontal: 10),
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(5),
+                            border: Border.all(
+                              color: const Color.fromRGBO(181, 196, 216, 1),
                             ),
                           ),
                           child: Row(
@@ -165,10 +172,12 @@ class PhoneAuth extends StatelessWidget {
                                 child: Padding(
                                   padding: const EdgeInsets.symmetric(
                                       horizontal: 10),
-                                  child: Text(
-                                    ctl.selectedPays?.libelle ?? "--",
-                                    textAlign: TextAlign.center,
-                                  ),
+                                  child: (ctl.selectedPays?.flag != null)
+                                      ? Image.asset(ctl.selectedPays!.flag!)
+                                      : Text(
+                                          ctl.selectedPays?.libelle ?? "--",
+                                          textAlign: TextAlign.center,
+                                        ),
                                 ),
                               ),
                               const Icon(Icons.arrow_drop_down)

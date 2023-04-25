@@ -1,14 +1,15 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_countdown_timer/flutter_countdown_timer.dart';
 import 'package:flutter_otp_text_field/flutter_otp_text_field.dart';
 import 'package:get/get.dart';
-import 'package:wan_mobile/models/pays.dart';
 import 'package:wan_mobile/tools/const/const.dart';
 import 'package:wan_mobile/views/controllers/auth/opt_auth_vctl.dart';
 
 class OPTAuth extends StatelessWidget {
+  final void Function(String code) onSubmit;
   final String phone;
-  final Pays selectedPays;
-  const OPTAuth({required this.selectedPays, required this.phone, super.key});
+
+  const OPTAuth({required this.onSubmit, required this.phone, super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -20,7 +21,7 @@ class OPTAuth extends StatelessWidget {
         automaticallyImplyLeading: false,
       ),
       body: GetBuilder<OptAuthVctl>(
-          init: OptAuthVctl(selectedPays: selectedPays),
+          init: OptAuthVctl(),
           builder: (ctl) {
             return SingleChildScrollView(
               padding: const EdgeInsets.all(20),
@@ -63,21 +64,44 @@ class OPTAuth extends StatelessWidget {
                     borderColor: Const.primaryColor,
                     showFieldAsBox: true,
                     onCodeChanged: (String code) {},
-                    onSubmit: (String code) =>
-                        ctl.submit(phone: phone, code: code),
+                    onSubmit: onSubmit,
                   ),
                   const SizedBox(height: 20),
-                  const Text.rich(
-                    TextSpan(
-                      text: "Did not receive it yet? ",
-                      children: [
-                        TextSpan(
-                          text: "Tap here to resend the code",
-                          style: TextStyle(color: Const.primaryColor),
+                  Row(
+                    children: [
+                      Expanded(
+                        child: CountdownTimer(
+                          endTime: DateTime.now()
+                                  .add(const Duration(minutes: 1))
+                                  .millisecondsSinceEpoch +
+                              1000,
+                          widgetBuilder: (context, time) {
+                            return Text(
+                              "${time?.min ?? "0"}:${time?.sec ?? "00"}",
+                              style: const TextStyle(
+                                color: Color.fromRGBO(13, 51, 159, 1),
+                                fontWeight: FontWeight.w500,
+                                fontSize: 11,
+                              ),
+                            );
+                          },
                         ),
-                      ],
-                      style: TextStyle(fontSize: 11),
-                    ),
+                      ),
+                      const Text.rich(
+                        TextSpan(
+                          text: "Pas encore reçu ? ",
+                          children: [
+                            TextSpan(
+                              text: "Cliquez ici pour renvoyer",
+                              style: TextStyle(
+                                color: Color.fromRGBO(181, 196, 216, 1),
+                              ),
+                            ),
+                          ],
+                          style: TextStyle(fontSize: 11),
+                        ),
+                      ),
+                    ],
                   ),
                 ],
               ),

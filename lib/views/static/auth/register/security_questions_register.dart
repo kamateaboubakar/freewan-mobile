@@ -17,7 +17,7 @@ class SecurityQuestionRegister extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             const Text(
-              "Security Questions",
+              "Questions de sécurité",
               style: TextStyle(
                 fontSize: 20,
                 fontWeight: FontWeight.bold,
@@ -25,7 +25,7 @@ class SecurityQuestionRegister extends StatelessWidget {
               ),
             ),
             const Text(
-              "These will help you recover your account",
+              "5 questions pour récupérer votre compte en cas de bésoin",
               style: TextStyle(
                 fontSize: 13,
                 color: Color.fromRGBO(38, 82, 140, 1),
@@ -45,20 +45,20 @@ class SecurityQuestionRegister extends StatelessWidget {
                             require: true,
                             hintText: "Question 1",
                             items: ctl.getAvailaibleQuestions,
-                            selectedItem: ctl.selectedQuestions[0],
+                            // selectedItem: ctl.selectedQuestions[0],
                             itemAsString: (e) => e.label ?? "Question 1",
-                            onChanged: (value) =>
-                                ctl.selectQuestion(e: value!, index: 0),
+                            // onChanged: (value) =>
+                            //     ctl.selectQuestion(e: value!, index: 0),
                           ),
                           CTextFormField(
                             require: true,
-                            initialValue: ctl.securityQuestions[0].answer,
+                            // initialValue: ctl.securityQuestions[0].answer,
                             enabled:
                                 ctl.selectedQuestions[0].securityQuestionId !=
                                     null,
                             hintText: "Answer here",
-                            onChanged: (value) =>
-                                ctl.setResponseQuestion(index: 0, value: value),
+                            // onChanged: (value) =>
+                            //     ctl.setResponseQuestion(index: 0, value: value),
                           ),
                         ],
                       ),
@@ -71,21 +71,21 @@ class SecurityQuestionRegister extends StatelessWidget {
                           CDropdownField(
                             require: true,
                             hintText: "Question 2",
-                            selectedItem: ctl.selectedQuestions[1],
+                            // selectedItem: ctl.selectedQuestions[1],
                             items: ctl.getAvailaibleQuestions,
                             itemAsString: (e) => e.label ?? "Question 2",
-                            onChanged: (value) =>
-                                ctl.selectQuestion(e: value!, index: 1),
+                            // onChanged: (value) =>
+                            //     ctl.selectQuestion(e: value!, index: 1),
                           ),
                           CTextFormField(
                             require: true,
-                            initialValue: ctl.securityQuestions[1].answer,
+                            // initialValue: ctl.securityQuestions[1].answer,
                             hintText: "Answer here",
                             enabled:
                                 ctl.selectedQuestions[1].securityQuestionId !=
                                     null,
-                            onChanged: (value) =>
-                                ctl.setResponseQuestion(index: 1, value: value),
+                            // onChanged: (value) =>
+                            //     ctl.setResponseQuestion(index: 1, value: value),
                           ),
                         ],
                       ),
@@ -98,14 +98,14 @@ class SecurityQuestionRegister extends StatelessWidget {
                           CDropdownField(
                             require: true,
                             hintText: "Question 3",
-                            selectedItem: ctl.selectedQuestions[2],
+                            // selectedItem: ctl.selectedQuestions[2],
                             items: ctl.getAvailaibleQuestions,
                             itemAsString: (e) => e.label ?? "Question 3",
-                            onChanged: (value) =>
-                                ctl.selectQuestion(e: value!, index: 2),
+                            // onChanged: (value) =>
+                            //     ctl.selectQuestion(e: value!, index: 2),
                           ),
                           CTextFormField(
-                            initialValue: ctl.securityQuestions[2].answer,
+                            // initialValue: ctl.securityQuestions[2].answer,
                             require: true,
                             hintText: "Answer here",
                             enabled:
@@ -125,14 +125,14 @@ class SecurityQuestionRegister extends StatelessWidget {
                           CDropdownField(
                             require: true,
                             hintText: "Question 4",
-                            selectedItem: ctl.selectedQuestions[3],
+                            // selectedItem: ctl.selectedQuestions[3],
                             items: ctl.getAvailaibleQuestions,
                             itemAsString: (e) => e.label ?? "Question 4",
-                            onChanged: (value) =>
-                                ctl.selectQuestion(e: value!, index: 3),
+                            // onChanged: (value) =>
+                            //     ctl.selectQuestion(e: value!, index: 3),
                           ),
                           CTextFormField(
-                            initialValue: ctl.securityQuestions[3].answer,
+                            // initialValue: ctl.securityQuestions[3].answer,
                             require: true,
                             hintText: "Answer here",
                             enabled:
@@ -160,7 +160,7 @@ class SecurityQuestionRegister extends StatelessWidget {
                           ),
                           CTextFormField(
                             require: true,
-                            initialValue: ctl.securityQuestions[4].answer,
+                            // initialValue: ctl.securityQuestions[4].answer,
                             hintText: "Answer here",
                             enabled:
                                 ctl.selectedQuestions[4].securityQuestionId !=

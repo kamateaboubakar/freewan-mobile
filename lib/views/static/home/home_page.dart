@@ -9,19 +9,19 @@ import 'package:wan_mobile/tools/widgets/card_menu.dart';
 import 'package:wan_mobile/views/controllers/home/home_page_vctl.dart';
 import 'package:wan_mobile/views/static/home/home_drawer.dart';
 import 'package:badges/badges.dart' as badges;
+import 'package:wan_mobile/views/static/scan_pay/scan_pay_camera.dart';
 
 class HomePage extends StatelessWidget {
-  const HomePage({super.key});
+  final bool displayWelcome;
+  const HomePage({this.displayWelcome = false, super.key});
 
   @override
   Widget build(BuildContext context) {
     return GetBuilder<HomePageVctl>(
-        init: HomePageVctl(),
+        init: HomePageVctl(displayWelcome),
         builder: (ctl) {
           return Scaffold(
             drawer: const HomeDrawer(),
-            // extendBody: true,
-            // extendBodyBehindAppBar: true,
             appBar: AppBar(
               leadingWidth: 50,
               toolbarHeight: 60,
@@ -91,12 +91,14 @@ class HomePage extends StatelessWidget {
               // height: ctl.s,
               child: ctl.smallButton
                   ? FloatingActionButton(
+                      backgroundColor: const Color.fromRGBO(13, 51, 159, 1),
                       isExtended: true,
-                      onPressed: () {},
+                      onPressed: () => Get.to(() => const ScanPayCamera()),
                       child: const Icon(Icons.qr_code),
                     )
                   : FloatingActionButton.extended(
-                      onPressed: () {},
+                      backgroundColor: const Color.fromRGBO(13, 51, 159, 1),
+                      onPressed: () => Get.to(() => const ScanPayCamera()),
                       label: const Text("Scanner un code"),
                       icon: const Icon(Icons.qr_code),
                     ),
@@ -219,7 +221,7 @@ class HomePage extends StatelessWidget {
                                   ),
                                 ),
                                 CardMenu(
-                                  height: 160,
+                                  height: 170,
                                   title: "UPI Money Transfer",
                                   children: [
                                     ButtonMenu(
@@ -245,7 +247,7 @@ class HomePage extends StatelessWidget {
                                   ],
                                 ),
                                 CardMenu(
-                                  height: 160,
+                                  height: 170,
                                   title: "UPI Money Transfer",
                                   children: [
                                     ButtonMenu(

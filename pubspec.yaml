@@ -45,6 +45,11 @@ dependencies:
   shared_preferences: ^2.0.15
   date_format: ^2.0.5
   advance_expansion_tile: ^1.0.2
+  flutter_countdown_timer: ^4.1.0
+  permission_handler: ^10.2.0
+  qr_code_scanner: ^1.0.1
+  lottie: ^2.3.2
+  flutter_credit_card: ^3.0.6
 
 
   # The following adds the Cupertino Icons font to your application.
@@ -76,6 +81,7 @@ flutter:
   # To add assets to your application, add an assets section, like this:
   assets:
     - assets/images/
+    - assets/lotties/
     - assets/images/flags/
   #   - images/a_dot_ham.jpeg
 

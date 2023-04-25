@@ -1,6 +1,6 @@
 import 'package:get/get.dart';
 import 'package:wan_mobile/views/controllers/abstracts/view_controller.dart';
-import 'package:wan_mobile/views/static/auth/phone_auth.dart';
+import 'package:wan_mobile/views/static/auth/phone_auth/phone_auth.dart';
 
 class SplashscreenVctl extends ViewController {
   @override

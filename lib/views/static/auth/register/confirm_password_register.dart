@@ -4,14 +4,14 @@ import 'package:wan_mobile/tools/const/const.dart';
 import 'package:wan_mobile/tools/widgets/c_textform_field.dart';
 import 'package:wan_mobile/views/controllers/auth/register_page_vctl.dart';
 
-class PasswordRegister extends StatelessWidget {
+class ConfirmPasswordRegister extends StatelessWidget {
   final RegisterPageVctl ctl;
-  const PasswordRegister(this.ctl, {super.key});
+  const ConfirmPasswordRegister(this.ctl, {super.key});
 
   @override
   Widget build(BuildContext context) {
     return Form(
-      key: ctl.passFormKey,
+      // key: ctl.passFormKey,
       child: ListView(
         padding: const EdgeInsets.all(20),
         children: [
@@ -24,7 +24,7 @@ class PasswordRegister extends StatelessWidget {
             ),
           ),
           const Text(
-            "Choisissez un passcode",
+            "Confirmez votre passcode",
             style: TextStyle(
               fontSize: 13,
               color: Color.fromRGBO(38, 82, 140, 1),
@@ -38,14 +38,15 @@ class PasswordRegister extends StatelessWidget {
             focusedBorderColor: Const.primaryColor,
             enabledBorderColor: const Color.fromRGBO(38, 82, 140, 0.34),
             filled: true,
-            fillColor: Colors.white,
             obscureText: true,
+            fillColor: Colors.white,
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             borderColor: Const.primaryColor,
             showFieldAsBox: true,
             onCodeChanged: (String code) {},
             // onSubmit: (String code) => ctl.submit(phone: phone, code: code),
           ),
+          const SizedBox(height: 15),
         ],
       ),
     );

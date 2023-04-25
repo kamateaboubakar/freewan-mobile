@@ -67,9 +67,13 @@ class Tools {
     );
   }
 
-  static Future<T?> openModal<T>(Widget widget) => Get.dialog<T>(
+  static Future<T?> openModal<T>(Widget widget,
+          {Color? backgroundColor, EdgeInsetsGeometry? contentPadding}) =>
+      Get.dialog<T>(
         AlertDialog(
+          backgroundColor: backgroundColor,
           content: widget,
+          contentPadding: contentPadding,
         ),
       );
 

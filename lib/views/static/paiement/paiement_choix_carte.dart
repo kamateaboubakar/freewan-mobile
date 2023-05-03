@@ -1,23 +1,19 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/src/widgets/framework.dart';
-import 'package:flutter/src/widgets/placeholder.dart';
 import 'package:flutter_credit_card/flutter_credit_card.dart';
 import 'package:get/get.dart';
 import 'package:wan_mobile/tools/utils/tools.dart';
 import 'package:wan_mobile/tools/widgets/c_button.dart';
 import 'package:wan_mobile/tools/widgets/c_textform_field.dart';
-import 'package:wan_mobile/views/static/scan_pay/scan_pay_recap.dart';
+import 'package:wan_mobile/views/static/paiement/paiement_pay_recap.dart';
 
-class ScanPayChoixCart extends StatelessWidget {
-  const ScanPayChoixCart({super.key});
+class PaiementChoixCart extends StatelessWidget {
+  const PaiementChoixCart({super.key});
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.white,
-        elevation: 0,
-        centerTitle: true,
         foregroundColor: Colors.black,
         title: const Text("Choix de la carte"),
       ),
@@ -180,7 +176,7 @@ class ScanPayChoixCart extends StatelessWidget {
                         size: 12,
                         color: Color.fromRGBO(7, 21, 60, 1),
                       ),
-                      onTap: () => Get.to(() => const ScanPayRecap()),
+                      onTap: () => Get.to(() => const PaiementRecap()),
                     ),
                   ),
                 )

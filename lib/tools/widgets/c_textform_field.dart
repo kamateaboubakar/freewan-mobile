@@ -18,11 +18,13 @@ class CTextFormField extends StatelessWidget {
   final Color? fillColor;
   final bool? enabled;
   final TextInputType? keyboardType;
+  final void Function()? onTap;
 
   const CTextFormField(
       {this.controller,
       this.keyboardType,
       this.enabled,
+      this.onTap,
       this.fillColor = Colors.white,
       this.initialValue,
       this.obscureText = false,
@@ -54,6 +56,7 @@ class CTextFormField extends StatelessWidget {
         controller: controller,
         enabled: enabled,
         cursorHeight: 20,
+        onTap: onTap,
         style: const TextStyle(
           fontSize: 15,
         ),

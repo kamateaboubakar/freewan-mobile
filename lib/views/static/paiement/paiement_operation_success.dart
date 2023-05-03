@@ -4,8 +4,8 @@ import 'package:lottie/lottie.dart';
 import 'package:wan_mobile/tools/widgets/c_button.dart';
 import 'package:wan_mobile/views/static/home/home_page.dart';
 
-class ScanPayOperationSucess extends StatelessWidget {
-  const ScanPayOperationSucess({super.key});
+class PaiementOperationSucess extends StatelessWidget {
+  const PaiementOperationSucess({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -16,7 +16,7 @@ class ScanPayOperationSucess extends StatelessWidget {
           height: 48,
           minWidth: double.infinity,
           color: const Color.fromRGBO(13, 51, 159, 1),
-          onPressed: () => Get.offAll(() => const HomePage()),
+          onPressed: () => Get.to(() => const HomePage()),
           child: const Text(
             "Effectuer Paiement",
             style: TextStyle(

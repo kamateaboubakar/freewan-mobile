@@ -1,23 +1,21 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:wan_mobile/tools/widgets/c_button.dart';
-import 'package:wan_mobile/views/static/scan_pay/scan_pay_mode_paiement.dart';
+import 'package:wan_mobile/views/static/paiement/paiement_mode_paiement.dart';
 
-class ScanPayMontant extends StatelessWidget {
+class PaiementMontant extends StatelessWidget {
   final bool isForMontant;
-  const ScanPayMontant({this.isForMontant = false, super.key});
+  const PaiementMontant({this.isForMontant = false, super.key});
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.white,
-        centerTitle: true,
         foregroundColor: Colors.black,
         title: const Text(
           "Montant",
         ),
-        elevation: 0,
       ),
       bottomNavigationBar: Padding(
         padding: const EdgeInsets.only(right: 19),
@@ -53,7 +51,7 @@ class ScanPayMontant extends StatelessWidget {
                 minWidth: 149,
                 borderRadius: 8,
                 color: const Color.fromRGBO(13, 51, 159, 1),
-                onPressed: () => Get.to(() => const ScanPayModePaiement()),
+                onPressed: () => Get.to(() => const PaiementModePaiement()),
                 child: const Text(
                   "Payer",
                   style: TextStyle(

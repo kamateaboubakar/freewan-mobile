@@ -4,11 +4,16 @@ import 'package:get/get.dart';
 import 'package:shimmer/shimmer.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 import 'package:wan_mobile/tools/const/const.dart';
+import 'package:wan_mobile/tools/utils/tools.dart';
 import 'package:wan_mobile/tools/widgets/button_menu.dart';
 import 'package:wan_mobile/tools/widgets/card_menu.dart';
+import 'package:wan_mobile/tools/widgets/single_child_card_menu.dart';
 import 'package:wan_mobile/views/controllers/home/home_page_vctl.dart';
 import 'package:wan_mobile/views/static/home/home_drawer.dart';
 import 'package:badges/badges.dart' as badges;
+import 'package:wan_mobile/views/static/loyer/locataire/formulaire_code_maison_loyer.dart';
+import 'package:wan_mobile/views/static/loyer/loyer_bottom_sheet.dart';
+import 'package:wan_mobile/views/static/loyer/proprio/bien_immobilier_page.dart';
 import 'package:wan_mobile/views/static/scan_pay/scan_pay_camera.dart';
 
 class HomePage extends StatelessWidget {
@@ -22,16 +27,18 @@ class HomePage extends StatelessWidget {
         builder: (ctl) {
           return Scaffold(
             drawer: const HomeDrawer(),
+            backgroundColor: const Color.fromRGBO(182, 214, 232, 1.0),
             appBar: AppBar(
               leadingWidth: 50,
               toolbarHeight: 60,
-              centerTitle: true,
-              title: const Text(Const.appName),
+              title: Image.asset(
+                "assets/images/logo_bedoo.png",
+                width: 67,
+                height: 30,
+              ),
               leading: Builder(builder: (context) {
                 return GestureDetector(
-                  onTap: () {
-                    Scaffold.of(context).openDrawer();
-                  },
+                  onTap: () => Scaffold.of(context).openDrawer(),
                   child: Padding(
                     padding: const EdgeInsets.all(8.0),
                     child: badges.Badge(
@@ -49,22 +56,16 @@ class HomePage extends StatelessWidget {
                           color: Colors.white,
                           splashRadius: 20,
                           icon: const Center(
-                            child: Icon(
-                              Icons.person,
-                              size: 16,
-                            ),
+                            child: Icon(Icons.person, size: 16),
                           ),
-                          onPressed: () {
-                            Scaffold.of(context).openDrawer();
-                          },
+                          onPressed: () => Scaffold.of(context).openDrawer(),
                         ),
                       ),
                     ),
                   ),
                 );
               }),
-              elevation: 0,
-              backgroundColor: Const.primaryColor,
+              backgroundColor: Colors.transparent,
               actions: [
                 IconButton(
                   splashRadius: 20,
@@ -88,19 +89,31 @@ class HomePage extends StatelessWidget {
                 FloatingActionButtonLocation.centerFloat,
             floatingActionButton: AnimatedContainer(
               duration: const Duration(milliseconds: 100),
-              // height: ctl.s,
               child: ctl.smallButton
                   ? FloatingActionButton(
                       backgroundColor: const Color.fromRGBO(13, 51, 159, 1),
                       isExtended: true,
                       onPressed: () => Get.to(() => const ScanPayCamera()),
-                      child: const Icon(Icons.qr_code),
+                      child: Image.asset(
+                        "assets/images/icons/scan_float_button.png",
+                        width: 20,
+                        height: 20,
+                      ),
                     )
                   : FloatingActionButton.extended(
                       backgroundColor: const Color.fromRGBO(13, 51, 159, 1),
                       onPressed: () => Get.to(() => const ScanPayCamera()),
-                      label: const Text("Scanner un code"),
-                      icon: const Icon(Icons.qr_code),
+                      label: const Text(
+                        "Scanner un qr code",
+                        style: TextStyle(
+                          fontWeight: FontWeight.w600,
+                        ),
+                      ),
+                      icon: Image.asset(
+                        "assets/images/icons/scan_float_button.png",
+                        width: 20,
+                        height: 20,
+                      ),
                     ),
             ),
             body: Stack(
@@ -149,209 +162,251 @@ class HomePage extends StatelessWidget {
                           ),
                         ),
                         Expanded(
-                          child: SingleChildScrollView(
+                          child: ListView(
                             padding: const EdgeInsets.all(10),
                             physics: const BouncingScrollPhysics(),
                             controller: scrollController,
-                            child: Column(
-                              children: [
-                                CarouselSlider(
-                                  options: CarouselOptions(
-                                    height: 150,
-                                    onPageChanged:
-                                        (index, carouselPageChangedReason) {
-                                      ctl.currentAds = index;
-                                      ctl.update();
-                                    },
-                                  ),
-                                  items: ctl.ads.map((e) {
-                                    return Builder(
-                                      builder: (BuildContext context) {
-                                        return Container(
-                                          width:
-                                              MediaQuery.of(context).size.width,
-                                          margin: const EdgeInsets.symmetric(
-                                              horizontal: 5.0),
-                                          decoration: BoxDecoration(
-                                            borderRadius:
-                                                BorderRadius.circular(10),
-                                            border: Border.all(
-                                              width: .1,
-                                              color: Colors.grey,
-                                            ),
-                                          ),
-                                          child: ClipRRect(
-                                            borderRadius:
-                                                BorderRadius.circular(10),
-                                            child: Stack(
-                                              fit: StackFit.expand,
-                                              children: [
-                                                Shimmer.fromColors(
-                                                  baseColor: Colors.grey[300]!,
-                                                  highlightColor:
-                                                      Colors.grey[100]!,
-                                                  child: Container(
-                                                    color: Colors.white,
-                                                  ),
-                                                ),
-                                                Image.network(
-                                                  e,
-                                                  fit: BoxFit.fill,
-                                                ),
-                                              ],
-                                            ),
-                                          ),
-                                        );
-                                      },
-                                    );
-                                  }).toList(),
+                            children: [
+                              CarouselSlider(
+                                options: CarouselOptions(
+                                  height: 150,
+                                  onPageChanged:
+                                      (index, carouselPageChangedReason) {
+                                    ctl.currentAds = index;
+                                    ctl.update();
+                                  },
                                 ),
-                                SizedBox(
-                                  height: 50,
-                                  child: Center(
-                                    child: AnimatedSmoothIndicator(
-                                      activeIndex: ctl.currentAds,
-                                      count: ctl.ads.length,
-                                      effect: const WormEffect(
-                                        activeDotColor: Const.primaryColor,
-                                        dotWidth: 10,
-                                        dotHeight: 10,
+                                items: ctl.ads.map((e) {
+                                  return Builder(
+                                    builder: (BuildContext context) {
+                                      return Container(
+                                        width:
+                                            MediaQuery.of(context).size.width,
+                                        margin: const EdgeInsets.symmetric(
+                                            horizontal: 5.0),
+                                        decoration: BoxDecoration(
+                                          borderRadius:
+                                              BorderRadius.circular(10),
+                                          border: Border.all(
+                                            width: .1,
+                                            color: Colors.grey,
+                                          ),
+                                        ),
+                                        child: ClipRRect(
+                                          borderRadius:
+                                              BorderRadius.circular(10),
+                                          child: Stack(
+                                            fit: StackFit.expand,
+                                            children: [
+                                              Shimmer.fromColors(
+                                                baseColor: Colors.grey[300]!,
+                                                highlightColor:
+                                                    Colors.grey[100]!,
+                                                child: Container(
+                                                  color: Colors.white,
+                                                ),
+                                              ),
+                                              Image.network(
+                                                e,
+                                                fit: BoxFit.fill,
+                                              ),
+                                            ],
+                                          ),
+                                        ),
+                                      );
+                                    },
+                                  );
+                                }).toList(),
+                              ),
+                              SizedBox(
+                                height: 50,
+                                child: Center(
+                                  child: AnimatedSmoothIndicator(
+                                    activeIndex: ctl.currentAds,
+                                    count: ctl.ads.length,
+                                    effect: const WormEffect(
+                                      activeDotColor: Const.primaryColor,
+                                      dotWidth: 10,
+                                      dotHeight: 10,
+                                    ),
+                                  ),
+                                ),
+                              ),
+                              CardMenu(
+                                title: "Hub Financier",
+                                children: [
+                                  ButtonMenu(
+                                    icon: CircleAvatar(
+                                      backgroundColor: const Color.fromRGBO(
+                                          50, 132, 229, 0.16),
+                                      child: Image.asset(
+                                        "assets/images/icons/scan_pay.png",
+                                        height: 20,
+                                        width: 20,
                                       ),
                                     ),
+                                    title: "Scanner et payer",
+                                    onPressed: () =>
+                                        Get.to(() => const ScanPayCamera()),
                                   ),
-                                ),
-                                CardMenu(
-                                  height: 170,
-                                  title: "UPI Money Transfer",
-                                  children: [
-                                    ButtonMenu(
-                                      icon: Image.asset(
-                                          "assets/images/icons8-plein-ecran-96.png"),
-                                      title: "Scan & pay",
+                                  ButtonMenu(
+                                    icon: CircleAvatar(
+                                      backgroundColor: const Color.fromRGBO(
+                                          50, 132, 229, 0.16),
+                                      child: Image.asset(
+                                        "assets/images/icons/envoyer_mobile.png",
+                                        height: 20,
+                                        width: 20,
+                                      ),
                                     ),
-                                    ButtonMenu(
-                                      icon: Image.asset(
-                                          "assets/images/icons8-carte-contact-96.png"),
-                                      title: "To Mobile or Contact",
+                                    title: "Envoyer mobile",
+                                    onPressed: () {},
+                                  ),
+                                  ButtonMenu(
+                                    icon: CircleAvatar(
+                                      backgroundColor: const Color.fromRGBO(
+                                          50, 132, 229, 0.16),
+                                      child: Image.asset(
+                                          "assets/images/icons/recevoir_argent.png",
+                                          height: 20,
+                                          width: 20),
                                     ),
-                                    ButtonMenu(
-                                      icon: Image.asset(
-                                          "assets/images/icons8-facture-payee-96.png"),
-                                      title: "Factures",
+                                    title: "Recevoir argent",
+                                    onPressed: () {},
+                                  ),
+                                  ButtonMenu(
+                                    icon: Image.asset(
+                                      "assets/images/icons/transfert_banquaire.png",
+                                      height: 20,
+                                      width: 20,
                                     ),
-                                    ButtonMenu(
-                                      icon: Image.asset(
-                                          "assets/images/icons8-entrepot-96.png"),
-                                      title: "Paiement loyer",
+                                    title: "Transfert bancaire",
+                                    onPressed: () {},
+                                  ),
+                                ],
+                              ),
+                              CardMenu(
+                                children: [
+                                  ButtonMenu(
+                                    icon: Image.asset(
+                                      "assets/images/icons/historique_transaction.png",
                                     ),
-                                  ],
-                                ),
-                                CardMenu(
-                                  height: 170,
-                                  title: "UPI Money Transfer",
-                                  children: [
-                                    ButtonMenu(
-                                      icon: Image.asset(
-                                          "assets/images/icons8-plein-ecran-96.png"),
-                                      title: "Scan & pay",
+                                    title: "Historique Transactions",
+                                    onPressed: () {},
+                                  ),
+                                  ButtonMenu(
+                                    icon: Image.asset(
+                                      "assets/images/icons/mon_bedoo.png",
                                     ),
-                                    ButtonMenu(
-                                      icon: Image.asset(
-                                          "assets/images/icons8-carte-contact-96.png"),
-                                      title: "To Mobile or Contact",
+                                    title: "Mon Bédou",
+                                    onPressed: () {},
+                                  ),
+                                  ButtonMenu(
+                                    icon: Image.asset(
+                                      "assets/images/icons/paiement_loyer.png",
                                     ),
-                                    ButtonMenu(
-                                      icon: Image.asset(
-                                          "assets/images/icons8-facture-payee-96.png"),
-                                      title: "Factures",
+                                    title: "Paiement Loyer",
+                                    onPressed: () => Tools.openBottomSheet(
+                                        const LoyerBottomSheet()),
+                                  ),
+                                  ButtonMenu(
+                                    icon: Image.asset(
+                                      "assets/images/icons/paiement_assurance.png",
                                     ),
-                                    ButtonMenu(
+                                    title: "Paiement Assurances",
+                                    onPressed: () {},
+                                  ),
+                                ],
+                              ),
+                              Row(
+                                children: [
+                                  Expanded(
+                                    child: SingleChildCardMenu(
+                                      onTap: () {},
                                       icon: Image.asset(
-                                          "assets/images/icons8-entrepot-96.png"),
-                                      title: "Paiement loyer",
+                                        "assets/images/icons/box_cadeau.png",
+                                        height: 18,
+                                        width: 18,
+                                      ),
+                                      title: "Partager et Gagner",
+                                      subtitle: "Récompenses garanties",
                                     ),
-                                  ],
-                                ),
-                                CardMenu(
-                                  height: 160,
-                                  title: "UPI Money Transfer",
-                                  children: [
-                                    ButtonMenu(
+                                  ),
+                                  const SizedBox(width: 8),
+                                  Expanded(
+                                    child: SingleChildCardMenu(
+                                      onTap: () {},
                                       icon: Image.asset(
-                                          "assets/images/icons8-plein-ecran-96.png"),
-                                      title: "Scan & pay",
+                                        "assets/images/icons/carte_virtuelle.png",
+                                        height: 18,
+                                        width: 18,
+                                      ),
+                                      title: "Carte Virtuelle",
+                                      subtitle: "Achetez sur sites ecommerce",
                                     ),
-                                    ButtonMenu(
-                                      icon: Image.asset(
-                                          "assets/images/icons8-carte-contact-96.png"),
-                                      title: "To Mobile or Contact",
+                                  ),
+                                ],
+                              ),
+                              CardMenu(
+                                title: "Recharges et Factures",
+                                children: [
+                                  ButtonMenu(
+                                    icon: Image.asset(
+                                        "assets/images/icons/achat_unite.png"),
+                                    title: "Achat d’unités",
+                                    onPressed: () {},
+                                  ),
+                                  ButtonMenu(
+                                    icon: Image.asset(
+                                        "assets/images/icons/acaht_data.png"),
+                                    title: "Achat de pass",
+                                    onPressed: () {},
+                                  ),
+                                  ButtonMenu(
+                                    icon: Image.asset(
+                                        "assets/images/icons/facture_electricite.png"),
+                                    title: "Facture d’électricité",
+                                    onPressed: () {},
+                                  ),
+                                  ButtonMenu(
+                                    icon: Image.asset(
+                                        "assets/images/icons8-entrepot-96.png"),
+                                    title: "CIE Prépayé",
+                                    onPressed: () {},
+                                  ),
+                                  ButtonMenu(
+                                    icon: Image.asset(
+                                        "assets/images/icons/abonnement_tele.png"),
+                                    title: "Abonnement\nTélé",
+                                    onPressed: () {},
+                                  ),
+                                  ButtonMenu(
+                                    icon: Image.asset(
+                                        "assets/images/icons/abonnement_payage.png"),
+                                    title: "Abonnement\nPéage",
+                                    onPressed: () {},
+                                  ),
+                                  ButtonMenu(
+                                    icon: Image.asset(
+                                        "assets/images/icons/abonnement_fibre.png"),
+                                    title: "Abonnement\nFibre",
+                                    onPressed: () {},
+                                  ),
+                                  ButtonMenu(
+                                    icon: const CircleAvatar(
+                                      backgroundColor:
+                                          Color.fromRGBO(50, 132, 229, 0.16),
+                                      child: Icon(
+                                        Icons.arrow_forward,
+                                        color: Color.fromRGBO(7, 21, 60, 1),
+                                      ),
                                     ),
-                                    ButtonMenu(
-                                      icon: Image.asset(
-                                          "assets/images/icons8-facture-payee-96.png"),
-                                      title: "Factures",
-                                    ),
-                                    ButtonMenu(
-                                      icon: Image.asset(
-                                          "assets/images/icons8-entrepot-96.png"),
-                                      title: "Paiement loyer",
-                                    ),
-                                  ],
-                                ),
-                                CardMenu(
-                                  height: 160,
-                                  title: "UPI Money Transfer",
-                                  children: [
-                                    ButtonMenu(
-                                      icon: Image.asset(
-                                          "assets/images/icons8-plein-ecran-96.png"),
-                                      title: "Scan & pay",
-                                    ),
-                                    ButtonMenu(
-                                      icon: Image.asset(
-                                          "assets/images/icons8-carte-contact-96.png"),
-                                      title: "To Mobile or Contact",
-                                    ),
-                                    ButtonMenu(
-                                      icon: Image.asset(
-                                          "assets/images/icons8-facture-payee-96.png"),
-                                      title: "Factures",
-                                    ),
-                                    ButtonMenu(
-                                      icon: Image.asset(
-                                          "assets/images/icons8-entrepot-96.png"),
-                                      title: "Paiement loyer",
-                                    ),
-                                  ],
-                                ),
-                                CardMenu(
-                                  height: 160,
-                                  title: "UPI Money Transfer",
-                                  children: [
-                                    ButtonMenu(
-                                      icon: Image.asset(
-                                          "assets/images/icons8-plein-ecran-96.png"),
-                                      title: "Scan & pay",
-                                    ),
-                                    ButtonMenu(
-                                      icon: Image.asset(
-                                          "assets/images/icons8-carte-contact-96.png"),
-                                      title: "To Mobile or Contact",
-                                    ),
-                                    ButtonMenu(
-                                      icon: Image.asset(
-                                          "assets/images/icons8-facture-payee-96.png"),
-                                      title: "Factures",
-                                    ),
-                                    ButtonMenu(
-                                      icon: Image.asset(
-                                          "assets/images/icons8-entrepot-96.png"),
-                                      title: "Paiement loyer",
-                                    ),
-                                  ],
-                                ),
-                              ],
-                            ),
+                                    title: "Voir Plus",
+                                    onPressed: () {},
+                                  ),
+                                ],
+                              ),
+                            ],
                           ),
                         ),
                       ],
@@ -360,229 +415,6 @@ class HomePage extends StatelessWidget {
                 ),
               ],
             ),
-            // body: CustomScrollView(
-            //   controller: ctl.scrollController,
-            //   physics: const BouncingScrollPhysics(),
-            //   slivers: [
-            //     SliverAppBar(
-            //       centerTitle: true,
-            //       title: const Text(
-            //         'WAN Logo',
-            //       ),
-            //       leading: Builder(builder: (context) {
-            //         return Padding(
-            //           padding: const EdgeInsets.all(8.0),
-            //           child: badges.Badge(
-            //             position:
-            //                 badges.BadgePosition.bottomEnd(bottom: -6, end: -3),
-            //             badgeStyle: badges.BadgeStyle(
-            //               badgeColor: Colors.grey.shade200,
-            //             ),
-            //             badgeContent: const Icon(Icons.menu,
-            //                 color: Colors.black, size: 10),
-            //             child: CircleAvatar(
-            //               radius: 30,
-            //               backgroundColor: Colors.grey,
-            //               child: IconButton(
-            //                 color: Colors.white,
-            //                 splashRadius: 20,
-            //                 icon: const Center(child: Icon(Icons.person)),
-            //                 onPressed: () {
-            //                   Scaffold.of(context).openDrawer();
-            //                 },
-            //               ),
-            //             ),
-            //           ),
-            //         );
-            //       }),
-            //       actions: [
-            //         IconButton(
-            //           splashRadius: 20,
-            //           onPressed: () {},
-            //           icon: Image.asset(
-            //             "assets/images/icons8-chercher-96.png",
-            //             width: 25,
-            //           ),
-            //         ),
-            //         IconButton(
-            //           splashRadius: 20,
-            //           onPressed: () {},
-            //           icon: Image.asset(
-            //             "assets/images/icons8-message-48.png",
-            //             width: 25,
-            //           ),
-            //         ),
-            //       ],
-            //       pinned: true,
-            //       elevation: 0,
-            //       expandedHeight: 220.0,
-            //       flexibleSpace: FlexibleSpaceBar(
-            //         background: Stack(
-            //           fit: StackFit.expand,
-            //           children: [
-            //             Shimmer.fromColors(
-            //               baseColor: Colors.grey[300]!,
-            //               highlightColor: Colors.grey[100]!,
-            //               child: Container(
-            //                 color: Colors.white,
-            //               ),
-            //             ),
-            //             Image.network(
-            //               'https://cdn.mos.cms.futurecdn.net/V6LCHNxfSPT2Sxpr4bAzD.jpg',
-            //               fit: BoxFit.fill,
-            //             ),
-            //           ],
-            //         ),
-            //       ),
-            //     ),
-            //     SliverPadding(
-            //       padding: const EdgeInsets.all(10),
-            //       sliver: SliverList(
-            //         delegate: SliverChildListDelegate(
-            //           [
-            //             CarouselSlider(
-            //               options: CarouselOptions(
-            //                 height: 150,
-            //                 onPageChanged: (index, carouselPageChangedReason) {
-            //                   ctl.currentAds = index;
-            //                   ctl.update();
-            //                 },
-            //               ),
-            //               items: ctl.ads.map((e) {
-            //                 return Builder(
-            //                   builder: (BuildContext context) {
-            //                     return Container(
-            //                       width: MediaQuery.of(context).size.width,
-            //                       margin: const EdgeInsets.symmetric(
-            //                           horizontal: 5.0),
-            //                       decoration: BoxDecoration(
-            //                         borderRadius: BorderRadius.circular(10),
-            //                       ),
-            //                       child: ClipRRect(
-            //                         borderRadius: BorderRadius.circular(10),
-            //                         child: Stack(
-            //                           fit: StackFit.expand,
-            //                           children: [
-            //                             Shimmer.fromColors(
-            //                               baseColor: Colors.grey[300]!,
-            //                               highlightColor: Colors.grey[100]!,
-            //                               child: Container(
-            //                                 color: Colors.white,
-            //                               ),
-            //                             ),
-            //                             Image.network(
-            //                               e,
-            //                               fit: BoxFit.fill,
-            //                             ),
-            //                           ],
-            //                         ),
-            //                       ),
-            //                     );
-            //                   },
-            //                 );
-            //               }).toList(),
-            //             ),
-            //             SizedBox(
-            //               height: 50,
-            //               child: Center(
-            //                 child: AnimatedSmoothIndicator(
-            //                   activeIndex: ctl.currentAds,
-            //                   count: ctl.ads.length,
-            //                   effect: const WormEffect(
-            //                     activeDotColor: Const.primaryColor,
-            //                     dotWidth: 10,
-            //                     dotHeight: 10,
-            //                   ),
-            //                 ),
-            //               ),
-            //             ),
-            //             const SizedBox(height: 20),
-            //             CardMenu(
-            //               height: 160,
-            //               title: "UPI Money Transfer",
-            //               children: [
-            //                 ButtonMenu(
-            //                   icon: Image.asset(
-            //                       "assets/images/icons8-plein-ecran-96.png"),
-            //                   title: "Scan & pay",
-            //                 ),
-            //                 ButtonMenu(
-            //                   icon: Image.asset(
-            //                       "assets/images/icons8-carte-contact-96.png"),
-            //                   title: "To Mobile or Contact",
-            //                 ),
-            //                 ButtonMenu(
-            //                   icon: Image.asset(
-            //                       "assets/images/icons8-facture-payee-96.png"),
-            //                   title: "Factures",
-            //                 ),
-            //                 ButtonMenu(
-            //                   icon: Image.asset(
-            //                       "assets/images/icons8-entrepot-96.png"),
-            //                   title: "Paiement loyer",
-            //                 ),
-            //               ],
-            //             ),
-            //             const SizedBox(height: 20),
-            //             CardMenu(
-            //               height: 160,
-            //               title: "UPI Money Transfer",
-            //               children: [
-            //                 ButtonMenu(
-            //                   icon: Image.asset(
-            //                       "assets/images/icons8-plein-ecran-96.png"),
-            //                   title: "Scan & pay",
-            //                 ),
-            //                 ButtonMenu(
-            //                   icon: Image.asset(
-            //                       "assets/images/icons8-carte-contact-96.png"),
-            //                   title: "To Mobile or Contact",
-            //                 ),
-            //                 ButtonMenu(
-            //                   icon: Image.asset(
-            //                       "assets/images/icons8-facture-payee-96.png"),
-            //                   title: "Factures",
-            //                 ),
-            //                 ButtonMenu(
-            //                   icon: Image.asset(
-            //                       "assets/images/icons8-entrepot-96.png"),
-            //                   title: "Paiement loyer",
-            //                 ),
-            //               ],
-            //             ),
-            //             const SizedBox(height: 20),
-            //             CardMenu(
-            //               height: 160,
-            //               title: "UPI Money Transfer",
-            //               children: [
-            //                 ButtonMenu(
-            //                   icon: Image.asset(
-            //                       "assets/images/icons8-plein-ecran-96.png"),
-            //                   title: "Scan & pay",
-            //                 ),
-            //                 ButtonMenu(
-            //                   icon: Image.asset(
-            //                       "assets/images/icons8-carte-contact-96.png"),
-            //                   title: "To Mobile or Contact",
-            //                 ),
-            //                 ButtonMenu(
-            //                   icon: Image.asset(
-            //                       "assets/images/icons8-facture-payee-96.png"),
-            //                   title: "Factures",
-            //                 ),
-            //                 ButtonMenu(
-            //                   icon: Image.asset(
-            //                       "assets/images/icons8-entrepot-96.png"),
-            //                   title: "Paiement loyer",
-            //                 ),
-            //               ],
-            //             ),
-            //           ],
-            //         ),
-            //       ),
-            //     ),
-            //   ],
-            // ),
           );
         });
   }

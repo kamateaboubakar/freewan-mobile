@@ -23,7 +23,6 @@ class RegisterPage extends StatelessWidget {
               automaticallyImplyLeading: false,
               backgroundColor: Colors.transparent,
               foregroundColor: Colors.black,
-              elevation: 0,
             ),
             bottomNavigationBar: Padding(
               padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 15),

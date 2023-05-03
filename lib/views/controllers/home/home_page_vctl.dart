@@ -14,7 +14,7 @@ class HomePageVctl extends ViewController {
 
   HomePageVctl(this.displayWelcome);
 
-  final DraggableScrollableController scrollController =
+  DraggableScrollableController scrollController =
       DraggableScrollableController();
 
   int currentAds = 0;
@@ -99,5 +99,17 @@ class HomePageVctl extends ViewController {
         );
       }
     });
+  }
+
+  @override
+  void dispose() {
+    print("######################################");
+    scrollController.removeListener(() {});
+
+    scrollController.dispose();
+
+    update();
+
+    super.dispose();
   }
 }

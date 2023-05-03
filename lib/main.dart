@@ -12,6 +12,12 @@ void main() {
       theme: ThemeData(
         primarySwatch: Colors.blue,
         fontFamily: Const.defaultFont.fontFamily,
+        appBarTheme: const AppBarTheme(
+          centerTitle: true,
+          elevation: 0,
+          backgroundColor: Colors.white,
+          foregroundColor: Color.fromRGBO(7, 21, 60, 1),
+        ),
       ),
       home: const SplashScreen(),
     ),

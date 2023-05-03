@@ -4,6 +4,8 @@ typedef Json = Map<String, dynamic>;
 
 extension CustomDateTime on DateTime? {
   String get toFrenchDate =>
+      (this != null) ? Functions.getStringDate(this) : "";
+  String get toFrenchDateTime =>
       (this != null) ? Functions.getStringDate(this, withTime: true) : "";
 }
 

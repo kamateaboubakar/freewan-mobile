@@ -1,20 +1,18 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:wan_mobile/models/moyen_paiement.dart';
-import 'package:wan_mobile/views/static/scan_pay/scan_pay_choix_carte.dart';
-import 'package:wan_mobile/views/static/scan_pay/scan_pay_choix_numero.dart';
+import 'package:wan_mobile/views/static/paiement/paiement_choix_carte.dart';
+import 'package:wan_mobile/views/static/paiement/paiement_choix_numero.dart';
 
-class ScanPayModePaiement extends StatelessWidget {
-  const ScanPayModePaiement({super.key});
+class PaiementModePaiement extends StatelessWidget {
+  const PaiementModePaiement({super.key});
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        centerTitle: true,
         backgroundColor: Colors.white,
         foregroundColor: Colors.black,
-        elevation: 0,
         title: const Text("Mode de Paiement"),
       ),
       body: SingleChildScrollView(
@@ -60,9 +58,9 @@ class ScanPayModePaiement extends StatelessWidget {
                     ),
                     onTap: () {
                       if (e.isMobileMoney) {
-                        Get.to(() => const ScanPayChoixNumero());
+                        Get.to(() => const PaiementChoixNumero());
                       } else {
-                        Get.to(() => const ScanPayChoixCart());
+                        Get.to(() => const PaiementChoixCart());
                       }
                     },
                   ),

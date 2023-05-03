@@ -3,16 +3,14 @@ import 'package:get/get.dart';
 import 'package:wan_mobile/tools/widgets/c_button.dart';
 import 'package:wan_mobile/views/static/scan_pay/scan_pay_operation_en_cours.dart';
 
-class ScanPayRecap extends StatelessWidget {
-  const ScanPayRecap({super.key});
+class PaiementRecap extends StatelessWidget {
+  const PaiementRecap({super.key});
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.white,
-        elevation: 0,
-        centerTitle: true,
         foregroundColor: Colors.black,
         title: const Text("Confirmation"),
       ),

@@ -4,13 +4,17 @@ import 'package:flutter/material.dart';
 class ButtonMenu extends StatelessWidget {
   final Widget icon;
   final String title;
-  const ButtonMenu({required this.icon, required this.title, super.key});
+  final void Function()? onPressed;
+
+  const ButtonMenu(
+      {required this.icon, required this.title, this.onPressed, super.key});
 
   @override
   Widget build(BuildContext context) {
     return MaterialButton(
       padding: EdgeInsets.zero,
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
+      onPressed: onPressed,
       child: Padding(
         padding: const EdgeInsets.all(10),
         child: Column(
@@ -26,14 +30,14 @@ class ButtonMenu extends StatelessWidget {
                   title,
                   textAlign: TextAlign.center,
                   maxLines: 2,
-                  style: const TextStyle(fontSize: 10),
+                  maxFontSize: 12,
+                  minFontSize: 9,
                 ),
               ),
             ),
           ],
         ),
       ),
-      onPressed: () {},
     );
   }
 }

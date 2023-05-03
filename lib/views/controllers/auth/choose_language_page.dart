@@ -8,7 +8,6 @@ class ChooseLanguagePage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        elevation: 0,
         foregroundColor: Colors.black,
         backgroundColor: Colors.transparent,
         leading: IconButton(

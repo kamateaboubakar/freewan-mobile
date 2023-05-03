@@ -3,7 +3,7 @@ import 'package:flutter_otp_text_field/flutter_otp_text_field.dart';
 import 'package:get/get.dart';
 import 'package:wan_mobile/tools/const/const.dart';
 import 'package:wan_mobile/tools/widgets/c_button.dart';
-import 'package:wan_mobile/views/static/scan_pay/scan_pay_operation_success.dart';
+import 'package:wan_mobile/views/static/paiement/paiement_operation_success.dart';
 
 class ScanPayOperationEnCours extends StatelessWidget {
   const ScanPayOperationEnCours({super.key});
@@ -13,8 +13,6 @@ class ScanPayOperationEnCours extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.white,
-        elevation: 0,
-        centerTitle: true,
         foregroundColor: Colors.black,
         title: const Text("Paiement en cours"),
       ),
@@ -27,7 +25,7 @@ class ScanPayOperationEnCours extends StatelessWidget {
               height: 48,
               minWidth: double.infinity,
               color: const Color.fromRGBO(13, 51, 159, 1),
-              onPressed: () => Get.to(() => const ScanPayOperationSucess()),
+              onPressed: () => Get.to(() => const PaiementOperationSucess()),
               child: const Text(
                 "Effectuer Paiement",
                 style: TextStyle(

@@ -15,7 +15,7 @@ class HomeDrawer extends StatelessWidget {
       width: Get.width - 40,
       child: Scaffold(
         appBar: AppBar(
-          elevation: 0,
+          
           backgroundColor: Colors.transparent,
           leading: IconButton(
             splashRadius: 20,

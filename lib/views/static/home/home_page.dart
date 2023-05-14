@@ -9,6 +9,7 @@ import 'package:wan_mobile/tools/widgets/button_menu.dart';
 import 'package:wan_mobile/tools/widgets/card_menu.dart';
 import 'package:wan_mobile/tools/widgets/single_child_card_menu.dart';
 import 'package:wan_mobile/views/controllers/home/home_page_vctl.dart';
+import 'package:wan_mobile/views/static/achat_unite/achat_unite_page.dart';
 import 'package:wan_mobile/views/static/home/home_drawer.dart';
 import 'package:badges/badges.dart' as badges;
 import 'package:wan_mobile/views/static/loyer/locataire/formulaire_code_maison_loyer.dart';
@@ -354,7 +355,8 @@ class HomePage extends StatelessWidget {
                                     icon: Image.asset(
                                         "assets/images/icons/achat_unite.png"),
                                     title: "Achat d’unités",
-                                    onPressed: () {},
+                                    onPressed: () =>
+                                        Get.to(() => const AchatUnitePage()),
                                   ),
                                   ButtonMenu(
                                     icon: Image.asset(

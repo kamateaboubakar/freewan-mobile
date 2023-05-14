@@ -14,7 +14,7 @@ class CButton extends StatelessWidget {
   const CButton(
       {this.elevation = 0,
       this.shape,
-      this.borderRadius = 5,
+      this.borderRadius = 8,
       required this.onPressed,
       this.textColor = Colors.white,
       this.color = const Color.fromRGBO(96, 198, 255, 1),

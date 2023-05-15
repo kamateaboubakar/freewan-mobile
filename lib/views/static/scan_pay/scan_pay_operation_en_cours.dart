@@ -5,6 +5,8 @@ import 'package:wan_mobile/tools/const/const.dart';
 import 'package:wan_mobile/tools/widgets/c_button.dart';
 import 'package:wan_mobile/views/static/paiement/paiement_operation_success.dart';
 
+import '../../../tools/utils/asset_colors.dart';
+
 class ScanPayOperationEnCours extends StatelessWidget {
   const ScanPayOperationEnCours({super.key});
 
@@ -24,7 +26,6 @@ class ScanPayOperationEnCours extends StatelessWidget {
             CButton(
               height: 48,
               minWidth: double.infinity,
-              color: const Color.fromRGBO(13, 51, 159, 1),
               onPressed: () => Get.to(() => const PaiementOperationSucess()),
               child: const Text(
                 "Effectuer Paiement",
@@ -45,7 +46,7 @@ class ScanPayOperationEnCours extends StatelessWidget {
                 style: TextStyle(
                   fontSize: 16,
                   fontWeight: FontWeight.w600,
-                  color: Color.fromRGBO(13, 51, 159, 1),
+                  color: AssetColors.blueButton,
                 ),
               ),
             ),
@@ -80,7 +81,7 @@ class ScanPayOperationEnCours extends StatelessWidget {
                 label: Text(
                   "#144*82#",
                   style: TextStyle(
-                    color: Color.fromRGBO(13, 51, 159, 1),
+                    color: AssetColors.blueButton,
                     fontWeight: FontWeight.w500,
                   ),
                 ),

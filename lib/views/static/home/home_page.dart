@@ -4,6 +4,7 @@ import 'package:get/get.dart';
 import 'package:shimmer/shimmer.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 import 'package:wan_mobile/tools/const/const.dart';
+import 'package:wan_mobile/tools/utils/asset_colors.dart';
 import 'package:wan_mobile/tools/utils/tools.dart';
 import 'package:wan_mobile/tools/widgets/button_menu.dart';
 import 'package:wan_mobile/tools/widgets/card_menu.dart';
@@ -12,9 +13,7 @@ import 'package:wan_mobile/views/controllers/home/home_page_vctl.dart';
 import 'package:wan_mobile/views/static/achat_unite/achat_unite_page.dart';
 import 'package:wan_mobile/views/static/home/home_drawer.dart';
 import 'package:badges/badges.dart' as badges;
-import 'package:wan_mobile/views/static/loyer/locataire/formulaire_code_maison_loyer.dart';
 import 'package:wan_mobile/views/static/loyer/loyer_bottom_sheet.dart';
-import 'package:wan_mobile/views/static/loyer/proprio/bien_immobilier_page.dart';
 import 'package:wan_mobile/views/static/scan_pay/scan_pay_camera.dart';
 
 class HomePage extends StatelessWidget {
@@ -92,7 +91,7 @@ class HomePage extends StatelessWidget {
               duration: const Duration(milliseconds: 100),
               child: ctl.smallButton
                   ? FloatingActionButton(
-                      backgroundColor: const Color.fromRGBO(13, 51, 159, 1),
+                      backgroundColor: AssetColors.blueButton,
                       isExtended: true,
                       onPressed: () => Get.to(() => const ScanPayCamera()),
                       child: Image.asset(
@@ -102,18 +101,18 @@ class HomePage extends StatelessWidget {
                       ),
                     )
                   : FloatingActionButton.extended(
-                      backgroundColor: const Color.fromRGBO(13, 51, 159, 1),
+                      backgroundColor: AssetColors.blueButton,
                       onPressed: () => Get.to(() => const ScanPayCamera()),
-                      label: const Text(
-                        "Scanner un qr code",
-                        style: TextStyle(
-                          fontWeight: FontWeight.w600,
-                        ),
-                      ),
-                      icon: Image.asset(
+                      label: Image.asset(
                         "assets/images/icons/scan_float_button.png",
                         width: 20,
                         height: 20,
+                      ),
+                      icon: const Text(
+                        "Scanner & payer",
+                        style: TextStyle(
+                          fontWeight: FontWeight.w600,
+                        ),
                       ),
                     ),
             ),

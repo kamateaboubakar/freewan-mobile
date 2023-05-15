@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 import 'package:wan_mobile/tools/utils/functions.dart';
 
 typedef Json = Map<String, dynamic>;
@@ -16,4 +18,13 @@ extension StringExt on String? {
 
 extension DoubleExt on double? {
   double get value => this ?? 0;
+}
+
+extension MapExt on Map? {
+  String toJson() {
+    if (this != null) {
+      return json.encode(this!);
+    }
+    return "";
+  }
 }

@@ -48,7 +48,6 @@ class FormEditionAppartement extends StatelessWidget {
           const SizedBox(height: 20),
           CButton(
             height: 50,
-            color: const Color.fromRGBO(13, 51, 159, 1),
             onPressed: () => Get.back(),
             child: const Text("Ajouter cet appart"),
           ),

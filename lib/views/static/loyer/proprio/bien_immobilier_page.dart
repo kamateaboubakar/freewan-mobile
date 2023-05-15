@@ -7,6 +7,8 @@ import 'package:wan_mobile/views/static/loyer/proprio/detail_immobilier_page.dar
 import 'package:wan_mobile/views/static/loyer/proprio/form_edition_appartement.dart';
 import 'package:wan_mobile/views/static/loyer/proprio/form_edition_bien_immobilier.dart';
 
+import '../../../../tools/utils/asset_colors.dart';
+
 class BienImmobilierPage extends StatelessWidget {
   const BienImmobilierPage({super.key});
 
@@ -44,7 +46,6 @@ class BienImmobilierPage extends StatelessWidget {
                     child: const Icon(Icons.add),
                   ),
                 ],
-                backgroundColor: const Color.fromRGBO(13, 51, 159, 1),
                 child: const Icon(Icons.add),
               ),
             ),
@@ -124,13 +125,12 @@ class BienImmobilierPage extends StatelessWidget {
                             shape: RoundedRectangleBorder(
                               borderRadius: BorderRadius.circular(9),
                               side: const BorderSide(
-                                color: Color.fromRGBO(13, 51, 159, 1),
+                                color: AssetColors.blueButton,
                               ),
                             ),
                             color: Colors.transparent,
                             onPressed: () =>
                                 Get.to(() => const FormEditionBienImmobilier()),
-                            textColor: const Color.fromRGBO(13, 51, 159, 1),
                             child: Row(
                               mainAxisAlignment: MainAxisAlignment.center,
                               children: const [

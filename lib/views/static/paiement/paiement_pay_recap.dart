@@ -18,7 +18,6 @@ class PaiementRecap extends StatelessWidget {
         margin: const EdgeInsets.only(bottom: 34, left: 20, right: 20),
         child: CButton(
           height: 48,
-          color: const Color.fromRGBO(13, 51, 159, 1),
           onPressed: () => Get.to(() => const ScanPayOperationEnCours()),
           child: const Text(
             "Confirmer",

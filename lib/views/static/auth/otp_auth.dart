@@ -5,6 +5,8 @@ import 'package:get/get.dart';
 import 'package:wan_mobile/tools/const/const.dart';
 import 'package:wan_mobile/views/controllers/auth/opt_auth_vctl.dart';
 
+import '../../../tools/utils/asset_colors.dart';
+
 class OPTAuth extends StatelessWidget {
   final void Function(String code) onSubmit;
   final String phone;
@@ -77,7 +79,7 @@ class OPTAuth extends StatelessWidget {
                             return Text(
                               "${time?.min ?? "0"}:${time?.sec ?? "00"}",
                               style: const TextStyle(
-                                color: Color.fromRGBO(13, 51, 159, 1),
+                                color: AssetColors.blueButton,
                                 fontWeight: FontWeight.w500,
                                 fontSize: 11,
                               ),

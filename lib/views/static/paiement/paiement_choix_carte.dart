@@ -6,6 +6,8 @@ import 'package:wan_mobile/tools/widgets/c_button.dart';
 import 'package:wan_mobile/tools/widgets/c_textform_field.dart';
 import 'package:wan_mobile/views/static/paiement/paiement_pay_recap.dart';
 
+import '../../../tools/utils/asset_colors.dart';
+
 class PaiementChoixCart extends StatelessWidget {
   const PaiementChoixCart({super.key});
 
@@ -19,7 +21,6 @@ class PaiementChoixCart extends StatelessWidget {
       ),
       floatingActionButton: FloatingActionButton.extended(
         icon: const Icon(Icons.add_card),
-        backgroundColor: const Color.fromRGBO(13, 51, 159, 1),
         onPressed: () => Tools.openBottomSheet(
           Container(
             padding: const EdgeInsets.only(
@@ -95,7 +96,7 @@ class PaiementChoixCart extends StatelessWidget {
                             borderRadius: BorderRadius.circular(8),
                             side: const BorderSide(
                               width: 1,
-                              color: Color.fromRGBO(13, 51, 159, 1),
+                              color: AssetColors.blueButton,
                             ),
                           ),
                           height: 48,
@@ -104,7 +105,7 @@ class PaiementChoixCart extends StatelessWidget {
                             "Annuler",
                             style: TextStyle(
                               fontWeight: FontWeight.bold,
-                              color: Color.fromRGBO(13, 51, 159, 1),
+                              color: AssetColors.blueButton,
                             ),
                           ),
                         ),
@@ -113,7 +114,6 @@ class PaiementChoixCart extends StatelessWidget {
                       Expanded(
                         child: CButton(
                           borderRadius: 8,
-                          color: const Color.fromRGBO(13, 51, 159, 1),
                           height: 48,
                           onPressed: () => Get.back(),
                           child: const Text(

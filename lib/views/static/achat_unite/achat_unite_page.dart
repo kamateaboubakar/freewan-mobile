@@ -21,7 +21,6 @@ class AchatUnitePage extends StatelessWidget {
               child: CButton(
                 onPressed: () {},
                 height: 50,
-                color: const Color.fromRGBO(13, 51, 159, 1),
                 child: const Text(
                   "Confirmer",
                   style: TextStyle(fontWeight: FontWeight.bold),

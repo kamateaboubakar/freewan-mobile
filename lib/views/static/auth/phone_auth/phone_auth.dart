@@ -15,7 +15,6 @@ class PhoneAuth extends StatelessWidget {
     return Scaffold(
       backgroundColor: Colors.white,
       appBar: AppBar(
-        
         backgroundColor: Colors.white,
       ),
       bottomNavigationBar: const Padding(
@@ -41,7 +40,7 @@ class PhoneAuth extends StatelessWidget {
                   ),
                   const SizedBox(height: 20),
                   const Text(
-                    "Login or Create an account",
+                    "Identifiez-vous ou créez un compte",
                     style: TextStyle(
                       fontWeight: FontWeight.bold,
                       fontSize: 20,
@@ -49,7 +48,8 @@ class PhoneAuth extends StatelessWidget {
                   ),
                   const SizedBox(height: 5),
                   const Text(
-                    "Pay using UPI, Wallet, Bank Account and Cards",
+                    "Payez en utilisant UPI, portefeuille,"
+                    " compte bancaire et cartes",
                     style: TextStyle(
                       fontSize: 13,
                     ),
@@ -78,9 +78,7 @@ class PhoneAuth extends StatelessWidget {
                                   padding: const EdgeInsets.symmetric(
                                       horizontal: 10),
                                   child: (ctl.selectedPays?.flag != null)
-                                      ? Image.asset(
-                                          ctl.selectedPays!.flag!,
-                                        )
+                                      ? Image.asset(ctl.selectedPays!.flag!)
                                       : Text(
                                           ctl.selectedPays?.libelle ?? "--",
                                           textAlign: TextAlign.center,
@@ -161,32 +159,15 @@ class PhoneAuth extends StatelessWidget {
                   const SizedBox(height: 10),
                   Container(
                     width: double.infinity,
-                    height: 70,
+                    height: 65,
                     padding: const EdgeInsets.all(8.0),
                     child: CButton(
-                      color: const Color.fromRGBO(13, 51, 159, 1),
                       onPressed: () => ctl.submit(),
                       child: const Text(
-                        "Send me an OTP",
+                        "Envoyez-moi un OTP",
                         style: TextStyle(
                           fontSize: 18,
                           color: Colors.white,
-                        ),
-                      ),
-                    ),
-                  ),
-                  Container(
-                    width: double.infinity,
-                    height: 70,
-                    padding: const EdgeInsets.all(8.0),
-                    child: CButton(
-                      color: const Color.fromRGBO(237, 242, 249, 1),
-                      onPressed: () => Get.to(() => const HomePage()),
-                      child: const Text(
-                        "Send me an OTP",
-                        style: TextStyle(
-                          fontSize: 18,
-                          color: Color.fromRGBO(181, 196, 216, 1),
                         ),
                       ),
                     ),

@@ -49,7 +49,6 @@ class ServiceRegister extends StatelessWidget {
                   (e) => ChoiceChip(
                     onSelected: (value) {},
                     selected: ["Restaurant", "Unités"].contains(e.label),
-                    selectedColor: const Color.fromRGBO(13, 51, 159, 1),
                     backgroundColor: const Color.fromRGBO(237, 242, 249, 1),
                     labelStyle: TextStyle(
                       color: ["Restaurant", "Unités"].contains(e.label)

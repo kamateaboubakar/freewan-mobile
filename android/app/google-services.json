@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "859893276729",
+    "project_id": "lebedoo",
+    "storage_bucket": "lebedoo.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:859893276729:android:fb000909b70493f4bdede8",
+        "android_client_info": {
+          "package_name": "com.example.wan_mobile"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "859893276729-bdg1gk0htt97d8q7nfbj6fegpld21c2f.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAzBaGeYCHe65uN2Flp2xR0FPN4exji8XM"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "859893276729-bdg1gk0htt97d8q7nfbj6fegpld21c2f.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

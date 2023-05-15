@@ -7,6 +7,8 @@ import 'package:wan_mobile/tools/widgets/c_button.dart';
 import 'package:wan_mobile/tools/widgets/c_dropdown_field.dart';
 import 'package:wan_mobile/tools/widgets/c_textform_field.dart';
 
+import '../../../../tools/utils/asset_colors.dart';
+
 class DetailAppartementPage extends StatelessWidget {
   const DetailAppartementPage({super.key});
 
@@ -44,12 +46,11 @@ class DetailAppartementPage extends StatelessWidget {
                     shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(9),
                       side: const BorderSide(
-                        color: Color.fromRGBO(13, 51, 159, 1),
+                        color: AssetColors.blueButton,
                       ),
                     ),
                     color: Colors.transparent,
                     onPressed: () {},
-                    textColor: const Color.fromRGBO(13, 51, 159, 1),
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: const [
@@ -102,7 +103,6 @@ class DetailAppartementPage extends StatelessWidget {
           const SizedBox(height: 20),
           CButton(
             height: 50,
-            color: const Color.fromRGBO(13, 51, 159, 1),
             onPressed: () => Get.back(),
             child: const Text("Ajouter cet appart"),
           ),

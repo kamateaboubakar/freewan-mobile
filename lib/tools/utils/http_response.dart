@@ -15,7 +15,11 @@ class HttpResponse<T> {
   HttpResponse.error(
       {this.message =
           "Désolé, une erreur est survenue. Veuillez réessayer SVP.",
-      this.detailErrors = ""});
+      this.detailErrors = ""}) {
+    if (kDebugMode) {
+      print(detailErrors);
+    }
+  }
   HttpResponse.setDetailErrors({required this.detailErrors});
 
   static HttpResponse<T> decodeBody<T>(http.Response source) {

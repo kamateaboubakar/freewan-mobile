@@ -6,6 +6,8 @@ import 'package:wan_mobile/tools/widgets/c_textform_field.dart';
 import 'package:wan_mobile/views/static/auth/otp_auth.dart';
 import 'package:wan_mobile/views/static/paiement/paiement_pay_recap.dart';
 
+import '../../../tools/utils/asset_colors.dart';
+
 class PaiementChoixNumero extends StatelessWidget {
   const PaiementChoixNumero({super.key});
 
@@ -19,7 +21,6 @@ class PaiementChoixNumero extends StatelessWidget {
       ),
       floatingActionButton: FloatingActionButton.extended(
         icon: const Icon(Icons.add),
-        backgroundColor: const Color.fromRGBO(13, 51, 159, 1),
         onPressed: () => Tools.openBottomSheet(
           Container(
             padding: const EdgeInsets.only(
@@ -60,7 +61,7 @@ class PaiementChoixNumero extends StatelessWidget {
                           borderRadius: BorderRadius.circular(8),
                           side: const BorderSide(
                             width: 1,
-                            color: Color.fromRGBO(13, 51, 159, 1),
+                            color: AssetColors.blueButton,
                           ),
                         ),
                         height: 48,
@@ -69,7 +70,7 @@ class PaiementChoixNumero extends StatelessWidget {
                           "Annuler",
                           style: TextStyle(
                             fontWeight: FontWeight.bold,
-                            color: Color.fromRGBO(13, 51, 159, 1),
+                            color: AssetColors.blueButton,
                           ),
                         ),
                       ),
@@ -78,7 +79,6 @@ class PaiementChoixNumero extends StatelessWidget {
                     Expanded(
                       child: CButton(
                         borderRadius: 8,
-                        color: const Color.fromRGBO(13, 51, 159, 1),
                         height: 48,
                         onPressed: () => Get.to(
                           () => OPTAuth(

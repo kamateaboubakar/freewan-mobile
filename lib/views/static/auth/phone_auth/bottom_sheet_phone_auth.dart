@@ -1,106 +1,116 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:wan_mobile/tools/widgets/c_textform_field.dart';
+import 'package:wan_mobile/tools/widgets/wrapper_body.dart';
+import 'package:wan_mobile/tools/widgets/wrapper_body_listview.dart';
+import 'package:wan_mobile/views/controllers/auth/bottom_sheet_phone_auth_vctl.dart';
 import 'package:wan_mobile/views/controllers/auth/phone_auth_vctl.dart';
 
 class BottomSheetPhoneAuth extends StatelessWidget {
-  final PhoneAuthVctl ctl;
-  const BottomSheetPhoneAuth(this.ctl, {super.key});
+  final PhoneAuthVctl pCtl;
+  const BottomSheetPhoneAuth(this.pCtl, {super.key});
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      padding: const EdgeInsets.only(top: 10, left: 24, right: 24),
-      decoration: const BoxDecoration(
-        color: Colors.white,
-        borderRadius: BorderRadius.only(
-          topLeft: Radius.circular(30),
-          topRight: Radius.circular(30),
-        ),
-      ),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Center(
-            child: Container(
-              height: 5,
-              width: 50,
-              margin: const EdgeInsets.only(top: 10, bottom: 10),
-              decoration: const BoxDecoration(
-                color: Colors.grey,
-                borderRadius: BorderRadius.horizontal(
-                  left: Radius.circular(5),
-                  right: Radius.circular(5),
-                ),
+    return GetBuilder<BottomSheetPhoneAuthVctl>(
+        init: BottomSheetPhoneAuthVctl(pCtl),
+        builder: (ctl) {
+          return Container(
+            padding: const EdgeInsets.only(top: 10, left: 24, right: 24),
+            decoration: const BoxDecoration(
+              color: Colors.white,
+              borderRadius: BorderRadius.only(
+                topLeft: Radius.circular(30),
+                topRight: Radius.circular(30),
               ),
             ),
-          ),
-          const SizedBox(height: 20),
-          const Text(
-            "Select country code",
-            style: TextStyle(
-              fontSize: 20,
-              fontWeight: FontWeight.bold,
-            ),
-          ),
-          const SizedBox(height: 14),
-          const CTextFormField(
-            fillColor: Color.fromRGBO(247, 250, 255, 1),
-            hintText: "Search for your country code",
-          ),
-          (ctl.selectedPays != null)
-              ? ListTile(
-                  leading: (ctl.selectedPays!.flag != null)
-                      ? Image.asset(
-                          ctl.selectedPays!.flag!,
-                          width: 30,
-                        )
-                      : null,
-                  title: Text(
-                    ctl.selectedPays?.callingCode ?? "",
-                  ),
-                  trailing: const Icon(
-                    Icons.check_outlined,
-                    color: Color.fromRGBO(0, 159, 249, 1),
-                  ),
-                  onTap: () {
-                    ctl.selectedPays = null;
-                    ctl.update();
-                    Get.back();
-                  },
-                )
-              : const SizedBox.shrink(),
-          const Divider(
-            thickness: 1,
-            color: Color.fromRGBO(237, 242, 249, 1),
-          ),
-          Expanded(
-            child: ListView(
-              physics: const BouncingScrollPhysics(),
-              children: ctl.pays
-                  .map(
-                    (e) => ListTile(
-                      leading: (e.flag != null)
-                          ? Image.asset(
-                              e.flag!,
-                              width: 30,
-                            )
-                          : null,
-                      title: Text(
-                        e.callingCode ?? "",
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Center(
+                  child: Container(
+                    height: 5,
+                    width: 50,
+                    margin: const EdgeInsets.only(top: 10, bottom: 10),
+                    decoration: const BoxDecoration(
+                      color: Colors.grey,
+                      borderRadius: BorderRadius.horizontal(
+                        left: Radius.circular(5),
+                        right: Radius.circular(5),
                       ),
-                      onTap: () {
-                        ctl.selectedPays = e;
-                        ctl.update();
-                        Get.back();
-                      },
                     ),
-                  )
-                  .toList(),
+                  ),
+                ),
+                const SizedBox(height: 20),
+                const Text(
+                  "Sélectionnez le code du pays",
+                  style: TextStyle(
+                    fontSize: 20,
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
+                const SizedBox(height: 14),
+                const CTextFormField(
+                  fillColor: Color.fromRGBO(247, 250, 255, 1),
+                  hintText: "Recherchez votre code pays",
+                ),
+                (pCtl.selectedPays != null)
+                    ? ListTile(
+                        leading: (pCtl.selectedPays!.flag != null)
+                            ? Image.asset(
+                                pCtl.selectedPays!.flag!,
+                                width: 30,
+                              )
+                            : null,
+                        title: Text(
+                          pCtl.selectedPays?.libelle ?? "",
+                        ),
+                        trailing: const Icon(
+                          Icons.check_outlined,
+                          color: Color.fromRGBO(0, 159, 249, 1),
+                        ),
+                        onTap: () {
+                          pCtl.selectedPays = null;
+                          pCtl.update();
+                          Get.back();
+                        },
+                      )
+                    : const SizedBox.shrink(),
+                const Divider(
+                  thickness: 1,
+                  color: Color.fromRGBO(237, 242, 249, 1),
+                ),
+                Expanded(
+                  child: WrapperBodyListView(
+                    loading: ctl.loading,
+                    onRefresh: () => ctl.fetchPays(),
+                    lottieEmptyImage:
+                        "assets/lotties/131585-blue-pinging-map-edit-no-australia.json",
+                    emptyText: "Aucun pays à afficher",
+                    children: pCtl.pays
+                        .map(
+                          (e) => ListTile(
+                            leading: (e.flag != null)
+                                ? Image.asset(
+                                    e.flag!,
+                                    width: 30,
+                                  )
+                                : null,
+                            title: Text(e.libelle),
+                            onTap: () {
+                              pCtl.selectedPays = e;
+                              ctl.update();
+                              pCtl.update();
+                              Get.back();
+                            },
+                          ),
+                        )
+                        .toList(),
+                  ),
+                )
+              ],
             ),
-          )
-        ],
-      ),
-    );
+          );
+        });
   }
 }

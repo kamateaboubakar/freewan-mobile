@@ -5,6 +5,8 @@ import 'package:wan_mobile/tools/widgets/c_button.dart';
 import 'package:wan_mobile/tools/widgets/c_textform_field.dart';
 import 'package:wan_mobile/views/controllers/loyer/form_edition_bien_immobilier_vctl.dart';
 
+import '../../../../tools/utils/asset_colors.dart';
+
 class FormEditionBienImmobilier extends StatelessWidget {
   final int selectedItem;
   const FormEditionBienImmobilier({this.selectedItem = 0, super.key});
@@ -22,7 +24,6 @@ class FormEditionBienImmobilier extends StatelessWidget {
               padding: const EdgeInsets.all(20),
               child: CButton(
                 height: 50,
-                color: const Color.fromRGBO(13, 51, 159, 1),
                 onPressed: () {},
                 child: const Text("Ajouter ce bien"),
               ),
@@ -44,7 +45,7 @@ class FormEditionBienImmobilier extends StatelessWidget {
                             shape: CircleBorder(
                               side: (ctl.selectedItem == 0)
                                   ? const BorderSide(
-                                      color: Color.fromRGBO(13, 51, 159, 1),
+                                      color: AssetColors.blueButton,
                                       width: 3,
                                     )
                                   : BorderSide.none,
@@ -66,7 +67,7 @@ class FormEditionBienImmobilier extends StatelessWidget {
                             "Bloc d’apparts",
                             style: (ctl.selectedItem == 0)
                                 ? const TextStyle(
-                                    color: Color.fromRGBO(13, 51, 159, 1),
+                                    color: AssetColors.blueButton,
                                   )
                                 : null,
                           )
@@ -82,7 +83,7 @@ class FormEditionBienImmobilier extends StatelessWidget {
                             shape: CircleBorder(
                               side: (ctl.selectedItem == 1)
                                   ? const BorderSide(
-                                      color: Color.fromRGBO(13, 51, 159, 1),
+                                      color: AssetColors.blueButton,
                                       width: 3,
                                     )
                                   : BorderSide.none,
@@ -104,7 +105,7 @@ class FormEditionBienImmobilier extends StatelessWidget {
                             "Maison",
                             style: (ctl.selectedItem == 1)
                                 ? const TextStyle(
-                                    color: Color.fromRGBO(13, 51, 159, 1),
+                                    color: AssetColors.blueButton,
                                   )
                                 : null,
                           )

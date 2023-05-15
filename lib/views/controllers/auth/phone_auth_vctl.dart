@@ -1,27 +1,25 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:progress_dialog_null_safe/progress_dialog_null_safe.dart';
-import 'package:wan_mobile/api/controllers/pays_api_ctl.dart';
-import 'package:wan_mobile/api/controllers/user_api_ctl.dart';
 import 'package:wan_mobile/models/pays.dart';
-import 'package:wan_mobile/tools/utils/tools.dart';
 import 'package:wan_mobile/views/controllers/abstracts/view_controller.dart';
 import 'package:wan_mobile/views/static/auth/otp_auth.dart';
 import 'package:wan_mobile/views/static/auth/register/register_page.dart';
+import 'package:wan_mobile/views/static/home/home_page.dart';
 
 class PhoneAuthVctl extends ViewController {
   var telCtl = TextEditingController();
-  late ProgressDialog pr;
-
   List<Pays> pays = [];
+
   Pays? selectedPays;
 
   bool acceptCgu = false;
 
-  PhoneAuthVctl() : pr = Tools.progressDialog();
-
   Future<void> submit() async {
-    Get.to(() => OPTAuth(phone: telCtl.text, onSubmit: submitOtp));
+    if (telCtl.text.isEmpty) {
+      Get.to(() => const HomePage());
+    } else {
+      Get.to(() => OPTAuth(phone: telCtl.text, onSubmit: submitOtp));
+    }
     // if (selectedPays != null) {
     //   if (telCtl.text.isNotEmpty) {
     //     // await pr.show();
@@ -61,19 +59,5 @@ class PhoneAuthVctl extends ViewController {
       //   Tools.messageBox(message: res.message);
       // }
     }
-  }
-
-  _getPays() async {
-    var res = await PaysApiCtl().getAll();
-    if (res.status) {
-      pays = res.data!;
-      update();
-    }
-  }
-
-  @override
-  void onInit() {
-    super.onInit();
-    _getPays();
   }
 }

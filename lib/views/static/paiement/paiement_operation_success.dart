@@ -15,7 +15,6 @@ class PaiementOperationSucess extends StatelessWidget {
         child: CButton(
           height: 48,
           minWidth: double.infinity,
-          color: const Color.fromRGBO(13, 51, 159, 1),
           onPressed: () => Get.to(() => const HomePage()),
           child: const Text(
             "Effectuer Paiement",

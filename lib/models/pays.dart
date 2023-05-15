@@ -1,36 +1,30 @@
 class Pays {
-  int? countryId;
+  String? id;
   String? code;
-  String? label;
-  String? callingCode;
+  String? name;
+  int? ext;
   int? phoneNumberLength;
 
-  Pays(
-      {this.countryId,
-      this.code,
-      this.label,
-      this.callingCode,
-      this.phoneNumberLength});
+  Pays({this.id, this.code, this.name, this.ext});
 
   Pays.fromJson(Map<String, dynamic> json) {
-    countryId = json['countryId'];
-    code = json['code'];
-    label = json['label'];
-    callingCode = json['callingCode'];
-    phoneNumberLength = json['phoneNumberLength'];
+    id = json["node"]['id'];
+    code = json["node"]['code'];
+    name = json["node"]['name'];
+    ext = json["node"]['ext'];
+    phoneNumberLength = json["node"]["phoneLength"];
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = {};
-    data['countryId'] = this.countryId;
-    data['code'] = this.code;
-    data['label'] = this.label;
-    data['callingCode'] = this.callingCode;
-    data['phoneNumberLength'] = this.phoneNumberLength;
+    final Map<String, dynamic> data = new Map<String, dynamic>();
+    data['id'] = id;
+    data['code'] = code;
+    data['name'] = name;
+    data['ext'] = ext;
     return data;
   }
 
-  String get libelle => (callingCode ?? "").replaceAll("00", "+");
+  String get libelle => ext == null ? "" : "+$ext";
 
   String? get flag =>
       (code == null) ? null : "assets/images/flags/${code?.toLowerCase()}.png";

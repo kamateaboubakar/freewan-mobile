@@ -68,7 +68,6 @@ class PaiementLoyerPage extends StatelessWidget {
                   height: 50,
                   minWidth: double.infinity,
                   onPressed: () => Get.to(() => const PaiementRecap()),
-                  color: const Color.fromRGBO(13, 51, 159, 1),
                   child: const Text(
                     "Payer",
                     style: TextStyle(

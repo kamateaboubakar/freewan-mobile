@@ -1,10 +1,19 @@
 import 'package:flutter/foundation.dart';
+import 'package:graphql_flutter/graphql_flutter.dart';
 import 'package:http/http.dart' as http;
 import 'package:wan_mobile/tools/const/const.dart';
 
 abstract class WebController {
   // AppVctl appVctl = Get.find();
   http.Client get client => http.Client();
+
+  Future<QueryResult> grClient(
+      {GraphQLCache? cache,
+      required Link link,
+      required QueryOptions options}) {
+    return GraphQLClient(cache: cache ?? GraphQLCache(), link: link)
+        .query(options);
+  }
 
   // Future<http.MultipartRequest> multiPartclient(String method, Uri url,
   //     {Map<String, String> headers = const {},
@@ -19,10 +28,13 @@ abstract class WebController {
   //   return req;
   // }
 
-  Uri baseUrl({required String module, bool local = false}) {
-    String url = "${Const.localUrl}/$module";
-    if (!local) {
-      url = "${Const.onlineUrl}/$module";
+  Uri baseUrl({String? module, bool local = false}) {
+    String url = (local) ? Const.localUrl : Const.onlineUrl;
+
+    if (module != null) {
+      url += "/$module";
+    } else {
+      url += "/";
     }
     if (kDebugMode) {
       print(url);
@@ -30,10 +42,27 @@ abstract class WebController {
     return Uri.parse(url);
   }
 
+  HttpLink graphBaseUrl({String? module, bool local = false}) {
+    String url = (local) ? Const.localUrl : Const.onlineUrl;
+
+    if (module != null) {
+      url += "/$module";
+    } else {
+      url += "/";
+    }
+
+    return HttpLink(url);
+  }
+
   Map<String, String> get headers => {
         "content-type": "application/json",
         "accept": "application/json",
-        // "Authorization": "Bearer ${appVctl.jwt}",
+      };
+
+  Map<String, String> get authHeaders => {
+        "content-type": "application/json",
+        "accept": "application/json",
+        "Authorization": "Bearer ",
       };
 
   Map<String, String> get multipartHeaders => {

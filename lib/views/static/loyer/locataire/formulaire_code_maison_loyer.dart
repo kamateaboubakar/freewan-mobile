@@ -30,7 +30,6 @@ class FormulaireCodeMaisonLoyer extends StatelessWidget {
             ),
             const SizedBox(height: 17),
             CButton(
-              color: const Color.fromRGBO(13, 51, 159, 1),
               height: 50,
               minWidth: double.infinity,
               onPressed: () => Get.to(() => const PaiementLoyerPage()),

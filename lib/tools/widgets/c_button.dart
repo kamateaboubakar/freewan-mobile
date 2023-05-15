@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:wan_mobile/tools/const/const.dart';
+import 'package:wan_mobile/tools/utils/asset_colors.dart';
 
 class CButton extends StatelessWidget {
   final Widget? child;
@@ -10,6 +11,7 @@ class CButton extends StatelessWidget {
   final Color? textColor;
   final double borderRadius;
   final ShapeBorder? shape;
+
   final void Function()? onPressed;
   const CButton(
       {this.elevation = 0,
@@ -17,7 +19,7 @@ class CButton extends StatelessWidget {
       this.borderRadius = 8,
       required this.onPressed,
       this.textColor = Colors.white,
-      this.color = const Color.fromRGBO(96, 198, 255, 1),
+      this.color = AssetColors.blueButton,
       this.minWidth,
       this.height,
       this.child,

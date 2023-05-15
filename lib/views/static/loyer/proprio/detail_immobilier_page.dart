@@ -4,6 +4,8 @@ import 'package:flutter/src/widgets/placeholder.dart';
 import 'package:get/get.dart';
 import 'package:wan_mobile/views/static/loyer/proprio/detail_appartement_page.dart';
 
+import '../../../../tools/utils/asset_colors.dart';
+
 class DetailImmobilierPage extends StatelessWidget {
   const DetailImmobilierPage({super.key});
 
@@ -20,7 +22,6 @@ class DetailImmobilierPage extends StatelessWidget {
             spacing: 10,
             children: [
               RawChip(
-                selectedColor: const Color.fromRGBO(13, 51, 159, 1),
                 checkmarkColor: Colors.white,
                 shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(8),
@@ -36,7 +37,6 @@ class DetailImmobilierPage extends StatelessWidget {
                 onPressed: () {},
               ),
               RawChip(
-                selectedColor: const Color.fromRGBO(13, 51, 159, 1),
                 label: const Text("Loyer payé"),
                 shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(8),
@@ -44,7 +44,6 @@ class DetailImmobilierPage extends StatelessWidget {
                 onPressed: () {},
               ),
               RawChip(
-                selectedColor: const Color.fromRGBO(13, 51, 159, 1),
                 label: const Text("Loyer non payé"),
                 shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(8),
@@ -144,7 +143,7 @@ class DetailImmobilierPage extends StatelessWidget {
                       child: const Text(
                         "Paiement dû le 5 Mai 2023",
                         style: TextStyle(
-                          color: Color.fromRGBO(13, 51, 159, 1),
+                          color: AssetColors.blueButton,
                           fontSize: 12,
                         ),
                       ),

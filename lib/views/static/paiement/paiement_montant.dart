@@ -3,6 +3,8 @@ import 'package:get/get.dart';
 import 'package:wan_mobile/tools/widgets/c_button.dart';
 import 'package:wan_mobile/views/static/paiement/paiement_mode_paiement.dart';
 
+import '../../../tools/utils/asset_colors.dart';
+
 class PaiementMontant extends StatelessWidget {
   final bool isForMontant;
   const PaiementMontant({this.isForMontant = false, super.key});
@@ -38,7 +40,7 @@ class PaiementMontant extends StatelessWidget {
                     subtitle: Text(
                       "90 000 FCFA",
                       style: TextStyle(
-                        color: Color.fromRGBO(13, 51, 159, 1),
+                        color: AssetColors.blueButton,
                         fontSize: 18,
                         fontWeight: FontWeight.w600,
                       ),
@@ -50,7 +52,6 @@ class PaiementMontant extends StatelessWidget {
                 height: 48,
                 minWidth: 149,
                 borderRadius: 8,
-                color: const Color.fromRGBO(13, 51, 159, 1),
                 onPressed: () => Get.to(() => const PaiementModePaiement()),
                 child: const Text(
                   "Payer",

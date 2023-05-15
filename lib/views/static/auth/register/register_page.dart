@@ -57,10 +57,8 @@ class RegisterPage extends StatelessWidget {
                         width: 50,
                         child: ClipRRect(
                           borderRadius: BorderRadius.circular(5),
-                          child: LinearProgressIndicator(
-                            value: (ctl.currentStep + 1) / 3,
-                            minHeight: 5,
-                            color: const Color.fromRGBO(0, 159, 249, 1),
+                          child: Text(
+                            "${ctl.currentStep}/6",
                           ),
                         ),
                       ),

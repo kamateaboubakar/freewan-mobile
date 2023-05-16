@@ -78,7 +78,13 @@ class PhoneAuth extends StatelessWidget {
                                   padding: const EdgeInsets.symmetric(
                                       horizontal: 10),
                                   child: (ctl.selectedPays?.flag != null)
-                                      ? Image.asset(ctl.selectedPays!.flag!)
+                                      ? Image.asset(
+                                          ctl.selectedPays!.flag!,
+                                          errorBuilder:
+                                              (context, error, stackTrace) =>
+                                                  const Icon(Icons.flag),
+                                          width: 30,
+                                        )
                                       : Text(
                                           ctl.selectedPays?.libelle ?? "--",
                                           textAlign: TextAlign.center,
@@ -137,25 +143,6 @@ class PhoneAuth extends StatelessWidget {
                       ),
                     ),
                   ),
-                  // CheckboxListTile(
-                  //   shape: RoundedRectangleBorder(
-                  //     borderRadius: BorderRadius.circular(5),
-                  //   ),
-                  //   controlAffinity: ListTileControlAffinity.leading,
-                  //   checkboxShape: RoundedRectangleBorder(
-                  //     borderRadius: BorderRadius.circular(2),
-                  //   ),
-                  //   value: true,
-                  //   dense: true,
-                  //   onChanged: (value) {},
-                  //   title: const Text(
-                  //     "Get updates on Whatsapp. I authorize Paytm "
-                  //     "to access my credit reports from credit bureaus",
-                  //     style: TextStyle(
-                  //       fontSize: 10,
-                  //     ),
-                  //   ),
-                  // ),
                   const SizedBox(height: 10),
                   Container(
                     width: double.infinity,

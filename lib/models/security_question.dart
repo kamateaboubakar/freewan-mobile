@@ -1,21 +1,25 @@
 class SecurityQuestion {
-  int? securityQuestionId;
-  String? code;
-  String? label;
-  String? answer;
+  String? id;
+  String? name, answer;
 
-  SecurityQuestion({this.securityQuestionId, this.code, this.label});
+  SecurityQuestion({this.id, this.name});
 
   SecurityQuestion.fromJson(Map<String, dynamic> json) {
-    securityQuestionId = json['securityQuestionId'];
-    code = json['code'];
-    label = json['label'];
+    id = json["node"]['id'];
+    name = json["node"]['name'];
+  }
+
+  SecurityQuestion.toResponse(Map<String, dynamic> json) {
+    answer = json["node"]['questionAnswers'];
+    id = json["node"]["questions"]["id"];
+    name = json["node"]["questions"]['name'];
   }
 
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['securityQuestionId'] = this.securityQuestionId;
-    data["answer"] = this.answer;
+    data['id'] = id;
+    data['name'] = name;
+    data['answer'] = answer;
     return data;
   }
 }

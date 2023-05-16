@@ -60,6 +60,8 @@ class BottomSheetPhoneAuth extends StatelessWidget {
                             ? Image.asset(
                                 pCtl.selectedPays!.flag!,
                                 width: 30,
+                                errorBuilder: (context, error, stackTrace) =>
+                                    const Icon(Icons.flag),
                               )
                             : null,
                         title: Text(
@@ -83,7 +85,7 @@ class BottomSheetPhoneAuth extends StatelessWidget {
                 Expanded(
                   child: WrapperBodyListView(
                     loading: ctl.loading,
-                    onRefresh: () => ctl.fetchPays(),
+                    onRefresh: () => ctl.fetchPays(force: true),
                     lottieEmptyImage:
                         "assets/lotties/131585-blue-pinging-map-edit-no-australia.json",
                     emptyText: "Aucun pays à afficher",
@@ -94,6 +96,9 @@ class BottomSheetPhoneAuth extends StatelessWidget {
                                 ? Image.asset(
                                     e.flag!,
                                     width: 30,
+                                    errorBuilder:
+                                        (context, error, stackTrace) =>
+                                            const Icon(Icons.flag),
                                   )
                                 : null,
                             title: Text(e.libelle),

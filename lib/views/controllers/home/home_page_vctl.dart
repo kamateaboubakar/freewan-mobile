@@ -52,9 +52,9 @@ class HomePageVctl extends ViewController {
             ),
             child: Column(
               children: [
-                const Text(
-                  "BIENVENUE MICHAEL !",
-                  style: TextStyle(
+                Text(
+                  "BIENVENUE ${appCtl.user.prenom} !",
+                  style: const TextStyle(
                     color: Colors.white,
                     fontSize: 20,
                     fontWeight: FontWeight.w600,

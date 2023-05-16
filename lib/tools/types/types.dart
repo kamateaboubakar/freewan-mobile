@@ -14,6 +14,14 @@ extension CustomDateTime on DateTime? {
 extension StringExt on String? {
   String get value => this ?? "";
   DateTime? get toDateTime => DateTime.tryParse(toString());
+  int toInt() => int.tryParse(toString()) ?? 0;
+
+  String toJson() {
+    if (this != null) {
+      return json.encode(this!);
+    }
+    return "";
+  }
 }
 
 extension DoubleExt on double? {

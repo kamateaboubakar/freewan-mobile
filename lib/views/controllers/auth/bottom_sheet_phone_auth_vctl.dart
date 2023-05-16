@@ -9,8 +9,8 @@ class BottomSheetPhoneAuthVctl extends ViewController {
 
   BottomSheetPhoneAuthVctl(this.pCtl);
 
-  Future<void> fetchPays() async {
-    if (pCtl.pays.isEmpty) {
+  Future<void> fetchPays({force = false}) async {
+    if (pCtl.pays.isEmpty || force) {
       loading = true;
       update();
       var res = await PaysApiCtl().getAll();

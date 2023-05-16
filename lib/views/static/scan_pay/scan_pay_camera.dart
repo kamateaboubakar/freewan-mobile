@@ -70,17 +70,18 @@ class ScanPayCamera extends StatelessWidget {
                   builder: (context, snapshot) {
                     if (snapshot.data != null) {
                       return MaterialButton(
+                        elevation: 5,
                         shape: const CircleBorder(),
                         height: 50,
                         minWidth: 50,
-                        color: Colors.white,
+                        color: snapshot.data! ? Colors.white : Colors.white60,
                         textColor: AssetColors.blueButton,
                         onPressed: () {
                           ctl.controller?.toggleFlash();
                           ctl.update();
                         },
-                        child: Icon(
-                          snapshot.data! ? Icons.flash_off : Icons.flash_on,
+                        child: const Icon(
+                          Icons.flash_on,
                           size: 35,
                         ),
                       );

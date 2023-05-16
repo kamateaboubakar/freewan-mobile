@@ -9,7 +9,7 @@ class InfosPersoRegister extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Form(
-      // key: ctl.emailFormKey,
+      key: ctl.infoUserFormkey,
       child: ListView(
         padding: const EdgeInsets.all(20),
         children: [
@@ -25,27 +25,46 @@ class InfosPersoRegister extends StatelessWidget {
           CTextFormField(
             keyboardType: TextInputType.emailAddress,
             require: true,
-            controller: ctl.emailCtl,
+            controller: ctl.nomCtl,
             labelText: "Nom de famille",
           ),
           CTextFormField(
             keyboardType: TextInputType.emailAddress,
             require: true,
-            controller: ctl.emailCtl,
+            controller: ctl.prenomCtl,
             labelText: "Prénoms",
           ),
           CTextFormField(
             keyboardType: TextInputType.emailAddress,
             require: true,
-            controller: ctl.emailCtl,
+            controller: ctl.dateNaissanceCtl.textController,
             labelText: "Date de naissance",
             hintText: "JJ/MM/AAAA",
+            readOnly: true,
+            onTap: () async {
+              var date = await showDatePicker(
+                  context: context,
+                  initialDate: DateTime.now(),
+                  firstDate: DateTime(1940),
+                  lastDate: DateTime(3000));
+              if (date != null) {
+                ctl.dateNaissanceCtl.date = date;
+                ctl.update();
+              }
+            },
             suffixIcon: IconButton(
               onPressed: () {},
               icon: const Icon(
                 Icons.calendar_month,
               ),
             ),
+          ),
+          CTextFormField(
+            keyboardType: TextInputType.emailAddress,
+            require: true,
+            controller: ctl.emailCtl,
+            hintText: "Enter your email address",
+            
           ),
         ],
       ),

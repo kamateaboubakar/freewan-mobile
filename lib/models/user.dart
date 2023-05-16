@@ -1,10 +1,14 @@
 import 'package:wan_mobile/models/security_question.dart';
 
 class User {
+  String? id;
   String? phoneNumber;
   String? countryCallingCode;
   String? email;
   String? password;
+  String? nom, prenom;
+  DateTime? dateNaissance;
+
   List<SecurityQuestion>? securityQuestions;
 
   User(
@@ -15,6 +19,7 @@ class User {
       this.securityQuestions});
 
   User.fromJson(Map<String, dynamic> json) {
+    id = json['id'];
     phoneNumber = json['phoneNumber'];
     countryCallingCode = json['countryCallingCode'];
     email = json['email'];
@@ -29,13 +34,15 @@ class User {
 
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['phoneNumber'] = this.phoneNumber;
-    data['countryCallingCode'] = this.countryCallingCode;
-    data['email'] = this.email;
-    data['password'] = this.password;
-    if (this.securityQuestions != null) {
+    data['id'] = id;
+    data['phoneNumber'] = phoneNumber;
+    data['countryCallingCode'] = countryCallingCode;
+    data['email'] = email;
+    data['password'] = password;
+    data['dateNaissance'] = dateNaissance?.toIso8601String();
+    if (securityQuestions != null) {
       data['securityQuestions'] =
-          this.securityQuestions!.map((v) => v.toJson()).toList();
+          securityQuestions!.map((v) => v.toJson()).toList();
     }
     return data;
   }

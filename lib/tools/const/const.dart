@@ -8,7 +8,9 @@ abstract class Const {
   static const Color secondaryColor = Color.fromRGBO(0, 0, 0, 0.5);
   static const primaryFonts = "";
 
-  static var onlineUrl = "http://148.113.143.59:8001/lebedoo";
+  static var onlineUrl = "http://148.113.143.59:8080/api/v1";
   static var localUrl = "";
   static var defaultFont = GoogleFonts.poppins();
+
+  static String appLogo = "assets/images/logo_bedoo.png";
 }

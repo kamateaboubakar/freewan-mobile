@@ -1,8 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:wan_mobile/api/controllers/user_api_ctl.dart';
+import 'package:wan_mobile/tools/cache/cache.dart';
+import 'package:wan_mobile/tools/cache/cache_keys.dart';
 import 'package:wan_mobile/tools/utils/tools.dart';
 import 'package:wan_mobile/tools/widgets/c_button.dart';
 import 'package:wan_mobile/views/controllers/abstracts/view_controller.dart';
+import 'package:wan_mobile/views/static/auth/phone_auth/phone_auth.dart';
 
 class HomePageVctl extends ViewController {
   List<String> ads = [
@@ -53,7 +57,7 @@ class HomePageVctl extends ViewController {
             child: Column(
               children: [
                 Text(
-                  "BIENVENUE ${appCtl.user.prenom} !",
+                  "BIENVENUE ${appCtl.user.lastName} !",
                   style: const TextStyle(
                     color: Colors.white,
                     fontSize: 20,
@@ -103,13 +107,34 @@ class HomePageVctl extends ViewController {
 
   @override
   void dispose() {
-    print("######################################");
     scrollController.removeListener(() {});
-
     scrollController.dispose();
-
     update();
-
     super.dispose();
+  }
+
+  Future<void> fetchUserProfil() async {
+    var res = await UserApiCtl().getUserProfil();
+    if (res.status) {
+      appCtl.user = res.data!;
+      update();
+    } else {
+      Tools.messageBox(message: res.message);
+    }
+  }
+
+  @override
+  void onReady() {
+    super.onReady();
+    fetchUserProfil();
+  }
+
+  Future<void> logout() async {
+    var res = await Tools.showChoiceMessage(
+        message: "Voulez-vous vraiment vous déconnecter ?");
+    if (res == true) {
+      await Cache.remove(CacheKey.credentials);
+      Get.off(() => const PhoneAuth());
+    }
   }
 }

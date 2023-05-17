@@ -1,4 +1,4 @@
-import 'package:graphql_flutter/graphql_flutter.dart';
+import 'package:wan_mobile/api/abstracts/http_client_const.dart';
 import 'package:wan_mobile/api/abstracts/web_controller.dart';
 import 'package:wan_mobile/models/pays.dart';
 import 'package:wan_mobile/tools/utils/http_response.dart';
@@ -6,45 +6,15 @@ import 'package:wan_mobile/tools/utils/http_response.dart';
 class PaysApiCtl extends WebController {
   Future<HttpResponse<List<Pays>>> getAll() async {
     try {
-      final HttpLink httpLink = graphBaseUrl();
+      var res = await get(HttpClientConst.baseUrl(module: "countries"),
+          headers: HttpClientConst.headers);
+      var body = HttpResponse.decodeBody(res);
 
-      var query = """
-       query GetCountryCodes{
-          CountryNode {
-            edges {
-              node {
-                id
-                code
-                name
-                ext
-              }
-            }
-          } 
-        }
-      """;
-
-      final GraphQLClient client = GraphQLClient(
-        link: httpLink,
-        cache: GraphQLCache(),
-      );
-
-      final QueryOptions options = QueryOptions(document: gql(query));
-      final QueryResult result = await client.query(options);
-
-      if (!result.hasException) {
-        // Traitement de la réponse GraphQL
-        if (result.data != null) {
-          final responseData = result.data;
-
-          return HttpResponse.success(
-              data: (responseData!["CountryNode"]["edges"] as List)
-                  .map((e) => Pays.fromJson(e))
-                  .toList());
-        } else {
-          return HttpResponse.success(data: []);
-        }
+      if (body.status) {
+        return HttpResponse.success(
+            data: (body.data as List).map((e) => Pays.fromJson(e)).toList());
       } else {
-        return HttpResponse.success(data: []);
+        return HttpResponse.error(message: body.message);
       }
     } catch (e) {
       return HttpResponse.error(detailErrors: e.toString());

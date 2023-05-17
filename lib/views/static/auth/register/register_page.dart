@@ -1,19 +1,21 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:wan_mobile/models/pays.dart';
 import 'package:wan_mobile/tools/widgets/c_button.dart';
 import 'package:wan_mobile/views/controllers/auth/register_page_vctl.dart';
 import 'package:wan_mobile/views/static/auth/register/infos_perso_register.dart';
 import 'package:wan_mobile/views/static/auth/register/password_register.dart';
 import 'package:wan_mobile/views/static/auth/register/security_questions_register.dart';
-import 'package:wan_mobile/views/static/auth/register/services_register.dart';
 
 class RegisterPage extends StatelessWidget {
-  const RegisterPage({super.key});
+  final Pays selectedPays;
+  final String phone;
+  const RegisterPage(this.selectedPays, this.phone, {super.key});
 
   @override
   Widget build(BuildContext context) {
     return GetBuilder<RegisterPageVctl>(
-      init: RegisterPageVctl(),
+      init: RegisterPageVctl(selectedPays, phone),
       builder: (ctl) {
         return Scaffold(
           appBar: AppBar(

@@ -84,6 +84,7 @@ class PaiementChoixNumero extends StatelessWidget {
                           () => OPTAuth(
                             phone: "phone",
                             onSubmit: (code) => Get.back(),
+                            resendOtp: () {},
                           ),
                         ),
                         child: const Text(

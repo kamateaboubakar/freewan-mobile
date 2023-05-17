@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:wan_mobile/tools/types/types.dart';
 import 'package:wan_mobile/tools/widgets/c_textform_field.dart';
 import 'package:wan_mobile/tools/widgets/wrapper_body.dart';
 import 'package:wan_mobile/tools/widgets/wrapper_body_listview.dart';
@@ -65,7 +66,7 @@ class BottomSheetPhoneAuth extends StatelessWidget {
                               )
                             : null,
                         title: Text(
-                          pCtl.selectedPays?.libelle ?? "",
+                          pCtl.selectedPays?.callingCode ?? "",
                         ),
                         trailing: const Icon(
                           Icons.check_outlined,
@@ -101,7 +102,7 @@ class BottomSheetPhoneAuth extends StatelessWidget {
                                             const Icon(Icons.flag),
                                   )
                                 : null,
-                            title: Text(e.libelle),
+                            title: Text(e.callingCode.value),
                             onTap: () {
                               pCtl.selectedPays = e;
                               ctl.update();

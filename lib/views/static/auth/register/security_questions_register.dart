@@ -47,7 +47,7 @@ class SecurityQuestionRegister extends StatelessWidget {
                               hintText: "Question 1",
                               items: ctl.getAvailaibleQuestions,
                               selectedItem: ctl.q1,
-                              itemAsString: (e) => e.name ?? "Question 1",
+                              itemAsString: (e) => e.label ?? "Question 1",
                               onChanged: (value) {
                                 ctl.q1 = value!;
                                 ctl.update();
@@ -74,7 +74,7 @@ class SecurityQuestionRegister extends StatelessWidget {
                               hintText: "Question 2",
                               selectedItem: ctl.q2,
                               items: ctl.getAvailaibleQuestions,
-                              itemAsString: (e) => e.name ?? "Question 2",
+                              itemAsString: (e) => e.label ?? "Question 2",
                               onChanged: (value) {
                                 ctl.q2 = value!;
                                 ctl.update();
@@ -101,7 +101,7 @@ class SecurityQuestionRegister extends StatelessWidget {
                               hintText: "Question 3",
                               selectedItem: ctl.q3,
                               items: ctl.getAvailaibleQuestions,
-                              itemAsString: (e) => e.name ?? "Question 3",
+                              itemAsString: (e) => e.label ?? "Question 3",
                               onChanged: (value) {
                                 ctl.q3 = value!;
                                 ctl.update();
@@ -128,7 +128,7 @@ class SecurityQuestionRegister extends StatelessWidget {
                               hintText: "Question 4",
                               selectedItem: ctl.q4,
                               items: ctl.getAvailaibleQuestions,
-                              itemAsString: (e) => e.name ?? "Question 4",
+                              itemAsString: (e) => e.label ?? "Question 4",
                               onChanged: (value) {
                                 ctl.q4 = value!;
                                 ctl.update();
@@ -155,7 +155,7 @@ class SecurityQuestionRegister extends StatelessWidget {
                               hintText: "Question 5",
                               selectedItem: ctl.q5,
                               items: ctl.getAvailaibleQuestions,
-                              itemAsString: (e) => e.name ?? "Question 5",
+                              itemAsString: (e) => e.label ?? "Question 5",
                               onChanged: (value) {
                                 ctl.q5 = value!;
                                 ctl.update();

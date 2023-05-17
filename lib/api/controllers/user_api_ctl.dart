@@ -1,319 +1,153 @@
-import 'dart:convert';
-
-import 'package:flutter/foundation.dart';
-import 'package:graphql_flutter/graphql_flutter.dart';
+import 'package:wan_mobile/api/abstracts/http_client_const.dart';
 import 'package:wan_mobile/api/abstracts/web_controller.dart';
 import 'package:wan_mobile/models/security_question.dart';
 import 'package:wan_mobile/models/user.dart';
+import 'package:wan_mobile/tools/types/types.dart';
 
 import 'package:wan_mobile/tools/utils/http_response.dart';
 
 class UserApiCtl extends WebController {
   Future<HttpResponse<bool>> register(User user) async {
     try {
-      final HttpLink httpLink = graphBaseUrl();
-
-      final GraphQLClient client = GraphQLClient(
-        link: httpLink,
-        cache: GraphQLCache(),
+      var res = await post(
+        HttpClientConst.baseUrl(module: "register"),
+        HttpResponse.encodeBody(user.toJson()),
+        headers: HttpClientConst.headers,
       );
-
-      const String saveUserIdMutation = r'''
-          mutation SaveUserId($id: ID!, $firstName: String!, $lastName: String!, $email: String! ) {
-          updateUsers(
-            id: $id
-            firstName: $firstName
-            lastName: $lastName
-            email: $email
-          ) {
-            success
-            errors
-            users {
-              id
-              phoneNumber
-            }
-          }
-        }
-      ''';
-
-      final MutationOptions options = MutationOptions(
-        document: gql(saveUserIdMutation),
-        variables: {
-          "id": user.id,
-          "firstName": user.prenom,
-          "lastName": user.nom,
-          "email": user.email,
-        },
-      );
-
-      final QueryResult result = await client.mutate(options);
-      if (!result.hasException) {
+      var body = HttpResponse.decodeBody(res);
+      if (body.status) {
+        appCtl.jwtToken = body.data["accessToken"];
         return HttpResponse.success(data: true);
       } else {
-        print(result.exception);
-        return HttpResponse.error();
+        return HttpResponse.error(message: body.message);
       }
-    } catch (e) {
-      return HttpResponse.error();
+    } catch (e, st) {
+      return HttpResponse.error(systemError: e, systemtraceError: st);
     }
   }
 
   Future<HttpResponse<bool>> saveUsersSecuriteQuestionAnswers(
       SecurityQuestion question, String userId) async {
     try {
-      final HttpLink httpLink = graphBaseUrl();
-
-      final GraphQLClient client = GraphQLClient(
-        link: httpLink,
-        cache: GraphQLCache(),
-      );
-
-      const String saveUserIdMutation = r'''
-          mutation SaveUsersAnswers ($userId: ID!, $questionId: ID!, $answer: String!) {
-            createUsersSecurityQuestions (
-              questions : $questionId
-              user: $userId
-              questionAnswers: $answer
-            ) {
-              success
-              errors
-              usersSecurityQuestions {
-                id
-                questionAnswers
-                questions {
-                  id
-                  name
-                }
-              }
-            }
-          }
-      ''';
-
-      final MutationOptions options = MutationOptions(
-        document: gql(saveUserIdMutation),
-        variables: {
-          "userId": userId,
-          "questionId": question.id,
-          "answer": question.answer,
-        },
-      );
-      QueryResult result = await client.mutate(options);
-
-      if (!result.hasException) {
-        return HttpResponse.success(data: true);
-      } else {
-        return HttpResponse.error();
-      }
+      return HttpResponse.success(data: true);
     } catch (e) {
       return HttpResponse.error();
     }
   }
 
-  Future<HttpResponse<String>> loginPhone(
-      {required String phone,
-      required int countryCode,
-      required String firebaseUserId}) async {
+  Future<HttpResponse<bool>> loginPhone({required String phone}) async {
     try {
-      final HttpLink httpLink = graphBaseUrl();
-
-      final GraphQLClient client = GraphQLClient(
-        link: httpLink,
-        cache: GraphQLCache(),
+      var res = await post(
+        HttpClientConst.baseUrl(module: "challenge-otp"),
+        {"login": phone}.toJson(),
+        headers: HttpClientConst.headers,
       );
-
-      const String saveUserIdMutation = r'''
-        mutation SaveUserId($id: ID!, $phoneNumber: String!, $countryCode: ID!) {
-          createUsers(
-            id: $id
-            phoneNumber: $phoneNumber
-            countryCode: $countryCode
-          ) {
-            success
-            errors
-            otp
-            users {
-              id
-              phoneNumber
-            }
-          }
+      var body = HttpResponse.decodeBody(res);
+      if (body.status) {
+        if (body.data != null && body.data["userExist"] == true) {
+          return HttpResponse.success(data: true);
         }
-      ''';
-
-      final MutationOptions options = MutationOptions(
-        document: gql(saveUserIdMutation),
-        variables: <String, dynamic>{
-          'id': firebaseUserId,
-          'phoneNumber': phone,
-          'countryCode': countryCode,
-        },
-      );
-
-      final QueryResult result = await client.mutate(options);
-      if (!result.hasException) {
-        final data = result.data!['createUsers'];
-        final success = data['success'];
-        final errors = data['errors'];
-        final users = data['users'];
-        final id = users['id'];
-        final phoneNumber = users['phoneNumber'];
-        final codeOTP = data['otp'];
-        if (kDebugMode) {
-          print('Success: $success');
-          print('Errors: $errors');
-          print('User ID: $id');
-          print("OTP: $codeOTP");
-          print('Phone Number: $phoneNumber');
-        }
-        return HttpResponse.success(data: codeOTP);
+        return HttpResponse.success(data: false);
       } else {
-        if (kDebugMode) {
-          print(result.exception);
-        }
-        if (result.exception.toString().contains("users_pkey")) {
-          return HttpResponse.error(
-              message: "Désolé, vous avez déjà un compte.",
-              detailErrors: "users_pkey");
-        }
-        return HttpResponse.error();
+        return HttpResponse.error(message: body.message);
       }
-    } catch (e) {
-      return HttpResponse.error();
+    } catch (e, st) {
+      return HttpResponse.error(systemError: e, systemtraceError: st);
     }
   }
 
-  // Future<HttpResponse<bool>> verifyOtp(
-  //     {required String code, required String phone}) async {
-  //   try {
-  //     var response = await client.post(
-  //       baseUrl(module: "verify-otp"),
-  //       headers: {
-  //         "Content-Type": "application/json",
-  //         "Accept": "application/json"
-  //       },
-  //       body: jsonEncode({"code": code, "login": phone}),
-  //     );
-  //     var body = HttpResponse.decodeBody(response);
-  //     if (body.status) {
-  //       return HttpResponse.success(data: true);
-  //     } else {
-  //       return HttpResponse.error();
-  //     }
-  //   } catch (e) {
-  //     return HttpResponse.error();
-  //   }
-  // }
-
-  Future<HttpResponse<SecurityQuestion>> verifyOtp(
+  Future<HttpResponse<bool>> verifyOtp(
       {required String code, required String phone}) async {
     try {
-      final HttpLink httpLink = graphBaseUrl();
-
-      var query = """
-          query GetUsersAnswer(\$userId: ID!) {
-          UsersById(id: \$userId){
-            username
-            phoneNumber
-            userssecurityquestionsSet {
-              edges {
-                node {
-                  id
-                  questionAnswers
-                  questions {
-                    id
-                    name
-                  }
-                }
-              }
-            }
+      var response = await post(
+        HttpClientConst.baseUrl(module: "challenge-otp/verify"),
+        headers: HttpClientConst.headers,
+        {"otp": code, "login": phone}.toJson(),
+      );
+      var body = HttpResponse.decodeBody(response);
+      if (body.status) {
+        if (body.data != null) {
+          if (body.data["errorCode"] == "otp-expired") {
+            return HttpResponse.error(message: "Ce code OTP a expiré.");
+          } else if (body.data["errorCode"] == "otp-invalid") {
+            return HttpResponse.error(message: "Ce code OTP n'est pas valide.");
+          } else {
+            return HttpResponse.success(data: true);
           }
-        }
-      """;
-
-      final GraphQLClient client = GraphQLClient(
-        link: httpLink,
-        cache: GraphQLCache(),
-      );
-
-      final QueryOptions options = QueryOptions(
-        document: gql(query),
-      );
-      final QueryResult result = await client.query(options);
-
-      if (!result.hasException) {
-        // Traitement de la réponse GraphQL
-        if (result.data != null) {
-          final responseData = result.data;
-
-          return HttpResponse.success(
-              data: SecurityQuestion.fromJson(
-                  responseData!["CountryNode"]["edges"]));
         } else {
-          return HttpResponse.error();
-        }
-      } else {
-        return HttpResponse.error();
-      }
-    } catch (e) {
-      return HttpResponse.error();
-    }
-  }
-
-  Future<HttpResponse<List<SecurityQuestion>>> getUsersAnswer(
-      {required String userId}) async {
-    try {
-      final HttpLink httpLink = graphBaseUrl();
-
-      var query = r"""
-          query GetUsersAnswer($userId: ID!) {
-          UsersById(id: $userId){
-            username
-            phoneNumber
-            userssecurityquestionsSet {
-              edges {
-                node {
-                  id
-                  questionAnswers
-                  questions {
-                    id
-                    name
-                  }
-                }
-              }
-            }
-          }
-        }
-      """;
-
-      final GraphQLClient client = GraphQLClient(
-        link: httpLink,
-        cache: GraphQLCache(),
-      );
-
-      final QueryOptions options = QueryOptions(
-        document: gql(query),
-        variables: {"userId": userId},
-      );
-      final QueryResult result = await client.query(options);
-
-      if (!result.hasException) {
-        // Traitement de la réponse GraphQL
-        if (result.data != null) {
-          final responseData = result.data;
-
-          return HttpResponse.success(
-              data: (responseData!["UsersById"]["userssecurityquestionsSet"]
-                      ["edges"] as List)
-                  .map((e) => SecurityQuestion.toResponse(e))
-                  .toList());
-        } else {
-          return HttpResponse.error();
+          return HttpResponse.success(data: true);
         }
       } else {
         return HttpResponse.error();
       }
     } catch (e, st) {
-      print(st);
-      return HttpResponse.error();
+      return HttpResponse.error(systemError: e, systemtraceError: st);
+    }
+  }
+
+  Future<HttpResponse<SecurityQuestion>> authenticate(
+      {required String phone, required String password}) async {
+    try {
+      var res = await post(
+        HttpClientConst.baseUrl(module: "auth/authenticate"),
+        {"login": phone, "password": password}.toJson(),
+        headers: HttpClientConst.headers,
+      );
+      var body = HttpResponse.decodeBody(res);
+      if (body.status) {
+        return HttpResponse.success(data: SecurityQuestion.fromJson(body.data));
+      } else {
+        return HttpResponse.error(message: body.message);
+      }
+    } catch (e, st) {
+      return HttpResponse.error(systemError: e, systemtraceError: st);
+    }
+  }
+
+  Future<HttpResponse<bool>> answerSecurityQuestionLogin(
+      {required String phone,
+      required String password,
+      required int securityQuestionId,
+      required String answer}) async {
+    try {
+      var res = await post(
+        HttpClientConst.baseUrl(module: "auth/challenge-questions"),
+        {
+          "login": phone,
+          "password": password,
+          "securityQuestion": {
+            "securityQuestionId": securityQuestionId,
+            "answer": answer,
+          }
+        }.toJson(),
+        headers: HttpClientConst.headers,
+      );
+      var body = HttpResponse.decodeBody(res);
+      if (body.status) {
+        appCtl.jwtToken = body.data["accessToken"];
+        return HttpResponse.success(data: true);
+      } else {
+        return HttpResponse.error(message: body.message);
+      }
+    } catch (e, st) {
+      return HttpResponse.error(systemError: e, systemtraceError: st);
+    }
+  }
+
+  Future<HttpResponse<User>> getUserProfil() async {
+    try {
+      var res = await get(
+        HttpClientConst.baseUrl(module: "profile"),
+        headers: HttpClientConst.authHeaders,
+      );
+      var body = HttpResponse.decodeBody(res);
+      if (body.status) {
+        return HttpResponse.success(data: User.fromJson(body.data));
+      } else {
+        return HttpResponse.error(message: body.message);
+      }
+    } catch (e, st) {
+      return HttpResponse.error(systemError: e, systemtraceError: st);
     }
   }
 }

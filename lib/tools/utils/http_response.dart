@@ -1,7 +1,7 @@
 import 'dart:convert';
 
 import 'package:flutter/foundation.dart';
-import 'package:http/http.dart' as http;
+import 'package:get/get.dart';
 
 class HttpResponse<T> {
   bool status = false;
@@ -15,22 +15,46 @@ class HttpResponse<T> {
   HttpResponse.error(
       {this.message =
           "Désolé, une erreur est survenue. Veuillez réessayer SVP.",
-      this.detailErrors = ""}) {
-    if (kDebugMode) {
-      print(detailErrors);
+      this.detailErrors = "",
+      dynamic systemError,
+      dynamic systemtraceError}) {
+    if (kDebugMode && systemError != null) {
+      print(systemError);
+      print(systemtraceError);
     }
   }
   HttpResponse.setDetailErrors({required this.detailErrors});
 
-  static HttpResponse<T> decodeBody<T>(http.Response source) {
+  static HttpResponse<T> decodeBody<T>(Response source) {
     try {
-      if (source.statusCode == 200) {
-        var body = jsonDecode(utf8.decode(source.bodyBytes));
+      if (kDebugMode) {
+        print(source.statusCode);
+      }
+      dynamic body;
+      if (source.body is String) {
+        body = json.decode(source.body);
+      } else {
+        body = source.body;
+      }
+      if ([200, 201].contains(source.statusCode)) {
         return HttpResponse.success(data: (body as T));
       } else {
-        return HttpResponse.error(
-            message: source.reasonPhrase ??
-                "Désolé, une erreur est survenue. Veuillez réessayer SVP.");
+        if (body == null) {
+          return HttpResponse.error(
+              message:
+                  "Désolé, une erreur est survenue. Veuillez réessayer SVP.");
+        }
+
+        if (body != null) {
+          if (body["message"] != null) {
+            return HttpResponse.error(message: body["message"]);
+          }
+
+          if (body != null) {
+            return HttpResponse.error(message: body);
+          }
+        }
+        return HttpResponse.error();
       }
     } catch (e, st) {
       if (kDebugMode) {
@@ -46,6 +70,7 @@ class HttpResponse<T> {
       // if (data is Entity) {
       //   return json.encode(data.toMap());
       // }
+
       return json.encode(data);
     } catch (e, st) {
       if (kDebugMode) {

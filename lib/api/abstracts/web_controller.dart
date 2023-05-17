@@ -1,18 +1,58 @@
-import 'package:flutter/foundation.dart';
-import 'package:graphql_flutter/graphql_flutter.dart';
-import 'package:http/http.dart' as http;
-import 'package:wan_mobile/tools/const/const.dart';
+import 'package:get/get.dart';
+import 'package:jwt_decode/jwt_decode.dart';
+import 'package:wan_mobile/api/abstracts/http_client_const.dart';
 
-abstract class WebController {
-  // AppVctl appVctl = Get.find();
-  http.Client get client => http.Client();
+import '../../tools/utils/http_response.dart';
+import '../../views/controllers/app_ctl.dart';
 
-  Future<QueryResult> grClient(
-      {GraphQLCache? cache,
-      required Link link,
-      required QueryOptions options}) {
-    return GraphQLClient(cache: cache ?? GraphQLCache(), link: link)
-        .query(options);
+abstract class WebController extends GetConnect {
+  final AppCtl appCtl = Get.find();
+
+  @override
+  Future<Response<T>> put<T>(String url, dynamic body,
+      {String? contentType,
+      Map<String, String>? headers,
+      Map<String, dynamic>? query,
+      Decoder<T>? decoder,
+      Progress? uploadProgress}) async {
+    headers = await _checkAndRefreshToken(headers);
+    return super.put(url, body,
+        contentType: contentType,
+        headers: headers,
+        query: query,
+        decoder: decoder,
+        uploadProgress: uploadProgress);
+  }
+
+  @override
+  Future<Response<T>> post<T>(String? url, body,
+      {String? contentType,
+      Map<String, String>? headers,
+      Map<String, dynamic>? query,
+      Decoder<T>? decoder,
+      Progress? uploadProgress}) async {
+    headers = await _checkAndRefreshToken(headers);
+    return super.post(url, body,
+        contentType: contentType,
+        headers: headers,
+        query: query,
+        decoder: decoder,
+        uploadProgress: uploadProgress);
+  }
+
+  @override
+  Future<Response<T>> get<T>(String url,
+      {Map<String, String>? headers,
+      String? contentType,
+      Map<String, dynamic>? query,
+      Decoder<T>? decoder}) async {
+    headers = await _checkAndRefreshToken(headers);
+
+    return super.get(url,
+        headers: headers,
+        contentType: contentType,
+        query: query,
+        decoder: decoder);
   }
 
   // Future<http.MultipartRequest> multiPartclient(String method, Uri url,
@@ -28,46 +68,22 @@ abstract class WebController {
   //   return req;
   // }
 
-  Uri baseUrl({String? module, bool local = false}) {
-    String url = (local) ? Const.localUrl : Const.onlineUrl;
-
-    if (module != null) {
-      url += "/$module";
-    } else {
-      url += "/";
+  Future<Map<String, String>>? _checkAndRefreshToken(
+      Map<String, String>? headers) async {
+    if (headers?.containsKey("authorization") == true &&
+        Jwt.isExpired(appCtl.jwtToken)) {
+      var response = await super.get(
+          HttpClientConst.baseUrl(module: "auth/refreshToken"),
+          headers: headers);
+      var body = HttpResponse.decodeBody(response);
+      if (body.status) {
+        appCtl.jwtToken = body.data["token"];
+        headers!["authorization"] = appCtl.jwtToken;
+        return headers;
+      } else {
+        return Future.value(headers);
+      }
     }
-    if (kDebugMode) {
-      print(url);
-    }
-    return Uri.parse(url);
+    return Future.value(headers);
   }
-
-  HttpLink graphBaseUrl({String? module, bool local = false}) {
-    String url = (local) ? Const.localUrl : Const.onlineUrl;
-
-    if (module != null) {
-      url += "/$module";
-    } else {
-      url += "/";
-    }
-
-    return HttpLink(url);
-  }
-
-  Map<String, String> get headers => {
-        "content-type": "application/json",
-        "accept": "application/json",
-      };
-
-  Map<String, String> get authHeaders => {
-        "content-type": "application/json",
-        "accept": "application/json",
-        "Authorization": "Bearer ",
-      };
-
-  Map<String, String> get multipartHeaders => {
-        "content-type": "multipart/form-data",
-        "accept": "application/json",
-        // "Authorization": "Bearer ${appVctl.jwt}",
-      };
 }

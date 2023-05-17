@@ -1,30 +1,34 @@
 class Pays {
-  String? id;
+  int? id;
   String? code;
-  String? name;
-  int? ext;
+  String? label;
+  String? callingCode;
   int? phoneNumberLength;
 
-  Pays({this.id, this.code, this.name, this.ext});
+  Pays(
+      {this.id,
+      this.code,
+      this.label,
+      this.callingCode,
+      this.phoneNumberLength});
 
   Pays.fromJson(Map<String, dynamic> json) {
-    id = json["node"]['id'];
-    code = json["node"]['code'];
-    name = json["node"]['name'];
-    ext = json["node"]['ext'];
-    phoneNumberLength = json["node"]["phoneLength"];
+    id = json['countryId'];
+    code = json['code'];
+    label = json['label'];
+    callingCode = json['callingCode'];
+    phoneNumberLength = json['phoneNumberLength'];
   }
 
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['id'] = id;
-    data['code'] = code;
-    data['name'] = name;
-    data['ext'] = ext;
+    data['countryId'] = this.id;
+    data['code'] = this.code;
+    data['label'] = this.label;
+    data['callingCode'] = this.callingCode;
+    data['phoneNumberLength'] = this.phoneNumberLength;
     return data;
   }
-
-  String get libelle => ext == null ? "" : "+$ext";
 
   String? get flag =>
       (code == null) ? null : "assets/images/flags/${code?.toLowerCase()}.png";

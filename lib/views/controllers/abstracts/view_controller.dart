@@ -7,14 +7,14 @@ abstract class ViewController extends GetxController {
   late AppCtl _appCtl;
   late ProgressDialog pr;
 
-  ViewController() : pr = Tools.progressDialog();
-
-  AppCtl get appCtl {
+  ViewController() {
+    pr = Tools.progressDialog();
     try {
       _appCtl = Get.find();
     } catch (e) {
       _appCtl = Get.put(AppCtl());
     }
-    return _appCtl;
   }
+
+  AppCtl get appCtl => _appCtl;
 }

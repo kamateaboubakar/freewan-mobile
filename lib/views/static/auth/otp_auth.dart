@@ -1,3 +1,4 @@
+import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_countdown_timer/flutter_countdown_timer.dart';
 import 'package:flutter_otp_text_field/flutter_otp_text_field.dart';
@@ -10,12 +11,14 @@ import '../../../tools/utils/asset_colors.dart';
 
 class OPTAuth extends StatelessWidget {
   final void Function(String code) onSubmit;
+  final void Function() resendOtp;
   final String phone;
   final Pays? selectedPays;
 
   const OPTAuth(
       {required this.onSubmit,
       required this.phone,
+      required this.resendOtp,
       super.key,
       this.selectedPays});
 
@@ -93,18 +96,20 @@ class OPTAuth extends StatelessWidget {
                           },
                         ),
                       ),
-                      const Text.rich(
+                      Text.rich(
                         TextSpan(
                           text: "Pas encore reçu ? ",
                           children: [
                             TextSpan(
                               text: "Cliquez ici pour renvoyer",
-                              style: TextStyle(
+                              style: const TextStyle(
                                 color: Color.fromRGBO(181, 196, 216, 1),
                               ),
+                              recognizer: TapGestureRecognizer()
+                                ..onTap = () => resendOtp,
                             ),
                           ],
-                          style: TextStyle(fontSize: 11),
+                          style: const TextStyle(fontSize: 11),
                         ),
                       ),
                     ],

@@ -26,9 +26,10 @@ class HomePage extends StatelessWidget {
         init: HomePageVctl(displayWelcome),
         builder: (ctl) {
           return Scaffold(
-            drawer: const HomeDrawer(),
+            drawer: HomeDrawer(ctl),
             backgroundColor: const Color.fromRGBO(182, 214, 232, 1.0),
             appBar: AppBar(
+              backgroundColor: Colors.white,
               leadingWidth: 50,
               toolbarHeight: 60,
               title: Image.asset(
@@ -51,7 +52,7 @@ class HomePage extends StatelessWidget {
                           const Icon(Icons.menu, color: Colors.black, size: 7),
                       child: CircleAvatar(
                         // radius: 30,
-                        backgroundColor: Colors.grey,
+                        backgroundColor: const Color.fromRGBO(219, 219, 219, 1),
                         child: IconButton(
                           color: Colors.white,
                           splashRadius: 20,
@@ -65,13 +66,12 @@ class HomePage extends StatelessWidget {
                   ),
                 );
               }),
-              backgroundColor: Colors.transparent,
               actions: [
                 IconButton(
                   splashRadius: 20,
                   onPressed: () {},
                   icon: Image.asset(
-                    "assets/images/icons8-chercher-96.png",
+                    "assets/images/loupe.png",
                     width: 25,
                   ),
                 ),
@@ -79,7 +79,7 @@ class HomePage extends StatelessWidget {
                   splashRadius: 20,
                   onPressed: () {},
                   icon: Image.asset(
-                    "assets/images/icons8-message-48.png",
+                    "assets/images/message.png",
                     width: 25,
                   ),
                 ),

@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:wan_mobile/models/pays.dart';
 import 'package:wan_mobile/models/security_question.dart';
+import 'package:wan_mobile/tools/const/const.dart';
 import 'package:wan_mobile/tools/widgets/c_button.dart';
 import 'package:wan_mobile/tools/widgets/c_textform_field.dart';
 import 'package:wan_mobile/views/controllers/auth/answer_security_question_page_vctl.dart';
@@ -28,9 +29,28 @@ class AnswerSecurityQuestionPage extends StatelessWidget {
             body: SingleChildScrollView(
               padding: const EdgeInsets.all(20),
               child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  ListTile(
-                    title: Text("${question.label}"),
+                  Image.asset(
+                    Const.appLogo,
+                    width: 94,
+                    height: 43,
+                  ),
+                  const SizedBox(height: 10),
+                  const Text(
+                    "Question de sécurité",
+                    style: TextStyle(
+                      fontSize: 20,
+                      color: Color.fromRGBO(7, 21, 60, 1),
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
+                  const SizedBox(height: 20),
+                  Text(
+                    "${question.label}",
+                    style: const TextStyle(
+                      fontSize: 16,
+                    ),
                   ),
                   const SizedBox(height: 20),
                   CTextFormField(

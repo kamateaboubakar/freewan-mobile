@@ -55,4 +55,6 @@ class User {
   }
 
   String get fullName => "${firstName.value} ${lastName.value}";
+
+  String get firstPrenom => firstName.value.split(" ").first;
 }

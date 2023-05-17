@@ -33,7 +33,7 @@ class HomePage extends StatelessWidget {
               leadingWidth: 50,
               toolbarHeight: 60,
               title: Image.asset(
-                "assets/images/logo_bedoo.png",
+                Const.appLogo,
                 width: 67,
                 height: 30,
               ),
@@ -209,6 +209,9 @@ class HomePage extends StatelessWidget {
                                               Image.network(
                                                 e,
                                                 fit: BoxFit.fill,
+                                                errorBuilder:
+                                                    (context, error, stack) =>
+                                                        Container(),
                                               ),
                                             ],
                                           ),

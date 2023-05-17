@@ -24,7 +24,7 @@ class PasswordPage extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Image.asset(
-                    "assets/images/logo_bedoo.png",
+                    Const.appLogo,
                     width: 94,
                     height: 43,
                   ),

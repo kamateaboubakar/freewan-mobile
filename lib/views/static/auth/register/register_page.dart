@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:wan_mobile/models/pays.dart';
+import 'package:wan_mobile/tools/const/const.dart';
 import 'package:wan_mobile/tools/widgets/c_button.dart';
 import 'package:wan_mobile/views/controllers/auth/register_page_vctl.dart';
 import 'package:wan_mobile/views/static/auth/register/infos_perso_register.dart';
@@ -52,8 +53,7 @@ class RegisterPage extends StatelessWidget {
                           onPressed: () => ctl.prevStep(),
                           icon: const Icon(Icons.arrow_back),
                         ),
-                        Image.asset("assets/images/logo_bedoo.png",
-                            width: 94, height: 43),
+                        Image.asset(Const.appLogo, width: 94, height: 43),
                       ],
                     ),
                     SizedBox(

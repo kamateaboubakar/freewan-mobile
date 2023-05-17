@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:wan_mobile/tools/const/const.dart';
 import 'package:wan_mobile/views/controllers/splashscreen_vctl.dart';
 
 class SplashScreen extends StatelessWidget {
@@ -17,7 +18,7 @@ class SplashScreen extends StatelessWidget {
                   Expanded(
                     child: Center(
                       child: Image.asset(
-                        "assets/images/logo_bedoo.png",
+                        Const.appLogo,
                         width: 141,
                         height: 63,
                       ),

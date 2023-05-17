@@ -14,7 +14,7 @@ class HomePageVctl extends ViewController {
     "https://165225.fs1.hubspotusercontent-na1.net/hubfs/165225/Video-ads-meta.jpg",
     "https://www.shutterstock.com/image-vector/deluxe-king-size-burger-ads-260nw-1121447561.jpg"
   ];
-  final displayWelcome;
+  bool displayWelcome;
 
   HomePageVctl(this.displayWelcome);
 
@@ -133,8 +133,15 @@ class HomePageVctl extends ViewController {
     var res = await Tools.showChoiceMessage(
         message: "Voulez-vous vraiment vous déconnecter ?");
     if (res == true) {
-      await Cache.remove(CacheKey.credentials);
-      Get.off(() => const PhoneAuth());
+      await pr.show();
+      var res = await UserApiCtl().logout();
+      await pr.hide();
+      if (res.status) {
+        await Cache.remove(CacheKey.credentials);
+        Get.off(() => const PhoneAuth());
+      } else {
+        Tools.messageBox(message: res.message);
+      }
     }
   }
 }

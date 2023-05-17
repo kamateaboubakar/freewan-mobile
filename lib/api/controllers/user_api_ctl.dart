@@ -150,4 +150,22 @@ class UserApiCtl extends WebController {
       return HttpResponse.error(systemError: e, systemtraceError: st);
     }
   }
+
+  Future<HttpResponse<bool>> logout() async {
+    try {
+      var res = await post(
+        HttpClientConst.baseUrl(module: "auth/revoke"),
+        {}.toJson(),
+        headers: HttpClientConst.authHeaders,
+      );
+      var body = HttpResponse.decodeBody(res);
+      if (body.status) {
+        return HttpResponse.success(data: true);
+      } else {
+        return HttpResponse.error(message: body.message);
+      }
+    } catch (e, st) {
+      return HttpResponse.error(systemError: e, systemtraceError: st);
+    }
+  }
 }

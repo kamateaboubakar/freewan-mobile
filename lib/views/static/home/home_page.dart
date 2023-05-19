@@ -16,10 +16,12 @@ import 'package:badges/badges.dart' as badges;
 import 'package:wan_mobile/views/static/loyer/loyer_bottom_sheet.dart';
 import 'package:wan_mobile/views/static/scan_pay/scan_pay_camera.dart';
 
+import '../bills/bills_views.dart';
 import '../job/job_views.dart';
 
 class HomePage extends StatelessWidget {
   final bool displayWelcome;
+
   const HomePage({this.displayWelcome = false, super.key});
 
   @override
@@ -372,7 +374,7 @@ class HomePage extends StatelessWidget {
                                     icon: Image.asset(
                                         "assets/images/icons/facture_electricite.png"),
                                     title: "Facture d’électricité",
-                                    onPressed: () {},
+                                    onPressed: () => Tools.openBottomSheet(
                                   ),
                                   ButtonMenu(
                                     icon: Image.asset(
@@ -408,7 +410,6 @@ class HomePage extends StatelessWidget {
                                       ),
                                     ),
                                     title: "Voir Plus",
-                                    onPressed: () {
                                       Tools.openBottomSheet(JobProfileSelectionDialog());
                                     },
                                   ),

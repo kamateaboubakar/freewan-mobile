@@ -7,6 +7,7 @@ import 'package:wan_mobile/views/controllers/auth/register_page_vctl.dart';
 
 class PasswordRegister extends StatelessWidget {
   final RegisterPageVctl ctl;
+
   const PasswordRegister(this.ctl, {super.key});
 
   @override

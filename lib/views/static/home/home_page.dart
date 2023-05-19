@@ -375,6 +375,8 @@ class HomePage extends StatelessWidget {
                                         "assets/images/icons/facture_electricite.png"),
                                     title: "Facture d’électricité",
                                     onPressed: () => Tools.openBottomSheet(
+                                      BillsCompanySelectionDialog(),
+                                    ),
                                   ),
                                   ButtonMenu(
                                     icon: Image.asset(
@@ -410,6 +412,7 @@ class HomePage extends StatelessWidget {
                                       ),
                                     ),
                                     title: "Voir Plus",
+                                    onPressed: (){
                                       Tools.openBottomSheet(JobProfileSelectionDialog());
                                     },
                                   ),

@@ -71,6 +71,7 @@ class PaiementChoixNumero extends StatelessWidget {
                     top: 35,
                     bottom: 19,
                   ),
+                  height: 219,
                   decoration: const BoxDecoration(
                     color: Colors.white,
                     borderRadius: BorderRadius.only(
@@ -78,98 +79,67 @@ class PaiementChoixNumero extends StatelessWidget {
                       topRight: Radius.circular(15),
                     ),
                   ),
-                  child: SingleChildScrollView(
-                    child: Column(
-                      children: [
-                        const Text(
-                          "Enregistrez une carte bancaire",
-                          style: TextStyle(
-                            fontSize: 16,
-                            fontWeight: FontWeight.w500,
+                  child: Column(
+                    children: [
+                      const Text(
+                        "Entrez le numéro de paiement",
+                        style: TextStyle(
+                          fontSize: 16,
+                          fontWeight: FontWeight.w500,
+                        ),
+                      ),
+                      const SizedBox(height: 10),
+                      const CTextFormField(
+                        hintText: "Enter your mobile number",
+                        keyboardType: TextInputType.number,
+                      ),
+                      const SizedBox(height: 10),
+                      Row(
+                        children: [
+                          Expanded(
+                            child: CButton(
+                              color: Colors.white,
+                              shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(8),
+                                side: const BorderSide(
+                                  width: 1,
+                                  color: AssetColors.blueButton,
+                                ),
+                              ),
+                              height: 48,
+                              onPressed: () {},
+                              child: const Text(
+                                "Annuler",
+                                style: TextStyle(
+                                  fontWeight: FontWeight.bold,
+                                  color: AssetColors.blueButton,
+                                ),
+                              ),
+                            ),
                           ),
-                        ),
-                        CreditCardWidget(
-                          isChipVisible: false,
-                          cardNumber: "",
-                          expiryDate: "",
-                          cardHolderName: "",
-                          cvvCode: "",
-                          showBackView: false,
-                          onCreditCardWidgetChange: (creditCardBrand) {},
-                        ),
-                        const SizedBox(height: 26),
-                        const CTextFormField(
-                          hintText: "Nom sur la Carte",
-                          keyboardType: TextInputType.number,
-                        ),
-                        CTextFormField(
-                          hintText: "Numéro de Carte",
-                          keyboardType: TextInputType.number,
-                          suffixIcon: Image.asset(
-                            "assets/images/master_card.png",
-                            width: 32,
-                            height: 29,
+                          const SizedBox(width: 16),
+                          Expanded(
+                            child: CButton(
+                              borderRadius: 8,
+                              height: 48,
+                              onPressed: () => Get.to(
+                                    () => OPTAuth(
+                                  phone: "phone",
+                                  onSubmit: (code) => Get.back(),
+                                  resendOtp: () {},
+                                ),
+                              ),
+                              child: const Text(
+                                "Confirmer",
+                                style: TextStyle(
+                                  fontWeight: FontWeight.bold,
+                                ),
+                              ),
+                            ),
                           ),
-                        ),
-                        Row(
-                          children: const [
-                            Expanded(
-                              child: CTextFormField(
-                                hintText: "Date d’expiration",
-                                keyboardType: TextInputType.number,
-                              ),
-                            ),
-                            SizedBox(width: 10),
-                            Expanded(
-                              child: CTextFormField(
-                                hintText: "Code de Sécurité",
-                                keyboardType: TextInputType.number,
-                              ),
-                            ),
-                          ],
-                        ),
-                        const SizedBox(height: 10),
-                        Row(
-                          children: [
-                            Expanded(
-                              child: CButton(
-                                color: Colors.white,
-                                shape: RoundedRectangleBorder(
-                                  borderRadius: BorderRadius.circular(8),
-                                  side: const BorderSide(
-                                    width: 1,
-                                    color: AssetColors.blueButton,
-                                  ),
-                                ),
-                                height: 48,
-                                onPressed: () {},
-                                child: const Text(
-                                  "Annuler",
-                                  style: TextStyle(
-                                    fontWeight: FontWeight.bold,
-                                    color: AssetColors.blueButton,
-                                  ),
-                                ),
-                              ),
-                            ),
-                            const SizedBox(width: 16),
-                            Expanded(
-                              child: CButton(
-                                borderRadius: 8,
-                                height: 48,
-                                onPressed: () => Get.back(),
-                                child: const Text(
-                                  "Confirmer",
-                                  style: TextStyle(
-                                    fontWeight: FontWeight.bold,
-                                  ),
-                                ),
-                              ),
-                            ),
-                          ],
-                        )
-                      ],
-                    ),
+                        ],
+                      )
+                    ],
                   ),
                 ),
               ),

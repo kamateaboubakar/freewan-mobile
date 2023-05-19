@@ -59,7 +59,10 @@ class BillsReferenceSelectionPage extends StatelessWidget {
                 onTap: () => Get.to(BillsListPage()),
               ),
             ),
-            AddAccountButton(title: "Payer pour un autre compteur", onTap: () => Get.to(BillsListPage()),)
+            AddAccountButton(
+              title: "Payer pour un autre compteur",
+              onTap: () {},
+            )
           ],
         ),
       ),

@@ -2,6 +2,7 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:wan_mobile/tools/const/const.dart';
+import 'package:wan_mobile/views/static/home/home_page.dart';
 
 import 'views/static/splashscreen.dart';
 

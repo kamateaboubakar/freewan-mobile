@@ -4,6 +4,7 @@ import 'package:wan_mobile/views/controllers/auth/register_page_vctl.dart';
 
 class InfosPersoRegister extends StatelessWidget {
   final RegisterPageVctl ctl;
+
   const InfosPersoRegister(this.ctl, {super.key});
 
   @override
@@ -64,7 +65,6 @@ class InfosPersoRegister extends StatelessWidget {
             require: true,
             controller: ctl.emailCtl,
             hintText: "Enter your email address",
-            
           ),
         ],
       ),

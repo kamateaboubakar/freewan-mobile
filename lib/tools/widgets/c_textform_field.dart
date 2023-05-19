@@ -19,6 +19,7 @@ class CTextFormField extends StatelessWidget {
   final bool? enabled;
   final TextInputType? keyboardType;
   final void Function()? onTap;
+  final Color? hintColor;
 
   const CTextFormField(
       {this.controller,
@@ -39,6 +40,7 @@ class CTextFormField extends StatelessWidget {
       this.suffixIcon,
       this.labelText,
       this.hintText,
+      this.hintColor,
       super.key});
 
   @override
@@ -73,8 +75,9 @@ class CTextFormField extends StatelessWidget {
           suffixIcon: suffixIcon,
           labelText: (require && labelText != null) ? "$labelText*" : labelText,
           hintText: hintText,
-          hintStyle: const TextStyle(
+          hintStyle: TextStyle(
             fontSize: 15,
+            color: hintColor,
           ),
           prefixIcon: prefixIcon,
           fillColor: fillColor,

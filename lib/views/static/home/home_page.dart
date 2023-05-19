@@ -16,6 +16,8 @@ import 'package:badges/badges.dart' as badges;
 import 'package:wan_mobile/views/static/loyer/loyer_bottom_sheet.dart';
 import 'package:wan_mobile/views/static/scan_pay/scan_pay_camera.dart';
 
+import '../job/job_views.dart';
+
 class HomePage extends StatelessWidget {
   final bool displayWelcome;
   const HomePage({this.displayWelcome = false, super.key});
@@ -406,7 +408,9 @@ class HomePage extends StatelessWidget {
                                       ),
                                     ),
                                     title: "Voir Plus",
-                                    onPressed: () {},
+                                    onPressed: () {
+                                      Tools.openBottomSheet(JobProfileSelectionDialog());
+                                    },
                                   ),
                                 ],
                               ),

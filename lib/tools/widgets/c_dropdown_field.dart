@@ -16,22 +16,26 @@ class CDropdownField<T> extends StatelessWidget {
   final T? selectedItem;
   final bool enabled;
   final String Function(T)? itemAsString;
-  const CDropdownField(
-      {this.controller,
-      this.selectedItem,
-      this.enabled = true,
-      this.itemAsString,
-      this.items = const [],
-      this.maxLines = 1,
-      this.onChanged,
-      this.margin = const EdgeInsets.only(bottom: 10),
-      this.border,
-      this.require = false,
-      this.prefixIcon,
-      this.suffixIcon,
-      this.labelText,
-      this.hintText,
-      super.key});
+  final Color? backgroundColor;
+
+  const CDropdownField({
+    this.controller,
+    this.selectedItem,
+    this.enabled = true,
+    this.itemAsString,
+    this.items = const [],
+    this.maxLines = 1,
+    this.onChanged,
+    this.margin = const EdgeInsets.only(bottom: 10),
+    this.border,
+    this.require = false,
+    this.prefixIcon,
+    this.suffixIcon,
+    this.labelText,
+    this.hintText,
+    this.backgroundColor,
+    super.key,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -57,6 +61,7 @@ class CDropdownField<T> extends StatelessWidget {
             hintText: (require && hintText != null) ? "$hintText" : hintText,
             prefixIcon: prefixIcon,
             filled: true,
+            fillColor: backgroundColor,
             errorBorder: border ??
                 OutlineInputBorder(
                   borderSide: const BorderSide(

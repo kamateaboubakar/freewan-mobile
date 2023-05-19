@@ -24,7 +24,7 @@ void main() async {
           foregroundColor: Color.fromRGBO(7, 21, 60, 1),
         ),
       ),
-      home: const HomePage(),
+      home: const SplashScreen(),
     ),
   );
 }

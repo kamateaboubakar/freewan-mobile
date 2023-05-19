@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:wan_mobile/tools/utils/asset_colors.dart';
+import 'package:wan_mobile/views/static/job/views/employee/employee_views.dart';
 
 import '../../../../../tools/const/const.dart';
 import '../../../../../tools/widgets/c_button.dart';
@@ -49,16 +51,23 @@ class _JobHomePageState extends State<JobHomePage> {
               ),
               SizedBox(height: 10),
               Row(
-                crossAxisAlignment: CrossAxisAlignment.center,
+                crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Expanded(
-                    child: CTextFormField(
-                      hintText: "Chercher un emploi",
-                      prefixIcon: Image.asset(
-                        "assets/images/search.png",
+                    child: Container(
+                      child: CTextFormField(
+                        hintText: "Chercher un emploi",
+                        prefixIcon: Padding(
+                          padding: EdgeInsets.all(8),
+                          child: Image.asset(
+                            "assets/images/search.png",
+                            width: 5,
+                            height: 5,
+                          ),
+                        ),
+                        fillColor: Color(0xffD8ECFE).withOpacity(.56),
+                        hintColor: AssetColors.blue,
                       ),
-                      fillColor: Color(0xffD8ECFE).withOpacity(.56),
-                      hintColor: AssetColors.blue,
                     ),
                   ),
                   SizedBox(width: 10),
@@ -96,84 +105,92 @@ class _JobHomePageState extends State<JobHomePage> {
                   itemBuilder: (context, index) {
                     var selected = index == 0;
                     var jobs = popularJobs[index];
-                    return Container(
-                      width: 300,
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(10),
-                        color: selected ? AssetColors.blueButton : Colors.white,
-                      ),
-                      padding: EdgeInsets.all(8),
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          IntrinsicHeight(
-                            child: Row(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                Container(
-                                  width: 50,
-                                  height: 50,
-                                  decoration: BoxDecoration(
-                                    color: jobs.iconBackgroundColor,
-                                    borderRadius: BorderRadius.circular(10),
-                                  ),
-                                  alignment: Alignment.center,
-                                  child: Image.asset(
-                                    jobs.icon,
-                                    width: 40,
-                                    height: 40,
-                                  ),
-                                ),
-                                SizedBox(width: 10),
-                                Expanded(
-                                  child: Text(
-                                    jobs.salary,
-                                    style: TextStyle(
-                                      fontSize: 14,
-                                      color: selected
-                                          ? Colors.white
-                                          : Colors.black,
+                    return InkWell(
+                      onTap: () {
+                        if (index == 0) {
+                          Get.to(JobDescriptionPage());
+                        }
+                      },
+                      child: Container(
+                        width: 300,
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(10),
+                          color:
+                              selected ? AssetColors.blueButton : Colors.white,
+                        ),
+                        padding: EdgeInsets.all(8),
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            IntrinsicHeight(
+                              child: Row(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  Container(
+                                    width: 50,
+                                    height: 50,
+                                    decoration: BoxDecoration(
+                                      color: jobs.iconBackgroundColor,
+                                      borderRadius: BorderRadius.circular(10),
                                     ),
-                                    textAlign: TextAlign.end,
+                                    alignment: Alignment.center,
+                                    child: Image.asset(
+                                      jobs.icon,
+                                      width: 40,
+                                      height: 40,
+                                    ),
                                   ),
-                                )
-                              ],
+                                  SizedBox(width: 10),
+                                  Expanded(
+                                    child: Text(
+                                      jobs.salary,
+                                      style: TextStyle(
+                                        fontSize: 14,
+                                        color: selected
+                                            ? Colors.white
+                                            : Colors.black,
+                                      ),
+                                      textAlign: TextAlign.end,
+                                    ),
+                                  )
+                                ],
+                              ),
                             ),
-                          ),
-                          SizedBox(height: 10),
-                          Text(
-                            jobs.jobTitle,
-                            style: TextStyle(
-                              fontSize: 16,
-                              fontWeight: FontWeight.bold,
-                              color: selected ? Colors.white : Colors.black,
+                            SizedBox(height: 10),
+                            Text(
+                              jobs.jobTitle,
+                              style: TextStyle(
+                                fontSize: 16,
+                                fontWeight: FontWeight.bold,
+                                color: selected ? Colors.white : Colors.black,
+                              ),
+                              textAlign: TextAlign.center,
                             ),
-                            textAlign: TextAlign.center,
-                          ),
-                          SizedBox(height: 5),
-                          Text(
-                            jobs.companyName,
-                            style: TextStyle(
-                              fontSize: 14,
-                              color: selected ? Colors.white : Colors.black,
+                            SizedBox(height: 5),
+                            Text(
+                              jobs.companyName,
+                              style: TextStyle(
+                                fontSize: 14,
+                                color: selected ? Colors.white : Colors.black,
+                              ),
+                              textAlign: TextAlign.center,
                             ),
-                            textAlign: TextAlign.center,
-                          ),
-                          SizedBox(height: 10),
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceAround,
-                            children: ["Temps plein", "A distance", "Senior"]
-                                .map((e) => JobTag(
-                                      title: e,
-                                      fontSize: 12,
-                                      backgroundColor: selected
-                                          ? Colors.white
-                                          : Color(0xffF2F2F2),
-                                      textColor: AssetColors.blueButton,
-                                    ))
-                                .toList(),
-                          )
-                        ],
+                            SizedBox(height: 10),
+                            Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceAround,
+                              children: ["Temps plein", "A distance", "Senior"]
+                                  .map((e) => JobTag(
+                                        title: e,
+                                        fontSize: 12,
+                                        backgroundColor: selected
+                                            ? Colors.white
+                                            : Color(0xffF2F2F2),
+                                        textColor: AssetColors.blueButton,
+                                      ))
+                                  .toList(),
+                            )
+                          ],
+                        ),
                       ),
                     );
                   },

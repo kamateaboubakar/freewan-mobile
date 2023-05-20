@@ -15,6 +15,7 @@ import 'package:wan_mobile/views/static/home/home_drawer.dart';
 import 'package:badges/badges.dart' as badges;
 import 'package:wan_mobile/views/static/loyer/loyer_bottom_sheet.dart';
 import 'package:wan_mobile/views/static/scan_pay/scan_pay_camera.dart';
+import 'package:wan_mobile/views/static/tontine/tontine_page.dart';
 
 import '../bills/bills_views.dart';
 import '../job/job_views.dart';
@@ -323,6 +324,24 @@ class HomePage extends StatelessWidget {
                                     title: "Paiement Assurances",
                                     onPressed: () {},
                                   ),
+                                  ButtonMenu(
+                                    icon: Image.asset(
+                                      "assets/images/icons8-mallette.gif",
+                                    ),
+                                    title: "Job",
+                                    onPressed: () {
+                                      Tools.openBottomSheet(
+                                          JobProfileSelectionDialog());
+                                    },
+                                  ),
+                                  ButtonMenu(
+                                    icon: Image.asset(
+                                      "assets/images/icons8-exchange-money-64.png",
+                                    ),
+                                    title: "Tontine",
+                                    onPressed: () =>
+                                        Get.to(() => const TontinePage()),
+                                  ),
                                 ],
                               ),
                               Row(
@@ -412,9 +431,7 @@ class HomePage extends StatelessWidget {
                                       ),
                                     ),
                                     title: "Voir Plus",
-                                    onPressed: (){
-                                      Tools.openBottomSheet(JobProfileSelectionDialog());
-                                    },
+                                    onPressed: () {},
                                   ),
                                 ],
                               ),

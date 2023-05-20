@@ -12,10 +12,14 @@ class WrapperBodyListView extends StatelessWidget {
   final Future<void> Function()? onRefresh;
   final String error;
   final String lottieEmptyImage;
+  final Widget? emptyWidget;
   final EdgeInsetsGeometry? listPadding;
+  final Widget? refreshButton;
   const WrapperBodyListView(
       {required this.loading,
+      this.refreshButton,
       this.onRefresh,
+      this.emptyWidget,
       required this.children,
       this.lottieEmptyImage = "assets/lotties/123725-box-empty.json",
       this.listPadding,
@@ -77,36 +81,35 @@ class WrapperBodyListView extends StatelessWidget {
                 ),
               )
             : (children.isEmpty)
-                ? Center(
-                    child: SingleChildScrollView(
-                      physics: const BouncingScrollPhysics(),
-                      child: Column(
-                        children: [
-                          Lottie.asset(lottieEmptyImage),
-                          Column(
-                            children: [
-                              Padding(
-                                padding: const EdgeInsets.all(8.0),
-                                child: Text(
-                                  emptyText,
-                                  textAlign: TextAlign.center,
-                                ),
+                ? SingleChildScrollView(
+                    physics: const BouncingScrollPhysics(),
+                    child: Column(
+                      children: [
+                        emptyWidget ?? Lottie.asset(lottieEmptyImage),
+                        Column(
+                          children: [
+                            Padding(
+                              padding: const EdgeInsets.all(8.0),
+                              child: Text(
+                                emptyText,
+                                textAlign: TextAlign.center,
                               ),
-                              const SizedBox(height: 20),
-                              SizedBox(
-                                width: 200,
-                                child: CButton(
-                                  onPressed: onRefresh,
-                                  child: const Text(
-                                    "Recharger",
-                                    style: TextStyle(color: Colors.white),
+                            ),
+                            const SizedBox(height: 20),
+                            SizedBox(
+                              width: 200,
+                              child: refreshButton ??
+                                  CButton(
+                                    onPressed: onRefresh,
+                                    child: const Text(
+                                      "Recharger",
+                                      style: TextStyle(color: Colors.white),
+                                    ),
                                   ),
-                                ),
-                              ),
-                            ],
-                          )
-                        ],
-                      ),
+                            ),
+                          ],
+                        )
+                      ],
                     ),
                   )
                 : onRefresh != null

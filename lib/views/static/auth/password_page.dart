@@ -40,7 +40,7 @@ class PasswordPage extends StatelessWidget {
                   const SizedBox(height: 20),
                   OtpTextField(
                     numberOfFields: 5,
-                    fieldWidth: 60,
+                    fieldWidth: 55,
                     borderWidth: 1,
                     focusedBorderColor: Const.primaryColor,
                     enabledBorderColor: const Color.fromRGBO(38, 82, 140, 0.34),
@@ -48,7 +48,7 @@ class PasswordPage extends StatelessWidget {
                     autoFocus: true,
                     obscureText: true,
                     fillColor: Colors.white,
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    mainAxisAlignment: MainAxisAlignment.center,
                     borderColor: Const.primaryColor,
                     showFieldAsBox: true,
                     onCodeChanged: (String code) {},

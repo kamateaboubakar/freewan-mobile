@@ -57,7 +57,7 @@ class PaiementModePaiement extends StatelessWidget {
         padding: const EdgeInsets.all(16.0),
         child: GridView.builder(
           itemCount: moyensPaiements.length,
-          gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+          gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
             crossAxisCount: 2,
             childAspectRatio: 1.6,
             crossAxisSpacing: 12,
@@ -76,7 +76,7 @@ class PaiementModePaiement extends StatelessWidget {
               child: Container(
                 decoration: BoxDecoration(
                   border: Border.all(
-                    color: Color(0xffE5E5E5),
+                    color: const Color(0xffE5E5E5),
                   ),
                   borderRadius: BorderRadius.circular(10),
                 ),

@@ -29,10 +29,7 @@ class TontineListePage extends StatelessWidget {
         emptyText: "Aucune tontine",
         onRefresh: () => Future.value(),
         refreshButton: COutlinedButton(
-          shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(9),
-            side: const BorderSide(color: AssetColors.blue),
-          ),
+          borderRadius: 9,
           onPressed: () =>
               Get.to(() => const EditionTontinePage())?.then((value) {
             ctl.tontines.add(Tontine(

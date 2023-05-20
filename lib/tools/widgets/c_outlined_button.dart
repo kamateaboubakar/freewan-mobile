@@ -8,16 +8,17 @@ class COutlinedButton extends StatelessWidget {
   final Color? color;
   final double? elevation;
   final Color? textColor;
+  final Color borderColor;
   final double borderRadius;
-  final OutlinedBorder? shape;
+
   final Widget? icon;
 
   final void Function()? onPressed;
   const COutlinedButton(
       {this.elevation = 0,
-      this.shape,
       this.icon,
       this.borderRadius = 8,
+      this.borderColor = AssetColors.blue,
       required this.onPressed,
       this.textColor = Colors.white,
       this.color = Colors.white,
@@ -28,28 +29,41 @@ class COutlinedButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return icon != null
-        ? TextButton.icon(
-            icon: icon!,
-            style: ButtonStyle(
-              
-              foregroundColor: MaterialStateProperty.all(textColor),
-              backgroundColor: MaterialStateProperty.all(color),
-              elevation: MaterialStateProperty.all(elevation),
-              shape: MaterialStateProperty.all(shape),
+    return SizedBox(
+      width: minWidth,
+      height: height,
+      child: icon != null
+          ? TextButton.icon(
+              icon: icon!,
+              style: ButtonStyle(
+                foregroundColor: MaterialStateProperty.all(textColor),
+                backgroundColor: MaterialStateProperty.all(color),
+                elevation: MaterialStateProperty.all(elevation),
+                shape: MaterialStateProperty.all(
+                  RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(borderRadius),
+                    side: BorderSide(color: borderColor),
+                  ),
+                ),
+              ),
+              onPressed: onPressed,
+              label: child,
+            )
+          : TextButton(
+              style: ButtonStyle(
+                foregroundColor: MaterialStateProperty.all(textColor),
+                backgroundColor: MaterialStateProperty.all(color),
+                elevation: MaterialStateProperty.all(elevation),
+                shape: MaterialStateProperty.all(
+                  RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(borderRadius),
+                    side: BorderSide(color: borderColor),
+                  ),
+                ),
+              ),
+              onPressed: onPressed,
+              child: child,
             ),
-            onPressed: onPressed,
-            label: child,
-          )
-        : TextButton(
-            style: ButtonStyle(
-              foregroundColor: MaterialStateProperty.all(textColor),
-              backgroundColor: MaterialStateProperty.all(color),
-              elevation: MaterialStateProperty.all(elevation),
-              shape: MaterialStateProperty.all(shape),
-            ),
-            onPressed: onPressed,
-            child: child,
-          );
+    );
   }
 }

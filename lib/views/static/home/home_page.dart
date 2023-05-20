@@ -11,6 +11,7 @@ import 'package:wan_mobile/tools/widgets/card_menu.dart';
 import 'package:wan_mobile/tools/widgets/single_child_card_menu.dart';
 import 'package:wan_mobile/views/controllers/home/home_page_vctl.dart';
 import 'package:wan_mobile/views/static/achat_unite/achat_unite_page.dart';
+import 'package:wan_mobile/views/static/don/don_page.dart';
 import 'package:wan_mobile/views/static/home/home_drawer.dart';
 import 'package:badges/badges.dart' as badges;
 import 'package:wan_mobile/views/static/loyer/loyer_bottom_sheet.dart';
@@ -341,6 +342,14 @@ class HomePage extends StatelessWidget {
                                     title: "Tontine",
                                     onPressed: () =>
                                         Get.to(() => const TontinePage()),
+                                  ),
+                                  ButtonMenu(
+                                    icon: Image.asset(
+                                      "assets/images/icons8-confiance.gif",
+                                    ),
+                                    title: "Don",
+                                    onPressed: () =>
+                                        Get.to(() => const DonPage()),
                                   ),
                                 ],
                               ),

@@ -15,7 +15,10 @@ class PaiementOperationSucess extends StatelessWidget {
         child: CButton(
           height: 48,
           minWidth: double.infinity,
-          onPressed: () => Get.to(() => const HomePage()),
+          onPressed: () async {
+            await Get.offAll(() => const HomePage());
+            Get.reset();
+          },
           child: const Text(
             "Effectuer Paiement",
             style: TextStyle(

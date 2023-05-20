@@ -41,23 +41,25 @@ class SingleChildCardMenu extends StatelessWidget {
               children: [
                 icon,
                 const SizedBox(width: 8),
-                Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    AutoSizeText(
-                      title.value,
-                      maxLines: 1,
-                      maxFontSize: 9,
-                      minFontSize: 8,
-                      style: const TextStyle(fontWeight: FontWeight.bold),
-                    ),
-                    AutoSizeText(
-                      subtitle.value,
-                      maxLines: 1,
-                      maxFontSize: 9,
-                      minFontSize: 8,
-                    ),
-                  ],
+                Expanded(
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      AutoSizeText(
+                        title.value,
+                        maxLines: 1,
+                        maxFontSize: 9,
+                        minFontSize: 8,
+                        style: const TextStyle(fontWeight: FontWeight.bold),
+                      ),
+                      AutoSizeText(
+                        subtitle.value,
+                        maxLines: 1,
+                        maxFontSize: 9,
+                        minFontSize: 8,
+                      ),
+                    ],
+                  ),
                 ),
               ],
             ),

@@ -18,6 +18,7 @@ class UserCampagnePage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       body: WrapperBodyListView(
+        listPadding: const EdgeInsets.all(10),
         loading: false,
         refreshButton: COutlinedButton(
           icon: const Icon(Icons.add),

@@ -15,6 +15,7 @@ import 'package:wan_mobile/views/static/home/home_drawer.dart';
 import 'package:badges/badges.dart' as badges;
 import 'package:wan_mobile/views/static/loyer/loyer_bottom_sheet.dart';
 import 'package:wan_mobile/views/static/scan_pay/scan_pay_camera.dart';
+import 'package:wan_mobile/views/static/tv_bills/tv_bills_selection_dialog.dart';
 
 import '../bills/bills_views.dart';
 import '../job/job_views.dart';
@@ -388,7 +389,9 @@ class HomePage extends StatelessWidget {
                                     icon: Image.asset(
                                         "assets/images/icons/abonnement_tele.png"),
                                     title: "Abonnement\nTélé",
-                                    onPressed: () {},
+                                    onPressed: () {
+                                      Tools.openBottomSheet(TvBillsSelectionDialog());
+                                    },
                                   ),
                                   ButtonMenu(
                                     icon: Image.asset(

@@ -124,7 +124,7 @@ class _JobDescriptionPageState extends State<JobDescriptionPage> {
                           Expanded(
                             child: Container(
                               padding: EdgeInsets.all(8),
-                              color: Color(0xffF5F5F5),
+                              color: AssetColors.lightGrey2,
                               child: Text(
                                 'Entreprise',
                                 textAlign: TextAlign.center,

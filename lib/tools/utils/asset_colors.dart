@@ -7,4 +7,9 @@ abstract class AssetColors {
   static const grey2 = Color(0xff333333);
   static const lightGrey = Color(0xffEDF2F9);
   static const purple = Color(0xff4724FB);
+
+  static const green = Color(0xff14B53A);
+  static const blueGrey = Color(0xff4D6682);
+
+  static const lightGrey2 = Color(0xffF5F5F5);
 }

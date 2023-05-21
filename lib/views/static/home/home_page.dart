@@ -18,6 +18,7 @@ import 'package:wan_mobile/views/static/scan_pay/scan_pay_camera.dart';
 import 'package:wan_mobile/views/static/tv_bills/tv_bills_selection_dialog.dart';
 
 import '../bills/bills_views.dart';
+import '../gaz/gaz_map_page.dart';
 import '../job/job_views.dart';
 
 class HomePage extends StatelessWidget {
@@ -416,7 +417,8 @@ class HomePage extends StatelessWidget {
                                     ),
                                     title: "Voir Plus",
                                     onPressed: (){
-                                      Tools.openBottomSheet(JobProfileSelectionDialog());
+                                      //Tools.openBottomSheet(JobProfileSelectionDialog());
+                                      Get.to(GazMapPage());
                                     },
                                   ),
                                 ],

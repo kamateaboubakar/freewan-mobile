@@ -189,11 +189,11 @@ class _GazPaymentRecapPageState extends State<GazPaymentRecapPage> {
   }
 
   void _submitOrder() async {
-    var pr = Tools.progressDialog();
+    var pr = Tools.progressDialog(isDismissible: true);
     pr.show();
     var response = await _gasController.submitOrder(
       gasSize: _gasShopController.gasSize!,
-      shop: _gasShopController.shop,
+      shop: _gasController.shop!,
       userlocation:
           _gasController.deliveryLocation ?? _gasController.userLocation!,
     );

@@ -437,17 +437,17 @@ class _GazPosInfoPageState extends State<GazPosInfoPage> {
                           CButton(
                             height: 50,
                             onPressed: () {
-                              if (_gasShopController.isFormValid) {
+                              if (_gasShopController.isFormValid && _gasController.isLocationTypeSelected) {
                                 Get.to(() => GazPaymentRecapPage());
                               }
                             },
-                            color: _gasShopController.isFormValid
+                            color: _gasShopController.isFormValid && _gasController.isLocationTypeSelected
                                 ? AssetColors.blueButton
                                 : Color(0xffEDF2F9),
                             child: Text(
                               "Payer",
                               style: TextStyle(
-                                color: _gasShopController.isFormValid
+                                color: _gasShopController.isFormValid && _gasController.isLocationTypeSelected
                                     ? Colors.white
                                     : Color(0xffB5C4D8),
                               ),

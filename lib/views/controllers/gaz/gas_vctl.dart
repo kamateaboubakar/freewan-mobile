@@ -89,13 +89,13 @@ class GasController extends ViewController {
       required GasSize gasSize,
       required Shop shop}) {
     return _gazApiCtl.submitOrder(
-      brandInShopId: gasSize.brandInShopId!.toString(),
-      customerSessionId: appCtl.user.id!,
-      customerAddressId: "0",
-      latitude: userLocation!.latitude.toString(),
-      longitude: userLocation!.longitude.toString(),
-      targetId: _selectedLocationType.toString(),
-      price: gasSize.price!.toString(),
+      brandInShopId: gasSize.brandInShopId!,
+      customerSessionId: appCtl.user.accountId!,
+      customerAddressId: 0,
+      latitude: userLocation!.latitude,
+      longitude: userLocation!.longitude,
+      targetId: _selectedLocationType,
+      price: gasSize.price!,
     );
   }
 }

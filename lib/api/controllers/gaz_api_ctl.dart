@@ -70,28 +70,30 @@ class GazApiCtl extends WebController {
   }
 
   Future<HttpResponse<bool>> submitOrder({
-    required String brandInShopId,
+    required int brandInShopId,
     required String customerSessionId,
-    required String customerAddressId,
-    required String latitude,
-    required String longitude,
-    required String targetId,
-    required String price,
+    required int customerAddressId,
+    required double latitude,
+    required double longitude,
+    required int targetId,
+    required int price,
   }) async {
     try {
-      var res = await post(
-        HttpClientConst.baseUrl(module: "challenge-otp"),
-        {
-          "brandInShopId": brandInShopId,
-          "customerSessionId": customerSessionId,
-          "customerAddressId": customerAddressId,
-          "latitude": latitude,
-          "longitude": longitude,
-          "targetId": targetId,
-          "price": price,
-        }.toJson(),
-        headers: HttpClientConst.headers,
-      );
+      var requestBody = {
+        "brandInShopId": "$brandInShopId",
+        "customerSessionId": "$customerSessionId",
+        "customerAddressId": "$customerAddressId",
+        "latitude": "$latitude",
+        "longitude": "$longitude",
+        "targetId": "$targetId",
+        "price": "$price"
+      };
+      print(requestBody);
+      var url = "${Const.gazBaseUrl}/orders/";
+      print(url);
+      var res = await post(url, requestBody.toJson(),
+          headers: {"Content-Type": "application/form-data"});
+      print(res.body);
       var body = HttpResponse.decodeBody(res);
       if (body.status) {
         if (body.data != null) {

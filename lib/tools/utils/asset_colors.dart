@@ -12,4 +12,6 @@ abstract class AssetColors {
   static const blueGrey = Color(0xff4D6682);
 
   static const lightGrey2 = Color(0xffF5F5F5);
+
+  static const lightGrey3 = Color(0xffE5E5E5);
 }

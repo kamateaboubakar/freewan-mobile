@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_map/flutter_map.dart';
+import 'package:get/get.dart';
 import 'package:latlong2/latlong.dart';
 import 'package:wan_mobile/tools/utils/asset_colors.dart';
+import 'package:wan_mobile/views/static/gaz/gaz_pos_info_page.dart';
 
 import '../../../tools/widgets/c_textform_field.dart';
 
@@ -60,11 +62,11 @@ class _GazMapPageState extends State<GazMapPage> {
                 center: LatLng(5.379617, -3.934711),
                 zoom: mapZoom,
                 onTap: (_, __) {
-                  if (!hasNoGazPosSelected) {
+                  /*if (!hasNoGazPosSelected) {
                     setState(() {
                       selectedGazPosIndex = noSelectionIndex;
                     });
-                  }
+                  }*/
                 }),
             children: [
               TileLayer(
@@ -77,10 +79,12 @@ class _GazMapPageState extends State<GazMapPage> {
                     point: gazPos[i].position,
                     builder: (context) => InkWell(
                       onTap: () {
-                        _mapController.move(gazPos[i].position, mapZoom);
+                        /*_mapController.move(gazPos[i].position, mapZoom);
                         setState(() {
                           selectedGazPosIndex = i;
-                        });
+                        });*/
+                        Get.to(()=> GazPosInfoPage());
+
                       },
                       child: Opacity(
                         opacity: (hasNoGazPosSelected || isGazPosSelected(i))
@@ -102,9 +106,7 @@ class _GazMapPageState extends State<GazMapPage> {
             bottom: 0,
             right: 0,
             left: 0,
-            child: hasNoGazPosSelected
-                ? showServiceFilterView()
-                : showGazPosInfoView(screenWidth),
+            child: showServiceFilterView(),
           )
         ],
       ),
@@ -194,170 +196,6 @@ class _GazMapPageState extends State<GazMapPage> {
                 ),
               ],
             ),
-          )
-        ],
-      ),
-    );
-  }
-
-  Widget showGazPosInfoView(double screenWidth) {
-    List<String> marques = [
-      'assets/images/Logo-300-Blue-Full 1.png',
-      'assets/images/oryx.png',
-      'assets/images/oilibya 1.png',
-      'assets/images/269_shell 1.png',
-      'assets/images/Petroivoire 1.png',
-      'assets/images/Logotype_Petroci 1.png',
-    ];
-
-    return Container(
-      decoration: BoxDecoration(
-        color: Colors.white,
-        borderRadius: BorderRadius.only(
-          topLeft: Radius.circular(20),
-          topRight: Radius.circular(20),
-        ),
-      ),
-      padding: EdgeInsets.symmetric(vertical: 16, horizontal: 24),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.stretch,
-        children: [
-          Center(
-            child: Container(
-              width: screenWidth * 0.15,
-              height: 5,
-              decoration: BoxDecoration(
-                  color: Color(0xffD9D9D9),
-                  borderRadius: BorderRadius.circular(10)),
-            ),
-          ),
-          SizedBox(height: 20),
-          Row(
-            children: [
-              Expanded(
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Text(
-                      'Dépot de gaz',
-                      style: TextStyle(
-                        fontWeight: FontWeight.bold,
-                        fontSize: 16,
-                      ),
-                    ),
-                    Row(
-                      children: [
-                        Image.asset('assets/images/pin.png', width: 10),
-                        SizedBox(width: 5),
-                        Expanded(
-                          child: Text(
-                            'Angré 22eme',
-                            style: TextStyle(
-                              fontSize: 10,
-                            ),
-                          ),
-                        ),
-                      ],
-                    )
-                  ],
-                ),
-              ),
-              Container(
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(10),
-                  color: (selectedGazPosIndex % 2 == 0
-                          ? AssetColors.green
-                          : Colors.red)
-                      .withOpacity(0.15),
-                ),
-                alignment: Alignment.center,
-                padding: EdgeInsets.symmetric(vertical: 8, horizontal: 16),
-                child: Text(
-                  selectedGazPosIndex % 2 == 0 ? 'Ouvert' : 'Fermé',
-                  style: TextStyle(
-                      color: selectedGazPosIndex % 2 == 0
-                          ? Color(0xff00853F)
-                          : Colors.red,
-                      fontSize: 12),
-                ),
-              )
-            ],
-          ),
-          SizedBox(height: 10),
-          Row(
-            children: [
-              Image.asset(
-                "assets/images/gaz_info_image.png",
-                width: 100,
-              ),
-              SizedBox(width: 10),
-              Expanded(
-                child: Text(
-                  "Lorem ipsum dolor sit amet consectetur. Mi maecenas posuere malesuada eget. Id enim diam tortor venenatis aliquam varius libero tortor.",
-                  style: TextStyle(color: AssetColors.blueGrey, fontSize: 10),
-                ),
-              )
-            ],
-          ),
-          SizedBox(height: 20),
-          Text(
-            'Marques vendues',
-            style: TextStyle(
-              fontWeight: FontWeight.bold,
-              fontSize: 12,
-            ),
-          ),
-          SizedBox(
-            height: 30,
-            child: ListView.separated(
-              scrollDirection: Axis.horizontal,
-              itemCount: marques.length,
-              separatorBuilder: (context, index) => SizedBox(width: 10),
-              itemBuilder: (context, index) {
-                return Image.asset(
-                  marques[index],
-                );
-              },
-            ),
-          ),
-          SizedBox(height: 20),
-          Row(
-            children: [
-              Expanded(
-                child: Container(
-                  decoration: BoxDecoration(
-                    color: AssetColors.lightGrey2,
-                    borderRadius: BorderRadius.only(
-                      topLeft: Radius.circular(10),
-                      bottomLeft: Radius.circular(10),
-                    ),
-                  ),
-                  padding: EdgeInsets.all(8),
-                  alignment: Alignment.center,
-                  child: Text(
-                    'Recharger',
-                    style: TextStyle(color: AssetColors.grey3),
-                  ),
-                ),
-              ),
-              Expanded(
-                child: Container(
-                  decoration: BoxDecoration(
-                    color: AssetColors.lightGrey2,
-                    borderRadius: BorderRadius.only(
-                      topRight: Radius.circular(10),
-                      bottomRight: Radius.circular(10),
-                    ),
-                  ),
-                  alignment: Alignment.center,
-                  padding: EdgeInsets.all(8),
-                  child: Text(
-                    'Acheter',
-                    style: TextStyle(color: AssetColors.grey3),
-                  ),
-                ),
-              )
-            ],
           )
         ],
       ),

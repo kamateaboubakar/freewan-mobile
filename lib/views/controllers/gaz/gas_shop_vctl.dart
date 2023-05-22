@@ -73,4 +73,9 @@ class GasShopController extends ViewController {
   }
 
   bool get isFormValid => _brand != null && _gasSize != null;
+
+  void clearSelectedPurchaseAction() {
+    _gasPurchaseAction = null;
+    update();
+  }
 }

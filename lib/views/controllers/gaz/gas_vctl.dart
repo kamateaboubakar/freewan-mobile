@@ -19,7 +19,10 @@ class GasController extends ViewController {
 
   bool get isLocationTypeSelected => _selectedLocationType != -1;
 
-  updateShop(Shop shop) => _shop = shop;
+  updateShop(Shop shop) {
+    _shop = shop;
+    update();
+  }
 
   LocationModel? _userLocation;
 
@@ -97,5 +100,10 @@ class GasController extends ViewController {
       targetId: _selectedLocationType,
       price: gasSize.price!,
     );
+  }
+
+  void clearSelectedShop() {
+    _shop = null;
+    update();
   }
 }

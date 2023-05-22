@@ -2,11 +2,17 @@ import 'package:flutter/material.dart';
 import 'package:flutter_map/flutter_map.dart';
 import 'package:get/get.dart';
 import 'package:latlong2/latlong.dart';
+import 'package:wan_mobile/api/services/location_service.dart';
+import 'package:wan_mobile/models/location_model.dart';
 import 'package:wan_mobile/tools/utils/asset_colors.dart';
-import 'package:wan_mobile/views/static/gaz/gaz_pos_info_page.dart';
+import 'package:wan_mobile/tools/utils/tools.dart';
+import 'package:wan_mobile/views/controllers/gaz/gas_vctl.dart';
+import 'package:wan_mobile/views/static/gaz/pages/gaz_pos_info_page.dart';
 
-import '../../../models/gaz_pos.dart';
-import '../../../tools/widgets/c_textform_field.dart';
+import '../../../../models/gaz_pos.dart';
+import '../../../../models/service.dart';
+import '../../../../models/shop.dart';
+import '../../../../tools/widgets/c_textform_field.dart';
 
 class GazMapPage extends StatefulWidget {
   const GazMapPage({Key? key}) : super(key: key);
@@ -16,12 +22,11 @@ class GazMapPage extends StatefulWidget {
 }
 
 class _GazMapPageState extends State<GazMapPage> {
-  final List<_ServiceFilter> serviceFilterItems = [
-    _ServiceFilter(title: "Tous", image: "assets/images/all_icon.png"),
-    _ServiceFilter(title: "Gaz", image: "assets/images/gaz_selection_icon.png"),
-    _ServiceFilter(title: "Pressing", image: "assets/images/pressing_icon.png"),
-    _ServiceFilter(
-        title: "Restos", image: "assets/images/ion_fast-food-outline.png"),
+  final List<Service> serviceFilterItems = [
+    Service(label: "Tous", icon: "assets/images/all_icon.png"),
+    Service(label: "Gaz", icon: "assets/images/gaz_selection_icon.png"),
+    Service(label: "Pressing", icon: "assets/images/pressing_icon.png"),
+    Service(label: "Restos", icon: "assets/images/ion_fast-food-outline.png"),
   ];
 
   final List<GazPos> gazPos = [
@@ -39,10 +44,16 @@ class _GazMapPageState extends State<GazMapPage> {
   int noSelectionIndex = -1;
   late int selectedGazPosIndex;
 
+  GasController _gazController = Get.put(GasController());
+
   @override
   void initState() {
     selectedGazPosIndex = noSelectionIndex;
+    _gazController.reset();
     super.initState();
+    WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
+      _requestPermissionForLocation();
+    });
   }
 
   @override
@@ -54,62 +65,72 @@ class _GazMapPageState extends State<GazMapPage> {
         foregroundColor: Colors.black,
         title: const Text("Gaz"),
       ),
-      body: Stack(
-        fit: StackFit.expand,
-        children: [
-          FlutterMap(
-            mapController: _mapController,
-            options: MapOptions(
-                center: LatLng(5.379617, -3.934711),
-                zoom: mapZoom,
-                onTap: (_, __) {
-                  /*if (!hasNoGazPosSelected) {
+      body: GetBuilder(
+        init: _gazController,
+        builder: (controller) {
+          _gazController = controller;
+          List<Shop>? shops = controller.shops;
+          return Stack(
+            fit: StackFit.expand,
+            children: [
+              FlutterMap(
+                mapController: _mapController,
+                options: MapOptions(
+                    center: LatLng(5.379617, -3.934711),
+                    zoom: mapZoom,
+                    onTap: (_, __) {
+                      /*if (!hasNoGazPosSelected) {
                     setState(() {
                       selectedGazPosIndex = noSelectionIndex;
                     });
                   }*/
-                }),
-            children: [
-              TileLayer(
-                urlTemplate: 'https://tile.openstreetmap.org/{z}/{x}/{y}.png',
-                userAgentPackageName: 'com.example.app',
+                    }),
+                children: [
+                  TileLayer(
+                    urlTemplate:
+                        'https://tile.openstreetmap.org/{z}/{x}/{y}.png',
+                    userAgentPackageName: 'com.example.app',
+                  ),
+                  MarkerLayer(
+                      markers: shops == null
+                          ? []
+                          : [
+                              for (int i = 0; i < shops.length; i++) ...[
+                                Marker(
+                                  point: LatLng(
+                                      shops[i].latitude!, shops[i].longitude!),
+                                  builder: (context) => InkWell(
+                                    onTap: () {
+                                      _gazController.updateShop(shops[i]);
+                                      Get.to(() => GazPosInfoPage());
+                                    },
+                                    child: Opacity(
+                                      opacity: (hasNoGazPosSelected ||
+                                              isGazPosSelected(i))
+                                          ? 1
+                                          : 0.5,
+                                      child: Image.asset(
+                                        'assets/images/gaz_pin.png',
+                                        width: 40,
+                                        height: 40,
+                                      ),
+                                    ),
+                                  ),
+                                )
+                              ]
+                            ]),
+                ],
               ),
-              MarkerLayer(markers: [
-                for (int i = 0; i < gazPos.length; i++) ...[
-                  Marker(
-                    point: gazPos[i].position,
-                    builder: (context) => InkWell(
-                      onTap: () {
-                        /*_mapController.move(gazPos[i].position, mapZoom);
-                        setState(() {
-                          selectedGazPosIndex = i;
-                        });*/
-                        Get.to(()=> GazPosInfoPage());
-
-                      },
-                      child: Opacity(
-                        opacity: (hasNoGazPosSelected || isGazPosSelected(i))
-                            ? 1
-                            : 0.5,
-                        child: Image.asset(
-                          'assets/images/gaz_pin.png',
-                          width: 40,
-                          height: 40,
-                        ),
-                      ),
-                    ),
-                  )
-                ]
-              ]),
+              if (shops != null)
+                Positioned(
+                  bottom: 0,
+                  right: 0,
+                  left: 0,
+                  child: showServiceFilterView(),
+                )
             ],
-          ),
-          Positioned(
-            bottom: 0,
-            right: 0,
-            left: 0,
-            child: showServiceFilterView(),
-          )
-        ],
+          );
+        },
       ),
     );
   }
@@ -163,14 +184,14 @@ class _GazMapPageState extends State<GazMapPage> {
                               padding: EdgeInsets.all(12),
                               child: Center(
                                 child: Image.asset(
-                                  item.image,
+                                  item.icon,
                                   width: 25,
                                   height: 25,
                                 ),
                               ),
                             ),
                             Text(
-                              item.title,
+                              item.label,
                               style: TextStyle(
                                 color: selected
                                     ? Color(0xff0042FF)
@@ -206,14 +227,40 @@ class _GazMapPageState extends State<GazMapPage> {
   bool get hasNoGazPosSelected => selectedGazPosIndex == noSelectionIndex;
 
   bool isGazPosSelected(int index) => selectedGazPosIndex == index;
-}
 
-class _ServiceFilter {
-  final String title;
-  final String image;
+  _requestPermissionForLocation() async {
+    var hasLocationPermission = await LocationService.hasLocationPermission();
+    if (hasLocationPermission) {
+      _getShops();
+      return;
+    }
+    Tools.messageBox(
+      message:
+          "WAN a besoin d'accéder à votre position pour trouver les services les plus proches de vous",
+      confirm: InkWell(
+        onTap: () async {
+          var isGranted = await LocationService.requestLocationPermission();
+          if (!isGranted) {
+            Get.back();
+            return;
+          }
+          _getShops();
+        },
+        child: Text('OK'),
+      ),
+    );
+  }
 
-  _ServiceFilter({
-    required this.title,
-    required this.image,
-  });
+  _getShops() async {
+    var pr = Tools.progressDialog();
+    pr.show();
+    var response = await _gazController.getClosestShop();
+    Get.back();
+    if (!response.status) {
+      Tools.messageBox(message: response.message);
+      return;
+    }
+    var userLocation = _gazController.userLocation!;
+    _mapController.move(userLocation.toLatLng(), mapZoom);
+  }
 }

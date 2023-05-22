@@ -1,0 +1,4 @@
+enum GasPurchaseAction {
+  acheter,
+  recharger
+}

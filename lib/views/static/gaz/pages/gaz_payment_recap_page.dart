@@ -1,11 +1,23 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:wan_mobile/tools/utils/tools.dart';
 import 'package:wan_mobile/tools/widgets/c_button.dart';
 import 'package:wan_mobile/views/static/paiement/paiement_operation_success.dart';
 import 'package:wan_mobile/views/static/scan_pay/scan_pay_operation_en_cours.dart';
 
-class GazPaymentRecapPage extends StatelessWidget {
+import '../../../controllers/gaz/gas_shop_vctl.dart';
+import '../../../controllers/gaz/gas_vctl.dart';
+
+class GazPaymentRecapPage extends StatefulWidget {
   const GazPaymentRecapPage({super.key});
+
+  @override
+  State<GazPaymentRecapPage> createState() => _GazPaymentRecapPageState();
+}
+
+class _GazPaymentRecapPageState extends State<GazPaymentRecapPage> {
+  GasController _gasController = Get.put(GasController());
+  GasShopController _gasShopController = Get.put(GasShopController());
 
   @override
   Widget build(BuildContext context) {
@@ -19,11 +31,9 @@ class GazPaymentRecapPage extends StatelessWidget {
         margin: const EdgeInsets.only(bottom: 34, left: 20, right: 20),
         child: CButton(
           height: 48,
-          onPressed: () => Get.to(
-            () => const PaiementOperationSucess(
-                animationAsset: "assets/lotties/88063-delivery-icon.json",
-                description: "Vous serez livrés dans les plus\nbrefs délais"),
-          ),
+          onPressed: () {
+            _submitOrder();
+          },
           child: const Text(
             "Confirmer",
             style: TextStyle(
@@ -79,8 +89,8 @@ class GazPaymentRecapPage extends StatelessWidget {
                               ],
                             ),
                           ),
-                          const Text(
-                            "90 000 FCFA",
+                          Text(
+                            "${_gasShopController.gasSize!.price!} FCFA",
                             style: TextStyle(
                               fontWeight: FontWeight.w700,
                               fontSize: 15,
@@ -119,7 +129,7 @@ class GazPaymentRecapPage extends StatelessWidget {
                             ),
                           ),
                           const Text(
-                            "900 FCFA",
+                            "0 FCFA",
                             style: TextStyle(
                               fontWeight: FontWeight.w700,
                               fontSize: 15,
@@ -157,8 +167,8 @@ class GazPaymentRecapPage extends StatelessWidget {
                               ],
                             ),
                           ),
-                          const Text(
-                            "90 900 FCFA",
+                          Text(
+                            "${_gasShopController.gasSize!.price!} FCFA",
                             style: TextStyle(
                               fontWeight: FontWeight.w700,
                               fontSize: 15,
@@ -174,6 +184,29 @@ class GazPaymentRecapPage extends StatelessWidget {
             ],
           ),
         ),
+      ),
+    );
+  }
+
+  void _submitOrder() async {
+    var pr = Tools.progressDialog();
+    pr.show();
+    var response = await _gasController.submitOrder(
+      gasSize: _gasShopController.gasSize!,
+      shop: _gasShopController.shop,
+      userlocation:
+          _gasController.deliveryLocation ?? _gasController.userLocation!,
+    );
+    Get.back();
+    if (!response.status) {
+      Tools.messageBox(message: response.message!);
+      return;
+    }
+
+    Get.to(
+      () => const PaiementOperationSucess(
+        animationAsset: "assets/lotties/88063-delivery-icon.json",
+        description: "Vous serez livrés dans les plus\nbrefs délais",
       ),
     );
   }

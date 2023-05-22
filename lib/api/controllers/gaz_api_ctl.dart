@@ -9,12 +9,13 @@ import '../abstracts/http_client_const.dart';
 import '../abstracts/web_controller.dart';
 
 class GazApiCtl extends WebController {
-  Future<HttpResponse<List<Shop>>> closestShop(
+  Future<HttpResponse<List<Shop>>> getClosestShop(
       {required double latitude, required double longitude}) async {
     try {
-      var res = await get(
-          "${Const.gazBaseUrl}/shops/closests?latitude=$latitude&longitude=$longitude",
-          headers: HttpClientConst.headers);
+      var url =
+          "${Const.gazBaseUrl}/shops/closests?latitude=$latitude&longitude=$longitude";
+      print('url $url');
+      var res = await get(url, headers: HttpClientConst.headers);
       var body = HttpResponse.decodeBody(res);
 
       if (body.status) {
@@ -34,6 +35,7 @@ class GazApiCtl extends WebController {
           headers: HttpClientConst.headers);
       var body = HttpResponse.decodeBody(res);
 
+      print(body.data);
       if (body.status) {
         return HttpResponse.success(data: Shop.fromJson(body.data));
       } else {
@@ -53,6 +55,8 @@ class GazApiCtl extends WebController {
           "${Const.gazBaseUrl}/brandsInShop/gasSizes?shop_id=$shopId&brand_id=$brandId",
           headers: HttpClientConst.headers);
       var body = HttpResponse.decodeBody(res);
+
+      print(body.data);
 
       if (body.status) {
         return HttpResponse.success(

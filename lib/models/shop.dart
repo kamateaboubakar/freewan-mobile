@@ -16,19 +16,19 @@ class Shop {
 
   Shop(
       {this.availableWorkDays,
-        this.description,
-        this.availableWeekEndTime,
-        this.availableWorkBeginTime,
-        this.latitude,
-        this.address,
-        this.availableWorkEndTime,
-        this.availableWeekBeginTime,
-        this.availableWeekDays,
-        this.id,
-        this.name,
-        this.longitude,
-        this.open,
-        this.brands});
+      this.description,
+      this.availableWeekEndTime,
+      this.availableWorkBeginTime,
+      this.latitude,
+      this.address,
+      this.availableWorkEndTime,
+      this.availableWeekBeginTime,
+      this.availableWeekDays,
+      this.id,
+      this.name,
+      this.longitude,
+      this.open,
+      this.brands});
 
   Shop.fromJson(Map<String, dynamic> json) {
     availableWorkDays = json['available_work_days'];
@@ -51,6 +51,8 @@ class Shop {
       });
     }
   }
+
+  bool get isOpen => open == 1;
 
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = new Map<String, dynamic>();

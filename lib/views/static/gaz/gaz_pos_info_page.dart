@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:wan_mobile/tools/utils/asset_colors.dart';
 import 'package:wan_mobile/tools/widgets/account_selection_item.dart';
+import 'package:wan_mobile/views/static/gaz/gaz_delivery_map_page.dart';
 import 'package:wan_mobile/views/static/gaz/gaz_payment_recap_page.dart';
 
 import '../../../tools/utils/brands_item.dart';
@@ -221,45 +222,51 @@ class _GazPosInfoPageState extends State<GazPosInfoPage> {
                   ),
                 ),
                 SizedBox(height: 10),
-                Container(
-                  decoration: BoxDecoration(
-                    border: Border.all(
-                      color: AssetColors.blueButton.withOpacity(0.15),
+                InkWell(
+                  onTap: () {
+                    Get.to(() => GazDeliveryMapPage());
+                  },
+                  child: Container(
+                    decoration: BoxDecoration(
+                      border: Border.all(
+                        color: AssetColors.blueButton.withOpacity(0.15),
+                      ),
+                      borderRadius: BorderRadius.circular(10),
                     ),
-                    borderRadius: BorderRadius.circular(10),
-                  ),
-                  padding: EdgeInsets.symmetric(horizontal: 12, vertical: 18),
-                  child: Row(
-                    children: [
-                      Expanded(
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Text(
-                              'Utiliser cette localisation',
-                            ),
-                            Row(
-                              children: [
-                                Image.asset('assets/images/pin.png', width: 10),
-                                SizedBox(width: 5),
-                                Expanded(
-                                  child: Text(
-                                    'Rue M66',
-                                    style: TextStyle(
-                                        color: AssetColors.blueButton),
-                                  ),
-                                )
-                              ],
-                            )
-                          ],
+                    padding: EdgeInsets.symmetric(horizontal: 12, vertical: 18),
+                    child: Row(
+                      children: [
+                        Expanded(
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Text(
+                                'Utiliser cette localisation',
+                              ),
+                              Row(
+                                children: [
+                                  Image.asset('assets/images/pin.png',
+                                      width: 10),
+                                  SizedBox(width: 5),
+                                  Expanded(
+                                    child: Text(
+                                      'Rue M66',
+                                      style: TextStyle(
+                                          color: AssetColors.blueButton),
+                                    ),
+                                  )
+                                ],
+                              )
+                            ],
+                          ),
                         ),
-                      ),
-                      SizedBox(width: 10),
-                      Icon(
-                        Icons.arrow_forward_ios_outlined,
-                        size: 12,
-                      ),
-                    ],
+                        SizedBox(width: 10),
+                        Icon(
+                          Icons.arrow_forward_ios_outlined,
+                          size: 12,
+                        ),
+                      ],
+                    ),
                   ),
                 ),
                 SizedBox(height: 15),

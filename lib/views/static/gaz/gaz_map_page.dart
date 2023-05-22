@@ -5,6 +5,7 @@ import 'package:latlong2/latlong.dart';
 import 'package:wan_mobile/tools/utils/asset_colors.dart';
 import 'package:wan_mobile/views/static/gaz/gaz_pos_info_page.dart';
 
+import '../../../models/gaz_pos.dart';
 import '../../../tools/widgets/c_textform_field.dart';
 
 class GazMapPage extends StatefulWidget {
@@ -214,13 +215,5 @@ class _ServiceFilter {
   _ServiceFilter({
     required this.title,
     required this.image,
-  });
-}
-
-class GazPos {
-  final LatLng position;
-
-  GazPos({
-    required this.position,
   });
 }

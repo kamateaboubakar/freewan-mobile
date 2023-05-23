@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 import '../bills_views.dart';
-import 'bills_list_page.dart';
 
 class BillsReferenceSelectionPage extends StatelessWidget {
   const BillsReferenceSelectionPage({Key? key}) : super(key: key);
@@ -41,9 +40,9 @@ class BillsReferenceSelectionPage extends StatelessWidget {
                       width: 45,
                       height: 45,
                     ),
-                    Text(
+                    const Text(
                       "144545266",
-                      style: const TextStyle(
+                      style: TextStyle(
                         color: Color.fromRGBO(0, 0, 0, 1),
                         fontWeight: FontWeight.bold,
                         fontSize: 15,

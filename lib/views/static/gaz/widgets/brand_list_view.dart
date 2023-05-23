@@ -16,7 +16,7 @@ class BrandList extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     if (response == null) {
-      return Center(
+      return const Center(
         child: SizedBox(
           width: 20,
           height: 20,
@@ -33,10 +33,10 @@ class BrandList extends StatelessWidget {
           children: [
             Text(
               response!.message,
-              style: TextStyle(fontSize: 12),
+              style: const TextStyle(fontSize: 12),
               textAlign: TextAlign.center,
             ),
-            Icon(Icons.refresh),
+            const Icon(Icons.refresh),
           ],
         ),
       );
@@ -49,7 +49,7 @@ class BrandList extends StatelessWidget {
       child: ListView.separated(
         scrollDirection: Axis.horizontal,
         itemCount: shop.brands!.length,
-        separatorBuilder: (context, index) => SizedBox(width: 10),
+        separatorBuilder: (context, index) => const SizedBox(width: 10),
         itemBuilder: (context, index) {
           return Image.asset(
             "assets/images/${shop.brands![index].pictureName!}.png",

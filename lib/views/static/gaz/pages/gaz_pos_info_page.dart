@@ -1,10 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:sliding_up_panel/sliding_up_panel.dart';
 import 'package:wan_mobile/models/gas_purchase_action.dart';
 import 'package:wan_mobile/models/shop.dart';
 import 'package:wan_mobile/tools/utils/asset_colors.dart';
-import 'package:wan_mobile/tools/widgets/account_selection_item.dart';
 import 'package:wan_mobile/views/controllers/gaz/gas_format_vctl.dart';
 import 'package:wan_mobile/views/controllers/gaz/gas_shop_vctl.dart';
 import 'package:wan_mobile/views/controllers/gaz/gas_vctl.dart';
@@ -61,7 +59,7 @@ class _GazPosInfoPageState extends State<GazPosInfoPage> {
                 },
                 child: Container(
                   decoration: BoxDecoration(
-                    color: Color(0xffD9D9D9),
+                    color: const Color(0xffD9D9D9),
                     borderRadius: BorderRadius.circular(20),
                   ),
                   width: screenWidth * 0.15,
@@ -69,7 +67,7 @@ class _GazPosInfoPageState extends State<GazPosInfoPage> {
                 ),
               ),
             ),
-            SizedBox(height: 10),
+            const SizedBox(height: 10),
             Row(
               children: [
                 Expanded(
@@ -78,7 +76,7 @@ class _GazPosInfoPageState extends State<GazPosInfoPage> {
                     children: [
                       Text(
                         _shop.name!,
-                        style: TextStyle(
+                        style: const TextStyle(
                           fontWeight: FontWeight.bold,
                           fontSize: 16,
                         ),
@@ -86,11 +84,11 @@ class _GazPosInfoPageState extends State<GazPosInfoPage> {
                       Row(
                         children: [
                           Image.asset('assets/images/pin.png', width: 10),
-                          SizedBox(width: 5),
+                          const SizedBox(width: 5),
                           Expanded(
                             child: Text(
                               _shop.address ?? '',
-                              style: TextStyle(
+                              style: const TextStyle(
                                 fontSize: 10,
                               ),
                             ),
@@ -107,41 +105,41 @@ class _GazPosInfoPageState extends State<GazPosInfoPage> {
                         .withOpacity(0.15),
                   ),
                   alignment: Alignment.center,
-                  padding: EdgeInsets.symmetric(vertical: 8, horizontal: 16),
+                  padding: const EdgeInsets.symmetric(vertical: 8, horizontal: 16),
                   child: Text(
                     _shop.isOpen ? 'Ouvert' : 'Fermé',
                     style: TextStyle(
-                        color: _shop.isOpen ? Color(0xff00853F) : Colors.red,
+                        color: _shop.isOpen ? const Color(0xff00853F) : Colors.red,
                         fontSize: 12),
                   ),
                 )
               ],
             ),
-            SizedBox(height: 10),
+            const SizedBox(height: 10),
             Row(
               children: [
                 Image.asset(
                   "assets/images/gaz_info_image.png",
                   width: 100,
                 ),
-                SizedBox(width: 10),
+                const SizedBox(width: 10),
                 Expanded(
                   child: Text(
                     _shop.description ?? "Aucune description",
-                    style: TextStyle(color: AssetColors.blueGrey, fontSize: 10),
+                    style: const TextStyle(color: AssetColors.blueGrey, fontSize: 10),
                   ),
                 )
               ],
             ),
-            SizedBox(height: 20),
-            Text(
+            const SizedBox(height: 20),
+            const Text(
               'Marques vendues',
               style: TextStyle(
                 fontWeight: FontWeight.bold,
                 fontSize: 12,
               ),
             ),
-            SizedBox(height: 10),
+            const SizedBox(height: 10),
             GetBuilder(
               init: _gasShopController,
               builder: (controller) {
@@ -155,7 +153,7 @@ class _GazPosInfoPageState extends State<GazPosInfoPage> {
                 );
               },
             ),
-            SizedBox(height: 20),
+            const SizedBox(height: 20),
             GetBuilder(
                 init: _gasShopController,
                 builder: (controller) {
@@ -180,12 +178,12 @@ class _GazPosInfoPageState extends State<GazPosInfoPage> {
                                           GasPurchaseAction.recharger)
                                       ? AssetColors.blueButton
                                       : AssetColors.lightGrey2,
-                              borderRadius: BorderRadius.only(
+                              borderRadius: const BorderRadius.only(
                                 topLeft: Radius.circular(10),
                                 bottomLeft: Radius.circular(10),
                               ),
                             ),
-                            padding: EdgeInsets.all(8),
+                            padding: const EdgeInsets.all(8),
                             alignment: Alignment.center,
                             child: Text(
                               'Recharger',
@@ -212,13 +210,13 @@ class _GazPosInfoPageState extends State<GazPosInfoPage> {
                                           GasPurchaseAction.acheter)
                                       ? AssetColors.blueButton
                                       : AssetColors.lightGrey2,
-                              borderRadius: BorderRadius.only(
+                              borderRadius: const BorderRadius.only(
                                 topRight: Radius.circular(10),
                                 bottomRight: Radius.circular(10),
                               ),
                             ),
                             alignment: Alignment.center,
-                            padding: EdgeInsets.all(8),
+                            padding: const EdgeInsets.all(8),
                             child: Text(
                               'Acheter',
                               style: TextStyle(
@@ -235,7 +233,7 @@ class _GazPosInfoPageState extends State<GazPosInfoPage> {
                     ],
                   );
                 }),
-            SizedBox(height: 15),
+            const SizedBox(height: 15),
             GetBuilder(
                 init: _gasShopController,
                 builder: (controller) {
@@ -249,19 +247,19 @@ class _GazPosInfoPageState extends State<GazPosInfoPage> {
                   return Column(
                     crossAxisAlignment: CrossAxisAlignment.stretch,
                     children: [
-                      Text(
+                      const Text(
                         'Marques',
                         style: TextStyle(
                           fontSize: 12,
                         ),
                         textAlign: TextAlign.left,
                       ),
-                      SizedBox(height: 10),
+                      const SizedBox(height: 10),
                       GridView.builder(
                         itemCount: brands.length,
                         shrinkWrap: true,
-                        physics: NeverScrollableScrollPhysics(),
-                        gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                        physics: const NeverScrollableScrollPhysics(),
+                        gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
                             crossAxisCount: 3,
                             crossAxisSpacing: 8,
                             mainAxisSpacing: 8,
@@ -284,15 +282,15 @@ class _GazPosInfoPageState extends State<GazPosInfoPage> {
                           );
                         },
                       ),
-                      SizedBox(height: 20),
-                      Text(
+                      const SizedBox(height: 20),
+                      const Text(
                         'Format de gaz',
                         style: TextStyle(
                           fontSize: 12,
                         ),
                         textAlign: TextAlign.left,
                       ),
-                      SizedBox(height: 10),
+                      const SizedBox(height: 10),
                       GetBuilder(
                           init: _gasFormatController,
                           builder: (controller) {
@@ -305,7 +303,7 @@ class _GazPosInfoPageState extends State<GazPosInfoPage> {
                             }
 
                             if (response == null) {
-                              return Center(
+                              return const Center(
                                 child: SizedBox(
                                   width: 20,
                                   height: 20,
@@ -324,10 +322,10 @@ class _GazPosInfoPageState extends State<GazPosInfoPage> {
                                   children: [
                                     Text(
                                       response.message,
-                                      style: TextStyle(fontSize: 12),
+                                      style: const TextStyle(fontSize: 12),
                                       textAlign: TextAlign.center,
                                     ),
-                                    Icon(Icons.refresh),
+                                    const Icon(Icons.refresh),
                                   ],
                                 ),
                               );
@@ -338,9 +336,9 @@ class _GazPosInfoPageState extends State<GazPosInfoPage> {
                             return GridView.builder(
                               itemCount: formats.length,
                               shrinkWrap: true,
-                              physics: NeverScrollableScrollPhysics(),
+                              physics: const NeverScrollableScrollPhysics(),
                               gridDelegate:
-                                  SliverGridDelegateWithFixedCrossAxisCount(
+                                  const SliverGridDelegateWithFixedCrossAxisCount(
                                       crossAxisCount: 3,
                                       crossAxisSpacing: 8,
                                       mainAxisSpacing: 8,
@@ -366,14 +364,14 @@ class _GazPosInfoPageState extends State<GazPosInfoPage> {
                               },
                             );
                           }),
-                      SizedBox(height: 15),
-                      Text(
+                      const SizedBox(height: 15),
+                      const Text(
                         'Localisation',
                         style: TextStyle(
                           fontSize: 12,
                         ),
                       ),
-                      SizedBox(height: 10),
+                      const SizedBox(height: 10),
                       GetBuilder(
                           init: _gasController,
                           builder: (controller) {
@@ -382,7 +380,7 @@ class _GazPosInfoPageState extends State<GazPosInfoPage> {
                                 _gasController.deliveryLocationName;
                             return InkWell(
                               onTap: () {
-                                Get.to(() => GazDeliveryMapPage());
+                                Get.to(() => const GazDeliveryMapPage());
                               },
                               child: Container(
                                 decoration: BoxDecoration(
@@ -392,7 +390,7 @@ class _GazPosInfoPageState extends State<GazPosInfoPage> {
                                   ),
                                   borderRadius: BorderRadius.circular(10),
                                 ),
-                                padding: EdgeInsets.symmetric(
+                                padding: const EdgeInsets.symmetric(
                                     horizontal: 12, vertical: 18),
                                 child: Row(
                                   children: [
@@ -401,7 +399,7 @@ class _GazPosInfoPageState extends State<GazPosInfoPage> {
                                         crossAxisAlignment:
                                             CrossAxisAlignment.start,
                                         children: [
-                                          Text(
+                                          const Text(
                                             'Utiliser cette localisation',
                                           ),
                                           Row(
@@ -409,11 +407,11 @@ class _GazPosInfoPageState extends State<GazPosInfoPage> {
                                               Image.asset(
                                                   'assets/images/pin.png',
                                                   width: 10),
-                                              SizedBox(width: 5),
+                                              const SizedBox(width: 5),
                                               Expanded(
                                                 child: Text(
                                                   deliveryLocationName,
-                                                  style: TextStyle(
+                                                  style: const TextStyle(
                                                       color: AssetColors
                                                           .blueButton),
                                                 ),
@@ -423,8 +421,8 @@ class _GazPosInfoPageState extends State<GazPosInfoPage> {
                                         ],
                                       ),
                                     ),
-                                    SizedBox(width: 10),
-                                    Icon(
+                                    const SizedBox(width: 10),
+                                    const Icon(
                                       Icons.arrow_forward_ios_outlined,
                                       size: 12,
                                     ),
@@ -433,40 +431,40 @@ class _GazPosInfoPageState extends State<GazPosInfoPage> {
                               ),
                             );
                           }),
-                      SizedBox(height: 15),
-                      Text(
+                      const SizedBox(height: 15),
+                      const Text(
                         'Paiement',
                         style: TextStyle(
                           fontSize: 12,
                         ),
                       ),
-                      SizedBox(height: 10),
+                      const SizedBox(height: 10),
                       PaiementAccountSelectionItem(
                         title: "**** **** **** **02",
                         onTap: () {},
                         image: 'assets/images/master_card.png',
                         imageWidth: 25,
                       ),
-                      SizedBox(height: 25),
+                      const SizedBox(height: 25),
                       CButton(
                         height: 50,
                         onPressed: () {
                           if (_gasShopController.isFormValid &&
                               _gasController.isLocationTypeSelected) {
-                            Get.to(() => GazPaymentRecapPage());
+                            Get.to(() => const GazPaymentRecapPage());
                           }
                         },
                         color: _gasShopController.isFormValid &&
                                 _gasController.isLocationTypeSelected
                             ? AssetColors.blueButton
-                            : Color(0xffEDF2F9),
+                            : const Color(0xffEDF2F9),
                         child: Text(
                           "Payer",
                           style: TextStyle(
                             color: _gasShopController.isFormValid &&
                                     _gasController.isLocationTypeSelected
                                 ? Colors.white
-                                : Color(0xffB5C4D8),
+                                : const Color(0xffB5C4D8),
                           ),
                         ),
                       ),

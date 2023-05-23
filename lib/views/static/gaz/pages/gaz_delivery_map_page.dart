@@ -9,12 +9,8 @@ import 'package:wan_mobile/models/shop.dart';
 import 'package:wan_mobile/tools/utils/asset_colors.dart';
 import 'package:wan_mobile/views/controllers/gaz/gas_shop_vctl.dart';
 import 'package:wan_mobile/views/controllers/gaz/gas_vctl.dart';
-import 'package:wan_mobile/views/static/gaz/pages/gaz_pos_info_page.dart';
-
-import '../../../../models/gaz_pos.dart';
 import '../../../../tools/widgets/address_type_item.dart';
 import '../../../../tools/widgets/c_button.dart';
-import '../../../../tools/widgets/c_textform_field.dart';
 
 class GazDeliveryMapPage extends StatefulWidget {
   const GazDeliveryMapPage({Key? key}) : super(key: key);
@@ -25,10 +21,10 @@ class GazDeliveryMapPage extends StatefulWidget {
 
 class _GazDeliveryMapPageState extends State<GazDeliveryMapPage> {
   GasController _gasController = Get.put(GasController());
-  GasShopController _gasShopController = Get.put(GasShopController());
+  final GasShopController _gasShopController = Get.put(GasShopController());
 
   late LocationModel deliveryLocation;
-  TextEditingController _locationNameCtrl = TextEditingController();
+  final TextEditingController _locationNameCtrl = TextEditingController();
   Timer? locationDescriptionTimer;
   late Shop shop;
 
@@ -69,7 +65,6 @@ class _GazDeliveryMapPageState extends State<GazDeliveryMapPage> {
                   }*/
               },
               onPositionChanged: (mapPosition, _) {
-                print('onPositionChanged');
                 cancelLocationDescriptionTimer();
                 startLocationDescriptionSearch(mapPosition);
               },
@@ -110,18 +105,18 @@ class _GazDeliveryMapPageState extends State<GazDeliveryMapPage> {
                 _gasController = controller;
                 _locationNameCtrl.text = _gasController.deliveryLocationName;
                 return Container(
-                  decoration: BoxDecoration(
+                  decoration: const BoxDecoration(
                     borderRadius: BorderRadius.only(
                       topLeft: Radius.circular(20),
                       topRight: Radius.circular(20),
                     ),
                     color: Colors.white,
                   ),
-                  padding: EdgeInsets.all(16),
+                  padding: const EdgeInsets.all(16),
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.stretch,
                     children: [
-                      Text(
+                      const Text(
                         'Sélectionner la localisation',
                         style: TextStyle(
                           fontWeight: FontWeight.bold,
@@ -129,8 +124,8 @@ class _GazDeliveryMapPageState extends State<GazDeliveryMapPage> {
                           fontSize: 14,
                         ),
                       ),
-                      SizedBox(height: 10),
-                      Text(
+                      const SizedBox(height: 10),
+                      const Text(
                         'Votre localisation',
                         style:
                             TextStyle(color: Color(0xff9D9D9D), fontSize: 12),
@@ -138,19 +133,19 @@ class _GazDeliveryMapPageState extends State<GazDeliveryMapPage> {
                       TextField(
                         controller: _locationNameCtrl,
                         readOnly: true,
-                        decoration: InputDecoration(
+                        decoration: const InputDecoration(
                           isDense: true,
                           contentPadding:
                               EdgeInsets.symmetric(vertical: 4, horizontal: 8),
                         ),
                       ),
-                      SizedBox(height: 10),
-                      Text(
+                      const SizedBox(height: 10),
+                      const Text(
                         'Sauvegarder comme',
                         style:
                             TextStyle(color: Color(0xff9D9D9D), fontSize: 12),
                       ),
-                      SizedBox(height: 10),
+                      const SizedBox(height: 10),
                       Row(
                         children: [
                           Expanded(
@@ -163,7 +158,7 @@ class _GazDeliveryMapPageState extends State<GazDeliveryMapPage> {
                               },
                             ),
                           ),
-                          SizedBox(width: 20),
+                          const SizedBox(width: 20),
                           Expanded(
                             child: AddressTypeItem(
                               icon: 'assets/images/office_icon.png',
@@ -176,7 +171,7 @@ class _GazDeliveryMapPageState extends State<GazDeliveryMapPage> {
                           )
                         ],
                       ),
-                      SizedBox(height: 20),
+                      const SizedBox(height: 20),
                       CButton(
                         height: 50,
                         onPressed: () {
@@ -186,13 +181,13 @@ class _GazDeliveryMapPageState extends State<GazDeliveryMapPage> {
                         },
                         color: _gasController.isLocationTypeSelected
                             ? AssetColors.blueButton
-                            : Color(0xffEDF2F9),
+                            : const Color(0xffEDF2F9),
                         child: Text(
                           "Enregistrer comme adresse",
                           style: TextStyle(
                             color: _gasController.isLocationTypeSelected
                                 ? Colors.white
-                                : Color(0xffB5C4D8),
+                                : const Color(0xffB5C4D8),
                           ),
                         ),
                       ),
@@ -208,7 +203,7 @@ class _GazDeliveryMapPageState extends State<GazDeliveryMapPage> {
   }
 
   void startLocationDescriptionSearch(MapPosition mapPosition) {
-    locationDescriptionTimer = Timer(Duration(milliseconds: 500), () {
+    locationDescriptionTimer = Timer(const Duration(milliseconds: 500), () {
       _searchLocationDescription(mapPosition);
     });
   }

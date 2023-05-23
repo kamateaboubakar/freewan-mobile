@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:wan_mobile/tools/utils/asset_colors.dart';
 
 import '../../../../../tools/widgets/c_button.dart';
-import '../../../../../tools/widgets/c_dropdown_field.dart';
 import '../../../../../tools/widgets/c_textform_field.dart';
 import '../../job_views.dart';
 
@@ -10,13 +9,10 @@ class AddJobOfferCompanyPage extends StatefulWidget {
   const AddJobOfferCompanyPage({Key? key}) : super(key: key);
 
   @override
-  State<AddJobOfferCompanyPage> createState() =>
-      _AddJobOfferCompanyPageState();
+  State<AddJobOfferCompanyPage> createState() => _AddJobOfferCompanyPageState();
 }
 
-class _AddJobOfferCompanyPageState
-    extends State<AddJobOfferCompanyPage> {
-
+class _AddJobOfferCompanyPageState extends State<AddJobOfferCompanyPage> {
   final TextEditingController _nameCtrl = TextEditingController();
   final TextEditingController _descriptionCtrl = TextEditingController();
   @override
@@ -29,12 +25,12 @@ class _AddJobOfferCompanyPageState
         title: const Text("Mon offre"),
       ),
       body: Padding(
-        padding: EdgeInsets.all(16),
+        padding: const EdgeInsets.all(16),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
             Row(
-              children: [
+              children: const [
                 Text(
                   'Informations du\nposte',
                   style: TextStyle(
@@ -48,7 +44,7 @@ class _AddJobOfferCompanyPageState
                 )
               ],
             ),
-            SizedBox(height: 15),
+            const SizedBox(height: 15),
             Expanded(
               child: SingleChildScrollView(
                 child: Column(
@@ -58,17 +54,16 @@ class _AddJobOfferCompanyPageState
                       hintText: "Nom de l'entreprise *",
                       onChanged: (value) {},
                     ),
-                    SizedBox(height: 5),
+                    const SizedBox(height: 5),
                     CTextFormField(
                       controller: _descriptionCtrl,
                       hintText: "Description *",
                       onChanged: (value) {},
                       maxLines: 5,
                     ),
-                    SizedBox(height: 5),
+                    const SizedBox(height: 5),
                     InkWell(
-                      onTap: () {
-                      },
+                      onTap: () {},
                       child: Container(
                         decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(5),
@@ -76,7 +71,7 @@ class _AddJobOfferCompanyPageState
                             color: AssetColors.blueButton,
                           ),
                         ),
-                        padding: EdgeInsets.all(12),
+                        padding: const EdgeInsets.all(12),
                         child: Stack(
                           children: const [
                             Align(
@@ -90,7 +85,8 @@ class _AddJobOfferCompanyPageState
                               child: Text(
                                 "Ajouter logo",
                                 style: TextStyle(
-                                    color: AssetColors.blueButton, fontSize: 16),
+                                    color: AssetColors.blueButton,
+                                    fontSize: 16),
                                 textAlign: TextAlign.center,
                               ),
                             ),
@@ -102,7 +98,7 @@ class _AddJobOfferCompanyPageState
                 ),
               ),
             ),
-            SizedBox(height: 10),
+            const SizedBox(height: 10),
             CButton(
               onPressed: () {},
               height: 48,

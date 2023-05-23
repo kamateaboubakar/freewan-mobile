@@ -7,6 +7,7 @@ class AddAccountButton extends StatelessWidget {
   const AddAccountButton({
     required this.title,
     required this.onTap,
+    super.key,
   });
 
   @override
@@ -17,21 +18,21 @@ class AddAccountButton extends StatelessWidget {
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(5),
           border: Border.all(
-            color: Color(0xff0D339F),
+            color: const Color(0xff0D339F),
           ),
         ),
-        padding: EdgeInsets.all(16),
+        padding: const EdgeInsets.all(16),
         child: Row(
           children: [
             Expanded(
               child: Text(
                 title,
-                style: TextStyle(
+                style: const TextStyle(
                   color: Color(0xff0D339F),
                 ),
               ),
             ),
-            Icon(
+            const Icon(
               Icons.add_circle_outline,
               color: Color(0xff0D339F),
             )

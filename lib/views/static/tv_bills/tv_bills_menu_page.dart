@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:wan_mobile/views/static/paiement/paiement_mode_paiement.dart';
 import 'package:wan_mobile/views/static/tv_bills/tv_bills_account_number_page.dart';
 import 'package:wan_mobile/views/static/tv_bills/tv_bills_account_selection_page.dart';
 
 import '../../../../tools/utils/asset_colors.dart';
-import '../../../../tools/widgets/c_button.dart';
 
 class TvBillsMenuPage extends StatefulWidget {
+  const TvBillsMenuPage({super.key});
+
   @override
   State<TvBillsMenuPage> createState() => _TvBillsMenuPageState();
 }
@@ -27,7 +27,7 @@ class _TvBillsMenuPageState extends State<TvBillsMenuPage> {
         title: const Text("Canal +"),
       ),
       body: Padding(
-        padding: EdgeInsets.symmetric(horizontal: 16, vertical: 24),
+        padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 24),
         child: ListView.separated(
           itemBuilder: (context, index) {
             return InkWell(
@@ -35,7 +35,7 @@ class _TvBillsMenuPageState extends State<TvBillsMenuPage> {
                 if (index == 0) {
                   Get.to(TvBillsAccountNumberPage());
                 } else {
-                  Get.to(TvBillsAccountSelectionPage());
+                  Get.to(() => const TvBillsAccountSelectionPage());
                 }
               },
               child: Container(
@@ -43,24 +43,24 @@ class _TvBillsMenuPageState extends State<TvBillsMenuPage> {
                   color: AssetColors.lightGrey,
                   borderRadius: BorderRadius.circular(10),
                 ),
-                padding: EdgeInsets.symmetric(horizontal: 16, vertical: 24),
+                padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 24),
                 child: Row(
                   children: [
                     Image.asset(
                       "assets/images/canal+2.png",
                       width: 50,
                     ),
-                    SizedBox(width: 10),
+                    const SizedBox(width: 10),
                     Expanded(
                       child: Text(
                         options[index],
-                        style: TextStyle(
+                        style: const TextStyle(
                           fontWeight: FontWeight.bold,
                           fontSize: 16,
                         ),
                       ),
                     ),
-                    Icon(
+                    const Icon(
                       Icons.arrow_forward_ios,
                       color: Colors.black,
                       size: 14,
@@ -71,7 +71,7 @@ class _TvBillsMenuPageState extends State<TvBillsMenuPage> {
             );
           },
           separatorBuilder: (context, index) {
-            return SizedBox(height: 10);
+            return const SizedBox(height: 10);
           },
           itemCount: options.length,
         ),

@@ -18,10 +18,10 @@ class JobItem extends StatelessWidget {
         color: Colors.white,
         borderRadius: BorderRadius.circular(10),
         border: Border.all(
-          color: Color(0xffE5E5E5),
+          color: const Color(0xffE5E5E5),
         ),
       ),
-      padding: EdgeInsets.all(8),
+      padding: const EdgeInsets.all(8),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
@@ -31,10 +31,10 @@ class JobItem extends StatelessWidget {
               Container(
                 decoration: BoxDecoration(
                   color: jobEntity?.iconBackgroundColor ??
-                      Color(0xff34A853).withOpacity(0.1),
+                      const Color(0xff34A853).withOpacity(0.1),
                   borderRadius: BorderRadius.circular(10),
                 ),
-                padding: EdgeInsets.symmetric(vertical: 4, horizontal: 12),
+                padding: const EdgeInsets.symmetric(vertical: 4, horizontal: 12),
                 child: Image.asset(
                   jobEntity?.icon ?? 'assets/images/grommet-icons_google.png',
                   width: 50,
@@ -42,7 +42,7 @@ class JobItem extends StatelessWidget {
                 ),
               ),
               if (canDelete) ...[
-                Spacer(),
+                const Spacer(),
                 Image.asset(
                   'assets/images/solar_trash-bin-2-line-duotone.png',
                   width: 25,
@@ -51,23 +51,23 @@ class JobItem extends StatelessWidget {
               ],
             ],
           ),
-          SizedBox(height: 10),
+          const SizedBox(height: 10),
           Text(
             jobEntity?.jobTitle ?? 'UI Designer',
-            style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16),
+            style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 16),
           ),
-          SizedBox(height: 5),
+          const SizedBox(height: 5),
           Text(
             jobEntity?.companyName ?? 'Google - A distance, CA',
-            style: TextStyle(
+            style: const TextStyle(
               fontSize: 12,
               color: Color(0xff828282),
             ),
           ),
-          SizedBox(height: 5),
+          const SizedBox(height: 5),
           Text(
             jobEntity?.salary ?? 'FCFA 500 000  / Mo',
-            style: TextStyle(
+            style: const TextStyle(
               fontSize: 12,
               color: Color(0xff828282),
             ),

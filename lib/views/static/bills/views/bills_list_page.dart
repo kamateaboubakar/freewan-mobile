@@ -33,12 +33,12 @@ class _BillsListPageState extends State<BillsListPage> {
                     'assets/images/cie.png',
                     height: 50,
                   ),
-                  SizedBox(height: 10),
-                  Text(
+                  const SizedBox(height: 10),
+                  const Text(
                     'Choisissez la facture que vous souhaitez\npayer',
                     textAlign: TextAlign.center,
                   ),
-                  SizedBox(height: 10),
+                  const SizedBox(height: 10),
                   Expanded(
                     child: ListView.separated(
                       itemBuilder: (context, index) {
@@ -52,23 +52,23 @@ class _BillsListPageState extends State<BillsListPage> {
                           child: Container(
                             decoration: BoxDecoration(
                               color: selected
-                                  ? Color(0xff4724FB).withOpacity(0.1)
+                                  ? const Color(0xff4724FB).withOpacity(0.1)
                                   : Colors.white,
                               border: Border.all(
                                 color: selected
-                                    ? Color(0xff0D339F)
-                                    : Color(0xffB5C4D8),
+                                    ? const Color(0xff0D339F)
+                                    : const Color(0xffB5C4D8),
                               ),
                               borderRadius: BorderRadius.circular(10),
                             ),
-                            padding: EdgeInsets.symmetric(
+                            padding: const EdgeInsets.symmetric(
                                 horizontal: 24, vertical: 32),
                             child: Column(
                               crossAxisAlignment: CrossAxisAlignment.stretch,
                               children: [
                                 Row(
                                   children: [
-                                    Expanded(
+                                    const Expanded(
                                       child: Text(
                                         'Fac 452523',
                                         style: TextStyle(
@@ -78,7 +78,7 @@ class _BillsListPageState extends State<BillsListPage> {
                                       ),
                                     ),
                                     RichText(
-                                      text: TextSpan(
+                                      text: const TextSpan(
                                           style: TextStyle(
                                             color: Color(0xff7B83A0),
                                             fontSize: 16,
@@ -96,14 +96,14 @@ class _BillsListPageState extends State<BillsListPage> {
                                     )
                                   ],
                                 ),
-                                SizedBox(height: 10),
+                                const SizedBox(height: 10),
                                 Container(
                                   decoration: BoxDecoration(
                                     borderRadius: BorderRadius.circular(10),
-                                    color: Color(0xff4724FB).withOpacity(.10),
+                                    color: const Color(0xff4724FB).withOpacity(.10),
                                   ),
-                                  padding: EdgeInsets.all(8),
-                                  child: Text(
+                                  padding: const EdgeInsets.all(8),
+                                  child: const Text(
                                     'A payer avant le 5 mai 2023',
                                     style: TextStyle(
                                       color: Color(0xff4724FB),
@@ -117,7 +117,7 @@ class _BillsListPageState extends State<BillsListPage> {
                         );
                       },
                       separatorBuilder: (context, index) {
-                        return SizedBox(height: 20);
+                        return const SizedBox(height: 20);
                       },
                       itemCount: 2,
                     ),
@@ -129,16 +129,16 @@ class _BillsListPageState extends State<BillsListPage> {
               height: 50,
               onPressed: () {
                 if (hasBillSelected()) {
-                  Get.to(PaiementModePaiement());
+                  Get.to(const PaiementModePaiement());
                 }
               },
               color: hasBillSelected()
                   ? AssetColors.blueButton
-                  : Color(0xffEDF2F9),
+                  : const Color(0xffEDF2F9),
               child: Text(
                 "Continuer",
                 style: TextStyle(
-                  color: hasBillSelected() ? Colors.white : Color(0xffB5C4D8),
+                  color: hasBillSelected() ? Colors.white : const Color(0xffB5C4D8),
                 ),
               ),
             ),

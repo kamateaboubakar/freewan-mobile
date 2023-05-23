@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:wan_mobile/views/static/loyer/locataire/formulaire_code_maison_loyer.dart';
-import 'package:wan_mobile/views/static/loyer/proprio/bien_immobilier_page.dart';
 import 'package:wan_mobile/views/static/tv_bills/tv_bills_menu_page.dart';
 
 class TvBillsSelectionDialog extends StatelessWidget {
+  const TvBillsSelectionDialog({super.key});
+
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -49,7 +49,7 @@ class TvBillsSelectionDialog extends StatelessWidget {
                 color: Color.fromRGBO(38, 82, 140, 1),
               ),
             ),
-            onTap: () => Get.to(() => TvBillsMenuPage()),
+            onTap: () => Get.to(() => const TvBillsMenuPage()),
           ),
           const Divider(
             thickness: 1,

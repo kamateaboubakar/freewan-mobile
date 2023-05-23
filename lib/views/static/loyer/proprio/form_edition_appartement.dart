@@ -16,16 +16,16 @@ class FormEditionAppartement extends StatelessWidget {
       body: ListView(
         padding: const EdgeInsets.all(20),
         children: [
-          CTextFormField(
+          const CTextFormField(
             labelText: "Numéro d’appartement",
           ),
-          CDropdownField(
+          const CDropdownField(
             labelText: "Type d’appartement",
           ),
-          CDropdownField(
+          const CDropdownField(
             labelText: "Bloc d’apparts",
           ),
-          CTextFormField(
+          const CTextFormField(
             labelText: "Loyer",
           ),
           CTextFormField(
@@ -39,10 +39,10 @@ class FormEditionAppartement extends StatelessWidget {
                   lastDate: DateTime(3000));
             },
           ),
-          CTextFormField(
+          const CTextFormField(
             labelText: "Nom du Locataire",
           ),
-          CTextFormField(
+          const CTextFormField(
             labelText: "Numéro du Locataire",
           ),
           const SizedBox(height: 20),

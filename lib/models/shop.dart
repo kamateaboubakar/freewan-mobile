@@ -55,7 +55,7 @@ class Shop {
   bool get isOpen => open == 1;
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
+    final Map<String, dynamic> data = {};
     data['available_work_days'] = this.availableWorkDays;
     data['description'] = this.description;
     data['available_week_end_time'] = this.availableWeekEndTime;
@@ -92,7 +92,7 @@ class Brands {
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
+    final Map<String, dynamic> data = {};
     data['description'] = this.description;
     data['id'] = this.id;
     data['picture_name'] = this.pictureName;

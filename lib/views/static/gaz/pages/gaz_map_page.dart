@@ -4,7 +4,6 @@ import 'package:get/get.dart';
 import 'package:latlong2/latlong.dart';
 import 'package:sliding_up_panel/sliding_up_panel.dart';
 import 'package:wan_mobile/api/services/location_service.dart';
-import 'package:wan_mobile/models/location_model.dart';
 import 'package:wan_mobile/tools/utils/asset_colors.dart';
 import 'package:wan_mobile/tools/utils/tools.dart';
 import 'package:wan_mobile/views/controllers/gaz/gas_shop_vctl.dart';
@@ -165,7 +164,7 @@ class _GazMapPageState extends State<GazMapPage> {
                 }),
                 minHeight: shop == null ? 0 : 300,
                 maxHeight: shop == null ? 0 : screenHeight * 0.85,
-                borderRadius: BorderRadius.only(
+                borderRadius: const BorderRadius.only(
                   topRight: Radius.circular(20),
                   topLeft: Radius.circular(20),
                 ),
@@ -188,10 +187,10 @@ class _GazMapPageState extends State<GazMapPage> {
                   begin: Alignment.topCenter,
                   end: Alignment.bottomCenter,
                   colors: [
-                    Color(0xffFCFFFF).withOpacity(0),
-                    Color(0xffFCFFFF),
+                    const Color(0xffFCFFFF).withOpacity(0),
+                    const Color(0xffFCFFFF),
                   ],
-                  stops: [
+                  stops: const [
                     0,
                     0.3,
                   ]),
@@ -220,10 +219,10 @@ class _GazMapPageState extends State<GazMapPage> {
                               width: 55,
                               height: 55,
                               decoration: BoxDecoration(
-                                color: Color(0xffB5C4D8).withOpacity(0.15),
+                                color: const Color(0xffB5C4D8).withOpacity(0.15),
                                 shape: BoxShape.circle,
                               ),
-                              padding: EdgeInsets.all(12),
+                              padding: const EdgeInsets.all(12),
                               child: Center(
                                 child: Image.asset(
                                   item.icon,
@@ -236,7 +235,7 @@ class _GazMapPageState extends State<GazMapPage> {
                               item.label,
                               style: TextStyle(
                                 color: selected
-                                    ? Color(0xff0042FF)
+                                    ? const Color(0xff0042FF)
                                     : AssetColors.blueGrey,
                               ),
                             ),
@@ -246,16 +245,16 @@ class _GazMapPageState extends State<GazMapPage> {
                     },
                   ),
                 ),
-                Spacer(),
+                const Spacer(),
                 Padding(
                   padding: const EdgeInsets.all(16.0),
                   child: CTextFormField(
                     hintText: "Chercher un",
-                    suffixIcon: Padding(
+                    suffixIcon: const Padding(
                       padding: EdgeInsets.all(8),
                       child: Icon(Icons.search),
                     ),
-                    fillColor: Color(0xffCFD8DC).withOpacity(.56),
+                    fillColor: const Color(0xffCFD8DC).withOpacity(.56),
                   ),
                 ),
               ],
@@ -288,7 +287,7 @@ class _GazMapPageState extends State<GazMapPage> {
           }
           _getShops();
         },
-        child: Text('OK'),
+        child: const Text('OK'),
       ),
     );
   }

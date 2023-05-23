@@ -6,7 +6,7 @@ class LinearProgressStepper extends StatefulWidget {
   final double progress;
 
   const LinearProgressStepper({
-    Key? key,
+    super.key,
     this.width,
     this.progress = 0,
   }) : assert(progress >= 0 && progress <= 1);
@@ -36,14 +36,14 @@ class _ProgressViewState extends State<LinearProgressStepper> {
           _ProgressBar(
             width: widget.progress * width,
             height: height,
-            backgroundColor: Color(0xff009FF9),
+            backgroundColor: const Color(0xff009FF9),
           ),
         ],
       ),
     );
   }
 
-  bool isProgressComplete(double _progress) => _progress >= 100;
+  bool isProgressComplete(double progress) => progress >= 100;
 }
 
 class _ProgressBar extends StatelessWidget {
@@ -51,7 +51,7 @@ class _ProgressBar extends StatelessWidget {
   final double? width;
   final double? height;
 
-  _ProgressBar({
+  const _ProgressBar({
     Key? key,
     required this.backgroundColor,
     this.width,

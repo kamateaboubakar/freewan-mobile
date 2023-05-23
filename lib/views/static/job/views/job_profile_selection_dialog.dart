@@ -1,13 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:wan_mobile/views/static/job/job_views.dart';
 import 'package:wan_mobile/views/static/job/views/employee/employee_views.dart';
-import 'package:wan_mobile/views/static/loyer/locataire/formulaire_code_maison_loyer.dart';
-import 'package:wan_mobile/views/static/loyer/proprio/bien_immobilier_page.dart';
 
 import 'employer/employer_views.dart';
 
 class JobProfileSelectionDialog extends StatelessWidget {
+  const JobProfileSelectionDialog({super.key});
+
   @override
   Widget build(BuildContext context) {
     return Container(

@@ -353,6 +353,14 @@ class HomePage extends StatelessWidget {
                                     onPressed: () =>
                                         Get.to(() => const DonPage()),
                                   ),
+                                  ButtonMenu(
+                                    icon: Image.asset(
+                                      "assets/images/icons8-durabilite.gif",
+                                    ),
+                                    title: "Gaz",
+                                    onPressed: () =>
+                                        Get.to(() => const GazMapPage()),
+                                  ),
                                 ],
                               ),
                               Row(
@@ -447,7 +455,6 @@ class HomePage extends StatelessWidget {
                                     title: "Voir Plus",
                                     onPressed: () {
                                       //Tools.openBottomSheet(JobProfileSelectionDialog());
-                                      Get.to(() => const GazMapPage());
                                     },
                                   ),
                                 ],

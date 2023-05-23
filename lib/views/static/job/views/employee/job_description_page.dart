@@ -5,8 +5,6 @@ import 'package:wan_mobile/views/static/job/views/employee/employee_views.dart';
 
 import '../../../../../tools/const/const.dart';
 import '../../../../../tools/widgets/c_button.dart';
-import '../../../../../tools/widgets/c_dropdown_field.dart';
-import '../../../../../tools/widgets/c_textform_field.dart';
 import '../../job_views.dart';
 
 class JobDescriptionPage extends StatefulWidget {
@@ -31,7 +29,7 @@ class _JobDescriptionPageState extends State<JobDescriptionPage> {
         title: const Text("Détails de l’offre"),
       ),
       body: Padding(
-        padding: EdgeInsets.all(16),
+        padding: const EdgeInsets.all(16),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
@@ -47,7 +45,7 @@ class _JobDescriptionPageState extends State<JobDescriptionPage> {
                             width: 80,
                             height: 80,
                             decoration: BoxDecoration(
-                              color: Color(0xff4F9D4D).withOpacity(0.1),
+                              color: const Color(0xff4F9D4D).withOpacity(0.1),
                               borderRadius: BorderRadius.circular(10),
                             ),
                             alignment: Alignment.center,
@@ -57,12 +55,12 @@ class _JobDescriptionPageState extends State<JobDescriptionPage> {
                               height: 60,
                             ),
                           ),
-                          SizedBox(width: 10),
+                          const SizedBox(width: 10),
                           Expanded(
                             child: Column(
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
-                                Text(
+                                const Text(
                                   "Senior Project Manager",
                                   style: TextStyle(
                                     fontSize: 18,
@@ -70,16 +68,16 @@ class _JobDescriptionPageState extends State<JobDescriptionPage> {
                                   ),
                                   textAlign: TextAlign.center,
                                 ),
-                                Text(
+                                const Text(
                                   "Tokopedia - A distance, ID",
                                   style: TextStyle(
                                     fontSize: 14,
                                   ),
                                   textAlign: TextAlign.center,
                                 ),
-                                Spacer(),
+                                const Spacer(),
                                 Row(
-                                  children: [
+                                  children: const [
                                     Expanded(
                                         child: JobTag(
                                       title: "Temps plein",
@@ -105,7 +103,7 @@ class _JobDescriptionPageState extends State<JobDescriptionPage> {
                         ],
                       ),
                     ),
-                    SizedBox(height: 24),
+                    const SizedBox(height: 24),
                     ClipRRect(
                       borderRadius: BorderRadius.circular(10),
                       child: Row(
@@ -113,8 +111,8 @@ class _JobDescriptionPageState extends State<JobDescriptionPage> {
                           Expanded(
                             child: Container(
                               color: AssetColors.blueButton,
-                              padding: EdgeInsets.all(8),
-                              child: Text(
+                              padding: const EdgeInsets.all(8),
+                              child: const Text(
                                 'Description',
                                 textAlign: TextAlign.center,
                                 style: TextStyle(color: Colors.white),
@@ -123,9 +121,9 @@ class _JobDescriptionPageState extends State<JobDescriptionPage> {
                           ),
                           Expanded(
                             child: Container(
-                              padding: EdgeInsets.all(8),
+                              padding: const EdgeInsets.all(8),
                               color: AssetColors.lightGrey2,
-                              child: Text(
+                              child: const Text(
                                 'Entreprise',
                                 textAlign: TextAlign.center,
                                 style: TextStyle(color: AssetColors.grey3),
@@ -135,14 +133,14 @@ class _JobDescriptionPageState extends State<JobDescriptionPage> {
                         ],
                       ),
                     ),
-                    SizedBox(height: 24),
+                    const SizedBox(height: 24),
                     RichText(
                       text: TextSpan(
                           style: TextStyle(
                             color: AssetColors.grey3,
                             fontFamily: Const.defaultFont.fontFamily,
                           ),
-                          children: [
+                          children: const [
                             TextSpan(
                               text: "Description de l'offre\n",
                               style: TextStyle(
@@ -186,10 +184,10 @@ class _JobDescriptionPageState extends State<JobDescriptionPage> {
                 ),
               ),
             ),
-            SizedBox(height: 10),
+            const SizedBox(height: 10),
             CButton(
               onPressed: () {
-                Get.to(JobApplicationPage());
+                Get.to(const JobApplicationPage());
               },
               height: 48,
               child: const Text(

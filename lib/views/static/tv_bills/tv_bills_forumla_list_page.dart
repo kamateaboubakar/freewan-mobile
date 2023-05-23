@@ -8,7 +8,7 @@ import '../../../../tools/widgets/c_button.dart';
 class TvBillsFormulaListPage extends StatefulWidget {
   final bool newSubscription;
 
-  TvBillsFormulaListPage({this.newSubscription = true});
+  const TvBillsFormulaListPage({super.key, this.newSubscription = true});
 
   @override
   State<TvBillsFormulaListPage> createState() => _TvBillsFormulaListPageState();
@@ -50,11 +50,11 @@ class _TvBillsFormulaListPageState extends State<TvBillsFormulaListPage> {
               child: Column(
                 children: [
                   if (widget.newSubscription) ...[
-                    Text(
+                    const Text(
                       'Sélectionnez votre nouvelle formule',
                       textAlign: TextAlign.center,
                     ),
-                    SizedBox(height: 10),
+                    const SizedBox(height: 10),
                   ],
                   Expanded(
                     child: ListView.separated(
@@ -76,7 +76,7 @@ class _TvBillsFormulaListPageState extends State<TvBillsFormulaListPage> {
                                   ? Border.all(color: AssetColors.blue)
                                   : null,
                             ),
-                            padding: EdgeInsets.symmetric(
+                            padding: const EdgeInsets.symmetric(
                                 horizontal: 16, vertical: 24),
                             child: Row(
                               children: [
@@ -84,17 +84,17 @@ class _TvBillsFormulaListPageState extends State<TvBillsFormulaListPage> {
                                   "assets/images/canal+2.png",
                                   width: 50,
                                 ),
-                                SizedBox(width: 10),
+                                const SizedBox(width: 10),
                                 Expanded(
                                   child: Text(
                                     formula[index],
-                                    style: TextStyle(
+                                    style: const TextStyle(
                                       fontWeight: FontWeight.bold,
                                       fontSize: 16,
                                     ),
                                   ),
                                 ),
-                                Icon(
+                                const Icon(
                                   Icons.arrow_forward_ios,
                                   color: Colors.black,
                                   size: 14,
@@ -105,7 +105,7 @@ class _TvBillsFormulaListPageState extends State<TvBillsFormulaListPage> {
                         );
                       },
                       separatorBuilder: (context, index) {
-                        return SizedBox(height: 20);
+                        return const SizedBox(height: 20);
                       },
                       itemCount: formula.length,
                     ),
@@ -117,16 +117,16 @@ class _TvBillsFormulaListPageState extends State<TvBillsFormulaListPage> {
               height: 50,
               onPressed: () {
                 if (hasBillSelected()) {
-                  Get.to(PaiementModePaiement());
+                  Get.to(const PaiementModePaiement());
                 }
               },
               color: hasBillSelected()
                   ? AssetColors.blueButton
-                  : Color(0xffEDF2F9),
+                  : const Color(0xffEDF2F9),
               child: Text(
                 "Continuer",
                 style: TextStyle(
-                  color: hasBillSelected() ? Colors.white : Color(0xffB5C4D8),
+                  color: hasBillSelected() ? Colors.white : const Color(0xffB5C4D8),
                 ),
               ),
             ),

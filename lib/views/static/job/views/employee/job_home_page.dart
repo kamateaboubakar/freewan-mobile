@@ -3,9 +3,6 @@ import 'package:get/get.dart';
 import 'package:wan_mobile/tools/utils/asset_colors.dart';
 import 'package:wan_mobile/views/static/job/views/employee/employee_views.dart';
 
-import '../../../../../tools/const/const.dart';
-import '../../../../../tools/widgets/c_button.dart';
-import '../../../../../tools/widgets/c_dropdown_field.dart';
 import '../../../../../tools/widgets/c_textform_field.dart';
 import '../../job_views.dart';
 
@@ -36,12 +33,12 @@ class _JobHomePageState extends State<JobHomePage> {
         title: const Text("Emplois"),
       ),
       body: Padding(
-        padding: EdgeInsets.all(16),
+        padding: const EdgeInsets.all(16),
         child: SingleChildScrollView(
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.stretch,
             children: [
-              Text(
+              const Text(
                 'Trouvez un bon emploi',
                 style: TextStyle(
                   color: Color(0xff0D339F),
@@ -49,33 +46,31 @@ class _JobHomePageState extends State<JobHomePage> {
                   fontSize: 20,
                 ),
               ),
-              SizedBox(height: 10),
+              const SizedBox(height: 10),
               Row(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Expanded(
-                    child: Container(
-                      child: CTextFormField(
-                        hintText: "Chercher un emploi",
-                        prefixIcon: Padding(
-                          padding: EdgeInsets.all(8),
-                          child: Image.asset(
-                            "assets/images/search.png",
-                            width: 5,
-                            height: 5,
-                          ),
+                    child: CTextFormField(
+                      hintText: "Chercher un emploi",
+                      prefixIcon: Padding(
+                        padding: const EdgeInsets.all(8),
+                        child: Image.asset(
+                          "assets/images/search.png",
+                          width: 5,
+                          height: 5,
                         ),
-                        fillColor: Color(0xffD8ECFE).withOpacity(.56),
-                        hintColor: AssetColors.blue,
                       ),
+                      fillColor: const Color(0xffD8ECFE).withOpacity(.56),
+                      hintColor: AssetColors.blue,
                     ),
                   ),
-                  SizedBox(width: 10),
+                  const SizedBox(width: 10),
                   Container(
                     width: 50,
                     height: 50,
                     decoration: BoxDecoration(
-                      color: Color(0xff0D339F),
+                      color: const Color(0xff0D339F),
                       borderRadius: BorderRadius.circular(10),
                     ),
                     alignment: Alignment.center,
@@ -87,19 +82,19 @@ class _JobHomePageState extends State<JobHomePage> {
                   )
                 ],
               ),
-              SizedBox(height: 15),
-              Text(
+              const SizedBox(height: 15),
+              const Text(
                 'Les plus populaires',
                 style: TextStyle(
                   fontWeight: FontWeight.bold,
                   color: AssetColors.grey2,
                 ),
               ),
-              SizedBox(height: 10),
+              const SizedBox(height: 10),
               SizedBox(
                 height: 170,
                 child: ListView.separated(
-                  separatorBuilder: (context, index) => SizedBox(width: 10),
+                  separatorBuilder: (context, index) => const SizedBox(width: 10),
                   itemCount: popularJobs.length,
                   scrollDirection: Axis.horizontal,
                   itemBuilder: (context, index) {
@@ -108,7 +103,7 @@ class _JobHomePageState extends State<JobHomePage> {
                     return InkWell(
                       onTap: () {
                         if (index == 0) {
-                          Get.to(JobDescriptionPage());
+                          Get.to(const JobDescriptionPage());
                         }
                       },
                       child: Container(
@@ -118,7 +113,7 @@ class _JobHomePageState extends State<JobHomePage> {
                           color:
                               selected ? AssetColors.blueButton : Colors.white,
                         ),
-                        padding: EdgeInsets.all(8),
+                        padding: const EdgeInsets.all(8),
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
@@ -140,7 +135,7 @@ class _JobHomePageState extends State<JobHomePage> {
                                       height: 40,
                                     ),
                                   ),
-                                  SizedBox(width: 10),
+                                  const SizedBox(width: 10),
                                   Expanded(
                                     child: Text(
                                       jobs.salary,
@@ -156,7 +151,7 @@ class _JobHomePageState extends State<JobHomePage> {
                                 ],
                               ),
                             ),
-                            SizedBox(height: 10),
+                            const SizedBox(height: 10),
                             Text(
                               jobs.jobTitle,
                               style: TextStyle(
@@ -166,7 +161,7 @@ class _JobHomePageState extends State<JobHomePage> {
                               ),
                               textAlign: TextAlign.center,
                             ),
-                            SizedBox(height: 5),
+                            const SizedBox(height: 5),
                             Text(
                               jobs.companyName,
                               style: TextStyle(
@@ -175,7 +170,7 @@ class _JobHomePageState extends State<JobHomePage> {
                               ),
                               textAlign: TextAlign.center,
                             ),
-                            SizedBox(height: 10),
+                            const SizedBox(height: 10),
                             Row(
                               mainAxisAlignment: MainAxisAlignment.spaceAround,
                               children: ["Temps plein", "A distance", "Senior"]
@@ -184,7 +179,7 @@ class _JobHomePageState extends State<JobHomePage> {
                                         fontSize: 12,
                                         backgroundColor: selected
                                             ? Colors.white
-                                            : Color(0xffF2F2F2),
+                                            : const Color(0xffF2F2F2),
                                         textColor: AssetColors.blueButton,
                                       ))
                                   .toList(),
@@ -196,13 +191,13 @@ class _JobHomePageState extends State<JobHomePage> {
                   },
                 ),
               ),
-              SizedBox(height: 25),
+              const SizedBox(height: 25),
               SizedBox(
                 height: 35,
                 child: ListView.separated(
                     itemCount: tags.length,
                     scrollDirection: Axis.horizontal,
-                    separatorBuilder: (context, index) => SizedBox(width: 10),
+                    separatorBuilder: (context, index) => const SizedBox(width: 10),
                     itemBuilder: (context, index) {
                       var selected = index == 0;
                       return JobTag(
@@ -211,18 +206,18 @@ class _JobHomePageState extends State<JobHomePage> {
                         textColor: selected ? Colors.white : AssetColors.grey3,
                         backgroundColor: selected
                             ? AssetColors.blueButton
-                            : Color(0xffE0E0E0),
+                            : const Color(0xffE0E0E0),
                       );
                     }),
               ),
-              SizedBox(height: 25),
+              const SizedBox(height: 25),
               GridView.builder(
-                gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
                   crossAxisCount: 2,
                   crossAxisSpacing: 8,
                   mainAxisSpacing: 8,
                 ),
-                physics: NeverScrollableScrollPhysics(),
+                physics: const NeverScrollableScrollPhysics(),
                 shrinkWrap: true,
                 itemCount: jobs.length,
                 itemBuilder: (context, index) {

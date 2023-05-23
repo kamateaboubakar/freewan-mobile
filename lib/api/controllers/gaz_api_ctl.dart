@@ -2,7 +2,6 @@ import 'package:wan_mobile/models/gas_size.dart';
 import 'package:wan_mobile/models/shop.dart';
 import 'package:wan_mobile/tools/types/types.dart';
 
-import '../../models/pays.dart';
 import '../../tools/const/const.dart';
 import '../../tools/utils/http_response.dart';
 import '../abstracts/http_client_const.dart';
@@ -14,7 +13,6 @@ class GazApiCtl extends WebController {
     try {
       var url =
           "${Const.gazBaseUrl}/shops/closests?latitude=$latitude&longitude=$longitude";
-      print('url $url');
       var res = await get(url, headers: HttpClientConst.headers);
       var body = HttpResponse.decodeBody(res);
 
@@ -35,7 +33,6 @@ class GazApiCtl extends WebController {
           headers: HttpClientConst.headers);
       var body = HttpResponse.decodeBody(res);
 
-      print(body.data);
       if (body.status) {
         return HttpResponse.success(data: Shop.fromJson(body.data));
       } else {
@@ -55,8 +52,6 @@ class GazApiCtl extends WebController {
           "${Const.gazBaseUrl}/brandsInShop/gasSizes?shop_id=$shopId&brand_id=$brandId",
           headers: HttpClientConst.headers);
       var body = HttpResponse.decodeBody(res);
-
-      print(body.data);
 
       if (body.status) {
         return HttpResponse.success(
@@ -81,19 +76,16 @@ class GazApiCtl extends WebController {
     try {
       var requestBody = {
         "brandInShopId": "$brandInShopId",
-        "customerSessionId": "$customerSessionId",
+        "customerSessionId": customerSessionId,
         "customerAddressId": "$customerAddressId",
         "latitude": "$latitude",
         "longitude": "$longitude",
         "targetId": "$targetId",
         "price": "$price"
       };
-      print(requestBody);
       var url = "${Const.gazBaseUrl}/orders/";
-      print(url);
       var res = await post(url, requestBody.toJson(),
           headers: {"Content-Type": "application/form-data"});
-      print(res.body);
       var body = HttpResponse.decodeBody(res);
       if (body.status) {
         if (body.data != null) {

@@ -141,8 +141,6 @@ class UserApiCtl extends WebController {
         headers: HttpClientConst.authHeaders,
       );
       var body = HttpResponse.decodeBody(res);
-      print('get profile');
-      print(body.data);
       if (body.status) {
         return HttpResponse.success(data: User.fromJson(body.data));
       } else {

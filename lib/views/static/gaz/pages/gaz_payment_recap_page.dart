@@ -3,7 +3,6 @@ import 'package:get/get.dart';
 import 'package:wan_mobile/tools/utils/tools.dart';
 import 'package:wan_mobile/tools/widgets/c_button.dart';
 import 'package:wan_mobile/views/static/paiement/paiement_operation_success.dart';
-import 'package:wan_mobile/views/static/scan_pay/scan_pay_operation_en_cours.dart';
 
 import '../../../controllers/gaz/gas_shop_vctl.dart';
 import '../../../controllers/gaz/gas_vctl.dart';
@@ -16,8 +15,8 @@ class GazPaymentRecapPage extends StatefulWidget {
 }
 
 class _GazPaymentRecapPageState extends State<GazPaymentRecapPage> {
-  GasController _gasController = Get.put(GasController());
-  GasShopController _gasShopController = Get.put(GasShopController());
+  final GasController _gasController = Get.put(GasController());
+  final GasShopController _gasShopController = Get.put(GasShopController());
 
   @override
   Widget build(BuildContext context) {
@@ -91,7 +90,7 @@ class _GazPaymentRecapPageState extends State<GazPaymentRecapPage> {
                           ),
                           Text(
                             "${_gasShopController.gasSize!.price!} FCFA",
-                            style: TextStyle(
+                            style: const TextStyle(
                               fontWeight: FontWeight.w700,
                               fontSize: 15,
                               color: Colors.white,
@@ -169,7 +168,7 @@ class _GazPaymentRecapPageState extends State<GazPaymentRecapPage> {
                           ),
                           Text(
                             "${_gasShopController.gasSize!.price!} FCFA",
-                            style: TextStyle(
+                            style: const TextStyle(
                               fontWeight: FontWeight.w700,
                               fontSize: 15,
                               color: Colors.white,
@@ -199,7 +198,7 @@ class _GazPaymentRecapPageState extends State<GazPaymentRecapPage> {
     );
     Get.back();
     if (!response.status) {
-      Tools.messageBox(message: response.message!);
+      Tools.messageBox(message: response.message);
       return;
     }
 

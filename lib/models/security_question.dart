@@ -12,7 +12,7 @@ class SecurityQuestion {
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
+    final Map<String, dynamic> data = {};
     data['securityQuestionId'] = this.id;
     data['code'] = this.code;
     // data['label'] = this.label;

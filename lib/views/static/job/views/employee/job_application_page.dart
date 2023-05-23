@@ -2,9 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:wan_mobile/tools/utils/asset_colors.dart';
 
 import '../../../../../tools/widgets/c_button.dart';
-import '../../../../../tools/widgets/c_dropdown_field.dart';
 import '../../../../../tools/widgets/c_textform_field.dart';
-import '../../job_views.dart';
 
 class JobApplicationPage extends StatefulWidget {
   const JobApplicationPage({Key? key}) : super(key: key);
@@ -28,7 +26,7 @@ class _JobApplicationPageState extends State<JobApplicationPage> {
         title: const Text("Postulation"),
       ),
       body: Padding(
-        padding: EdgeInsets.all(16),
+        padding: const EdgeInsets.all(16),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
@@ -37,27 +35,27 @@ class _JobApplicationPageState extends State<JobApplicationPage> {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.stretch,
                   children: [
-                    Text(
+                    const Text(
                       "Ecrivez votre lettre de motivation et télécharger votre CV",
-                      style: TextStyle(
-                        fontSize: 14,
-                        color: AssetColors.blue
-                      ),
+                      style: TextStyle(fontSize: 14, color: AssetColors.blue),
                       textAlign: TextAlign.center,
                     ),
-                    SizedBox(height: 16),
+                    const SizedBox(height: 16),
                     CTextFormField(
                       controller: _coverLetterCtrl,
                       hintText: "Lettre de motivation *",
                       onChanged: (value) {},
                       maxLines: 5,
                     ),
-                    SizedBox(height: 5),
+                    const SizedBox(height: 5),
                     CTextFormField(
-                      hintText: isResumeUploaded ? "CV ajouté" : "Sélection CV *",
+                      hintText:
+                          isResumeUploaded ? "CV ajouté" : "Sélection CV *",
                       onChanged: (value) {},
                       readOnly: true,
-                      fillColor: isResumeUploaded ? Color(0xff14B53A) : Colors.white,
+                      fillColor: isResumeUploaded
+                          ? const Color(0xff14B53A)
+                          : Colors.white,
                       onTap: () {
                         setState(() {
                           isResumeUploaded = true;
@@ -83,7 +81,7 @@ class _JobApplicationPageState extends State<JobApplicationPage> {
                 ),
               ),
             ),
-            SizedBox(height: 10),
+            const SizedBox(height: 10),
             CButton(
               onPressed: () {},
               height: 48,

@@ -39,12 +39,12 @@ class PaiementModePaiement extends StatelessWidget {
     ];
 
     List<Color> colors = [
-      Color(0xffff7900).withOpacity(0.09),
-      Color(0xfffcc916).withOpacity(0.09),
-      Color(0xffff7900).withOpacity(0.09),
-      Color(0xff4AD2FA).withOpacity(0.09),
-      Color(0xff2566AF).withOpacity(0.09),
-      Color(0xffEA001B).withOpacity(0.15),
+      const Color(0xffff7900).withOpacity(0.09),
+      const Color(0xfffcc916).withOpacity(0.09),
+      const Color(0xffff7900).withOpacity(0.09),
+      const Color(0xff4AD2FA).withOpacity(0.09),
+      const Color(0xff2566AF).withOpacity(0.09),
+      const Color(0xffEA001B).withOpacity(0.15),
     ];
 
     return Scaffold(
@@ -80,7 +80,7 @@ class PaiementModePaiement extends StatelessWidget {
                   ),
                   borderRadius: BorderRadius.circular(10),
                 ),
-                padding: EdgeInsets.symmetric(horizontal: 16),
+                padding: const EdgeInsets.symmetric(horizontal: 16),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   mainAxisAlignment: MainAxisAlignment.center,
@@ -102,13 +102,11 @@ class PaiementModePaiement extends StatelessWidget {
                         ),
                       ),
                     ),
-                    SizedBox(height: 10),
+                    const SizedBox(height: 10),
                     Text(
                       item.label,
-                      style: TextStyle(
-                        fontWeight: FontWeight.bold,
-                        fontSize: 12
-                      ),
+                      style: const TextStyle(
+                          fontWeight: FontWeight.bold, fontSize: 12),
                     )
                   ],
                 ),

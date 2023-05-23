@@ -8,6 +8,8 @@ import '../../../../tools/widgets/c_textform_field.dart';
 class TvBillsAccountNumberPage extends StatelessWidget {
   final TextEditingController _referenceCtrl = TextEditingController();
 
+  TvBillsAccountNumberPage({super.key});
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -17,7 +19,7 @@ class TvBillsAccountNumberPage extends StatelessWidget {
         title: const Text("Abonnement Canalplus"),
       ),
       body: Padding(
-        padding: EdgeInsets.symmetric(horizontal: 16, vertical: 24),
+        padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 24),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
@@ -29,12 +31,12 @@ class TvBillsAccountNumberPage extends StatelessWidget {
                       'assets/images/Canal+1.png',
                       height: 50,
                     ),
-                    SizedBox(height: 20),
-                    Text(
+                    const SizedBox(height: 20),
+                    const Text(
                       'Entrez le numéro d’abonné de 14 chiffres',
                       textAlign: TextAlign.center,
                     ),
-                    SizedBox(height: 30),
+                    const SizedBox(height: 30),
                     CTextFormField(
                       keyboardType: TextInputType.emailAddress,
                       require: true,
@@ -47,7 +49,8 @@ class TvBillsAccountNumberPage extends StatelessWidget {
             ),
             CButton(
               height: 50,
-              onPressed: () => Get.to(TvBillsFormulaListPage(newSubscription: false)),
+              onPressed: () => Get.to(
+                  () => const TvBillsFormulaListPage(newSubscription: false)),
               child: const Text("Confirmer"),
             ),
           ],

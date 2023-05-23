@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:wan_mobile/views/static/tv_bills/tv_bills_account_number_page.dart';
 import 'package:wan_mobile/views/static/tv_bills/tv_bills_forumla_list_page.dart';
 
 import '../../../tools/widgets/account_selection_item.dart';
@@ -27,13 +26,12 @@ class TvBillsAccountSelectionPage extends StatelessWidget {
               image: "assets/images/Canal+1.png",
               imageWidth: 25,
               onTap: () {
-                Get.to(TvBillsFormulaListPage());
+                Get.to(() => const TvBillsFormulaListPage());
               },
             ),
             AddAccountButton(
               title: "Payer pour un autre compte",
-              onTap: () {
-              },
+              onTap: () {},
             )
           ],
         ),

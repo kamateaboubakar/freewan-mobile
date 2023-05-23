@@ -25,15 +25,15 @@ class _JobEmployerOffersPageState extends State<JobEmployerOffersPage> {
         title: const Text("Offres"),
       ),
       body: Padding(
-        padding: EdgeInsets.all(16),
-        child: isOfferAdded ? JobListView() : NoOfferView(screenWidth),
+        padding: const EdgeInsets.all(16),
+        child: isOfferAdded ? jobListView() : noOfferView(screenWidth),
       ),
       floatingActionButton: Visibility(
         visible: isOfferAdded,
         child: FloatingActionButton(
           backgroundColor: AssetColors.blueButton,
-          onPressed: () => Get.to(AddJobOfferInformationPage()),
-          child: Icon(
+          onPressed: () => Get.to(const AddJobOfferInformationPage()),
+          child: const Icon(
             Icons.add,
             color: Colors.white,
           ),
@@ -42,21 +42,21 @@ class _JobEmployerOffersPageState extends State<JobEmployerOffersPage> {
     );
   }
 
-  Widget NoOfferView(double screenWidth) {
+  Widget noOfferView(double screenWidth) {
     return Column(
       mainAxisAlignment: MainAxisAlignment.center,
       crossAxisAlignment: CrossAxisAlignment.stretch,
       children: [
         Image.asset("assets/images/no_offer.png", height: 200),
-        SizedBox(height: 10),
-        Text(
+        const SizedBox(height: 10),
+        const Text(
           'Aucune offre',
           style: TextStyle(
             fontSize: 20,
           ),
           textAlign: TextAlign.center,
         ),
-        SizedBox(height: 20),
+        const SizedBox(height: 20),
         Center(
           child: SizedBox(
             width: screenWidth * 0.6,
@@ -73,7 +73,7 @@ class _JobEmployerOffersPageState extends State<JobEmployerOffersPage> {
                     color: AssetColors.blueButton,
                   ),
                 ),
-                padding: EdgeInsets.all(12),
+                padding: const EdgeInsets.all(12),
                 child: Stack(
                   children: const [
                     Align(
@@ -101,16 +101,16 @@ class _JobEmployerOffersPageState extends State<JobEmployerOffersPage> {
     );
   }
 
-  Widget JobListView() {
+  Widget jobListView() {
     return GridView.builder(
-      gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+      gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
         crossAxisCount: 2,
         crossAxisSpacing: 8,
         mainAxisSpacing: 8,
       ),
       itemCount: 2,
       itemBuilder: (context, index) {
-        return JobItem();
+        return const JobItem();
       },
     );
   }

@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:wan_mobile/tools/utils/asset_colors.dart';
 
 import '../../../../../tools/widgets/c_button.dart';
 import '../../../../../tools/widgets/c_dropdown_field.dart';
@@ -33,12 +32,12 @@ class _AddJobOfferInformationPageState
         title: const Text("Mon offre"),
       ),
       body: Padding(
-        padding: EdgeInsets.all(16),
+        padding: const EdgeInsets.all(16),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
             Row(
-              children: [
+              children: const [
                 Text(
                   'Informations du\nposte',
                   style: TextStyle(
@@ -52,7 +51,7 @@ class _AddJobOfferInformationPageState
                 )
               ],
             ),
-            SizedBox(height: 15),
+            const SizedBox(height: 15),
             Expanded(
               child: SingleChildScrollView(
                 child: Column(
@@ -63,33 +62,33 @@ class _AddJobOfferInformationPageState
                       hintText: "Titre du poste *",
                       onChanged: (value) {},
                     ),
-                    SizedBox(height: 5),
-                    CDropdownField<String>(
+                    const SizedBox(height: 5),
+                    const CDropdownField<String>(
                       labelText: "Catégorie *",
                       items: ["Software Engineering", "Design"],
                       backgroundColor: Colors.white,
                     ),
-                    SizedBox(height: 5),
-                    CDropdownField<String>(
+                    const SizedBox(height: 5),
+                    const CDropdownField<String>(
                       labelText: "Expérience *",
                       items: ["> 3 years", "< 3 years"],
                       backgroundColor: Colors.white,
                     ),
-                    SizedBox(height: 5),
-                    CDropdownField<String>(
+                    const SizedBox(height: 5),
+                    const CDropdownField<String>(
                       labelText: "Type *",
                       items: ["Part-Time", "Full-Time"],
                       backgroundColor: Colors.white,
                     ),
-                    SizedBox(height: 5),
+                    const SizedBox(height: 5),
                     CTextFormField(
                       keyboardType: TextInputType.phone,
                       controller: _jobPlaceCtrl,
                       hintText: "Lieu *",
                       onChanged: (value) {},
                     ),
-                    SizedBox(height: 5),
-                    CDropdownField<String>(
+                    const SizedBox(height: 5),
+                    const CDropdownField<String>(
                       labelText: "A distance/Sur site *",
                       items: ["A distance", "Sur site"],
                       backgroundColor: Colors.white,
@@ -98,9 +97,9 @@ class _AddJobOfferInformationPageState
                 ),
               ),
             ),
-            SizedBox(height: 10),
+            const SizedBox(height: 10),
             CButton(
-              onPressed: () => Get.to(AddJobOfferDescriptionPage()),
+              onPressed: () => Get.to(const AddJobOfferDescriptionPage()),
               height: 48,
               child: const Text(
                 "Continuer",

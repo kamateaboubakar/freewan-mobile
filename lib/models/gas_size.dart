@@ -17,12 +17,12 @@ class GasSize {
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['price'] = this.price;
-    data['id'] = this.id;
-    data['name'] = this.name;
-    data['picture_name'] = this.pictureName;
-    data['brand_in_shop_id'] = this.brandInShopId;
+    final Map<String, dynamic> data = {};
+    data['price'] = price;
+    data['id'] = id;
+    data['name'] = name;
+    data['picture_name'] = pictureName;
+    data['brand_in_shop_id'] = brandInShopId;
     return data;
   }
 }

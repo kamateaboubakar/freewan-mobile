@@ -39,7 +39,7 @@ class User {
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
+    final Map<String, dynamic> data = {};
     data['phoneNumber'] = phoneNumber;
     data['countryCallingCode'] = countryCallingCode;
     data['email'] = email;

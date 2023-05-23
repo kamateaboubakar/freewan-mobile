@@ -1,12 +1,9 @@
-import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:lottie/lottie.dart';
 import 'package:wan_mobile/tools/const/const.dart';
 import 'package:wan_mobile/tools/types/types.dart';
-import 'package:wan_mobile/tools/widgets/c_button.dart';
 import 'package:wan_mobile/views/controllers/home/home_page_vctl.dart';
-import 'package:wan_mobile/views/static/auth/phone_auth/phone_auth.dart';
 
 class HomeDrawer extends StatelessWidget {
   final HomePageVctl ctl;
@@ -158,6 +155,6 @@ class HomeDrawer extends StatelessWidget {
         // ),
       );
     }
-    return Drawer();
+    return const Drawer();
   }
 }

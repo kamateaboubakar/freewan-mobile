@@ -4,30 +4,30 @@ import '../../models/location_model.dart';
 import 'package:geocoding/geocoding.dart' hide Location;
 
 class LocationService {
-  static Location _location = new Location();
+  static final Location _location = Location();
 
   static Future<bool> requestLocationPermission() async {
-    bool _serviceEnabled;
-    PermissionStatus _permissionGranted;
+    bool serviceEnabled;
+    PermissionStatus permissionGranted;
 
-    _serviceEnabled = await _location.serviceEnabled();
-    if (!_serviceEnabled) {
-      _serviceEnabled = await _location.requestService();
-      if (!_serviceEnabled) {
+    serviceEnabled = await _location.serviceEnabled();
+    if (!serviceEnabled) {
+      serviceEnabled = await _location.requestService();
+      if (!serviceEnabled) {
         return false;
       }
     }
 
-    _permissionGranted = await _location.requestPermission();
-    if (_permissionGranted != PermissionStatus.granted) {
+    permissionGranted = await _location.requestPermission();
+    if (permissionGranted != PermissionStatus.granted) {
       return false;
     }
     return true;
   }
 
   static Future<bool> hasLocationPermission() async {
-    var _permissionGranted = await _location.hasPermission();
-    return _permissionGranted == PermissionStatus.granted;
+    var permissionGranted = await _location.hasPermission();
+    return permissionGranted == PermissionStatus.granted;
   }
 
   static Future<LocationModel> getLocation({

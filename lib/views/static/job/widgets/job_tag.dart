@@ -22,7 +22,7 @@ class JobTag extends StatelessWidget {
         color: backgroundColor ?? AssetColors.blueButton,
         borderRadius: BorderRadius.circular(8),
       ),
-      padding: EdgeInsets.symmetric(vertical: 4, horizontal: 8),
+      padding: const EdgeInsets.symmetric(vertical: 4, horizontal: 8),
       alignment: Alignment.center,
       child: Text(
         title,

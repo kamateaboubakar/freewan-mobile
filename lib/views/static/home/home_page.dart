@@ -17,8 +17,10 @@ import 'package:badges/badges.dart' as badges;
 import 'package:wan_mobile/views/static/loyer/loyer_bottom_sheet.dart';
 import 'package:wan_mobile/views/static/scan_pay/scan_pay_camera.dart';
 import 'package:wan_mobile/views/static/tontine/tontine_page.dart';
+import 'package:wan_mobile/views/static/tv_bills/tv_bills_selection_dialog.dart';
 
 import '../bills/bills_views.dart';
+import '../gaz/pages/gaz_map_page.dart';
 import '../job/job_views.dart';
 
 class HomePage extends StatelessWidget {
@@ -332,7 +334,7 @@ class HomePage extends StatelessWidget {
                                     title: "Job",
                                     onPressed: () {
                                       Tools.openBottomSheet(
-                                          JobProfileSelectionDialog());
+                                          const JobProfileSelectionDialog());
                                     },
                                   ),
                                   ButtonMenu(
@@ -416,7 +418,10 @@ class HomePage extends StatelessWidget {
                                     icon: Image.asset(
                                         "assets/images/icons/abonnement_tele.png"),
                                     title: "Abonnement\nTélé",
-                                    onPressed: () {},
+                                    onPressed: () {
+                                      Tools.openBottomSheet(
+                                          const TvBillsSelectionDialog());
+                                    },
                                   ),
                                   ButtonMenu(
                                     icon: Image.asset(
@@ -440,7 +445,10 @@ class HomePage extends StatelessWidget {
                                       ),
                                     ),
                                     title: "Voir Plus",
-                                    onPressed: () {},
+                                    onPressed: () {
+                                      //Tools.openBottomSheet(JobProfileSelectionDialog());
+                                      Get.to(() => const GazMapPage());
+                                    },
                                   ),
                                 ],
                               ),

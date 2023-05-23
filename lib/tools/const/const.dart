@@ -9,6 +9,7 @@ abstract class Const {
   static const primaryFonts = "";
 
   static var onlineUrl = "http://148.113.143.59:8080/api/v1";
+  static var gazBaseUrl = "http://148.113.143.59:8082";
   static var localUrl = "";
   static var defaultFont = GoogleFonts.poppins();
 

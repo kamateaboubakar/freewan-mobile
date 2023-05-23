@@ -7,19 +7,22 @@ class User {
   String? countryCallingCode;
   String? email;
   String? password;
-  String? firstName, lastName;
+  String? firstName, lastName, accountId;
   DateTime? birthDate;
 
   List<SecurityQuestion> securityQuestions = [];
 
-  User(
-      {this.phoneNumber,
-      this.countryCallingCode,
-      this.email,
-      this.password,
-      this.securityQuestions = const []});
+  User({
+    this.phoneNumber,
+    this.countryCallingCode,
+    this.email,
+    this.password,
+    this.accountId,
+    this.securityQuestions = const [],
+  });
 
   User.fromJson(Map<String, dynamic> json) {
+    accountId = json['accountId'];
     id = json['id'];
     phoneNumber = json['phoneNumber'] ?? json["login"];
     countryCallingCode = json['countryCallingCode'];

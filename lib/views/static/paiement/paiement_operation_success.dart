@@ -1,11 +1,19 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:lottie/lottie.dart';
+import 'package:wan_mobile/tools/utils/asset_colors.dart';
 import 'package:wan_mobile/tools/widgets/c_button.dart';
 import 'package:wan_mobile/views/static/home/home_page.dart';
 
 class PaiementOperationSucess extends StatelessWidget {
-  const PaiementOperationSucess({super.key});
+  final String? animationAsset;
+  final String? description;
+
+  const PaiementOperationSucess({
+    super.key,
+    this.animationAsset,
+    this.description,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -20,7 +28,7 @@ class PaiementOperationSucess extends StatelessWidget {
             Get.reset();
           },
           child: const Text(
-            "Effectuer Paiement",
+            "Aller à l'accueil",
             style: TextStyle(
               fontSize: 16,
               fontWeight: FontWeight.w600,
@@ -41,7 +49,17 @@ class PaiementOperationSucess extends StatelessWidget {
                 color: Color.fromRGBO(0, 133, 63, 1),
               ),
             ),
-            Lottie.asset('assets/lotties/79952-successful.json'),
+            Lottie.asset(
+                animationAsset ?? 'assets/lotties/79952-successful.json'),
+            if (description != null)
+              Text(
+                description!,
+                textAlign: TextAlign.center,
+                style: TextStyle(
+                  fontSize: 20,
+                  color: AssetColors.darkBrown,
+                ),
+              )
           ],
         ),
       ),

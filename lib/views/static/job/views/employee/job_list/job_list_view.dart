@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:wan_mobile/tools/widgets/error_view.dart';
 import 'package:wan_mobile/views/controllers/job/job_sector_vctl.dart';
+import 'package:wan_mobile/views/static/job/views/employee/employee_views.dart';
 
 import '../../../../../controllers/job/job_list_vctl.dart';
 import '../../../widgets/job_tag.dart';
@@ -68,6 +69,10 @@ class _JobListViewState extends State<JobListView> {
               return JobItem(
                 canDelete: false,
                 jobEntity: job,
+                onTap: (){
+                  _jobListController.updateSelectedJobOffer(job);
+                  Get.to(JobDescriptionPage());
+                },
               );
             },
           );

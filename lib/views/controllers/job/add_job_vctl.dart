@@ -7,6 +7,7 @@ import 'package:wan_mobile/api/controllers/job_api_ctl.dart';
 import 'package:wan_mobile/api/controllers/job_sector_api_ctl.dart';
 import 'package:wan_mobile/api/controllers/pays_api_ctl.dart';
 import 'package:wan_mobile/models/pays.dart';
+import 'package:wan_mobile/tools/utils/file_util.dart';
 import 'package:wan_mobile/views/controllers/abstracts/view_controller.dart';
 import 'package:wan_mobile/tools/utils/http_response.dart';
 
@@ -165,8 +166,7 @@ class AddJobController extends ViewController {
     late HttpResponse companyResponse;
 
     if (isNewCompany) {
-      List<int> imageBytes = _logoFile!.readAsBytesSync();
-      _newCompany.logo = base64Encode(imageBytes);
+      _newCompany.logo = _logoFile!.toBase64;
       companyResponse = await _companyApiCtrl.createCompany(_newCompany);
       if (!companyResponse.status) {
         return companyResponse;

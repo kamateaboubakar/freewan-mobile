@@ -1,3 +1,4 @@
+import 'package:get/get.dart';
 import 'package:wan_mobile/api/controllers/gaz_api_ctl.dart';
 import 'package:wan_mobile/api/controllers/job_api_ctl.dart';
 import 'package:wan_mobile/api/services/location_service.dart';
@@ -20,6 +21,14 @@ class JobListController extends ViewController {
 
   JobOffer? get jobOffer => _jobOffer;
 
+  final Rx<int> _descriptionTabIndex = 0.obs;
+
+  int get descriptionTabIndex => _descriptionTabIndex.value;
+
+  bool get isDescriptionTabSelected => _descriptionTabIndex.value == 0;
+
+  bool get isEntrepriseTabSelected => _descriptionTabIndex.value == 1;
+
   getJobOffers() async {
     _response = null;
     update();
@@ -30,5 +39,13 @@ class JobListController extends ViewController {
   void updateSelectedJobOffer(JobOffer jobOffer) {
     _jobOffer = jobOffer;
     update();
+  }
+
+  void resetDescriptionTabIndex() {
+    _descriptionTabIndex.value = 0;
+  }
+
+  updateDescriptionTabIndex(int value) {
+    _descriptionTabIndex.value = value;
   }
 }

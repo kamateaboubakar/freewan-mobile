@@ -108,10 +108,10 @@ class Tools {
           radius: radius,
           actions: actions,
           onConfirm: () {
-            if(onConfirm != null){
+            Get.back();
+            if (onConfirm != null) {
               onConfirm();
             }
-            Get.back();
           },
           barrierDismissible: barrierDismissible);
 

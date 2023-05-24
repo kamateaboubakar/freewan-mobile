@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:wan_mobile/models/job/jobs_offer.dart';
+import 'package:wan_mobile/models/job/job_offer.dart';
 import 'package:wan_mobile/views/static/job/job_views.dart';
 
 class JobItem extends StatelessWidget {
@@ -31,16 +31,25 @@ class JobItem extends StatelessWidget {
             children: [
               Container(
                 decoration: BoxDecoration(
-                  color: jobEntity?.iconBackgroundColor ??
-                      const Color(0xff34A853).withOpacity(0.1),
+                  color: Color(0xff34A853).withOpacity(0.1),
                   borderRadius: BorderRadius.circular(10),
                 ),
-                padding: const EdgeInsets.symmetric(vertical: 4, horizontal: 12),
-                child: Image.asset(
-                  jobEntity?.icon ?? 'assets/images/grommet-icons_google.png',
-                  width: 35,
-                  height: 35,
-                ),
+                padding:
+                    const EdgeInsets.symmetric(vertical: 4, horizontal: 12),
+                child: jobEntity == null
+                    ? Image.asset(
+                        'assets/images/grommet-icons_google.png',
+                        width: 35,
+                        height: 35,
+                      )
+                    : Image.memory(
+                        Uri.parse(
+                                "data:image/png;base64,${jobEntity!.company!.logo!}")
+                            .data!
+                            .contentAsBytes(),
+                        width: 35,
+                        height: 35,
+                      ),
               ),
               if (canDelete) ...[
                 const Spacer(),
@@ -54,12 +63,12 @@ class JobItem extends StatelessWidget {
           ),
           const SizedBox(height: 5),
           Text(
-            jobEntity?.jobTitle ?? 'UI Designer',
+            jobEntity?.label ?? 'UI Designer',
             style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 14),
           ),
           const SizedBox(height: 5),
           Text(
-            jobEntity?.companyName ?? 'Google - A distance, CA',
+            jobEntity?.company?.name ?? 'Google - A distance, CA',
             style: const TextStyle(
               fontSize: 10,
               color: Color(0xff828282),
@@ -67,7 +76,7 @@ class JobItem extends StatelessWidget {
           ),
           const SizedBox(height: 5),
           Text(
-            jobEntity?.salary ?? 'FCFA 500 000  / Mo',
+            'FCFA ${jobEntity?.expectedSalary ?? '500 000'} / Mo',
             style: const TextStyle(
               fontSize: 10,
               color: Color(0xff828282),

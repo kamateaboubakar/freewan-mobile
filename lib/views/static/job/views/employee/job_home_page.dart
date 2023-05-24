@@ -4,7 +4,7 @@ import 'package:wan_mobile/tools/utils/asset_colors.dart';
 import 'package:wan_mobile/views/static/job/views/employee/employee_views.dart';
 import 'package:wan_mobile/views/static/job/views/employee/job_list/job_list_view.dart';
 
-import '../../../../../models/job/jobs_offer.dart';
+import '../../../../../models/job/job_entity.dart';
 import '../../../../../tools/widgets/c_textform_field.dart';
 import '../../job_views.dart';
 import 'jobs_sector/job_sector_view.dart';
@@ -192,7 +192,7 @@ class _JobHomePageState extends State<JobHomePage> {
                 ),
               ),
               const SizedBox(height: 25),
-              SizedBox(
+              const SizedBox(
                 height: 35,
                 child: JobSectorView(),
               ),

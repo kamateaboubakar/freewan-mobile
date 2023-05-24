@@ -96,7 +96,7 @@ class _AddJobOfferDescriptionPageState
                   height: 50,
                   onPressed: () {
                     if (_addJobController.isJobDescriptionValid) {
-                      _addJob();
+                     Get.to(() => AddJobOfferCompanyPage());
                     }
                   },
                   color: _addJobController.isJobDescriptionValid
@@ -117,21 +117,5 @@ class _AddJobOfferDescriptionPageState
         ),
       ),
     );
-  }
-
-  void _addJob() async {
-    var pr = Tools.progressDialog();
-    pr.show();
-    var response = await _addJobController.addJobOffer();
-    Get.back();
-    if (!response.status) {
-      Tools.messageBox(message: response.message);
-      return;
-    }
-    Tools.messageBox(
-        message: response.message,
-        onConfirm: () {
-          Get.offAll(HomePage());
-        });
   }
 }

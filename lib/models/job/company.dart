@@ -14,17 +14,17 @@ class Company {
 
   Company(
       {this.id,
-        this.activitySectorId,
-        this.name,
-        this.email,
-        this.legalForm,
-        this.address,
-        this.phoneNumber,
-        this.createdAt,
-        this.employeesCount,
-        this.revenues,
-        this.verified,
-        this.logo});
+      this.activitySectorId,
+      this.name = '',
+      this.email = '',
+      this.legalForm = '',
+      this.address = '',
+      this.phoneNumber = '',
+      this.createdAt,
+      this.employeesCount = 0,
+      this.revenues = 0,
+      this.verified = false,
+      this.logo});
 
   Company.fromJson(Map<String, dynamic> json) {
     id = json['id'];
@@ -40,6 +40,13 @@ class Company {
     verified = json['verified'];
     logo = json['logo'];
   }
+
+  bool get hasInformationFilled =>
+      name!.isNotEmpty &&
+      activitySectorId != null &&
+      email!.isNotEmpty &&
+      address!.isNotEmpty &&
+      legalForm!.isNotEmpty;
 
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = new Map<String, dynamic>();

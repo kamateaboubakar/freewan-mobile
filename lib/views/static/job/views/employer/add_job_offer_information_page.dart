@@ -38,7 +38,6 @@ class _AddJobOfferInformationPageState
       _getJobSectors();
       _getContractTypes();
       _getPays();
-      _getCompanies();
     });
   }
 
@@ -83,51 +82,6 @@ class _AddJobOfferInformationPageState
                         _addJobController.updateJobTitle(value);
                       },
                     ),
-                    const SizedBox(height: 10),
-                    GetBuilder(
-                        id: 'add_job_company',
-                        init: _addJobController,
-                        builder: (controller) {
-                          _addJobController = controller;
-                          var response = controller.companyResponse;
-
-                          if (response == null) {
-                            return const Center(
-                              child: SizedBox(
-                                width: 40,
-                                height: 40,
-                                child: CircularProgressIndicator(),
-                              ),
-                            );
-                          }
-
-                          if (!response.status) {
-                            return Center(
-                              child: InkWell(
-                                onTap: () {
-                                  _getCompanies();
-                                },
-                                child: Icon(Icons.refresh),
-                              ),
-                            );
-                          }
-
-                          var companies = response.data!;
-                          return CDropdownField<Company>(
-                            labelText: "Entreprise *",
-                            items: companies,
-                            backgroundColor: Colors.white,
-                            itemBuilder: (company) {
-                              return Text(company.name!);
-                            },
-                            selectedItemBuilder: (company) {
-                              return Text(company?.name ?? '');
-                            },
-                            onChanged: (company) {
-                              _addJobController.updateSelectedCompany(company!);
-                            },
-                          );
-                        }),
                     const SizedBox(height: 10),
                     GetBuilder(
                         id: 'add_job_pays',
@@ -326,9 +280,5 @@ class _AddJobOfferInformationPageState
 
   _getPays() {
     _addJobController.getPays();
-  }
-
-  _getCompanies() {
-    _addJobController.getCompanies();
   }
 }

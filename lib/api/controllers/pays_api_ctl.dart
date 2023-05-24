@@ -21,28 +21,28 @@ class PaysApiCtl extends WebController {
     }
   }
 
-  //  var response = await client.post(
-  //       baseUrl(),
-  //       body: {
-  //         "query": "query GetCountryCodes{ "
-  //             "CountryNode { "
-  //             "edges { "
-  //             "node { id code name ext } } } }",
-  //         "variables": {}
-  //       }.toJson(),
-  //       headers: headers,
-  //     );
+//  var response = await client.post(
+//       baseUrl(),
+//       body: {
+//         "query": "query GetCountryCodes{ "
+//             "CountryNode { "
+//             "edges { "
+//             "node { id code name ext } } } }",
+//         "variables": {}
+//       }.toJson(),
+//       headers: headers,
+//     );
 
-  //     var body = HttpResponse.decodeBody(response);
-  //     if (body.status) {
-  //       return HttpResponse.success(
-  //           data: (body.data["data"]["CountryNode"]["edges"] as List)
-  //               .map((e) => Pays.fromJson(e))
-  //               .toList());
-  //     } else {
-  //       return HttpResponse.error(message: body.message);
-  //     }
-  //   } catch (e) {
-  //     return HttpResponse.error(detailErrors: e.toString());
-  //   }
+//     var body = HttpResponse.decodeBody(response);
+//     if (body.status) {
+//       return HttpResponse.success(
+//           data: (body.data["data"]["CountryNode"]["edges"] as List)
+//               .map((e) => Pays.fromJson(e))
+//               .toList());
+//     } else {
+//       return HttpResponse.error(message: body.message);
+//     }
+//   } catch (e) {
+//     return HttpResponse.error(detailErrors: e.toString());
+//   }
 }

@@ -57,5 +57,11 @@
         <string>WAN a besoin d'accéder à votre position pour trouver les services les plus proches de vous</string>
         <key>NSLocationAlwaysAndWhenInUseUsageDescription</key>
         <string>WAN a besoin d'accéder à votre position pour trouver les services les plus proches de vous</string>
+        <key><NSPhotoLibraryUsageDescription/key>
+        <string>WAN a besoin d'accéder à votre caméra pour trouver les services les plus proches de vous</string>
+        <key>NSCameraUsageDescription</key>
+        <string></string>
+        <key>NSMicrophoneUsageDescription</key>
+        <string></string>
 	</dict>
 </plist>

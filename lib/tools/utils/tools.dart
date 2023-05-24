@@ -107,7 +107,12 @@ class Tools {
           ),
           radius: radius,
           actions: actions,
-          onConfirm: () => Get.back(),
+          onConfirm: () {
+            if(onConfirm != null){
+              onConfirm();
+            }
+            Get.back();
+          },
           barrierDismissible: barrierDismissible);
 
   static SnackbarController showToast({

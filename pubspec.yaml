@@ -32,7 +32,6 @@ dependencies:
     sdk: flutter
   get: ^4.6.5
   auto_size_text: ^3.0.0
-  carousel_slider: ^4.2.1
   smooth_page_indicator: ^1.0.1
   shimmer: ^2.0.0
   badges: ^3.1.0
@@ -54,6 +53,10 @@ dependencies:
   firebase_auth: ^4.6.0 
   jwt_decode: ^0.3.1
   text_divider: ^1.0.0
+  flutter_scrolling_fab_animated: ^0.1.4
+  carousel_slider: ^4.2.1
+  flutter_image_slideshow: ^0.1.5
+  
 
   # The following adds the Cupertino Icons font to your application.
   # Use with the CupertinoIcons class for iOS style icons.

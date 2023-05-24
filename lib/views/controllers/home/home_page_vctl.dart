@@ -18,8 +18,10 @@ class HomePageVctl extends ViewController {
 
   HomePageVctl(this.displayWelcome);
 
-  DraggableScrollableController scrollController =
-      DraggableScrollableController();
+  // DraggableScrollableController scrollController =
+  //     DraggableScrollableController();
+
+  ScrollController scrollController = ScrollController();
 
   int currentAds = 0;
   bool smallButton = false;
@@ -29,15 +31,15 @@ class HomePageVctl extends ViewController {
     super.onInit();
     _displayWelcomeMessage();
 
-    scrollController.addListener(() {
-      if (scrollController.pixels == 754.4) {
-        smallButton = true;
-        update();
-      } else if (scrollController.pixels == 565.8) {
-        smallButton = false;
-        update();
-      }
-    });
+    // scrollController.addListener(() {
+    //   if (scrollController.pixels == 754.4) {
+    //     smallButton = true;
+    //     update();
+    //   } else if (scrollController.pixels == 565.8) {
+    //     smallButton = false;
+    //     update();
+    //   }
+    // });
   }
 
   _displayWelcomeMessage() {
@@ -107,9 +109,9 @@ class HomePageVctl extends ViewController {
 
   @override
   void dispose() {
-    scrollController.removeListener(() {});
-    scrollController.dispose();
-    update();
+    // scrollController.removeListener(() {});
+    // scrollController.dispose();
+    // update();
     super.dispose();
   }
 

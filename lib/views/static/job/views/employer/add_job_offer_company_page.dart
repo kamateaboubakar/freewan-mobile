@@ -15,6 +15,7 @@ class AddJobOfferCompanyPage extends StatefulWidget {
 class _AddJobOfferCompanyPageState extends State<AddJobOfferCompanyPage> {
   final TextEditingController _nameCtrl = TextEditingController();
   final TextEditingController _descriptionCtrl = TextEditingController();
+
   @override
   Widget build(BuildContext context) {
     double screenWidth = MediaQuery.of(context).size.width;

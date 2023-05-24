@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:wan_mobile/models/job/jobs_offer.dart';
 import 'package:wan_mobile/views/static/job/job_views.dart';
 
 class JobItem extends StatelessWidget {
   final bool canDelete;
-  final JobEntity? jobEntity;
+  final JobOffer? jobEntity;
 
   const JobItem({
     Key? key,
@@ -37,8 +38,8 @@ class JobItem extends StatelessWidget {
                 padding: const EdgeInsets.symmetric(vertical: 4, horizontal: 12),
                 child: Image.asset(
                   jobEntity?.icon ?? 'assets/images/grommet-icons_google.png',
-                  width: 50,
-                  height: 50,
+                  width: 35,
+                  height: 35,
                 ),
               ),
               if (canDelete) ...[
@@ -51,16 +52,16 @@ class JobItem extends StatelessWidget {
               ],
             ],
           ),
-          const SizedBox(height: 10),
+          const SizedBox(height: 5),
           Text(
             jobEntity?.jobTitle ?? 'UI Designer',
-            style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 16),
+            style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 14),
           ),
           const SizedBox(height: 5),
           Text(
             jobEntity?.companyName ?? 'Google - A distance, CA',
             style: const TextStyle(
-              fontSize: 12,
+              fontSize: 10,
               color: Color(0xff828282),
             ),
           ),
@@ -68,7 +69,7 @@ class JobItem extends StatelessWidget {
           Text(
             jobEntity?.salary ?? 'FCFA 500 000  / Mo',
             style: const TextStyle(
-              fontSize: 12,
+              fontSize: 10,
               color: Color(0xff828282),
             ),
           ),

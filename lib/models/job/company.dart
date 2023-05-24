@@ -1,0 +1,60 @@
+class Company {
+  int? id;
+  int? activitySectorId;
+  String? name;
+  String? email;
+  String? legalForm;
+  String? address;
+  String? phoneNumber;
+  String? createdAt;
+  double? employeesCount;
+  double? revenues;
+  bool? verified;
+  String? logo;
+
+  Company(
+      {this.id,
+        this.activitySectorId,
+        this.name,
+        this.email,
+        this.legalForm,
+        this.address,
+        this.phoneNumber,
+        this.createdAt,
+        this.employeesCount,
+        this.revenues,
+        this.verified,
+        this.logo});
+
+  Company.fromJson(Map<String, dynamic> json) {
+    id = json['id'];
+    activitySectorId = json['activitySectorId'];
+    name = json['name'];
+    email = json['email'];
+    legalForm = json['legalForm'];
+    address = json['address'];
+    phoneNumber = json['phoneNumber'];
+    createdAt = json['createdAt'];
+    employeesCount = json['employeesCount'];
+    revenues = json['revenues'];
+    verified = json['verified'];
+    logo = json['logo'];
+  }
+
+  Map<String, dynamic> toJson() {
+    final Map<String, dynamic> data = new Map<String, dynamic>();
+    data['id'] = this.id;
+    data['activitySectorId'] = this.activitySectorId;
+    data['name'] = this.name;
+    data['email'] = this.email;
+    data['legalForm'] = this.legalForm;
+    data['address'] = this.address;
+    data['phoneNumber'] = this.phoneNumber;
+    data['createdAt'] = this.createdAt;
+    data['employeesCount'] = this.employeesCount;
+    data['revenues'] = this.revenues;
+    data['verified'] = this.verified;
+    data['logo'] = this.logo;
+    return data;
+  }
+}

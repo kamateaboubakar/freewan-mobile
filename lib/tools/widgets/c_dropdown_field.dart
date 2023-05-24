@@ -17,6 +17,8 @@ class CDropdownField<T> extends StatelessWidget {
   final bool enabled;
   final String Function(T)? itemAsString;
   final Color? backgroundColor;
+  final Widget Function(T)? itemBuilder;
+  final Widget Function(T)? selectedItemBuilder;
 
   const CDropdownField({
     this.controller,
@@ -34,6 +36,8 @@ class CDropdownField<T> extends StatelessWidget {
     this.labelText,
     this.hintText,
     this.backgroundColor,
+    this.itemBuilder,
+    this.selectedItemBuilder,
     super.key,
   });
 
@@ -53,6 +57,11 @@ class CDropdownField<T> extends StatelessWidget {
           }
           return null;
         },
+        dropdownBuilder: selectedItemBuilder != null
+            ? (context, item) {
+                return item != null ? selectedItemBuilder!(item) : Container();
+              }
+            : null,
         dropdownDecoratorProps: DropDownDecoratorProps(
           dropdownSearchDecoration: InputDecoration(
             suffixIcon: suffixIcon,
@@ -95,6 +104,16 @@ class CDropdownField<T> extends StatelessWidget {
                   borderRadius: BorderRadius.circular(5),
                 ),
           ),
+        ),
+        popupProps: PopupProps.menu(
+          itemBuilder: itemBuilder != null
+              ? (context, item, selected) {
+                  return Padding(
+                    padding: EdgeInsets.all(8),
+                    child: itemBuilder!(item),
+                  );
+                }
+              : null,
         ),
       ),
     );

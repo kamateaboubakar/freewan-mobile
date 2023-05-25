@@ -13,5 +13,6 @@ abstract class Const {
   static var localUrl = "";
   static var defaultFont = GoogleFonts.poppins();
 
-  static String appLogo = "assets/images/logo_bedoo.png";
+  static String appLogo = "assets/images/lebedoo_logo.png";
+  static String inLineAppLogo = "assets/images/lebedoo_inline_logo.png";
 }

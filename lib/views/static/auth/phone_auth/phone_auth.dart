@@ -7,7 +7,6 @@ import 'package:wan_mobile/tools/widgets/c_button.dart';
 import 'package:wan_mobile/tools/widgets/c_textform_field.dart';
 import 'package:wan_mobile/views/controllers/auth/phone_auth_vctl.dart';
 import 'package:wan_mobile/views/static/auth/phone_auth/bottom_sheet_phone_auth.dart';
-import 'package:wan_mobile/views/static/home/home_page.dart';
 
 class PhoneAuth extends StatelessWidget {
   const PhoneAuth({super.key});
@@ -36,11 +35,11 @@ class PhoneAuth extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Image.asset(
-                    Const.appLogo,
-                    width: 94,
-                    height: 43,
+                    Const.inLineAppLogo,
+                    width: 120,
+                    height: 63,
                   ),
-                  const SizedBox(height: 20),
+                  const SizedBox(height: 10),
                   const Text(
                     "Identifiez-vous ou créez un compte",
                     style: TextStyle(

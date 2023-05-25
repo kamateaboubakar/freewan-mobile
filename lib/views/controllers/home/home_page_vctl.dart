@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:sliding_up_panel/sliding_up_panel.dart';
 import 'package:wan_mobile/api/controllers/user_api_ctl.dart';
 import 'package:wan_mobile/tools/cache/cache.dart';
 import 'package:wan_mobile/tools/cache/cache_keys.dart';
@@ -18,27 +19,10 @@ class HomePageVctl extends ViewController {
 
   HomePageVctl(this.displayWelcome);
 
-  DraggableScrollableController scrollController =
-      DraggableScrollableController();
+  PanelController panelController = PanelController();
 
   int currentAds = 0;
   bool smallButton = false;
-
-  @override
-  void onInit() {
-    super.onInit();
-    _displayWelcomeMessage();
-
-    scrollController.addListener(() {
-      if (scrollController.pixels == 754.4) {
-        smallButton = true;
-        update();
-      } else if (scrollController.pixels == 565.8) {
-        smallButton = false;
-        update();
-      }
-    });
-  }
 
   _displayWelcomeMessage() {
     WidgetsBinding.instance.addPostFrameCallback((_) {
@@ -105,14 +89,6 @@ class HomePageVctl extends ViewController {
     });
   }
 
-  @override
-  void dispose() {
-    scrollController.removeListener(() {});
-    scrollController.dispose();
-    update();
-    super.dispose();
-  }
-
   Future<void> fetchUserProfil() async {
     var res = await UserApiCtl().getUserProfil();
     if (res.status) {
@@ -126,7 +102,9 @@ class HomePageVctl extends ViewController {
   @override
   void onReady() {
     super.onReady();
+    _displayWelcomeMessage();
     fetchUserProfil();
+    
   }
 
   Future<void> logout() async {

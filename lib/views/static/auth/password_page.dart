@@ -24,9 +24,9 @@ class PasswordPage extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Image.asset(
-                    Const.appLogo,
-                    width: 94,
-                    height: 43,
+                    Const.inLineAppLogo,
+                    width: 120,
+                    height: 63,
                   ),
                   const SizedBox(height: 10),
                   const Text(
@@ -52,17 +52,14 @@ class PasswordPage extends StatelessWidget {
                     borderColor: Const.primaryColor,
                     showFieldAsBox: true,
                     onCodeChanged: (String code) {},
-                    onSubmit: (code) {
-                      ctl.passCtl.text = code;
-                    },
+                    onSubmit: (value) => ctl.submit(value),
                   ),
-                  const SizedBox(height: 20),
-                  CButton(
-                    height: 50,
-                    onPressed: () => ctl.submit(),
-                    minWidth: double.infinity,
-                    child: const Text("Valider"),
-                  )
+                  const SizedBox(height: 40),
+                  TextButton.icon(
+                    icon: const Icon(Icons.arrow_back),
+                    onPressed: () => ctl.logout(),
+                    label: const Text("Me déconnecter"),
+                  ),
                 ],
               ),
             );

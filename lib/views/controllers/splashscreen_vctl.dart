@@ -10,12 +10,6 @@ import 'package:wan_mobile/views/static/auth/password_page.dart';
 import 'package:wan_mobile/views/static/auth/phone_auth/phone_auth.dart';
 
 class SplashscreenVctl extends ViewController {
-  @override
-  void onInit() {
-    super.onInit();
-    redirect();
-  }
-
   redirect() async {
     var res = await Cache.getString(CacheKey.credentials);
     if (res != null) {
@@ -26,5 +20,11 @@ class SplashscreenVctl extends ViewController {
     } else {
       Get.off(() => const PhoneAuth());
     }
+  }
+
+  @override
+  void onReady() {
+    super.onReady();
+    redirect();
   }
 }

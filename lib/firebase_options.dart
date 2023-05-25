@@ -51,7 +51,7 @@ class DefaultFirebaseOptions {
 
   static const FirebaseOptions android = FirebaseOptions(
     apiKey: 'AIzaSyAzBaGeYCHe65uN2Flp2xR0FPN4exji8XM',
-    appId: '1:859893276729:android:fb000909b70493f4bdede8',
+    appId: '1:859893276729:android:61e986d22590e2d3bdede8',
     messagingSenderId: '859893276729',
     projectId: 'lebedoo',
     storageBucket: 'lebedoo.appspot.com',
@@ -59,11 +59,11 @@ class DefaultFirebaseOptions {
 
   static const FirebaseOptions ios = FirebaseOptions(
     apiKey: 'AIzaSyDQAdTdsoyCvYdXsJHwYQWKnt2z-JYEAhI',
-    appId: '1:859893276729:ios:34486cd59d9b388dbdede8',
+    appId: '1:859893276729:ios:977655a1453a5a7fbdede8',
     messagingSenderId: '859893276729',
     projectId: 'lebedoo',
     storageBucket: 'lebedoo.appspot.com',
-    iosClientId: '859893276729-k9gieg52hom6kv8rjo2sd5g5konof1lg.apps.googleusercontent.com',
-    iosBundleId: 'com.lebedoo',
+    iosClientId: '859893276729-43pbkl8ipni54l7df583cbe89bsedatm.apps.googleusercontent.com',
+    iosBundleId: 'io.freewan',
   );
 }

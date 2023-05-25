@@ -1,4 +1,3 @@
-import 'package:firebase_auth/firebase_auth.dart' as fb;
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:wan_mobile/api/controllers/security_question_ctl.dart';
@@ -107,7 +106,7 @@ class RegisterPageVctl extends ViewController {
         await Cache.setString(CacheKey.credentials,
             {"phone": phone, "pays": selectedPays.toJson()}.toJson());
         appCtl.user = user;
-        Get.to(() => const HomePage(displayWelcome: true));
+        Get.offAll(() => const HomePage(displayWelcome: true));
       } else {
         Tools.messageBox(message: res.message);
       }

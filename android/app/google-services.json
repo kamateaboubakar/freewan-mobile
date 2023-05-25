@@ -7,9 +7,9 @@
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:859893276729:android:fb000909b70493f4bdede8",
+        "mobilesdk_app_id": "1:859893276729:android:61e986d22590e2d3bdede8",
         "android_client_info": {
-          "package_name": "com.example.wan_mobile"
+          "package_name": "io.freewan"
         }
       },
       "oauth_client": [
@@ -29,6 +29,13 @@
             {
               "client_id": "859893276729-bdg1gk0htt97d8q7nfbj6fegpld21c2f.apps.googleusercontent.com",
               "client_type": 3
+            },
+            {
+              "client_id": "859893276729-k9gieg52hom6kv8rjo2sd5g5konof1lg.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.lebedoo"
+              }
             }
           ]
         }

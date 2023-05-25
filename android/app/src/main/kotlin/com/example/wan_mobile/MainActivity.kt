@@ -1,4 +1,4 @@
-package com.example.wan_mobile
+package io.freewan
 
 import io.flutter.embedding.android.FlutterActivity
 

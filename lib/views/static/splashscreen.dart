@@ -9,36 +9,18 @@ class SplashScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      resizeToAvoidBottomInset: false,
       body: GetBuilder<SplashscreenVctl>(
-          init: SplashscreenVctl(),
-          builder: (ctl) {
-            return Center(
-              child: Column(
-                children: [
-                  Expanded(
-                    child: Center(
-                      child: Image.asset(
-                        Const.appLogo,
-                        width: 141,
-                        height: 63,
-                      ),
-                    ),
-                  ),
-                  const Padding(
-                    padding: EdgeInsets.all(8.0),
-                    child: CircularProgressIndicator(strokeWidth: 1.2),
-                  ),
-                  const Padding(
-                    padding: EdgeInsets.all(8.0),
-                    child: Text(
-                      "Wwan 2023 - V0.0.1",
-                      textAlign: TextAlign.center,
-                    ),
-                  ),
-                ],
-              ),
-            );
-          }),
+        init: SplashscreenVctl(),
+        builder: (ctl) {
+          return Center(
+            child: Image.asset(
+              Const.inLineAppLogo,
+              height: 70,
+            ),
+          );
+        },
+      ),
     );
   }
 }

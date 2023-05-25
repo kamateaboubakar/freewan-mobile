@@ -3,9 +3,9 @@
 <plist version="1.0">
 <dict>
 	<key>CLIENT_ID</key>
-	<string>859893276729-k9gieg52hom6kv8rjo2sd5g5konof1lg.apps.googleusercontent.com</string>
+	<string>859893276729-43pbkl8ipni54l7df583cbe89bsedatm.apps.googleusercontent.com</string>
 	<key>REVERSED_CLIENT_ID</key>
-	<string>com.googleusercontent.apps.859893276729-k9gieg52hom6kv8rjo2sd5g5konof1lg</string>
+	<string>com.googleusercontent.apps.859893276729-43pbkl8ipni54l7df583cbe89bsedatm</string>
 	<key>API_KEY</key>
 	<string>AIzaSyDQAdTdsoyCvYdXsJHwYQWKnt2z-JYEAhI</string>
 	<key>GCM_SENDER_ID</key>
@@ -13,7 +13,7 @@
 	<key>PLIST_VERSION</key>
 	<string>1</string>
 	<key>BUNDLE_ID</key>
-	<string>com.lebedoo</string>
+	<string>io.freewan</string>
 	<key>PROJECT_ID</key>
 	<string>lebedoo</string>
 	<key>STORAGE_BUCKET</key>
@@ -29,6 +29,6 @@
 	<key>IS_SIGNIN_ENABLED</key>
 	<true></true>
 	<key>GOOGLE_APP_ID</key>
-	<string>1:859893276729:ios:34486cd59d9b388dbdede8</string>
+	<string>1:859893276729:ios:977655a1453a5a7fbdede8</string>
 </dict>
 </plist>

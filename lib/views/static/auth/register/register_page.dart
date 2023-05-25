@@ -53,7 +53,11 @@ class RegisterPage extends StatelessWidget {
                           onPressed: () => ctl.prevStep(),
                           icon: const Icon(Icons.arrow_back),
                         ),
-                        Image.asset(Const.appLogo, width: 94, height: 43),
+                        Image.asset(
+                          Const.inLineAppLogo,
+                          width: 120,
+                          height: 63,
+                        ),
                       ],
                     ),
                     SizedBox(

@@ -17,6 +17,8 @@ class HomePageVctl extends ViewController {
   ];
   bool displayWelcome;
 
+  var scrollController = ScrollController();
+
   HomePageVctl(this.displayWelcome);
 
   PanelController panelController = PanelController();
@@ -104,7 +106,6 @@ class HomePageVctl extends ViewController {
     super.onReady();
     _displayWelcomeMessage();
     fetchUserProfil();
-    
   }
 
   Future<void> logout() async {

@@ -19,13 +19,20 @@ class CardMenu extends StatelessWidget {
       margin: margin,
       padding: const EdgeInsets.all(15),
       decoration: BoxDecoration(
-        border: Border.all(
-          width: .5,
-          color: const Color.fromRGBO(218, 218, 218, 1),
-        ),
-        borderRadius: BorderRadius.circular(10),
-        color: Colors.white,
-      ),
+          border: Border.all(
+            width: .2,
+            color: const Color.fromRGBO(218, 218, 218, 1),
+          ),
+          borderRadius: BorderRadius.circular(10),
+          color: Colors.white,
+          boxShadow: [
+            BoxShadow(
+              color: Colors.grey.withOpacity(0.2),
+              spreadRadius: 0,
+              blurRadius: 5,
+              offset: const Offset(0, .5), // décalage vertical de l'ombre
+            ),
+          ]),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [

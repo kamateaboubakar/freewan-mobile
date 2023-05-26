@@ -222,6 +222,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "1.1.1"
+  flutter_scrolling_fab_animated:
+    dependency: "direct main"
+    description:
+      name: flutter_scrolling_fab_animated
+      sha256: "7da482b0aaf8be661fb239a04bd63b6ca4b0fdfdc54b98273b4669e166a6da84"
+      url: "https://pub.dev"
+    source: hosted
+    version: "0.1.4"
   flutter_speed_dial:
     dependency: "direct main"
     description:
@@ -304,6 +312,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "4.0.2"
+  icofont_flutter:
+    dependency: "direct main"
+    description:
+      name: icofont_flutter
+      sha256: ee022efb9428863607568cf6818dfc59afb5c987ea449d7ef9241fe69749d609
+      url: "https://pub.dev"
+    source: hosted
+    version: "1.4.0"
   intl:
     dependency: transitive
     description:

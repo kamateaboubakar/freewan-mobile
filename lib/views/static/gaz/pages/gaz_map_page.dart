@@ -102,37 +102,47 @@ class _GazMapPageState extends State<GazMapPage> {
                         'https://tile.openstreetmap.org/{z}/{x}/{y}.png',
                     userAgentPackageName: 'com.example.app',
                   ),
-                  MarkerLayer(
-                      markers: shops == null
-                          ? []
-                          : [
-                              for (int i = 0; i < shops.length; i++) ...[
-                                Marker(
-                                  point: LatLng(
+                  MarkerLayer(markers: [
+                    if (_gazController.hasUserLocation) ...{
+                      Marker(
+                          point: _gazController.userLocation!.toLatLng(),
+                          builder: (context) {
+                            return Image.asset(
+                              'assets/images/pin_red.png',
+                              width: 40,
+                              height: 40,
+                            );
+                          })
+                    },
+                    if (shops != null) ...[
+                      for (int i = 0; i < shops.length; i++) ...[
+                        Marker(
+                          point:
+                              LatLng(shops[i].latitude!, shops[i].longitude!),
+                          builder: (context) => InkWell(
+                            onTap: () {
+                              _gazController.updateShop(shops[i]);
+                              _mapController.move(
+                                  LatLng(
                                       shops[i].latitude!, shops[i].longitude!),
-                                  builder: (context) => InkWell(
-                                    onTap: () {
-                                      _gazController.updateShop(shops[i]);
-                                      _mapController.move(
-                                          LatLng(shops[i].latitude!,
-                                              shops[i].longitude!),
-                                          mapZoom);
-                                    },
-                                    child: Opacity(
-                                      opacity: (hasNoGazPosSelected ||
-                                              isGazPosSelected(i))
-                                          ? 1
-                                          : 0.5,
-                                      child: Image.asset(
-                                        'assets/images/gaz_pin.png',
-                                        width: 40,
-                                        height: 40,
-                                      ),
-                                    ),
-                                  ),
-                                )
-                              ]
-                            ]),
+                                  mapZoom);
+                            },
+                            child: Opacity(
+                              opacity:
+                                  (hasNoGazPosSelected || isGazPosSelected(i))
+                                      ? 1
+                                      : 0.5,
+                              child: Image.asset(
+                                'assets/images/gaz_pin.png',
+                                width: 40,
+                                height: 40,
+                              ),
+                            ),
+                          ),
+                        )
+                      ]
+                    ]
+                  ]),
                 ],
               ),
               if (shops != null)
@@ -140,7 +150,30 @@ class _GazMapPageState extends State<GazMapPage> {
                   bottom: 0,
                   right: 0,
                   left: 0,
-                  child: showServiceFilterView(),
+                  child: Column(
+                    children: [
+                      if (_gazController.hasUserLocation) ...[
+                        Align(
+                          alignment: Alignment.centerRight,
+                          child: Padding(
+                            padding: const EdgeInsets.only(right: 16),
+                            child: FloatingActionButton(
+                              backgroundColor: Colors.white,
+                              onPressed: () {
+                                _moveToCurrentLocation();
+                              },
+                              child: Icon(
+                                Icons.my_location_sharp,
+                                color: Colors.black,
+                              ),
+                            ),
+                          ),
+                        ),
+                        SizedBox(height: 5)
+                      ],
+                      showServiceFilterView(),
+                    ],
+                  ),
                 ),
               if (_gazController.shop != null)
                 SlidingUpPanel(
@@ -293,6 +326,10 @@ class _GazMapPageState extends State<GazMapPage> {
       Tools.messageBox(message: response.message);
       return;
     }
+    _moveToCurrentLocation();
+  }
+
+  void _moveToCurrentLocation() {
     var userLocation = _gazController.userLocation!;
     _mapController.move(userLocation.toLatLng(), mapZoom);
   }

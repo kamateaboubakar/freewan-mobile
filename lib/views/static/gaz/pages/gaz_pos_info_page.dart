@@ -39,6 +39,10 @@ class _GazPosInfoPageState extends State<GazPosInfoPage> {
     _gasShopController.reset();
     super.initState();
     WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
+      _gasController.addListener(() {
+        _shop = _gasController.shop;
+        _getShopInfo();
+      });
       if (_shop != null) {
         _getShopInfo();
       }

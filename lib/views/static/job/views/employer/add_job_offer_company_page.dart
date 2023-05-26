@@ -113,7 +113,7 @@ class _AddJobOfferCompanyPageState extends State<AddJobOfferCompanyPage> {
                               return Text(company.name!);
                             },
                             selectedItemBuilder: (company) {
-                              return Text(company?.name ?? '');
+                              return Text(company.name ?? '');
                             },
                             onChanged: (company) {
                               _addJobController.updateSelectedCompany(company!);
@@ -135,8 +135,10 @@ class _AddJobOfferCompanyPageState extends State<AddJobOfferCompanyPage> {
                               checkColor:
                                   const Color.fromRGBO(229, 229, 229, 1),
                             ),
-                            title:
-                                const Text('Ajouter une nouvelle entreprise', style: TextStyle(fontSize: 12),),
+                            title: const Text(
+                              'Ajouter une nouvelle entreprise',
+                              style: TextStyle(fontSize: 12),
+                            ),
                           ),
                           const SizedBox(height: 5),
                           if (isNewCompany) ...[
@@ -164,7 +166,7 @@ class _AddJobOfferCompanyPageState extends State<AddJobOfferCompanyPage> {
                                     itemBuilder: (jobSector) =>
                                         Text(jobSector.label!),
                                     selectedItemBuilder: (jobSector) {
-                                      return Text(jobSector?.label ?? '');
+                                      return Text(jobSector.label ?? '');
                                     },
                                     onChanged: (jobSector) {
                                       _addJobController

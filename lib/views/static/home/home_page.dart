@@ -1,4 +1,3 @@
-import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_image_slideshow/flutter_image_slideshow.dart';
@@ -6,8 +5,6 @@ import 'package:flutter_scrolling_fab_animated/flutter_scrolling_fab_animated.da
 import 'package:get/get.dart';
 import 'package:icofont_flutter/icofont_flutter.dart';
 import 'package:shimmer/shimmer.dart';
-import 'package:sliding_up_panel/sliding_up_panel.dart';
-import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 import 'package:wan_mobile/tools/const/const.dart';
 import 'package:wan_mobile/tools/utils/asset_colors.dart';
 import 'package:wan_mobile/tools/utils/tools.dart';
@@ -18,7 +15,6 @@ import 'package:wan_mobile/views/controllers/home/home_page_vctl.dart';
 import 'package:wan_mobile/views/static/achat_unite/achat_unite_page.dart';
 import 'package:wan_mobile/views/static/don/don_page.dart';
 import 'package:wan_mobile/views/static/home/home_drawer.dart';
-import 'package:badges/badges.dart' as badges;
 import 'package:wan_mobile/views/static/loyer/loyer_bottom_sheet.dart';
 import 'package:wan_mobile/views/static/scan_pay/scan_pay_camera.dart';
 import 'package:wan_mobile/views/static/tontine/tontine_page.dart';
@@ -157,51 +153,35 @@ class HomePage extends StatelessWidget {
                           title: "Hub Financier",
                           children: [
                             ButtonMenu(
-                              icon: CircleAvatar(
-                                backgroundColor:
-                                    const Color.fromRGBO(50, 132, 229, 0.16),
-                                child: Image.asset(
-                                  "assets/images/icons/scan_pay.png",
-                                  height: 20,
-                                  width: 20,
-                                ),
+                              icon: Image.asset(
+                                "assets/images/icons8-envoyé.gif",
+                                // "assets/images/icons/envoyer_mobile.png",
                               ),
-                              title: "Scanner et payer",
-                              onPressed: () =>
-                                  Get.to(() => const ScanPayCamera()),
-                            ),
-                            ButtonMenu(
-                              icon: CircleAvatar(
-                                backgroundColor:
-                                    const Color.fromRGBO(50, 132, 229, 0.16),
-                                child: Image.asset(
-                                  "assets/images/icons/envoyer_mobile.png",
-                                  height: 20,
-                                  width: 20,
-                                ),
-                              ),
-                              title: "Envoyer mobile",
+                              title: "Envoyer vers mobile",
                               onPressed: () {},
                             ),
                             ButtonMenu(
-                              icon: CircleAvatar(
-                                backgroundColor:
-                                    const Color.fromRGBO(50, 132, 229, 0.16),
-                                child: Image.asset(
-                                    "assets/images/icons/recevoir_argent.png",
-                                    height: 20,
-                                    width: 20),
+                              icon: Image.asset(
+                                "assets/images/icons8-tirelire.gif",
+                                // "assets/images/icons/recevoir_argent.png",
                               ),
                               title: "Recevoir argent",
                               onPressed: () {},
                             ),
                             ButtonMenu(
                               icon: Image.asset(
-                                "assets/images/icons/transfert_banquaire.png",
-                                height: 20,
-                                width: 20,
-                              ),
+                                  "assets/images/icons8-échange-de-cartes.gif"
+                                  // "assets/images/icons/transfert_banquaire.png",
+
+                                  ),
                               title: "Transfert bancaire",
+                              onPressed: () {},
+                            ),
+                            ButtonMenu(
+                              icon: Image.asset(
+                                "assets/images/icons/mon_bedoo.png",
+                              ),
+                              title: "Lebedoo",
                               onPressed: () {},
                             ),
                           ],
@@ -213,13 +193,6 @@ class HomePage extends StatelessWidget {
                                 "assets/images/icons/historique_transaction.png",
                               ),
                               title: "Solde et historique",
-                              onPressed: () {},
-                            ),
-                            ButtonMenu(
-                              icon: Image.asset(
-                                "assets/images/icons/mon_bedoo.png",
-                              ),
-                              title: "Mon Bédou",
                               onPressed: () {},
                             ),
                             ButtonMenu(
@@ -364,6 +337,179 @@ class HomePage extends StatelessWidget {
                               onPressed: () {
                                 //Tools.openBottomSheet(JobProfileSelectionDialog());
                               },
+                            ),
+                          ],
+                        ),
+                        Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            const Text(
+                              "Voyage • Allez où le vent vous emporte",
+                              style: TextStyle(
+                                fontSize: 14,
+                                fontWeight: FontWeight.bold,
+                              ),
+                            ),
+                            Container(
+                              height: 220,
+                              margin:
+                                  const EdgeInsets.only(bottom: 20, top: 10),
+                              child: ListView(
+                                padding: EdgeInsets.zero,
+                                shrinkWrap: true,
+                                scrollDirection: Axis.horizontal,
+                                children: [
+                                  Container(
+                                    width: Get.width / 2,
+                                    decoration: BoxDecoration(
+                                      color: Colors.white,
+                                      borderRadius: BorderRadius.circular(10),
+                                    ),
+                                    child: Center(
+                                      child: GridView.count(
+                                        padding: const EdgeInsets.all(10),
+                                        crossAxisCount: 2,
+                                        shrinkWrap: true,
+                                        physics:
+                                            const NeverScrollableScrollPhysics(),
+                                        children: [
+                                          ButtonMenu(
+                                            icon: Image.asset(
+                                                "assets/images/icons8-cadeau.gif"),
+                                            title: "Cadeau",
+                                            onPressed: () {},
+                                          ),
+                                          ButtonMenu(
+                                            icon: Image.asset(
+                                                "assets/images/icons8-hôtel-5-étoiles-48.png"),
+                                            title: "Hotels",
+                                            onPressed: () {},
+                                          ),
+                                          ButtonMenu(
+                                            icon: Image.asset(
+                                                "assets/images/icons8-train-64.png"),
+                                            title: "Billet de train",
+                                            onPressed: () {},
+                                          ),
+                                          ButtonMenu(
+                                            icon: Image.asset(
+                                                "assets/images/icons8-avion-vue-de-face-64.png"),
+                                            title: "Billet d'avion",
+                                            onPressed: () {},
+                                          ),
+                                        ],
+                                      ),
+                                    ),
+                                  ),
+                                  const SizedBox(width: 10),
+                                  Container(
+                                    height: double.infinity,
+                                    width: Get.width / 2,
+                                    decoration: BoxDecoration(
+                                      color: Colors.white,
+                                      borderRadius: BorderRadius.circular(10),
+                                    ),
+                                    child: ClipRRect(
+                                      borderRadius: BorderRadius.circular(10),
+                                      child: Image.network(
+                                        "https://img.freepik.com/psd-premium/"
+                                        "modele-publication-instagram-vacances-"
+                                        "vacances-voyage-banniere-medias-sociaux_597327-466.jpg?w=1060",
+                                        fit: BoxFit.cover,
+                                      ),
+                                    ),
+                                  ),
+                                  const SizedBox(width: 10),
+                                  Container(
+                                    height: double.infinity,
+                                    width: Get.width,
+                                    decoration: BoxDecoration(
+                                      color: Colors.white,
+                                      borderRadius: BorderRadius.circular(10),
+                                    ),
+                                    child: ClipRRect(
+                                      borderRadius: BorderRadius.circular(10),
+                                      child: Image.network(
+                                        "https://img.freepik.com/psd-gratuit/"
+                                        "modele-facebook-journee-mondiale-du-"
+                                        "tourisme-geometrique_23-2149558429.jpg"
+                                        "?w=2000&t=st=1685113012~exp=1685113612~"
+                                        "hmac=21b853d605686ae1bc072a02faa079e81d2"
+                                        "adfa502e9b14add136e1f309ad5d6",
+                                        fit: BoxFit.cover,
+                                      ),
+                                    ),
+                                  ),
+                                  const SizedBox(width: 10),
+                                  Column(
+                                    children: [
+                                      Expanded(
+                                        child: SizedBox(
+                                          width: 250,
+                                          child: ClipRRect(
+                                            borderRadius:
+                                                BorderRadius.circular(10),
+                                            child: Image.network(
+                                              "https://img.freepik.com/vecteurs"
+                                              "-libre/banniere-hotel-degrade-photo_23"
+                                              "-2148918442.jpg?w=2000&t=st=1685113784~exp="
+                                              "1685114384~hmac=46e4192837faef30051c4995031ae671"
+                                              "c5620a08a9a50e1f5dc66bccb747ae8e",
+                                              fit: BoxFit.cover,
+                                            ),
+                                          ),
+                                        ),
+                                      ),
+                                      const SizedBox(height: 10),
+                                      Expanded(
+                                        child: SizedBox(
+                                          width: 250,
+                                          child: ClipRRect(
+                                            borderRadius:
+                                                BorderRadius.circular(10),
+                                            child: Image.network(
+                                              "https://img.freepik.com/vecteurs"
+                                              "-libre/banniere-hotel-design-plat-photo"
+                                              "_23-2148924625.jpg?w=2000&t=st=1685114108~exp="
+                                              "1685114708~hmac=e242529b9ce89cb11d3943609"
+                                              "19049b396a44f3f40f18a1701bcedb802de0317",
+                                              fit: BoxFit.cover,
+                                            ),
+                                          ),
+                                        ),
+                                      ),
+                                    ],
+                                  )
+                                ],
+                              ),
+                            ),
+                          ],
+                        ),
+                        CardMenu(
+                          children: [
+                            ButtonMenu(
+                              icon: Image.asset(
+                                  "assets/images/icons8-cadeau.gif"),
+                              title: "Cadeau",
+                              onPressed: () {},
+                            ),
+                            ButtonMenu(
+                              icon: Image.asset(
+                                  "assets/images/icons8-ticket.gif"),
+                              title: "Ticket de cinéma",
+                              onPressed: () {},
+                            ),
+                            ButtonMenu(
+                              icon: Image.asset(
+                                  "assets/images/icons8-liquor-shelf-64.png"),
+                              title: "Brasserie",
+                              onPressed: () {},
+                            ),
+                            ButtonMenu(
+                              icon: Image.asset(
+                                  "assets/images/icons8-assurance-64.png"),
+                              title: "Assurance",
+                              onPressed: () {},
                             ),
                           ],
                         ),

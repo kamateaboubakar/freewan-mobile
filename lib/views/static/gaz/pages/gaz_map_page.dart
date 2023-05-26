@@ -162,14 +162,14 @@ class _GazMapPageState extends State<GazMapPage> {
                               onPressed: () {
                                 _moveToCurrentLocation();
                               },
-                              child: Icon(
+                              child: const Icon(
                                 Icons.my_location_sharp,
                                 color: Colors.black,
                               ),
                             ),
                           ),
                         ),
-                        SizedBox(height: 5)
+                        const SizedBox(height: 5)
                       ],
                       showServiceFilterView(),
                     ],
@@ -179,7 +179,8 @@ class _GazMapPageState extends State<GazMapPage> {
                 SlidingUpPanel(
                   controller: panelController,
                   body: Container(),
-                  panel: GazPosInfoPage(togglePanel: () {
+                  panelBuilder: (scrollCtl) =>
+                      GazPosInfoPage(scrollCtl, togglePanel: () {
                     if (panelController.isPanelOpen) {
                       panelController.close();
                       if (_gazShopController.hasPurchaseActionSelected) {

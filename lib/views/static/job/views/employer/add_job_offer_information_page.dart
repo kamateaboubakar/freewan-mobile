@@ -162,7 +162,7 @@ class _AddJobOfferInformationPageState
                             backgroundColor: Colors.white,
                             itemBuilder: (jobSector) => Text(jobSector.label!),
                             selectedItemBuilder: (jobSector) {
-                              return Text(jobSector?.label ?? '');
+                              return Text(jobSector.label ?? '');
                             },
                             onChanged: (jobSector) {
                               _addJobController
@@ -211,7 +211,7 @@ class _AddJobOfferInformationPageState
                             itemBuilder: (contractType) =>
                                 Text(contractType.label!),
                             selectedItemBuilder: (contractType) {
-                              return Text(contractType?.label ?? '');
+                              return Text(contractType.label ?? '');
                             },
                             backgroundColor: Colors.white,
                             onChanged: (contractType) {

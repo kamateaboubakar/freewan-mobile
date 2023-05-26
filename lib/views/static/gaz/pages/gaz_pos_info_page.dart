@@ -15,9 +15,11 @@ import '../../../../tools/widgets/payment_account_selection_item.dart';
 import '../widgets/brand_list_view.dart';
 
 class GazPosInfoPage extends StatefulWidget {
+  final ScrollController scrollController;
   final Function() togglePanel;
 
-  const GazPosInfoPage({
+  const GazPosInfoPage(
+    this.scrollController, {
     Key? key,
     required this.togglePanel,
   }) : super(key: key);
@@ -53,6 +55,8 @@ class _GazPosInfoPageState extends State<GazPosInfoPage> {
   Widget build(BuildContext context) {
     double screenWidth = MediaQuery.of(context).size.width;
     return SingleChildScrollView(
+      physics: const BouncingScrollPhysics(),
+      controller: widget.scrollController,
       child: Padding(
         padding: const EdgeInsets.all(16),
         child: Column(

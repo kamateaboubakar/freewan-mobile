@@ -20,7 +20,7 @@ class CTextFormField extends StatelessWidget {
   final TextInputType? keyboardType;
   final void Function()? onTap;
   final Color? hintColor;
-
+  final TextCapitalization textCapitalization;
   const CTextFormField(
       {this.controller,
       this.keyboardType,
@@ -41,7 +41,8 @@ class CTextFormField extends StatelessWidget {
       this.labelText,
       this.hintText,
       this.hintColor,
-      super.key});
+      super.key,
+      this.textCapitalization = TextCapitalization.none});
 
   @override
   Widget build(BuildContext context) {
@@ -59,6 +60,7 @@ class CTextFormField extends StatelessWidget {
         enabled: enabled,
         cursorHeight: 20,
         onTap: onTap,
+        textCapitalization: textCapitalization,
         style: const TextStyle(
           fontSize: 15,
         ),

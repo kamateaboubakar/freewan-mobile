@@ -18,12 +18,22 @@ class PhoneAuth extends StatelessWidget {
       appBar: AppBar(
         backgroundColor: Colors.white,
       ),
-      bottomNavigationBar: const Padding(
-        padding: EdgeInsets.all(12),
-        child: Text(
-          "Wwan 2023 - V0.0.1",
-          style: TextStyle(fontSize: 11),
-          textAlign: TextAlign.center,
+      bottomNavigationBar: Padding(
+        padding: const EdgeInsets.all(12),
+        child: Column(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            Image.asset(
+              "assets/images/pci_dsi.png",
+              height: 40,
+            ),
+            const SizedBox(height: 10),
+            const Text(
+              "Freewan 2023 - V${Const.appVersion}",
+              style: TextStyle(fontSize: 11),
+              textAlign: TextAlign.center,
+            ),
+          ],
         ),
       ),
       body: GetBuilder<PhoneAuthVctl>(

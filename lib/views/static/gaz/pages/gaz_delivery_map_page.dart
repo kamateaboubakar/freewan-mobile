@@ -7,7 +7,6 @@ import 'package:latlong2/latlong.dart';
 import 'package:wan_mobile/models/location_model.dart';
 import 'package:wan_mobile/models/shop.dart';
 import 'package:wan_mobile/tools/utils/asset_colors.dart';
-import 'package:wan_mobile/views/controllers/gaz/gas_shop_vctl.dart';
 import 'package:wan_mobile/views/controllers/gaz/gas_vctl.dart';
 import '../../../../tools/widgets/address_type_item.dart';
 import '../../../../tools/widgets/c_button.dart';
@@ -21,7 +20,6 @@ class GazDeliveryMapPage extends StatefulWidget {
 
 class _GazDeliveryMapPageState extends State<GazDeliveryMapPage> {
   GasController _gasController = Get.put(GasController());
-  final GasShopController _gasShopController = Get.put(GasShopController());
 
   late LocationModel deliveryLocation;
   final TextEditingController _locationNameCtrl = TextEditingController();

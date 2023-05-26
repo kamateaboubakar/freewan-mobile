@@ -19,9 +19,7 @@ class ButtonMenu extends StatelessWidget {
         padding: const EdgeInsets.all(10),
         child: Column(
           children: [
-            Expanded(
-              child: icon,
-            ),
+            Expanded(child: icon),
             const SizedBox(height: 5),
             Expanded(
               child: Padding(
@@ -32,6 +30,9 @@ class ButtonMenu extends StatelessWidget {
                   maxLines: 2,
                   maxFontSize: 12,
                   minFontSize: 9,
+                  style: const TextStyle(
+                    fontWeight: FontWeight.w600,
+                  ),
                 ),
               ),
             ),

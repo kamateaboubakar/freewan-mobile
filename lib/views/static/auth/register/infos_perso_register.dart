@@ -24,16 +24,17 @@ class InfosPersoRegister extends StatelessWidget {
           ),
           const SizedBox(height: 30),
           CTextFormField(
-            keyboardType: TextInputType.emailAddress,
-            require: true,
-            controller: ctl.nomCtl,
-            labelText: "Nom de famille",
-          ),
+              keyboardType: TextInputType.emailAddress,
+              require: true,
+              controller: ctl.nomCtl,
+              labelText: "Nom de famille",
+              textCapitalization: TextCapitalization.sentences),
           CTextFormField(
             keyboardType: TextInputType.emailAddress,
             require: true,
             controller: ctl.prenomCtl,
             labelText: "Prénoms",
+            textCapitalization: TextCapitalization.words,
           ),
           CTextFormField(
             keyboardType: TextInputType.emailAddress,

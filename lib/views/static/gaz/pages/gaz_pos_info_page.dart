@@ -31,15 +31,21 @@ class _GazPosInfoPageState extends State<GazPosInfoPage> {
   GasShopController _gasShopController = Get.put(GasShopController());
   GasFormatController _gasFormatController = Get.put(GasFormatController());
 
-  late Shop _shop;
+  Shop? _shop;
 
   @override
   void initState() {
-    _shop = _gasController.shop!;
+    _shop = _gasController.shop;
     _gasShopController.reset();
     super.initState();
     WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
-      _getShopInfo();
+      _gasController.addListener(() {
+        _shop = _gasController.shop;
+        _getShopInfo();
+      });
+      if (_shop != null) {
+        _getShopInfo();
+      }
     });
   }
 
@@ -75,7 +81,7 @@ class _GazPosInfoPageState extends State<GazPosInfoPage> {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Text(
-                        _shop.name!,
+                        _shop?.name ?? '',
                         style: const TextStyle(
                           fontWeight: FontWeight.bold,
                           fontSize: 16,
@@ -87,7 +93,7 @@ class _GazPosInfoPageState extends State<GazPosInfoPage> {
                           const SizedBox(width: 5),
                           Expanded(
                             child: Text(
-                              _shop.address ?? '',
+                              _shop?.address ?? '',
                               style: const TextStyle(
                                 fontSize: 10,
                               ),
@@ -101,17 +107,20 @@ class _GazPosInfoPageState extends State<GazPosInfoPage> {
                 Container(
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(10),
-                    color: (_shop.isOpen ? AssetColors.green : Colors.red)
+                    color: (_shop?.isOpen ?? false
+                            ? AssetColors.green
+                            : Colors.red)
                         .withOpacity(0.15),
                   ),
                   alignment: Alignment.center,
                   padding:
                       const EdgeInsets.symmetric(vertical: 8, horizontal: 16),
                   child: Text(
-                    _shop.isOpen ? 'Ouvert' : 'Fermé',
+                    _shop?.isOpen ?? false ? 'Ouvert' : 'Fermé',
                     style: TextStyle(
-                        color:
-                            _shop.isOpen ? const Color(0xff00853F) : Colors.red,
+                        color: _shop?.isOpen ?? false
+                            ? const Color(0xff00853F)
+                            : Colors.red,
                         fontSize: 12),
                   ),
                 )
@@ -127,7 +136,7 @@ class _GazPosInfoPageState extends State<GazPosInfoPage> {
                 const SizedBox(width: 10),
                 Expanded(
                   child: Text(
-                    _shop.description ?? "Aucune description",
+                    _shop?.description ?? "Aucune description",
                     style: const TextStyle(
                         color: AssetColors.blueGrey, fontSize: 10),
                   ),
@@ -482,12 +491,12 @@ class _GazPosInfoPageState extends State<GazPosInfoPage> {
   }
 
   _getShopInfo() {
-    _gasShopController.getShopInfo(_shop.id!);
+    _gasShopController.getShopInfo(_shop?.id ?? 0);
   }
 
   void _getGasFormat() {
     var brandId = _gasShopController.brand!.id!;
-    var shopId = _shop.id!;
+    var shopId = _shop?.id ?? 0;
     _gasFormatController.getGasSize(shopId: shopId, brandId: brandId);
   }
 }

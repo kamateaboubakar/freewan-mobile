@@ -19,6 +19,8 @@ class GasController extends ViewController {
 
   bool get isLocationTypeSelected => _selectedLocationType != -1;
 
+  bool get hasUserLocation => _userLocation != null;
+
   updateShop(Shop shop) {
     _shop = shop;
     update();

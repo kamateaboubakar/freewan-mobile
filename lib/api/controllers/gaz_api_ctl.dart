@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 import 'package:wan_mobile/models/gas_size.dart';
 import 'package:wan_mobile/models/shop.dart';
 import 'package:wan_mobile/tools/types/types.dart';
@@ -32,7 +34,7 @@ class GazApiCtl extends WebController {
       var res = await get("${Const.gazBaseUrl}/shops/$id",
           headers: HttpClientConst.headers);
       var body = HttpResponse.decodeBody(res);
-
+      print(body.data);
       if (body.status) {
         return HttpResponse.success(data: Shop.fromJson(body.data));
       } else {
@@ -74,6 +76,8 @@ class GazApiCtl extends WebController {
     required int price,
   }) async {
     try {
+
+
       var requestBody = {
         "brandInShopId": "$brandInShopId",
         "customerSessionId": customerSessionId,
@@ -83,10 +87,14 @@ class GazApiCtl extends WebController {
         "targetId": "$targetId",
         "price": "$price"
       };
+
+      print(jsonEncode(requestBody.toJson()));
+
       var url = "${Const.gazBaseUrl}/orders/";
       var res = await post(url, requestBody.toJson(),
-          headers: {"Content-Type": "application/form-data"});
+          headers: HttpClientConst.headers);
       var body = HttpResponse.decodeBody(res);
+      print(body.data);
       if (body.status) {
         if (body.data != null) {
           return HttpResponse.success(data: true);

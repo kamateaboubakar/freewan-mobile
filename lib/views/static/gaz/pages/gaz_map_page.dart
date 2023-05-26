@@ -67,14 +67,8 @@ class _GazMapPageState extends State<GazMapPage> {
 
   @override
   Widget build(BuildContext context) {
-    double screenWidth = MediaQuery
-        .of(context)
-        .size
-        .width;
-    double screenHeight = MediaQuery
-        .of(context)
-        .size
-        .height;
+    double screenWidth = MediaQuery.of(context).size.width;
+    double screenHeight = MediaQuery.of(context).size.height;
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.white,
@@ -105,41 +99,50 @@ class _GazMapPageState extends State<GazMapPage> {
                 children: [
                   TileLayer(
                     urlTemplate:
-                    'https://tile.openstreetmap.org/{z}/{x}/{y}.png',
+                        'https://tile.openstreetmap.org/{z}/{x}/{y}.png',
                     userAgentPackageName: 'com.example.app',
                   ),
-                  MarkerLayer(
-                      markers: shops == null
-                          ? []
-                          : [
-                        for (int i = 0; i < shops.length; i++) ...[
-                          Marker(
-                            point: LatLng(
-                                shops[i].latitude!, shops[i].longitude!),
-                            builder: (context) =>
-                                InkWell(
-                                  onTap: () {
-                                    _gazController.updateShop(shops[i]);
-                                    _mapController.move(
-                                        LatLng(shops[i].latitude!,
-                                            shops[i].longitude!),
-                                        mapZoom);
-                                  },
-                                  child: Opacity(
-                                    opacity: (hasNoGazPosSelected ||
-                                        isGazPosSelected(i))
-                                        ? 1
-                                        : 0.5,
-                                    child: Image.asset(
-                                      'assets/images/gaz_pin.png',
-                                      width: 40,
-                                      height: 40,
-                                    ),
-                                  ),
-                                ),
-                          )
-                        ]
-                      ]),
+                  MarkerLayer(markers: [
+                    if (_gazController.hasUserLocation) ...{
+                      Marker(
+                          point: _gazController.userLocation!.toLatLng(),
+                          builder: (context) {
+                            return Image.asset(
+                              'assets/images/pin_red.png',
+                              width: 40,
+                              height: 40,
+                            );
+                          })
+                    },
+                    if (shops != null) ...[
+                      for (int i = 0; i < shops.length; i++) ...[
+                        Marker(
+                          point:
+                              LatLng(shops[i].latitude!, shops[i].longitude!),
+                          builder: (context) => InkWell(
+                            onTap: () {
+                              _gazController.updateShop(shops[i]);
+                              _mapController.move(
+                                  LatLng(
+                                      shops[i].latitude!, shops[i].longitude!),
+                                  mapZoom);
+                            },
+                            child: Opacity(
+                              opacity:
+                                  (hasNoGazPosSelected || isGazPosSelected(i))
+                                      ? 1
+                                      : 0.5,
+                              child: Image.asset(
+                                'assets/images/gaz_pin.png',
+                                width: 40,
+                                height: 40,
+                              ),
+                            ),
+                          ),
+                        )
+                      ]
+                    ]
+                  ]),
                 ],
               ),
               if (shops != null)
@@ -147,28 +150,52 @@ class _GazMapPageState extends State<GazMapPage> {
                   bottom: 0,
                   right: 0,
                   left: 0,
-                  child: showServiceFilterView(),
+                  child: Column(
+                    children: [
+                      if (_gazController.hasUserLocation) ...[
+                        Align(
+                          alignment: Alignment.centerRight,
+                          child: Padding(
+                            padding: const EdgeInsets.only(right: 16),
+                            child: FloatingActionButton(
+                              backgroundColor: Colors.white,
+                              onPressed: () {
+                                _moveToCurrentLocation();
+                              },
+                              child: Icon(
+                                Icons.my_location_sharp,
+                                color: Colors.black,
+                              ),
+                            ),
+                          ),
+                        ),
+                        SizedBox(height: 5)
+                      ],
+                      showServiceFilterView(),
+                    ],
+                  ),
                 ),
-              SlidingUpPanel(
-                controller: panelController,
-                body: Container(),
-                panel: GazPosInfoPage(togglePanel: () {
-                  if (panelController.isPanelOpen) {
-                    panelController.close();
-                    if (_gazShopController.hasPurchaseActionSelected) {
-                      _gazShopController.clearSelectedPurchaseAction();
+              if (_gazController.shop != null)
+                SlidingUpPanel(
+                  controller: panelController,
+                  body: Container(),
+                  panel: GazPosInfoPage(togglePanel: () {
+                    if (panelController.isPanelOpen) {
+                      panelController.close();
+                      if (_gazShopController.hasPurchaseActionSelected) {
+                        _gazShopController.clearSelectedPurchaseAction();
+                      }
+                    } else {
+                      panelController.open();
                     }
-                  } else {
-                    panelController.open();
-                  }
-                }),
-                minHeight: shop == null ? 0 : 300,
-                maxHeight: shop == null ? 0 : screenHeight * 0.85,
-                borderRadius: const BorderRadius.only(
-                  topRight: Radius.circular(20),
-                  topLeft: Radius.circular(20),
+                  }),
+                  minHeight: shop == null ? 0 : 300,
+                  maxHeight: shop == null ? 0 : screenHeight * 0.85,
+                  borderRadius: const BorderRadius.only(
+                    topRight: Radius.circular(20),
+                    topLeft: Radius.circular(20),
+                  ),
                 ),
-              ),
             ],
           );
         },
@@ -219,7 +246,8 @@ class _GazMapPageState extends State<GazMapPage> {
                               width: 55,
                               height: 55,
                               decoration: BoxDecoration(
-                                color: const Color(0xffB5C4D8).withOpacity(0.15),
+                                color:
+                                    const Color(0xffB5C4D8).withOpacity(0.15),
                                 shape: BoxShape.circle,
                               ),
                               padding: const EdgeInsets.all(12),
@@ -277,18 +305,15 @@ class _GazMapPageState extends State<GazMapPage> {
     }
     Tools.messageBox(
       message:
-      "WAN a besoin d'accéder à votre position pour trouver les services les plus proches de vous",
-      confirm: InkWell(
-        onTap: () async {
-          var isGranted = await LocationService.requestLocationPermission();
-          if (!isGranted) {
-            Get.back();
-            return;
-          }
-          _getShops();
-        },
-        child: const Text('OK'),
-      ),
+          "WAN a besoin d'accéder à votre position pour trouver les services les plus proches de vous",
+      onConfirm: () async {
+        var isGranted = await LocationService.requestLocationPermission();
+        if (!isGranted) {
+          Get.back();
+          return;
+        }
+        _getShops();
+      },
     );
   }
 
@@ -301,6 +326,10 @@ class _GazMapPageState extends State<GazMapPage> {
       Tools.messageBox(message: response.message);
       return;
     }
+    _moveToCurrentLocation();
+  }
+
+  void _moveToCurrentLocation() {
     var userLocation = _gazController.userLocation!;
     _mapController.move(userLocation.toLatLng(), mapZoom);
   }

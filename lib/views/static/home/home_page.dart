@@ -69,9 +69,10 @@ class HomePage extends StatelessWidget {
                   backgroundColor: Colors.white,
                   systemOverlayStyle: SystemUiOverlayStyle.light,
                   flexibleSpace: FlexibleSpaceBar(
-                    background: Image.network(
-                      "https://cdn.mos.cms.futurecdn.net/V6LCHNxfSPT2Sxpr4bAzD.jpg",
-                      fit: BoxFit.cover,
+                    background: Image.asset(
+                      "assets/images/pub_lbd.jpeg",
+                      //"https://cdn.mos.cms.futurecdn.net/V6LCHNxfSPT2Sxpr4bAzD.jpg",
+                      fit: BoxFit.fill,
                     ),
                   ),
                   leading: Builder(builder: (context) {

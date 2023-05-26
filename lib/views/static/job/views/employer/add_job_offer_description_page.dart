@@ -1,7 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:wan_mobile/views/controllers/job/add_job_vctl.dart';
+import 'package:wan_mobile/views/static/home/home_page.dart';
 import 'package:wan_mobile/views/static/job/views/employer/add_job_offer_company_page.dart';
 
+import '../../../../../tools/utils/asset_colors.dart';
+import '../../../../../tools/utils/tools.dart';
 import '../../../../../tools/widgets/c_button.dart';
 import '../../../../../tools/widgets/c_textform_field.dart';
 import '../../job_views.dart';
@@ -19,6 +23,9 @@ class _AddJobOfferDescriptionPageState
   final TextEditingController _descriptionCtrl = TextEditingController();
   final TextEditingController _preRequesiteCtrl = TextEditingController();
   final TextEditingController _salaryCtrl = TextEditingController();
+
+  AddJobController _addJobController = Get.put(AddJobController());
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -55,38 +62,56 @@ class _AddJobOfferDescriptionPageState
                     CTextFormField(
                       controller: _descriptionCtrl,
                       hintText: "Description *",
-                      onChanged: (value) {},
+                      onChanged: (value) {
+                        _addJobController.updateJobDescription(value);
+                      },
                       maxLines: 5,
                     ),
-                    const SizedBox(height: 5),
+                    /*const SizedBox(height: 5),
                     CTextFormField(
                       controller: _preRequesiteCtrl,
                       hintText: "Pré-requis *",
                       onChanged: (value) {},
                       maxLines: 5,
-                    ),
+                    ),*/
                     const SizedBox(height: 5),
                     CTextFormField(
                       controller: _salaryCtrl,
                       hintText: "Salaire *",
                       keyboardType: TextInputType.phone,
-                      onChanged: (value) {},
+                      onChanged: (value) {
+                        _addJobController.updateJobSalary(value);
+                      },
                     ),
                   ],
                 ),
               ),
             ),
             const SizedBox(height: 10),
-            CButton(
-              onPressed: () => Get.to(const AddJobOfferCompanyPage()),
-              height: 48,
-              child: const Text(
-                "Continuer",
-                style: TextStyle(
-                  fontSize: 18,
-                  color: Colors.white,
-                ),
-              ),
+            GetBuilder(
+              id: 'add_job_description_submit',
+              init: _addJobController,
+              builder: (controller) {
+                return CButton(
+                  height: 50,
+                  onPressed: () {
+                    if (_addJobController.isJobDescriptionValid) {
+                     Get.to(() => AddJobOfferCompanyPage());
+                    }
+                  },
+                  color: _addJobController.isJobDescriptionValid
+                      ? AssetColors.blueButton
+                      : const Color(0xffEDF2F9),
+                  child: Text(
+                    "Continuer",
+                    style: TextStyle(
+                      color: _addJobController.isJobDescriptionValid
+                          ? Colors.white
+                          : const Color(0xffB5C4D8),
+                    ),
+                  ),
+                );
+              },
             )
           ],
         ),

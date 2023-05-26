@@ -2,9 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:wan_mobile/tools/utils/asset_colors.dart';
 import 'package:wan_mobile/views/static/job/views/employee/employee_views.dart';
+import 'package:wan_mobile/views/static/job/views/employee/job_list/job_list_view.dart';
 
+import '../../../../../models/job/job_entity.dart';
 import '../../../../../tools/widgets/c_textform_field.dart';
 import '../../job_views.dart';
+import 'jobs_sector/job_sector_view.dart';
 
 class JobHomePage extends StatefulWidget {
   const JobHomePage({Key? key}) : super(key: key);
@@ -94,7 +97,8 @@ class _JobHomePageState extends State<JobHomePage> {
               SizedBox(
                 height: 170,
                 child: ListView.separated(
-                  separatorBuilder: (context, index) => const SizedBox(width: 10),
+                  separatorBuilder: (context, index) =>
+                      const SizedBox(width: 10),
                   itemCount: popularJobs.length,
                   scrollDirection: Axis.horizontal,
                   itemBuilder: (context, index) {
@@ -177,10 +181,6 @@ class _JobHomePageState extends State<JobHomePage> {
                                   .map((e) => JobTag(
                                         title: e,
                                         fontSize: 12,
-                                        backgroundColor: selected
-                                            ? Colors.white
-                                            : const Color(0xffF2F2F2),
-                                        textColor: AssetColors.blueButton,
                                       ))
                                   .toList(),
                             )
@@ -192,41 +192,12 @@ class _JobHomePageState extends State<JobHomePage> {
                 ),
               ),
               const SizedBox(height: 25),
-              SizedBox(
+              const SizedBox(
                 height: 35,
-                child: ListView.separated(
-                    itemCount: tags.length,
-                    scrollDirection: Axis.horizontal,
-                    separatorBuilder: (context, index) => const SizedBox(width: 10),
-                    itemBuilder: (context, index) {
-                      var selected = index == 0;
-                      return JobTag(
-                        title: tags[index],
-                        fontSize: 16,
-                        textColor: selected ? Colors.white : AssetColors.grey3,
-                        backgroundColor: selected
-                            ? AssetColors.blueButton
-                            : const Color(0xffE0E0E0),
-                      );
-                    }),
+                child: JobSectorView(),
               ),
               const SizedBox(height: 25),
-              GridView.builder(
-                gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                  crossAxisCount: 2,
-                  crossAxisSpacing: 8,
-                  mainAxisSpacing: 8,
-                ),
-                physics: const NeverScrollableScrollPhysics(),
-                shrinkWrap: true,
-                itemCount: jobs.length,
-                itemBuilder: (context, index) {
-                  return JobItem(
-                    canDelete: false,
-                    jobEntity: jobs[index],
-                  );
-                },
-              )
+              JobListView(),
             ],
           ),
         ),

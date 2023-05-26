@@ -51,7 +51,7 @@ class HomePage extends StatelessWidget {
               color: AssetColors.blueButton,
               width: 180,
               height: 50,
-              radius: 15,
+              radius: 25,
               onPress: () => Get.to(() => const ScanPayCamera()),
               scrollController: ctl.scrollController,
               text: const Text(

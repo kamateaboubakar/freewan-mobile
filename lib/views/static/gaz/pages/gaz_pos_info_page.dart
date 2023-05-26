@@ -105,11 +105,13 @@ class _GazPosInfoPageState extends State<GazPosInfoPage> {
                         .withOpacity(0.15),
                   ),
                   alignment: Alignment.center,
-                  padding: const EdgeInsets.symmetric(vertical: 8, horizontal: 16),
+                  padding:
+                      const EdgeInsets.symmetric(vertical: 8, horizontal: 16),
                   child: Text(
                     _shop.isOpen ? 'Ouvert' : 'Fermé',
                     style: TextStyle(
-                        color: _shop.isOpen ? const Color(0xff00853F) : Colors.red,
+                        color:
+                            _shop.isOpen ? const Color(0xff00853F) : Colors.red,
                         fontSize: 12),
                   ),
                 )
@@ -126,7 +128,8 @@ class _GazPosInfoPageState extends State<GazPosInfoPage> {
                 Expanded(
                   child: Text(
                     _shop.description ?? "Aucune description",
-                    style: const TextStyle(color: AssetColors.blueGrey, fontSize: 10),
+                    style: const TextStyle(
+                        color: AssetColors.blueGrey, fontSize: 10),
                   ),
                 )
               ],
@@ -259,11 +262,12 @@ class _GazPosInfoPageState extends State<GazPosInfoPage> {
                         itemCount: brands.length,
                         shrinkWrap: true,
                         physics: const NeverScrollableScrollPhysics(),
-                        gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                            crossAxisCount: 3,
-                            crossAxisSpacing: 8,
-                            mainAxisSpacing: 8,
-                            childAspectRatio: 1.4),
+                        gridDelegate:
+                            const SliverGridDelegateWithFixedCrossAxisCount(
+                                crossAxisCount: 3,
+                                crossAxisSpacing: 8,
+                                mainAxisSpacing: 8,
+                                childAspectRatio: 1.4),
                         itemBuilder: (context, index) {
                           var brand = brands[index];
                           var selected =

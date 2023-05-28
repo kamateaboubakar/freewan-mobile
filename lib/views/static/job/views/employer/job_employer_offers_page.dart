@@ -1,7 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:wan_mobile/tools/utils/asset_colors.dart';
 import 'package:get/get.dart';
+import 'package:wan_mobile/tools/utils/tools.dart';
+import 'package:wan_mobile/views/controllers/job/job_list_vctl.dart';
+import 'package:wan_mobile/views/controllers/job/job_offer_employer_vctl.dart';
+import 'package:wan_mobile/views/static/job/views/employee/employee_views.dart';
 
+import '../../../../../models/job/job_offer.dart';
+import '../../../../../tools/widgets/error_view.dart';
 import '../../job_views.dart';
 import 'employer_views.dart';
 
@@ -13,10 +19,21 @@ class JobEmployerOffersPage extends StatefulWidget {
 }
 
 class _JobEmployerOffersPageState extends State<JobEmployerOffersPage> {
-  bool isOfferAdded = false;
+  JobOfferEmployerController _jobOfferEmployerController =
+      Get.put(JobOfferEmployerController());
+  final JobListController _jobListController = Get.put(JobListController());
+
+  @override
+  void initState() {
+    super.initState();
+    WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
+      _getJobOfferEmployer();
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
+    var isOfferAdded = true;
     double screenWidth = MediaQuery.of(context).size.width;
     return Scaffold(
       appBar: AppBar(
@@ -26,7 +43,40 @@ class _JobEmployerOffersPageState extends State<JobEmployerOffersPage> {
       ),
       body: Padding(
         padding: const EdgeInsets.all(16),
-        child: isOfferAdded ? jobListView() : noOfferView(screenWidth),
+        child: GetBuilder(
+          init: _jobOfferEmployerController,
+          builder: (controller) {
+            _jobOfferEmployerController = controller;
+            var response = controller.response;
+
+            if (response == null) {
+              return const Center(
+                child: SizedBox(
+                  width: 20,
+                  height: 20,
+                  child: CircularProgressIndicator(),
+                ),
+              );
+            }
+
+            if (!response.status) {
+              return ErrorView(
+                message: response.message,
+                retry: () {
+                  _getJobOfferEmployer();
+                },
+              );
+            }
+
+            var jobOffers = response.data ?? [];
+
+            if (jobOffers.isEmpty) {
+              return noOfferView(screenWidth);
+            }
+
+            return jobListView(jobOffers);
+          },
+        ),
       ),
       floatingActionButton: Visibility(
         visible: isOfferAdded,
@@ -62,9 +112,7 @@ class _JobEmployerOffersPageState extends State<JobEmployerOffersPage> {
             width: screenWidth * 0.6,
             child: InkWell(
               onTap: () {
-                setState(() {
-                  isOfferAdded = true;
-                });
+                Get.to(AddJobOfferInformationPage());
               },
               child: Container(
                 decoration: BoxDecoration(
@@ -101,17 +149,35 @@ class _JobEmployerOffersPageState extends State<JobEmployerOffersPage> {
     );
   }
 
-  Widget jobListView() {
+  Widget jobListView(List<JobOffer> jobOffers) {
     return GridView.builder(
       gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
         crossAxisCount: 2,
         crossAxisSpacing: 8,
         mainAxisSpacing: 8,
       ),
-      itemCount: 2,
+      itemCount: jobOffers.length,
       itemBuilder: (context, index) {
-        return const JobItem();
+        var jobOffer = jobOffers[index];
+        return JobItem(
+          jobEntity: jobOffer,
+          canDelete: true,
+          onTap: () {
+            _jobListController.updateSelectedJobOffer(jobOffer);
+            _jobListController.updateEditPostState(true);
+            Get.to(JobDescriptionPage());
+          },
+          deleteCall: () async {
+            var result = await Tools.showChoiceMessage(
+                message: "Voulez-vous supprimer cette offre ?");
+            if (result != null && result) {}
+          },
+        );
       },
     );
+  }
+
+  _getJobOfferEmployer() {
+    _jobOfferEmployerController.getJobOffers();
   }
 }

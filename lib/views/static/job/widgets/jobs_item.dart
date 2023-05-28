@@ -1,18 +1,21 @@
 import 'package:flutter/material.dart';
 import 'package:wan_mobile/models/job/job_offer.dart';
 import 'package:wan_mobile/tools/utils/amount_util.dart';
-import 'package:wan_mobile/views/static/job/job_views.dart';
+
+import '../../../../tools/widgets/job/company_logo.dart';
 
 class JobItem extends StatelessWidget {
   final bool canDelete;
   final JobOffer? jobEntity;
   final Function()? onTap;
+  final Function()? deleteCall;
 
   const JobItem({
     Key? key,
     this.jobEntity,
     this.canDelete = true,
     this.onTap,
+    this.deleteCall,
   }) : super(key: key);
 
   @override
@@ -41,27 +44,17 @@ class JobItem extends StatelessWidget {
                   ),
                   padding:
                       const EdgeInsets.symmetric(vertical: 4, horizontal: 12),
-                  child: jobEntity == null
-                      ? Image.asset(
-                          'assets/images/grommet-icons_google.png',
-                          width: 35,
-                          height: 35,
-                        )
-                      : Image.memory(
-                          Uri.parse(
-                                  "data:image/png;base64,${jobEntity!.company!.logo!}")
-                              .data!
-                              .contentAsBytes(),
-                          width: 35,
-                          height: 35,
-                        ),
+                  child: _buildCompanyLogo(),
                 ),
                 if (canDelete) ...[
                   const Spacer(),
-                  Image.asset(
-                    'assets/images/solar_trash-bin-2-line-duotone.png',
-                    width: 25,
-                    height: 25,
+                  InkWell(
+                    onTap: deleteCall,
+                    child: Image.asset(
+                      'assets/images/solar_trash-bin-2-line-duotone.png',
+                      width: 25,
+                      height: 25,
+                    ),
                   ),
                 ],
               ],
@@ -91,5 +84,16 @@ class JobItem extends StatelessWidget {
         ),
       ),
     );
+  }
+
+  Widget _buildCompanyLogo() {
+    if (jobEntity == null) {
+      return Image.asset(
+        'assets/images/grommet-icons_google.png',
+        width: 35,
+        height: 35,
+      );
+    }
+    return CompanyLogo(company: jobEntity!.company!);
   }
 }

@@ -139,7 +139,7 @@ class AddJobController extends ViewController {
 
   updateSelectedCompany(Company company) {
     _selectedCompany = company;
-    update();
+    updateAddJobCreationSubmitButtonState();
   }
 
   void updateWorkPlace(String value) {

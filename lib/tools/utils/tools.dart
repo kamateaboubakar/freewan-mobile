@@ -26,8 +26,10 @@ class Tools {
     return pr;
   }
 
-  static Future<bool?> showChoiceMessage(
-      {String title = Const.appName, required String message}) {
+  static Future<bool?> showChoiceMessage({
+    String title = Const.appName,
+    required String message,
+  }) {
     return Get.defaultDialog<bool>(
       title: title,
       barrierDismissible: false,
@@ -92,28 +94,29 @@ class Tools {
     String? title,
   }) =>
       Get.defaultDialog(
-          textConfirm: "OK",
-          buttonColor: Const.primaryColor,
-          confirmTextColor: Colors.white,
-          title: title ?? "Message",
-          titleStyle: titleStyle,
-          confirm: confirm,
-          content: Padding(
-            padding: const EdgeInsets.all(10),
-            child: Text(
-              message ?? "Erreur",
-              textAlign: TextAlign.center,
-            ),
+        textConfirm: "OK",
+        buttonColor: Const.primaryColor,
+        confirmTextColor: Colors.white,
+        title: title ?? "Message",
+        titleStyle: titleStyle,
+        confirm: confirm,
+        content: Padding(
+          padding: const EdgeInsets.all(10),
+          child: Text(
+            message ?? "Erreur",
+            textAlign: TextAlign.center,
           ),
-          radius: radius,
-          actions: actions,
-          onConfirm: () {
-            Get.back();
-            if (onConfirm != null) {
-              onConfirm();
-            }
-          },
-          barrierDismissible: barrierDismissible);
+        ),
+        radius: radius,
+        actions: actions,
+        onConfirm: () {
+          Get.back();
+          if (onConfirm != null) {
+            onConfirm();
+          }
+        },
+        barrierDismissible: barrierDismissible,
+      );
 
   static SnackbarController showToast({
     String title = Const.appName,

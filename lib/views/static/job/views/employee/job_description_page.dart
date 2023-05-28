@@ -2,8 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:wan_mobile/tools/utils/amount_util.dart';
 import 'package:wan_mobile/tools/utils/asset_colors.dart';
+import 'package:wan_mobile/tools/widgets/job/company_logo.dart';
 import 'package:wan_mobile/views/controllers/job/job_list_vctl.dart';
 import 'package:wan_mobile/views/static/job/views/employee/employee_views.dart';
+import 'package:wan_mobile/views/static/job/views/employer/add_job_offer_information_page.dart';
 
 import '../../../../../models/job/job_offer.dart';
 import '../../../../../tools/const/const.dart';
@@ -21,17 +23,20 @@ class _JobDescriptionPageState extends State<JobDescriptionPage> {
   JobListController _jobListController = Get.put(JobListController());
 
   late JobOffer _jobOffer;
+  bool _canEditPost = false;
+  bool _isAlreadySubmitApplication = false;
 
   @override
   void initState() {
     _jobOffer = _jobListController.jobOffer!;
     _jobListController.resetDescriptionTabIndex();
+    _canEditPost = _jobListController.canEditPost;
+    _isAlreadySubmitApplication = _jobListController.isAleardySubmitApplication;
     super.initState();
   }
 
   @override
   Widget build(BuildContext context) {
-    double screenWidth = MediaQuery.of(context).size.width;
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.white,
@@ -58,13 +63,8 @@ class _JobDescriptionPageState extends State<JobDescriptionPage> {
                             borderRadius: BorderRadius.circular(10),
                           ),
                           alignment: Alignment.center,
-                          child: Image.memory(
-                            Uri.parse(
-                                    "data:image/png;base64,${_jobOffer.company!.logo!}")
-                                .data!
-                                .contentAsBytes(),
-                            width: 60,
-                            height: 60,
+                          child: CompanyLogo(
+                            company: _jobOffer.company!,
                           ),
                         ),
                         const SizedBox(width: 10),
@@ -128,7 +128,7 @@ class _JobDescriptionPageState extends State<JobDescriptionPage> {
                   const SizedBox(height: 24),
                   ClipRRect(
                     borderRadius: BorderRadius.circular(10),
-                    child: Obx((){
+                    child: Obx(() {
                       return Row(
                         children: [
                           Expanded(
@@ -137,15 +137,19 @@ class _JobDescriptionPageState extends State<JobDescriptionPage> {
                                 _jobListController.updateDescriptionTabIndex(0);
                               },
                               child: Container(
-                                color: _jobListController.isDescriptionTabSelected
-                                    ? AssetColors.blueButton
-                                    : AssetColors.lightGrey2,
+                                color:
+                                    _jobListController.isDescriptionTabSelected
+                                        ? AssetColors.blueButton
+                                        : AssetColors.lightGrey2,
                                 padding: const EdgeInsets.all(8),
-                                child:  Text(
+                                child: Text(
                                   'Description',
                                   textAlign: TextAlign.center,
                                   style: TextStyle(
-                                    color: _jobListController.isDescriptionTabSelected ? Colors.white : AssetColors.grey3,
+                                    color: _jobListController
+                                            .isDescriptionTabSelected
+                                        ? Colors.white
+                                        : AssetColors.grey3,
                                   ),
                                 ),
                               ),
@@ -158,15 +162,16 @@ class _JobDescriptionPageState extends State<JobDescriptionPage> {
                               },
                               child: Container(
                                 padding: const EdgeInsets.all(8),
-                                color: _jobListController.isEntrepriseTabSelected
-                                    ? AssetColors.blueButton
-                                    : AssetColors.lightGrey2,
+                                color:
+                                    _jobListController.isEntrepriseTabSelected
+                                        ? AssetColors.blueButton
+                                        : AssetColors.lightGrey2,
                                 child: Text(
                                   'Entreprise',
                                   textAlign: TextAlign.center,
                                   style: TextStyle(
                                     color: _jobListController
-                                        .isEntrepriseTabSelected
+                                            .isEntrepriseTabSelected
                                         ? Colors.white
                                         : AssetColors.grey3,
                                   ),
@@ -192,19 +197,24 @@ class _JobDescriptionPageState extends State<JobDescriptionPage> {
               ),
             ),
             const SizedBox(height: 10),
-            CButton(
-              onPressed: () {
-                Get.to(const JobApplicationPage());
-              },
-              height: 48,
-              child: const Text(
-                "Postuler",
-                style: TextStyle(
-                  fontSize: 18,
-                  color: Colors.white,
+            if (!_isAlreadySubmitApplication) ...{
+              CButton(
+                onPressed: () {
+                  if (_canEditPost) {
+                    return;
+                  }
+                  Get.to(AddJobOfferInformationPage());
+                },
+                height: 48,
+                child: Text(
+                  _canEditPost ? "Modifier" : "Postuler",
+                  style: const TextStyle(
+                    fontSize: 18,
+                    color: Colors.white,
+                  ),
                 ),
-              ),
-            )
+              )
+            }
           ],
         ),
       ),

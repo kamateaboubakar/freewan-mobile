@@ -29,6 +29,22 @@ class JobListController extends ViewController {
 
   bool get isEntrepriseTabSelected => _descriptionTabIndex.value == 1;
 
+  bool _canEditPost = false;
+
+  bool get canEditPost => _canEditPost;
+
+  updateEditPostState([bool state = false]) {
+    _canEditPost = state;
+  }
+
+  bool _isAleardySubmitApplication = false;
+
+  bool get isAleardySubmitApplication => _isAleardySubmitApplication;
+
+  updateAlreadySubmitApplicationState([bool state = false]) {
+    _isAleardySubmitApplication = state;
+  }
+
   getJobOffers() async {
     _response = null;
     update();

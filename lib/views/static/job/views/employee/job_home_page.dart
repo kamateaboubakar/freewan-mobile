@@ -7,6 +7,7 @@ import 'package:wan_mobile/views/static/job/views/employee/job_list/job_list_vie
 import '../../../../../models/job/job_entity.dart';
 import '../../../../../tools/widgets/c_textform_field.dart';
 import '../../job_views.dart';
+import 'job_offers_applied_page.dart';
 import 'jobs_sector/job_sector_view.dart';
 
 class JobHomePage extends StatefulWidget {
@@ -19,21 +20,19 @@ class JobHomePage extends StatefulWidget {
 class _JobHomePageState extends State<JobHomePage> {
   @override
   Widget build(BuildContext context) {
-    double screenWidth = MediaQuery.of(context).size.width;
-
-    List<String> tags = [
-      "Tous",
-      "UI Designer",
-      "FE Dev",
-      "PM",
-      "Graphic",
-    ];
-
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.white,
         foregroundColor: Colors.black,
         title: const Text("Emplois"),
+        actions: [
+          IconButton(
+            onPressed: () {
+              Get.to(JobOffersAppliedPage());
+            },
+            icon: Icon(Icons.list_alt),
+          )
+        ],
       ),
       body: Padding(
         padding: const EdgeInsets.all(16),

@@ -78,16 +78,34 @@ class _JobEmployerOffersPageState extends State<JobEmployerOffersPage> {
           },
         ),
       ),
-      floatingActionButton: Visibility(
-        visible: isOfferAdded,
-        child: FloatingActionButton(
-          backgroundColor: AssetColors.blueButton,
-          onPressed: () => Get.to(const AddJobOfferInformationPage()),
-          child: const Icon(
-            Icons.add,
-            color: Colors.white,
-          ),
-        ),
+      floatingActionButton: GetBuilder(
+        init: _jobOfferEmployerController,
+        builder: (controller){
+          _jobOfferEmployerController = controller;
+          var response = _jobOfferEmployerController.response;
+          if(response == null){
+            return Container();
+          }
+
+          if(!response.status){
+            return Container();
+          }
+
+          var jobOffers = response.data ?? [];
+
+          if(jobOffers.isEmpty){
+            return Container();
+          }
+
+          return FloatingActionButton(
+            backgroundColor: AssetColors.blueButton,
+            onPressed: () => Get.to(const AddJobOfferInformationPage()),
+            child: const Icon(
+              Icons.add,
+              color: Colors.white,
+            ),
+          );
+        },
       ),
     );
   }
@@ -165,12 +183,15 @@ class _JobEmployerOffersPageState extends State<JobEmployerOffersPage> {
           onTap: () {
             _jobListController.updateSelectedJobOffer(jobOffer);
             _jobListController.updateEditPostState(true);
+            _jobListController.updateAlreadySubmitApplicationState();
             Get.to(JobDescriptionPage());
           },
           deleteCall: () async {
             var result = await Tools.showChoiceMessage(
                 message: "Voulez-vous supprimer cette offre ?");
-            if (result != null && result) {}
+            if (result != null && result) {
+              _deleteJobOffer(jobOffer);
+            }
           },
         );
       },
@@ -179,5 +200,17 @@ class _JobEmployerOffersPageState extends State<JobEmployerOffersPage> {
 
   _getJobOfferEmployer() {
     _jobOfferEmployerController.getJobOffers();
+  }
+
+  _deleteJobOffer(JobOffer jobOffer) async {
+    var pr = Tools.progressDialog();
+    pr.show();
+    var response = await _jobOfferEmployerController.deleteJobOffer(jobOffer.id!);
+    Get.back();
+    Tools.messageBox(message: response.status ? "Offre d'emploi supprimée" : response.message, onConfirm: (){
+      if(response.status){
+        _getJobOfferEmployer();
+      }
+    });
   }
 }

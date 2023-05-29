@@ -35,14 +35,40 @@ class JobApiCtrl extends WebController {
     }
   }
 
+  Future<HttpResponse<List<ApplyJob>>> getJobApplied(
+      [String? customerId]) async {
+    try {
+      var url = "${Const.jobBaseUrl}/jobs/applications/customers/$customerId";
+
+      print('url $url');
+      var res = await get(url, headers: HttpClientConst.headers);
+      var body = HttpResponse.decodeBody(res);
+
+      print('response');
+
+      log(jsonEncode(body.data));
+
+      if (body.status) {
+        return HttpResponse.success(
+            data:
+                (body.data as List).map((e) => ApplyJob.fromJson(e)).toList());
+      } else {
+        return HttpResponse.error(message: body.message);
+      }
+    } catch (e) {
+      return HttpResponse.error(detailErrors: e.toString());
+    }
+  }
+
   Future<HttpResponse> addJob(AddJob addJob) async {
-    print('body ${addJob.toJson()}');
     try {
       var res = await post(
         "${Const.jobBaseUrl}/jobs",
         addJob.toJson(),
         headers: HttpClientConst.headers,
       );
+
+      print(addJob.toJson());
 
       print(res.body);
 
@@ -79,6 +105,29 @@ class JobApiCtrl extends WebController {
 
       if (body.status) {
         return HttpResponse.success(data: applyJob);
+      } else {
+        return HttpResponse.error(message: body.message);
+      }
+    } catch (e) {
+      return HttpResponse.error(detailErrors: e.toString());
+    }
+  }
+
+  Future<HttpResponse> deleteJobOffer(int id) async {
+    try {
+      var url = "${Const.jobBaseUrl}/jobs/$id";
+
+      print('url $url');
+      var res = await delete(url, headers: HttpClientConst.headers);
+      var body = HttpResponse.decodeBody(res);
+
+      print('response delete');
+
+      print(body.data);
+
+      if (body.status) {
+        return HttpResponse.success(
+            data: JobOffer());
       } else {
         return HttpResponse.error(message: body.message);
       }

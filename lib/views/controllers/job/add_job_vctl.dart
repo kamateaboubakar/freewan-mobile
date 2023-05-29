@@ -3,6 +3,7 @@ import 'dart:io';
 
 import 'package:get/get.dart';
 import 'package:wan_mobile/api/controllers/contract_type_api_ctrl.dart';
+import 'package:wan_mobile/api/controllers/file_api_ctl.dart';
 import 'package:wan_mobile/api/controllers/job_api_ctl.dart';
 import 'package:wan_mobile/api/controllers/job_sector_api_ctl.dart';
 import 'package:wan_mobile/api/controllers/pays_api_ctl.dart';
@@ -23,6 +24,7 @@ class AddJobController extends ViewController {
   final JobSectorApiCtrl _jobSectorApiCtl = JobSectorApiCtrl();
   final CompanyApiCtl _companyApiCtrl = CompanyApiCtl();
   final PaysApiCtl _paysApiCtl = PaysApiCtl();
+  final FileApiCtl _uploadFileCtl = FileApiCtl();
 
   late AddJob _addJob;
   late Company _newCompany;
@@ -166,7 +168,12 @@ class AddJobController extends ViewController {
     late HttpResponse companyResponse;
 
     if (isNewCompany) {
-      _newCompany.logo = _logoFile!.toBase64;
+      var fileUploadResponse = await _uploadFileCtl.uploadFile(_logoFile!);
+      if (!fileUploadResponse.status) {
+        return fileUploadResponse;
+      }
+
+      _newCompany.logo = fileUploadResponse.data!.filename!;
       companyResponse = await _companyApiCtrl.createCompany(_newCompany);
       if (!companyResponse.status) {
         return companyResponse;

@@ -12,10 +12,10 @@ import '../../views/controllers/app_ctl.dart';
 abstract class WebController extends GetConnect {
   final AppCtl appCtl = Get.find();
 
-  @override
+  // TODO fix
+  /*@override
   void onInit() {
-    // TODO fix
-    /*httpClient.defaultContentType = "json";
+    httpClient.defaultContentType = "json";
     httpClient.addResponseModifier((request, response) {
       if (kDebugMode) {
         print('---- [RESPONSE] ${request.url}');
@@ -34,9 +34,9 @@ abstract class WebController extends GetConnect {
         log(bodyString);
       }
       return request;
-    });*/
+    });
     super.onInit();
-  }
+  }*/
 
   @override
   Future<Response<T>> put<T>(String url, dynamic body,

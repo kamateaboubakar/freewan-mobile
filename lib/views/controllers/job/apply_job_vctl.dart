@@ -21,7 +21,7 @@ class ApplyJobController extends ViewController {
   }
 
   updateCoverLetter(String value) {
-    _applyJob.coverLetter = value;
+    _applyJob.motivationLetter = value;
     update();
   }
 
@@ -31,12 +31,12 @@ class ApplyJobController extends ViewController {
   }
 
   bool get isJobApplicationInfoValid =>
-      _applyJob.coverLetter!.isNotEmpty && isResumePicked;
+      _applyJob.motivationLetter!.isNotEmpty && isResumePicked;
 
   bool get isResumePicked => _resumeFile != null;
 
   Future<HttpResponse> submitJobApplication(JobOffer offer) {
-    _applyJob.resume = _resumeFile!.toBase64;
+    _applyJob.cvFilename = _resumeFile!.toBase64;
     _applyJob.customerAccountId = appCtl.user.accountId!;
     return _jobApiCtrl.applyToJob(applyJob: _applyJob, jobOffer: offer);
   }

@@ -66,7 +66,7 @@ class JobItem extends StatelessWidget {
             ),
             const SizedBox(height: 5),
             Text(
-              '${jobEntity?.company?.name} ?? Google - A distance, CA',
+              jobEntity?.company?.name ?? 'Google - A distance, CA',
               style: const TextStyle(
                 fontSize: 10,
                 color: Color(0xff828282),

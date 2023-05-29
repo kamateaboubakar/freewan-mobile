@@ -28,4 +28,8 @@ class JobOfferEmployerController extends ViewController {
     update();
   }
 
+  Future<HttpResponse>deleteJobOffer(int id) {
+    return _jobApiCtl.deleteJobOffer(id);
+  }
+
 }

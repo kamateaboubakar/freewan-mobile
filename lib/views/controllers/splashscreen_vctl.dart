@@ -11,6 +11,7 @@ import 'package:wan_mobile/views/static/auth/phone_auth/phone_auth.dart';
 
 class SplashscreenVctl extends ViewController {
   redirect() async {
+    await Future.delayed(const Duration(seconds: 3));
     var res = await Cache.getString(CacheKey.credentials);
     if (res != null) {
       Map<String, dynamic> cache = json.decode(res);

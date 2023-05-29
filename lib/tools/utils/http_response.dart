@@ -1,7 +1,7 @@
 import 'dart:convert';
-
 import 'package:flutter/foundation.dart';
 import 'package:get/get.dart';
+import 'package:http/http.dart' as http;
 
 class HttpResponse<T> {
   bool status = false;
@@ -78,6 +78,39 @@ class HttpResponse<T> {
         print(st);
       }
       return null;
+    }
+  }
+
+  static Future<HttpResponse<T>> decodeMultipartBody<T>(
+      http.StreamedResponse source) async {
+    try {
+      if (kDebugMode) {
+        print(source.statusCode);
+      }
+
+      var bodyString = await source.stream.bytesToString();
+
+      dynamic body = json.decode(bodyString);
+
+      if (source.statusCode >= 200 && source.statusCode < 300) {
+        return HttpResponse.success(data: (body as T));
+      } else {
+        if (body == null) {
+          return HttpResponse.error(
+              message:
+                  "Désolé, une erreur est survenue. Veuillez réessayer SVP.");
+        }
+        return HttpResponse.error(
+            message: body["message"] ??
+                body ??
+                "Désolé, une erreur est survenue. Veuillez réessayer SVP.");
+      }
+    } catch (e, st) {
+      if (kDebugMode) {
+        print(e);
+        print(st);
+      }
+      return HttpResponse.setDetailErrors(detailErrors: e.toString());
     }
   }
 }

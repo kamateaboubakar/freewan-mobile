@@ -39,7 +39,7 @@ class UserApiCtl extends WebController {
     try {
       var res = await post(
         HttpClientConst.baseUrl(module: "challenge-otp"),
-        {"login": phone}.toJson(),
+        {"login": phone}.parseToJson(),
         headers: HttpClientConst.headers,
       );
       var body = HttpResponse.decodeBody(res);
@@ -62,7 +62,7 @@ class UserApiCtl extends WebController {
       var response = await post(
         HttpClientConst.baseUrl(module: "challenge-otp/verify"),
         headers: HttpClientConst.headers,
-        {"otp": code, "login": phone}.toJson(),
+        {"otp": code, "login": phone}.parseToJson(),
       );
       var body = HttpResponse.decodeBody(response);
       if (body.status) {
@@ -90,7 +90,7 @@ class UserApiCtl extends WebController {
     try {
       var res = await post(
         HttpClientConst.baseUrl(module: "auth/authenticate"),
-        {"login": phone, "password": password}.toJson(),
+        {"login": phone, "password": password}.parseToJson(),
         headers: HttpClientConst.headers,
       );
       var body = HttpResponse.decodeBody(res);
@@ -119,7 +119,7 @@ class UserApiCtl extends WebController {
             "securityQuestionId": securityQuestionId,
             "answer": answer,
           }
-        }.toJson(),
+        }.parseToJson(),
         headers: HttpClientConst.headers,
       );
       var body = HttpResponse.decodeBody(res);
@@ -158,7 +158,7 @@ class UserApiCtl extends WebController {
     try {
       var res = await post(
         HttpClientConst.baseUrl(module: "auth/revoke"),
-        {}.toJson(),
+        {}.parseToJson(),
         headers: HttpClientConst.authHeaders,
       );
       var body = HttpResponse.decodeBody(res);

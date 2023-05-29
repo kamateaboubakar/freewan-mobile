@@ -2,17 +2,17 @@ import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';
 import 'package:wan_mobile/tools/utils/asset_colors.dart';
-import 'package:wan_mobile/views/controllers/don/don_page_vctl.dart';
-import 'package:wan_mobile/views/static/don/don_list_page.dart';
-import 'package:wan_mobile/views/static/don/user_campagne_page.dart';
+import 'package:wan_mobile/views/controllers/donation/donation_page_vctl.dart';
+import 'package:wan_mobile/views/static/donation/donation_list_page.dart';
+import 'package:wan_mobile/views/static/donation/user_campagne_page.dart';
 
-class DonPage extends StatelessWidget {
-  const DonPage({super.key});
+class DonationPage extends StatelessWidget {
+  const DonationPage({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return GetBuilder<DonPageVctl>(
-        init: DonPageVctl(),
+    return GetBuilder<DonationPageVctl>(
+        init: DonationPageVctl(),
         builder: (ctl) {
           return DefaultTabController(
             length: 2,
@@ -34,7 +34,7 @@ class DonPage extends StatelessWidget {
                     ]),
               ),
               body: TabBarView(children: [
-                DonListPage(ctl),
+                DonationListPage(ctl),
                 UserCampagnePage(ctl),
               ]),
             ),

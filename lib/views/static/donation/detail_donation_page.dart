@@ -1,14 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:wan_mobile/models/don/don.dart';
+import 'package:wan_mobile/models/don/campagne.dart';
 import 'package:wan_mobile/tools/types/types.dart';
 import 'package:wan_mobile/tools/utils/asset_colors.dart';
 import 'package:wan_mobile/tools/widgets/c_button.dart';
-import 'package:wan_mobile/views/static/don/finalise_don_page.dart';
+import 'package:wan_mobile/views/static/donation/finalise_donation_page.dart';
 
-class DetailDonPage extends StatelessWidget {
-  final Don don;
-  const DetailDonPage(this.don, {super.key});
+class DetailDonationPage extends StatelessWidget {
+  final Campagne don;
+  const DetailDonationPage(this.don, {super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -32,10 +32,10 @@ class DetailDonPage extends StatelessWidget {
               height: 283,
               child: ClipRRect(
                   borderRadius: BorderRadius.circular(20),
-                  child: Image.asset(don.image.value, fit: BoxFit.cover)),
+                  child: Image.network(don.imageUrl.value, fit: BoxFit.cover)),
             ),
             ListTile(
-              title: Text(don.title.value),
+              title: Text(don.label.value),
             ),
             Padding(
               padding: const EdgeInsets.only(left: 15),
@@ -47,28 +47,25 @@ class DetailDonPage extends StatelessWidget {
                   width: 24,
                 ),
                 contentPadding: EdgeInsets.zero,
-                title: Text(don.receiver.value),
+                title: Text(don.organization!.name.value),
               ),
             ),
-            const Padding(
-              padding: EdgeInsets.all(8.0),
-              child: Text("We accomplish this through "
-                  "our unique network of health professionals "
-                  "and orga nization committed to improving health "
-                  "policies and practices, Isha Foundation is a nonprofit "
-                  "providing life saving medical care to children aims at "
-                  "creating a long and +plus"),
+            Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: Text(don.description.value),
             ),
             Padding(
               padding: const EdgeInsets.only(top: 15, left: 15),
               child: Column(
                 children: [
                   Row(
-                    children: const [
-                      Expanded(child: Text("345 600 sur 500 000")),
+                    children: [
+                      Expanded(
+                          child:
+                              Text("${don.collectedAmount} sur ${don.amount}")),
                       Text(
-                        "2 jours restants",
-                        style: TextStyle(color: Colors.red),
+                        "${don.nbJourRestant} jours restants",
+                        style: const TextStyle(color: Colors.red),
                       ),
                     ],
                   ),
@@ -119,8 +116,8 @@ class DetailDonPage extends StatelessWidget {
                         width: Get.width * .4,
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.end,
-                          children: const [
-                            Text(
+                          children: [
+                            const Text(
                               "Total Donation",
                               textAlign: TextAlign.end,
                               style: TextStyle(
@@ -129,11 +126,11 @@ class DetailDonPage extends StatelessWidget {
                                 color: AssetColors.grey4,
                               ),
                             ),
-                            SizedBox(height: 5),
+                            const SizedBox(height: 5),
                             Text(
-                              "F 345600",
-                              textAlign: TextAlign.end,
-                              style: TextStyle(
+                              "F ${don.collectedAmount}",
+                              textAlign: TextAlign.start,
+                              style: const TextStyle(
                                 fontWeight: FontWeight.w500,
                                 fontSize: 18,
                               ),

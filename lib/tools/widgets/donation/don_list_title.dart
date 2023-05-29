@@ -1,13 +1,14 @@
 import 'package:flutter/material.dart';
-import 'package:wan_mobile/models/don/don.dart';
+import 'package:get/get.dart';
+import 'package:wan_mobile/models/don/campagne.dart';
 import 'package:wan_mobile/tools/types/types.dart';
 import 'package:wan_mobile/tools/utils/asset_colors.dart';
 import 'package:wan_mobile/tools/widgets/c_button.dart';
+import 'package:wan_mobile/views/static/donation/detail_donation_page.dart';
 
-class DonListTile extends StatelessWidget {
-  final Don don;
-  final void Function() onPressed;
-  const DonListTile(this.don, {required this.onPressed, super.key});
+class CampagneListTile extends StatelessWidget {
+  final Campagne campagne;
+  const CampagneListTile(this.campagne, {super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -24,8 +25,10 @@ class DonListTile extends StatelessWidget {
             child: SizedBox(
               width: double.infinity,
               child: ClipRRect(
-                  borderRadius: BorderRadius.circular(20),
-                  child: Image.asset(don.image.value, fit: BoxFit.cover)),
+                borderRadius: BorderRadius.circular(20),
+                child:
+                    Image.network(campagne.imageUrl.value, fit: BoxFit.cover),
+              ),
             ),
           ),
           Padding(
@@ -39,7 +42,7 @@ class DonListTile extends StatelessWidget {
                   minLeadingWidth: 0,
                   contentPadding: const EdgeInsets.all(0),
                   title: Text(
-                    don.title.value,
+                    campagne.label.value,
                     style: const TextStyle(
                         fontSize: 16, fontWeight: FontWeight.w500),
                   ),
@@ -53,9 +56,9 @@ class DonListTile extends StatelessWidget {
                     width: 24,
                   ),
                   contentPadding: const EdgeInsets.all(0),
-                  title: Text(don.receiver.value),
+                  title: Text(campagne.organization!.name.value),
                   trailing: CButton(
-                    onPressed: onPressed,
+                    onPressed: () => Get.to(() => DetailDonationPage(campagne)),
                     child: const Text("Donner"),
                   ),
                 ),

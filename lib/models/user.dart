@@ -2,7 +2,6 @@ import 'package:wan_mobile/models/security_question.dart';
 import 'package:wan_mobile/tools/types/types.dart';
 
 class User {
-  String? id;
   String? phoneNumber;
   String? countryCallingCode;
   String? email;
@@ -23,7 +22,6 @@ class User {
 
   User.fromJson(Map<String, dynamic> json) {
     accountId = json['accountId'];
-    id = json['id'];
     phoneNumber = json['phoneNumber'] ?? json["login"];
     countryCallingCode = json['countryCallingCode'];
     email = json['email'];
@@ -45,7 +43,7 @@ class User {
     data['email'] = email;
     data['password'] = password;
     if (birthDate != null) {
-      data['birthDate'] = birthDate!.toIso8601String().split("T").first;
+      data['birthDate'] = birthDate!.toStringDateOnly();
     } else {
       data["birthDate"] = null;
     }

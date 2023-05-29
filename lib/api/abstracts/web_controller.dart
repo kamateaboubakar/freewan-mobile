@@ -1,7 +1,10 @@
+import 'dart:io';
+
 import 'package:get/get.dart';
 import 'package:jwt_decode/jwt_decode.dart';
 import 'package:wan_mobile/api/abstracts/http_client_const.dart';
-
+import 'package:http/http.dart' as http;
+import 'package:wan_mobile/models/fichier.dart';
 import '../../tools/utils/http_response.dart';
 import '../../views/controllers/app_ctl.dart';
 
@@ -55,20 +58,21 @@ abstract class WebController extends GetConnect {
         decoder: decoder);
   }
 
-  // Future<http.MultipartRequest> multiPartclient(String method, Uri url,
-  //     {Map<String, String> headers = const {},
-  //     Map<String, String> body = const {},
-  //     List<Fichier> files = const []}) async {
-  //   var req = http.MultipartRequest(method, url);
-  //   req.headers.addAll(headers);
-  //   req.fields.addAll(body);
-  //   for (var file in files) {
-  //     req.files.add(await http.MultipartFile.fromPath("files", file.url!));
-  //   }
-  //   return req;
-  // }
+  Future<http.MultipartRequest> multiPartclient(String method, Uri url,
+      {Map<String, String> headers = const {},
+      Map<String, String> body = const {},
+      List<File> files = const []}) async {
+    var req = http.MultipartRequest(method, url);
+    headers = await _checkAndRefreshToken(headers);
+    req.headers.addAll(headers);
+    req.fields.addAll(body);
+    for (var file in files) {
+      req.files.add(await http.MultipartFile.fromPath("file", file.path));
+    }
+    return req;
+  }
 
-  Future<Map<String, String>>? _checkAndRefreshToken(
+  Future<Map<String, String>> _checkAndRefreshToken(
       Map<String, String>? headers) async {
     if (headers?.containsKey("authorization") == true &&
         Jwt.isExpired(appCtl.jwtToken)) {

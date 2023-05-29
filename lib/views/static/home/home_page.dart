@@ -13,7 +13,7 @@ import 'package:wan_mobile/tools/widgets/card_menu.dart';
 import 'package:wan_mobile/tools/widgets/single_child_card_menu.dart';
 import 'package:wan_mobile/views/controllers/home/home_page_vctl.dart';
 import 'package:wan_mobile/views/static/achat_unite/achat_unite_page.dart';
-import 'package:wan_mobile/views/static/don/don_page.dart';
+import 'package:wan_mobile/views/static/donation/donation_page.dart';
 import 'package:wan_mobile/views/static/home/home_drawer.dart';
 import 'package:wan_mobile/views/static/loyer/loyer_bottom_sheet.dart';
 import 'package:wan_mobile/views/static/scan_pay/scan_pay_camera.dart';
@@ -233,7 +233,8 @@ class HomePage extends StatelessWidget {
                                 "assets/images/icons8-confiance.gif",
                               ),
                               title: "Don",
-                              onPressed: () => Get.to(() => const DonPage()),
+                              onPressed: () =>
+                                  Get.to(() => const DonationPage()),
                             ),
                             ButtonMenu(
                               icon: Image.asset(

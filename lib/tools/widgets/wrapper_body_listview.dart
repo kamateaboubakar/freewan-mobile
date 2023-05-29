@@ -15,6 +15,7 @@ class WrapperBodyListView extends StatelessWidget {
   final Widget? emptyWidget;
   final EdgeInsetsGeometry? listPadding;
   final Widget? refreshButton;
+  final bool shrinkWrap;
   const WrapperBodyListView(
       {required this.loading,
       this.refreshButton,
@@ -25,6 +26,7 @@ class WrapperBodyListView extends StatelessWidget {
       this.listPadding,
       this.error = "",
       this.emptyText = "Aucune données à afficher",
+      this.shrinkWrap = false,
       Key? key})
       : super(key: key);
 
@@ -116,6 +118,7 @@ class WrapperBodyListView extends StatelessWidget {
                     ? RefreshIndicator(
                         onRefresh: onRefresh!,
                         child: ListView(
+                          shrinkWrap: shrinkWrap,
                           padding: listPadding,
                           children: children,
                         ),

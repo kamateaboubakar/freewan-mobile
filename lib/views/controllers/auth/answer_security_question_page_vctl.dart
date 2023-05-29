@@ -34,7 +34,7 @@ class AnswerSecurityQuestionPageVctl extends ViewController {
       await pr.hide();
       if (res.status) {
         await Cache.setString(CacheKey.credentials,
-            {"phone": phone, "pays": pays.toJson()}.toJson());
+            {"phone": phone, "pays": pays.toJson()}.parseToJson());
         Get.offAll(() => const HomePage());
       } else {
         Tools.messageBox(message: res.message);

@@ -1,11 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:wan_mobile/models/don/don.dart';
+import 'package:wan_mobile/models/don/campagne.dart';
 import 'package:wan_mobile/tools/types/types.dart';
 import 'package:wan_mobile/tools/utils/asset_colors.dart';
-import 'package:wan_mobile/tools/widgets/c_button.dart';
 
 class CampagneListTile extends StatelessWidget {
-  final Don don;
+  final Campagne don;
 
   const CampagneListTile(this.don, {super.key});
 
@@ -39,7 +38,7 @@ class CampagneListTile extends StatelessWidget {
                   minLeadingWidth: 0,
                   contentPadding: const EdgeInsets.all(0),
                   title: Text(
-                    don.title.value,
+                    don.label.value,
                     style: const TextStyle(
                         fontSize: 16, fontWeight: FontWeight.w500),
                   ),
@@ -55,7 +54,7 @@ class CampagneListTile extends StatelessWidget {
                   dense: true,
                   minVerticalPadding: 0,
                   minLeadingWidth: 0,
-                  contentPadding: const EdgeInsets.all(0),
+                  contentPadding: EdgeInsets.all(0),
                   title: Text(
                     "0 sur F 500 000",
                     style: TextStyle(fontSize: 16, fontWeight: FontWeight.w500),

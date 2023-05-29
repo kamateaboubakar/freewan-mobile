@@ -19,7 +19,8 @@ class CDropdownField<T> extends StatelessWidget {
   final Color? backgroundColor;
   final Widget Function(T)? itemBuilder;
   final Widget Function(T)? selectedItemBuilder;
-
+  final Future<List<T>> Function(String)? asyncItems;
+  final PopupProps<T>? popupProps;
   const CDropdownField({
     this.controller,
     this.selectedItem,
@@ -38,6 +39,8 @@ class CDropdownField<T> extends StatelessWidget {
     this.backgroundColor,
     this.itemBuilder,
     this.selectedItemBuilder,
+    this.asyncItems,
+    this.popupProps,
     super.key,
   });
 
@@ -49,6 +52,7 @@ class CDropdownField<T> extends StatelessWidget {
         onChanged: onChanged,
         enabled: enabled,
         items: items,
+        asyncItems: asyncItems,
         itemAsString: itemAsString,
         selectedItem: selectedItem,
         validator: (value) {
@@ -105,16 +109,17 @@ class CDropdownField<T> extends StatelessWidget {
                 ),
           ),
         ),
-        popupProps: PopupProps.menu(
-          itemBuilder: itemBuilder != null
-              ? (context, item, selected) {
-                  return Padding(
-                    padding: EdgeInsets.all(8),
-                    child: itemBuilder!(item),
-                  );
-                }
-              : null,
-        ),
+        popupProps: popupProps ??
+            PopupProps.menu(
+              itemBuilder: itemBuilder != null
+                  ? (context, item, selected) {
+                      return Padding(
+                        padding: EdgeInsets.all(8),
+                        child: itemBuilder!(item),
+                      );
+                    }
+                  : null,
+            ),
       ),
     );
   }

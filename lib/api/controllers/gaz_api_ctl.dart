@@ -76,8 +76,6 @@ class GazApiCtl extends WebController {
     required int price,
   }) async {
     try {
-
-
       var requestBody = {
         "brandInShopId": "$brandInShopId",
         "customerSessionId": customerSessionId,
@@ -88,10 +86,10 @@ class GazApiCtl extends WebController {
         "price": "$price"
       };
 
-      print(jsonEncode(requestBody.toJson()));
+      print(jsonEncode(requestBody.parseToJson()));
 
       var url = "${Const.gazBaseUrl}/orders/";
-      var res = await post(url, requestBody.toJson(),
+      var res = await post(url, requestBody.parseToJson(),
           headers: HttpClientConst.headers);
       var body = HttpResponse.decodeBody(res);
       print(body.data);

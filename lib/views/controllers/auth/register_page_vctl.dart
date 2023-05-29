@@ -104,7 +104,7 @@ class RegisterPageVctl extends ViewController {
       await pr.hide();
       if (res.status) {
         await Cache.setString(CacheKey.credentials,
-            {"phone": phone, "pays": selectedPays.toJson()}.toJson());
+            {"phone": phone, "pays": selectedPays.toJson()}.parseToJson());
         appCtl.user = user;
         Get.offAll(() => const HomePage(displayWelcome: true));
       } else {

@@ -241,10 +241,16 @@ class _ApplyJobDescriptionPageState extends State<ApplyJobDescriptionPage> {
                 ),
                 children: [
                   TextSpan(
-                    text: "${_applyJob.motivationLetter ?? 'Pas de lettre de motivation'}",
+                    text: "Lettre de motivation",
                     style: TextStyle(
                       color: AssetColors.grey2,
                       fontWeight: FontWeight.bold,
+                    ),
+                  ),
+                  TextSpan(
+                    text: "${_applyJob.motivationLetter ?? 'Pas de lettre de motivation'}",
+                    style: TextStyle(
+                      color: AssetColors.grey3,
                     ),
                   ),
                 ]),

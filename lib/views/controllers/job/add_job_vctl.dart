@@ -5,8 +5,12 @@ import 'package:get/get.dart';
 import 'package:wan_mobile/api/controllers/contract_type_api_ctrl.dart';
 import 'package:wan_mobile/api/controllers/file_api_ctl.dart';
 import 'package:wan_mobile/api/controllers/job_api_ctl.dart';
+import 'package:wan_mobile/api/controllers/job_category_api_ctrl.dart';
 import 'package:wan_mobile/api/controllers/job_sector_api_ctl.dart';
 import 'package:wan_mobile/api/controllers/pays_api_ctl.dart';
+import 'package:wan_mobile/api/controllers/work_experience_api_ctrl.dart';
+import 'package:wan_mobile/models/job/category.dart';
+import 'package:wan_mobile/models/job/work_experience.dart';
 import 'package:wan_mobile/models/pays.dart';
 import 'package:wan_mobile/tools/utils/file_util.dart';
 import 'package:wan_mobile/views/controllers/abstracts/view_controller.dart';
@@ -25,6 +29,8 @@ class AddJobController extends ViewController {
   final CompanyApiCtl _companyApiCtrl = CompanyApiCtl();
   final PaysApiCtl _paysApiCtl = PaysApiCtl();
   final FileApiCtl _uploadFileCtl = FileApiCtl();
+  final WorkExperienceApiCtl _workExperienceCtl = WorkExperienceApiCtl();
+  final JobCategoryApiCtl _jobCategoryCtl = JobCategoryApiCtl();
 
   late AddJob _addJob;
   late Company _newCompany;
@@ -154,7 +160,9 @@ class AddJobController extends ViewController {
       _addJob.workPlace!.isNotEmpty &&
       _selectedContractType != null &&
       _selectedJobSector != null &&
-      _selectedPays != null;
+      _selectedPays != null &&
+      _selectedWorkExperience != null &&
+      _selectedJobCategory != null;
 
   bool get isJobDescriptionValid =>
       _addJob.description!.isNotEmpty && _addJob.expectedSalary!.isNotEmpty;
@@ -185,6 +193,8 @@ class AddJobController extends ViewController {
     _addJob.companyId =
         isNewCompany ? companyResponse.data!.id : _selectedCompany!.id!;
     _addJob.countryId = _selectedPays!.id!;
+    _addJob.workExperienceId = _selectedWorkExperience!.id!;
+    _addJob.categoryId = _selectedJobCategory!.id!;
     return _jobApiCtrl.addJob(_addJob);
   }
 
@@ -245,5 +255,43 @@ class AddJobController extends ViewController {
   void updateCompanyLogo(File file) {
     _logoFile = file;
     updateAddJobCreationSubmitButtonState();
+  }
+
+  HttpResponse<List<WorkExperience>>? _workExperienceResponse;
+
+  HttpResponse<List<WorkExperience>>? get workExperienceResponse =>
+      _workExperienceResponse;
+
+  WorkExperience? _selectedWorkExperience;
+
+  void getWorkExperiences() async {
+    _workExperienceResponse = null;
+    update(['add_work_experience']);
+    _workExperienceResponse = await _workExperienceCtl.getWorkExperiences();
+    update(['add_work_experience']);
+  }
+
+  updateSelectedWorkExperience(WorkExperience workExperience) {
+    _selectedWorkExperience = workExperience;
+    update();
+  }
+
+  HttpResponse<List<JobCategory>>? _jobCategoryResponse;
+
+  HttpResponse<List<JobCategory>>? get jobCategoryResponse =>
+      _jobCategoryResponse;
+
+  JobCategory? _selectedJobCategory;
+
+  getJobCategories() async {
+    _jobCategoryResponse = null;
+    update(['add_job_category']);
+    _jobCategoryResponse = await _jobCategoryCtl.getJobCategory();
+    update(['add_job_category']);
+  }
+
+  updateSelectedJobCategory(JobCategory jobCategory) {
+    _selectedJobCategory = jobCategory;
+    update();
   }
 }

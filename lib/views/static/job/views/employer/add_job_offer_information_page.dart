@@ -1,7 +1,10 @@
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:wan_mobile/models/job/category.dart';
 import 'package:wan_mobile/models/job/company.dart';
 import 'package:wan_mobile/models/job/contract_type.dart';
+import 'package:wan_mobile/models/job/work_experience.dart';
 import 'package:wan_mobile/views/controllers/job/add_job_vctl.dart';
 
 import '../../../../../models/job/jobs_sector.dart';
@@ -38,6 +41,8 @@ class _AddJobOfferInformationPageState
       _getJobSectors();
       _getContractTypes();
       _getPays();
+      _getWorkExperiences();
+      _getJobCategories();
     });
   }
 
@@ -122,6 +127,92 @@ class _AddJobOfferInformationPageState
                             },
                             onChanged: (pays) {
                               _addJobController.updateSelectedPays(pays!);
+                            },
+                          );
+                        }),
+                    const SizedBox(height: 10),
+                    GetBuilder(
+                        id: 'add_work_experience',
+                        init: _addJobController,
+                        builder: (controller) {
+                          _addJobController = controller;
+                          var response = controller.workExperienceResponse;
+
+                          if (response == null) {
+                            return const Center(
+                              child: SizedBox(
+                                width: 40,
+                                height: 40,
+                                child: CircularProgressIndicator(),
+                              ),
+                            );
+                          }
+
+                          if (!response.status) {
+                            return Center(
+                              child: InkWell(
+                                onTap: () {
+                                  _getWorkExperiences();
+                                },
+                                child: Icon(Icons.refresh),
+                              ),
+                            );
+                          }
+
+                          var workExperiences = response.data!;
+                          return CDropdownField<WorkExperience>(
+                            labelText: "Expérience *",
+                            items: workExperiences,
+                            backgroundColor: Colors.white,
+                            itemBuilder: (workExperience) => Text(workExperience.label!),
+                            selectedItemBuilder: (workExperience) {
+                              return Text(workExperience.label ?? '');
+                            },
+                            onChanged: (workExperience) {
+                              _addJobController.updateSelectedWorkExperience(workExperience!);
+                            },
+                          );
+                        }),
+                    const SizedBox(height: 10),
+                    GetBuilder(
+                        id: 'add_job_category',
+                        init: _addJobController,
+                        builder: (controller) {
+                          _addJobController = controller;
+                          var response = controller.jobCategoryResponse;
+
+                          if (response == null) {
+                            return const Center(
+                              child: SizedBox(
+                                width: 40,
+                                height: 40,
+                                child: CircularProgressIndicator(),
+                              ),
+                            );
+                          }
+
+                          if (!response.status) {
+                            return Center(
+                              child: InkWell(
+                                onTap: () {
+                                  _getJobCategories();
+                                },
+                                child: Icon(Icons.refresh),
+                              ),
+                            );
+                          }
+
+                          var jobCategories = response.data!;
+                          return CDropdownField<JobCategory>(
+                            labelText: "Catégorie *",
+                            items: jobCategories,
+                            backgroundColor: Colors.white,
+                            itemBuilder: (jobCategorie) => Text(jobCategorie.label!),
+                            selectedItemBuilder: (jobCategorie) {
+                              return Text(jobCategorie.label ?? '');
+                            },
+                            onChanged: (jobCategorie) {
+                              _addJobController.updateSelectedJobCategory(jobCategorie!);
                             },
                           );
                         }),
@@ -280,5 +371,13 @@ class _AddJobOfferInformationPageState
 
   _getPays() {
     _addJobController.getPays();
+  }
+
+  _getWorkExperiences() {
+    _addJobController.getWorkExperiences();
+  }
+
+  _getJobCategories() {
+    _addJobController.getJobCategories();
   }
 }

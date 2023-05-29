@@ -4,6 +4,8 @@ class AddJob {
   int? countryId;
   int? companyId;
   int? activitySectorId;
+  int? workExperienceId;
+  int? categoryId;
   String? label;
   String? workPlace;
   String? expectedSalary;
@@ -16,6 +18,8 @@ class AddJob {
     this.countryId,
     this.companyId,
     this.activitySectorId,
+    this.workExperienceId,
+    this.categoryId,
     this.label = '',
     this.workPlace = '',
     this.expectedSalary = '',
@@ -30,6 +34,8 @@ class AddJob {
     if (countryId != null) data['countryId'] = countryId;
     if (companyId != null) data['companyId'] = companyId;
     if (activitySectorId != null) data['activitySectorId'] = activitySectorId;
+    if (workExperienceId != null) data['workExperienceId'] = workExperienceId;
+    if (categoryId != null) data['categoryId'] = categoryId;
     if (label != null) data['label'] = label;
     if (workPlace != null) data['workPlace'] = workPlace;
     if (expectedSalary != null) data['expectedSalary'] = expectedSalary;

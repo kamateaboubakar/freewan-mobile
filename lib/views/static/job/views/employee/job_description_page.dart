@@ -3,6 +3,8 @@ import 'package:get/get.dart';
 import 'package:wan_mobile/tools/utils/amount_util.dart';
 import 'package:wan_mobile/tools/utils/asset_colors.dart';
 import 'package:wan_mobile/tools/widgets/job/company_logo.dart';
+import 'package:wan_mobile/views/controllers/job/add_job_vctl.dart';
+import 'package:wan_mobile/views/controllers/job/apply_job_vctl.dart';
 import 'package:wan_mobile/views/controllers/job/job_list_vctl.dart';
 import 'package:wan_mobile/views/static/job/views/employee/employee_views.dart';
 import 'package:wan_mobile/views/static/job/views/employer/add_job_offer_information_page.dart';
@@ -21,6 +23,7 @@ class JobDescriptionPage extends StatefulWidget {
 
 class _JobDescriptionPageState extends State<JobDescriptionPage> {
   JobListController _jobListController = Get.put(JobListController());
+  AddJobController _addJobController = Get.put(AddJobController());
 
   late JobOffer _jobOffer;
   bool _canEditPost = false;
@@ -201,9 +204,10 @@ class _JobDescriptionPageState extends State<JobDescriptionPage> {
               CButton(
                 onPressed: () {
                   if (_canEditPost) {
+                    Get.to(AddJobOfferInformationPage());
                     return;
                   }
-                  Get.to(AddJobOfferInformationPage());
+                  Get.to(JobApplicationPage());
                 },
                 height: 48,
                 child: Text(

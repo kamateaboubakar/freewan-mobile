@@ -16,7 +16,7 @@ class ApplyJob {
   ApplyJob({
     this.id,
     this.jobOffer,
-    this.motivationLetter,
+    this.motivationLetter = '',
     this.cv,
     this.cvUrl,
     this.applicantDetails,

@@ -176,7 +176,7 @@ class AddJobController extends ViewController {
     late HttpResponse companyResponse;
 
     if (isNewCompany) {
-      var fileUploadResponse = await _uploadFileCtl.uploadFile(_logoFile!);
+      var fileUploadResponse = await _uploadFileCtl.uploadFileNew(files: [_logoFile!]);
       if (!fileUploadResponse.status) {
         return fileUploadResponse;
       }

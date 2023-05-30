@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:url_launcher/url_launcher.dart';
 import 'package:wan_mobile/tools/utils/amount_util.dart';
 import 'package:wan_mobile/tools/utils/asset_colors.dart';
 import 'package:wan_mobile/tools/widgets/job/company_logo.dart';
@@ -18,11 +19,13 @@ class ApplyJobDescriptionPage extends StatefulWidget {
   const ApplyJobDescriptionPage({Key? key}) : super(key: key);
 
   @override
-  State<ApplyJobDescriptionPage> createState() => _ApplyJobDescriptionPageState();
+  State<ApplyJobDescriptionPage> createState() =>
+      _ApplyJobDescriptionPageState();
 }
 
 class _ApplyJobDescriptionPageState extends State<ApplyJobDescriptionPage> {
-  JobOfferAppliedController _jobOfferAppliedController = Get.put(JobOfferAppliedController());
+  JobOfferAppliedController _jobOfferAppliedController =
+      Get.put(JobOfferAppliedController());
 
   late ApplyJob _applyJob;
 
@@ -86,7 +89,8 @@ class _ApplyJobDescriptionPageState extends State<ApplyJobDescriptionPage> {
                                 textAlign: TextAlign.center,
                               ),
                               Text(
-                                _applyJob.jobOffer!.expectedSalary!.formatAmount,
+                                _applyJob
+                                    .jobOffer!.expectedSalary!.formatAmount,
                                 style: TextStyle(
                                   fontSize: 14,
                                 ),
@@ -97,14 +101,16 @@ class _ApplyJobDescriptionPageState extends State<ApplyJobDescriptionPage> {
                                 children: [
                                   Expanded(
                                       child: JobTag(
-                                    title: _applyJob.jobOffer!.contractType?.label ??
+                                    title: _applyJob
+                                            .jobOffer!.contractType?.label ??
                                         'Temps plein',
                                     fontSize: 9,
                                   )),
                                   SizedBox(width: 5),
                                   Expanded(
                                     child: JobTag(
-                                      title: _applyJob.jobOffer!.activitySector?.label ??
+                                      title: _applyJob.jobOffer!.activitySector
+                                              ?.label ??
                                           "A distance",
                                       fontSize: 9,
                                     ),
@@ -112,7 +118,8 @@ class _ApplyJobDescriptionPageState extends State<ApplyJobDescriptionPage> {
                                   SizedBox(width: 5),
                                   Expanded(
                                       child: JobTag(
-                                    title: _applyJob.jobOffer!.country?.label ?? "Senior",
+                                    title: _applyJob.jobOffer!.country?.label ??
+                                        "Senior",
                                     fontSize: 9,
                                   )),
                                 ],
@@ -132,13 +139,14 @@ class _ApplyJobDescriptionPageState extends State<ApplyJobDescriptionPage> {
                           Expanded(
                             child: InkWell(
                               onTap: () {
-                                _jobOfferAppliedController.updateDescriptionTabIndex(0);
+                                _jobOfferAppliedController
+                                    .updateDescriptionTabIndex(0);
                               },
                               child: Container(
-                                color:
-                                _jobOfferAppliedController.isDescriptionTabSelected
-                                        ? AssetColors.blueButton
-                                        : AssetColors.lightGrey2,
+                                color: _jobOfferAppliedController
+                                        .isDescriptionTabSelected
+                                    ? AssetColors.blueButton
+                                    : AssetColors.lightGrey2,
                                 padding: const EdgeInsets.all(8),
                                 child: Text(
                                   'Description',
@@ -156,14 +164,15 @@ class _ApplyJobDescriptionPageState extends State<ApplyJobDescriptionPage> {
                           Expanded(
                             child: InkWell(
                               onTap: () {
-                                _jobOfferAppliedController.updateDescriptionTabIndex(1);
+                                _jobOfferAppliedController
+                                    .updateDescriptionTabIndex(1);
                               },
                               child: Container(
                                 padding: const EdgeInsets.all(8),
-                                color:
-                                _jobOfferAppliedController.isEntrepriseTabSelected
-                                        ? AssetColors.blueButton
-                                        : AssetColors.lightGrey2,
+                                color: _jobOfferAppliedController
+                                        .isEntrepriseTabSelected
+                                    ? AssetColors.blueButton
+                                    : AssetColors.lightGrey2,
                                 child: Text(
                                   'Candidature',
                                   textAlign: TextAlign.center,
@@ -184,7 +193,8 @@ class _ApplyJobDescriptionPageState extends State<ApplyJobDescriptionPage> {
                   const SizedBox(height: 24),
                   Expanded(
                     child: Obx(() {
-                      var tabIndex = _jobOfferAppliedController.descriptionTabIndex;
+                      var tabIndex =
+                          _jobOfferAppliedController.descriptionTabIndex;
                       if (tabIndex == 0) {
                         return JobDescription();
                       }
@@ -241,14 +251,37 @@ class _ApplyJobDescriptionPageState extends State<ApplyJobDescriptionPage> {
                 ),
                 children: [
                   TextSpan(
-                    text: "Lettre de motivation\n",
+                    text: "CV joint:\n",
+                    style: TextStyle(
+                      color: AssetColors.grey2,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
+                  if (_applyJob.cvUrl != null && _applyJob.cvUrl!.isNotEmpty)
+                    WidgetSpan(
+                      child: InkWell(
+                        onTap: () {
+                          launchUrl(Uri.parse(_applyJob.cvUrl!), mode: LaunchMode.externalApplication);
+                        },
+                        child: Text(
+                          "Cliquer ici pour voir",
+                          style: TextStyle(
+                            color: Colors.blue,
+                            decoration: TextDecoration.underline,
+                          ),
+                        ),
+                      ),
+                    ),
+                  TextSpan(
+                    text: "\n\nLettre de motivation\n",
                     style: TextStyle(
                       color: AssetColors.grey2,
                       fontWeight: FontWeight.bold,
                     ),
                   ),
                   TextSpan(
-                    text: "${_applyJob.motivationLetter ?? 'Pas de lettre de motivation'}",
+                    text:
+                        "${_applyJob.motivationLetter ?? 'Pas de lettre de motivation'}",
                     style: TextStyle(
                       color: AssetColors.grey3,
                     ),

@@ -45,21 +45,23 @@ class ApplyJob {
 
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['id'] = this.id;
+    if (id != null) data['id'] = this.id;
     if (this.jobOffer != null) {
       data['jobOffer'] = this.jobOffer!.toJson();
     }
-    data['motivationLetter'] = this.motivationLetter;
-    data['cv'] = this.cv;
-    data['cvUrl'] = this.cvUrl;
+    if (motivationLetter != null)
+      data['motivationLetter'] = this.motivationLetter;
+    if (cv != null) data['cv'] = this.cv;
+    if (cvUrl != null) data['cvUrl'] = this.cvUrl;
     if (this.applicantDetails != null) {
       data['applicantDetails'] = this.applicantDetails!.toJson();
     }
-    data['appliedAt'] = this.appliedAt;
-    data['status'] = this.status;
-    data['updatedAt'] = this.updatedAt;
-    data['customerAccountId'] = this.customerAccountId;
-    data['cvFilename'] = this.cvFilename;
+    if (appliedAt != null) data['appliedAt'] = this.appliedAt;
+    if (status != null) data['status'] = this.status;
+    if (updatedAt != null) data['updatedAt'] = this.updatedAt;
+    if (customerAccountId != null)
+      data['customerAccountId'] = this.customerAccountId;
+    if (cvFilename != null) data['cvFilename'] = this.cvFilename;
     return data;
   }
 }

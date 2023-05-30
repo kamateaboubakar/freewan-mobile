@@ -231,8 +231,8 @@ class _ApplyJobDescriptionPageState extends State<ApplyJobDescriptionPage> {
   Widget ApplicationDescription() {
     return SingleChildScrollView(
       child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-
           RichText(
             text: TextSpan(
                 style: TextStyle(
@@ -241,7 +241,7 @@ class _ApplyJobDescriptionPageState extends State<ApplyJobDescriptionPage> {
                 ),
                 children: [
                   TextSpan(
-                    text: "Lettre de motivation",
+                    text: "Lettre de motivation\n",
                     style: TextStyle(
                       color: AssetColors.grey2,
                       fontWeight: FontWeight.bold,

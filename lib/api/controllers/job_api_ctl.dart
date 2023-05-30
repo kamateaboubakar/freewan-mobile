@@ -46,7 +46,7 @@ class JobApiCtrl extends WebController {
 
       print('response');
 
-      log(jsonEncode(body.data));
+      print(body.data);
 
       if (body.status) {
         return HttpResponse.success(
@@ -65,7 +65,7 @@ class JobApiCtrl extends WebController {
       var res = await post(
         "${Const.jobBaseUrl}/jobs",
         addJob.toJson(),
-        headers: HttpClientConst.headers,
+        headers: HttpClientConst.authHeaders,
       );
 
       print(addJob.toJson());
@@ -126,8 +126,7 @@ class JobApiCtrl extends WebController {
       print(body.data);
 
       if (body.status) {
-        return HttpResponse.success(
-            data: JobOffer());
+        return HttpResponse.success(data: JobOffer());
       } else {
         return HttpResponse.error(message: body.message);
       }

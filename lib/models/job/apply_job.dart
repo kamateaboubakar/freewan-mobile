@@ -93,4 +93,6 @@ class ApplicantDetails {
     data['login'] = this.login;
     return data;
   }
+
+  String get fullName => "$lastName $firstName";
 }

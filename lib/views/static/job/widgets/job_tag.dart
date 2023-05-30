@@ -32,6 +32,8 @@ class JobTag extends StatelessWidget {
           title,
           style: TextStyle(
               color: selected ? Colors.white : AssetColors.grey3, fontSize: fontSize ?? 13),
+          maxLines: 1,
+          overflow: TextOverflow.ellipsis,
         ),
       ),
     );

@@ -134,4 +134,28 @@ class JobApiCtrl extends WebController {
       return HttpResponse.error(detailErrors: e.toString());
     }
   }
+
+  Future<HttpResponse<List<ApplyJob>>> getJobApplications(int jobOfferId) async {
+    try {
+      var url = "${Const.jobBaseUrl}/jobs/$jobOfferId/applications";
+
+      print('url $url');
+      var res = await get(url, headers: HttpClientConst.headers);
+      var body = HttpResponse.decodeBody(res);
+
+      print('response');
+
+      print(body.data);
+
+      if (body.status) {
+        return HttpResponse.success(
+            data:
+            (body.data as List).map((e) => ApplyJob.fromJson(e)).toList());
+      } else {
+        return HttpResponse.error(message: body.message);
+      }
+    } catch (e) {
+      return HttpResponse.error(detailErrors: e.toString());
+    }
+  }
 }

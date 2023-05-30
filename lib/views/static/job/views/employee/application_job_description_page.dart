@@ -16,15 +16,16 @@ import '../../../../../tools/widgets/c_button.dart';
 import '../../../../../tools/widgets/job/job_header.dart';
 import '../../job_views.dart';
 
-class ApplyJobDescriptionPage extends StatefulWidget {
-  const ApplyJobDescriptionPage({Key? key}) : super(key: key);
+class ApplicationJobDescriptionPage extends StatefulWidget {
+  const ApplicationJobDescriptionPage({Key? key}) : super(key: key);
 
   @override
-  State<ApplyJobDescriptionPage> createState() =>
-      _ApplyJobDescriptionPageState();
+  State<ApplicationJobDescriptionPage> createState() =>
+      _ApplicationJobDescriptionPageState();
 }
 
-class _ApplyJobDescriptionPageState extends State<ApplyJobDescriptionPage> {
+class _ApplicationJobDescriptionPageState
+    extends State<ApplicationJobDescriptionPage> {
   JobOfferAppliedController _jobOfferAppliedController =
       Get.put(JobOfferAppliedController());
 
@@ -33,7 +34,6 @@ class _ApplyJobDescriptionPageState extends State<ApplyJobDescriptionPage> {
   @override
   void initState() {
     _applyJob = _jobOfferAppliedController.applyJob!;
-    _jobOfferAppliedController.resetDescriptionTabIndex();
     super.initState();
   }
 
@@ -43,7 +43,7 @@ class _ApplyJobDescriptionPageState extends State<ApplyJobDescriptionPage> {
       appBar: AppBar(
         backgroundColor: Colors.white,
         foregroundColor: Colors.black,
-        title: const Text("Détails de l’offre"),
+        title: const Text("Détails de la candidature"),
       ),
       body: Padding(
         padding: const EdgeInsets.all(16),
@@ -56,75 +56,8 @@ class _ApplyJobDescriptionPageState extends State<ApplyJobDescriptionPage> {
                 children: [
                   JobHeader(jobOffer: _applyJob.jobOffer!),
                   const SizedBox(height: 24),
-                  ClipRRect(
-                    borderRadius: BorderRadius.circular(10),
-                    child: Obx(() {
-                      return Row(
-                        children: [
-                          Expanded(
-                            child: InkWell(
-                              onTap: () {
-                                _jobOfferAppliedController
-                                    .updateDescriptionTabIndex(0);
-                              },
-                              child: Container(
-                                color: _jobOfferAppliedController
-                                        .isDescriptionTabSelected
-                                    ? AssetColors.blueButton
-                                    : AssetColors.lightGrey2,
-                                padding: const EdgeInsets.all(8),
-                                child: Text(
-                                  'Description',
-                                  textAlign: TextAlign.center,
-                                  style: TextStyle(
-                                    color: _jobOfferAppliedController
-                                            .isDescriptionTabSelected
-                                        ? Colors.white
-                                        : AssetColors.grey3,
-                                  ),
-                                ),
-                              ),
-                            ),
-                          ),
-                          Expanded(
-                            child: InkWell(
-                              onTap: () {
-                                _jobOfferAppliedController
-                                    .updateDescriptionTabIndex(1);
-                              },
-                              child: Container(
-                                padding: const EdgeInsets.all(8),
-                                color: _jobOfferAppliedController
-                                        .isEntrepriseTabSelected
-                                    ? AssetColors.blueButton
-                                    : AssetColors.lightGrey2,
-                                child: Text(
-                                  'Candidature',
-                                  textAlign: TextAlign.center,
-                                  style: TextStyle(
-                                    color: _jobOfferAppliedController
-                                            .isEntrepriseTabSelected
-                                        ? Colors.white
-                                        : AssetColors.grey3,
-                                  ),
-                                ),
-                              ),
-                            ),
-                          )
-                        ],
-                      );
-                    }),
-                  ),
-                  const SizedBox(height: 24),
                   Expanded(
-                    child: Obx(() {
-                      var tabIndex =
-                          _jobOfferAppliedController.descriptionTabIndex;
-                      if (tabIndex == 0) {
-                        return JobDescription();
-                      }
-                      return ApplicationDescription();
-                    }),
+                    child: ApplicationDescription(),
                   ),
                 ],
               ),
@@ -176,7 +109,33 @@ class _ApplyJobDescriptionPageState extends State<ApplyJobDescriptionPage> {
                 ),
                 children: [
                   TextSpan(
-                    text: "CV joint:\n",
+                    text: "Nom & Prénoms:\n",
+                    style: TextStyle(
+                      color: AssetColors.grey2,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
+                  TextSpan(
+                    text: _applyJob.applicantDetails!.fullName,
+                    style: TextStyle(
+                      color: AssetColors.grey3,
+                    ),
+                  ),
+                  TextSpan(
+                    text: "\n\nEmail:\n",
+                    style: TextStyle(
+                      color: AssetColors.grey2,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
+                  TextSpan(
+                    text: _applyJob.applicantDetails!.email,
+                    style: TextStyle(
+                      color: AssetColors.grey3,
+                    ),
+                  ),
+                  TextSpan(
+                    text: "\n\nCV joint:\n",
                     style: TextStyle(
                       color: AssetColors.grey2,
                       fontWeight: FontWeight.bold,
@@ -186,7 +145,8 @@ class _ApplyJobDescriptionPageState extends State<ApplyJobDescriptionPage> {
                     WidgetSpan(
                       child: InkWell(
                         onTap: () {
-                          launchUrl(Uri.parse(_applyJob.cvUrl!), mode: LaunchMode.externalApplication);
+                          launchUrl(Uri.parse(_applyJob.cvUrl!),
+                              mode: LaunchMode.externalApplication);
                         },
                         child: Text(
                           "Cliquer ici pour voir",

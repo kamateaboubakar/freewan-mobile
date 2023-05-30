@@ -13,7 +13,10 @@ import '../../../../../models/job/job_offer.dart';
 import '../../../../../tools/const/const.dart';
 import '../../../../../tools/widgets/c_button.dart';
 import '../../../../../tools/widgets/c_outlined_button.dart';
+import '../../../../../tools/widgets/job/job_header.dart';
+import '../../../../controllers/job/job_application_list_vctl.dart';
 import '../../job_views.dart';
+import '../employer/job_applications_list_page.dart';
 
 class JobDescriptionPage extends StatefulWidget {
   const JobDescriptionPage({Key? key}) : super(key: key);
@@ -24,7 +27,7 @@ class JobDescriptionPage extends StatefulWidget {
 
 class _JobDescriptionPageState extends State<JobDescriptionPage> {
   JobListController _jobListController = Get.put(JobListController());
-  AddJobController _addJobController = Get.put(AddJobController());
+  JobApplicationsListController _jobApplicationListController = Get.put(JobApplicationsListController());
 
   late JobOffer _jobOffer;
   bool _canEditPost = false;
@@ -56,79 +59,7 @@ class _JobDescriptionPageState extends State<JobDescriptionPage> {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.stretch,
                 children: [
-                  IntrinsicHeight(
-                    child: Row(
-                      children: [
-                        Container(
-                          width: 80,
-                          height: 80,
-                          decoration: BoxDecoration(
-                            color: const Color(0xff4F9D4D).withOpacity(0.1),
-                            borderRadius: BorderRadius.circular(10),
-                          ),
-                          alignment: Alignment.center,
-                          child: CompanyLogo(
-                            company: _jobOffer.company!,
-                          ),
-                        ),
-                        const SizedBox(width: 10),
-                        Expanded(
-                          child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Text(
-                                _jobOffer.label!,
-                                style: TextStyle(
-                                  fontSize: 18,
-                                  fontWeight: FontWeight.bold,
-                                ),
-                                textAlign: TextAlign.center,
-                              ),
-                              Text(
-                                _jobOffer.company!.name!,
-                                style: TextStyle(
-                                  fontSize: 14,
-                                ),
-                                textAlign: TextAlign.center,
-                              ),
-                              Text(
-                                _jobOffer.expectedSalary!.formatAmount,
-                                style: TextStyle(
-                                  fontSize: 14,
-                                ),
-                                textAlign: TextAlign.center,
-                              ),
-                              const Spacer(),
-                              Row(
-                                children: [
-                                  Expanded(
-                                      child: JobTag(
-                                    title: _jobOffer.contractType?.label ??
-                                        'Temps plein',
-                                    fontSize: 9,
-                                  )),
-                                  SizedBox(width: 5),
-                                  Expanded(
-                                    child: JobTag(
-                                      title: _jobOffer.activitySector?.label ??
-                                          "A distance",
-                                      fontSize: 9,
-                                    ),
-                                  ),
-                                  SizedBox(width: 5),
-                                  Expanded(
-                                      child: JobTag(
-                                    title: _jobOffer.country?.label ?? "Senior",
-                                    fontSize: 9,
-                                  )),
-                                ],
-                              )
-                            ],
-                          ),
-                        )
-                      ],
-                    ),
-                  ),
+                  JobHeader(jobOffer: _jobOffer),
                   const SizedBox(height: 24),
                   ClipRRect(
                     borderRadius: BorderRadius.circular(10),
@@ -228,11 +159,8 @@ class _JobDescriptionPageState extends State<JobDescriptionPage> {
                     Expanded(
                       child: COutlinedButton(
                         onPressed: () {
-                          if (_canEditPost) {
-                            Get.to(AddJobOfferInformationPage());
-                            return;
-                          }
-                          Get.to(JobApplicationPage());
+                          _jobApplicationListController.updateSelectedJobOffer(_jobOffer);
+                          Get.to(JobApplicationsListPage());
                         },
                         height: 48,
                         child: Text(

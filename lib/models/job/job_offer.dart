@@ -1,4 +1,6 @@
+import 'package:wan_mobile/models/job/category.dart';
 import 'package:wan_mobile/models/job/jobs_sector.dart';
+import 'package:wan_mobile/models/job/work_experience.dart';
 
 import '../pays.dart';
 import 'company.dart';
@@ -8,8 +10,10 @@ class JobOffer {
   int? id;
   ContractType? contractType;
   JobSector? activitySector;
+  JobCategory? category;
   Pays? country;
   Company? company;
+  WorkExperience? workExperience;
   String? label;
   String? workPlace;
   String? expectedSalary;
@@ -32,6 +36,8 @@ class JobOffer {
     this.createdAt,
     this.available,
     this.remote,
+    this.workExperience,
+    this.category,
   });
 
   JobOffer.fromJson(Map<String, dynamic> json) {
@@ -41,6 +47,13 @@ class JobOffer {
         : null;
     activitySector = json['activitySector'] != null
         ? JobSector.fromJson(json['activitySector'])
+        : null;
+    workExperience = json['workExperience'] != null
+        ? WorkExperience.fromJson(json['workExperience'])
+        : null;
+
+    category = json['category'] != null
+        ? JobCategory.fromJson(json['category'])
         : null;
     country = json['country'] != null ? Pays.fromJson(json['country']) : null;
     company =

@@ -4,6 +4,7 @@ import 'package:get/get.dart';
 import 'package:wan_mobile/models/job/category.dart';
 import 'package:wan_mobile/models/job/company.dart';
 import 'package:wan_mobile/models/job/contract_type.dart';
+import 'package:wan_mobile/models/job/job_offer.dart';
 import 'package:wan_mobile/models/job/work_experience.dart';
 import 'package:wan_mobile/views/controllers/job/add_job_vctl.dart';
 
@@ -17,7 +18,12 @@ import '../../job_views.dart';
 import 'employer_views.dart';
 
 class AddJobOfferInformationPage extends StatefulWidget {
-  const AddJobOfferInformationPage({Key? key}) : super(key: key);
+  final JobOffer? jobOffer;
+
+  const AddJobOfferInformationPage({
+    Key? key,
+    this.jobOffer,
+  }) : super(key: key);
 
   @override
   State<AddJobOfferInformationPage> createState() =>
@@ -35,7 +41,11 @@ class _AddJobOfferInformationPageState
 
   @override
   void initState() {
-    _addJobController.initJobInfo();
+    _addJobController.initJobInfo(jobOffer: widget.jobOffer);
+    if (widget.jobOffer != null) {
+      _jobTitleCtrl.text = widget.jobOffer!.label!;
+      _jobPlaceCtrl.text = widget.jobOffer!.workPlace!;
+    }
     super.initState();
     WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
       _getJobSectors();
@@ -120,6 +130,7 @@ class _AddJobOfferInformationPageState
                           return CDropdownField<Pays>(
                             labelText: "Pays *",
                             items: pays,
+                            selectedItem: _addJobController.selectedPays,
                             backgroundColor: Colors.white,
                             itemBuilder: (pays) => Text(pays.label!),
                             selectedItemBuilder: (pays) {
@@ -163,6 +174,8 @@ class _AddJobOfferInformationPageState
                           return CDropdownField<WorkExperience>(
                             labelText: "Expérience *",
                             items: workExperiences,
+                            selectedItem:
+                                _addJobController.selectedWorkExperience,
                             backgroundColor: Colors.white,
                             itemBuilder: (workExperience) =>
                                 Text(workExperience.label!),
@@ -208,6 +221,7 @@ class _AddJobOfferInformationPageState
                           return CDropdownField<JobCategory>(
                             labelText: "Catégorie *",
                             items: jobCategories,
+                            selectedItem: _addJobController.selectedJobCategory,
                             backgroundColor: Colors.white,
                             itemBuilder: (jobCategorie) =>
                                 Text(jobCategorie.label!),
@@ -252,8 +266,9 @@ class _AddJobOfferInformationPageState
                           var jobSectors = response.data!;
 
                           return CDropdownField<JobSector>(
-                            labelText: "Catégorie *",
+                            labelText: "Secteur d'activité *",
                             items: jobSectors,
+                            selectedItem: _addJobController.selectedSector,
                             backgroundColor: Colors.white,
                             itemBuilder: (jobSector) => Text(jobSector.label!),
                             selectedItemBuilder: (jobSector) {
@@ -303,6 +318,8 @@ class _AddJobOfferInformationPageState
                           return CDropdownField<ContractType>(
                             labelText: "Type *",
                             items: contractTypes,
+                            selectedItem:
+                                _addJobController.selectedContractType,
                             itemBuilder: (contractType) =>
                                 Text(contractType.label!),
                             selectedItemBuilder: (contractType) {

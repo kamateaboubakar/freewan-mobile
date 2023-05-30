@@ -34,8 +34,6 @@ class JobListController extends ViewController {
   bool get isAleardySubmitApplication => _isAleardySubmitApplication;
 
   bool get canEditPost {
-    print('company customer ${_jobOffer!.company!.customerAccountId}');
-    print('user customer ${appCtl.user.accountId!}');
     return _jobOffer!.company!.customerAccountId == appCtl.user.accountId!;
   }
 

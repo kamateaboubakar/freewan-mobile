@@ -13,7 +13,7 @@ class Pays {
       this.phoneNumberLength});
 
   Pays.fromJson(Map<String, dynamic> json) {
-    id = json['countryId'];
+    id = json['countryId'] ?? json['id'];
     code = json['code'];
     label = json['label'];
     callingCode = json['callingCode'];

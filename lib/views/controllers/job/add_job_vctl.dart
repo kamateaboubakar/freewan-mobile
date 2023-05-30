@@ -10,6 +10,7 @@ import 'package:wan_mobile/api/controllers/job_sector_api_ctl.dart';
 import 'package:wan_mobile/api/controllers/pays_api_ctl.dart';
 import 'package:wan_mobile/api/controllers/work_experience_api_ctrl.dart';
 import 'package:wan_mobile/models/job/category.dart';
+import 'package:wan_mobile/models/job/job_offer.dart';
 import 'package:wan_mobile/models/job/work_experience.dart';
 import 'package:wan_mobile/models/pays.dart';
 import 'package:wan_mobile/tools/utils/file_util.dart';
@@ -53,15 +54,37 @@ class AddJobController extends ViewController {
 
   int get selectedPaysPhoneNumberLength => _selectedPays!.phoneNumberLength!;
 
-  initJobInfo() {
+  bool _forJobUpdate = false;
+
+  initJobInfo({JobOffer? jobOffer}) {
+    _forJobUpdate = jobOffer != null;
     _addJob = AddJob();
     initCompanyInfo();
-    _selectedJobSector = null;
-    _selectedContractType = null;
-    _selectedPays = null;
-    _selectedCompany = null;
-    _isNewCompany = false.obs;
-    _logoFile = null;
+
+    if (jobOffer == null) {
+      _selectedJobSector = null;
+      _selectedContractType = null;
+      _selectedPays = null;
+      _selectedCompany = null;
+      _isNewCompany = false.obs;
+      _logoFile = null;
+      return;
+    }
+
+    _addJob.id = jobOffer.id!;
+    _addJob.label = jobOffer.label!;
+    _selectedPays = jobOffer.country;
+    _selectedWorkExperience = jobOffer.workExperience;
+    _selectedJobCategory = jobOffer.category;
+    _selectedJobSector = jobOffer.activitySector;
+    _selectedContractType = jobOffer.contractType;
+    _addJob.workPlace = jobOffer.workPlace;
+    _addJob.remote = jobOffer.remote;
+    _isRemoteJob = Rx<bool>(_addJob.remote ?? false);
+    _addJob.description = jobOffer.description;
+    _addJob.prerequisites = jobOffer.prerequisites;
+    _addJob.expectedSalary = jobOffer.expectedSalary;
+    _selectedCompany = jobOffer.company;
   }
 
   void initCompanyInfo() {
@@ -93,6 +116,8 @@ class AddJobController extends ViewController {
   HttpResponse<List<Pays>>? get paysResponse => _paysResponse;
 
   Pays? _selectedPays;
+
+  Pays? get selectedPays => _selectedPays;
 
   HttpResponse<List<Company>>? _companyResponse;
 
@@ -209,7 +234,9 @@ class AddJobController extends ViewController {
     _addJob.categoryId = _selectedJobCategory!.id!;
     _addJob.remote = _isRemoteJob.value;
 
-    return _jobApiCtrl.addJob(_addJob);
+    return _forJobUpdate
+        ? _jobApiCtrl.updateJob(_addJob)
+        : _jobApiCtrl.addJob(_addJob);
   }
 
   void updateCompanyName(String value) {
@@ -278,6 +305,8 @@ class AddJobController extends ViewController {
 
   WorkExperience? _selectedWorkExperience;
 
+  WorkExperience? get selectedWorkExperience => _selectedWorkExperience;
+
   void getWorkExperiences() async {
     _workExperienceResponse = null;
     update(['add_work_experience']);
@@ -297,6 +326,8 @@ class AddJobController extends ViewController {
 
   JobCategory? _selectedJobCategory;
 
+  ContractType? get selectedContractType => _selectedContractType;
+
   getJobCategories() async {
     _jobCategoryResponse = null;
     update(['add_job_category']);
@@ -313,4 +344,12 @@ class AddJobController extends ViewController {
     _addJob.prerequisites = value;
     update(['add_job_description_submit']);
   }
+
+  Company? get selectedCompany => _selectedCompany;
+
+  JobCategory? get selectedJobCategory => _selectedJobCategory;
+
+  AddJob get addJob => _addJob;
+
+  bool get forJobUpdate => _forJobUpdate;
 }

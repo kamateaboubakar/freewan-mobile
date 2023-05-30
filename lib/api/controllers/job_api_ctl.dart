@@ -84,6 +84,31 @@ class JobApiCtrl extends WebController {
     }
   }
 
+  Future<HttpResponse> updateJob(AddJob addJob) async {
+    print('update');
+    try {
+      var res = await put(
+        "${Const.jobBaseUrl}/jobs",
+        addJob.toJson(),
+        headers: HttpClientConst.authHeaders,
+      );
+
+      print(addJob.toJson());
+
+      print(res.body);
+
+      var body = HttpResponse.decodeBody(res);
+
+      if (body.status) {
+        return HttpResponse.success(data: addJob);
+      } else {
+        return HttpResponse.error(message: body.message);
+      }
+    } catch (e) {
+      return HttpResponse.error(detailErrors: e.toString());
+    }
+  }
+
   Future<HttpResponse> applyToJob({
     required ApplyJob applyJob,
     required JobOffer jobOffer,

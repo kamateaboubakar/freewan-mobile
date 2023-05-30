@@ -27,6 +27,14 @@ class _AddJobOfferDescriptionPageState
   AddJobController _addJobController = Get.put(AddJobController());
 
   @override
+  void initState() {
+    var addJob = _addJobController.addJob;
+    _descriptionCtrl.text = addJob.description ?? '';
+    _preRequesiteCtrl.text = addJob.prerequisites ?? '';
+    _salaryCtrl.text = addJob.expectedSalary ?? '';
+    super.initState();
+  }
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(

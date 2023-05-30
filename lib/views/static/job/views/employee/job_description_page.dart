@@ -140,7 +140,11 @@ class _JobDescriptionPageState extends State<JobDescriptionPage> {
                     child: CButton(
                       onPressed: () {
                         if (_canEditPost) {
-                          Get.to(AddJobOfferInformationPage());
+                          Get.to(
+                            AddJobOfferInformationPage(
+                              jobOffer: _jobOffer,
+                            ),
+                          );
                           return;
                         }
                         Get.to(JobApplicationPage());

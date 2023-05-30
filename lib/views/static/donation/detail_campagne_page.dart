@@ -7,8 +7,8 @@ import 'package:wan_mobile/tools/widgets/c_button.dart';
 import 'package:wan_mobile/views/static/donation/finalise_donation_page.dart';
 
 class DetailDonationPage extends StatelessWidget {
-  final Campagne don;
-  const DetailDonationPage(this.don, {super.key});
+  final Campagne campagne;
+  const DetailDonationPage(this.campagne, {super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -19,7 +19,7 @@ class DetailDonationPage extends StatelessWidget {
       bottomNavigationBar: Padding(
         padding: const EdgeInsets.all(20),
         child: CButton(
-          onPressed: () => Get.to(() => FinaliseDonPage(don)),
+          onPressed: () => Get.to(() => FinaliseDonPage(campagne)),
           height: 50,
           child: const Text("Donner"),
         ),
@@ -27,15 +27,23 @@ class DetailDonationPage extends StatelessWidget {
       body: SingleChildScrollView(
         padding: const EdgeInsets.all(10),
         child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             SizedBox(
               height: 283,
+              width: double.infinity,
               child: ClipRRect(
-                  borderRadius: BorderRadius.circular(20),
-                  child: Image.network(don.imageUrl.value, fit: BoxFit.cover)),
+                borderRadius: BorderRadius.circular(20),
+                child: Center(
+                  child: Image.network(
+                    campagne.imageUrl.value,
+                    fit: BoxFit.cover,
+                  ),
+                ),
+              ),
             ),
             ListTile(
-              title: Text(don.label.value),
+              title: Text(campagne.label.value),
             ),
             Padding(
               padding: const EdgeInsets.only(left: 15),
@@ -47,12 +55,12 @@ class DetailDonationPage extends StatelessWidget {
                   width: 24,
                 ),
                 contentPadding: EdgeInsets.zero,
-                title: Text(don.organization!.name.value),
+                title: Text(campagne.organization!.name.value),
               ),
             ),
             Padding(
               padding: const EdgeInsets.all(8.0),
-              child: Text(don.description.value),
+              child: Text(campagne.description.value),
             ),
             Padding(
               padding: const EdgeInsets.only(top: 15, left: 15),
@@ -61,10 +69,11 @@ class DetailDonationPage extends StatelessWidget {
                   Row(
                     children: [
                       Expanded(
-                          child:
-                              Text("${don.collectedAmount} sur ${don.amount}")),
+                          child: Text(
+                              "${campagne.collectedAmount.toAmount(withDevise: false)}"
+                              " sur ${campagne.amount.toAmount(withDevise: false)}")),
                       Text(
-                        "${don.nbJourRestant} jours restants",
+                        "${campagne.nbJourRestant} jours restants",
                         style: const TextStyle(color: Colors.red),
                       ),
                     ],
@@ -72,9 +81,12 @@ class DetailDonationPage extends StatelessWidget {
                   const SizedBox(height: 4),
                   ClipRRect(
                     borderRadius: BorderRadius.circular(20),
-                    child: const LinearProgressIndicator(
+                    child: LinearProgressIndicator(
                       minHeight: 8,
-                      value: .65,
+                      value: (campagne.amount == 0)
+                          ? 0
+                          : (campagne.collectedAmount.value /
+                              campagne.amount.value),
                     ),
                   ),
                   const SizedBox(height: 13),
@@ -86,9 +98,9 @@ class DetailDonationPage extends StatelessWidget {
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
-                            const Text(
-                              "2000+ ont donné",
-                              style: TextStyle(
+                            Text(
+                              "${campagne.donorCount} ont donné",
+                              style: const TextStyle(
                                 fontWeight: FontWeight.w500,
                                 fontSize: 15,
                                 color: AssetColors.grey4,
@@ -128,7 +140,7 @@ class DetailDonationPage extends StatelessWidget {
                             ),
                             const SizedBox(height: 5),
                             Text(
-                              "F ${don.collectedAmount}",
+                              "F ${campagne.collectedAmount.toAmount(withDevise: false)}",
                               textAlign: TextAlign.start,
                               style: const TextStyle(
                                 fontWeight: FontWeight.w500,

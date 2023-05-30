@@ -1,6 +1,9 @@
+import 'dart:io';
+
 import 'package:dropdown_search/dropdown_search.dart';
 import 'package:flutter/material.dart';
-import 'package:wan_mobile/models/don/categorie_donation.dart';
+import 'package:gap/gap.dart';
+import 'package:wan_mobile/models/don/categorie_campagne.dart';
 import 'package:wan_mobile/models/don/organization.dart';
 import 'package:wan_mobile/tools/types/types.dart';
 
@@ -62,12 +65,16 @@ class InfosCampagne extends StatelessWidget {
                     require: true,
                     textCapitalization: TextCapitalization.sentences,
                   ),
-                  CDropdownField<CategorieDonation>(
+                  CDropdownField<CategorieCampagne>(
                     labelText: "Catégorie",
                     require: true,
-                    items: ctl.categories,
+                    asyncItems: (e) => ctl.fetchCategories(),
                     selectedItem: ctl.categorieDonation,
                     itemAsString: (e) => e.label.value,
+                    popupProps: const PopupProps.menu(
+                      isFilterOnline: true,
+                      showSearchBox: true,
+                    ),
                     onChanged: (value) {
                       ctl.categorieDonation = value;
                       ctl.update();
@@ -95,7 +102,7 @@ class InfosCampagne extends StatelessWidget {
                     maxLines: 6,
                     textCapitalization: TextCapitalization.sentences,
                   ),
-                  const SizedBox(height: 20),
+                  const Gap(20),
                   COutlinedButton(
                     height: 50,
                     textColor: AssetColors.blue,
@@ -106,7 +113,7 @@ class InfosCampagne extends StatelessWidget {
                         ? "Ajouter une image*"
                         : "Modifier l'image*"),
                   ),
-                  const SizedBox(height: 20),
+                  const Gap(20),
                   (ctl.image == null)
                       ? const SizedBox.shrink()
                       : ClipRRect(
@@ -114,10 +121,15 @@ class InfosCampagne extends StatelessWidget {
                           child: SizedBox(
                             height: 150,
                             width: double.infinity,
-                            child: Image.file(
-                              ctl.image!,
-                              fit: BoxFit.cover,
-                            ),
+                            child: (ctl.image!.contains("http"))
+                                ? Image.network(
+                                    ctl.image!,
+                                    fit: BoxFit.cover,
+                                  )
+                                : Image.file(
+                                    File(ctl.image!),
+                                    fit: BoxFit.cover,
+                                  ),
                           ),
                         ),
                 ],

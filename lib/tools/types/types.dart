@@ -16,7 +16,7 @@ extension CustomDateTime on DateTime? {
 
 extension StringExt on String? {
   String get value => this ?? "";
-  DateTime? get toDateTime => DateTime.tryParse(toString());
+  DateTime? toDateTime() => DateTime.tryParse(toString());
   int toInt() => int.tryParse(toString()) ?? 0;
   double toDouble() => double.tryParse(toString()) ?? 0;
   String toJson() {
@@ -29,6 +29,9 @@ extension StringExt on String? {
 
 extension DoubleExt on double? {
   double get value => this ?? 0;
+
+  String toAmount({bool withDevise = true}) =>
+      Functions.formatMontant(toString(), withDevise: withDevise);
 }
 
 extension MapExt on Map? {
@@ -38,4 +41,10 @@ extension MapExt on Map? {
     }
     return "";
   }
+}
+
+extension IntExt on int? {
+  int get value => this ?? 0;
+  String toAmount({bool withDevise = true}) =>
+      Functions.formatMontant(toString(), withDevise: withDevise);
 }

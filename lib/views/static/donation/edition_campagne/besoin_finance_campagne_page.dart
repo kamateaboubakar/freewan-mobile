@@ -29,7 +29,9 @@ class BesoinFinanceCampagnePage extends StatelessWidget {
               child: CButton(
                 height: 50,
                 onPressed: ctl.submit,
-                child: const Text("Créer ma campagne"),
+                child: Text((ctl.editedItem?.id != null)
+                    ? "Modifier ma campagne"
+                    : "Créer ma campagne"),
               ),
             ),
           ],

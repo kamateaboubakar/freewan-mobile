@@ -3,7 +3,9 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:wan_mobile/tools/utils/asset_colors.dart';
 import 'package:wan_mobile/views/controllers/donation/donation_page_vctl.dart';
-import 'package:wan_mobile/views/static/donation/donation_list_page.dart';
+import 'package:wan_mobile/views/static/donation/campagne_list_page.dart';
+import 'package:wan_mobile/views/static/donation/edition_campagne/edition_campagne_page.dart';
+import 'package:wan_mobile/views/static/donation/organisation/organisation_page.dart';
 import 'package:wan_mobile/views/static/donation/user_campagne_page.dart';
 
 class DonationPage extends StatelessWidget {
@@ -32,6 +34,17 @@ class DonationPage extends StatelessWidget {
                       Tab(text: "Tout"),
                       Tab(text: "Mes campagnes"),
                     ]),
+                actions: [
+                  IconButton(
+                    onPressed: () => Get.to(() => const OrganisationPage()),
+                    icon: const Icon(Icons.group),
+                  )
+                ],
+              ),
+              floatingActionButton: FloatingActionButton(
+                backgroundColor: AssetColors.blueButton,
+                onPressed: () => Get.to(() => const EditionCampagnePage()),
+                child: const Icon(Icons.add),
               ),
               body: TabBarView(children: [
                 DonationListPage(ctl),

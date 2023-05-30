@@ -9,7 +9,7 @@ import 'package:wan_mobile/tools/widgets/c_textform_field.dart';
 import 'package:wan_mobile/tools/widgets/toggle_button_widget/c_toggle_button.dart';
 import 'package:wan_mobile/tools/widgets/toggle_button_widget/toggle_item.dart';
 import 'package:wan_mobile/views/controllers/donation/finalise_donation_page_vctl.dart';
-import 'package:wan_mobile/views/static/bills/bills_views.dart';
+import 'package:wan_mobile/views/static/paiement/paiement_mode_paiement.dart';
 
 class FinaliseDonPage extends StatelessWidget {
   final Campagne don;

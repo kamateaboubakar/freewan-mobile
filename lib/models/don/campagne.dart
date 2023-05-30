@@ -1,10 +1,10 @@
-import 'package:wan_mobile/models/don/categorie_donation.dart';
+import 'package:wan_mobile/models/don/categorie_campagne.dart';
 import 'package:wan_mobile/models/don/organization.dart';
 import 'package:wan_mobile/tools/types/types.dart';
 
 class Campagne {
   int? id;
-  CategorieDonation? category;
+  CategorieCampagne? category;
   Organization? organization;
   String? label;
   double? amount;
@@ -15,6 +15,7 @@ class Campagne {
   String? image;
   String? imageUrl;
   String? status;
+  int? donorCount;
 
   Campagne(
       {this.id,
@@ -28,12 +29,13 @@ class Campagne {
       this.deadline,
       this.image,
       this.imageUrl,
-      this.status});
+      this.status,
+      this.donorCount});
 
   Campagne.fromJson(Map<String, dynamic> json) {
     id = json['id'];
     category = json['category'] != null
-        ? CategorieDonation.fromJson(json['category'])
+        ? CategorieCampagne.fromJson(json['category'])
         : null;
     organization = json['organization'] != null
         ? Organization.fromJson(json['organization'])
@@ -47,10 +49,12 @@ class Campagne {
     image = json['image'];
     imageUrl = json['imageUrl'];
     status = json['status'];
+    donorCount = json['donorCount'];
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = Map<String, dynamic>();
+    final Map<String, dynamic> data = <String, dynamic>{};
+    data['id'] = id;
     data['organizationId'] = organization?.id;
     data['categoryId'] = category?.id;
     data['label'] = label;
@@ -65,7 +69,7 @@ class Campagne {
     if (deadline == null) {
       return 0;
     } else {
-      return deadline!.toDateTime!.difference(DateTime.now()).inDays;
+      return deadline!.toDateTime()!.difference(DateTime.now()).inDays;
     }
   }
 }

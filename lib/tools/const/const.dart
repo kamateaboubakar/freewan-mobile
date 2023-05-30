@@ -17,4 +17,6 @@ abstract class Const {
 
   static String appLogo = "assets/images/lebedoo_logo.png";
   static String inLineAppLogo = "assets/images/lebedoo_inline_logo.png";
+
+  static var devise = "Fcfa";
 }

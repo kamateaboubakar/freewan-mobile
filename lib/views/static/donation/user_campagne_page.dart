@@ -6,7 +6,7 @@ import 'package:wan_mobile/tools/widgets/c_outlined_button.dart';
 import 'package:wan_mobile/tools/widgets/donation/don_list_title.dart';
 import 'package:wan_mobile/tools/widgets/wrapper_body_listview.dart';
 import 'package:wan_mobile/views/controllers/donation/donation_page_vctl.dart';
-import 'package:wan_mobile/views/static/donation/detail_donation_page.dart';
+import 'package:wan_mobile/views/static/donation/detail_campagne_page.dart';
 import 'package:wan_mobile/views/static/donation/edition_campagne/edition_campagne_page.dart';
 
 class UserCampagnePage extends StatelessWidget {
@@ -23,8 +23,7 @@ class UserCampagnePage extends StatelessWidget {
           children: [
             COutlinedButton(
               icon: const Icon(Icons.add),
-              onPressed: () =>
-                  Get.to(() => EditionCampagnePage(ctl.categories)),
+              onPressed: () => Get.to(() => const EditionCampagnePage()),
               textColor: AssetColors.blue,
               child: const Text("Créer une campagne"),
             ),
@@ -37,7 +36,14 @@ class UserCampagnePage extends StatelessWidget {
         ),
         emptyText: "Aucune campagne",
         emptyWidget: Image.asset("assets/images/empty_content.png"),
-        children: ctl.userCampagne.map((e) => CampagneListTile(e)).toList(),
+        children: ctl.userCampagnes
+            .map(
+              (e) => CampagneListTile(
+                e,
+                forDisplay: true,
+              ),
+            )
+            .toList(),
       ),
     );
   }

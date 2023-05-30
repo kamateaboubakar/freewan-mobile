@@ -1,4 +1,4 @@
-class CategorieDonation {
+class CategorieCampagne {
   int? id;
   String? label;
   String? description;
@@ -6,7 +6,7 @@ class CategorieDonation {
   String? iconUrl;
   bool isAllOption = false;
 
-  CategorieDonation(
+  CategorieCampagne(
       {this.id,
       this.label,
       this.description,
@@ -14,7 +14,7 @@ class CategorieDonation {
       this.iconUrl,
       this.isAllOption = false});
 
-  CategorieDonation.fromJson(Map<String, dynamic> json) {
+  CategorieCampagne.fromJson(Map<String, dynamic> json) {
     id = json['id'];
     label = json['label'];
     description = json['description'];

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:get/get.dart';
 import 'package:progress_dialog_null_safe/progress_dialog_null_safe.dart';
 import 'package:wan_mobile/tools/const/const.dart';
@@ -115,32 +116,16 @@ class Tools {
           },
           barrierDismissible: barrierDismissible);
 
-  static SnackbarController showToast({
-    String title = Const.appName,
+  static Future<bool?> showToast({
     String message = "Effectué avec succès",
     Color? color = Colors.green,
-    Color bodyTextColor = Colors.black,
-    Color titleTextColor = Const.primaryColor,
+    Color titleTextColor = Colors.white,
   }) =>
-      Get.snackbar(
-        title,
-        message,
-        maxWidth: 500,
-        backgroundColor: Colors.white,
-        colorText: Const.primaryColor,
-        titleText: Text(
-          title,
-          style: TextStyle(
-            color: titleTextColor,
-            fontWeight: FontWeight.bold,
-          ),
-        ),
-        messageText: Text(
-          message,
-          style: TextStyle(
-            color: bodyTextColor,
-            fontWeight: FontWeight.bold,
-          ),
-        ),
+      Fluttertoast.showToast(
+        msg: message,
+        timeInSecForIosWeb: 1,
+        backgroundColor: color,
+        textColor: titleTextColor,
+        fontSize: 16.0,
       );
 }

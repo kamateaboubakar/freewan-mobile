@@ -1,5 +1,7 @@
 import 'package:date_format/date_format.dart';
+import 'package:intl/intl.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:wan_mobile/tools/const/const.dart';
 
 class Functions {
   static Map<String, String> _getMonthLib(DateTime date) {
@@ -62,39 +64,21 @@ class Functions {
     return pref.setBool("firstLaunch", false);
   }
 
-  // static Future<HttpResponse<Position>> getPostion() async {
-  //   try {
-  //     bool serviceEnabled;
-  //     LocationPermission permission;
-  //     serviceEnabled = await Geolocator.isLocationServiceEnabled();
-  //     if (!serviceEnabled) {
-  //       return HttpResponse.error(
-  //           message: "Le service de localisation est désactivé.");
-  //     }
+  static String formatMontant(String? montant, {bool withDevise = true}) {
+    if (montant != null && montant != "null") {
+      NumberFormat format = NumberFormat.currency(
+          locale: 'fr_FR',
+          symbol: withDevise ? Const.devise : "",
+          decimalDigits: 0);
 
-  //     permission = await Geolocator.checkPermission();
-  //     if (permission == LocationPermission.denied) {
-  //       permission = await Geolocator.requestPermission();
-  //       if (permission == LocationPermission.denied) {
-  //         return HttpResponse.error(
-  //             message: "Les autorisations de localisation sont refusées");
-  //       }
-  //     }
-
-  //     if (permission == LocationPermission.deniedForever) {
-  //       return HttpResponse.error(
-  //           message:
-  //               "Les autorisations de localisation sont définitivement refusées,"
-  //               " nous ne pouvons pas demander d'autorisations.");
-  //     }
-
-  //     return HttpResponse.success(data: await Geolocator.getCurrentPosition());
-  //   } catch (e) {
-  //     print(e);
-  //     return HttpResponse.error(
-  //         message: "Désolé, une erreur est survenue. Veuillez réessayer.");
-  //   }
-  // }
+      var amount = num.tryParse(montant) ?? 0;
+      return format.format(amount).trim();
+    }
+    if (withDevise) {
+      return "0 ${Const.devise}";
+    }
+    return "0";
+  }
 
   // static Future<String?> getFcmToken() async {
   //   try {

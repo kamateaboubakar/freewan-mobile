@@ -6,21 +6,18 @@ import 'package:wan_mobile/tools/types/types.dart';
 import 'package:wan_mobile/tools/utils/asset_colors.dart';
 import 'package:wan_mobile/tools/widgets/c_button.dart';
 import 'package:wan_mobile/views/static/donation/detail_campagne_page.dart';
-import 'package:wan_mobile/views/static/donation/edition_campagne/edition_campagne_page.dart';
 
 class CampagneListTile extends StatelessWidget {
   final Campagne campagne;
   final bool forDisplay;
-  const CampagneListTile(this.campagne, {this.forDisplay = false, super.key});
+  final void Function()? onTap;
+  const CampagneListTile(this.campagne,
+      {this.onTap, this.forDisplay = false, super.key});
 
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: () {
-        if (forDisplay) {
-          Get.to(() => EditionCampagnePage(campagne: campagne));
-        }
-      },
+      onTap: onTap,
       child: Container(
         margin: const EdgeInsets.only(bottom: 20, left: 13, right: 13),
         padding: EdgeInsets.zero,

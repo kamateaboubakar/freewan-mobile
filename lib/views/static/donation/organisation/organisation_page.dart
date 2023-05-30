@@ -11,19 +11,24 @@ class OrganisationPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: const Text("Mes organisations"),
-      ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: () => Get.to(() => const EditionOrganisationPage()),
-        backgroundColor: AssetColors.blueButton,
-        child: const Icon(Icons.add),
-      ),
-      body: GetBuilder<OrgnisationPageVctl>(
-          init: OrgnisationPageVctl(),
-          builder: (ctl) {
-            return WrapperBodyListView(
+    return GetBuilder<OrgnisationPageVctl>(
+        init: OrgnisationPageVctl(),
+        builder: (ctl) {
+          return Scaffold(
+            appBar: AppBar(
+              title: const Text("Mes organisations"),
+            ),
+            floatingActionButton: FloatingActionButton(
+              onPressed: () =>
+                  Get.to(() => const EditionOrganisationPage())?.then((value) {
+                if (value is bool) {
+                  ctl.fetchOrganisations();
+                }
+              }),
+              backgroundColor: AssetColors.blueButton,
+              child: const Icon(Icons.add),
+            ),
+            body: WrapperBodyListView(
               loading: ctl.loading,
               onRefresh: ctl.fetchOrganisations,
               children: ctl.organisations
@@ -33,13 +38,18 @@ class OrganisationPage extends StatelessWidget {
                           backgroundImage: NetworkImage(e.logoUrl!)),
                       title: Text(e.name.value),
                       subtitle: Text(e.description.value, maxLines: 2),
-                      onTap: () => Get.to(
-                          () => EditionOrganisationPage(organisation: e)),
+                      onTap: () =>
+                          Get.to(() => EditionOrganisationPage(organisation: e))
+                              ?.then((value) {
+                        if (value is bool) {
+                          ctl.fetchOrganisations();
+                        }
+                      }),
                     ),
                   )
                   .toList(),
-            );
-          }),
-    );
+            ),
+          );
+        });
   }
 }

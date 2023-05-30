@@ -6,7 +6,6 @@ import 'package:wan_mobile/tools/widgets/c_outlined_button.dart';
 import 'package:wan_mobile/tools/widgets/donation/don_list_title.dart';
 import 'package:wan_mobile/tools/widgets/wrapper_body_listview.dart';
 import 'package:wan_mobile/views/controllers/donation/donation_page_vctl.dart';
-import 'package:wan_mobile/views/static/donation/detail_campagne_page.dart';
 import 'package:wan_mobile/views/static/donation/edition_campagne/edition_campagne_page.dart';
 
 class UserCampagnePage extends StatelessWidget {
@@ -19,11 +18,17 @@ class UserCampagnePage extends StatelessWidget {
       body: WrapperBodyListView(
         listPadding: const EdgeInsets.all(10),
         loading: ctl.loadUserCampagne,
+        onRefresh: ctl.fetchUserCampagnes,
         refreshButton: Column(
           children: [
             COutlinedButton(
               icon: const Icon(Icons.add),
-              onPressed: () => Get.to(() => const EditionCampagnePage()),
+              onPressed: () =>
+                  Get.to(() => const EditionCampagnePage())?.then((value) {
+                if (value is bool) {
+                  ctl.fetchData();
+                }
+              }),
               textColor: AssetColors.blue,
               child: const Text("Créer une campagne"),
             ),
@@ -41,6 +46,12 @@ class UserCampagnePage extends StatelessWidget {
               (e) => CampagneListTile(
                 e,
                 forDisplay: true,
+                onTap: () => Get.to(() => EditionCampagnePage(campagne: e))
+                    ?.then((value) {
+                  if (value is bool) {
+                    ctl.fetchData();
+                  }
+                }),
               ),
             )
             .toList(),

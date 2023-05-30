@@ -76,7 +76,6 @@ class EditionDonationVctl extends ViewController {
 
   Future<void> onUpdateCampagne() async {
     await pr.show();
-    editedItem = initialiseItem(editedItem!);
 
     Fichier resUpFile;
     if (image!.contains("http")) {
@@ -93,6 +92,7 @@ class EditionDonationVctl extends ViewController {
         return;
       }
     }
+    editedItem = initialiseItem(editedItem!, image: resUpFile.filename);
     await pr.show();
     var res = await DonationApiCtl().updateCampagne(editedItem!);
     await pr.hide();

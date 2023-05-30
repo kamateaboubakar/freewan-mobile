@@ -57,7 +57,7 @@ class EditionOrganisationPageVctl extends ViewController {
       var res = await DonationApiCtl().createOrganization(editedItem!);
       await pr.hide();
       if (res.status) {
-        Get.back();
+        Get.back(result: true);
         Tools.showToast(message: "Organisation créée avec succès");
       } else {
         Tools.messageBox(message: res.message);
@@ -87,7 +87,7 @@ class EditionOrganisationPageVctl extends ViewController {
     var res = await DonationApiCtl().updateOrganisation(editedItem!);
     await pr.hide();
     if (res.status) {
-      Get.back();
+      Get.back(result: true);
       Tools.showToast(message: "Organisation modifiée avec succès");
     } else {
       Tools.messageBox(message: res.message);

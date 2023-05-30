@@ -14,13 +14,11 @@ class DonationPageVctl extends ViewController {
   bool loadUserCampagne = false;
 
   Future<void> fetchData() async {
-    await pr.show();
-    await Future.wait([
+    Future.wait([
       fetchCategories(),
       fetchCampagnes(),
       fetchUserCampagnes(),
     ]);
-    await pr.hide();
   }
 
   Future<void> fetchCampagnes() async {

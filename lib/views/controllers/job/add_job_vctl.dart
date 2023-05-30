@@ -176,12 +176,14 @@ class AddJobController extends ViewController {
     late HttpResponse companyResponse;
 
     if (isNewCompany) {
-      var fileUploadResponse = await _uploadFileCtl.uploadFileNew(files: [_logoFile!]);
+      var fileUploadResponse =
+          await _uploadFileCtl.uploadFileNew(files: [_logoFile!]);
       if (!fileUploadResponse.status) {
         return fileUploadResponse;
       }
 
       _newCompany.logo = fileUploadResponse.data!.filename!;
+      _newCompany.customerAccountId = appCtl.user.accountId!;
       companyResponse = await _companyApiCtrl.createCompany(_newCompany);
       if (!companyResponse.status) {
         return companyResponse;
@@ -194,6 +196,7 @@ class AddJobController extends ViewController {
         isNewCompany ? companyResponse.data!.id : _selectedCompany!.id!;
     _addJob.countryId = _selectedPays!.id!;
     _addJob.workExperienceId = _selectedWorkExperience!.id!;
+    _addJob.categoryId = _selectedJobCategory!.id!;
     _addJob.categoryId = _selectedJobCategory!.id!;
     return _jobApiCtrl.addJob(_addJob);
   }

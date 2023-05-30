@@ -12,6 +12,7 @@ import 'package:wan_mobile/views/static/job/views/employer/add_job_offer_informa
 import '../../../../../models/job/job_offer.dart';
 import '../../../../../tools/const/const.dart';
 import '../../../../../tools/widgets/c_button.dart';
+import '../../../../../tools/widgets/c_outlined_button.dart';
 import '../../job_views.dart';
 
 class JobDescriptionPage extends StatefulWidget {
@@ -200,25 +201,52 @@ class _JobDescriptionPageState extends State<JobDescriptionPage> {
               ),
             ),
             const SizedBox(height: 10),
-            if (!_isAlreadySubmitApplication) ...{
-              CButton(
-                onPressed: () {
-                  if (_canEditPost) {
-                    Get.to(AddJobOfferInformationPage());
-                    return;
-                  }
-                  Get.to(JobApplicationPage());
-                },
-                height: 48,
-                child: Text(
-                  _canEditPost ? "Modifier" : "Postuler",
-                  style: const TextStyle(
-                    fontSize: 18,
-                    color: Colors.white,
+            if (!_isAlreadySubmitApplication)
+              Row(
+                children: [
+                  Expanded(
+                    child: CButton(
+                      onPressed: () {
+                        if (_canEditPost) {
+                          Get.to(AddJobOfferInformationPage());
+                          return;
+                        }
+                        Get.to(JobApplicationPage());
+                      },
+                      height: 48,
+                      child: Text(
+                        _canEditPost ? "Modifier" : "Postuler",
+                        style: const TextStyle(
+                          fontSize: 16,
+                          color: Colors.white,
+                        ),
+                      ),
+                    ),
                   ),
-                ),
+                  if (_canEditPost) ...[
+                    SizedBox(width: 10),
+                    Expanded(
+                      child: COutlinedButton(
+                        onPressed: () {
+                          if (_canEditPost) {
+                            Get.to(AddJobOfferInformationPage());
+                            return;
+                          }
+                          Get.to(JobApplicationPage());
+                        },
+                        height: 48,
+                        child: Text(
+                          "Voir candidatures",
+                          style: const TextStyle(
+                            fontSize: 16,
+                            color: AssetColors.blueButton,
+                          ),
+                        ),
+                      ),
+                    )
+                  ]
+                ],
               )
-            }
           ],
         ),
       ),

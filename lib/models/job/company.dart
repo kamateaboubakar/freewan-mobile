@@ -12,6 +12,7 @@ class Company {
   bool? verified;
   String? logo;
   String? logoUrl;
+  String? customerAccountId;
 
   Company({
     this.id,
@@ -27,6 +28,7 @@ class Company {
     this.verified = false,
     this.logo,
     this.logoUrl,
+    this.customerAccountId,
   });
 
   Company.fromJson(Map<String, dynamic> json) {
@@ -43,6 +45,7 @@ class Company {
     verified = json['verified'];
     logo = json['logo'];
     logoUrl = json['logoUrl'];
+    customerAccountId = json['customerAccountId'];
   }
 
   bool get hasInformationFilled =>
@@ -66,6 +69,7 @@ class Company {
     data['revenues'] = this.revenues;
     data['verified'] = this.verified;
     data['logo'] = this.logo;
+    data['customerAccountId'] = this.customerAccountId;
     return data;
   }
 }

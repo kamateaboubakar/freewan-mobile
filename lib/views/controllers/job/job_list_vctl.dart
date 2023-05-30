@@ -29,17 +29,15 @@ class JobListController extends ViewController {
 
   bool get isEntrepriseTabSelected => _descriptionTabIndex.value == 1;
 
-  bool _canEditPost = false;
-
-  bool get canEditPost => _canEditPost;
-
-  updateEditPostState([bool state = false]) {
-    _canEditPost = state;
-  }
-
   bool _isAleardySubmitApplication = false;
 
   bool get isAleardySubmitApplication => _isAleardySubmitApplication;
+
+  bool get canEditPost {
+    print('company customer ${_jobOffer!.company!.customerAccountId}');
+    print('user customer ${appCtl.user.accountId!}');
+    return _jobOffer!.company!.customerAccountId == appCtl.user.accountId!;
+  }
 
   updateAlreadySubmitApplicationState([bool state = false]) {
     _isAleardySubmitApplication = state;

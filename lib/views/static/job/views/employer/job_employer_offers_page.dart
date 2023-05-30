@@ -182,7 +182,6 @@ class _JobEmployerOffersPageState extends State<JobEmployerOffersPage> {
           canDelete: true,
           onTap: () {
             _jobListController.updateSelectedJobOffer(jobOffer);
-            _jobListController.updateEditPostState(true);
             _jobListController.updateAlreadySubmitApplicationState();
             Get.to(JobDescriptionPage());
           },

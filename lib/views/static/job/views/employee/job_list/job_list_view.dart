@@ -72,7 +72,6 @@ class _JobListViewState extends State<JobListView> {
                 onTap: (){
                   _jobListController.updateSelectedJobOffer(job);
                   _jobListController.updateAlreadySubmitApplicationState();
-                  _jobListController.updateEditPostState();
                   Get.to(JobDescriptionPage());
                 },
               );

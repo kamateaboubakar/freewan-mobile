@@ -27,7 +27,8 @@ class JobDescriptionPage extends StatefulWidget {
 
 class _JobDescriptionPageState extends State<JobDescriptionPage> {
   JobListController _jobListController = Get.put(JobListController());
-  JobApplicationsListController _jobApplicationListController = Get.put(JobApplicationsListController());
+  JobApplicationsListController _jobApplicationListController =
+      Get.put(JobApplicationsListController());
 
   late JobOffer _jobOffer;
   bool _canEditPost = false;
@@ -123,7 +124,7 @@ class _JobDescriptionPageState extends State<JobDescriptionPage> {
                     child: Obx(() {
                       var tabIndex = _jobListController.descriptionTabIndex;
                       if (tabIndex == 0) {
-                        return JobDescription();
+                        return JobDescription(jobOffer: _jobOffer);
                       }
                       return EntrepriseDescription();
                     }),
@@ -159,7 +160,8 @@ class _JobDescriptionPageState extends State<JobDescriptionPage> {
                     Expanded(
                       child: COutlinedButton(
                         onPressed: () {
-                          _jobApplicationListController.updateSelectedJobOffer(_jobOffer);
+                          _jobApplicationListController
+                              .updateSelectedJobOffer(_jobOffer);
                           Get.to(JobApplicationsListPage());
                         },
                         height: 48,
@@ -177,33 +179,6 @@ class _JobDescriptionPageState extends State<JobDescriptionPage> {
               )
           ],
         ),
-      ),
-    );
-  }
-
-  Widget JobDescription() {
-    return SingleChildScrollView(
-      child: RichText(
-        text: TextSpan(
-            style: TextStyle(
-              color: AssetColors.grey3,
-              fontFamily: Const.defaultFont.fontFamily,
-            ),
-            children: [
-              TextSpan(
-                text: "Description de l'offre\n",
-                style: TextStyle(
-                  color: AssetColors.grey2,
-                  fontWeight: FontWeight.bold,
-                ),
-              ),
-              TextSpan(
-                text: _jobOffer.description,
-                style: TextStyle(
-                  color: AssetColors.grey3,
-                ),
-              ),
-            ]),
       ),
     );
   }
@@ -238,6 +213,56 @@ class _JobDescriptionPageState extends State<JobDescriptionPage> {
               ),
               TextSpan(
                 text: "${_jobOffer.company!.email}\n",
+                style: TextStyle(
+                  color: AssetColors.grey3,
+                ),
+              ),
+            ]),
+      ),
+    );
+  }
+}
+
+class JobDescription extends StatelessWidget {
+  final JobOffer jobOffer;
+
+  const JobDescription({
+    Key? key,
+    required this.jobOffer,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return SingleChildScrollView(
+      child: RichText(
+        text: TextSpan(
+            style: TextStyle(
+              color: AssetColors.grey3,
+              fontFamily: Const.defaultFont.fontFamily,
+            ),
+            children: [
+              TextSpan(
+                text: "Description de l'offre\n",
+                style: TextStyle(
+                  color: AssetColors.grey2,
+                  fontWeight: FontWeight.bold,
+                ),
+              ),
+              TextSpan(
+                text: jobOffer.description,
+                style: TextStyle(
+                  color: AssetColors.grey3,
+                ),
+              ),
+              TextSpan(
+                text: "\n\nPré-requis\n",
+                style: TextStyle(
+                  color: AssetColors.grey2,
+                  fontWeight: FontWeight.bold,
+                ),
+              ),
+              TextSpan(
+                text: jobOffer.prerequisites,
                 style: TextStyle(
                   color: AssetColors.grey3,
                 ),

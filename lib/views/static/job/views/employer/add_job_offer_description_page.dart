@@ -67,13 +67,15 @@ class _AddJobOfferDescriptionPageState
                       },
                       maxLines: 5,
                     ),
-                    /*const SizedBox(height: 5),
+                    const SizedBox(height: 5),
                     CTextFormField(
                       controller: _preRequesiteCtrl,
                       hintText: "Pré-requis *",
-                      onChanged: (value) {},
+                      onChanged: (value) {
+                        _addJobController.updatePrerequesite(value);
+                      },
                       maxLines: 5,
-                    ),*/
+                    ),
                     const SizedBox(height: 5),
                     CTextFormField(
                       controller: _salaryCtrl,
@@ -96,7 +98,7 @@ class _AddJobOfferDescriptionPageState
                   height: 50,
                   onPressed: () {
                     if (_addJobController.isJobDescriptionValid) {
-                     Get.to(() => AddJobOfferCompanyPage());
+                      Get.to(() => AddJobOfferCompanyPage());
                     }
                   },
                   color: _addJobController.isJobDescriptionValid

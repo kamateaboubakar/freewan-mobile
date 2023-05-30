@@ -44,7 +44,7 @@ class JobHeader extends StatelessWidget {
                   textAlign: TextAlign.center,
                 ),
                 Text(
-                  jobOffer.company!.name!,
+                  '${jobOffer.company!.name!} - ${jobOffer.remote ?? false ? 'A distance' : 'Sur site'}',
                   style: TextStyle(
                     fontSize: 14,
                   ),

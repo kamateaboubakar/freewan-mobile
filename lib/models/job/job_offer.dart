@@ -14,21 +14,25 @@ class JobOffer {
   String? workPlace;
   String? expectedSalary;
   String? description;
+  String? prerequisites;
   String? createdAt;
   bool? available;
+  bool? remote;
 
-  JobOffer(
-      {this.id,
-      this.contractType,
-      this.activitySector,
-      this.country,
-      this.company,
-      this.label,
-      this.workPlace,
-      this.expectedSalary,
-      this.description,
-      this.createdAt,
-      this.available});
+  JobOffer({
+    this.id,
+    this.contractType,
+    this.activitySector,
+    this.country,
+    this.company,
+    this.label,
+    this.workPlace,
+    this.expectedSalary,
+    this.description,
+    this.createdAt,
+    this.available,
+    this.remote,
+  });
 
   JobOffer.fromJson(Map<String, dynamic> json) {
     id = json['id'];
@@ -47,6 +51,8 @@ class JobOffer {
     description = json['description'];
     createdAt = json['createdAt'];
     available = json['available'];
+    prerequisites = json['prerequisites'];
+    remote = json['remote'];
   }
 
   Map<String, dynamic> toJson() {

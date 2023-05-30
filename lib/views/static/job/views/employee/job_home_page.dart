@@ -180,6 +180,7 @@ class _JobHomePageState extends State<JobHomePage> {
                                   .map((e) => JobTag(
                                         title: e,
                                         fontSize: 12,
+                                        selected: index == 1,
                                       ))
                                   .toList(),
                             )

@@ -164,12 +164,14 @@ class _AddJobOfferInformationPageState
                             labelText: "Expérience *",
                             items: workExperiences,
                             backgroundColor: Colors.white,
-                            itemBuilder: (workExperience) => Text(workExperience.label!),
+                            itemBuilder: (workExperience) =>
+                                Text(workExperience.label!),
                             selectedItemBuilder: (workExperience) {
                               return Text(workExperience.label ?? '');
                             },
                             onChanged: (workExperience) {
-                              _addJobController.updateSelectedWorkExperience(workExperience!);
+                              _addJobController.updateSelectedWorkExperience(
+                                  workExperience!);
                             },
                           );
                         }),
@@ -207,12 +209,14 @@ class _AddJobOfferInformationPageState
                             labelText: "Catégorie *",
                             items: jobCategories,
                             backgroundColor: Colors.white,
-                            itemBuilder: (jobCategorie) => Text(jobCategorie.label!),
+                            itemBuilder: (jobCategorie) =>
+                                Text(jobCategorie.label!),
                             selectedItemBuilder: (jobCategorie) {
                               return Text(jobCategorie.label ?? '');
                             },
                             onChanged: (jobCategorie) {
-                              _addJobController.updateSelectedJobCategory(jobCategorie!);
+                              _addJobController
+                                  .updateSelectedJobCategory(jobCategorie!);
                             },
                           );
                         }),
@@ -319,6 +323,23 @@ class _AddJobOfferInformationPageState
                         _addJobController.updateWorkPlace(value);
                       },
                     ),
+                    Obx(() {
+                      var isRemoteJob = _addJobController.isRemoteJob;
+                      return ListTile(
+                        contentPadding: EdgeInsets.symmetric(vertical: 0),
+                        leading: Checkbox(
+                          value: isRemoteJob,
+                          onChanged: (value) {
+                            _addJobController.updateRemoteJobState(value!);
+                          },
+                          checkColor: const Color.fromRGBO(229, 229, 229, 1),
+                        ),
+                        title: const Text(
+                          'A distance',
+                          style: TextStyle(fontSize: 12),
+                        ),
+                      );
+                    }),
                     /*const SizedBox(height: 10),
                     const CDropdownField<String>(
                       labelText: "A distance/Sur site *",

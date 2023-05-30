@@ -39,6 +39,14 @@ class AddJobController extends ViewController {
 
   bool get isNewCompany => _isNewCompany.value;
 
+  Rx<bool> _isRemoteJob = false.obs;
+
+  bool get isRemoteJob => _isRemoteJob.value;
+
+  updateRemoteJobState(bool state) {
+    _isRemoteJob.value = state;
+  }
+
   File? _logoFile;
 
   File? get logoFile => _logoFile;
@@ -165,7 +173,9 @@ class AddJobController extends ViewController {
       _selectedJobCategory != null;
 
   bool get isJobDescriptionValid =>
-      _addJob.description!.isNotEmpty && _addJob.expectedSalary!.isNotEmpty;
+      _addJob.description!.isNotEmpty &&
+      _addJob.expectedSalary!.isNotEmpty &&
+      _addJob.prerequisites!.isNotEmpty;
 
   void updateJobSalary(String value) {
     _addJob.expectedSalary = value;
@@ -197,7 +207,8 @@ class AddJobController extends ViewController {
     _addJob.countryId = _selectedPays!.id!;
     _addJob.workExperienceId = _selectedWorkExperience!.id!;
     _addJob.categoryId = _selectedJobCategory!.id!;
-    _addJob.categoryId = _selectedJobCategory!.id!;
+    _addJob.remote = _isRemoteJob.value;
+
     return _jobApiCtrl.addJob(_addJob);
   }
 
@@ -296,5 +307,10 @@ class AddJobController extends ViewController {
   updateSelectedJobCategory(JobCategory jobCategory) {
     _selectedJobCategory = jobCategory;
     update();
+  }
+
+  void updatePrerequesite(String value) {
+    _addJob.prerequisites = value;
+    update(['add_job_description_submit']);
   }
 }

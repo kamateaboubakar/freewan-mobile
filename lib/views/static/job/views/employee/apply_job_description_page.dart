@@ -121,7 +121,7 @@ class _ApplyJobDescriptionPageState extends State<ApplyJobDescriptionPage> {
                       var tabIndex =
                           _jobOfferAppliedController.descriptionTabIndex;
                       if (tabIndex == 0) {
-                        return JobDescription();
+                        return JobDescription(jobOffer: _applyJob.jobOffer!);
                       }
                       return ApplicationDescription();
                     }),
@@ -132,33 +132,6 @@ class _ApplyJobDescriptionPageState extends State<ApplyJobDescriptionPage> {
             const SizedBox(height: 10),
           ],
         ),
-      ),
-    );
-  }
-
-  Widget JobDescription() {
-    return SingleChildScrollView(
-      child: RichText(
-        text: TextSpan(
-            style: TextStyle(
-              color: AssetColors.grey3,
-              fontFamily: Const.defaultFont.fontFamily,
-            ),
-            children: [
-              TextSpan(
-                text: "Description de l'offre\n",
-                style: TextStyle(
-                  color: AssetColors.grey2,
-                  fontWeight: FontWeight.bold,
-                ),
-              ),
-              TextSpan(
-                text: _applyJob.jobOffer!.description!,
-                style: TextStyle(
-                  color: AssetColors.grey3,
-                ),
-              ),
-            ]),
       ),
     );
   }
@@ -186,7 +159,8 @@ class _ApplyJobDescriptionPageState extends State<ApplyJobDescriptionPage> {
                     WidgetSpan(
                       child: InkWell(
                         onTap: () {
-                          launchUrl(Uri.parse(_applyJob.cvUrl!), mode: LaunchMode.externalApplication);
+                          launchUrl(Uri.parse(_applyJob.cvUrl!),
+                              mode: LaunchMode.externalApplication);
                         },
                         child: Text(
                           "Cliquer ici pour voir",

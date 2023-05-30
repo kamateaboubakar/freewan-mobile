@@ -69,33 +69,6 @@ class _ApplicationJobDescriptionPageState
     );
   }
 
-  Widget JobDescription() {
-    return SingleChildScrollView(
-      child: RichText(
-        text: TextSpan(
-            style: TextStyle(
-              color: AssetColors.grey3,
-              fontFamily: Const.defaultFont.fontFamily,
-            ),
-            children: [
-              TextSpan(
-                text: "Description de l'offre\n",
-                style: TextStyle(
-                  color: AssetColors.grey2,
-                  fontWeight: FontWeight.bold,
-                ),
-              ),
-              TextSpan(
-                text: _applyJob.jobOffer!.description!,
-                style: TextStyle(
-                  color: AssetColors.grey3,
-                ),
-              ),
-            ]),
-      ),
-    );
-  }
-
   Widget ApplicationDescription() {
     return SingleChildScrollView(
       child: Column(

@@ -10,6 +10,7 @@ import 'package:wan_mobile/views/static/auth/answer_security_question_page.dart'
 import 'package:wan_mobile/views/static/auth/phone_auth/phone_auth.dart';
 
 class PasswordPageVctl extends ViewController {
+  final userApiCtrl = Get.put(UserApiCtl());
   String phone;
   Pays pays;
 
@@ -17,8 +18,8 @@ class PasswordPageVctl extends ViewController {
 
   Future<void> submit(String password) async {
     await pr.show();
-    var res = await UserApiCtl()
-        .authenticate(phone: pays.callingCode! + phone, password: password);
+    var res = await userApiCtrl.authenticate(
+        phone: pays.callingCode! + phone, password: password);
     await pr.hide();
     if (res.status) {
       Get.to(

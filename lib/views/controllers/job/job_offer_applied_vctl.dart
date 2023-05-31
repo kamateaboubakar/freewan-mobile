@@ -8,18 +8,30 @@ import 'package:wan_mobile/models/shop.dart';
 import 'package:wan_mobile/tools/utils/http_response.dart';
 import 'package:wan_mobile/views/controllers/abstracts/view_controller.dart';
 
+import '../../../models/job/apply_job.dart';
 import '../../../models/job/job_offer.dart';
 
-class JobListController extends ViewController {
+class JobOfferAppliedController extends ViewController {
   final JobApiCtrl _jobApiCtl = JobApiCtrl();
 
-  HttpResponse<List<JobOffer>>? _response;
+  HttpResponse<List<ApplyJob>>? _response;
 
-  HttpResponse<List<JobOffer>>? get response => _response;
+  HttpResponse<List<ApplyJob>>? get response => _response;
 
-  JobOffer? _jobOffer;
+  ApplyJob? _applyJob;
 
-  JobOffer? get jobOffer => _jobOffer;
+  ApplyJob? get applyJob => _applyJob;
+
+  getJobOffersApplied() async {
+    _response = null;
+    update();
+    _response = await _jobApiCtl.getJobApplied(appCtl.user.accountId);
+    update();
+  }
+
+  void updateSelectedJobOffer(ApplyJob jobOffer) {
+    _applyJob = jobOffer;
+  }
 
   final Rx<int> _descriptionTabIndex = 0.obs;
 
@@ -29,30 +41,6 @@ class JobListController extends ViewController {
 
   bool get isEntrepriseTabSelected => _descriptionTabIndex.value == 1;
 
-  bool _isAleardySubmitApplication = false;
-
-  bool get isAleardySubmitApplication => _isAleardySubmitApplication;
-
-  bool get canEditPost {
-    return _jobOffer!.company!.customerAccountId == appCtl.user.accountId!;
-  }
-
-  updateAlreadySubmitApplicationState([bool state = false]) {
-    _isAleardySubmitApplication = state;
-  }
-
-  getJobOffers() async {
-    _response = null;
-    update();
-    _response = await _jobApiCtl.getAllJobs();
-    update();
-  }
-
-  void updateSelectedJobOffer(JobOffer jobOffer) {
-    _jobOffer = jobOffer;
-    update();
-  }
-
   void resetDescriptionTabIndex() {
     _descriptionTabIndex.value = 0;
   }
@@ -60,4 +48,5 @@ class JobListController extends ViewController {
   updateDescriptionTabIndex(int value) {
     _descriptionTabIndex.value = value;
   }
+
 }

@@ -108,6 +108,7 @@ class _AddJobOfferCompanyPageState extends State<AddJobOfferCompanyPage> {
                           return CDropdownField<Company>(
                             labelText: "Entreprise *",
                             items: companies,
+                            selectedItem: _addJobController.selectedCompany,
                             backgroundColor: Colors.white,
                             itemBuilder: (company) {
                               return Text(company.name!);
@@ -321,7 +322,7 @@ class _AddJobOfferCompanyPageState extends State<AddJobOfferCompanyPage> {
       return;
     }
     Tools.messageBox(
-        message: "Votre offre d'emploi a été créée",
+        message: _addJobController.forJobUpdate ? "Votre offre d'emploi a été modifiée" : "Votre offre d'emploi a été créée",
         onConfirm: () {
           Get.offAll(HomePage());
         });

@@ -11,20 +11,25 @@ class Company {
   double? revenues;
   bool? verified;
   String? logo;
+  String? logoUrl;
+  String? customerAccountId;
 
-  Company(
-      {this.id,
-      this.activitySectorId,
-      this.name = '',
-      this.email = '',
-      this.legalForm = '',
-      this.address = '',
-      this.phoneNumber = '',
-      this.createdAt,
-      this.employeesCount = 0,
-      this.revenues = 0,
-      this.verified = false,
-      this.logo});
+  Company({
+    this.id,
+    this.activitySectorId,
+    this.name = '',
+    this.email = '',
+    this.legalForm = '',
+    this.address = '',
+    this.phoneNumber = '',
+    this.createdAt,
+    this.employeesCount = 0,
+    this.revenues = 0,
+    this.verified = false,
+    this.logo,
+    this.logoUrl,
+    this.customerAccountId,
+  });
 
   Company.fromJson(Map<String, dynamic> json) {
     id = json['id'];
@@ -39,6 +44,8 @@ class Company {
     revenues = json['revenues'];
     verified = json['verified'];
     logo = json['logo'];
+    logoUrl = json['logoUrl'];
+    customerAccountId = json['customerAccountId'];
   }
 
   bool get hasInformationFilled =>
@@ -62,6 +69,7 @@ class Company {
     data['revenues'] = this.revenues;
     data['verified'] = this.verified;
     data['logo'] = this.logo;
+    data['customerAccountId'] = this.customerAccountId;
     return data;
   }
 }

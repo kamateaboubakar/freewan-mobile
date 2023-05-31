@@ -1,15 +1,39 @@
 import 'dart:io';
-
 import 'package:get/get.dart';
 import 'package:jwt_decode/jwt_decode.dart';
 import 'package:wan_mobile/api/abstracts/http_client_const.dart';
 import 'package:http/http.dart' as http;
-import 'package:wan_mobile/models/fichier.dart';
 import '../../tools/utils/http_response.dart';
 import '../../views/controllers/app_ctl.dart';
 
 abstract class WebController extends GetConnect {
   final AppCtl appCtl = Get.find();
+
+  // TODO fix
+  /*@override
+  void onInit() {
+    httpClient.defaultContentType = "json";
+    httpClient.addResponseModifier((request, response) {
+      if (kDebugMode) {
+        print('---- [RESPONSE] ${request.url}');
+        print(request.method);
+        print(response.status.code);
+        print(response.body);
+      }
+    });
+    httpClient.addRequestModifier<Object?>((request) async {
+      if (kDebugMode) {
+        print('---- [REQUEST] ${request.url}');
+        print(request.method);
+        print(request.headers);
+        String bodyString =
+            await request.bodyBytes.transform(utf8.decoder).join();
+        log(bodyString);
+      }
+      return request;
+    });
+    super.onInit();
+  }*/
 
   @override
   Future<Response<T>> put<T>(String url, dynamic body,

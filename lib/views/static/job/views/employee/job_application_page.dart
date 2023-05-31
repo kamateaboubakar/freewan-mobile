@@ -70,33 +70,76 @@ class _JobApplicationPageState extends State<JobApplicationPage> {
                     const SizedBox(height: 5),
                     GetBuilder(
                         init: _applyJobController,
-                        builder: (controller){
-                      _applyJobController = controller;
-                      var isResumeUploaded = _applyJobController.isResumePicked;
-                      return  CTextFormField(
-                        hintText:
-                        isResumeUploaded ? "CV ajouté" : "Sélection CV *",
-                        onChanged: (value) {
-                          _pickFile();
-                        },
-                        readOnly: true,
-                        fillColor: isResumeUploaded
-                            ? const Color(0xff14B53A)
-                            : Colors.white,
-                        onTap: () {
-                          _pickFile();
-                          setState(() {
-                            isResumeUploaded = true;
-                          });
-                        },
-                        suffixIcon: Icon(
-                          isResumeUploaded ? Icons.check : Icons.add,
-                          color: isResumeUploaded
-                              ? Colors.white
-                              : AssetColors.blueButton,
-                        ),
-                      );
-                    }),
+                        builder: (controller) {
+                          _applyJobController = controller;
+                          var isResumeUploaded =
+                              _applyJobController.isResumePicked;
+                          return Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              CTextFormField(
+                                hintText: isResumeUploaded
+                                    ? "CV ajouté"
+                                    : "Sélection CV *",
+                                onChanged: (value) {
+                                  _pickFile();
+                                },
+                                readOnly: true,
+                                fillColor: isResumeUploaded
+                                    ? const Color(0xff14B53A)
+                                    : Colors.white,
+                                onTap: () {
+                                  _pickFile();
+                                  setState(() {
+                                    isResumeUploaded = true;
+                                  });
+                                },
+                                suffixIcon: Icon(
+                                  isResumeUploaded ? Icons.check : Icons.add,
+                                  color: isResumeUploaded
+                                      ? Colors.white
+                                      : AssetColors.blueButton,
+                                ),
+                              ),
+                              if (isResumeUploaded) ...[
+                                Row(
+                                  children: [
+                                    Expanded(
+                                      child: Text(
+                                          _applyJobController.resumeFilename),
+                                    ),
+                                    InkWell(
+                                      onTap: () {
+                                        _applyJobController.removeResumeFile();
+                                      },
+                                      child: Container(
+                                        decoration: BoxDecoration(
+                                          border: Border.all(color: Colors.red),
+                                          borderRadius: BorderRadius.circular(20),
+                                        ),
+                                       padding: EdgeInsets.symmetric(vertical: 2, horizontal: 8),
+                                        child: Row(
+                                          children: [
+                                            Text(
+                                              'Supprimer',
+                                              style:
+                                                  TextStyle(color: Colors.red),
+                                            ),
+                                            Icon(
+                                              Icons.close,
+                                              color: Colors.red,
+                                            ),
+                                          ],
+                                        ),
+                                      ),
+                                    )
+                                  ],
+                                ),
+                                SizedBox(height: 10)
+                              ]
+                            ],
+                          );
+                        }),
                     Padding(
                       padding: const EdgeInsets.only(left: 8.0),
                       child: Text(

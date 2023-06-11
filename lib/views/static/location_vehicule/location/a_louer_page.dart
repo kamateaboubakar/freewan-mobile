@@ -4,9 +4,10 @@ import 'package:wan_mobile/models/location_vehicule/vehicule.dart';
 import 'package:wan_mobile/tools/widgets/c_textform_field.dart';
 import 'package:wan_mobile/tools/widgets/location_vehicule/ban_vehicule.dart';
 import 'package:wan_mobile/tools/widgets/location_vehicule/card_vehicule.dart';
+import 'package:wan_mobile/tools/widgets/location_vehicule/proprietaire_vehicule.dart';
 
-class ALouerPage extends StatelessWidget {
-  const ALouerPage({super.key});
+class VehiculeALouerPage extends StatelessWidget {
+  const VehiculeALouerPage({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -60,33 +61,61 @@ class ALouerPage extends StatelessWidget {
                 marque: "Toyota",
                 moteur: "4-Cyl 1.5 Liter",
                 nbJour: "2",
-                name: "Yaris iA",
+                puissance: "100 Ch",
+                modele: "Yaris iA",
                 image: "assets/images/img_boutique_vehicule.png",
                 prix: "F 50 000",
+                vitesseMax: "220 km/h",
+                propietaireVehicule: PropietaireVehicule(
+                  prenoms: "Franck",
+                  nom: "Lepard",
+                  rating: "5",
+                ),
               ),
               Vehicule(
                 marque: "Toyota",
                 moteur: "4-Cyl 1.5 Liter",
                 nbJour: "2",
-                name: "Yaris iA",
+                puissance: "100 Ch",
+                modele: "Yaris iA",
                 image: "assets/images/img_boutique_vehicule.png",
                 prix: "F 50 000",
+                vitesseMax: "220 km/h",
+                propietaireVehicule: PropietaireVehicule(
+                  prenoms: "Franck",
+                  nom: "Lepard",
+                  rating: "5",
+                ),
               ),
               Vehicule(
                 marque: "Toyota",
                 moteur: "4-Cyl 1.5 Liter",
                 nbJour: "2",
-                name: "Yaris iA",
+                puissance: "100 Ch",
+                modele: "Yaris iA",
                 image: "assets/images/img_boutique_vehicule.png",
                 prix: "F 50 000",
+                vitesseMax: "220 km/h",
+                propietaireVehicule: PropietaireVehicule(
+                  prenoms: "Franck",
+                  nom: "Lepard",
+                  rating: "5",
+                ),
               ),
               Vehicule(
                 marque: "Toyota",
                 moteur: "4-Cyl 1.5 Liter",
                 nbJour: "2",
-                name: "Yaris iA",
+                puissance: "100 Ch",
+                modele: "Yaris iA",
                 image: "assets/images/img_boutique_vehicule.png",
                 prix: "F 50 000",
+                vitesseMax: "220 km/h",
+                propietaireVehicule: PropietaireVehicule(
+                  prenoms: "Franck",
+                  nom: "Lepard",
+                  rating: "5",
+                ),
               ),
             ].map((e) => CardVehicule(e)).toList(),
           )

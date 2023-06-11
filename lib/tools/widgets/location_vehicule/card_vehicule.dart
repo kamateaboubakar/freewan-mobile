@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
+import 'package:get/get.dart';
 import 'package:wan_mobile/models/location_vehicule/vehicule.dart';
 import 'package:wan_mobile/tools/types/types.dart';
 import 'package:wan_mobile/tools/utils/asset_colors.dart';
+import 'package:wan_mobile/views/static/location_vehicule/location/detail_vehicule_page.dart';
 
 class CardVehicule extends StatelessWidget {
   final Vehicule vehicule;
@@ -10,7 +12,8 @@ class CardVehicule extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return ClipRRect(
+    return GestureDetector(
+      onTap: () => Get.to(() => DetailVehiculePage(vehicule)),
       child: Container(
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(10),
@@ -58,7 +61,7 @@ class CardVehicule extends StatelessWidget {
                       children: [
                         Expanded(
                           child: Text(
-                            vehicule.name.value,
+                            vehicule.modele.value,
                             style: const TextStyle(
                               fontWeight: FontWeight.w400,
                               color: AssetColors.grey9,

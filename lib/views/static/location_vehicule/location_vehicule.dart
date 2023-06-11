@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/src/widgets/framework.dart';
-import 'package:flutter/src/widgets/placeholder.dart';
 import 'package:wan_mobile/tools/utils/asset_colors.dart';
-import 'package:wan_mobile/views/static/location_vehicule/a_louer_page.dart';
+import 'package:wan_mobile/views/static/location_vehicule/location/a_louer_page.dart';
+import 'package:wan_mobile/views/static/location_vehicule/mes_voitures/mes_voitures_page.dart';
 
 class LocationVehicule extends StatelessWidget {
   const LocationVehicule({super.key});
@@ -26,8 +25,8 @@ class LocationVehicule extends StatelessWidget {
         ),
         body: const TabBarView(
           children: [
-            ALouerPage(),
-            Placeholder(),
+            VehiculeALouerPage(),
+            MesVoituresPage(),
           ],
         ),
       ),

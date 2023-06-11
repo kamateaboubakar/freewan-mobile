@@ -1,4 +1,3 @@
-
 import 'package:flutter/material.dart';
 
 import '../../../models/job/company.dart';
@@ -14,7 +13,7 @@ class CompanyLogo extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    String? logoUrl = company!.logoUrl;
+    String? logoUrl = company.logoUrl;
     if (logoUrl != null && p.extension(logoUrl).isNotEmpty) {
       return Image.network(
         logoUrl,

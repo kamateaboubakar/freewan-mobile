@@ -1,20 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:url_launcher/url_launcher.dart';
-import 'package:wan_mobile/tools/utils/amount_util.dart';
 import 'package:wan_mobile/tools/utils/asset_colors.dart';
-import 'package:wan_mobile/tools/widgets/job/company_logo.dart';
-import 'package:wan_mobile/views/controllers/job/job_list_vctl.dart';
 import 'package:wan_mobile/views/controllers/job/job_offer_applied_vctl.dart';
-import 'package:wan_mobile/views/static/job/views/employee/employee_views.dart';
-import 'package:wan_mobile/views/static/job/views/employer/add_job_offer_information_page.dart';
-
 import '../../../../../models/job/apply_job.dart';
-import '../../../../../models/job/job_offer.dart';
 import '../../../../../tools/const/const.dart';
-import '../../../../../tools/widgets/c_button.dart';
 import '../../../../../tools/widgets/job/job_header.dart';
-import '../../job_views.dart';
 
 class ApplicationJobDescriptionPage extends StatefulWidget {
   const ApplicationJobDescriptionPage({Key? key}) : super(key: key);
@@ -81,7 +72,7 @@ class _ApplicationJobDescriptionPageState
                   fontFamily: Const.defaultFont.fontFamily,
                 ),
                 children: [
-                  TextSpan(
+                  const TextSpan(
                     text: "Nom & Prénoms:\n",
                     style: TextStyle(
                       color: AssetColors.grey2,
@@ -90,11 +81,11 @@ class _ApplicationJobDescriptionPageState
                   ),
                   TextSpan(
                     text: _applyJob.applicantDetails!.fullName,
-                    style: TextStyle(
+                    style: const TextStyle(
                       color: AssetColors.grey3,
                     ),
                   ),
-                  TextSpan(
+                  const TextSpan(
                     text: "\n\nEmail:\n",
                     style: TextStyle(
                       color: AssetColors.grey2,
@@ -103,11 +94,11 @@ class _ApplicationJobDescriptionPageState
                   ),
                   TextSpan(
                     text: _applyJob.applicantDetails!.email,
-                    style: TextStyle(
+                    style: const TextStyle(
                       color: AssetColors.grey3,
                     ),
                   ),
-                  TextSpan(
+                  const TextSpan(
                     text: "\n\nCV joint:\n",
                     style: TextStyle(
                       color: AssetColors.grey2,
@@ -121,7 +112,7 @@ class _ApplicationJobDescriptionPageState
                           launchUrl(Uri.parse(_applyJob.cvUrl!),
                               mode: LaunchMode.externalApplication);
                         },
-                        child: Text(
+                        child: const Text(
                           "Cliquer ici pour voir",
                           style: TextStyle(
                             color: Colors.blue,
@@ -130,7 +121,7 @@ class _ApplicationJobDescriptionPageState
                         ),
                       ),
                     ),
-                  TextSpan(
+                  const TextSpan(
                     text: "\n\nLettre de motivation\n",
                     style: TextStyle(
                       color: AssetColors.grey2,
@@ -140,7 +131,7 @@ class _ApplicationJobDescriptionPageState
                   TextSpan(
                     text:
                         "${_applyJob.motivationLetter ?? 'Pas de lettre de motivation'}",
-                    style: TextStyle(
+                    style: const TextStyle(
                       color: AssetColors.grey3,
                     ),
                   ),

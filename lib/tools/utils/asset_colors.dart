@@ -9,6 +9,8 @@ abstract class AssetColors {
   static const grey5 = Color.fromRGBO(246, 246, 246, 1);
   static const grey6 = Color.fromRGBO(13, 51, 159, 0.06);
   static const grey7 = Color.fromRGBO(237, 242, 249, 1);
+  static const grey8 = Color.fromRGBO(181, 196, 216, 0.5);
+  static const grey9 = Color.fromRGBO(125, 142, 163, 1);
   static const green = Color.fromRGBO(0, 133, 63, 1);
   static const lightGrey = Color(0xffEDF2F9);
   static const purple = Color(0xff4724FB);

@@ -15,7 +15,9 @@ import 'package:wan_mobile/views/controllers/home/home_page_vctl.dart';
 import 'package:wan_mobile/views/static/achat_unite/achat_unite_page.dart';
 import 'package:wan_mobile/views/static/donation/campagne_page.dart';
 import 'package:wan_mobile/views/static/home/home_drawer.dart';
+import 'package:wan_mobile/views/static/location_vehicule/location_vehicule.dart';
 import 'package:wan_mobile/views/static/loyer/loyer_bottom_sheet.dart';
+import 'package:wan_mobile/views/static/recevoir_paiement/recevoir_paiement.dart';
 import 'package:wan_mobile/views/static/scan_pay/scan_pay_camera.dart';
 import 'package:wan_mobile/views/static/tontine/tontine_page.dart';
 import 'package:wan_mobile/views/static/tv_bills/tv_bills_selection_dialog.dart';
@@ -166,7 +168,8 @@ class HomePage extends StatelessWidget {
                                 // "assets/images/icons/recevoir_argent.png",
                               ),
                               title: "Recevoir argent",
-                              onPressed: () {},
+                              onPressed: () =>
+                                  Get.to(() => const RecevoirPaiement()),
                             ),
                             ButtonMenu(
                               icon: Image.asset(
@@ -242,6 +245,14 @@ class HomePage extends StatelessWidget {
                               ),
                               title: "Gaz",
                               onPressed: () => Get.to(() => const GazMapPage()),
+                            ),
+                            ButtonMenu(
+                              icon: Image.asset(
+                                "assets/images/icons/icons8-voiture-64.png",
+                              ),
+                              title: "Location de véhicule",
+                              onPressed: () =>
+                                  Get.to(() => const LocationVehicule()),
                             ),
                           ],
                         ),
@@ -488,12 +499,6 @@ class HomePage extends StatelessWidget {
                         ),
                         CardMenu(
                           children: [
-                            ButtonMenu(
-                              icon: Image.asset(
-                                  "assets/images/icons8-cadeau.gif"),
-                              title: "Cadeau",
-                              onPressed: () {},
-                            ),
                             ButtonMenu(
                               icon: Image.asset(
                                   "assets/images/icons8-ticket.gif"),

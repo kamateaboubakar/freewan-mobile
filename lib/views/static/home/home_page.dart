@@ -13,6 +13,7 @@ import 'package:wan_mobile/tools/widgets/card_menu.dart';
 import 'package:wan_mobile/tools/widgets/single_child_card_menu.dart';
 import 'package:wan_mobile/views/controllers/home/home_page_vctl.dart';
 import 'package:wan_mobile/views/static/achat_unite/achat_unite_page.dart';
+import 'package:wan_mobile/views/static/construction/construction_page.dart';
 import 'package:wan_mobile/views/static/donation/campagne_page.dart';
 import 'package:wan_mobile/views/static/home/home_drawer.dart';
 import 'package:wan_mobile/views/static/location_vehicule/location_vehicule.dart';
@@ -21,7 +22,6 @@ import 'package:wan_mobile/views/static/recevoir_paiement/recevoir_paiement.dart
 import 'package:wan_mobile/views/static/scan_pay/scan_pay_camera.dart';
 import 'package:wan_mobile/views/static/tontine/tontine_page.dart';
 import 'package:wan_mobile/views/static/tv_bills/tv_bills_selection_dialog.dart';
-
 import '../bills/bills_views.dart';
 import '../gaz/pages/gaz_map_page.dart';
 import '../job/job_views.dart';
@@ -253,6 +253,14 @@ class HomePage extends StatelessWidget {
                               title: "Location de véhicule",
                               onPressed: () =>
                                   Get.to(() => const LocationVehicule()),
+                            ),
+                            ButtonMenu(
+                              icon: Image.asset(
+                                "assets/images/icons/icons8-construction-96.png",
+                              ),
+                              title: "Construction de maison",
+                              onPressed: () =>
+                                  Get.to(() => const ConstructionPage()),
                             ),
                           ],
                         ),

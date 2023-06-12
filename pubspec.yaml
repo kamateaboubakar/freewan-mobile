@@ -73,6 +73,10 @@ dependencies:
   url_launcher: ^6.1.11
   gap: ^3.0.0
   qr_flutter: ^4.1.0
+  readmore: ^2.2.0
+  flutter_rating_bar: ^4.0.1
+  rating_summary: ^1.0.2+1
+
 
 dev_dependencies:
   flutter_test:

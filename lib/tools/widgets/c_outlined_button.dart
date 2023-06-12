@@ -35,6 +35,7 @@ class COutlinedButton extends StatelessWidget {
       child: icon != null
           ? TextButton.icon(
               icon: icon!,
+              
               style: ButtonStyle(
                 foregroundColor: MaterialStateProperty.all(textColor),
                 backgroundColor: MaterialStateProperty.all(color),

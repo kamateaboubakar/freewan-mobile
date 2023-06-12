@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 abstract class AssetColors {
   static const blueButton = Color.fromRGBO(13, 51, 159, 1);
   static const blue = Color(0xff26528C);
+  static const blue2 = Color.fromRGBO(38, 82, 140, 0.5);
   static const grey3 = Color(0xff828282);
   static const grey2 = Color(0xff333333);
   static const grey4 = Color.fromRGBO(181, 196, 216, 1);
@@ -18,4 +19,5 @@ abstract class AssetColors {
   static const lightGrey2 = Color(0xffF5F5F5);
   static const lightGrey3 = Color(0xffE5E5E5);
   static const darkBrown = Color(0xff3D3636);
+  static const pink = Color.fromRGBO(255, 0, 28, 0.13);
 }

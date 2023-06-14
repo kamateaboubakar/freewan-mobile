@@ -8,7 +8,9 @@ import 'package:wan_mobile/tools/utils/tools.dart';
 import 'package:wan_mobile/tools/widgets/c_button.dart';
 import 'package:wan_mobile/tools/widgets/c_outlined_button.dart';
 import 'package:wan_mobile/tools/widgets/construction/materiau_construction_card.dart';
+import 'package:wan_mobile/tools/widgets/quantity_field.dart';
 import 'package:wan_mobile/views/static/construction/list_avis_materiau_construction.dart';
+import 'package:wan_mobile/views/static/construction/panier_materiau_construction_page.dart';
 
 class DetailMateriauConstructionPage extends StatelessWidget {
   const DetailMateriauConstructionPage({super.key});
@@ -20,7 +22,8 @@ class DetailMateriauConstructionPage extends StatelessWidget {
         title: const Text("Détails du produit"),
         actions: [
           IconButton(
-            onPressed: () {},
+            onPressed: () =>
+                Get.to(() => const PanierMateriauConstructionPage()),
             icon: const Icon(Icons.shopping_cart),
           ),
         ],
@@ -75,12 +78,9 @@ class DetailMateriauConstructionPage extends StatelessWidget {
                                 trailing: CloseButton(),
                               ),
                               const Divider(),
-                              ListTile(
-                                title: const Text("Quantité (Botte)"),
-                                trailing: Row(
-                                  mainAxisSize: MainAxisSize.min,
-                                  children: [],
-                                ),
+                              const ListTile(
+                                title: Text("Quantité (Botte)"),
+                                trailing: QuantityField(isPositive: true),
                               ),
                               const Divider(),
                               ListTile(
@@ -108,7 +108,7 @@ class DetailMateriauConstructionPage extends StatelessWidget {
                             onPressed: () {},
                             child: const Text("Ajouter au panier"),
                           ),
-                        )
+                        ),
                       ],
                     ),
                   ),

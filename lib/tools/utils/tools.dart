@@ -80,9 +80,8 @@ class Tools {
         ),
       );
 
-  static Future<T?> openBottomSheet<T>(Widget widget) => Get.bottomSheet<T>(
-        widget,
-      );
+  static Future<T?> openBottomSheet<T>(Widget widget) =>
+      Get.bottomSheet<T>(widget);
 
   static Future messageBox({
     required String? message,

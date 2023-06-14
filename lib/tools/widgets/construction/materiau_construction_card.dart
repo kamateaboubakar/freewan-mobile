@@ -109,8 +109,22 @@ class MateriauConstructionCard extends StatelessWidget {
                           ),
                         ),
                         PopupMenuButton(
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(10),
+                          ),
                           splashRadius: 12,
-                          itemBuilder: (context) => [],
+                          itemBuilder: (context) => [
+                            PopupMenuItem(
+                              onTap: () {},
+                              child: const Text(
+                                "Ajouter à ma liste de souhait",
+                              ),
+                            ),
+                            PopupMenuItem(
+                              onTap: () {},
+                              child: const Text("Partager Produit"),
+                            ),
+                          ],
                         ),
                       ],
                     ),

@@ -12,6 +12,7 @@ abstract class Const {
   static var gazBaseUrl = "http://148.113.143.59:8082";
   static var jobBaseUrl = "http://148.113.143.59:8083/api/v1";
   static var donationBaseUrl = "http://148.113.143.59:8084/api/v1";
+  static var constructionBaseUrl = "http://148.113.143.59:8081/api/v1";
   static var localUrl = "";
   static var defaultFont = GoogleFonts.poppins();
 

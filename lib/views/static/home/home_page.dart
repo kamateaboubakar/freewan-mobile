@@ -13,6 +13,7 @@ import 'package:wan_mobile/tools/widgets/card_menu.dart';
 import 'package:wan_mobile/tools/widgets/single_child_card_menu.dart';
 import 'package:wan_mobile/views/controllers/home/home_page_vctl.dart';
 import 'package:wan_mobile/views/static/achat_unite/achat_unite_page.dart';
+import 'package:wan_mobile/views/static/boutique/boutique_page.dart';
 import 'package:wan_mobile/views/static/construction/construction_page.dart';
 import 'package:wan_mobile/views/static/donation/campagne_page.dart';
 import 'package:wan_mobile/views/static/home/home_drawer.dart';
@@ -261,6 +262,13 @@ class HomePage extends StatelessWidget {
                               title: "Construction de maison",
                               onPressed: () =>
                                   Get.to(() => const ConstructionPage()),
+                            ),
+                            ButtonMenu(
+                              icon: Image.asset(
+                                  "assets/images/icons/boutique.png"),
+                              title: "Boutique",
+                              onPressed: () =>
+                                  Get.to(() => const BoutiquePage()),
                             ),
                           ],
                         ),

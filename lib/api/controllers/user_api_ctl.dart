@@ -142,8 +142,6 @@ class UserApiCtl extends WebController {
       );
       var body = HttpResponse.decodeBody(res);
 
-      print(body.data);
-
       if (body.status) {
         return HttpResponse.success(data: User.fromJson(body.data));
       } else {

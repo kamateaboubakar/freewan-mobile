@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 abstract class Const {
-  static const String appName = "WAN";
-  static const String appVersion = '1.0.5';
+  static const String appName = "Lebedoo";
+  static const String appVersion = '1.0.8';
   static const Color primaryColor = Color.fromRGBO(0, 159, 249, 1);
   static const Color secondaryColor = Color.fromRGBO(0, 0, 0, 0.5);
   static const primaryFonts = "";
@@ -13,6 +13,9 @@ abstract class Const {
   static var jobBaseUrl = "http://148.113.143.59:8083/api/v1";
   static var donationBaseUrl = "http://148.113.143.59:8084/api/v1";
   static var constructionBaseUrl = "http://148.113.143.59:8081/api/v1";
+
+  static var boutiquerUrl = "https://freewan.io/store.lebedoo.ci";
+
   static var localUrl = "";
   static var defaultFont = GoogleFonts.poppins();
 

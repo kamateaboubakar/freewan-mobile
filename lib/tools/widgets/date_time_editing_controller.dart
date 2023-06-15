@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:wan_mobile/tools/types/types.dart';
 
 class DateTimeEditingController {
-  TextEditingController _textController = TextEditingController();
+  final TextEditingController _textController = TextEditingController();
 
   DateTime? _date;
 
@@ -17,5 +17,8 @@ class DateTimeEditingController {
 
   TextEditingController get textController => _textController;
 
-  set textController(TextEditingController value) => _textController = value;
+  void clear() {
+    _textController.clear();
+    _date = null;
+  }
 }

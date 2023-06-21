@@ -39,7 +39,7 @@ class JobItem extends StatelessWidget {
               children: [
                 Container(
                   decoration: BoxDecoration(
-                    color: Color(0xff34A853).withOpacity(0.1),
+                    color: const Color(0xff34A853).withOpacity(0.1),
                     borderRadius: BorderRadius.circular(10),
                   ),
                   padding:

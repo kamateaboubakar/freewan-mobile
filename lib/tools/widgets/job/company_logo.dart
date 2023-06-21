@@ -28,6 +28,7 @@ class CompanyLogo extends StatelessWidget {
           .contentAsBytes(),
       width: 35,
       height: 35,
+      // errorBuilder: (context, error, stackTrace) => Container(),
     );
   }
 }

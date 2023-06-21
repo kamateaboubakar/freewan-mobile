@@ -10,16 +10,17 @@ class BoutiquePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GetBuilder<BoutiquePageVctl>(
-        init: BoutiquePageVctl(),
-        builder: (ctl) {
-          return Scaffold(
-            appBar: AppBar(),
-            body: WebViewWidget(
-              controller: WebViewController()
-                ..setJavaScriptMode(JavaScriptMode.unrestricted)
-                ..loadRequest(Uri.parse(Const.boutiquerUrl)),
-            ),
-          );
-        });
+      init: BoutiquePageVctl(),
+      builder: (ctl) {
+        return Scaffold(
+          appBar: AppBar(),
+          body: WebViewWidget(
+            controller: WebViewController()
+              ..setJavaScriptMode(JavaScriptMode.unrestricted)
+              ..loadRequest(Uri.parse(Const.boutiquerUrl)),
+          ),
+        );
+      },
+    );
   }
 }

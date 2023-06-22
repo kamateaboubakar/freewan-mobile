@@ -55,6 +55,17 @@ class _JobListViewState extends State<JobListView> {
 
           var jobs = response.data!;
 
+          if (jobs.isEmpty) {
+            return Center(
+              child: Column(
+                children: [
+                  Image.asset("assets/images/icons/empty_folder.png", width: 100,),
+                  SizedBox(height: 10),
+                  Text('Aucune offre'),
+                ],
+              ),
+            );
+          }
           return GridView.builder(
             gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
                 crossAxisCount: 2,
@@ -69,7 +80,7 @@ class _JobListViewState extends State<JobListView> {
               return JobItem(
                 canDelete: false,
                 jobEntity: job,
-                onTap: (){
+                onTap: () {
                   _jobListController.updateSelectedJobOffer(job);
                   _jobListController.updateAlreadySubmitApplicationState();
                   Get.to(JobDescriptionPage());

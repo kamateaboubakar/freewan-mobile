@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 
 import '../../../models/job/company.dart';
-import 'package:path/path.dart' as p;
 
 class CompanyLogo extends StatelessWidget {
   final Company company;
@@ -13,14 +12,14 @@ class CompanyLogo extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    String? logoUrl = company!.logoUrl;
+    String? logoUrl = company.logoUrl;
     if (logoUrl != null) {
       return Image.network(
         logoUrl,
         width: 35,
         height: 35,
         errorBuilder: (context, _, __) {
-          return Icon(Icons.info);
+          return const Icon(Icons.info);
         },
       );
     }
@@ -30,7 +29,7 @@ class CompanyLogo extends StatelessWidget {
           .data!
           .contentAsBytes(),
       errorBuilder: (context, _, __) {
-        return Icon(Icons.info);
+        return const Icon(Icons.info);
       },
       width: 35,
       height: 35,

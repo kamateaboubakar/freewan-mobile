@@ -40,7 +40,7 @@ class DonationListPage extends StatelessWidget {
                               elevation: 0,
                               hoverElevation: 0,
                               highlightElevation: 0,
-                              onPressed: () {},
+                              onPressed: () => ctl.fetchCampagnes(catId: e.id),
                               child: (!e.isAllOption)
                                   ? Image.network(e.iconUrl!)
                                   : Image.asset(e.iconUrl!,
@@ -51,8 +51,13 @@ class DonationListPage extends StatelessWidget {
                             padding: const EdgeInsets.symmetric(vertical: 4),
                             child: Text(
                               e.label.value,
-                              style: const TextStyle(
-                                color: AssetColors.grey3,
+                              style: TextStyle(
+                                color: (ctl.selectedCatId == e.id)
+                                    ? AssetColors.blueButton
+                                    : AssetColors.grey3,
+                                fontWeight: (ctl.selectedCatId == e.id)
+                                    ? FontWeight.bold
+                                    : FontWeight.normal,
                               ),
                             ),
                           )

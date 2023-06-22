@@ -2,6 +2,7 @@ import 'package:get/get.dart';
 import 'package:wan_mobile/api/controllers/don/donation_api_ctl.dart';
 import 'package:wan_mobile/models/don/campagne.dart';
 import 'package:wan_mobile/models/don/categorie_campagne.dart';
+import 'package:wan_mobile/tools/utils/http_response.dart';
 import 'package:wan_mobile/views/controllers/abstracts/view_controller.dart';
 import 'package:wan_mobile/views/controllers/app_ctl.dart';
 
@@ -9,6 +10,7 @@ class DonationPageVctl extends ViewController {
   List<CategorieCampagne> categories = [];
   List<Campagne> campagnes = [];
   List<Campagne> userCampagnes = [];
+  int? selectedCatId;
 
   bool loadAllCampagne = false;
   bool loadUserCampagne = false;
@@ -21,10 +23,17 @@ class DonationPageVctl extends ViewController {
     ]);
   }
 
-  Future<void> fetchCampagnes() async {
+  Future<void> fetchCampagnes({int? catId}) async {
     loadAllCampagne = true;
+    selectedCatId = catId;
     update();
-    var res = await DonationApiCtl().getAllCampagne();
+
+    HttpResponse<List<Campagne>> res;
+    if (selectedCatId == null) {
+      res = await DonationApiCtl().getAllCampagne();
+    } else {
+      res = await DonationApiCtl().getAllCampagneByCategorie(selectedCatId!);
+    }
     loadAllCampagne = false;
     update();
     if (res.status) {

@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:flutter_image_slideshow/flutter_image_slideshow.dart';
-import 'package:flutter_scrolling_fab_animated/flutter_scrolling_fab_animated.dart';
 import 'package:get/get.dart';
 import 'package:icofont_flutter/icofont_flutter.dart';
 import 'package:shimmer/shimmer.dart';
@@ -81,7 +79,6 @@ class HomePage extends StatelessWidget {
           drawer: HomeDrawer(ctl),
           floatingActionButtonLocation:
               FloatingActionButtonLocation.centerFloat,
-
           floatingActionButton: AnimatedContainer(
             duration: const Duration(milliseconds: 100),
             child: Obx(() {
@@ -179,29 +176,6 @@ class HomePage extends StatelessWidget {
                     });
                   }
                 }
-
-                // if (notification is! ScrollEndNotification) {
-                //   print(notification.runtimeType);
-                //   print(ctl.isScrolling);
-                //   if (ctl.isScrolling.value == false) {
-                //     ctl.isScrolling.value = true;
-                //   }
-                // } else {
-                //   if (ctl.isScrolling.value) {
-                //     Future.delayed(const Duration(seconds: 1)).then((value) {
-                //       ctl.isScrolling.value = false;
-                //     });
-                //   }
-                // }
-                // if (notification is  UserScrollNotification) {
-                //   ctl.isScrolling.value = true;
-                // } else if (notification is ScrollUpdateNotification) {
-                //   ctl.isScrolling.value = true;
-                // } else if (notification is ScrollEndNotification) {
-                //   Future.delayed(const Duration(seconds: 1)).then((value) {
-                //     ctl.isScrolling.value = false;
-                //   });
-                // }
                 return true;
               },
               child: Stack(

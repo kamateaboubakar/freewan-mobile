@@ -10,6 +10,24 @@ import 'package:wan_mobile/tools/types/types.dart';
 import 'package:wan_mobile/tools/utils/http_response.dart';
 
 class DonationApiCtl extends WebController {
+  Future<HttpResponse<List<Campagne>>> getAllCampagneByCategorie(
+      int catId) async {
+    try {
+      var res = await get("${Const.donationBaseUrl}/campaigns/category/$catId",
+          headers: HttpClientConst.authHeaders);
+      var body = HttpResponse.decodeBody(res);
+      if (body.status) {
+        return HttpResponse.success(
+            data:
+                (body.data as List).map((e) => Campagne.fromJson(e)).toList());
+      } else {
+        return HttpResponse.error(message: body.message);
+      }
+    } catch (e, st) {
+      return HttpResponse.error(systemError: e, systemtraceError: st);
+    }
+  }
+
   Future<HttpResponse<List<Campagne>>> getAllCampagne() async {
     try {
       var res = await get("${Const.donationBaseUrl}/campaigns",

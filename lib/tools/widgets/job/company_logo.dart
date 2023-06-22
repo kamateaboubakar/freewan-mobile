@@ -13,12 +13,15 @@ class CompanyLogo extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    String? logoUrl = company.logoUrl;
-    if (logoUrl != null && p.extension(logoUrl).isNotEmpty) {
+    String? logoUrl = company!.logoUrl;
+    if (logoUrl != null) {
       return Image.network(
         logoUrl,
         width: 35,
         height: 35,
+        errorBuilder: (context, _, __) {
+          return Icon(Icons.info);
+        },
       );
     }
 
@@ -26,6 +29,9 @@ class CompanyLogo extends StatelessWidget {
       Uri.parse("data:image/png;base64,${company.logo!}")
           .data!
           .contentAsBytes(),
+      errorBuilder: (context, _, __) {
+        return Icon(Icons.info);
+      },
       width: 35,
       height: 35,
       // errorBuilder: (context, error, stackTrace) => Container(),

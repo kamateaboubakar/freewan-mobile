@@ -35,6 +35,28 @@ class JobApiCtrl extends WebController {
     }
   }
 
+  Future<HttpResponse<List<JobOffer>>> getAllJobByCategory(
+      int categoryId) async {
+    try {
+      var url = "${Const.jobBaseUrl}/jobs/category/$categoryId";
+      print(url);
+      var res = await get(url, headers: HttpClientConst.headers);
+      var body = HttpResponse.decodeBody(res);
+
+      log(jsonEncode(body.data));
+
+      if (body.status) {
+        return HttpResponse.success(
+            data:
+                (body.data as List).map((e) => JobOffer.fromJson(e)).toList());
+      } else {
+        return HttpResponse.error(message: body.message);
+      }
+    } catch (e) {
+      return HttpResponse.error(detailErrors: e.toString());
+    }
+  }
+
   Future<HttpResponse<List<ApplyJob>>> getJobApplied(
       [String? customerId]) async {
     try {
@@ -160,7 +182,8 @@ class JobApiCtrl extends WebController {
     }
   }
 
-  Future<HttpResponse<List<ApplyJob>>> getJobApplications(int jobOfferId) async {
+  Future<HttpResponse<List<ApplyJob>>> getJobApplications(
+      int jobOfferId) async {
     try {
       var url = "${Const.jobBaseUrl}/jobs/$jobOfferId/applications";
 
@@ -175,7 +198,7 @@ class JobApiCtrl extends WebController {
       if (body.status) {
         return HttpResponse.success(
             data:
-            (body.data as List).map((e) => ApplyJob.fromJson(e)).toList());
+                (body.data as List).map((e) => ApplyJob.fromJson(e)).toList());
       } else {
         return HttpResponse.error(message: body.message);
       }

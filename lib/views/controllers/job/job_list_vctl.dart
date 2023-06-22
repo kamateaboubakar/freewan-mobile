@@ -3,11 +3,13 @@ import 'package:wan_mobile/api/controllers/gaz_api_ctl.dart';
 import 'package:wan_mobile/api/controllers/job_api_ctl.dart';
 import 'package:wan_mobile/api/services/location_service.dart';
 import 'package:wan_mobile/models/gas_size.dart';
+import 'package:wan_mobile/models/job/jobs_sector.dart';
 import 'package:wan_mobile/models/location_model.dart';
 import 'package:wan_mobile/models/shop.dart';
 import 'package:wan_mobile/tools/utils/http_response.dart';
 import 'package:wan_mobile/views/controllers/abstracts/view_controller.dart';
 
+import '../../../models/job/category.dart';
 import '../../../models/job/job_offer.dart';
 
 class JobListController extends ViewController {
@@ -37,6 +39,18 @@ class JobListController extends ViewController {
     return _jobOffer!.company!.customerAccountId == appCtl.user.accountId!;
   }
 
+  JobSector? _selectedJobCategory;
+
+  JobSector? get selectedJobCategory => _selectedJobCategory;
+
+  resetSelectedJobCategory() {
+    _selectedJobCategory = null;
+  }
+
+  updateSelectedJobCategory(JobSector category) {
+    _selectedJobCategory = category;
+  }
+
   updateAlreadySubmitApplicationState([bool state = false]) {
     _isAleardySubmitApplication = state;
   }
@@ -44,7 +58,7 @@ class JobListController extends ViewController {
   getJobOffers() async {
     _response = null;
     update();
-    _response = await _jobApiCtl.getAllJobs();
+    _response = _selectedJobCategory == null ? (await _jobApiCtl.getAllJobs()) : (await _jobApiCtl.getAllJobByCategory(_selectedJobCategory!.id!));
     update();
   }
 

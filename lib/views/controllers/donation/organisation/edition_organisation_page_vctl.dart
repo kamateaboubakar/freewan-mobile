@@ -114,7 +114,7 @@ class EditionOrganisationPageVctl extends ViewController {
       telCtl.text = editedItem!.phoneNumber.value;
       adresseCtl.text = editedItem!.address.value;
       descriptionCtl.text = editedItem!.description.value;
-      image = editedItem!.logo;
+      image = editedItem!.logoUrl;
       appCtl.user.accountId = editedItem!.customerAccountId;
       update();
     }

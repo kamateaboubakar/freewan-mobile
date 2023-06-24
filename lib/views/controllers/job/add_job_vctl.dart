@@ -352,4 +352,9 @@ class AddJobController extends ViewController {
   AddJob get addJob => _addJob;
 
   bool get forJobUpdate => _forJobUpdate;
+
+  void updateCompanyDescription(String value) {
+    _newCompany.description = value;
+    updateAddJobCreationSubmitButtonState();
+  }
 }

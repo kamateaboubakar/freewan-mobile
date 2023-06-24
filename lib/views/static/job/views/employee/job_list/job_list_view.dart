@@ -71,7 +71,7 @@ class _JobListViewState extends State<JobListView> {
                 crossAxisCount: 2,
                 crossAxisSpacing: 8,
                 mainAxisSpacing: 8,
-                childAspectRatio: 1.1),
+                childAspectRatio: 1),
             physics: const NeverScrollableScrollPhysics(),
             shrinkWrap: true,
             itemCount: jobs.length,

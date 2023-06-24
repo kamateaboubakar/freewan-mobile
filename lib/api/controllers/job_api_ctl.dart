@@ -83,15 +83,18 @@ class JobApiCtrl extends WebController {
   }
 
   Future<HttpResponse> addJob(AddJob addJob) async {
+    print('add job');
     try {
+
+      print(addJob.toJson());
+
       var res = await post(
         "${Const.jobBaseUrl}/jobs",
         addJob.toJson(),
         headers: HttpClientConst.authHeaders,
       );
 
-      print(addJob.toJson());
-
+      print("add job response");
       print(res.body);
 
       var body = HttpResponse.decodeBody(res);
@@ -102,6 +105,7 @@ class JobApiCtrl extends WebController {
         return HttpResponse.error(message: body.message);
       }
     } catch (e) {
+      print('add job error');
       return HttpResponse.error(detailErrors: e.toString());
     }
   }

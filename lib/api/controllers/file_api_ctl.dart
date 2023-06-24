@@ -62,9 +62,12 @@ class FileApiCtl extends WebController {
       }
       var response = await req.send();
       var responseString = await response.stream.bytesToString();
+      print('response upload');
+      print(responseString);
       return HttpResponse.success(
           data: FileUploadResult.fromJson(jsonDecode(responseString)));
     } catch (e) {
+      print('response upload error');
       print(e);
       return HttpResponse.error(detailErrors: e.toString());
     }

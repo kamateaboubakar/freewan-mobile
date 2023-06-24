@@ -10,6 +10,7 @@ import '../../tools/const/const.dart';
 
 class CompanyApiCtl extends WebController {
   Future<HttpResponse<Company>> createCompany(Company newCompany) async {
+    print('company body');
     log(jsonEncode(newCompany.toJson()));
 
     try {
@@ -31,6 +32,8 @@ class CompanyApiCtl extends WebController {
         return HttpResponse.error(message: body.message);
       }
     } catch (e) {
+      print('company error');
+      print(e);
       return HttpResponse.error(detailErrors: e.toString());
     }
   }

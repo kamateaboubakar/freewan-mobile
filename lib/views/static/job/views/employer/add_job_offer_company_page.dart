@@ -26,6 +26,7 @@ class _AddJobOfferCompanyPageState extends State<AddJobOfferCompanyPage> {
   AddJobController _addJobController = Get.put(AddJobController());
 
   final TextEditingController _nameCtrl = TextEditingController();
+  final TextEditingController _descriptionCtrl = TextEditingController();
   final TextEditingController _emailCtrl = TextEditingController();
   final TextEditingController _legalFormCtrl = TextEditingController();
   final TextEditingController _addressCtrl = TextEditingController();
@@ -176,6 +177,15 @@ class _AddJobOfferCompanyPageState extends State<AddJobOfferCompanyPage> {
                                     },
                                   );
                                 }),
+                            const SizedBox(height: 5),
+                            CTextFormField(
+                              controller: _descriptionCtrl,
+                              hintText: "Description *",
+                              onChanged: (value) {
+                                _addJobController.updateCompanyDescription(value);
+                              },
+                              maxLines: 5,
+                            ),
                             const SizedBox(height: 5),
                             CTextFormField(
                               controller: _emailCtrl,

@@ -25,6 +25,19 @@ extension StringExt on String? {
     }
     return "";
   }
+
+  bool get isJson {
+    try {
+      if (this == null) {
+        return false;
+      } else {
+        jsonDecode(this!);
+        return true;
+      }
+    } catch (e) {
+      return false;
+    }
+  }
 }
 
 extension DoubleExt on double? {

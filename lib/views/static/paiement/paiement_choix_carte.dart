@@ -65,7 +65,11 @@ class PaiementChoixCart extends StatelessWidget {
                             size: 12,
                             color: Color.fromRGBO(7, 21, 60, 1),
                           ),
-                          onTap: () => Get.to(() => const PaiementRecap()),
+                          onTap: () => Get.to(
+                            () => const PaiementRecap(
+                              description: "Paiement par carte bancaire",
+                            ),
+                          ),
                         ),
                       ),
                     )

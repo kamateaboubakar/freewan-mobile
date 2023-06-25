@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:gap/gap.dart';
 import 'package:get/get.dart';
 import 'package:wan_mobile/tools/widgets/c_button.dart';
 import 'package:wan_mobile/views/static/scan_pay/scan_pay_operation_en_cours.dart';
 
 class PaiementRecap extends StatelessWidget {
-  const PaiementRecap({super.key});
+  final String description;
+  const PaiementRecap({required this.description, super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -34,6 +36,15 @@ class PaiementRecap extends StatelessWidget {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
+              Center(
+                child: ListTile(
+                  title: Text(
+                    description,
+                    textAlign: TextAlign.center,
+                  ),
+                ),
+              ),
+              const Gap(20),
               Image.asset(
                 "assets/images/Orange-Money-logo-2048x1375_1.png",
                 height: 45,

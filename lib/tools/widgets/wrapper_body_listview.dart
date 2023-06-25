@@ -3,8 +3,6 @@ import 'package:lottie/lottie.dart';
 import 'package:shimmer/shimmer.dart';
 import 'package:wan_mobile/tools/widgets/c_button.dart';
 
-import '../const/const.dart';
-
 class WrapperBodyListView extends StatelessWidget {
   final bool loading;
   final List<Widget> children;
@@ -83,11 +81,12 @@ class WrapperBodyListView extends StatelessWidget {
                 ),
               )
             : (children.isEmpty)
-                ? SingleChildScrollView(
-                    physics: const BouncingScrollPhysics(),
+                ? Center(
                     child: Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
                       children: [
-                        emptyWidget ?? Lottie.asset(lottieEmptyImage),
+                        emptyWidget ??
+                            Lottie.asset(lottieEmptyImage, height: 200),
                         Column(
                           children: [
                             Padding(

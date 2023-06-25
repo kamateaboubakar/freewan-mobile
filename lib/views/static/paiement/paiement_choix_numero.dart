@@ -54,7 +54,11 @@ class PaiementChoixNumero extends StatelessWidget {
                           size: 12,
                           color: Color.fromRGBO(7, 21, 60, 1),
                         ),
-                        onTap: () => Get.to(() => const PaiementRecap()),
+                        onTap: () => Get.to(
+                          () => const PaiementRecap(
+                            description: "Paiement par mobile money",
+                          ),
+                        ),
                       ),
                     ),
                   )
@@ -122,7 +126,7 @@ class PaiementChoixNumero extends StatelessWidget {
                               borderRadius: 8,
                               height: 48,
                               onPressed: () => Get.to(
-                                    () => OPTAuth(
+                                () => OPTAuth(
                                   phone: "phone",
                                   onSubmit: (code) => Get.back(),
                                   resendOtp: () {},

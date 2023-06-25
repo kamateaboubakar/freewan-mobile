@@ -2,6 +2,7 @@ import 'dart:convert';
 import 'package:flutter/foundation.dart';
 import 'package:get/get.dart';
 import 'package:http/http.dart' as http;
+import 'package:wan_mobile/tools/types/types.dart';
 
 class HttpResponse<T> {
   bool status = false;
@@ -32,7 +33,11 @@ class HttpResponse<T> {
       }
       dynamic body;
       if (source.body is String) {
-        body = json.decode(source.body);
+        if ((source.body as String).isJson) {
+          body = json.decode(source.body);
+        } else {
+          body = source.body;
+        }
       } else {
         body = source.body;
       }
@@ -46,12 +51,16 @@ class HttpResponse<T> {
         }
 
         if (body != null) {
-          if (body["message"] != null) {
-            return HttpResponse.error(message: body["message"]);
-          }
-
-          if (body != null) {
+          if (body is String) {
             return HttpResponse.error(message: body);
+          } else {
+            if (body["message"] != null) {
+              return HttpResponse.error(message: body["message"]);
+            }
+
+            if (body != null) {
+              return HttpResponse.error(message: body);
+            }
           }
         }
         return HttpResponse.error();

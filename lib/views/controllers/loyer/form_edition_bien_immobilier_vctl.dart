@@ -29,6 +29,7 @@ class FormEditionBienImmobilierVctl extends ViewController {
         maison.nbPiece = nbPieceCtl.text.toInt();
         maison.loyer = loyerCtl.text.toDouble();
         maison.jourMoisPaiement = jourPaiement.text.toInt();
+        maison.ownerId = appCtl.user.accountId;
         await pr.show();
         var res = await LoyerApiCtl().createMaison(maison);
         await pr.hide();

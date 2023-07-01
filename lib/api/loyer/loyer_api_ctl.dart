@@ -223,7 +223,8 @@ class LoyerApiCtl extends WebController {
           return HttpResponse.success(data: Appartement.fromJson(body.data!));
         }
       } else {
-        return HttpResponse.error();
+        return HttpResponse.error(
+            message: "La bien immobilier recherché est introuvable.");
       }
     } catch (e, st) {
       return HttpResponse.error(systemError: e, systemtraceError: st);
@@ -243,7 +244,7 @@ class LoyerApiCtl extends WebController {
       if (body.status) {
         return HttpResponse.success(data: PaiementLoyer.fromJson(body.data!));
       } else {
-        return HttpResponse.error();
+        return HttpResponse.error(message: "Un paiement existe déjà.");
       }
     } catch (e, st) {
       return HttpResponse.error(systemError: e, systemtraceError: st);

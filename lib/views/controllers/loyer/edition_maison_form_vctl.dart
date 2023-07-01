@@ -25,6 +25,7 @@ class EditionMaisonFormCtl extends ViewController {
       item.nbPiece = nbPieceCtl.text.toInt();
       item.loyer = loyerCtl.text.toDouble();
       item.jourMoisPaiement = jourPaiement.text.toInt();
+      item.ownerId = appCtl.user.accountId;
       await pr.show();
       var res = await LoyerApiCtl().updateMaison(item);
       await pr.hide();

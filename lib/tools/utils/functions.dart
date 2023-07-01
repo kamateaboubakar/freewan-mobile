@@ -4,6 +4,21 @@ import 'package:shared_preferences/shared_preferences.dart';
 import 'package:wan_mobile/tools/const/const.dart';
 
 class Functions {
+  static List<String> listMois = [
+    "Jan.",
+    "Fev.",
+    "Mars",
+    "Avr.",
+    "Mai.",
+    "Juin",
+    "Juil.",
+    "Août",
+    "Sept.",
+    "Oct.",
+    "Nov.",
+    "Dec."
+  ];
+
   static Map<String, String> _getMonthLib(DateTime date) {
     var months = [
       {"lite": "Jan.", "full": "Janvier"},

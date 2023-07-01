@@ -90,28 +90,29 @@ class PaiementLoyerPage extends StatelessWidget {
                           subtitle: const Text("Type de maison"),
                         ),
                         const Divider(),
+                        (ctl.habitat is Maison)
+                            ? ListTile(
+                                contentPadding: EdgeInsets.zero,
+                                leading: Image.asset(
+                                  "assets/images/icons/icons8-point-de-collecte-64.png",
+                                  width: 35,
+                                  height: 35,
+                                ),
+                                title: Text((ctl.habitat as Maison).lieu.value),
+                                subtitle: const Text("Adresse"),
+                              )
+                            : const SizedBox.shrink(),
+                        const Divider(),
                         const Gap(10),
                         Row(
                           children: [
-                            // Expanded(
-                            //   child: CTextFormField(
-                            //     controller: ctl.moisCtl,
-                            //     labelText: "Mois",
-                            //     require: true,
-                            //     hintText: "Ex: 01",
-                            //     maxLength: 4,
-                            //     keyboardType:
-                            //         const TextInputType.numberWithOptions(),
-                            //   ),
-                            // ),
                             Expanded(
-                              child: CDropdownField(
-                                selectedItem: ctl.mois,
+                              child: CDropdownField<String>(
                                 labelText: "Mois",
                                 require: true,
-                                items: List.generate(12, (i) => i + 1),
+                                items: ctl.moisList,
                                 onChanged: (value) {
-                                  ctl.mois = value;
+                                  ctl.mois = ctl.moisList.indexOf(value!) + 1;
                                   ctl.update();
                                 },
                               ),

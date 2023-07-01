@@ -3,6 +3,7 @@ import 'package:get/get.dart';
 import 'package:wan_mobile/api/loyer/loyer_api_ctl.dart';
 import 'package:wan_mobile/models/loyer/abstracts/habitat.dart';
 import 'package:wan_mobile/models/loyer/paiement_loyer.dart';
+import 'package:wan_mobile/tools/utils/functions.dart';
 import 'package:wan_mobile/tools/utils/tools.dart';
 import 'package:wan_mobile/views/controllers/abstracts/view_controller.dart';
 import 'package:wan_mobile/views/static/home/home_page.dart';
@@ -12,6 +13,9 @@ class PaiementLoyerPageVctl extends ViewController {
   int? mois;
   int? annee;
   var formKey = GlobalKey<FormState>();
+  List<String> moisList = Functions.listMois;
+  Functions functions = Functions();
+
   PaiementLoyerPageVctl(this.habitat);
 
   Future<void> submit() async {

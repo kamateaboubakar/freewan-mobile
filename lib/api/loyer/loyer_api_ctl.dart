@@ -224,7 +224,7 @@ class LoyerApiCtl extends WebController {
         }
       } else {
         return HttpResponse.error(
-            message: "La bien immobilier recherché est introuvable.");
+            message: "Le bien immobilier recherché est introuvable.");
       }
     } catch (e, st) {
       return HttpResponse.error(systemError: e, systemtraceError: st);

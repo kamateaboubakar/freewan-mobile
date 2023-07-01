@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:wan_mobile/tools/types/types.dart';
+import 'package:wan_mobile/tools/utils/functions.dart';
 import 'package:wan_mobile/tools/widgets/wrapper_body_listview.dart';
 import 'package:wan_mobile/views/controllers/loyer/historique_paiement_loyer_page_vctl.dart';
 
@@ -33,7 +34,8 @@ class HistoriquePaiementLoyerPage extends StatelessWidget {
                           Expanded(
                               child:
                                   Text(e.date.toDateTime().toFrenchDateTime)),
-                          Text("${e.mois}/${e.annee}")
+                          Text(
+                              "${Functions.listMois[e.mois.value - 1]}-${e.annee}")
                         ],
                       ),
                     ),

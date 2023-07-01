@@ -77,12 +77,9 @@ class BienImmobilierPage extends StatelessWidget {
                     WrapperBodyListView(
                       listPadding: const EdgeInsets.all(10),
                       onRefresh: ctl.fetchMaisons,
-                      emptyWidget: Container(
-                        margin: const EdgeInsets.only(top: 50),
-                        child: Image.asset(
-                          "assets/images/icons/empty_folder.png",
-                          width: 200,
-                        ),
+                      emptyWidget: Image.asset(
+                        "assets/images/icons/empty_folder.png",
+                        width: 200,
                       ),
                       loading: ctl.loadMaisons,
                       children: ctl.maisons
@@ -105,12 +102,9 @@ class BienImmobilierPage extends StatelessWidget {
                       listPadding: const EdgeInsets.all(10),
                       loading: ctl.loadBloc,
                       onRefresh: ctl.fetchBlockApparts,
-                      emptyWidget: Container(
-                        margin: const EdgeInsets.only(top: 50),
-                        child: Image.asset(
-                          "assets/images/icons/empty_folder.png",
-                          width: 200,
-                        ),
+                      emptyWidget: Image.asset(
+                        "assets/images/icons/empty_folder.png",
+                        width: 200,
                       ),
                       children: ctl.blocAppartements
                           .map(

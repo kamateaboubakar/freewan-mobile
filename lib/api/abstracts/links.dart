@@ -1,3 +1,3 @@
 abstract class Links {
-  static const loyer = "http://192.168.1.2:8080";
+  static const loyer = "http://148.113.143.59:8086";
 }

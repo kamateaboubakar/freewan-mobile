@@ -1,8 +1,13 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:get/get.dart';
+import 'package:icofont_flutter/icofont_flutter.dart';
+import 'package:image_picker/image_picker.dart';
 import 'package:progress_dialog_null_safe/progress_dialog_null_safe.dart';
 import 'package:wan_mobile/tools/const/const.dart';
+import 'package:wan_mobile/tools/utils/asset_colors.dart';
 
 class Tools {
   Tools._();
@@ -46,26 +51,32 @@ class Tools {
               RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
           minWidth: 120,
           onPressed: () => Get.back(result: false),
-          child:
-              const Text("Non", style: TextStyle(fontWeight: FontWeight.bold)),
+          child: const Text(
+            "Non",
+            style: TextStyle(
+              fontWeight: FontWeight.bold,
+            ),
+          ),
         ),
         MaterialButton(
           minWidth: 120,
           elevation: 0,
           textColor: Colors.white,
-          color: Const.secondaryColor,
+          color: AssetColors.blueButton,
           shape:
               RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
           onPressed: () => Get.back(result: true),
-          child:
-              const Text("Oui", style: TextStyle(fontWeight: FontWeight.bold)),
+          child: const Text(
+            "Oui",
+            style: TextStyle(fontWeight: FontWeight.bold),
+          ),
         ),
       ],
       content: Container(
         height: 100,
         width: 200,
         padding: const EdgeInsets.only(top: 10, left: 10, right: 10),
-        child: Text(message, textAlign: TextAlign.center),
+        child: Center(child: Text(message, textAlign: TextAlign.center)),
       ),
     );
   }
@@ -130,4 +141,51 @@ class Tools {
         textColor: titleTextColor,
         fontSize: 16.0,
       );
+
+  static Future<File?> pickImage(
+      {ImageSource from = ImageSource.camera, int? imageQuality}) async {
+    final picker = ImagePicker();
+    final pickedFile =
+        await picker.pickImage(source: from, imageQuality: imageQuality);
+    return (pickedFile != null) ? File(pickedFile.path) : null;
+  }
+
+  static Future<File?> bottomSheetPickImage({int imageQuality = 50}) async {
+    return await Tools.showBottomPage<File?>(
+      padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 20),
+      height: 170,
+      content: ListView(
+        physics: const BouncingScrollPhysics(),
+        padding: const EdgeInsets.symmetric(vertical: 10),
+        children: [
+          ListTile(
+            leading: const Icon(IcoFontIcons.camera),
+            subtitle: const Text("Prendre une image avec l'appareil photo"),
+            title: const Text("Ouvrir l'appareil photo"),
+            onTap: () => Tools.pickImage(imageQuality: imageQuality).then(
+              (value) => Get.back(result: value),
+            ),
+          ),
+          ListTile(
+            leading: const Icon(IcoFontIcons.image),
+            subtitle: const Text("Prendre une image dans la galerie"),
+            title: const Text("Ouvrir la galérie"),
+            onTap: () => Tools.pickImage(
+                    from: ImageSource.gallery, imageQuality: imageQuality)
+                .then(
+              (value) => Get.back(result: value),
+            ),
+          )
+        ],
+      ),
+    );
+  }
+
+  static Future showBottomPage<T>({
+    EdgeInsets padding = const EdgeInsets.all(10),
+    double? height,
+    Widget? content,
+  }) =>
+      Get.bottomSheet<T>(SizedBox(height: height, child: content),
+          backgroundColor: Colors.white);
 }

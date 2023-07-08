@@ -21,8 +21,15 @@ class CTextFormField extends StatelessWidget {
   final void Function()? onTap;
   final Color? hintColor;
   final TextCapitalization textCapitalization;
+  final double? height;
+  final EdgeInsetsGeometry? contentPadding;
   const CTextFormField(
       {this.controller,
+      this.contentPadding = const EdgeInsets.symmetric(
+        horizontal: 10,
+        vertical: 15,
+      ),
+      this.height,
       this.keyboardType,
       this.enabled,
       this.onTap,
@@ -48,6 +55,7 @@ class CTextFormField extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       margin: margin,
+      height: height,
       child: TextFormField(
         initialValue: initialValue,
         readOnly: readOnly,
@@ -72,15 +80,11 @@ class CTextFormField extends StatelessWidget {
         },
         decoration: InputDecoration(
           counterText: "",
-          contentPadding:
-              const EdgeInsets.symmetric(horizontal: 10, vertical: 15),
+          contentPadding: contentPadding,
           suffixIcon: suffixIcon,
           labelText: (require && labelText != null) ? "$labelText*" : labelText,
           hintText: hintText,
-          hintStyle: TextStyle(
-            fontSize: 15,
-            color: hintColor,
-          ),
+          hintStyle: TextStyle(fontSize: 15, color: hintColor),
           prefixIcon: prefixIcon,
           fillColor: fillColor,
           filled: true,

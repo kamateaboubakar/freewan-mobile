@@ -1,16 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:lottie/lottie.dart';
 import 'package:shimmer/shimmer.dart';
+import 'package:wan_mobile/tools/types/types.dart';
 import 'package:wan_mobile/tools/widgets/c_button.dart';
-
-import '../const/const.dart';
 
 class WrapperBodyGridView extends StatelessWidget {
   final bool loading;
   final List<Widget> children;
   final String emptyText;
+  final ScrollPhysics? physics;
   final Future<void> Function()? onRefresh;
-  final String error;
+  final String? error;
   final String lottieEmptyImage;
   final Widget? emptyWidget;
   final EdgeInsetsGeometry? gridPadding;
@@ -20,19 +20,22 @@ class WrapperBodyGridView extends StatelessWidget {
   final double crossAxisSpacing;
   final double mainAxisSpacing;
   final double childAspectRatio;
+  final bool? primary;
   const WrapperBodyGridView(
       {required this.loading,
+      this.primary,
       this.refreshButton,
       this.onRefresh,
       this.emptyWidget,
       this.crossAxisCount = 2,
       this.mainAxisSpacing = 2,
       this.childAspectRatio = 1.0,
+      this.physics,
       required this.children,
       this.crossAxisSpacing = 0.0,
       this.lottieEmptyImage = "assets/lotties/123725-box-empty.json",
       this.gridPadding = const EdgeInsets.all(10),
-      this.error = "",
+      this.error,
       this.emptyText = "Aucune données à afficher",
       this.shrinkWrap = false,
       Key? key})
@@ -40,7 +43,7 @@ class WrapperBodyGridView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return (error.isNotEmpty)
+    return (error != null && error!.isNotEmpty)
         ? Center(
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
@@ -48,7 +51,7 @@ class WrapperBodyGridView extends StatelessWidget {
                 Padding(
                   padding: const EdgeInsets.all(8.0),
                   child: Text(
-                    error,
+                    error.value,
                     textAlign: TextAlign.center,
                   ),
                 ),
@@ -64,38 +67,55 @@ class WrapperBodyGridView extends StatelessWidget {
             ),
           )
         : (loading)
-            ? SingleChildScrollView(
+            ? GridView.count(
+                padding: gridPadding,
+                crossAxisSpacing: crossAxisSpacing,
+                childAspectRatio: childAspectRatio,
+                shrinkWrap: shrinkWrap,
+                crossAxisCount: 2,
                 physics: const NeverScrollableScrollPhysics(),
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: List.generate(
-                    5,
-                    (index) => Shimmer.fromColors(
-                      baseColor: Colors.grey.shade300,
-                      highlightColor: Colors.white,
-                      child: ListTile(
-                        leading: const CircleAvatar(),
-                        title: Container(
-                          color: Colors.grey,
-                          height: 10,
-                          width: double.infinity,
-                        ),
-                        subtitle: Container(
-                          color: Colors.grey,
-                          height: 10,
-                          width: double.infinity,
-                        ),
-                      ),
-                    ),
+                children: List.generate(
+                  4,
+                  (index) => Shimmer.fromColors(
+                    baseColor: Colors.grey.shade300,
+                    highlightColor: Colors.white,
+                    child: const Card(elevation: 0),
                   ),
-                ),
-              )
+                )
+                // Column(
+                //   mainAxisAlignment: MainAxisAlignment.center,
+                //   children: List.generate(
+                //     5,
+                //     (index) => Shimmer.fromColors(
+                //       baseColor: Colors.grey.shade300,
+                //       highlightColor: Colors.white,
+                //       child: ListTile(
+                //         leading: const CircleAvatar(),
+                //         title: Container(
+                //           color: Colors.grey,
+                //           height: 10,
+                //           width: double.infinity,
+                //         ),
+                //         subtitle: Container(
+                //           color: Colors.grey,
+                //           height: 10,
+                //           width: double.infinity,
+                //         ),
+                //       ),
+                //     ),
+                //   ),
+                // ),
+                )
             : (children.isEmpty)
                 ? SingleChildScrollView(
                     physics: const BouncingScrollPhysics(),
                     child: Column(
                       children: [
-                        emptyWidget ?? Lottie.asset(lottieEmptyImage),
+                        emptyWidget ??
+                            Lottie.asset(
+                              lottieEmptyImage,
+                              height: 140,
+                            ),
                         Column(
                           children: [
                             Padding(
@@ -126,6 +146,8 @@ class WrapperBodyGridView extends StatelessWidget {
                     ? RefreshIndicator(
                         onRefresh: onRefresh!,
                         child: GridView.count(
+                          physics: physics,
+                          primary: primary,
                           childAspectRatio: childAspectRatio,
                           mainAxisSpacing: mainAxisSpacing,
                           crossAxisSpacing: crossAxisSpacing,
@@ -136,6 +158,7 @@ class WrapperBodyGridView extends StatelessWidget {
                         ),
                       )
                     : GridView.count(
+                        physics: physics,
                         childAspectRatio: childAspectRatio,
                         mainAxisSpacing: mainAxisSpacing,
                         crossAxisSpacing: crossAxisSpacing,

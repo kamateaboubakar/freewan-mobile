@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 import 'package:get/get.dart';
-import 'package:wan_mobile/models/location_vehicule/vehicule.dart';
+import 'package:wan_mobile/models/location_vehicule/car.dart';
 import 'package:wan_mobile/tools/types/types.dart';
 import 'package:wan_mobile/tools/utils/asset_colors.dart';
 import 'package:wan_mobile/views/static/location_vehicule/location/detail_vehicule_page.dart';
 
 class CardVehicule extends StatelessWidget {
-  final Vehicule vehicule;
+  final Car vehicule;
   const CardVehicule(this.vehicule, {super.key});
 
   @override
@@ -26,7 +26,8 @@ class CardVehicule extends StatelessWidget {
                 width: double.infinity,
                 height: double.infinity,
                 child: Image.asset(
-                  vehicule.image.value,
+                  vehicule.images.firstOrNull ??
+                      "assets/images/img_boutique_vehicule.png",
                   fit: BoxFit.cover,
                 ),
               ),
@@ -41,14 +42,15 @@ class CardVehicule extends StatelessWidget {
                       children: [
                         Expanded(
                           child: Text(
-                            vehicule.marque.value,
+                            vehicule.brand.value,
                             style: const TextStyle(
                               fontWeight: FontWeight.bold,
                             ),
                           ),
                         ),
                         Text(
-                          vehicule.prix.value,
+                          vehicule.priceWithoutDriver.value
+                              .toAmount(withDevise: false),
                           style: const TextStyle(
                             fontWeight: FontWeight.w400,
                             color: AssetColors.blueButton,
@@ -61,16 +63,16 @@ class CardVehicule extends StatelessWidget {
                       children: [
                         Expanded(
                           child: Text(
-                            vehicule.modele.value,
+                            vehicule.model.value,
                             style: const TextStyle(
                               fontWeight: FontWeight.w400,
                               color: AssetColors.grey9,
                             ),
                           ),
                         ),
-                        Text(
-                          "${vehicule.nbJour.value}/jour",
-                          style: const TextStyle(
+                        const Text(
+                          "/jour",
+                          style: TextStyle(
                             fontWeight: FontWeight.w400,
                             color: AssetColors.grey9,
                           ),
@@ -83,13 +85,13 @@ class CardVehicule extends StatelessWidget {
                         const Expanded(
                           child: Text(
                             "Moteur",
-                            style: const TextStyle(
+                            style: TextStyle(
                               fontWeight: FontWeight.w400,
                             ),
                           ),
                         ),
                         Text(
-                          vehicule.moteur.value,
+                          vehicule.motor.value,
                           style: const TextStyle(
                             fontWeight: FontWeight.w400,
                           ),

@@ -1,10 +1,7 @@
 import 'package:wan_mobile/api/abstracts/http_client_const.dart';
 import 'package:wan_mobile/api/abstracts/web_controller.dart';
-import 'package:wan_mobile/models/job/add_job.dart';
-import 'package:wan_mobile/models/job/contract_type.dart';
 import 'package:wan_mobile/tools/utils/http_response.dart';
 
-import '../../models/job/company.dart';
 import '../../models/job/jobs_sector.dart';
 import '../../tools/const/const.dart';
 

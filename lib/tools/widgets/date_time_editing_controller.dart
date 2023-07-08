@@ -15,6 +15,11 @@ class DateTimeEditingController {
     _textController.text = value.toFrenchDate;
   }
 
+  set setTime(DateTime? value) {
+    _date = value;
+    _textController.text = value.toTime;
+  }
+
   TextEditingController get textController => _textController;
 
   void clear() {

@@ -20,7 +20,7 @@ class COutlinedButton extends StatelessWidget {
       this.borderRadius = 8,
       this.borderColor = AssetColors.blue,
       required this.onPressed,
-      this.textColor = Colors.white,
+      this.textColor = AssetColors.blueButton,
       this.color = Colors.white,
       this.minWidth,
       this.height,
@@ -35,7 +35,6 @@ class COutlinedButton extends StatelessWidget {
       child: icon != null
           ? TextButton.icon(
               icon: icon!,
-              
               style: ButtonStyle(
                 foregroundColor: MaterialStateProperty.all(textColor),
                 backgroundColor: MaterialStateProperty.all(color),

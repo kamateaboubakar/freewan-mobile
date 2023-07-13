@@ -56,7 +56,7 @@ class Company {
       activitySectorId != null &&
       email!.isNotEmpty &&
       address!.isNotEmpty &&
-      legalForm!.isNotEmpty;
+      description!.isNotEmpty;
 
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = new Map<String, dynamic>();

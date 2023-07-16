@@ -82,12 +82,15 @@ class Tools {
   }
 
   static Future<T?> openModal<T>(Widget widget,
-          {Color? backgroundColor, EdgeInsetsGeometry? contentPadding}) =>
+          {Color? backgroundColor,
+          EdgeInsetsGeometry? contentPadding,
+          double? elevation}) =>
       Get.dialog<T>(
         AlertDialog(
           backgroundColor: backgroundColor,
           content: widget,
           contentPadding: contentPadding,
+          elevation: elevation,
         ),
       );
 

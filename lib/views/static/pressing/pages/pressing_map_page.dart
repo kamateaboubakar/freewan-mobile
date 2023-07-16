@@ -4,10 +4,13 @@ import 'package:get/get.dart';
 import 'package:latlong2/latlong.dart';
 import 'package:sliding_up_panel/sliding_up_panel.dart';
 import 'package:wan_mobile/api/services/location_service.dart';
+import 'package:wan_mobile/models/pressing/pressing.dart';
 import 'package:wan_mobile/tools/utils/asset_colors.dart';
 import 'package:wan_mobile/tools/utils/tools.dart';
 import 'package:wan_mobile/views/controllers/gaz/gas_shop_vctl.dart';
 import 'package:wan_mobile/views/controllers/gaz/gas_vctl.dart';
+import 'package:wan_mobile/views/controllers/pressing/pressing_vctl.dart';
+import 'package:wan_mobile/views/static/gaz/gaz_view.dart';
 import 'package:wan_mobile/views/static/gaz/pages/gaz_pos_info_page.dart';
 import 'package:wan_mobile/views/static/pressing/pages/pages.dart';
 
@@ -16,27 +19,20 @@ import '../../../../models/service.dart';
 import '../../../../models/shop.dart';
 import '../../../../tools/widgets/c_textform_field.dart';
 
-class GazMapPage extends StatefulWidget {
-  const GazMapPage({Key? key}) : super(key: key);
+class PressingMapPage extends StatefulWidget {
+  const PressingMapPage({Key? key}) : super(key: key);
 
   @override
-  State<GazMapPage> createState() => _GazMapPageState();
+  State<PressingMapPage> createState() => _PressingMapPageState();
 }
 
-class _GazMapPageState extends State<GazMapPage> {
+class _PressingMapPageState extends State<PressingMapPage> {
   final List<Service> serviceFilterItems = [
     Service(label: "Tous", icon: "assets/images/all_icon.png"),
-    Service(label: "Gaz", icon: "assets/images/gaz_selection_icon.png"),
-    Service(label: "Pressing", icon: "assets/images/pressing_icon.png"),
+    Service(label: "Gaz", icon: "assets/images/gaz_icon.png"),
+    Service(
+        label: "Pressing", icon: "assets/images/pressing_selection_icon.png"),
     Service(label: "Restos", icon: "assets/images/ion_fast-food-outline.png"),
-  ];
-
-  final List<GazPos> gazPos = [
-    GazPos(position: LatLng(5.379946, -3.933305)),
-    GazPos(position: LatLng(5.380910, -3.935291)),
-    GazPos(position: LatLng(5.379331, -3.935650)),
-    GazPos(position: LatLng(5.380526, -3.936791)),
-    GazPos(position: LatLng(5.378974, -3.933182)),
   ];
 
   final MapController _mapController = MapController();
@@ -44,23 +40,16 @@ class _GazMapPageState extends State<GazMapPage> {
   final double mapZoom = 16.2;
 
   int noSelectionIndex = -1;
-  late int selectedGazPosIndex;
+  late int selectedPosIndex;
 
-  GasController _gazController = Get.put(GasController());
-  GasShopController _gazShopController = Get.put(GasShopController());
+  PressingController _pressingController = Get.put(PressingController());
 
   @override
   void initState() {
-    selectedGazPosIndex = noSelectionIndex;
-    _gazController.reset();
+    selectedPosIndex = noSelectionIndex;
     super.initState();
     WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
       _requestPermissionForLocation();
-      _gazShopController.addListener(() {
-        if (_gazShopController.hasPurchaseActionSelected) {
-          panelController.open();
-        }
-      });
     });
   }
 
@@ -74,14 +63,14 @@ class _GazMapPageState extends State<GazMapPage> {
       appBar: AppBar(
         backgroundColor: Colors.white,
         foregroundColor: Colors.black,
-        title: const Text("Gaz"),
+        title: const Text("Pressing"),
       ),
       body: GetBuilder(
-        init: _gazController,
+        init: _pressingController,
         builder: (controller) {
-          _gazController = controller;
-          List<Shop>? shops = controller.shops;
-          Shop? shop = _gazController.shop;
+          _pressingController = controller;
+          List<Pressing>? pressings = _pressingController.pressings;
+          Pressing? pressing = _pressingController.pressing;
           return Stack(
             fit: StackFit.expand,
             children: [
@@ -91,8 +80,7 @@ class _GazMapPageState extends State<GazMapPage> {
                     center: LatLng(5.379617, -3.934711),
                     zoom: mapZoom,
                     onTap: (_, __) {
-                      _gazController.clearSelectedShop();
-                      _gazShopController.clearSelectedPurchaseAction();
+                      _pressingController.clearSelectedPressing();
                       if (panelController.isPanelOpen) {
                         panelController.close();
                       }
@@ -104,9 +92,9 @@ class _GazMapPageState extends State<GazMapPage> {
                     userAgentPackageName: 'com.example.app',
                   ),
                   MarkerLayer(markers: [
-                    if (_gazController.hasUserLocation) ...{
+                    if (_pressingController.hasUserLocation) ...{
                       Marker(
-                          point: _gazController.userLocation!.toLatLng(),
+                          point: _pressingController.userLocation!.toLatLng(),
                           builder: (context) {
                             return Image.asset(
                               'assets/images/pin_red.png',
@@ -115,26 +103,28 @@ class _GazMapPageState extends State<GazMapPage> {
                             );
                           })
                     },
-                    if (shops != null) ...[
-                      for (int i = 0; i < shops.length; i++) ...[
+                    if (pressings != null) ...[
+                      for (int i = 0; i < pressings.length; i++) ...[
                         Marker(
-                          point:
-                              LatLng(shops[i].latitude!, shops[i].longitude!),
+                          point: LatLng(
+                              pressings[i].latitude!, pressings[i].longitude!),
                           builder: (context) => InkWell(
                             onTap: () {
-                              _gazController.updateShop(shops[i]);
+                              _pressingController.updatePressing(pressings[i]);
                               _mapController.move(
-                                  LatLng(
-                                      shops[i].latitude!, shops[i].longitude!),
-                                  mapZoom);
+                                LatLng(
+                                  pressings[i].latitude!,
+                                  pressings[i].longitude!,
+                                ),
+                                mapZoom,
+                              );
                             },
                             child: Opacity(
-                              opacity:
-                                  (hasNoGazPosSelected || isGazPosSelected(i))
-                                      ? 1
-                                      : 0.5,
+                              opacity: (hasPosSelected || isPosSelected(i))
+                                  ? 1
+                                  : 0.5,
                               child: Image.asset(
-                                'assets/images/gaz_pin.png',
+                                'assets/images/pressing_pin.png',
                                 width: 40,
                                 height: 40,
                               ),
@@ -146,14 +136,14 @@ class _GazMapPageState extends State<GazMapPage> {
                   ]),
                 ],
               ),
-              if (shops != null)
+              if (pressings != null)
                 Positioned(
                   bottom: 0,
                   right: 0,
                   left: 0,
                   child: Column(
                     children: [
-                      if (_gazController.hasUserLocation) ...[
+                      if (_pressingController.hasUserLocation) ...[
                         Align(
                           alignment: Alignment.centerRight,
                           child: Padding(
@@ -176,23 +166,21 @@ class _GazMapPageState extends State<GazMapPage> {
                     ],
                   ),
                 ),
-              if (_gazController.shop != null)
+              if (_pressingController.pressing != null)
                 SlidingUpPanel(
                   controller: panelController,
                   body: Container(),
                   panelBuilder: (scrollCtl) =>
-                      GazPosInfoPage(scrollCtl, togglePanel: () {
+                      PressingDetailsPage(scrollCtl, togglePanel: () {
                     if (panelController.isPanelOpen) {
                       panelController.close();
-                      if (_gazShopController.hasPurchaseActionSelected) {
-                        _gazShopController.clearSelectedPurchaseAction();
-                      }
                     } else {
                       panelController.open();
                     }
                   }),
-                  minHeight: shop == null ? 0 : 300,
-                  maxHeight: shop == null ? 0 : screenHeight * 0.85,
+                  minHeight: pressing == null ? 0 : 350,
+                  maxHeight: pressing == null ? 0 : screenHeight * 0.9,
+                  isDraggable: false,
                   borderRadius: const BorderRadius.only(
                     topRight: Radius.circular(20),
                     topLeft: Radius.circular(20),
@@ -239,13 +227,13 @@ class _GazMapPageState extends State<GazMapPage> {
                     scrollDirection: Axis.horizontal,
                     itemBuilder: (context, index) {
                       var item = serviceFilterItems[index];
-                      var selected = index == 1;
+                      var selected = index == 2;
                       return Padding(
                         padding: const EdgeInsets.symmetric(horizontal: 16),
                         child: InkWell(
                           onTap: () {
-                            if (index == 2) {
-                              Get.off(PressingMapPage());
+                            if (index == 1) {
+                              Get.off(GazMapPage());
                             }
                           },
                           child: Column(
@@ -255,7 +243,7 @@ class _GazMapPageState extends State<GazMapPage> {
                                 height: 55,
                                 decoration: BoxDecoration(
                                   color: selected
-                                      ? Color(0xff0042FF).withOpacity(0.15)
+                                      ? Color(0xffFC5E93).withOpacity(0.15)
                                       : const Color(0xffB5C4D8)
                                           .withOpacity(0.15),
                                   shape: BoxShape.circle,
@@ -273,7 +261,7 @@ class _GazMapPageState extends State<GazMapPage> {
                                 item.label,
                                 style: TextStyle(
                                   color: selected
-                                      ? const Color(0xff0042FF)
+                                      ? const Color(0xffFC5E93)
                                       : AssetColors.blueGrey,
                                 ),
                               ),
@@ -304,14 +292,14 @@ class _GazMapPageState extends State<GazMapPage> {
     );
   }
 
-  bool get hasNoGazPosSelected => selectedGazPosIndex == noSelectionIndex;
+  bool get hasPosSelected => selectedPosIndex == noSelectionIndex;
 
-  bool isGazPosSelected(int index) => selectedGazPosIndex == index;
+  bool isPosSelected(int index) => selectedPosIndex == index;
 
   _requestPermissionForLocation() async {
     var hasLocationPermission = await LocationService.hasLocationPermission();
     if (hasLocationPermission) {
-      _getShops();
+      _getPressings();
       return;
     }
     Tools.messageBox(
@@ -323,15 +311,15 @@ class _GazMapPageState extends State<GazMapPage> {
           Get.back();
           return;
         }
-        _getShops();
+        _getPressings();
       },
     );
   }
 
-  _getShops() async {
+  _getPressings() async {
     var pr = Tools.progressDialog();
     pr.show();
-    var response = await _gazController.getClosestShop();
+    var response = await _pressingController.getClosestPressing();
     Get.back();
     if (!response.status) {
       Tools.messageBox(message: response.message);
@@ -341,7 +329,7 @@ class _GazMapPageState extends State<GazMapPage> {
   }
 
   void _moveToCurrentLocation() {
-    var userLocation = _gazController.userLocation!;
+    var userLocation = _pressingController.userLocation!;
     _mapController.move(userLocation.toLatLng(), mapZoom);
   }
 }

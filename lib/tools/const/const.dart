@@ -13,7 +13,7 @@ abstract class Const {
   static var jobBaseUrl = "http://148.113.143.59:8083/api/v1";
   static var donationBaseUrl = "http://148.113.143.59:8084/api/v1";
   static var constructionBaseUrl = "http://148.113.143.59:8081/api/v1";
-
+  static var pressingBaseUrl = "http://148.113.143.59:8085";
   static var boutiquerUrl = "https://freewan.io/store.lebedoo.ci";
 
   static var localUrl = "";
@@ -23,4 +23,6 @@ abstract class Const {
   static String inLineAppLogo = "assets/images/lebedoo_inline_logo.png";
 
   static var devise = "Fcfa";
+
+  static var pressingImageUrl = "http://148.113.143.59:8008/pressing";
 }

@@ -6,7 +6,7 @@ extension AmountUtil on String {
     var fmf = MoneyFormatter(
         amount: amount,
         settings: MoneyFormatterSettings(
-          symbol: 'FCFA',
+          symbol: ' FCFA',
           thousandSeparator: ' ',
           symbolAndNumberSeparator: '',
           fractionDigits: 0

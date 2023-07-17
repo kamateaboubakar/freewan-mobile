@@ -6,6 +6,7 @@ import 'package:wan_mobile/models/pressing/pressing_service.dart';
 import 'package:wan_mobile/tools/types/types.dart';
 
 import '../../models/pressing/pressing_article_category.dart';
+import '../../models/pressing/user_localisation.dart';
 import '../../tools/const/const.dart';
 import '../../tools/utils/http_response.dart';
 import '../abstracts/http_client_const.dart';
@@ -98,6 +99,53 @@ class PressingApiCtl extends WebController {
             data: (body.data as List)
                 .map((e) => PressingArticle.fromJson(e))
                 .toList());
+      } else {
+        return HttpResponse.error(message: body.message);
+      }
+    } catch (e) {
+      return HttpResponse.error(detailErrors: e.toString());
+    }
+  }
+
+  Future<HttpResponse<List<PressingArticle>>> submitOrder({
+    required String recuperationDate,
+    required double totalAmount,
+    required int pressingId,
+    required List<PressingService> services,
+    required List<PressingArticle> articles,
+    required UserLocalisation userLocalisation,
+  }) async {
+    try {
+      var url = "${Const.pressingBaseUrl}/commande";
+      print(url);
+      var requestBody = {
+        "customer_id": appCtl.user.accountId,
+        "transaction_id": "TRANS-${DateTime.now().microsecondsSinceEpoch}",
+        "asked_recuperation_date": recuperationDate,
+        "fees": totalAmount,
+        "pressing_id": pressingId,
+        "services": services.map((e) => e.id).toList(),
+        "cart": articles
+            .map((e) => {"item_id": e.id!, "quantity": e.quantity!})
+            .toList(),
+        "customer_localisation": {
+          "address": userLocalisation.address!,
+          "customer_id": userLocalisation.customerId!,
+          "latitude": userLocalisation.latitude!,
+          "longitude": userLocalisation.longitude!,
+          "localisation_type": userLocalisation.localisationType!.id!,
+        }
+      };
+      print(requestBody);
+      var res = await post(
+        url,
+        requestBody.parseToJson(),
+        headers: HttpClientConst.headers,
+      );
+      log(res.bodyString!);
+      var body = HttpResponse.decodeBody(res);
+      if (body.status) {
+        return HttpResponse.success(data: []);
       } else {
         return HttpResponse.error(message: body.message);
       }

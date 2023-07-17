@@ -36,7 +36,7 @@ class PressingServiceController extends ViewController {
 
   reset() {
     _response = null;
-    _pressingServices = [];
+    _selectedServices.clear();
   }
 
   getPressingServices(int pressingId) async {

@@ -5,7 +5,9 @@ import 'package:wan_mobile/tools/utils/amount_util.dart';
 import 'package:wan_mobile/tools/utils/asset_colors.dart';
 import 'package:wan_mobile/views/controllers/pressing/pressing_articles_vctl.dart';
 import 'package:wan_mobile/views/controllers/pressing/pressing_services_vctl.dart';
+import 'package:wan_mobile/views/static/pressing/pages/pressing_delivery_address_page.dart';
 import 'package:wan_mobile/views/static/pressing/pages/pressing_hour_selection_page.dart';
+import 'package:wan_mobile/views/static/pressing/pages/pressing_payment_recap_page.dart';
 import 'package:wan_mobile/views/static/pressing/pressing_view.dart';
 import 'package:wan_mobile/views/static/pressing/widgets/pressing_article_item.dart';
 
@@ -41,6 +43,7 @@ class _PressingArticlesPageState extends State<PressingArticlesPage> {
     _pressing = _pressingController.pressing;
     _pressingController.resetInfoRecuperation();
     _pressingArticlesController.reset();
+    _pressingServiceController.reset();
     super.initState();
     WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
       _getPressingArticles();
@@ -210,7 +213,9 @@ class _PressingArticlesPageState extends State<PressingArticlesPage> {
                                     onTap: () {
                                       var result = _pressingArticlesController
                                           .updateSelectedCategoryIndex(index);
-                                      if (result) {
+                                      if (result &&
+                                          _pressingServiceController
+                                              .hasSelectedServices) {
                                         _getUpdateArticlesPrice();
                                       }
                                     },
@@ -259,8 +264,8 @@ class _PressingArticlesPageState extends State<PressingArticlesPage> {
                 ),
                 const SizedBox(height: 10),
                 InkWell(
-                  onTap: (){
-                      Get.to(PressingHourSelectionPage());
+                  onTap: () {
+                    Get.to(PressingHourSelectionPage());
                   },
                   child: Container(
                     decoration: BoxDecoration(
@@ -269,8 +274,8 @@ class _PressingArticlesPageState extends State<PressingArticlesPage> {
                       ),
                       borderRadius: BorderRadius.circular(10),
                     ),
-                    padding:
-                        const EdgeInsets.symmetric(horizontal: 12, vertical: 18),
+                    padding: const EdgeInsets.symmetric(
+                        horizontal: 12, vertical: 18),
                     child: Row(
                       children: [
                         Expanded(
@@ -281,12 +286,16 @@ class _PressingArticlesPageState extends State<PressingArticlesPage> {
                               Expanded(
                                 child: GetBuilder(
                                   init: _pressingController,
-                                  builder: (controller){
+                                  builder: (controller) {
                                     _pressingController = controller;
-                                    var deliveryTime = _pressingController.timeDeliverySelection;
-                                    var deliveryHour = _pressingController.deliveryHour;
+                                    var deliveryTime = _pressingController
+                                        .timeDeliverySelection;
+                                    var deliveryHour =
+                                        _pressingController.deliveryHour;
                                     return Text(
-                                      deliveryHour != null ? deliveryHour.format(context) : deliveryTime.title,
+                                      deliveryHour != null
+                                          ? deliveryHour.format(context)
+                                          : deliveryTime.title,
                                       style: const TextStyle(
                                           color: AssetColors.blueButton),
                                     );
@@ -313,46 +322,60 @@ class _PressingArticlesPageState extends State<PressingArticlesPage> {
                   ),
                 ),
                 const SizedBox(height: 10),
-                Container(
-                  decoration: BoxDecoration(
-                    border: Border.all(
-                      color: AssetColors.blueButton.withOpacity(0.15),
+                InkWell(
+                  onTap: (){
+                    Get.to(PressingDeliveryAddressPage());
+                  },
+                  child : Container(
+                    decoration: BoxDecoration(
+                      border: Border.all(
+                        color: AssetColors.blueButton.withOpacity(0.15),
+                      ),
+                      borderRadius: BorderRadius.circular(10),
                     ),
-                    borderRadius: BorderRadius.circular(10),
-                  ),
-                  padding:
-                      const EdgeInsets.symmetric(horizontal: 12, vertical: 18),
-                  child: Row(
-                    children: [
-                      Expanded(
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            const Text(
-                              'Utiliser cette localisation',
-                            ),
-                            Row(
-                              children: [
-                                Image.asset('assets/images/pin.png', width: 10),
-                                const SizedBox(width: 5),
-                                Expanded(
-                                  child: Text(
-                                    'Rue M66',
-                                    style: const TextStyle(
-                                        color: AssetColors.blueButton),
-                                  ),
-                                )
-                              ],
-                            )
-                          ],
+                    padding:
+                        const EdgeInsets.symmetric(horizontal: 12, vertical: 18),
+                    child: Row(
+                      children: [
+                        Expanded(
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              const Text(
+                                'Utiliser cette localisation',
+                              ),
+                              Row(
+                                children: [
+                                  Image.asset('assets/images/pin.png', width: 10),
+                                  const SizedBox(width: 5),
+                                  Expanded(
+                                    child: GetBuilder(
+                                      init: _pressingController,
+                                      builder: (controller) {
+                                        _pressingController = controller;
+                                        var userLocalisation =
+                                            _pressingController.userLocalisation;
+                                        return Text(
+                                          userLocalisation?.address ??
+                                              'Sélectionner votre adresse',
+                                          style: const TextStyle(
+                                              color: AssetColors.blueButton),
+                                        );
+                                      },
+                                    ),
+                                  )
+                                ],
+                              )
+                            ],
+                          ),
                         ),
-                      ),
-                      const SizedBox(width: 10),
-                      const Icon(
-                        Icons.arrow_forward_ios_outlined,
-                        size: 12,
-                      ),
-                    ],
+                        const SizedBox(width: 10),
+                        const Icon(
+                          Icons.arrow_forward_ios_outlined,
+                          size: 12,
+                        ),
+                      ],
+                    ),
                   ),
                 ),
                 ListTile(
@@ -459,14 +482,18 @@ class _PressingArticlesPageState extends State<PressingArticlesPage> {
                       ),
                       CButton(
                         height: 50,
-                        onPressed: () {},
-                        color: articleCount > 0
+                        onPressed: () {
+                          if(isFormValid(articleCount)){
+                            Get.to(PressingPaymentRecapPage());
+                          }
+                        },
+                        color:isFormValid(articleCount)
                             ? AssetColors.blueButton
                             : const Color(0xffEDF2F9),
                         child: Text(
                           "Payer",
                           style: TextStyle(
-                            color: articleCount > 0
+                            color: isFormValid(articleCount)
                                 ? Colors.white
                                 : const Color(0xffB5C4D8),
                           ),
@@ -480,6 +507,8 @@ class _PressingArticlesPageState extends State<PressingArticlesPage> {
       ),
     );
   }
+
+  bool isFormValid(int articleCount) => articleCount > 0 && _pressingController.hasUserLocalisation;
 
   void _getUpdateArticlesPrice() {
     _pressingArticlesController.getUpdateArticlesPrice(

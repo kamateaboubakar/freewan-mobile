@@ -245,7 +245,11 @@ class _PressingHourSelectionPageState extends State<PressingHourSelectionPage> {
                       CButton(
                         height: 50,
                         onPressed: () {
-                          Get.back();
+                          if(canSelectHour &&
+                              _pressingController.deliveryHour != null ||
+                              !canSelectHour) {
+                            Get.back();
+                          }
                         },
                         color: canSelectHour &&
                                     _pressingController.deliveryHour != null ||

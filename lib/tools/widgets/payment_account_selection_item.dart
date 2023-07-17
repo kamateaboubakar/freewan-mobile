@@ -21,6 +21,10 @@ class PaiementAccountSelectionItem extends StatelessWidget {
       onTap: onTap,
       child: Container(
         margin: const EdgeInsets.only(bottom: 12),
+        decoration: BoxDecoration(
+          color: Color(0xfff3f8fe),
+          borderRadius: BorderRadius.circular(10)
+        ),
         child: ListTile(
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(7),

@@ -5,7 +5,10 @@ import 'package:wan_mobile/views/controllers/abstracts/view_controller.dart';
 
 import '../../../api/services/location_service.dart';
 import '../../../models/location_model.dart';
+import '../../../models/pressing/pressing_article.dart';
+import '../../../models/pressing/pressing_service.dart';
 import '../../../models/pressing/time_delivery.dart';
+import '../../../models/pressing/user_localisation.dart';
 import '../../../tools/utils/http_response.dart';
 
 class PressingController extends ViewController {
@@ -19,6 +22,8 @@ class PressingController extends ViewController {
 
   LocationModel? get userLocation => _userLocation;
 
+  bool get hasUserLocalisation => _userLocalisation != null;
+
   updateUserLocation(LocationModel locationModel) {
     _userLocation = locationModel;
     update();
@@ -31,6 +36,15 @@ class PressingController extends ViewController {
   Pressing? _pressing;
 
   Pressing? get pressing => _pressing;
+
+  UserLocalisation? _userLocalisation;
+
+  UserLocalisation? get userLocalisation => _userLocalisation;
+
+  updateUserLocalisation(UserLocalisation userLocalisation) {
+    _userLocalisation = userLocalisation;
+    update();
+  }
 
   updatePressing(Pressing pressing) {
     _pressing = pressing;
@@ -50,8 +64,9 @@ class PressingController extends ViewController {
     return response;
   }
 
-  void clearSelectedPressing() {
+  void reset() {
     _pressing = null;
+    _userLocalisation = null;
     update();
   }
 
@@ -63,7 +78,7 @@ class PressingController extends ViewController {
 
   TimeOfDay? _deliveryHour;
 
-  TimeOfDay? get deliveryHour=> _deliveryHour;
+  TimeOfDay? get deliveryHour => _deliveryHour;
 
   void resetInfoRecuperation() {
     _timeDeliverySelection = TimeDeliverySelection.times.first;
@@ -78,5 +93,23 @@ class PressingController extends ViewController {
   void updateDeliveryHour(TimeOfDay? selectedTime) {
     _deliveryHour = selectedTime;
     update();
+  }
+
+  Future<HttpResponse> submitOrder({
+    required String recuperationDate,
+    required double totalAmount,
+    required int pressingId,
+    required List<PressingService> services,
+    required List<PressingArticle> articles,
+    required UserLocalisation userLocalisation,
+  }) {
+    return _pressingApiCtl.submitOrder(
+      recuperationDate: recuperationDate,
+      totalAmount: totalAmount,
+      pressingId: pressingId,
+      services: services,
+      articles: articles,
+      userLocalisation: userLocalisation,
+    );
   }
 }

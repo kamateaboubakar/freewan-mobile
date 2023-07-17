@@ -80,7 +80,7 @@ class _PressingMapPageState extends State<PressingMapPage> {
                     center: LatLng(5.379617, -3.934711),
                     zoom: mapZoom,
                     onTap: (_, __) {
-                      _pressingController.clearSelectedPressing();
+                      _pressingController.reset();
                       if (panelController.isPanelOpen) {
                         panelController.close();
                       }

@@ -30,6 +30,8 @@ class _PressingPaymentRecapPageState extends State<PressingPaymentRecapPage> {
 
   DateFormat _dateFormat = DateFormat("HH:mm:ss dd-MM-yyyy");
 
+  bool isLoading = false;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -40,19 +42,27 @@ class _PressingPaymentRecapPageState extends State<PressingPaymentRecapPage> {
       ),
       bottomNavigationBar: Container(
         margin: const EdgeInsets.only(bottom: 34, left: 20, right: 20),
-        child: CButton(
-          height: 48,
-          onPressed: () {
-            _submitOrder();
-          },
-          child: const Text(
-            "Confirmer",
-            style: TextStyle(
-              fontSize: 16,
-              fontWeight: FontWeight.w600,
-            ),
-          ),
-        ),
+        child: isLoading
+            ? Center(
+              child: SizedBox(
+                  width: 20,
+                  height: 20,
+                  child: CircularProgressIndicator(),
+                ),
+            )
+            : CButton(
+                height: 48,
+                onPressed: () {
+                  _submitOrder();
+                },
+                child: const Text(
+                  "Confirmer",
+                  style: TextStyle(
+                    fontSize: 16,
+                    fontWeight: FontWeight.w600,
+                  ),
+                ),
+              ),
       ),
       body: Padding(
         padding: const EdgeInsets.all(20),
@@ -204,18 +214,25 @@ class _PressingPaymentRecapPageState extends State<PressingPaymentRecapPage> {
   }
 
   void _submitOrder() async {
-    var pr = Tools.progressDialog(isDismissible: true);
-    pr.show();
+    setState(() {
+      isLoading = true;
+    });
+
     var currentDate = DateTime.now();
     var recuperationDate = '';
     if (_pressingController.deliveryHour != null) {
       var deliveryHour = _pressingController.deliveryHour!;
+      var hours = deliveryHour.hour < 10
+          ? "0${deliveryHour.hour}"
+          : "${deliveryHour.hour}";
+      var minutes = deliveryHour.minute < 10 ? '0${deliveryHour.minute}' : deliveryHour.minute;
       recuperationDate =
-          "${deliveryHour.toFrenchTime}:ss ${currentDate.day < 10 ? '0${currentDate.day}' : currentDate.day}-${currentDate.month < 10 ? '0${currentDate.month}' : currentDate.month}-${currentDate.year}";
+      "$hours:$minutes:00 ${currentDate.day < 10 ? '0${currentDate.day}' : currentDate.day}-${currentDate.month < 10 ? '0${currentDate.month}' : currentDate.month}-${currentDate.year}";
     } else {
       recuperationDate = _dateFormat.format(currentDate.add(
           Duration(minutes: _pressingController.timeDeliverySelection.value)));
     }
+
     var response = await _pressingController.submitOrder(
       userLocalisation: _pressingController.userLocalisation!,
       pressingId: _pressingController.pressing!.id!,
@@ -224,7 +241,9 @@ class _PressingPaymentRecapPageState extends State<PressingPaymentRecapPage> {
       totalAmount: _pressingArticleController.totalPrice,
       recuperationDate: recuperationDate,
     );
-    Get.back();
+    setState(() {
+      isLoading = false;
+    });
     if (!response.status) {
       Tools.messageBox(message: response.message);
       return;

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:wan_mobile/api/controllers/pressing_api_ctl.dart';
+import 'package:wan_mobile/models/address/address_type.dart';
 import 'package:wan_mobile/models/pressing/pressing.dart';
 import 'package:wan_mobile/views/controllers/abstracts/view_controller.dart';
 
@@ -22,7 +23,29 @@ class PressingController extends ViewController {
 
   LocationModel? get userLocation => _userLocation;
 
-  bool get hasUserLocalisation => _userLocalisation != null;
+  bool get hasUserLocalisation {
+    var result = _userLocalisation != null;
+    print('hasUserLocalisation $result');
+    return result;
+  }
+
+  AddressType? _addressType;
+
+  AddressType? get addressType => _addressType;
+
+  String get recuperationPlaceName =>
+      _recuperationPlace?.title ?? _userLocation?.title ?? '';
+
+  bool get hasAddressTypeSeleced {
+    var result = _addressType != null;
+    print('hasAddressTypeSeleced $result');
+    return result;
+  }
+
+  updateAddressType(AddressType? addressType) {
+    _addressType = addressType;
+    update();
+  }
 
   updateUserLocation(LocationModel locationModel) {
     _userLocation = locationModel;
@@ -41,7 +64,16 @@ class PressingController extends ViewController {
 
   UserLocalisation? get userLocalisation => _userLocalisation;
 
-  updateUserLocalisation(UserLocalisation userLocalisation) {
+  LocationModel? _recuperationPlace;
+
+  LocationModel? get recuperationPlace => _recuperationPlace;
+
+  updateRecuperationPlace(LocationModel locationModel) {
+    _recuperationPlace = locationModel;
+    update();
+  }
+
+  updateUserLocalisation(UserLocalisation? userLocalisation) {
     _userLocalisation = userLocalisation;
     update();
   }
@@ -52,11 +84,8 @@ class PressingController extends ViewController {
   }
 
   Future<HttpResponse<List<Pressing>>> getClosestPressing() async {
-    // todo decommenter
-    /*_userLocation = await LocationService.getLocation(withLocationDescription: true);
-    var response = await _pressingApiCtl.getClosestPressings(latitude: _userLocation!.latitude, longitude: _userLocation!.longitude);*/
-    var response = await _pressingApiCtl.getClosestPressings(
-        latitude: 5.403730722138793, longitude: -3.95812023776723);
+    _userLocation = await LocationService.getLocation(withLocationDescription: true);
+    var response = await _pressingApiCtl.getClosestPressings(latitude: _userLocation!.latitude, longitude: _userLocation!.longitude);
     if (response.status) {
       _pressings = response.data!;
     }
@@ -67,6 +96,7 @@ class PressingController extends ViewController {
   void reset() {
     _pressing = null;
     _userLocalisation = null;
+    _addressType = null;
     update();
   }
 
@@ -95,6 +125,16 @@ class PressingController extends ViewController {
     update();
   }
 
+  Future<LocationModel> getLocationDescription(
+      LocationModel locationModel) async {
+    String locationDescription = await LocationService.getPlaceDescription(
+      locationModel.latitude,
+      locationModel.longitude,
+    );
+    locationModel.title = locationDescription;
+    return locationModel;
+  }
+
   Future<HttpResponse> submitOrder({
     required String recuperationDate,
     required double totalAmount,
@@ -111,5 +151,20 @@ class PressingController extends ViewController {
       articles: articles,
       userLocalisation: userLocalisation,
     );
+  }
+
+  void saveRecuperationPlace() {
+    if (!hasUserLocalisation) {
+      _userLocalisation = UserLocalisation(
+        address: _recuperationPlace!.title,
+        longitude: _recuperationPlace!.longitude,
+        latitude: _recuperationPlace!.latitude,
+        localisationType: LocalisationType(
+          id: _addressType!.id,
+          name: _addressType!.name,
+        ),
+      );
+      update();
+    }
   }
 }

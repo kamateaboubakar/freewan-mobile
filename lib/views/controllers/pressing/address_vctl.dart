@@ -29,9 +29,10 @@ class AddressController extends ViewController {
     _userLocalisationResponse = null;
     update(['userLocalisationView']);
     _userLocalisationResponse = await _addressApiCtl.getCustomerAddress(
-      //customerId: appCtl.user.accountId!,
-      customerId: "051115ABJ",
-    );
+        customerId: appCtl.user.accountId!);
+    if (_userLocalisationResponse!.status) {
+      getAddressTypes();
+    }
     update(['userLocalisationView']);
   }
 

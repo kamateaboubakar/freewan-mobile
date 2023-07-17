@@ -115,9 +115,42 @@ class PressingApiCtl extends WebController {
     required List<PressingArticle> articles,
     required UserLocalisation userLocalisation,
   }) async {
+
+    var url = "${Const.pressingBaseUrl}/commande";
+    var requestBody = {
+      "customer_id": appCtl.user.accountId,
+      "transaction_id": "TRANS-${DateTime.now().microsecondsSinceEpoch}",
+      "asked_recuperation_date": recuperationDate,
+      "fees": totalAmount,
+      "pressing_id": pressingId,
+      "services": services.map((e) => e.id).toList(),
+      "cart": articles
+          .map((e) => {"item_id": e.id!, "quantity": e.quantity!})
+          .toList(),
+      "customer_localisation": {
+        "address": userLocalisation.address!,
+        "customer_id": appCtl.user.accountId,
+        "latitude": userLocalisation.latitude!,
+        "longitude": userLocalisation.longitude!,
+        "localisation_type": userLocalisation.localisationType!.id!,
+      }
+    };
+    print(requestBody);
+    var res = await post(
+      url,
+      requestBody.parseToJson(),
+      headers: HttpClientConst.headers,
+    );
+    log(res.bodyString!);
+    var body = HttpResponse.decodeBody(res);
+    if (body.status) {
+      return HttpResponse.success(data: []);
+    } else {
+      return HttpResponse.error(message: body.message);
+    }
+
     try {
       var url = "${Const.pressingBaseUrl}/commande";
-      print(url);
       var requestBody = {
         "customer_id": appCtl.user.accountId,
         "transaction_id": "TRANS-${DateTime.now().microsecondsSinceEpoch}",

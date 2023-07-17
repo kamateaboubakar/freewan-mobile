@@ -40,6 +40,9 @@ class AddressTypeItem extends StatelessWidget {
                 width: 10,
                 color: selected ? Colors.white : AssetColors.blueButton,
                 colorBlendMode: BlendMode.srcIn,
+                errorBuilder: (context, _, __){
+                  return Container();
+                },
               ),
             ),
             SizedBox(width: 10),

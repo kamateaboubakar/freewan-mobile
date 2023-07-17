@@ -11,6 +11,7 @@ import 'package:wan_mobile/views/controllers/gaz/gas_vctl.dart';
 import '../../../../tools/utils/tools.dart';
 import '../../../../tools/widgets/address_type_item.dart';
 import '../../../../tools/widgets/c_button.dart';
+import '../../../../tools/widgets/error_view.dart';
 import '../../../controllers/pressing/address_vctl.dart';
 import '../../../controllers/pressing/pressing_vctl.dart';
 
@@ -32,9 +33,14 @@ class _PressingDeliveryAddressPageState
   final MapController _mapController = MapController();
   final double mapZoom = 16.2;
   int selectedLocationType = -1;
+  Timer? locationDescriptionTimer;
+
+  LocationModel? recuperationPlace;
 
   @override
   void initState() {
+    recuperationPlace = _pressingController.recuperationPlace ??
+        _pressingController.userLocation!;
     super.initState();
     WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
       _getAddresses();
@@ -56,13 +62,16 @@ class _PressingDeliveryAddressPageState
               init: _pressingController,
               builder: (controller) {
                 _pressingController = controller;
-                var userLocalisation = _pressingController.userLocalisation;
                 return FlutterMap(
                   mapController: _mapController,
                   options: MapOptions(
-                    center: userLocalisation != null ? LatLng(userLocalisation.latitude!, userLocalisation.longitude!) : null,
+                    center: recuperationPlace?.toLatLng(),
                     zoom: mapZoom,
-                    onTap: (_, __) {}
+                    onTap: (_, __) {},
+                    onPositionChanged: (mapPosition, _) {
+                      cancelLocationDescriptionTimer();
+                      startLocationDescriptionSearch(mapPosition);
+                    },
                   ),
                   children: [
                     TileLayer(
@@ -73,22 +82,12 @@ class _PressingDeliveryAddressPageState
                   ],
                 );
               }),
-          GetBuilder(
-            init: _pressingController,
-            builder: (controller) {
-              _pressingController = controller;
-              var userLocalisation = _pressingController.userLocalisation;
-              if(userLocalisation == null){
-                return Container();
-              }
-              return Center(
-                child: Image.asset(
-                  'assets/images/pin_red.png',
-                  width: 40,
-                  height: 40,
-                ),
-              );
-            }
+          Center(
+            child: Image.asset(
+              'assets/images/pin_red.png',
+              width: 40,
+              height: 40,
+            ),
           ),
           Positioned(
             bottom: 0,
@@ -99,6 +98,9 @@ class _PressingDeliveryAddressPageState
               builder: (controller) {
                 _pressingController = controller;
                 var userLocalisation = _pressingController.userLocalisation;
+                var addressType = _pressingController.addressType;
+                _locationNameCtrl.text =
+                    _pressingController.recuperationPlaceName;
                 return Container(
                   decoration: const BoxDecoration(
                     borderRadius: BorderRadius.only(
@@ -108,25 +110,38 @@ class _PressingDeliveryAddressPageState
                     color: Colors.white,
                   ),
                   padding: const EdgeInsets.all(16),
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.stretch,
-                    children: [
-                      const Text(
-                        'Sélectionner la localisation',
-                        style: TextStyle(
-                          fontWeight: FontWeight.bold,
-                          color: AssetColors.darkBrown,
-                          fontSize: 14,
+                  child: SingleChildScrollView(
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.stretch,
+                      children: [
+                        const Text(
+                          'Sélectionner la localisation',
+                          style: TextStyle(
+                            fontWeight: FontWeight.bold,
+                            color: AssetColors.darkBrown,
+                            fontSize: 14,
+                          ),
                         ),
-                      ),
-                      const SizedBox(height: 10),
-                      const Text(
-                        'Votre localisation',
-                        style:
-                            TextStyle(color: Color(0xff9D9D9D), fontSize: 12),
-                      ),
-                      const SizedBox(height: 10),
-                      GetBuilder(
+                        const SizedBox(height: 5),
+                        const Text(
+                          'Votre localisation',
+                          style:
+                              TextStyle(color: Color(0xff9D9D9D), fontSize: 12),
+                        ),
+                        const SizedBox(height: 10),
+                        TextField(
+                          controller: _locationNameCtrl,
+                          readOnly: true,
+                          decoration: const InputDecoration(
+                            isDense: true,
+                            contentPadding: EdgeInsets.symmetric(
+                              vertical: 4,
+                              horizontal: 8,
+                            ),
+                          ),
+                        ),
+                        const SizedBox(height: 10),
+                        GetBuilder(
                           init: _addressController,
                           id: 'userLocalisationView',
                           builder: (controller) {
@@ -170,83 +185,101 @@ class _PressingDeliveryAddressPageState
                               onTap: () {
                                 _showAddressesDialog();
                               },
-                              child: Column(
-                                children: [
-                                  Row(
-                                    children: [
-                                      Expanded(
-                                        child: Text(
-                                          userLocalisation?.address ??
-                                              "Sélectionner l'adresse",
-                                          style: TextStyle(
-                                            color: Colors.black,
-                                          ),
-                                        ),
-                                      ),
-                                      Icon(
-                                        Icons.keyboard_arrow_down_rounded,
-                                        color: AssetColors.blueButton,
-                                      )
-                                    ],
-                                  ),
-                                  Divider()
-                                ],
+                              child: Text(
+                                'Cliquer ici pour sélectionner une addrese',
+                                style: TextStyle(
+                                  color: AssetColors.blueButton,
+                                  decoration: TextDecoration.underline,
+                                  fontWeight: FontWeight.bold,
+                                  fontSize: 16,
+                                ),
                               ),
                             );
-                          }),
-                      const SizedBox(height: 10),
-                      const Text(
-                        'Sauvegarder comme',
-                        style:
-                            TextStyle(color: Color(0xff9D9D9D), fontSize: 12),
-                      ),
-                      /*const SizedBox(height: 10),
-                      Row(
-                        children: [
-                          Expanded(
-                            child: AddressTypeItem(
-                              icon: 'assets/images/home_icon.png',
-                              title: 'Maison',
-                              selected: _gasController.isLocationTypeHome,
-                              onTap: () {
-                                _gasController.updateLocationType(1);
-                              },
+                          },
+                        ),
+                        const SizedBox(height: 10),
+                        const Text(
+                          'Sauvegarder comme',
+                          style:
+                              TextStyle(color: Color(0xff9D9D9D), fontSize: 12),
+                        ),
+                        const SizedBox(height: 10),
+                        GetBuilder(
+                            init: _addressController,
+                            id: 'addressTypeView',
+                            builder: (controller) {
+                              _addressController = controller;
+                              var response =
+                                  _addressController.addressTypeResponse;
+                              if (response == null) {
+                                return Center(
+                                    child: CircularProgressIndicator());
+                              }
+
+                              if (!response.status) {
+                                return ErrorView(
+                                  message: response.message,
+                                  retry: () {
+                                    _getAddressTypes();
+                                  },
+                                );
+                              }
+
+                              var addressTypes = response.data ?? [];
+                              return SizedBox(
+                                height: 40,
+                                child: ListView.separated(
+                                  itemCount: addressTypes.length,
+                                  scrollDirection: Axis.horizontal,
+                                  separatorBuilder: (context, index) {
+                                    return SizedBox(width: 10);
+                                  },
+                                  itemBuilder: (context, index) {
+                                    var type = addressTypes[index];
+
+                                    var selected = (userLocalisation != null && userLocalisation.localisationType!.id == type.id)  || (addressType != null &&
+                                        type.id == addressType.id!);
+                                    return SizedBox(
+                                      width: MediaQuery.of(context).size.width *
+                                          0.4,
+                                      child: AddressTypeItem(
+                                        icon: '',
+                                        title: type.name!,
+                                        selected: selected,
+                                        onTap: () {
+                                          _pressingController
+                                              .updateAddressType(type);
+                                          _pressingController.updateUserLocalisation(null);
+                                        },
+                                      ),
+                                    );
+                                  },
+                                ),
+                              );
+                            }),
+                        const SizedBox(height: 20),
+                        CButton(
+                          height: 50,
+                          onPressed: () {
+                            if (isFormValid()) {
+                              _pressingController.saveRecuperationPlace();
+                              Get.back();
+                            }
+                          },
+                          color: isFormValid()
+                              ? AssetColors.blueButton
+                              : const Color(0xffEDF2F9),
+                          child: Text(
+                            "Enregistrer comme adresse",
+                            style: TextStyle(
+                              color: isFormValid()
+                                  ? Colors.white
+                                  : const Color(0xffB5C4D8),
                             ),
-                          ),
-                          const SizedBox(width: 20),
-                          Expanded(
-                            child: AddressTypeItem(
-                              icon: 'assets/images/office_icon.png',
-                              title: 'Bureau',
-                              selected: _gasController.isLocationTypeOffice,
-                              onTap: () {
-                                _gasController.updateLocationType(2);
-                              },
-                            ),
-                          )
-                        ],
-                      ),*/
-                      const SizedBox(height: 20),
-                      CButton(
-                        height: 50,
-                        onPressed: () {
-                          if( _pressingController.hasUserLocalisation){
-                            Get.back();
-                          }
-                        },
-                        color: _pressingController.hasUserLocalisation
-                            ? AssetColors.blueButton
-                            : const Color(0xffEDF2F9),
-                        child: Text(
-                          "Enregistrer comme adresse",
-                          style: TextStyle(
-                            color: _pressingController.hasUserLocalisation
-                                ? Colors.white
-                                : const Color(0xffB5C4D8),
                           ),
                         ),
-                      ),
-                    ],
+                      ],
+                    ),
                   ),
                 );
               },
@@ -257,8 +290,47 @@ class _PressingDeliveryAddressPageState
     );
   }
 
+  bool isFormValid() {
+    if (!_pressingController.hasUserLocalisation && !_pressingController.hasAddressTypeSeleced) {
+      return false;
+    }
+
+    return true;
+  }
+
   void _getAddresses() {
     _addressController.getUserAddresses();
+  }
+
+  void _getAddressTypes() {
+    _addressController.getAddressTypes();
+  }
+
+  void startLocationDescriptionSearch(MapPosition mapPosition) {
+    locationDescriptionTimer = Timer(const Duration(milliseconds: 500), () {
+      _searchLocationDescription(mapPosition);
+    });
+  }
+
+  _searchLocationDescription(MapPosition mapPosition) async {
+    recuperationPlace = LocationModel(
+        latitude: mapPosition.center!.latitude,
+        longitude: mapPosition.center!.longitude);
+    _pressingController
+        .getLocationDescription(recuperationPlace!)
+        .then((location) {
+      _pressingController.updateRecuperationPlace(location);
+    });
+  }
+
+  @override
+  void dispose() {
+    cancelLocationDescriptionTimer();
+    super.dispose();
+  }
+
+  void cancelLocationDescriptionTimer() {
+    locationDescriptionTimer?.cancel();
   }
 
   Future<dynamic> _showAddressesDialog() {
@@ -288,19 +360,21 @@ class _PressingDeliveryAddressPageState
               init: _addressController,
               builder: (controller) {
                 _addressController = controller;
-                var items = _addressController.userLocalisationResponse!.data ?? [];
+                var items =
+                    _addressController.userLocalisationResponse!.data ?? [];
                 return Column(
                   crossAxisAlignment: CrossAxisAlignment.stretch,
                   children: [
-                    for (int i = 0;
-                    i < items.length;
-                    i++) ...[
+                    for (int i = 0; i < items.length; i++) ...[
                       InkWell(
                         onTap: () {
-                          _pressingController.updateUserLocalisation(
-                              items[i]);
+                          _pressingController
+                              .updateAddressType(null);
+                          _pressingController.updateUserLocalisation(items[i]);
                           Get.back();
-                          _mapController.move(LatLng(items[i].latitude!, items[i].longitude!), mapZoom);
+                          _mapController.move(
+                              LatLng(items[i].latitude!, items[i].longitude!),
+                              mapZoom);
                         },
                         child: Padding(
                           padding: EdgeInsets.all(4),
@@ -308,13 +382,15 @@ class _PressingDeliveryAddressPageState
                             children: [
                               Expanded(
                                   child: Text(
-                                    items[i].address!,
-                                    style: TextStyle(
-                                      fontSize: 12,
-                                    ),
-                                  )),
-                              if (_pressingController.userLocalisation != null && items[i].id ==
-                                  _pressingController.userLocalisation!.id)
+                                items[i].address!,
+                                style: TextStyle(
+                                  fontSize: 12,
+                                ),
+                              )),
+                              if (_pressingController.userLocalisation !=
+                                      null &&
+                                  items[i].id ==
+                                      _pressingController.userLocalisation!.id)
                                 Image.asset(
                                   'assets/images/check.png',
                                   width: 20,

@@ -5,14 +5,17 @@ class UserLocalisation {
   double? latitude;
   double? longitude;
   LocalisationType? localisationType;
+  bool? isNew;
 
-  UserLocalisation(
-      {this.id,
-        this.address,
-        this.customerId,
-        this.latitude,
-        this.longitude,
-        this.localisationType});
+  UserLocalisation({
+    this.id,
+    this.address,
+    this.customerId,
+    this.latitude,
+    this.longitude,
+    this.localisationType,
+    this.isNew = false,
+  });
 
   UserLocalisation.fromJson(Map<String, dynamic> json) {
     id = json['id'];

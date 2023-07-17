@@ -241,12 +241,16 @@ class _PressingArticlesPageState extends State<PressingArticlesPage> {
                               return PressingArticleItem(
                                 item: article,
                                 increase: () {
-                                  _pressingArticlesController
-                                      .increaseQuantity(article);
+                                  if(_pressingServiceController.hasSelectedServices) {
+                                    _pressingArticlesController
+                                        .increaseQuantity(article);
+                                  }
                                 },
                                 decrease: () {
-                                  _pressingArticlesController
-                                      .decreaseQuantity(article);
+                                  if(_pressingServiceController.hasSelectedServices) {
+                                    _pressingArticlesController
+                                        .decreaseQuantity(article);
+                                  }
                                 },
                                 quantity: quantity,
                               );

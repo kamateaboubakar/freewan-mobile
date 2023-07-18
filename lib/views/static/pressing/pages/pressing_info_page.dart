@@ -126,17 +126,20 @@ class _PressingInfoPageState extends State<PressingInfoPage> {
           const SizedBox(height: 10),
           Row(
             children: [
-              Image.network(
-                _pressing!.imageUrl,
-                width: 100,
-                height: 70,
-                fit: BoxFit.cover,
-                errorBuilder: (context, _, __) {
-                  return Placeholder(
-                    fallbackWidth: 100,
-                    fallbackHeight: 70,
-                  );
-                },
+              ClipRRect(
+                borderRadius: BorderRadius.circular(10),
+                child: Image.network(
+                  _pressing!.imageUrl,
+                  width: 100,
+                  height: 70,
+                  fit: BoxFit.cover,
+                  errorBuilder: (context, _, __) {
+                    return Placeholder(
+                      fallbackWidth: 100,
+                      fallbackHeight: 70,
+                    );
+                  },
+                ),
               ),
               const SizedBox(width: 10),
               Expanded(

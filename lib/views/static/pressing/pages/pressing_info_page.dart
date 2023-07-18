@@ -208,27 +208,30 @@ class _PressingInfoPageState extends State<PressingInfoPage> {
                 children: [
                   SizedBox(
                     width: double.infinity,
-                    height: 90,
+                    height: 80,
                     child: ListView.separated(
                       separatorBuilder: (context, index) {
-                        return SizedBox(width: 20);
+                        return SizedBox(width: 10);
                       },
                       itemBuilder: (context, index) {
                         var service = services[index];
                         return Column(
                           children: [
-                            Image.network(
-                              service.imageUrl,
-                              width: 50,
-                              height: 50,
-                              errorBuilder: (context, _, __) {
-                                return Placeholder(
-                                  fallbackWidth: 50,
-                                  fallbackHeight: 50,
-                                );
-                              },
+                            Expanded(
+                              child: Center(
+                                child: Image.network(
+                                  service.imageUrl,
+                                  width: 75,
+                                  height: 75,
+                                  errorBuilder: (context, _, __) {
+                                    return Placeholder(
+                                      fallbackWidth: 50,
+                                      fallbackHeight: 50,
+                                    );
+                                  },
+                                ),
+                              ),
                             ),
-                            SizedBox(height: 10),
                             Text(
                               service.name!,
                               textAlign: TextAlign.center,
@@ -242,6 +245,7 @@ class _PressingInfoPageState extends State<PressingInfoPage> {
                       scrollDirection: Axis.horizontal,
                     ),
                   ),
+                  SizedBox(height: 5),
                   InkWell(
                     onTap: () {
                       widget.showArticle();

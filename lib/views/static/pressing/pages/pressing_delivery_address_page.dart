@@ -360,13 +360,15 @@ class _PressingDeliveryAddressPageState
           mainAxisSize: MainAxisSize.min,
           children: [
             Container(
+              width: MediaQuery.of(context).size.width,
+
               color: Color(0xffB5C4D8).withOpacity(0.15),
               padding: EdgeInsets.all(16),
               child: Text(
                 'Séléctionner l\'adresse',
                 style: TextStyle(
                   fontWeight: FontWeight.bold,
-                  fontSize: 18,
+                  fontSize: 16,
                 ),
               ),
             ),
@@ -391,7 +393,7 @@ class _PressingDeliveryAddressPageState
                               mapZoom);
                         },
                         child: Padding(
-                          padding: EdgeInsets.all(4),
+                          padding: EdgeInsets.all(8),
                           child: Row(
                             children: [
                               Expanded(
@@ -407,7 +409,7 @@ class _PressingDeliveryAddressPageState
                                       _pressingController.userLocalisation!.id)
                                 Image.asset(
                                   'assets/images/check.png',
-                                  width: 20,
+                                  width: 15,
                                 )
                             ],
                           ),
@@ -424,6 +426,7 @@ class _PressingDeliveryAddressPageState
       ),
       backgroundColor: Colors.transparent,
       elevation: 0,
+      contentPadding: EdgeInsets.zero
     );
   }
 }

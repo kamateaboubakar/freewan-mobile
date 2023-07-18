@@ -278,7 +278,6 @@ class _PressingHourSelectionPageState extends State<PressingHourSelectionPage> {
   Future<dynamic> _showDeliveryTimeDialog() {
     return Tools.openModal(
       Container(
-        width: double.infinity,
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(20),
           color: Colors.white,
@@ -288,13 +287,14 @@ class _PressingHourSelectionPageState extends State<PressingHourSelectionPage> {
           mainAxisSize: MainAxisSize.min,
           children: [
             Container(
+              width: MediaQuery.of(context).size.width,
               color: Color(0xffB5C4D8).withOpacity(0.15),
               padding: EdgeInsets.all(16),
               child: Text(
                 'Séléctionner le moment',
                 style: TextStyle(
                   fontWeight: FontWeight.bold,
-                  fontSize: 18,
+                  fontSize: 16,
                 ),
               ),
             ),
@@ -303,42 +303,44 @@ class _PressingHourSelectionPageState extends State<PressingHourSelectionPage> {
               builder: (controller) {
                 _pressingController = controller;
                 var timeDelivery = _pressingController.timeDeliverySelection;
-                return Column(
-                  crossAxisAlignment: CrossAxisAlignment.stretch,
-                  children: [
-                    for (int i = 0;
-                        i < TimeDeliverySelection.times.length;
-                        i++) ...[
-                      InkWell(
-                        onTap: () {
-                          _pressingController.updateDeliverySelectionTime(
-                              TimeDeliverySelection.times[i]);
-                          Get.back();
-                        },
-                        child: Padding(
-                          padding: EdgeInsets.all(4),
-                          child: Row(
-                            children: [
-                              Expanded(
-                                  child: Text(
-                                TimeDeliverySelection.times[i].title,
-                                style: TextStyle(
-                                  fontSize: 12,
-                                ),
-                              )),
-                              if (TimeDeliverySelection.times[i].value ==
-                                  timeDelivery.value)
-                                Image.asset(
-                                  'assets/images/check.png',
-                                  width: 20,
-                                )
-                            ],
+                return SingleChildScrollView(
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.stretch,
+                    children: [
+                      for (int i = 0;
+                          i < TimeDeliverySelection.times.length;
+                          i++) ...[
+                        InkWell(
+                          onTap: () {
+                            _pressingController.updateDeliverySelectionTime(
+                                TimeDeliverySelection.times[i]);
+                            Get.back();
+                          },
+                          child: Padding(
+                            padding: EdgeInsets.all(8),
+                            child: Row(
+                              children: [
+                                Expanded(
+                                    child: Text(
+                                  TimeDeliverySelection.times[i].title,
+                                  style: TextStyle(
+                                    fontSize: 12,
+                                  ),
+                                )),
+                                if (TimeDeliverySelection.times[i].value ==
+                                    timeDelivery.value)
+                                  Image.asset(
+                                    'assets/images/check.png',
+                                    width: 15,
+                                  )
+                              ],
+                            ),
                           ),
                         ),
-                      ),
-                      Divider()
-                    ]
-                  ],
+                        Divider()
+                      ]
+                    ],
+                  ),
                 );
               },
             ),
@@ -347,6 +349,7 @@ class _PressingHourSelectionPageState extends State<PressingHourSelectionPage> {
       ),
       backgroundColor: Colors.transparent,
       elevation: 0,
+      contentPadding: EdgeInsets.zero
     );
   }
 

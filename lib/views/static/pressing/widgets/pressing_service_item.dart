@@ -34,14 +34,13 @@ class PressingServiceItem extends StatelessWidget {
                 Expanded(
                   child: Image.network(
                     image,
-                    width: 50,
-                    height: 50,
-                    errorBuilder: (context, _, __){
+                    width: 100,
+                    height: 100,
+                    errorBuilder: (context, _, __) {
                       return Container(
                         decoration: BoxDecoration(
-                          color: Colors.grey.shade300,
-                          borderRadius: BorderRadius.circular(10)
-                        ),
+                            color: Colors.grey.shade300,
+                            borderRadius: BorderRadius.circular(10)),
                         width: 50,
                         height: 50,
                       );

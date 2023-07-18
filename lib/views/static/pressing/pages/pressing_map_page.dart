@@ -330,8 +330,6 @@ class _PressingMapPageState extends State<PressingMapPage> {
 
   void _moveToCurrentLocation() {
     var userLocation = _pressingController.userLocation!;
-    //todo decommenter
-    //_mapController.move(userLocation.toLatLng(), mapZoom);
-    _mapController.move(LatLng(5.403730722138793, -3.95812023776723), mapZoom);
+    _mapController.move(userLocation.toLatLng(), mapZoom);
   }
 }

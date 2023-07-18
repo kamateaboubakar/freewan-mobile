@@ -37,6 +37,7 @@ class _PressingDeliveryAddressPageState
 
   LocationModel? recuperationPlace;
 
+  bool isLocationNameLoading = false;
   @override
   void initState() {
     recuperationPlace = _pressingController.recuperationPlace ??
@@ -191,7 +192,7 @@ class _PressingDeliveryAddressPageState
                                   color: AssetColors.blueButton,
                                   decoration: TextDecoration.underline,
                                   fontWeight: FontWeight.bold,
-                                  fontSize: 16,
+                                  fontSize: 14,
                                 ),
                               ),
                             );
@@ -258,26 +259,33 @@ class _PressingDeliveryAddressPageState
                               );
                             }),
                         const SizedBox(height: 20),
-                        CButton(
-                          height: 50,
-                          onPressed: () {
-                            if (isFormValid()) {
-                              _pressingController.saveRecuperationPlace();
-                              Get.back();
-                            }
-                          },
-                          color: isFormValid()
-                              ? AssetColors.blueButton
-                              : const Color(0xffEDF2F9),
-                          child: Text(
-                            "Enregistrer comme adresse",
-                            style: TextStyle(
-                              color: isFormValid()
-                                  ? Colors.white
-                                  : const Color(0xffB5C4D8),
+
+                        if(isLocationNameLoading)...{
+                          Center(
+                            child: CircularProgressIndicator(),
+                          )
+                        } else ...{
+                          CButton(
+                            height: 50,
+                            onPressed: () {
+                              if (isFormValid()) {
+                                _pressingController.saveRecuperationPlace();
+                                Get.back();
+                              }
+                            },
+                            color: isFormValid()
+                                ? AssetColors.blueButton
+                                : const Color(0xffEDF2F9),
+                            child: Text(
+                              "Enregistrer comme adresse",
+                              style: TextStyle(
+                                color: isFormValid()
+                                    ? Colors.white
+                                    : const Color(0xffB5C4D8),
+                              ),
                             ),
                           ),
-                        ),
+                        }
                       ],
                     ),
                   ),
@@ -313,12 +321,18 @@ class _PressingDeliveryAddressPageState
   }
 
   _searchLocationDescription(MapPosition mapPosition) async {
+    setState(() {
+      isLocationNameLoading = true;
+    });
     recuperationPlace = LocationModel(
         latitude: mapPosition.center!.latitude,
         longitude: mapPosition.center!.longitude);
     _pressingController
         .getLocationDescription(recuperationPlace!)
         .then((location) {
+      setState(() {
+        isLocationNameLoading = false;
+      });
       _pressingController.updateRecuperationPlace(location);
     });
   }

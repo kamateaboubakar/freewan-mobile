@@ -76,7 +76,7 @@ class PressingArticleItem extends StatelessWidget {
                           ),
                           textAlign: TextAlign.center,
                         ),
-                        if (item.price != null) ...[
+                        if (item.price != null && item.price! > 0) ...[
                           SizedBox(height: 5),
                           Text(
                             "${item.price.toString().formatAmount}",

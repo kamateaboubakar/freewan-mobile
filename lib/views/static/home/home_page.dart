@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_image_slideshow/flutter_image_slideshow.dart';
+import 'package:gap/gap.dart';
 import 'package:get/get.dart';
 import 'package:icofont_flutter/icofont_flutter.dart';
 import 'package:shimmer/shimmer.dart';
@@ -112,68 +113,20 @@ class HomePage extends StatelessWidget {
               }
             }),
           ),
-          //  Obx(
-          //   () =>
-          //    AnimatedContainer(
-          //     // width: 50,
-          //     // height: 50,
-
-          //     duration: const Duration(milliseconds: 100),
-
-          //     child: (ctl.isScrolling.value)
-          //         ? FloatingActionButton(
-          //             shape: RoundedRectangleBorder(
-          //               borderRadius: BorderRadius.circular(25),
-          //             ),
-          //             backgroundColor: AssetColors.blueButton,
-          //             onPressed: () => Get.to(() => const ScanPayCamera()),
-          //             child: Image.asset(
-          //               "assets/images/icons/scan_float_button.png",
-          //               width: 15,
-          //               height: 15,
-          //             ),
-          //           )
-          //         : FloatingActionButton.extended(
-          //             shape: RoundedRectangleBorder(
-          //               borderRadius: BorderRadius.circular(25),
-          //             ),
-          //             backgroundColor: AssetColors.blueButton,
-          //             label: Image.asset(
-          //               "assets/images/icons/scan_float_button.png",
-          //               width: 15,
-          //               height: 15,
-          //             ),
-          //             icon: const Text("Scanner & payer"),
-          //             onPressed: () => Get.to(() => const ScanPayCamera()),
-          //           ),
-          //   ),
-          //   // if (ctl.isScrolling.value) {
-          //   //   return FloatingActionButton(
-          //   //     backgroundColor: AssetColors.blueButton,
-          //   //     onPressed: () {},
-          //   //     child: const Icon(Icons.qr_code),
-          //   //   );
-          //   // } else {
-          //   //   return FloatingActionButton.extended(
-          //   //     backgroundColor: AssetColors.blueButton,
-          //   //     label: const Icon(Icons.qr_code),
-          //   //     icon: const Text("Scanner & payer"),
-          //   //     onPressed: () {},
-          //   //   );
-          //   // }
-          // ),
           body: SizedBox.expand(
             child: NotificationListener<ScrollNotification>(
               onNotification: (notification) {
-                if (notification is UserScrollNotification) {
-                  if (!ctl.isScrolling.value) {
-                    ctl.isScrolling.value = true;
-                  }
-                } else if (notification is ScrollEndNotification) {
-                  if (ctl.isScrolling.value) {
-                    Future.delayed(const Duration(seconds: 1)).then((value) {
-                      ctl.isScrolling.value = false;
-                    });
+                if (notification.metrics.axis == Axis.vertical) {
+                  if (notification is UserScrollNotification) {
+                    if (!ctl.isScrolling.value) {
+                      ctl.isScrolling.value = true;
+                    }
+                  } else if (notification is ScrollEndNotification) {
+                    if (ctl.isScrolling.value) {
+                      Future.delayed(const Duration(seconds: 1)).then((value) {
+                        ctl.isScrolling.value = false;
+                      });
+                    }
                   }
                 }
                 return true;
@@ -219,7 +172,7 @@ class HomePage extends StatelessWidget {
                                   padding: const EdgeInsets.only(
                                     left: 8.0,
                                     right: 8.0,
-                                    bottom: 8.0,
+                                    bottom: 80,
                                   ),
                                   controller: scrollController,
                                   child: Column(
@@ -669,6 +622,68 @@ class HomePage extends StatelessWidget {
                                           ),
                                         ],
                                       ),
+                                      Container(
+                                        height: 180,
+                                        decoration: BoxDecoration(
+                                          borderRadius:
+                                              BorderRadius.circular(10),
+                                          border: Border.all(
+                                            width: .1,
+                                            color: Colors.grey,
+                                          ),
+                                        ),
+                                        child: ImageSlideshow(
+                                          isLoop: true,
+                                          autoPlayInterval: 6000,
+                                          children: ctl.ads2
+                                              .map(
+                                                (e) => ClipRRect(
+                                                  borderRadius:
+                                                      BorderRadius.circular(10),
+                                                  child: Stack(
+                                                    fit: StackFit.expand,
+                                                    children: [
+                                                      Shimmer.fromColors(
+                                                        baseColor:
+                                                            Colors.grey[300]!,
+                                                        highlightColor:
+                                                            Colors.grey[100]!,
+                                                        child: Container(
+                                                          color: Colors.white,
+                                                        ),
+                                                      ),
+                                                      Image.network(e,
+                                                          fit: BoxFit.cover),
+                                                    ],
+                                                  ),
+                                                ),
+                                              )
+                                              .toList(),
+                                        ),
+                                      ),
+                                      const Gap(20),
+                                      CardMenu(children: [
+                                        ButtonMenu(
+                                          icon: Image.asset(
+                                              "assets/images/icons/icons8-etudiant-homme-64.png"),
+                                          title: "Scolarité",
+                                        ),
+                                        ButtonMenu(
+                                          icon: Image.asset(
+                                              "assets/images/icons/icons8-casino-48.png"),
+                                          title: "Pari",
+                                        ),
+                                        ButtonMenu(
+                                          icon: Image.asset(
+                                              "assets/images/icons/icons8-fast-cart-64.png"),
+                                          title: "Shoping",
+                                        ),
+                                        ButtonMenu(
+                                          icon: Image.asset(
+                                              "assets/images/icons/icons8-google-play-store-96.png"),
+                                          title: "Playstore",
+                                        ),
+                                      ])
                                     ],
                                   ),
                                 ),

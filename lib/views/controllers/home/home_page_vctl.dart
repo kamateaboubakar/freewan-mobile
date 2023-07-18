@@ -15,6 +15,10 @@ class HomePageVctl extends ViewController {
     "https://165225.fs1.hubspotusercontent-na1.net/hubfs/165225/Video-ads-meta.jpg",
     "https://www.shutterstock.com/image-vector/deluxe-king-size-burger-ads-260nw-1121447561.jpg"
   ];
+
+  List<String> ads2 = [
+    "https://myplace-events.com/public/upload/events/2022/05/resize-event-image-1653322579-XafKF.jpeg"
+  ];
   bool displayWelcome;
 
   var scrollController = ScrollController();

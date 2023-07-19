@@ -63,5 +63,7 @@
 		<string></string>
 		<key>NSMicrophoneUsageDescription</key>
 		<string></string>
+		<key>NSFaceIDUsageDescription</key>
+		<string>WAN a besoin d'accéder au capteur FaceID pour vous permettre de vous authentifier.</string>
 	</dict>
 </plist>

@@ -4,9 +4,11 @@ class Booking {
   String? endDate;
   String? destination;
   String? price;
-  int? customer;
-  int? userId;
+  String? customer;
+  String? userId;
   int? paymentModeId;
+  double? lat, long;
+  String? creditCardOrPhoneNumber;
 
   Booking(
       {this.carId,
@@ -16,7 +18,10 @@ class Booking {
       this.price,
       this.customer,
       this.userId,
-      this.paymentModeId});
+      this.paymentModeId,
+      this.lat,
+      this.long,
+      this.creditCardOrPhoneNumber});
 
   Booking.fromJson(Map<String, dynamic> json) {
     carId = json['carId'];
@@ -27,18 +32,24 @@ class Booking {
     customer = json['customer'];
     userId = json['userId'];
     paymentModeId = json['paymentModeId'];
+    lat = json['latitude'];
+    long = json['longitude'];
+    creditCardOrPhoneNumber = json['creditCardOrPhoneNumber'];
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['carId'] = this.carId;
-    data['startDate'] = this.startDate;
-    data['endDate'] = this.endDate;
-    data['destination'] = this.destination;
-    data['price'] = this.price;
-    data['customer'] = this.customer;
-    data['userId'] = this.userId;
-    data['paymentModeId'] = this.paymentModeId;
+    final Map<String, dynamic> data = <String, dynamic>{};
+    data['carId'] = carId;
+    data['startDate'] = startDate;
+    data['endDate'] = endDate;
+    data['destinationAddress'] = destination;
+    data['price'] = price;
+    data['customer'] = customer;
+    data['userId'] = userId;
+    data['paymentModeId'] = paymentModeId;
+    data['latitude'] = lat;
+    data['longitude'] = long;
+    data['creditCardOrPhoneNumber'] = creditCardOrPhoneNumber;
     return data;
   }
 }

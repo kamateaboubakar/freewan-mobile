@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
-// ignore: implementation_imports
 import 'package:gap/gap.dart';
+import 'package:wan_mobile/models/location_vehicule/marque_vehicule.dart';
+import 'package:wan_mobile/tools/types/types.dart';
 import 'package:wan_mobile/tools/utils/asset_colors.dart';
 import 'package:wan_mobile/tools/widgets/c_button.dart';
 import 'package:wan_mobile/tools/widgets/c_dropdown_field.dart';
+import 'package:wan_mobile/tools/widgets/c_textform_field.dart';
 import 'package:wan_mobile/tools/widgets/location_vehicule/ban_vehicule.dart';
 import 'package:wan_mobile/tools/widgets/wrapper_body_listview.dart';
 import 'package:wan_mobile/views/controllers/location_vehicule/edition_location_vehicule_vctl.dart';
@@ -26,7 +28,7 @@ class EditionDetailsVehicule extends StatelessWidget {
                   const ListTile(
                     contentPadding: EdgeInsets.zero,
                     title: Text("Informations de la voiture"),
-                    trailing: Text("1/2"),
+                    trailing: Text("1/3"),
                   ),
                   const Gap(20),
                   SizedBox(
@@ -61,39 +63,71 @@ class EditionDetailsVehicule extends StatelessWidget {
                       ),
                     ),
                   ),
-                  const Row(
-                    children: [
-                      Expanded(
-                        child: CDropdownField(
-                          labelText: "Marque",
-                          require: true,
-                        ),
-                      ),
-                      Gap(10),
-                      Expanded(
-                        child: CDropdownField(
-                          labelText: "Modele",
-                          require: true,
-                        ),
-                      ),
-                    ],
+                  CDropdownField<MarqueVehicule>(
+                    labelText: "Marque",
+                    selectedItem: ctl.marqueVehicule,
+                    require: true,
+                    asyncItems: (e) => ctl.fetchMarque(),
+                    itemAsString: (e) => e.name.value,
+                    onChanged: (value) {
+                      ctl.marqueVehicule = value;
+                      ctl.update();
+                    },
                   ),
-                  const Row(
-                    children: [
-                      Expanded(
-                        child: CDropdownField(
-                          labelText: "Année",
-                          require: true,
-                        ),
-                      ),
-                      Gap(10),
-                      Expanded(
-                        child: CDropdownField(
-                          labelText: "Transmission",
-                          require: true,
-                        ),
-                      ),
-                    ],
+                  CTextFormField(
+                    controller: ctl.modeleVehiculeCtl,
+                    labelText: "Modèle",
+                    require: true,
+                    textCapitalization: TextCapitalization.sentences,
+                  ),
+                  CTextFormField(
+                    controller: ctl.anneeVehiculeCtl,
+                    labelText: "Année",
+                    require: true,
+                    keyboardType: TextInputType.number,
+                  ),
+                  CDropdownField(
+                    labelText: "Transmission",
+                    items: const ["Manuelle", "Automatique"],
+                    selectedItem: ctl.transmission,
+                    require: true,
+                    onChanged: (e) {
+                      ctl.transmission = e;
+                      ctl.update();
+                    },
+                  ),
+                  CTextFormField(
+                    require: true,
+                    labelText: "Plaque d'immatriculation",
+                    controller: ctl.plaqueImmatriculation,
+                  ),
+                  CDropdownField(
+                    labelText: "Energie",
+                    items: const ["Diesel / Gasoil", "Super / Essence"],
+                    selectedItem: ctl.energie,
+                    require: true,
+                    onChanged: (e) {
+                      ctl.energie = e;
+                      ctl.update();
+                    },
+                  ),
+                  CTextFormField(
+                    require: true,
+                    labelText: "Couleur",
+                    controller: ctl.couleur,
+                    textCapitalization: TextCapitalization.sentences,
+                  ),
+                  CTextFormField(
+                    require: true,
+                    labelText: "Nombre de places",
+                    controller: ctl.nbPlaces,
+                  ),
+                  CTextFormField(
+                    controller: ctl.vitesseMaxCtl,
+                    labelText: "Vitesse max",
+                    hintText: "KM/h",
+                    require: true,
+                    keyboardType: TextInputType.number,
                   ),
                   const Gap(20),
                   Container(

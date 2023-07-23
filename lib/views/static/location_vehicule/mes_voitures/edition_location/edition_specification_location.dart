@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 import 'package:wan_mobile/tools/utils/asset_colors.dart';
 import 'package:wan_mobile/tools/widgets/c_button.dart';
-import 'package:wan_mobile/tools/widgets/c_dropdown_field.dart';
 import 'package:wan_mobile/tools/widgets/c_outlined_button.dart';
 import 'package:wan_mobile/tools/widgets/c_textform_field.dart';
 import 'package:wan_mobile/views/controllers/location_vehicule/edition_location_vehicule_vctl.dart';
@@ -25,7 +24,7 @@ class EditionSpecificationLocation extends StatelessWidget {
                   const ListTile(
                     contentPadding: EdgeInsets.zero,
                     title: Text("Informations de la voiture"),
-                    trailing: Text("2/2"),
+                    trailing: Text("2/3"),
                   ),
                   const Gap(20),
                   const ListTile(
@@ -37,25 +36,17 @@ class EditionSpecificationLocation extends StatelessWidget {
                       ),
                     ),
                   ),
-                  const Row(
-                    children: [
-                      Expanded(
-                        child: CDropdownField(
-                          labelText: "Moteur",
-                          require: true,
-                        ),
-                      ),
-                      Gap(10),
-                      Expanded(
-                        child: CTextFormField(
-                          contentPadding: null,
-                          labelText: "Puissance",
-                          hintText: "En chevaux",
-                          require: true,
-                          keyboardType: TextInputType.numberWithOptions(),
-                        ),
-                      ),
-                    ],
+                  CTextFormField(
+                    controller: ctl.moteur,
+                    labelText: "Moteur",
+                    require: true,
+                  ),
+                  CTextFormField(
+                    controller: ctl.puissance,
+                    labelText: "Puissance",
+                    hintText: "En chevaux",
+                    require: true,
+                    keyboardType: TextInputType.number,
                   ),
                   const ListTile(
                     contentPadding: EdgeInsets.zero,
@@ -75,6 +66,7 @@ class EditionSpecificationLocation extends StatelessWidget {
                     value: ctl.withDriver,
                     onChanged: (value) {
                       ctl.withDriver = value;
+                      ctl.priceWithDriver.clear();
                       ctl.update();
                     },
                     title: const Text("Option chauffeur"),
@@ -113,8 +105,8 @@ class EditionSpecificationLocation extends StatelessWidget {
                   child: CButton(
                     minWidth: double.infinity,
                     height: 50,
-                    onPressed: ctl.submit,
-                    child: const Text("Lister la voiture"),
+                    onPressed: ctl.validStepTwo,
+                    child: const Text("Continuer"),
                   ),
                 ),
               ],

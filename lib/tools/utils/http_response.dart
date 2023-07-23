@@ -55,7 +55,7 @@ class HttpResponse<T> {
             return HttpResponse.error(message: body);
           } else {
             if (body["message"] != null) {
-              return HttpResponse.error(message: body["message"]);
+              return HttpResponse.error(message: body["message"].toString());
             }
 
             if (body != null) {

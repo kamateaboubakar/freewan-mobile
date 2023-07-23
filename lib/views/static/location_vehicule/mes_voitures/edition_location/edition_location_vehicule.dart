@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:wan_mobile/views/controllers/location_vehicule/edition_location_vehicule_vctl.dart';
 import 'package:wan_mobile/views/static/location_vehicule/mes_voitures/edition_location/edition_detail_vehicule_location.dart';
+import 'package:wan_mobile/views/static/location_vehicule/mes_voitures/edition_location/edition_image_vehicule.dart';
 import 'package:wan_mobile/views/static/location_vehicule/mes_voitures/edition_location/edition_specification_location.dart';
 
 class EditionLocationVehicule extends StatelessWidget {
@@ -21,7 +22,8 @@ class EditionLocationVehicule extends StatelessWidget {
               controller: ctl.pageController,
               children: [
                 EditionDetailsVehicule(ctl),
-                EditionSpecificationLocation(ctl)
+                EditionSpecificationLocation(ctl),
+                EditionImageVehicule(ctl),
               ],
             ),
           );

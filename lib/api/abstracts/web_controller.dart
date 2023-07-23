@@ -98,6 +98,20 @@ abstract class WebController extends GetConnect {
     return req;
   }
 
+  Future<http.MultipartRequest> multiPartclient2(String method, Uri url,
+      {Map<String, String> headers = const {},
+      Map<String, String> body = const {},
+      List<File> files = const []}) async {
+    var req = http.MultipartRequest(method, url);
+    headers = await _checkAndRefreshToken(headers);
+    req.headers.addAll(headers);
+    req.fields.addAll(body);
+    for (var file in files) {
+      req.files.add(await http.MultipartFile.fromPath("files", file.path));
+    }
+    return req;
+  }
+
   Future<Map<String, String>> _checkAndRefreshToken(
       Map<String, String>? headers) async {
     if (headers?.containsKey("authorization") == true &&

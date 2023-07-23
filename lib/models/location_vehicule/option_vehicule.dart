@@ -27,14 +27,14 @@ class Options {
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['id'] = this.id;
-    data['airConditoner'] = this.airConditoner;
-    data['withFullFuel'] = this.withFullFuel;
-    data['carId'] = this.carId;
-    data['withDriver'] = this.withDriver;
-    data['createdAt'] = this.createdAt;
-    data['updatedAt'] = this.updatedAt;
+    final Map<String, dynamic> data = <String, dynamic>{};
+    data['id'] = id;
+    data['airConditoner'] = airConditoner;
+    data['withFullFuel'] = withFullFuel;
+    data['carId'] = carId;
+    data['withDriver'] = withDriver;
+    data['createdAt'] = createdAt;
+    data['updatedAt'] = updatedAt;
     return data;
   }
 }

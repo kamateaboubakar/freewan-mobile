@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:wan_mobile/models/location_vehicule/categorie_vehicule.dart';
 import 'package:wan_mobile/tools/widgets/c_textform_field.dart';
 import 'package:wan_mobile/tools/widgets/location_vehicule/ban_vehicule.dart';
 import 'package:wan_mobile/tools/widgets/location_vehicule/card_vehicule.dart';

@@ -52,7 +52,10 @@ class DetailVehiculePage extends StatelessWidget {
                               child: Stack(
                                 fit: StackFit.expand,
                                 children: [
-                                  Image.asset(e, fit: BoxFit.cover),
+                                  Image.network(
+                                    e.url.value,
+                                    fit: BoxFit.cover,
+                                  ),
                                 ],
                               ),
                             ),
@@ -134,7 +137,7 @@ class DetailVehiculePage extends StatelessWidget {
             ),
             const Gap(13),
             SizedBox(
-              height: 50,
+              // height: 100,
               child: Row(
                 children: [
                   Expanded(

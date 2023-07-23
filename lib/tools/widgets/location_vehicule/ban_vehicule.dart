@@ -37,11 +37,18 @@ class BanVehicule extends StatelessWidget {
             ),
             Column(
               children: [
-                Image.asset(
-                  categorieVehicule.image ?? "assets/images/image_vehicule.png",
-                  width: 135,
-                  height: 64,
-                ),
+                Image.network(categorieVehicule.image, width: 135, height: 64,
+                    errorBuilder: (context, e, st) {
+                  return const Center(
+                    child: Padding(
+                      padding: EdgeInsets.all(8.0),
+                      child: Icon(
+                        Icons.image_not_supported,
+                        color: Colors.white,
+                      ),
+                    ),
+                  );
+                }),
                 Padding(
                   padding: const EdgeInsets.only(left: 20, top: 5),
                   child: Text(

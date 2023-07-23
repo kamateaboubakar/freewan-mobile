@@ -25,11 +25,15 @@ class CardVehicule extends StatelessWidget {
               child: SizedBox(
                 width: double.infinity,
                 height: double.infinity,
-                child: Image.asset(
-                  vehicule.images.firstOrNull ??
-                      "assets/images/img_boutique_vehicule.png",
-                  fit: BoxFit.cover,
-                ),
+                child: (vehicule.images.isEmpty)
+                    ? const Icon(
+                        Icons.broken_image_rounded,
+                        color: AssetColors.blueButton,
+                      )
+                    : Image.network(
+                        vehicule.images.first.url.value,
+                        fit: BoxFit.cover,
+                      ),
               ),
             ),
             const Gap(15),
@@ -64,6 +68,7 @@ class CardVehicule extends StatelessWidget {
                         Expanded(
                           child: Text(
                             vehicule.model.value,
+                            maxLines: 1,
                             style: const TextStyle(
                               fontWeight: FontWeight.w400,
                               color: AssetColors.grey9,
@@ -82,18 +87,22 @@ class CardVehicule extends StatelessWidget {
                     const Gap(8),
                     Row(
                       children: [
-                        const Expanded(
-                          child: Text(
-                            "Moteur",
-                            style: TextStyle(
-                              fontWeight: FontWeight.w400,
-                            ),
+                        const Text(
+                          "Moteur",
+                          style: TextStyle(
+                            fontWeight: FontWeight.w400,
                           ),
                         ),
-                        Text(
-                          vehicule.motor.value,
-                          style: const TextStyle(
-                            fontWeight: FontWeight.w400,
+                        const Gap(10),
+                        Expanded(
+                          child: Text(
+                            vehicule.motor.value,
+                            textAlign: TextAlign.end,
+                            maxLines: 1,
+                            overflow: TextOverflow.ellipsis,
+                            style: const TextStyle(
+                              fontWeight: FontWeight.w400,
+                            ),
                           ),
                         )
                       ],

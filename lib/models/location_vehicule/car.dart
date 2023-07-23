@@ -1,9 +1,11 @@
+import 'package:wan_mobile/models/location_vehicule/image_vehicule.dart';
 import 'package:wan_mobile/models/location_vehicule/option_vehicule.dart';
 import 'package:wan_mobile/tools/types/types.dart';
 import 'package:wan_mobile/tools/widgets/location_vehicule/proprietaire_vehicule.dart';
 
 class Car {
   int? id;
+  int? brandId;
   String? brand;
   String? model;
   int? categoryId;
@@ -21,12 +23,13 @@ class Car {
   String? createdAt;
   String? updatedAt;
   List<Options> options = [];
-  List<String> images = [];
+  List<ImageVehicule> images = [];
   PropietaireVehicule? propietaireVehicule;
+  String? ownerId;
 
   Car(
       {this.id,
-      this.brand,
+      this.brandId,
       this.model,
       this.categoryId,
       this.year,
@@ -44,11 +47,12 @@ class Car {
       this.updatedAt,
       this.options = const [],
       this.images = const [],
-      this.propietaireVehicule});
+      this.propietaireVehicule,
+      this.ownerId});
 
   Car.fromJson(Map<String, dynamic> json) {
     id = json['id'];
-    brand = json['brand'];
+    brandId = json['brand'];
     model = json['model'];
     categoryId = json['categoryId'];
     year = json['year'];
@@ -67,7 +71,7 @@ class Car {
     if (json['options'] != null) {
       options = <Options>[];
       json['options'].forEach((v) {
-        options.add(new Options.fromJson(v));
+        options.add(Options.fromJson(v));
       });
     }
 
@@ -75,15 +79,17 @@ class Car {
         ? PropietaireVehicule.fromJson(json['propietaireVehicule'])
         : null;
 
-    if (json["images"] != null) {
-      images = json['images'].cast<String>();
+    if (json["carsPhotos"] is List) {
+      images = (json["carsPhotos"] as List)
+          .map((e) => ImageVehicule.fromJson(e))
+          .toList();
     }
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
+    final Map<String, dynamic> data = <String, dynamic>{};
     data['id'] = id;
-    data['brand'] = brand;
+    data['brandId'] = brandId;
     data['model'] = model;
     data['categoryId'] = categoryId;
     data['year'] = year;
@@ -100,11 +106,8 @@ class Car {
     data['createdAt'] = createdAt;
     data['updatedAt'] = updatedAt;
     data['options'] = options.map((v) => v.toJson()).toList();
-
-    if (propietaireVehicule != null) {
-      data['propietaireVehicule'] = propietaireVehicule!.toJson();
-    }
-    data["images"] = images.map((e) => e).toList();
+    data['ownerId'] = ownerId;
+    data["carsPhotos"] = images.map((e) => e).toList();
     return data;
   }
 

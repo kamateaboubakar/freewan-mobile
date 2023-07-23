@@ -153,6 +153,12 @@ class Tools {
     return (pickedFile != null) ? File(pickedFile.path) : null;
   }
 
+  static Future<List<File>> pickMultipleImage({int? imageQuality}) async {
+    final picker = ImagePicker();
+    var images = await picker.pickMultiImage(imageQuality: imageQuality);
+    return images.map((e) => File(e.path)).toList();
+  }
+
   static Future<File?> bottomSheetPickImage({int imageQuality = 50}) async {
     return await Tools.showBottomPage<File?>(
       padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 20),

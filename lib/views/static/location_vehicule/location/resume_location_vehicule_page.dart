@@ -1,5 +1,3 @@
-import 'dart:io';
-
 import 'package:flutter/material.dart';
 import 'package:flutter_image_slideshow/flutter_image_slideshow.dart';
 import 'package:gap/gap.dart';
@@ -7,10 +5,11 @@ import 'package:get/get.dart';
 import 'package:wan_mobile/models/location_vehicule/car.dart';
 import 'package:wan_mobile/tools/types/types.dart';
 import 'package:wan_mobile/tools/utils/asset_colors.dart';
+import 'package:wan_mobile/tools/utils/tools.dart';
 import 'package:wan_mobile/tools/widgets/c_button.dart';
 import 'package:wan_mobile/tools/widgets/date_time_range_editing_controller.dart';
+import 'package:wan_mobile/tools/widgets/wrapper_body_listview.dart';
 import 'package:wan_mobile/views/controllers/location_vehicule/resume_location_vehicule_page_vctl.dart';
-import 'package:wan_mobile/views/static/home/home_page.dart';
 
 class ResumeLocationVehiculePage extends StatelessWidget {
   final Car vehicule;
@@ -57,8 +56,10 @@ class ResumeLocationVehiculePage extends StatelessWidget {
                                 .map(
                                   (e) => ClipRRect(
                                     borderRadius: BorderRadius.circular(10),
-                                    child:
-                                        Image.file(File(e), fit: BoxFit.cover),
+                                    child: Image.network(
+                                      e.url.value,
+                                      fit: BoxFit.cover,
+                                    ),
                                   ),
                                 )
                                 .toList(),
@@ -80,9 +81,9 @@ class ResumeLocationVehiculePage extends StatelessWidget {
                         child: Text.rich(
                           TextSpan(
                             text: (withDriver)
-                                ? ctl.vehicule.priceWithoutDriver.value
-                                    .toAmount()
-                                : ctl.vehicule.priceWithDriver.value.toAmount(),
+                                ? ctl.vehicule.priceWithDriver.value.toAmount()
+                                : ctl.vehicule.priceWithoutDriver.value
+                                    .toAmount(),
                             children: const [
                               TextSpan(
                                 text: " / jour",
@@ -122,29 +123,32 @@ class ResumeLocationVehiculePage extends StatelessWidget {
                       borderRadius: BorderRadius.circular(8),
                       side: const BorderSide(color: AssetColors.grey8),
                     ),
-                    title: const Text("Utiliser cette localisation"),
-                    subtitle: const Row(
-                      mainAxisSize: MainAxisSize.min,
-                      children: [
-                        Icon(
-                          Icons.location_on,
-                          color: AssetColors.blueButton,
-                          size: 13,
-                        ),
-                        Gap(5),
-                        Text(
-                          "Rue M66",
-                          style: TextStyle(
-                            color: AssetColors.blueButton,
-                            fontWeight: FontWeight.bold,
+                    title: const Text("Utiliser ma localisation"),
+                    subtitle: (ctl.locationModel?.title == null)
+                        ? null
+                        : Row(
+                            mainAxisSize: MainAxisSize.min,
+                            children: [
+                              const Icon(
+                                Icons.location_on,
+                                color: AssetColors.blueButton,
+                                size: 13,
+                              ),
+                              const Gap(5),
+                              Text(
+                                ctl.locationModel!.title,
+                                style: const TextStyle(
+                                  color: AssetColors.blueButton,
+                                  fontWeight: FontWeight.bold,
+                                ),
+                              ),
+                            ],
                           ),
-                        ),
-                      ],
-                    ),
-                    trailing: const Icon(
-                      Icons.arrow_forward_ios,
-                      size: 12,
-                    ),
+                    // trailing: const Icon(
+                    //   Icons.arrow_forward_ios,
+                    //   size: 12,
+                    // ),
+                    onTap: ctl.requestPermissionForLocation,
                   ),
                   const ListTile(
                     contentPadding: EdgeInsets.zero,
@@ -163,26 +167,53 @@ class ResumeLocationVehiculePage extends StatelessWidget {
                       side: const BorderSide(color: AssetColors.grey8),
                     ),
                     title: const Text("Utiliser ce moyen de paiement"),
-                    subtitle: Row(
-                      mainAxisSize: MainAxisSize.min,
-                      children: [
-                        Image.asset(
-                          "assets/images/master_card.png",
-                          width: 32,
-                          height: 29,
-                        ),
-                        const Gap(5),
-                        const Text(
-                          "**** **** **** 8357",
-                          style: TextStyle(
-                            fontWeight: FontWeight.bold,
-                          ),
-                        ),
-                      ],
-                    ),
+                    subtitle: (ctl.selectedModePaiement == null)
+                        ? null
+                        : Text(ctl.selectedModePaiement!.libelle.value),
+                    // Row(
+                    //   mainAxisSize: MainAxisSize.min,
+                    //   children: [
+                    //     Image.asset(
+                    //       "assets/images/master_card.png",
+                    //       width: 32,
+                    //       height: 29,
+                    //     ),
+                    //     const Gap(5),
+                    //     const Text(
+                    //       "**** **** **** 8357",
+                    //       style: TextStyle(
+                    //         fontWeight: FontWeight.bold,
+                    //       ),
+                    //     ),
+                    //   ],
+                    // ),
                     trailing: const Icon(
                       Icons.arrow_forward_ios,
                       size: 12,
+                    ),
+                    onTap: () => Tools.openBottomSheet(
+                      Container(
+                        height: Get.height / 2,
+                        color: Colors.white,
+                        width: double.infinity,
+                        child: WrapperBodyListView(
+                          loading: false,
+                          children: ctl.modePaiements
+                              .map(
+                                (e) => ListTile(
+                                  title: Text(
+                                    e.libelle.value,
+                                  ),
+                                  onTap: () {
+                                    ctl.selectedModePaiement = e;
+                                    ctl.update();
+                                    Get.back();
+                                  },
+                                ),
+                              )
+                              .toList(),
+                        ),
+                      ),
                     ),
                   ),
                 ],

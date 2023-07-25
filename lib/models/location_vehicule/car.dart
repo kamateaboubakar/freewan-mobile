@@ -1,4 +1,5 @@
 import 'package:wan_mobile/models/location_vehicule/image_vehicule.dart';
+import 'package:wan_mobile/models/location_vehicule/marque_vehicule.dart';
 import 'package:wan_mobile/models/location_vehicule/option_vehicule.dart';
 import 'package:wan_mobile/tools/types/types.dart';
 import 'package:wan_mobile/tools/widgets/location_vehicule/proprietaire_vehicule.dart';
@@ -6,7 +7,7 @@ import 'package:wan_mobile/tools/widgets/location_vehicule/proprietaire_vehicule
 class Car {
   int? id;
   int? brandId;
-  String? brand;
+  MarqueVehicule? brand;
   String? model;
   int? categoryId;
   String? year;
@@ -52,7 +53,10 @@ class Car {
 
   Car.fromJson(Map<String, dynamic> json) {
     id = json['id'];
-    brandId = json['brand'];
+    brandId = json['brandId'];
+    if (json['brand'] != null) {
+      brand = MarqueVehicule.fromJson(json['brand']);
+    }
     model = json['model'];
     categoryId = json['categoryId'];
     year = json['year'];
@@ -84,6 +88,7 @@ class Car {
           .map((e) => ImageVehicule.fromJson(e))
           .toList();
     }
+    ownerId = json['ownerId'];
   }
 
   Map<String, dynamic> toJson() {

@@ -15,7 +15,7 @@ class JobSectorView extends StatefulWidget {
 
 class _JobSectorViewState extends State<JobSectorView> {
   JobSectorController _jobSectorController = Get.put(JobSectorController());
-  JobListController _jobListController = Get.put(JobListController());
+  final JobListController _jobListController = Get.put(JobListController());
 
   @override
   void initState() {

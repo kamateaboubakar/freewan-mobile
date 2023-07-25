@@ -1,8 +1,6 @@
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:wan_mobile/models/job/category.dart';
-import 'package:wan_mobile/models/job/company.dart';
 import 'package:wan_mobile/models/job/contract_type.dart';
 import 'package:wan_mobile/models/job/job_offer.dart';
 import 'package:wan_mobile/models/job/work_experience.dart';
@@ -69,8 +67,8 @@ class _AddJobOfferInformationPageState
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
-            Row(
-              children: const [
+            const Row(
+              children: [
                 Text(
                   'Informations du\nposte',
                   style: TextStyle(
@@ -121,7 +119,7 @@ class _AddJobOfferInformationPageState
                                 onTap: () {
                                   _getPays();
                                 },
-                                child: Icon(Icons.refresh),
+                                child: const Icon(Icons.refresh),
                               ),
                             );
                           }
@@ -165,7 +163,7 @@ class _AddJobOfferInformationPageState
                                 onTap: () {
                                   _getWorkExperiences();
                                 },
-                                child: Icon(Icons.refresh),
+                                child: const Icon(Icons.refresh),
                               ),
                             );
                           }
@@ -212,7 +210,7 @@ class _AddJobOfferInformationPageState
                                 onTap: () {
                                   _getJobCategories();
                                 },
-                                child: Icon(Icons.refresh),
+                                child: const Icon(Icons.refresh),
                               ),
                             );
                           }
@@ -258,7 +256,7 @@ class _AddJobOfferInformationPageState
                                 onTap: () {
                                   _getJobSectors();
                                 },
-                                child: Icon(Icons.refresh),
+                                child: const Icon(Icons.refresh),
                               ),
                             );
                           }
@@ -309,7 +307,7 @@ class _AddJobOfferInformationPageState
                                 onTap: () {
                                   _getContractTypes();
                                 },
-                                child: Icon(Icons.refresh),
+                                child: const Icon(Icons.refresh),
                               ),
                             );
                           }
@@ -343,7 +341,7 @@ class _AddJobOfferInformationPageState
                     Obx(() {
                       var isRemoteJob = _addJobController.isRemoteJob;
                       return ListTile(
-                        contentPadding: EdgeInsets.symmetric(vertical: 0),
+                        contentPadding: const EdgeInsets.symmetric(vertical: 0),
                         leading: Checkbox(
                           value: isRemoteJob,
                           onChanged: (value) {

@@ -13,8 +13,8 @@ class SecurityQuestion {
 
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = {};
-    data['securityQuestionId'] = this.id;
-    data['code'] = this.code;
+    data['securityQuestionId'] = id;
+    data['code'] = code;
     // data['label'] = this.label;
     data["answer"] = answer;
     return data;

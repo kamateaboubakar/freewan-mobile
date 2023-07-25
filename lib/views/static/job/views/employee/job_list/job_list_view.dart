@@ -1,11 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:wan_mobile/tools/widgets/error_view.dart';
-import 'package:wan_mobile/views/controllers/job/job_sector_vctl.dart';
 import 'package:wan_mobile/views/static/job/views/employee/employee_views.dart';
 
 import '../../../../../controllers/job/job_list_vctl.dart';
-import '../../../widgets/job_tag.dart';
 import '../../../widgets/jobs_item.dart';
 
 class JobListView extends StatefulWidget {
@@ -60,8 +58,8 @@ class _JobListViewState extends State<JobListView> {
               child: Column(
                 children: [
                   Image.asset("assets/images/icons/empty_folder.png", width: 100,),
-                  SizedBox(height: 10),
-                  Text('Aucune offre'),
+                  const SizedBox(height: 10),
+                  const Text('Aucune offre'),
                 ],
               ),
             );
@@ -83,7 +81,7 @@ class _JobListViewState extends State<JobListView> {
                 onTap: () {
                   _jobListController.updateSelectedJobOffer(job);
                   _jobListController.updateAlreadySubmitApplicationState();
-                  Get.to(JobDescriptionPage());
+                  Get.to(const JobDescriptionPage());
                 },
               );
             },

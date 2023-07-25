@@ -55,7 +55,7 @@ class BillsReferenceSelectionPage extends StatelessWidget {
                   size: 12,
                   color: Color.fromRGBO(7, 21, 60, 1),
                 ),
-                onTap: () => Get.to(BillsListPage()),
+                onTap: () => Get.to(const BillsListPage()),
               ),
             ),
             AddAccountButton(

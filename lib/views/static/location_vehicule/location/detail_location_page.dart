@@ -71,40 +71,50 @@ class DetailLocationVehiculePage extends StatelessWidget {
                     title: Text("Veuillez sélectionner les dates de location,"
                         " puis d'assigner des heures à ces dates."),
                   ),
-                  TableCalendar(
-                    sixWeekMonthsEnforced: true,
-                    calendarStyle: const CalendarStyle(
-                      selectedDecoration: BoxDecoration(
-                        shape: BoxShape.circle,
-                        color: AssetColors.blueButton,
+                  Container(
+                    margin: const EdgeInsets.only(top: 20),
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(10),
+                      border: Border.all(
+                        width: 1,
+                        color: const Color.fromRGBO(181, 196, 216, 1),
                       ),
                     ),
-                    firstDay: DateTime.now(),
-                    lastDay: DateTime.utc(2030, 3, 14),
-                    focusedDay: ctl.focusedDay ?? DateTime.now(),
-                    selectedDayPredicate: (day) {
-                      if (ctl.seletedDays.isEmpty) {
-                        return false;
-                      } else {
-                        return ctl.seletedDays
-                            .where((e) => e.start.date.isSameDate(day))
-                            .isNotEmpty;
-                      }
-                    },
-                    onDaySelected: (selectedDay, focusedDay) {
-                      var date = ctl.seletedDays.firstWhereOrNull(
-                          (e) => e.start.date.isSameDate(selectedDay));
-                      if (date == null) {
-                        ctl.seletedDays.add(
-                          CustomDateTimeRange(
-                              startDate: selectedDay, endDate: selectedDay),
-                        );
-                      }
-                      ctl.seletedDays.sort(
-                          (a, b) => a.start.date!.compareTo(b.start.date!));
-                      ctl.focusedDay = focusedDay;
-                      ctl.update();
-                    },
+                    child: TableCalendar(
+                      sixWeekMonthsEnforced: true,
+                      calendarStyle: const CalendarStyle(
+                        selectedDecoration: BoxDecoration(
+                          shape: BoxShape.circle,
+                          color: AssetColors.blueButton,
+                        ),
+                      ),
+                      firstDay: DateTime.now(),
+                      lastDay: DateTime.utc(2030, 3, 14),
+                      focusedDay: ctl.focusedDay ?? DateTime.now(),
+                      selectedDayPredicate: (day) {
+                        if (ctl.seletedDays.isEmpty) {
+                          return false;
+                        } else {
+                          return ctl.seletedDays
+                              .where((e) => e.start.date.isSameDate(day))
+                              .isNotEmpty;
+                        }
+                      },
+                      onDaySelected: (selectedDay, focusedDay) {
+                        var date = ctl.seletedDays.firstWhereOrNull(
+                            (e) => e.start.date.isSameDate(selectedDay));
+                        if (date == null) {
+                          ctl.seletedDays.add(
+                            CustomDateTimeRange(
+                                startDate: selectedDay, endDate: selectedDay),
+                          );
+                        }
+                        ctl.seletedDays.sort(
+                            (a, b) => a.start.date!.compareTo(b.start.date!));
+                        ctl.focusedDay = focusedDay;
+                        ctl.update();
+                      },
+                    ),
                   ),
                   Visibility(
                     visible: ctl.seletedDays.isNotEmpty,

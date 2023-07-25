@@ -33,6 +33,8 @@ class CardVehicule extends StatelessWidget {
                     : Image.network(
                         vehicule.images.first.url.value,
                         fit: BoxFit.cover,
+                        errorBuilder: (context, error, stackTrace) =>
+                            const Icon(Icons.broken_image_rounded),
                       ),
               ),
             ),
@@ -46,7 +48,7 @@ class CardVehicule extends StatelessWidget {
                       children: [
                         Expanded(
                           child: Text(
-                            vehicule.brand.value,
+                            vehicule.brand!.name.value,
                             style: const TextStyle(
                               fontWeight: FontWeight.bold,
                             ),

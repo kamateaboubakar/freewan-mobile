@@ -5,9 +5,7 @@ import 'package:flutter_map/flutter_map.dart';
 import 'package:get/get.dart';
 import 'package:latlong2/latlong.dart';
 import 'package:wan_mobile/models/location_model.dart';
-import 'package:wan_mobile/models/shop.dart';
 import 'package:wan_mobile/tools/utils/asset_colors.dart';
-import 'package:wan_mobile/views/controllers/gaz/gas_vctl.dart';
 import '../../../../tools/utils/tools.dart';
 import '../../../../tools/widgets/address_type_item.dart';
 import '../../../../tools/widgets/c_button.dart';
@@ -150,7 +148,7 @@ class _PressingDeliveryAddressPageState
                             var response =
                                 _addressController.userLocalisationResponse;
                             if (response == null) {
-                              return Center(
+                              return const Center(
                                 child: CircularProgressIndicator(),
                               );
                             }
@@ -177,7 +175,7 @@ class _PressingDeliveryAddressPageState
                             var items = response.data ?? [];
 
                             if (items.isEmpty) {
-                              return Center(
+                              return const Center(
                                 child: Text('Aucune addresse'),
                               );
                             }
@@ -186,7 +184,7 @@ class _PressingDeliveryAddressPageState
                               onTap: () {
                                 _showAddressesDialog();
                               },
-                              child: Text(
+                              child: const Text(
                                 'Cliquer ici pour sélectionner une addrese',
                                 style: TextStyle(
                                   color: AssetColors.blueButton,
@@ -213,7 +211,7 @@ class _PressingDeliveryAddressPageState
                               var response =
                                   _addressController.addressTypeResponse;
                               if (response == null) {
-                                return Center(
+                                return const Center(
                                     child: CircularProgressIndicator());
                               }
 
@@ -233,7 +231,7 @@ class _PressingDeliveryAddressPageState
                                   itemCount: addressTypes.length,
                                   scrollDirection: Axis.horizontal,
                                   separatorBuilder: (context, index) {
-                                    return SizedBox(width: 10);
+                                    return const SizedBox(width: 10);
                                   },
                                   itemBuilder: (context, index) {
                                     var type = addressTypes[index];
@@ -261,7 +259,7 @@ class _PressingDeliveryAddressPageState
                         const SizedBox(height: 20),
 
                         if(isLocationNameLoading)...{
-                          Center(
+                          const Center(
                             child: CircularProgressIndicator(),
                           )
                         } else ...{
@@ -360,9 +358,9 @@ class _PressingDeliveryAddressPageState
           mainAxisSize: MainAxisSize.min,
           children: [
             Container(
-              color: Color(0xffB5C4D8).withOpacity(0.15),
-              padding: EdgeInsets.all(16),
-              child: Text(
+              color: const Color(0xffB5C4D8).withOpacity(0.15),
+              padding: const EdgeInsets.all(16),
+              child: const Text(
                 'Séléctionner l\'adresse',
                 style: TextStyle(
                   fontWeight: FontWeight.bold,
@@ -391,13 +389,13 @@ class _PressingDeliveryAddressPageState
                               mapZoom);
                         },
                         child: Padding(
-                          padding: EdgeInsets.all(4),
+                          padding: const EdgeInsets.all(4),
                           child: Row(
                             children: [
                               Expanded(
                                   child: Text(
                                 items[i].address!,
-                                style: TextStyle(
+                                style: const TextStyle(
                                   fontSize: 12,
                                 ),
                               )),
@@ -413,7 +411,7 @@ class _PressingDeliveryAddressPageState
                           ),
                         ),
                       ),
-                      Divider()
+                      const Divider()
                     ]
                   ],
                 );

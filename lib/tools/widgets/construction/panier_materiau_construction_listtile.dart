@@ -26,10 +26,10 @@ class PanierMateriauConstructionListTile extends StatelessWidget {
                 child: ListTile(
                   contentPadding: const EdgeInsets.only(left: 16),
                   title: const Text("Fer Torsadé"),
-                  subtitle: Column(
+                  subtitle: const Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     mainAxisSize: MainAxisSize.min,
-                    children: const [
+                    children: [
                       Text("Taille: Fer 8"),
                       Text("Seller: SOTACI"),
                     ],
@@ -42,8 +42,8 @@ class PanierMateriauConstructionListTile extends StatelessWidget {
             ],
           ),
           const Gap(22),
-          Row(
-            children: const [
+          const Row(
+            children: [
               QuantityField(isPositive: true),
               Expanded(
                 child: Text(

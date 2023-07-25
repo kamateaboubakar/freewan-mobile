@@ -70,10 +70,10 @@ class PanierMateriauConstructionPage extends StatelessWidget {
           ],
         ),
       ),
-      body: SingleChildScrollView(
-        padding: const EdgeInsets.only(top: 5, bottom: 5),
+      body: const SingleChildScrollView(
+        padding: EdgeInsets.only(top: 5, bottom: 5),
         child: Column(
-          children: const [
+          children: [
             PanierMateriauConstructionListTile(),
           ],
         ),

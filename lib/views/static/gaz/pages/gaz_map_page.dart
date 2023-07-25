@@ -47,7 +47,7 @@ class _GazMapPageState extends State<GazMapPage> {
   late int selectedGazPosIndex;
 
   GasController _gazController = Get.put(GasController());
-  GasShopController _gazShopController = Get.put(GasShopController());
+  final GasShopController _gazShopController = Get.put(GasShopController());
 
   @override
   void initState() {
@@ -245,7 +245,7 @@ class _GazMapPageState extends State<GazMapPage> {
                         child: InkWell(
                           onTap: () {
                             if (index == 2) {
-                              Get.off(PressingMapPage());
+                              Get.off(const PressingMapPage());
                             }
                           },
                           child: Column(
@@ -255,7 +255,7 @@ class _GazMapPageState extends State<GazMapPage> {
                                 height: 55,
                                 decoration: BoxDecoration(
                                   color: selected
-                                      ? Color(0xff0042FF).withOpacity(0.15)
+                                      ? const Color(0xff0042FF).withOpacity(0.15)
                                       : const Color(0xffB5C4D8)
                                           .withOpacity(0.15),
                                   shape: BoxShape.circle,

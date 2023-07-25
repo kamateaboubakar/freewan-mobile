@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:wan_mobile/tools/widgets/c_button.dart';
 import 'package:wan_mobile/tools/widgets/c_dropdown_field.dart';
 import 'package:wan_mobile/tools/widgets/c_textform_field.dart';
 import 'package:wan_mobile/views/controllers/auth/register_page_vctl.dart';

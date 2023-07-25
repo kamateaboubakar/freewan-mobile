@@ -74,13 +74,13 @@ class AchatUnitePage extends StatelessWidget {
                         .toList(),
                   ),
                 ),
-                Expanded(
+                const Expanded(
                   flex: 4,
                   child: Padding(
-                    padding: const EdgeInsets.symmetric(
+                    padding: EdgeInsets.symmetric(
                         horizontal: 24, vertical: 10),
                     child: Column(
-                      children: const [
+                      children: [
                         CTextFormField(
                           labelText: "Numéro de téléphone",
                           require: true,

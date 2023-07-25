@@ -37,7 +37,7 @@ class JobHeader extends StatelessWidget {
               children: [
                 Text(
                   jobOffer.label!,
-                  style: TextStyle(
+                  style: const TextStyle(
                     fontSize: 18,
                     fontWeight: FontWeight.bold,
                   ),
@@ -45,14 +45,14 @@ class JobHeader extends StatelessWidget {
                 ),
                 Text(
                   '${jobOffer.company!.name!} - ${jobOffer.remote ?? false ? 'A distance' : 'Sur site'}',
-                  style: TextStyle(
+                  style: const TextStyle(
                     fontSize: 14,
                   ),
                   textAlign: TextAlign.center,
                 ),
                 Text(
                   jobOffer.expectedSalary!.formatAmount,
-                  style: TextStyle(
+                  style: const TextStyle(
                     fontSize: 14,
                   ),
                   textAlign: TextAlign.center,
@@ -65,14 +65,14 @@ class JobHeader extends StatelessWidget {
                       title: jobOffer.contractType?.label ?? 'Temps plein',
                       fontSize: 9,
                     )),
-                    SizedBox(width: 5),
+                    const SizedBox(width: 5),
                     Expanded(
                       child: JobTag(
                         title: jobOffer.activitySector?.label ?? "A distance",
                         fontSize: 9,
                       ),
                     ),
-                    SizedBox(width: 5),
+                    const SizedBox(width: 5),
                     Expanded(
                         child: JobTag(
                       title: jobOffer.country?.label ?? "Senior",

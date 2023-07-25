@@ -28,7 +28,7 @@ List<JobEntity> get popularJobs => [
     companyName: "OLX - Nigeria, ID",
     jobTitle: "Junior Graphic Designer",
     salary: "FCFA 1 500 000 / Mo",
-    iconBackgroundColor: Color(0xff3A77FF).withOpacity(0.1),
+    iconBackgroundColor: const Color(0xff3A77FF).withOpacity(0.1),
     icon: "assets/images/olx.png",
   ),
 ];

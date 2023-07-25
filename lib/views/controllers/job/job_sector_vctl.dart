@@ -1,4 +1,3 @@
-import 'package:wan_mobile/api/controllers/job_api_ctl.dart';
 import 'package:wan_mobile/api/controllers/job_sector_api_ctl.dart';
 import 'package:wan_mobile/tools/utils/http_response.dart';
 import 'package:wan_mobile/views/controllers/abstracts/view_controller.dart';

@@ -6,9 +6,9 @@ class CardMenu extends StatelessWidget {
   final String? title;
   final List<ButtonMenu> children;
 
-  final EdgeInsetsGeometry? margin;
+  final EdgeInsetsGeometry margin;
   const CardMenu(
-      {this.margin = const EdgeInsets.only(bottom: 20),
+      {this.margin = const EdgeInsets.only(bottom: 10),
       this.title,
       this.children = const [],
       super.key});

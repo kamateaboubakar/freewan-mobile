@@ -7,6 +7,8 @@ import '../../../../tools/widgets/c_textform_field.dart';
 class BillsAddReferencePage extends StatelessWidget {
   final TextEditingController _referenceCtrl = TextEditingController();
 
+  BillsAddReferencePage({super.key});
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -28,12 +30,12 @@ class BillsAddReferencePage extends StatelessWidget {
                       'assets/images/cie.png',
                       height: 50,
                     ),
-                    SizedBox(height: 10),
-                    Text(
+                    const SizedBox(height: 10),
+                    const Text(
                       'Entrez les neufs premiers chiffre du numéro d’exploitation sur la facture',
                       textAlign: TextAlign.center,
                     ),
-                    SizedBox(height: 10),
+                    const SizedBox(height: 10),
                     CTextFormField(
                       keyboardType: TextInputType.emailAddress,
                       require: true,

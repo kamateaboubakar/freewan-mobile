@@ -32,7 +32,7 @@ class _AddJobOfferCompanyPageState extends State<AddJobOfferCompanyPage> {
   final TextEditingController _addressCtrl = TextEditingController();
   final TextEditingController _phoneNumberCtrl = TextEditingController();
 
-  ImagePicker _imagePicker = ImagePicker();
+  final ImagePicker _imagePicker = ImagePicker();
 
   @override
   void initState() {
@@ -56,8 +56,8 @@ class _AddJobOfferCompanyPageState extends State<AddJobOfferCompanyPage> {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
-            Row(
-              children: const [
+            const Row(
+              children: [
                 Text(
                   'Informations du\nposte',
                   style: TextStyle(
@@ -100,7 +100,7 @@ class _AddJobOfferCompanyPageState extends State<AddJobOfferCompanyPage> {
                                 onTap: () {
                                   _getCompanies();
                                 },
-                                child: Icon(Icons.refresh),
+                                child: const Icon(Icons.refresh),
                               ),
                             );
                           }
@@ -128,7 +128,7 @@ class _AddJobOfferCompanyPageState extends State<AddJobOfferCompanyPage> {
                         crossAxisAlignment: CrossAxisAlignment.stretch,
                         children: [
                           ListTile(
-                            contentPadding: EdgeInsets.symmetric(vertical: 0),
+                            contentPadding: const EdgeInsets.symmetric(vertical: 0),
                             leading: Checkbox(
                               value: isNewCompany,
                               onChanged: (value) {
@@ -238,8 +238,8 @@ class _AddJobOfferCompanyPageState extends State<AddJobOfferCompanyPage> {
                                         ),
                                       ),
                                       padding: const EdgeInsets.all(12),
-                                      child: Stack(
-                                        children: const [
+                                      child: const Stack(
+                                        children: [
                                           Align(
                                             alignment: Alignment.centerLeft,
                                             child: Icon(
@@ -272,7 +272,7 @@ class _AddJobOfferCompanyPageState extends State<AddJobOfferCompanyPage> {
 
                                     return Row(
                                       children: [
-                                        SizedBox(width: 5),
+                                        const SizedBox(width: 5),
                                         Image.file(logoFile,
                                             width: 50, height: 50),
                                       ],
@@ -334,7 +334,7 @@ class _AddJobOfferCompanyPageState extends State<AddJobOfferCompanyPage> {
     Tools.messageBox(
         message: _addJobController.forJobUpdate ? "Votre offre d'emploi a été modifiée" : "Votre offre d'emploi a été créée",
         onConfirm: () {
-          Get.offAll(HomePage());
+          Get.offAll(const HomePage());
         });
   }
 

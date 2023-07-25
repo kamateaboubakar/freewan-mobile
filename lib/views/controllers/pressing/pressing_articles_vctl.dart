@@ -4,8 +4,6 @@ import 'package:wan_mobile/models/pressing/pressing_article_category.dart';
 import 'package:wan_mobile/models/pressing/pressing_service.dart';
 import 'package:wan_mobile/views/controllers/abstracts/view_controller.dart';
 
-import '../../../api/services/location_service.dart';
-import '../../../models/location_model.dart';
 import '../../../models/pressing/pressing_article.dart';
 import '../../../tools/utils/http_response.dart';
 
@@ -21,7 +19,7 @@ class PressingArticlesController extends ViewController {
   List<PressingArticleCategory>? get pressingArticleCategories =>
       _pressingArticleCategories;
 
-  List<PressingArticle> _selectedArticles = [];
+  final List<PressingArticle> _selectedArticles = [];
 
   List<PressingArticle> get selectedArticles => _selectedArticles;
 
@@ -29,7 +27,7 @@ class PressingArticlesController extends ViewController {
 
   int get selectedCategoryIndex => _selectedCategoryIndex;
 
-  List<PressingArticle> _updatePriceArticles = [];
+  final List<PressingArticle> _updatePriceArticles = [];
 
   List<PressingArticle> get updatePriceArticles => _updatePriceArticles;
 
@@ -57,8 +55,8 @@ class PressingArticlesController extends ViewController {
     var index =
     _selectedArticles.indexWhere((element) => element.id == article.id);
     if (index != -1) {
-      var _existArticle = _selectedArticles[index];
-      if (_existArticle.quantity! - 1 <= 0) {
+      var existArticle = _selectedArticles[index];
+      if (existArticle.quantity! - 1 <= 0) {
         _selectedArticles.removeAt(index);
         _computeTotalPrice();
         update();

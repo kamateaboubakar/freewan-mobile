@@ -1,13 +1,8 @@
 import 'dart:developer';
 
 import 'package:wan_mobile/models/address/address_type.dart';
-import 'package:wan_mobile/models/pressing/pressing.dart';
-import 'package:wan_mobile/models/pressing/pressing_article.dart';
-import 'package:wan_mobile/models/pressing/pressing_service.dart';
 import 'package:wan_mobile/models/pressing/user_localisation.dart';
-import 'package:wan_mobile/tools/types/types.dart';
 
-import '../../models/pressing/pressing_article_category.dart';
 import '../../tools/const/const.dart';
 import '../../tools/utils/http_response.dart';
 import '../abstracts/http_client_const.dart';

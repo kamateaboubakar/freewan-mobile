@@ -3,17 +3,12 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:flutter_map/flutter_map.dart';
 import 'package:get/get.dart';
-import 'package:intl/intl.dart';
 import 'package:latlong2/latlong.dart';
-import 'package:wan_mobile/models/location_model.dart';
 import 'package:wan_mobile/models/pressing/pressing.dart';
 import 'package:wan_mobile/models/pressing/time_delivery.dart';
-import 'package:wan_mobile/models/shop.dart';
 import 'package:wan_mobile/tools/utils/asset_colors.dart';
 import 'package:wan_mobile/tools/utils/tools.dart';
-import 'package:wan_mobile/views/controllers/gaz/gas_vctl.dart';
 import 'package:wan_mobile/views/controllers/pressing/pressing_vctl.dart';
-import '../../../../tools/widgets/address_type_item.dart';
 import '../../../../tools/widgets/c_button.dart';
 
 class PressingHourSelectionPage extends StatefulWidget {
@@ -90,9 +85,9 @@ class _PressingHourSelectionPageState extends State<PressingHourSelectionPage> {
                 _pressingController = controller;
                 TimeDeliverySelection timeDelivery =
                     _pressingController.timeDeliverySelection;
-                TimeOfDay? _deliveryHour = _pressingController.deliveryHour;
+                TimeOfDay? deliveryHour = _pressingController.deliveryHour;
                 _timeCtrl.text =
-                    _deliveryHour != null ? _deliveryHour.format(context) : '';
+                    deliveryHour != null ? deliveryHour.format(context) : '';
                 return Container(
                   decoration: const BoxDecoration(
                     borderRadius: BorderRadius.only(
@@ -119,7 +114,7 @@ class _PressingHourSelectionPageState extends State<PressingHourSelectionPage> {
                         style:
                             TextStyle(color: Color(0xff9D9D9D), fontSize: 12),
                       ),
-                      SizedBox(height: 10),
+                      const SizedBox(height: 10),
                       InkWell(
                         onTap: () {
                           if (canSelectHour) return;
@@ -134,7 +129,7 @@ class _PressingHourSelectionPageState extends State<PressingHourSelectionPage> {
                                     timeDelivery.title,
                                     style: TextStyle(
                                       color: canSelectHour
-                                          ? Color(0xffB5C4D8)
+                                          ? const Color(0xffB5C4D8)
                                           : Colors.black,
                                     ),
                                   ),
@@ -142,12 +137,12 @@ class _PressingHourSelectionPageState extends State<PressingHourSelectionPage> {
                                 Icon(
                                   Icons.keyboard_arrow_down_rounded,
                                   color: canSelectHour
-                                      ? Color(0xffB5C4D8)
+                                      ? const Color(0xffB5C4D8)
                                       : AssetColors.blueButton,
                                 )
                               ],
                             ),
-                            Divider()
+                            const Divider()
                           ],
                         ),
                       ),
@@ -161,7 +156,7 @@ class _PressingHourSelectionPageState extends State<PressingHourSelectionPage> {
                               fontSize: 12,
                             ),
                           ),
-                          Spacer(),
+                          const Spacer(),
                           InkWell(
                             onTap: () {
                               canSelectHour = !canSelectHour;
@@ -176,7 +171,7 @@ class _PressingHourSelectionPageState extends State<PressingHourSelectionPage> {
                                   shape: BoxShape.circle,
                                   color: canSelectHour
                                       ? AssetColors.blueButton
-                                      : Color(0xffD7DDE3)),
+                                      : const Color(0xffD7DDE3)),
                               width: 25,
                               height: 25,
                               child: canSelectHour
@@ -184,7 +179,7 @@ class _PressingHourSelectionPageState extends State<PressingHourSelectionPage> {
                                       child: Container(
                                         width: 15,
                                         height: 15,
-                                        decoration: BoxDecoration(
+                                        decoration: const BoxDecoration(
                                           shape: BoxShape.circle,
                                           color: Colors.white,
                                         ),
@@ -202,7 +197,7 @@ class _PressingHourSelectionPageState extends State<PressingHourSelectionPage> {
                           decoration: BoxDecoration(
                               color: AssetColors.lightGrey2,
                               borderRadius: BorderRadius.circular(2)),
-                          padding: EdgeInsets.all(4),
+                          padding: const EdgeInsets.all(4),
                           child: Row(
                             children: [
                               Container(
@@ -211,7 +206,7 @@ class _PressingHourSelectionPageState extends State<PressingHourSelectionPage> {
                                   color:
                                       AssetColors.blueButton.withOpacity(0.09),
                                 ),
-                                padding: EdgeInsets.all(8),
+                                padding: const EdgeInsets.all(8),
                                 child: Image.asset(
                                   "assets/images/time.png",
                                   width: 17.5,
@@ -222,7 +217,7 @@ class _PressingHourSelectionPageState extends State<PressingHourSelectionPage> {
                               Expanded(
                                 child: TextField(
                                   controller: _timeCtrl,
-                                  decoration: InputDecoration(
+                                  decoration: const InputDecoration(
                                     border: InputBorder.none,
                                     hintStyle: TextStyle(
                                       color: Color(0xff9D9D9D),
@@ -256,11 +251,11 @@ class _PressingHourSelectionPageState extends State<PressingHourSelectionPage> {
                                 !canSelectHour
                             ? AssetColors.blueButton
                             : const Color(0xffEDF2F9),
-                        child: Text(
+                        child: const Text(
                           "Enregister l'heure",
                           style: TextStyle(
                             color:
-                                true ? Colors.white : const Color(0xffB5C4D8),
+                                true ? Colors.white : Color(0xffB5C4D8),
                           ),
                         ),
                       ),
@@ -288,9 +283,9 @@ class _PressingHourSelectionPageState extends State<PressingHourSelectionPage> {
           mainAxisSize: MainAxisSize.min,
           children: [
             Container(
-              color: Color(0xffB5C4D8).withOpacity(0.15),
-              padding: EdgeInsets.all(16),
-              child: Text(
+              color: const Color(0xffB5C4D8).withOpacity(0.15),
+              padding: const EdgeInsets.all(16),
+              child: const Text(
                 'Séléctionner le moment',
                 style: TextStyle(
                   fontWeight: FontWeight.bold,
@@ -316,13 +311,13 @@ class _PressingHourSelectionPageState extends State<PressingHourSelectionPage> {
                           Get.back();
                         },
                         child: Padding(
-                          padding: EdgeInsets.all(4),
+                          padding: const EdgeInsets.all(4),
                           child: Row(
                             children: [
                               Expanded(
                                   child: Text(
                                 TimeDeliverySelection.times[i].title,
-                                style: TextStyle(
+                                style: const TextStyle(
                                   fontSize: 12,
                                 ),
                               )),
@@ -336,7 +331,7 @@ class _PressingHourSelectionPageState extends State<PressingHourSelectionPage> {
                           ),
                         ),
                       ),
-                      Divider()
+                      const Divider()
                     ]
                   ],
                 );

@@ -12,10 +12,10 @@ class JobSector {
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['id'] = this.id;
-    data['label'] = this.label;
-    data['description'] = this.description;
+    final Map<String, dynamic> data = <String, dynamic>{};
+    data['id'] = id;
+    data['label'] = label;
+    data['description'] = description;
     return data;
   }
 }

@@ -103,9 +103,9 @@ class ConfirmationCommandeConstructionPage extends StatelessWidget {
                   fontSize: 15,
                 ),
               ),
-              subtitle: Row(
+              subtitle: const Row(
                 mainAxisSize: MainAxisSize.min,
-                children: const [
+                children: [
                   Icon(
                     Icons.location_on,
                     size: 15,

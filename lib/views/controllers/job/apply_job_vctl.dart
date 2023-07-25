@@ -1,11 +1,9 @@
 import 'dart:io';
 
-import 'package:get/get.dart';
 import 'package:wan_mobile/api/controllers/file_api_ctl.dart';
 import 'package:wan_mobile/api/controllers/job_api_ctl.dart';
 import 'package:wan_mobile/models/job/apply_job.dart';
 import 'package:wan_mobile/models/job/job_offer.dart';
-import 'package:wan_mobile/tools/utils/file_util.dart';
 import 'package:wan_mobile/views/controllers/abstracts/view_controller.dart';
 import 'package:wan_mobile/tools/utils/http_response.dart';
 import 'package:path/path.dart' as p;

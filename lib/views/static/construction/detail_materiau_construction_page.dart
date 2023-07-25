@@ -70,22 +70,22 @@ class DetailMateriauConstructionPage extends StatelessWidget {
                     ),
                     child: Column(
                       children: [
-                        Expanded(
+                        const Expanded(
                           child: SingleChildScrollView(
                             child: Column(children: [
-                              const ListTile(
+                              ListTile(
                                 title: Text("Ajouter au panier"),
                                 trailing: CloseButton(),
                               ),
-                              const Divider(),
-                              const ListTile(
+                              Divider(),
+                              ListTile(
                                 title: Text("Quantité (Botte)"),
                                 trailing: QuantityField(isPositive: true),
                               ),
-                              const Divider(),
+                              Divider(),
                               ListTile(
-                                title: const Text("Total"),
-                                subtitle: const Text(
+                                title: Text("Total"),
+                                subtitle: Text(
                                   "15 000 F",
                                   style: TextStyle(
                                     fontWeight: FontWeight.bold,
@@ -94,7 +94,7 @@ class DetailMateriauConstructionPage extends StatelessWidget {
                                 ),
                                 trailing: Row(
                                   mainAxisSize: MainAxisSize.min,
-                                  children: const [],
+                                  children: [],
                                 ),
                               ),
                             ]),
@@ -113,9 +113,9 @@ class DetailMateriauConstructionPage extends StatelessWidget {
                     ),
                   ),
                 ),
-                child: Row(
+                child: const Row(
                   mainAxisAlignment: MainAxisAlignment.center,
-                  children: const [
+                  children: [
                     Icon(Icons.add_shopping_cart),
                     Gap(10),
                     Text("Acheter"),
@@ -142,9 +142,9 @@ class DetailMateriauConstructionPage extends StatelessWidget {
               contentPadding: EdgeInsets.zero,
               title: Text("Sable"),
             ),
-            Wrap(
+            const Wrap(
               spacing: 10,
-              children: const [
+              children: [
                 Text(
                   "F 15 000",
                 ),
@@ -157,8 +157,8 @@ class DetailMateriauConstructionPage extends StatelessWidget {
               ],
             ),
             const Gap(11),
-            Row(
-              children: const [
+            const Row(
+              children: [
                 Icon(
                   Icons.star,
                   color: Colors.amber,
@@ -192,12 +192,12 @@ class DetailMateriauConstructionPage extends StatelessWidget {
               trimExpandedText: " Voir moins",
             ),
             const Divider(),
-            ListTile(
+            const ListTile(
               contentPadding: EdgeInsets.zero,
-              title: const Text("Avis (86)"),
+              title: Text("Avis (86)"),
               trailing: Row(
                 mainAxisSize: MainAxisSize.min,
-                children: const [
+                children: [
                   Icon(
                     Icons.star,
                     color: Colors.amber,
@@ -258,16 +258,16 @@ class DetailMateriauConstructionPage extends StatelessWidget {
             ),
             const Gap(20),
             const Divider(),
-            ListTile(
-              leading: const CircleAvatar(
+            const ListTile(
+              leading: CircleAvatar(
                 backgroundImage: AssetImage(
                     "assets/images/c4416d79eef6dd018bcee3cd8b8ba561_M 1.png"),
               ),
               contentPadding: EdgeInsets.zero,
-              title: const Text("SOTACI"),
+              title: Text("SOTACI"),
               subtitle: Row(
                 mainAxisSize: MainAxisSize.min,
-                children: const [
+                children: [
                   Text("Boutique Officielle"),
                   Gap(5),
                   Icon(
@@ -277,7 +277,7 @@ class DetailMateriauConstructionPage extends StatelessWidget {
                   ),
                 ],
               ),
-              trailing: const Icon(
+              trailing: Icon(
                 Icons.arrow_forward_ios,
                 size: 12,
               ),

@@ -1,11 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:wan_mobile/views/controllers/job/add_job_vctl.dart';
-import 'package:wan_mobile/views/static/home/home_page.dart';
 import 'package:wan_mobile/views/static/job/views/employer/add_job_offer_company_page.dart';
 
 import '../../../../../tools/utils/asset_colors.dart';
-import '../../../../../tools/utils/tools.dart';
 import '../../../../../tools/widgets/c_button.dart';
 import '../../../../../tools/widgets/c_textform_field.dart';
 import '../../job_views.dart';
@@ -24,7 +22,7 @@ class _AddJobOfferDescriptionPageState
   final TextEditingController _preRequesiteCtrl = TextEditingController();
   final TextEditingController _salaryCtrl = TextEditingController();
 
-  AddJobController _addJobController = Get.put(AddJobController());
+  final AddJobController _addJobController = Get.put(AddJobController());
 
   @override
   void initState() {
@@ -47,8 +45,8 @@ class _AddJobOfferDescriptionPageState
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
-            Row(
-              children: const [
+            const Row(
+              children: [
                 Text(
                   'Informations du\nposte',
                   style: TextStyle(
@@ -106,7 +104,7 @@ class _AddJobOfferDescriptionPageState
                   height: 50,
                   onPressed: () {
                     if (_addJobController.isJobDescriptionValid) {
-                      Get.to(() => AddJobOfferCompanyPage());
+                      Get.to(() => const AddJobOfferCompanyPage());
                     }
                   },
                   color: _addJobController.isJobDescriptionValid

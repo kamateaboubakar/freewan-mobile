@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:wan_mobile/tools/const/const.dart';
 import 'package:wan_mobile/tools/utils/asset_colors.dart';
 
 class CButton extends StatelessWidget {

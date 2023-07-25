@@ -124,8 +124,8 @@ class PaiementChoixCart extends StatelessWidget {
                             height: 29,
                           ),
                         ),
-                        Row(
-                          children: const [
+                        const Row(
+                          children: [
                             Expanded(
                               child: CTextFormField(
                                 hintText: "Date d’expiration",

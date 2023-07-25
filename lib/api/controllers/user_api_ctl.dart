@@ -152,6 +152,24 @@ class UserApiCtl extends WebController {
     }
   }
 
+  Future<HttpResponse<User>> getUserProfilById(String userId) async {
+    try {
+      var res = await get(
+        HttpClientConst.baseUrl(module: "admin/api/v1/accounts/$userId"),
+        headers: HttpClientConst.authHeaders,
+      );
+      var body = HttpResponse.decodeBody(res);
+
+      if (body.status) {
+        return HttpResponse.success(data: User.fromJson(body.data));
+      } else {
+        return HttpResponse.error(message: body.message);
+      }
+    } catch (e, st) {
+      return HttpResponse.error(systemError: e, systemtraceError: st);
+    }
+  }
+
   Future<HttpResponse<bool>> logout() async {
     try {
       var res = await post(

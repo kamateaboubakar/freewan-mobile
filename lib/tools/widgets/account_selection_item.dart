@@ -41,7 +41,7 @@ class AccountSelectionItem extends StatelessWidget {
                   width: imageWidth,
                   height: imageHeight,
                 ),
-                SizedBox(width: 10)
+                const SizedBox(width: 10)
               ],
               Text(
                 title,

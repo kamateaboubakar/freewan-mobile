@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_otp_text_field/flutter_otp_text_field.dart';
 import 'package:wan_mobile/models/service.dart';
-import 'package:wan_mobile/tools/const/const.dart';
 import 'package:wan_mobile/views/controllers/auth/register_page_vctl.dart';
 
 class ServiceRegister extends StatelessWidget {

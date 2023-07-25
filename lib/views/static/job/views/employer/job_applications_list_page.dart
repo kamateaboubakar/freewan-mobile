@@ -2,18 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:wan_mobile/models/job/apply_job.dart';
 import 'package:wan_mobile/tools/utils/asset_colors.dart';
 import 'package:get/get.dart';
-import 'package:wan_mobile/tools/utils/tools.dart';
 import 'package:wan_mobile/views/controllers/job/job_application_list_vctl.dart';
-import 'package:wan_mobile/views/controllers/job/job_list_vctl.dart';
-import 'package:wan_mobile/views/controllers/job/job_offer_employer_vctl.dart';
 import 'package:wan_mobile/views/static/job/views/employee/application_job_description_page.dart';
-import 'package:wan_mobile/views/static/job/views/employee/apply_job_description_page.dart';
-import 'package:wan_mobile/views/static/job/views/employee/employee_views.dart';
 
-import '../../../../../models/job/job_offer.dart';
 import '../../../../../tools/widgets/error_view.dart';
 import '../../../../controllers/job/job_offer_applied_vctl.dart';
-import '../../job_views.dart';
 
 class JobApplicationsListPage extends StatefulWidget {
   const JobApplicationsListPage({Key? key}) : super(key: key);
@@ -25,7 +18,7 @@ class JobApplicationsListPage extends StatefulWidget {
 
 class _JobApplicationsListPageState extends State<JobApplicationsListPage> {
   JobApplicationsListController _jobApplicationListController = Get.put(JobApplicationsListController());
-  JobOfferAppliedController _jobOfferAppliedController = Get.put(JobOfferAppliedController());
+  final JobOfferAppliedController _jobOfferAppliedController = Get.put(JobOfferAppliedController());
 
   @override
   void initState() {
@@ -43,7 +36,7 @@ class _JobApplicationsListPageState extends State<JobApplicationsListPage> {
       appBar: AppBar(
         backgroundColor: Colors.white,
         foregroundColor: Colors.black,
-        title: Text("Candidatures"),
+        title: const Text("Candidatures"),
       ),
       body: Padding(
         padding: const EdgeInsets.all(16),
@@ -106,13 +99,13 @@ class _JobApplicationsListPageState extends State<JobApplicationsListPage> {
   Widget jobListView(List<ApplyJob> jobOffers) {
     return ListView.separated(
       itemCount: jobOffers.length,
-      separatorBuilder: (context, index) => SizedBox(height: 15),
+      separatorBuilder: (context, index) => const SizedBox(height: 15),
       itemBuilder: (context, index) {
         var jobOffer = jobOffers[index];
         return InkWell(
           onTap: () {
             _jobOfferAppliedController.updateSelectedJobOffer(jobOffer);
-            Get.to(ApplicationJobDescriptionPage());
+            Get.to(const ApplicationJobDescriptionPage());
           },
           child: Container(
             decoration: BoxDecoration(
@@ -128,7 +121,7 @@ class _JobApplicationsListPageState extends State<JobApplicationsListPage> {
               children: [
                 Text(
                   "#${index + 1}",
-                  style: TextStyle(
+                  style: const TextStyle(
                     fontSize: 16,
                     fontWeight: FontWeight.bold,
                     color: AssetColors.blueButton,

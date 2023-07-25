@@ -1,6 +1,7 @@
 import 'dart:convert';
 
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
 import 'package:wan_mobile/tools/utils/functions.dart';
 
 typedef Json = Map<String, dynamic>;
@@ -50,6 +51,19 @@ extension CustomDateTime on DateTime? {
       return false;
     }
     return this!.hour == time.hour && this!.minute == time.minute;
+  }
+
+  /// Couvertir la date en string avec format yyyy-MM-dd HH:mm:ss.SSS
+  String? toNotIsoFormat() {
+    if (this == null) {
+      return null;
+    } else {
+      // Formatter pour convertir la date au format souhaité
+      DateFormat outputDateFormat = DateFormat('yyyy-MM-dd HH:mm:ss.SSS');
+
+      // Convertir l'objet DateTime en chaîne au format souhaité
+      return outputDateFormat.format(this!);
+    }
   }
 }
 

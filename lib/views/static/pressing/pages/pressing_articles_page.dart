@@ -5,8 +5,6 @@ import 'package:wan_mobile/tools/utils/amount_util.dart';
 import 'package:wan_mobile/tools/utils/asset_colors.dart';
 import 'package:wan_mobile/views/controllers/pressing/pressing_articles_vctl.dart';
 import 'package:wan_mobile/views/controllers/pressing/pressing_services_vctl.dart';
-import 'package:wan_mobile/views/static/pressing/pages/pressing_delivery_address_page.dart';
-import 'package:wan_mobile/views/static/pressing/pages/pressing_hour_selection_page.dart';
 import 'package:wan_mobile/views/static/pressing/pages/pressing_payment_recap_page.dart';
 import 'package:wan_mobile/views/static/pressing/pressing_view.dart';
 import 'package:wan_mobile/views/static/pressing/widgets/pressing_article_item.dart';
@@ -14,7 +12,6 @@ import 'package:wan_mobile/views/static/pressing/widgets/pressing_article_item.d
 import '../../../../tools/widgets/c_button.dart';
 import '../../../../tools/widgets/payment_account_selection_item.dart';
 import '../../../controllers/pressing/pressing_vctl.dart';
-import '../../job/widgets/job_tag.dart';
 
 class PressingArticlesPage extends StatefulWidget {
   final Function() showArticle;
@@ -68,22 +65,22 @@ class _PressingArticlesPageState extends State<PressingArticlesPage> {
                     fontSize: 18,
                   ),
                 ),
-                SizedBox(height: 20),
-                Text(
+                const SizedBox(height: 20),
+                const Text(
                   "Services",
-                  style: const TextStyle(
+                  style: TextStyle(
                     fontSize: 14,
                   ),
                 ),
-                SizedBox(height: 5),
-                Text(
+                const SizedBox(height: 5),
+                const Text(
                   "Vous pouvez sélectionner plusieurs services",
-                  style: const TextStyle(
+                  style: TextStyle(
                     fontSize: 12,
                     color: Color(0xff7D8EA3),
                   ),
                 ),
-                SizedBox(height: 20),
+                const SizedBox(height: 20),
                 SizedBox(
                   height: 120,
                   child: GetBuilder(
@@ -119,7 +116,7 @@ class _PressingArticlesPageState extends State<PressingArticlesPage> {
                           );
                         },
                         separatorBuilder: (context, index) {
-                          return SizedBox(width: 20);
+                          return const SizedBox(width: 20);
                         },
                         itemCount:
                             _pressingServiceController.pressingServices!.length,
@@ -127,22 +124,22 @@ class _PressingArticlesPageState extends State<PressingArticlesPage> {
                     },
                   ),
                 ),
-                SizedBox(height: 20),
-                Text(
+                const SizedBox(height: 20),
+                const Text(
                   "Type d'article",
-                  style: const TextStyle(
+                  style: TextStyle(
                     fontSize: 14,
                   ),
                 ),
-                SizedBox(height: 10),
-                Text(
+                const SizedBox(height: 10),
+                const Text(
                   "Vous pouvez sélectionner plusieurs articles",
-                  style: const TextStyle(
+                  style: TextStyle(
                     fontSize: 12,
                     color: Color(0xff7D8EA3),
                   ),
                 ),
-                SizedBox(height: 20),
+                const SizedBox(height: 20),
                 GetBuilder(
                     init: _pressingArticlesController,
                     builder: (controller) {
@@ -187,7 +184,7 @@ class _PressingArticlesPageState extends State<PressingArticlesPage> {
                           : [];
 
                       if (articles.isEmpty) {
-                        return Center(
+                        return const Center(
                           child: Text('Aucun article'),
                         );
                       }
@@ -222,7 +219,7 @@ class _PressingArticlesPageState extends State<PressingArticlesPage> {
                                   );
                                 }),
                           ),
-                          SizedBox(height: 10),
+                          const SizedBox(height: 10),
                           GridView.builder(
                             itemCount: articles.length,
                             shrinkWrap: true,
@@ -269,7 +266,7 @@ class _PressingArticlesPageState extends State<PressingArticlesPage> {
                 const SizedBox(height: 10),
                 InkWell(
                   onTap: () {
-                    Get.to(PressingHourSelectionPage());
+                    Get.to(const PressingHourSelectionPage());
                   },
                   child: Container(
                     decoration: BoxDecoration(
@@ -328,7 +325,7 @@ class _PressingArticlesPageState extends State<PressingArticlesPage> {
                 const SizedBox(height: 10),
                 InkWell(
                   onTap: (){
-                    Get.to(PressingDeliveryAddressPage());
+                    Get.to(const PressingDeliveryAddressPage());
                   },
                   child : Container(
                     decoration: BoxDecoration(
@@ -388,7 +385,7 @@ class _PressingArticlesPageState extends State<PressingArticlesPage> {
                     onChanged: (value) {},
                     checkColor: const Color.fromRGBO(229, 229, 229, 1),
                   ),
-                  title: Text(
+                  title: const Text(
                     'Utiliser comme lieu de livraison du linge',
                     style: TextStyle(
                       fontSize: 12,
@@ -410,11 +407,11 @@ class _PressingArticlesPageState extends State<PressingArticlesPage> {
                   image: 'assets/images/master_card.png',
                   imageWidth: 25,
                 ),
-                SizedBox(height: 20),
+                const SizedBox(height: 20),
               ],
             ),
           ),
-          SizedBox(height: 10),
+          const SizedBox(height: 10),
           GetBuilder(
               init: _pressingArticlesController,
               builder: (controller) {
@@ -433,11 +430,11 @@ class _PressingArticlesPageState extends State<PressingArticlesPage> {
                         // Spread radius
                         blurRadius: 10,
                         // Blur radius
-                        offset: Offset(0, 3), // Offset
+                        offset: const Offset(0, 3), // Offset
                       ),
                     ],
                   ),
-                  padding: EdgeInsets.all(16),
+                  padding: const EdgeInsets.all(16),
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.stretch,
                     children: [
@@ -446,39 +443,39 @@ class _PressingArticlesPageState extends State<PressingArticlesPage> {
                         children: [
                           Container(
                             decoration: BoxDecoration(
-                              color: Color(0xffFC5E93).withOpacity(0.15),
+                              color: const Color(0xffFC5E93).withOpacity(0.15),
                               shape: BoxShape.circle,
                             ),
-                            padding: EdgeInsets.all(8),
+                            padding: const EdgeInsets.all(8),
                           ),
-                          SizedBox(width: 10),
+                          const SizedBox(width: 10),
                           Expanded(
                             child: Column(
                               crossAxisAlignment: CrossAxisAlignment.stretch,
                               children: [
-                                Text(
+                                const Text(
                                   'Total',
                                   style: TextStyle(
                                       fontSize: 10, color: Colors.grey),
                                 ),
-                                SizedBox(height: 10),
+                                const SizedBox(height: 10),
                                 Row(
                                   children: [
                                     Expanded(
                                       child: Text(
                                         articleCount == 0 || articleCount == 1
-                                            ? '${articleCount} article'
-                                            : '${articleCount} articles',
-                                        style: TextStyle(fontSize: 14),
+                                            ? '$articleCount article'
+                                            : '$articleCount articles',
+                                        style: const TextStyle(fontSize: 14),
                                       ),
                                     ),
                                     Text(
                                       totalAmount.toString().formatAmount,
-                                      style: TextStyle(fontSize: 14),
+                                      style: const TextStyle(fontSize: 14),
                                     ),
                                   ],
                                 ),
-                                SizedBox(height: 10),
+                                const SizedBox(height: 10),
                               ],
                             ),
                           )
@@ -488,7 +485,7 @@ class _PressingArticlesPageState extends State<PressingArticlesPage> {
                         height: 50,
                         onPressed: () {
                           if(isFormValid(articleCount)){
-                            Get.to(PressingPaymentRecapPage());
+                            Get.to(const PressingPaymentRecapPage());
                           }
                         },
                         color:isFormValid(articleCount)

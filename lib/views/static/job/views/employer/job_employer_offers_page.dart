@@ -130,7 +130,7 @@ class _JobEmployerOffersPageState extends State<JobEmployerOffersPage> {
             width: screenWidth * 0.6,
             child: InkWell(
               onTap: () {
-                Get.to(AddJobOfferInformationPage());
+                Get.to(const AddJobOfferInformationPage());
               },
               child: Container(
                 decoration: BoxDecoration(
@@ -140,8 +140,8 @@ class _JobEmployerOffersPageState extends State<JobEmployerOffersPage> {
                   ),
                 ),
                 padding: const EdgeInsets.all(12),
-                child: Stack(
-                  children: const [
+                child: const Stack(
+                  children: [
                     Align(
                       alignment: Alignment.centerLeft,
                       child: Icon(
@@ -183,7 +183,7 @@ class _JobEmployerOffersPageState extends State<JobEmployerOffersPage> {
           onTap: () {
             _jobListController.updateSelectedJobOffer(jobOffer);
             _jobListController.updateAlreadySubmitApplicationState();
-            Get.to(JobDescriptionPage());
+            Get.to(const JobDescriptionPage());
           },
           deleteCall: () async {
             var result = await Tools.showChoiceMessage(

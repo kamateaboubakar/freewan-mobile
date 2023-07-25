@@ -17,7 +17,7 @@ class ApplicationJobDescriptionPage extends StatefulWidget {
 
 class _ApplicationJobDescriptionPageState
     extends State<ApplicationJobDescriptionPage> {
-  JobOfferAppliedController _jobOfferAppliedController =
+  final JobOfferAppliedController _jobOfferAppliedController =
       Get.put(JobOfferAppliedController());
 
   late ApplyJob _applyJob;
@@ -130,7 +130,7 @@ class _ApplicationJobDescriptionPageState
                   ),
                   TextSpan(
                     text:
-                        "${_applyJob.motivationLetter ?? 'Pas de lettre de motivation'}",
+                        _applyJob.motivationLetter ?? 'Pas de lettre de motivation',
                     style: const TextStyle(
                       color: AssetColors.grey3,
                     ),

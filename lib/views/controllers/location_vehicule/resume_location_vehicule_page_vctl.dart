@@ -5,6 +5,7 @@ import 'package:wan_mobile/models/location_model.dart';
 import 'package:wan_mobile/models/location_vehicule/booking.dart';
 import 'package:wan_mobile/models/location_vehicule/car.dart';
 import 'package:wan_mobile/models/location_vehicule/mode_paiement.dart';
+import 'package:wan_mobile/tools/types/types.dart';
 import 'package:wan_mobile/tools/utils/tools.dart';
 import 'package:wan_mobile/tools/widgets/date_time_range_editing_controller.dart';
 import 'package:wan_mobile/views/controllers/abstracts/view_controller.dart';
@@ -28,7 +29,7 @@ class ResumeLocationVehiculePageVctl extends ViewController {
         await pr.show();
         Booking book = Booking();
         book.carId = vehicule.id;
-        book.customer = appCtl.user.accountId;
+        // book.customer = appCtl.user.fullName;
         book.userId = appCtl.user.accountId;
         book.destination = locationModel!.title;
         book.paymentModeId = selectedModePaiement!.id;
@@ -37,9 +38,10 @@ class ResumeLocationVehiculePageVctl extends ViewController {
         book.price = vehicule
             .getTotal(seletedDays.length, withDriver: withDriver)
             .toString();
-        book.startDate = seletedDays.first.start.date?.toIso8601String();
-        book.endDate = seletedDays.last.end.date?.toIso8601String();
+        book.startDate = seletedDays.first.start.date?.toNotIsoFormat();
+        book.endDate = seletedDays.last.end.date?.toNotIsoFormat();
         book.creditCardOrPhoneNumber = appCtl.user.phoneNumber;
+
         var res = await LocationVehiculeCtl().createBooking(book);
         await pr.hide();
         if (res.status) {

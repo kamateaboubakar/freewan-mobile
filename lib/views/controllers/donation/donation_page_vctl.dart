@@ -1,10 +1,8 @@
-import 'package:get/get.dart';
 import 'package:wan_mobile/api/controllers/don/donation_api_ctl.dart';
 import 'package:wan_mobile/models/don/campagne.dart';
 import 'package:wan_mobile/models/don/categorie_campagne.dart';
 import 'package:wan_mobile/tools/utils/http_response.dart';
 import 'package:wan_mobile/views/controllers/abstracts/view_controller.dart';
-import 'package:wan_mobile/views/controllers/app_ctl.dart';
 
 class DonationPageVctl extends ViewController {
   List<CategorieCampagne> categories = [];

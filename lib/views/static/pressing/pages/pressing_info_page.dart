@@ -19,7 +19,7 @@ class PressingInfoPage extends StatefulWidget {
 }
 
 class _PressingInfoPageState extends State<PressingInfoPage> {
-  PressingController _pressingController = Get.put(PressingController());
+  final PressingController _pressingController = Get.put(PressingController());
 
   PressingServiceController _pressingServiceController =
       Get.put(PressingServiceController());
@@ -75,7 +75,7 @@ class _PressingInfoPageState extends State<PressingInfoPage> {
                         ),
                         const SizedBox(width: 5),
                         RichText(
-                          text: TextSpan(
+                          text: const TextSpan(
                             style: TextStyle(
                               color: Color(0xff07153C),
                               fontSize: 14,
@@ -109,7 +109,7 @@ class _PressingInfoPageState extends State<PressingInfoPage> {
                 alignment: Alignment.center,
                 padding:
                     const EdgeInsets.symmetric(vertical: 8, horizontal: 16),
-                child: Text(
+                child: const Text(
                   //_pressing?.isOpen ?? false ? 'Ouvert' : 'Fermé',
                   'Ouvert',
                   style: TextStyle(
@@ -132,7 +132,7 @@ class _PressingInfoPageState extends State<PressingInfoPage> {
                 height: 70,
                 fit: BoxFit.cover,
                 errorBuilder: (context, _, __) {
-                  return Placeholder(
+                  return const Placeholder(
                     fallbackWidth: 100,
                     fallbackHeight: 70,
                   );
@@ -163,7 +163,7 @@ class _PressingInfoPageState extends State<PressingInfoPage> {
               _pressingServiceController = controller;
               var response = _pressingServiceController.response;
               if (response == null) {
-                return Center(child: CircularProgressIndicator());
+                return const Center(child: CircularProgressIndicator());
               }
 
               if (!response.status) {
@@ -172,12 +172,12 @@ class _PressingInfoPageState extends State<PressingInfoPage> {
                     crossAxisAlignment: CrossAxisAlignment.stretch,
                     children: [
                       Text(response.message),
-                      SizedBox(height: 10),
+                      const SizedBox(height: 10),
                       InkWell(
                         onTap: () {
                           _getPressingServices();
                         },
-                        child: Icon(Icons.refresh),
+                        child: const Icon(Icons.refresh),
                       )
                     ],
                   ),
@@ -192,12 +192,12 @@ class _PressingInfoPageState extends State<PressingInfoPage> {
                     crossAxisAlignment: CrossAxisAlignment.stretch,
                     children: [
                       Text(response.message),
-                      SizedBox(height: 10),
+                      const SizedBox(height: 10),
                       InkWell(
                         onTap: () {
                           _getPressingServices();
                         },
-                        child: Icon(Icons.refresh),
+                        child: const Icon(Icons.refresh),
                       )
                     ],
                   ),
@@ -211,7 +211,7 @@ class _PressingInfoPageState extends State<PressingInfoPage> {
                     height: 90,
                     child: ListView.separated(
                       separatorBuilder: (context, index) {
-                        return SizedBox(width: 20);
+                        return const SizedBox(width: 20);
                       },
                       itemBuilder: (context, index) {
                         var service = services[index];
@@ -222,17 +222,17 @@ class _PressingInfoPageState extends State<PressingInfoPage> {
                               width: 50,
                               height: 50,
                               errorBuilder: (context, _, __) {
-                                return Placeholder(
+                                return const Placeholder(
                                   fallbackWidth: 50,
                                   fallbackHeight: 50,
                                 );
                               },
                             ),
-                            SizedBox(height: 10),
+                            const SizedBox(height: 10),
                             Text(
                               service.name!,
                               textAlign: TextAlign.center,
-                              style: TextStyle(
+                              style: const TextStyle(
                                   color: Color(0xff647892), fontSize: 12),
                             )
                           ],
@@ -253,7 +253,7 @@ class _PressingInfoPageState extends State<PressingInfoPage> {
                       ),
                       padding: const EdgeInsets.all(8),
                       alignment: Alignment.center,
-                      child: Text(
+                      child: const Text(
                         'Continuer',
                         style: TextStyle(
                           color: Colors.white,

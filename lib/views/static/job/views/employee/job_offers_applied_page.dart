@@ -1,14 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:wan_mobile/models/job/apply_job.dart';
-import 'package:wan_mobile/tools/utils/asset_colors.dart';
 import 'package:get/get.dart';
-import 'package:wan_mobile/tools/utils/tools.dart';
 import 'package:wan_mobile/views/controllers/job/job_list_vctl.dart';
-import 'package:wan_mobile/views/controllers/job/job_offer_employer_vctl.dart';
 import 'package:wan_mobile/views/static/job/views/employee/apply_job_description_page.dart';
-import 'package:wan_mobile/views/static/job/views/employee/employee_views.dart';
 
-import '../../../../../models/job/job_offer.dart';
 import '../../../../../tools/widgets/error_view.dart';
 import '../../../../controllers/job/job_offer_applied_vctl.dart';
 import '../../job_views.dart';
@@ -41,7 +36,7 @@ class _JobOffersAppliedPageState extends State<JobOffersAppliedPage> {
       appBar: AppBar(
         backgroundColor: Colors.white,
         foregroundColor: Colors.black,
-        title: Text("Mes candidatures"),
+        title: const Text("Mes candidatures"),
       ),
       body: Padding(
         padding: const EdgeInsets.all(16),
@@ -118,7 +113,7 @@ class _JobOffersAppliedPageState extends State<JobOffersAppliedPage> {
             _jobOfferAppliedController.updateSelectedJobOffer(jobOffer);
             //_jobListController.updateAlreadySubmitApplicationState(true);
             //_jobListController.updateEditPostState();
-            Get.to(ApplyJobDescriptionPage());
+            Get.to(const ApplyJobDescriptionPage());
           },
         );
       },

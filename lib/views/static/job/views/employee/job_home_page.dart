@@ -8,7 +8,6 @@ import '../../../../../models/job/job_entity.dart';
 import '../../../../../tools/widgets/c_textform_field.dart';
 import '../../job_views.dart';
 import 'job_offers_applied_page.dart';
-import 'jobs_sector/job_sector_view.dart';
 
 class JobHomePage extends StatefulWidget {
   const JobHomePage({Key? key}) : super(key: key);
@@ -28,9 +27,9 @@ class _JobHomePageState extends State<JobHomePage> {
         actions: [
           IconButton(
             onPressed: () {
-              Get.to(JobOffersAppliedPage());
+              Get.to(const JobOffersAppliedPage());
             },
-            icon: Icon(Icons.list_alt),
+            icon: const Icon(Icons.list_alt),
           )
         ],
       ),
@@ -197,7 +196,7 @@ class _JobHomePageState extends State<JobHomePage> {
                 child: JobSectorView(),
               ),
               const SizedBox(height: 25),
-              JobListView(),
+              const JobListView(),
             ],
           ),
         ),

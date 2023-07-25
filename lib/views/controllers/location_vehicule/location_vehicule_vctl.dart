@@ -13,6 +13,7 @@ class LocationVehiculeVclt extends ViewController {
   bool loadUserCars = false;
   String? userCarsError;
   String? marketCarsError;
+  CategorieVehicule? selectedCategorie;
 
   Future<void> fecthMarketCars() async {
     loadMarketCars = true;
@@ -55,6 +56,12 @@ class LocationVehiculeVclt extends ViewController {
       categories = res.data!;
       update();
     }
+  }
+
+  Future<void> fecthData() async {
+    fecthMarketCars();
+    fecthUserCars();
+    fecthCategories();
   }
 
   @override

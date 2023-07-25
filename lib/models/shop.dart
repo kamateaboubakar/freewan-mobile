@@ -47,7 +47,7 @@ class Shop {
     if (json['brands'] != null) {
       brands = <Brands>[];
       json['brands'].forEach((v) {
-        brands!.add(new Brands.fromJson(v));
+        brands!.add(Brands.fromJson(v));
       });
     }
   }
@@ -56,21 +56,21 @@ class Shop {
 
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = {};
-    data['available_work_days'] = this.availableWorkDays;
-    data['description'] = this.description;
-    data['available_week_end_time'] = this.availableWeekEndTime;
-    data['available_work_begin_time'] = this.availableWorkBeginTime;
-    data['latitude'] = this.latitude;
-    data['address'] = this.address;
-    data['available_work_end_time'] = this.availableWorkEndTime;
-    data['available_week_begin_time'] = this.availableWeekBeginTime;
-    data['available_week_days'] = this.availableWeekDays;
-    data['id'] = this.id;
-    data['name'] = this.name;
-    data['longitude'] = this.longitude;
-    data['open'] = this.open;
-    if (this.brands != null) {
-      data['brands'] = this.brands!.map((v) => v.toJson()).toList();
+    data['available_work_days'] = availableWorkDays;
+    data['description'] = description;
+    data['available_week_end_time'] = availableWeekEndTime;
+    data['available_work_begin_time'] = availableWorkBeginTime;
+    data['latitude'] = latitude;
+    data['address'] = address;
+    data['available_work_end_time'] = availableWorkEndTime;
+    data['available_week_begin_time'] = availableWeekBeginTime;
+    data['available_week_days'] = availableWeekDays;
+    data['id'] = id;
+    data['name'] = name;
+    data['longitude'] = longitude;
+    data['open'] = open;
+    if (brands != null) {
+      data['brands'] = brands!.map((v) => v.toJson()).toList();
     }
     return data;
   }
@@ -93,10 +93,10 @@ class Brands {
 
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = {};
-    data['description'] = this.description;
-    data['id'] = this.id;
-    data['picture_name'] = this.pictureName;
-    data['name'] = this.name;
+    data['description'] = description;
+    data['id'] = id;
+    data['picture_name'] = pictureName;
+    data['name'] = name;
     return data;
   }
 }

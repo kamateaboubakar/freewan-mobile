@@ -13,7 +13,7 @@ class VehiculeALouerPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return RefreshIndicator(
-      onRefresh: ctl.fecthCategories,
+      onRefresh: ctl.fecthData,
       child: SingleChildScrollView(
         child: Column(
           children: [
@@ -33,7 +33,22 @@ class VehiculeALouerPage extends StatelessWidget {
                 scrollDirection: Axis.horizontal,
                 emptyWidget: const SizedBox.shrink(),
                 loading: ctl.loadCategories,
-                children: ctl.categories.map((e) => BanVehicule(e)).toList(),
+                children: ctl.categories
+                    .map(
+                      (e) => BanVehicule(
+                        e,
+                        seleted: ctl.selectedCategorie?.id == e.id,
+                        onTap: () {
+                          if (ctl.selectedCategorie?.id == e.id) {
+                            ctl.selectedCategorie = null;
+                          } else {
+                            ctl.selectedCategorie = e;
+                          }
+                          ctl.update();
+                        },
+                      ),
+                    )
+                    .toList(),
               ),
             ),
             const ListTile(
@@ -45,7 +60,12 @@ class VehiculeALouerPage extends StatelessWidget {
               shrinkWrap: true,
               onRefresh: ctl.fecthMarketCars,
               loading: ctl.loadMarketCars,
-              children: ctl.marketCars.map((e) => CardVehicule(e)).toList(),
+              children: ((ctl.selectedCategorie == null)
+                      ? ctl.marketCars
+                      : ctl.marketCars.where(
+                          (e) => e.categoryId == ctl.selectedCategorie?.id))
+                  .map((e) => CardVehicule(e))
+                  .toList(),
             ),
             // GridView.count(
             //   padding: const EdgeInsets.all(10),

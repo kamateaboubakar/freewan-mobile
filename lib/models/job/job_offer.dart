@@ -69,26 +69,26 @@ class JobOffer {
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['id'] = this.id;
-    if (this.contractType != null) {
-      data['contractType'] = this.contractType!.toJson();
+    final Map<String, dynamic> data = <String, dynamic>{};
+    data['id'] = id;
+    if (contractType != null) {
+      data['contractType'] = contractType!.toJson();
     }
-    if (this.activitySector != null) {
-      data['activitySector'] = this.activitySector!.toJson();
+    if (activitySector != null) {
+      data['activitySector'] = activitySector!.toJson();
     }
-    if (this.country != null) {
-      data['country'] = this.country!.toJson();
+    if (country != null) {
+      data['country'] = country!.toJson();
     }
-    if (this.company != null) {
-      data['company'] = this.company!.toJson();
+    if (company != null) {
+      data['company'] = company!.toJson();
     }
-    data['label'] = this.label;
-    data['workPlace'] = this.workPlace;
-    data['expectedSalary'] = this.expectedSalary;
-    data['description'] = this.description;
-    data['createdAt'] = this.createdAt;
-    data['available'] = this.available;
+    data['label'] = label;
+    data['workPlace'] = workPlace;
+    data['expectedSalary'] = expectedSalary;
+    data['description'] = description;
+    data['createdAt'] = createdAt;
+    data['available'] = available;
     return data;
   }
 }

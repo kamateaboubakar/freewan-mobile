@@ -7,7 +7,7 @@ class AddressTypeItem extends StatelessWidget {
   final String title;
   final String icon;
   final Function() onTap;
-  AddressTypeItem({
+  const AddressTypeItem({
     Key? key,
     this.selected = false,
     required this.title,
@@ -24,7 +24,7 @@ class AddressTypeItem extends StatelessWidget {
           color: selected ? AssetColors.blueButton : AssetColors.lightGrey2,
           borderRadius: BorderRadius.circular(10),
         ),
-        padding: EdgeInsets.all(8),
+        padding: const EdgeInsets.all(8),
         child: Row(
           children: [
             Container(
@@ -34,7 +34,7 @@ class AddressTypeItem extends StatelessWidget {
                 shape: BoxShape.circle,
               ),
               alignment: Alignment.center,
-              padding: EdgeInsets.all(8),
+              padding: const EdgeInsets.all(8),
               child: Image.asset(
                 icon,
                 width: 10,
@@ -45,7 +45,7 @@ class AddressTypeItem extends StatelessWidget {
                 },
               ),
             ),
-            SizedBox(width: 10),
+            const SizedBox(width: 10),
             Expanded(
               child: Text(
                 title,

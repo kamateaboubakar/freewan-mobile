@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:intl/intl.dart';
-import 'package:wan_mobile/tools/types/types.dart';
 import 'package:wan_mobile/tools/utils/amount_util.dart';
 import 'package:wan_mobile/tools/utils/tools.dart';
 import 'package:wan_mobile/tools/widgets/c_button.dart';
@@ -10,8 +9,6 @@ import 'package:wan_mobile/views/controllers/pressing/pressing_services_vctl.dar
 import 'package:wan_mobile/views/controllers/pressing/pressing_vctl.dart';
 import 'package:wan_mobile/views/static/paiement/paiement_operation_success.dart';
 
-import '../../../controllers/gaz/gas_shop_vctl.dart';
-import '../../../controllers/gaz/gas_vctl.dart';
 
 class PressingPaymentRecapPage extends StatefulWidget {
   const PressingPaymentRecapPage({super.key});
@@ -28,7 +25,7 @@ class _PressingPaymentRecapPageState extends State<PressingPaymentRecapPage> {
   final PressingServiceController _pressingServiceController =
       Get.put(PressingServiceController());
 
-  DateFormat _dateFormat = DateFormat("HH:mm:ss dd-MM-yyyy");
+  final DateFormat _dateFormat = DateFormat("HH:mm:ss dd-MM-yyyy");
 
   bool isLoading = false;
 
@@ -43,7 +40,7 @@ class _PressingPaymentRecapPageState extends State<PressingPaymentRecapPage> {
       bottomNavigationBar: Container(
         margin: const EdgeInsets.only(bottom: 34, left: 20, right: 20),
         child: isLoading
-            ? Center(
+            ? const Center(
               child: SizedBox(
                   width: 20,
                   height: 20,

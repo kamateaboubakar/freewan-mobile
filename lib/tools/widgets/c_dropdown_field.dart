@@ -114,7 +114,7 @@ class CDropdownField<T> extends StatelessWidget {
               itemBuilder: itemBuilder != null
                   ? (context, item, selected) {
                       return Padding(
-                        padding: EdgeInsets.all(8),
+                        padding: const EdgeInsets.all(8),
                         child: itemBuilder!(item),
                       );
                     }

@@ -4,7 +4,6 @@ import 'package:get/get.dart';
 import 'package:jwt_decode/jwt_decode.dart';
 import 'package:wan_mobile/api/abstracts/http_client_const.dart';
 import 'package:http/http.dart' as http;
-import 'package:wan_mobile/models/fichier.dart';
 import '../../tools/utils/http_response.dart';
 import '../../views/controllers/app_ctl.dart';
 

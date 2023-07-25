@@ -6,6 +6,8 @@ import '../../../../tools/utils/asset_colors.dart';
 import '../../../../tools/widgets/c_button.dart';
 
 class BillsListPage extends StatefulWidget {
+  const BillsListPage({super.key});
+
   @override
   State<BillsListPage> createState() => _BillsListPageState();
 }

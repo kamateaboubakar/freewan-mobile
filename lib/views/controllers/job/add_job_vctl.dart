@@ -1,4 +1,3 @@
-import 'dart:convert';
 import 'dart:io';
 
 import 'package:get/get.dart';
@@ -13,7 +12,6 @@ import 'package:wan_mobile/models/job/category.dart';
 import 'package:wan_mobile/models/job/job_offer.dart';
 import 'package:wan_mobile/models/job/work_experience.dart';
 import 'package:wan_mobile/models/pays.dart';
-import 'package:wan_mobile/tools/utils/file_util.dart';
 import 'package:wan_mobile/views/controllers/abstracts/view_controller.dart';
 import 'package:wan_mobile/tools/utils/http_response.dart';
 

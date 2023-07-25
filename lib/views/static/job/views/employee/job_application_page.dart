@@ -117,8 +117,8 @@ class _JobApplicationPageState extends State<JobApplicationPage> {
                                           border: Border.all(color: Colors.red),
                                           borderRadius: BorderRadius.circular(20),
                                         ),
-                                       padding: EdgeInsets.symmetric(vertical: 2, horizontal: 8),
-                                        child: Row(
+                                       padding: const EdgeInsets.symmetric(vertical: 2, horizontal: 8),
+                                        child: const Row(
                                           children: [
                                             Text(
                                               'Supprimer',
@@ -135,7 +135,7 @@ class _JobApplicationPageState extends State<JobApplicationPage> {
                                     )
                                   ],
                                 ),
-                                SizedBox(height: 10)
+                                const SizedBox(height: 10)
                               ]
                             ],
                           );
@@ -197,7 +197,7 @@ class _JobApplicationPageState extends State<JobApplicationPage> {
     Tools.messageBox(
         message: "Votre candidature a été soumise",
         onConfirm: () {
-          Get.offAll(HomePage());
+          Get.offAll(const HomePage());
         });
   }
 

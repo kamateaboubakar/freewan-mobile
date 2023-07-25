@@ -1,3 +1,5 @@
+import 'package:wan_mobile/tools/types/types.dart';
+
 class Booking {
   int? carId;
   String? startDate;
@@ -44,7 +46,7 @@ class Booking {
     data['endDate'] = endDate;
     data['destinationAddress'] = destination;
     data['price'] = price;
-    data['customer'] = customer;
+    data['customer'] = customer.value;
     data['userId'] = userId;
     data['paymentModeId'] = paymentModeId;
     data['latitude'] = lat;

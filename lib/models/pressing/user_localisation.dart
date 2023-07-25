@@ -24,19 +24,19 @@ class UserLocalisation {
     latitude = json['latitude'];
     longitude = json['longitude'];
     localisationType = json['localisation_type'] != null
-        ? new LocalisationType.fromJson(json['localisation_type'])
+        ? LocalisationType.fromJson(json['localisation_type'])
         : null;
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['id'] = this.id;
-    data['address'] = this.address;
-    data['customer_id'] = this.customerId;
-    data['latitude'] = this.latitude;
-    data['longitude'] = this.longitude;
-    if (this.localisationType != null) {
-      data['localisation_type'] = this.localisationType!.toJson();
+    final Map<String, dynamic> data = <String, dynamic>{};
+    data['id'] = id;
+    data['address'] = address;
+    data['customer_id'] = customerId;
+    data['latitude'] = latitude;
+    data['longitude'] = longitude;
+    if (localisationType != null) {
+      data['localisation_type'] = localisationType!.toJson();
     }
     return data;
   }
@@ -56,10 +56,10 @@ class LocalisationType {
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['id'] = this.id;
-    data['name'] = this.name;
-    data['photo_link'] = this.photoLink;
+    final Map<String, dynamic> data = <String, dynamic>{};
+    data['id'] = id;
+    data['name'] = name;
+    data['photo_link'] = photoLink;
     return data;
   }
 }

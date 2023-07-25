@@ -1,10 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:wan_mobile/tools/utils/amount_util.dart';
 import 'package:wan_mobile/tools/utils/asset_colors.dart';
-import 'package:wan_mobile/tools/widgets/job/company_logo.dart';
-import 'package:wan_mobile/views/controllers/job/add_job_vctl.dart';
-import 'package:wan_mobile/views/controllers/job/apply_job_vctl.dart';
 import 'package:wan_mobile/views/controllers/job/job_list_vctl.dart';
 import 'package:wan_mobile/views/static/job/views/employee/employee_views.dart';
 import 'package:wan_mobile/views/static/job/views/employer/add_job_offer_information_page.dart';
@@ -15,7 +11,6 @@ import '../../../../../tools/widgets/c_button.dart';
 import '../../../../../tools/widgets/c_outlined_button.dart';
 import '../../../../../tools/widgets/job/job_header.dart';
 import '../../../../controllers/job/job_application_list_vctl.dart';
-import '../../job_views.dart';
 import '../employer/job_applications_list_page.dart';
 
 class JobDescriptionPage extends StatefulWidget {
@@ -26,8 +21,8 @@ class JobDescriptionPage extends StatefulWidget {
 }
 
 class _JobDescriptionPageState extends State<JobDescriptionPage> {
-  JobListController _jobListController = Get.put(JobListController());
-  JobApplicationsListController _jobApplicationListController =
+  final JobListController _jobListController = Get.put(JobListController());
+  final JobApplicationsListController _jobApplicationListController =
       Get.put(JobApplicationsListController());
 
   late JobOffer _jobOffer;
@@ -147,7 +142,7 @@ class _JobDescriptionPageState extends State<JobDescriptionPage> {
                           );
                           return;
                         }
-                        Get.to(JobApplicationPage());
+                        Get.to(const JobApplicationPage());
                       },
                       height: 48,
                       child: Text(
@@ -160,18 +155,18 @@ class _JobDescriptionPageState extends State<JobDescriptionPage> {
                     ),
                   ),
                   if (_canEditPost) ...[
-                    SizedBox(width: 10),
+                    const SizedBox(width: 10),
                     Expanded(
                       child: COutlinedButton(
                         onPressed: () {
                           _jobApplicationListController
                               .updateSelectedJobOffer(_jobOffer);
-                          Get.to(JobApplicationsListPage());
+                          Get.to(const JobApplicationsListPage());
                         },
                         height: 48,
-                        child: Text(
+                        child: const Text(
                           "Voir candidatures",
-                          style: const TextStyle(
+                          style: TextStyle(
                             fontSize: 16,
                             color: AssetColors.blueButton,
                           ),
@@ -198,26 +193,26 @@ class _JobDescriptionPageState extends State<JobDescriptionPage> {
             children: [
               TextSpan(
                 text: "${_jobOffer.company!.name}\n",
-                style: TextStyle(
+                style: const TextStyle(
                   color: AssetColors.grey2,
                   fontWeight: FontWeight.bold,
                 ),
               ),
               TextSpan(
                 text: "${_jobOffer.company!.address}\n",
-                style: TextStyle(
+                style: const TextStyle(
                   color: AssetColors.grey3,
                 ),
               ),
               TextSpan(
                 text: "${_jobOffer.company!.legalForm}\n",
-                style: TextStyle(
+                style: const TextStyle(
                   color: AssetColors.grey3,
                 ),
               ),
               TextSpan(
                 text: "${_jobOffer.company!.email}\n",
-                style: TextStyle(
+                style: const TextStyle(
                   color: AssetColors.grey3,
                 ),
               ),
@@ -245,7 +240,7 @@ class JobDescription extends StatelessWidget {
               fontFamily: Const.defaultFont.fontFamily,
             ),
             children: [
-              TextSpan(
+              const TextSpan(
                 text: "Description de l'offre\n",
                 style: TextStyle(
                   color: AssetColors.grey2,
@@ -254,11 +249,11 @@ class JobDescription extends StatelessWidget {
               ),
               TextSpan(
                 text: jobOffer.description,
-                style: TextStyle(
+                style: const TextStyle(
                   color: AssetColors.grey3,
                 ),
               ),
-              TextSpan(
+              const TextSpan(
                 text: "\n\nPré-requis\n",
                 style: TextStyle(
                   color: AssetColors.grey2,
@@ -267,7 +262,7 @@ class JobDescription extends StatelessWidget {
               ),
               TextSpan(
                 text: jobOffer.prerequisites,
-                style: TextStyle(
+                style: const TextStyle(
                   color: AssetColors.grey3,
                 ),
               ),

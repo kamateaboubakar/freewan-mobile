@@ -28,7 +28,7 @@ class PressingServiceItem extends StatelessWidget {
         fit: StackFit.expand,
         children: [
           Padding(
-            padding: EdgeInsets.all(8),
+            padding: const EdgeInsets.all(8),
             child: Column(
               children: [
                 Expanded(
@@ -51,7 +51,7 @@ class PressingServiceItem extends StatelessWidget {
                 if (label != null)
                   Text(
                     label!,
-                    style: TextStyle(
+                    style: const TextStyle(
                       fontSize: 12,
                       color: Color(0xff07153C),
                       fontWeight: FontWeight.bold,

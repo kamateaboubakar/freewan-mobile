@@ -55,11 +55,11 @@ class MateriauConstructionCard extends StatelessWidget {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Padding(
-                    padding: const EdgeInsets.all(10),
+                  const Padding(
+                    padding: EdgeInsets.all(10),
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
-                      children: const [
+                      children: [
                         Text("Sable de mer"),
                         Text(
                           "À partir de",
@@ -90,9 +90,9 @@ class MateriauConstructionCard extends StatelessWidget {
                     padding: const EdgeInsets.only(left: 10),
                     child: Row(
                       children: [
-                        Expanded(
+                        const Expanded(
                           child: Row(
-                            children: const [
+                            children: [
                               Icon(
                                 Icons.star,
                                 color: Colors.amber,

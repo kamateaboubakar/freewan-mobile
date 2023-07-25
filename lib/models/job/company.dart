@@ -59,21 +59,21 @@ class Company {
       legalForm!.isNotEmpty;
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['id'] = this.id;
-    data['activitySectorId'] = this.activitySectorId;
-    data['name'] = this.name;
-    data['email'] = this.email;
-    data['legalForm'] = this.legalForm;
-    data['address'] = this.address;
-    data['phoneNumber'] = this.phoneNumber;
-    data['createdAt'] = this.createdAt;
-    data['employeesCount'] = this.employeesCount;
-    data['revenues'] = this.revenues;
-    data['verified'] = this.verified;
-    data['logo'] = this.logo;
-    data['customerAccountId'] = this.customerAccountId;
-    data['description'] = this.description;
+    final Map<String, dynamic> data = <String, dynamic>{};
+    data['id'] = id;
+    data['activitySectorId'] = activitySectorId;
+    data['name'] = name;
+    data['email'] = email;
+    data['legalForm'] = legalForm;
+    data['address'] = address;
+    data['phoneNumber'] = phoneNumber;
+    data['createdAt'] = createdAt;
+    data['employeesCount'] = employeesCount;
+    data['revenues'] = revenues;
+    data['verified'] = verified;
+    data['logo'] = logo;
+    data['customerAccountId'] = customerAccountId;
+    data['description'] = description;
     return data;
   }
 }

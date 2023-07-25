@@ -59,6 +59,9 @@ class ResumeLocationVehiculePage extends StatelessWidget {
                                     child: Image.network(
                                       e.url.value,
                                       fit: BoxFit.cover,
+                                      errorBuilder: (context, error,
+                                              stackTrace) =>
+                                          const Icon(Icons.broken_image_sharp),
                                     ),
                                   ),
                                 )
@@ -70,7 +73,8 @@ class ResumeLocationVehiculePage extends StatelessWidget {
                     children: [
                       Expanded(
                         child: Text(
-                          "${vehicule.brand.value} ${vehicule.model.value}",
+                          "${vehicule.brand!.name.value} ${vehicule.model.value}",
+                          maxLines: 1,
                           style: const TextStyle(
                             fontSize: 15,
                             fontWeight: FontWeight.bold,
@@ -125,7 +129,8 @@ class ResumeLocationVehiculePage extends StatelessWidget {
                     ),
                     title: const Text("Utiliser ma localisation"),
                     subtitle: (ctl.locationModel?.title == null)
-                        ? null
+                        ? const Text("Cliquez ici pour utiliser votre "
+                            "localisation actuelle")
                         : Row(
                             mainAxisSize: MainAxisSize.min,
                             children: [

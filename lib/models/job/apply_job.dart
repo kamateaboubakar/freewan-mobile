@@ -30,13 +30,13 @@ class ApplyJob {
   ApplyJob.fromJson(Map<String, dynamic> json) {
     id = json['id'];
     jobOffer = json['jobOffer'] != null
-        ? new JobOffer.fromJson(json['jobOffer'])
+        ? JobOffer.fromJson(json['jobOffer'])
         : null;
     motivationLetter = json['motivationLetter'];
     cv = json['cv'];
     cvUrl = json['cvUrl'];
     applicantDetails = json['applicantDetails'] != null
-        ? new ApplicantDetails.fromJson(json['applicantDetails'])
+        ? ApplicantDetails.fromJson(json['applicantDetails'])
         : null;
     appliedAt = json['appliedAt'];
     status = json['status'];
@@ -44,24 +44,26 @@ class ApplyJob {
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    if (id != null) data['id'] = this.id;
-    if (this.jobOffer != null) {
-      data['jobOffer'] = this.jobOffer!.toJson();
+    final Map<String, dynamic> data = <String, dynamic>{};
+    if (id != null) data['id'] = id;
+    if (jobOffer != null) {
+      data['jobOffer'] = jobOffer!.toJson();
     }
-    if (motivationLetter != null)
-      data['motivationLetter'] = this.motivationLetter;
-    if (cv != null) data['cv'] = this.cv;
-    if (cvUrl != null) data['cvUrl'] = this.cvUrl;
-    if (this.applicantDetails != null) {
-      data['applicantDetails'] = this.applicantDetails!.toJson();
+    if (motivationLetter != null) {
+      data['motivationLetter'] = motivationLetter;
     }
-    if (appliedAt != null) data['appliedAt'] = this.appliedAt;
-    if (status != null) data['status'] = this.status;
-    if (updatedAt != null) data['updatedAt'] = this.updatedAt;
-    if (customerAccountId != null)
-      data['customerAccountId'] = this.customerAccountId;
-    if (cvFilename != null) data['cvFilename'] = this.cvFilename;
+    if (cv != null) data['cv'] = cv;
+    if (cvUrl != null) data['cvUrl'] = cvUrl;
+    if (applicantDetails != null) {
+      data['applicantDetails'] = applicantDetails!.toJson();
+    }
+    if (appliedAt != null) data['appliedAt'] = appliedAt;
+    if (status != null) data['status'] = status;
+    if (updatedAt != null) data['updatedAt'] = updatedAt;
+    if (customerAccountId != null) {
+      data['customerAccountId'] = customerAccountId;
+    }
+    if (cvFilename != null) data['cvFilename'] = cvFilename;
     return data;
   }
 }
@@ -85,12 +87,12 @@ class ApplicantDetails {
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['accountId'] = this.accountId;
-    data['email'] = this.email;
-    data['firstName'] = this.firstName;
-    data['lastName'] = this.lastName;
-    data['login'] = this.login;
+    final Map<String, dynamic> data = <String, dynamic>{};
+    data['accountId'] = accountId;
+    data['email'] = email;
+    data['firstName'] = firstName;
+    data['lastName'] = lastName;
+    data['login'] = login;
     return data;
   }
 

@@ -22,7 +22,7 @@ class PaiementAccountSelectionItem extends StatelessWidget {
       child: Container(
         margin: const EdgeInsets.only(bottom: 12),
         decoration: BoxDecoration(
-          color: Color(0xfff3f8fe),
+          color: const Color(0xfff3f8fe),
           borderRadius: BorderRadius.circular(10)
         ),
         child: ListTile(
@@ -45,7 +45,7 @@ class PaiementAccountSelectionItem extends StatelessWidget {
                   width: imageWidth,
                   height: imageHeight,
                 ),
-                SizedBox(width: 10)
+                const SizedBox(width: 10)
               ],
               Text(
                 title,

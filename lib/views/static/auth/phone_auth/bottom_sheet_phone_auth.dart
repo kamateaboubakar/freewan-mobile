@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:wan_mobile/tools/types/types.dart';
 import 'package:wan_mobile/tools/widgets/c_textform_field.dart';
-import 'package:wan_mobile/tools/widgets/wrapper_body.dart';
 import 'package:wan_mobile/tools/widgets/wrapper_body_listview.dart';
 import 'package:wan_mobile/views/controllers/auth/bottom_sheet_phone_auth_vctl.dart';
 import 'package:wan_mobile/views/controllers/auth/phone_auth_vctl.dart';

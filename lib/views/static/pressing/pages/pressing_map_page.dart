@@ -7,16 +7,11 @@ import 'package:wan_mobile/api/services/location_service.dart';
 import 'package:wan_mobile/models/pressing/pressing.dart';
 import 'package:wan_mobile/tools/utils/asset_colors.dart';
 import 'package:wan_mobile/tools/utils/tools.dart';
-import 'package:wan_mobile/views/controllers/gaz/gas_shop_vctl.dart';
-import 'package:wan_mobile/views/controllers/gaz/gas_vctl.dart';
 import 'package:wan_mobile/views/controllers/pressing/pressing_vctl.dart';
 import 'package:wan_mobile/views/static/gaz/gaz_view.dart';
-import 'package:wan_mobile/views/static/gaz/pages/gaz_pos_info_page.dart';
 import 'package:wan_mobile/views/static/pressing/pages/pages.dart';
 
-import '../../../../models/gaz_pos.dart';
 import '../../../../models/service.dart';
-import '../../../../models/shop.dart';
 import '../../../../tools/widgets/c_textform_field.dart';
 
 class PressingMapPage extends StatefulWidget {
@@ -233,7 +228,7 @@ class _PressingMapPageState extends State<PressingMapPage> {
                         child: InkWell(
                           onTap: () {
                             if (index == 1) {
-                              Get.off(GazMapPage());
+                              Get.off(const GazMapPage());
                             }
                           },
                           child: Column(
@@ -243,7 +238,7 @@ class _PressingMapPageState extends State<PressingMapPage> {
                                 height: 55,
                                 decoration: BoxDecoration(
                                   color: selected
-                                      ? Color(0xffFC5E93).withOpacity(0.15)
+                                      ? const Color(0xffFC5E93).withOpacity(0.15)
                                       : const Color(0xffB5C4D8)
                                           .withOpacity(0.15),
                                   shape: BoxShape.circle,

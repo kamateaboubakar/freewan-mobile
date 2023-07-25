@@ -17,7 +17,9 @@ class HomePageVctl extends ViewController {
   ];
 
   List<String> ads2 = [
-    "https://myplace-events.com/public/upload/events/2022/05/resize-event-image-1653322579-XafKF.jpeg"
+    "https://myplace-events.com/public/upload/events/2022/05/resize-event-image-1653322579-XafKF.jpeg",
+    "https://img.freepik.com/vecteurs-libre/fond-plat-pour-saison-estivale_23-2150238033.jpg?w=1800&t=st=1690145166~exp=1690145766~hmac=1e68e74fe52cbe2ea6df5bcb27023b8c81cbdbcb780bf0e04ca04dd36af51b10",
+    "https://media.s-bol.com/7NRp2wpO5NO/550x368.jpg"
   ];
   bool displayWelcome;
 

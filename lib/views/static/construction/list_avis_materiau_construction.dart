@@ -3,7 +3,6 @@ import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:gap/gap.dart';
 import 'package:get/get.dart';
 import 'package:rating_summary/rating_summary.dart';
-import 'package:wan_mobile/tools/widgets/c_button.dart';
 import 'package:wan_mobile/views/static/construction/panier_materiau_construction_page.dart';
 
 class ListAvisMateriauConstruction extends StatelessWidget {

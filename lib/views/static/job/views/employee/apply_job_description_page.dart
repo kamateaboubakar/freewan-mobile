@@ -1,20 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:url_launcher/url_launcher.dart';
-import 'package:wan_mobile/tools/utils/amount_util.dart';
 import 'package:wan_mobile/tools/utils/asset_colors.dart';
-import 'package:wan_mobile/tools/widgets/job/company_logo.dart';
-import 'package:wan_mobile/views/controllers/job/job_list_vctl.dart';
 import 'package:wan_mobile/views/controllers/job/job_offer_applied_vctl.dart';
 import 'package:wan_mobile/views/static/job/views/employee/employee_views.dart';
-import 'package:wan_mobile/views/static/job/views/employer/add_job_offer_information_page.dart';
 
 import '../../../../../models/job/apply_job.dart';
-import '../../../../../models/job/job_offer.dart';
 import '../../../../../tools/const/const.dart';
-import '../../../../../tools/widgets/c_button.dart';
 import '../../../../../tools/widgets/job/job_header.dart';
-import '../../job_views.dart';
 
 class ApplyJobDescriptionPage extends StatefulWidget {
   const ApplyJobDescriptionPage({Key? key}) : super(key: key);
@@ -25,7 +18,7 @@ class ApplyJobDescriptionPage extends StatefulWidget {
 }
 
 class _ApplyJobDescriptionPageState extends State<ApplyJobDescriptionPage> {
-  JobOfferAppliedController _jobOfferAppliedController =
+  final JobOfferAppliedController _jobOfferAppliedController =
       Get.put(JobOfferAppliedController());
 
   late ApplyJob _applyJob;
@@ -148,7 +141,7 @@ class _ApplyJobDescriptionPageState extends State<ApplyJobDescriptionPage> {
                   fontFamily: Const.defaultFont.fontFamily,
                 ),
                 children: [
-                  TextSpan(
+                  const TextSpan(
                     text: "CV joint:\n",
                     style: TextStyle(
                       color: AssetColors.grey2,
@@ -162,7 +155,7 @@ class _ApplyJobDescriptionPageState extends State<ApplyJobDescriptionPage> {
                           launchUrl(Uri.parse(_applyJob.cvUrl!),
                               mode: LaunchMode.externalApplication);
                         },
-                        child: Text(
+                        child: const Text(
                           "Cliquer ici pour voir",
                           style: TextStyle(
                             color: Colors.blue,
@@ -171,7 +164,7 @@ class _ApplyJobDescriptionPageState extends State<ApplyJobDescriptionPage> {
                         ),
                       ),
                     ),
-                  TextSpan(
+                  const TextSpan(
                     text: "\n\nLettre de motivation\n",
                     style: TextStyle(
                       color: AssetColors.grey2,
@@ -180,8 +173,8 @@ class _ApplyJobDescriptionPageState extends State<ApplyJobDescriptionPage> {
                   ),
                   TextSpan(
                     text:
-                        "${_applyJob.motivationLetter ?? 'Pas de lettre de motivation'}",
-                    style: TextStyle(
+                        _applyJob.motivationLetter ?? 'Pas de lettre de motivation',
+                    style: const TextStyle(
                       color: AssetColors.grey3,
                     ),
                   ),

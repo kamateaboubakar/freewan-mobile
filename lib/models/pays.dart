@@ -22,11 +22,11 @@ class Pays {
 
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = {};
-    data['countryId'] = this.id;
-    data['code'] = this.code;
-    data['label'] = this.label;
-    data['callingCode'] = this.callingCode;
-    data['phoneNumberLength'] = this.phoneNumberLength;
+    data['countryId'] = id;
+    data['code'] = code;
+    data['label'] = label;
+    data['callingCode'] = callingCode;
+    data['phoneNumberLength'] = phoneNumberLength;
     return data;
   }
 

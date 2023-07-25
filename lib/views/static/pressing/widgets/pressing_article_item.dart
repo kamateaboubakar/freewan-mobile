@@ -39,7 +39,7 @@ class PressingArticleItem extends StatelessWidget {
             child: Stack(
               children: [
                 Padding(
-                  padding: EdgeInsets.all(8),
+                  padding: const EdgeInsets.all(8),
                   child: InkWell(
                     onTap: () {
                       if (item.price == null) return;
@@ -70,17 +70,17 @@ class PressingArticleItem extends StatelessWidget {
                         ),
                         Text(
                           item.name!,
-                          style: TextStyle(
+                          style: const TextStyle(
                             fontSize: 12,
                             color: Color(0xff07153C),
                           ),
                           textAlign: TextAlign.center,
                         ),
                         if (item.price != null && item.price! > 0) ...[
-                          SizedBox(height: 5),
+                          const SizedBox(height: 5),
                           Text(
-                            "${item.price.toString().formatAmount}",
-                            style: TextStyle(
+                            item.price.toString().formatAmount,
+                            style: const TextStyle(
                               fontSize: 12,
                               color: Color(0xff07153C),
                               fontWeight: FontWeight.bold,
@@ -99,13 +99,13 @@ class PressingArticleItem extends StatelessWidget {
                     child: Container(
                       decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(5),
-                        color: Color(0xff00853F),
+                        color: const Color(0xff00853F),
                       ),
-                      padding: EdgeInsets.symmetric(vertical: 4, horizontal: 8),
+                      padding: const EdgeInsets.symmetric(vertical: 4, horizontal: 8),
                       child: Center(
                         child: Text(
                           quantity.toString(),
-                          style: TextStyle(
+                          style: const TextStyle(
                             fontSize: 10,
                             color: Colors.white,
                             fontWeight: FontWeight.bold,
@@ -130,10 +130,10 @@ class PressingArticleItem extends StatelessWidget {
               child: Container(
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(5),
-                  color: Color(0xffFB2424),
+                  color: const Color(0xffFB2424),
                 ),
-                padding: EdgeInsets.all(8),
-                child: Center(
+                padding: const EdgeInsets.all(8),
+                child: const Center(
                   child: Icon(
                     Icons.remove,
                     color: Colors.white,

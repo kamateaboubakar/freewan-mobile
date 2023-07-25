@@ -4,6 +4,7 @@ import 'package:lottie/lottie.dart';
 import 'package:wan_mobile/tools/const/const.dart';
 import 'package:wan_mobile/tools/types/types.dart';
 import 'package:wan_mobile/views/controllers/home/home_page_vctl.dart';
+import 'package:wan_mobile/views/static/auth/profil_page.dart';
 
 class HomeDrawer extends StatelessWidget {
   final HomePageVctl ctl;
@@ -22,30 +23,47 @@ class HomeDrawer extends StatelessWidget {
               ),
               accountName: Text("Akwaba, ${ctl.appCtl.user.firstPrenom}"),
               accountEmail: Text(ctl.appCtl.user.phoneNumber.value),
+              otherAccountsPictures: [
+                IconButton(
+                  onPressed: ctl.logout,
+                  color: Colors.white,
+                  icon: const Icon(Icons.logout),
+                ),
+              ],
             ),
             Expanded(
-              child: Opacity(
-                opacity: .2,
-                child: Lottie.asset(
-                  "assets/lotties/130053-animated-africa-continent.json",
-                ),
+              child: ListView(
+                padding: EdgeInsets.zero,
+                physics: const BouncingScrollPhysics(),
+                children: [
+                  ListTile(
+                    leading: const Icon(Icons.person),
+                    title: const Text("Mon profil"),
+                    onTap: () => Get.to(
+                      () => const ProfilPage(),
+                    ),
+                  ),
+                ],
               ),
             ),
-            ListTile(
-              title: const Text("Déconnexion"),
-              trailing: const Icon(Icons.logout),
-              onTap: () => ctl.logout(),
+            Opacity(
+              opacity: .3,
+              child: Image.asset("assets/images/abidjan-vectoriel.png"),
+              // Lottie.asset(
+              //   "assets/lotties/130053-animated-africa-continent.json",
+              // ),
             ),
             const ListTile(
+              contentPadding: EdgeInsets.zero,
               title: Text(
-                "Wan © 2023 - V${Const.appVersion}",
+                "${Const.appName} © 2023 - V${Const.appVersion}",
                 textAlign: TextAlign.center,
                 style: TextStyle(
                   fontSize: 12,
                   color: Colors.black26,
                 ),
               ),
-            )
+            ),
           ],
         ),
         // Scaffold(
@@ -68,7 +86,7 @@ class HomeDrawer extends StatelessWidget {
         //     height: 30,
         //     child: Center(
         //       child: Text(
-        //         "Wan © 2023 - V${Const.appVersion}",
+        //         "${Const.appName} © 2023 - V${Const.appVersion}",
         //         style: TextStyle(
         //           fontSize: 12,
         //           color: Colors.black26,

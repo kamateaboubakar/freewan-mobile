@@ -17,6 +17,7 @@ class CTextFormField extends StatelessWidget {
   final bool obscureText;
   final Color? fillColor;
   final bool? enabled;
+  final bool autofocus;
   final TextInputType? keyboardType;
   final void Function()? onTap;
   final Color? hintColor;
@@ -25,10 +26,9 @@ class CTextFormField extends StatelessWidget {
   final EdgeInsetsGeometry? contentPadding;
   const CTextFormField(
       {this.controller,
-      this.contentPadding = const EdgeInsets.symmetric(
-        horizontal: 10,
-        vertical: 15,
-      ),
+      this.contentPadding =
+          const EdgeInsets.symmetric(horizontal: 10, vertical: 15),
+      this.autofocus = false,
       this.height,
       this.keyboardType,
       this.enabled,
@@ -67,6 +67,7 @@ class CTextFormField extends StatelessWidget {
         controller: controller,
         enabled: enabled,
         cursorHeight: 20,
+        autofocus: autofocus,
         onTap: onTap,
         textCapitalization: textCapitalization,
         style: const TextStyle(

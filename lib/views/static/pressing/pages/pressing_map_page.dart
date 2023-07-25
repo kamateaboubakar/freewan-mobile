@@ -5,6 +5,7 @@ import 'package:latlong2/latlong.dart';
 import 'package:sliding_up_panel/sliding_up_panel.dart';
 import 'package:wan_mobile/api/services/location_service.dart';
 import 'package:wan_mobile/models/pressing/pressing.dart';
+import 'package:wan_mobile/tools/const/const.dart';
 import 'package:wan_mobile/tools/utils/asset_colors.dart';
 import 'package:wan_mobile/tools/utils/tools.dart';
 import 'package:wan_mobile/views/controllers/pressing/pressing_vctl.dart';
@@ -238,7 +239,8 @@ class _PressingMapPageState extends State<PressingMapPage> {
                                 height: 55,
                                 decoration: BoxDecoration(
                                   color: selected
-                                      ? const Color(0xffFC5E93).withOpacity(0.15)
+                                      ? const Color(0xffFC5E93)
+                                          .withOpacity(0.15)
                                       : const Color(0xffB5C4D8)
                                           .withOpacity(0.15),
                                   shape: BoxShape.circle,
@@ -299,7 +301,7 @@ class _PressingMapPageState extends State<PressingMapPage> {
     }
     Tools.messageBox(
       message:
-          "WAN a besoin d'accéder à votre position pour trouver les services les plus proches de vous",
+          "${Const.appName} a besoin d'accéder à votre position pour trouver les services les plus proches de vous",
       onConfirm: () async {
         var isGranted = await LocationService.requestLocationPermission();
         if (!isGranted) {

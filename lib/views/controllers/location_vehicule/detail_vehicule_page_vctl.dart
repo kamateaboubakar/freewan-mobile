@@ -32,9 +32,9 @@ class DetailVehiculePageVctl extends ViewController {
     }
   }
 
-  @override
-  void onReady() {
-    super.onReady();
-    fetchPropritaire();
-  }
+  // @override
+  // void onReady() {
+  //   super.onReady();
+  //   fetchPropritaire();
+  // }
 }

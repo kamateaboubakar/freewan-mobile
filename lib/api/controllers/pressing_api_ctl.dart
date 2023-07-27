@@ -115,7 +115,6 @@ class PressingApiCtl extends WebController {
     required List<PressingArticle> articles,
     required UserLocalisation userLocalisation,
   }) async {
-
     var url = "${Const.pressingBaseUrl}/commande";
     var requestBody = {
       "customer_id": appCtl.user.accountId,

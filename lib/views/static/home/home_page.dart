@@ -17,6 +17,9 @@ import 'package:wan_mobile/views/static/boutique/boutique_page.dart';
 import 'package:wan_mobile/views/static/construction/construction_page.dart';
 import 'package:wan_mobile/views/static/donation/campagne_page.dart';
 import 'package:wan_mobile/views/static/home/home_drawer.dart';
+import 'package:wan_mobile/views/static/home/messagerie/messagerie_page.dart';
+import 'package:wan_mobile/views/static/home/more_option_home_page.dart';
+import 'package:wan_mobile/views/static/home/page_recherche.dart';
 import 'package:wan_mobile/views/static/location_vehicule/location_vehicule.dart';
 import 'package:wan_mobile/views/static/loyer/loyer_bottom_sheet.dart';
 import 'package:wan_mobile/views/static/recevoir_paiement/recevoir_paiement.dart';
@@ -26,6 +29,7 @@ import 'package:wan_mobile/views/static/tv_bills/tv_bills_selection_dialog.dart'
 import '../bills/bills_views.dart';
 import '../gaz/pages/gaz_map_page.dart';
 import '../job/job_views.dart';
+import '../pressing/pressing_view.dart';
 
 class HomePage extends StatelessWidget {
   final bool displayWelcome;
@@ -65,14 +69,14 @@ class HomePage extends StatelessWidget {
               IconButton(
                 iconSize: 20,
                 splashRadius: 20,
-                onPressed: () {},
+                onPressed: () => Get.to(() => const PageRecherche()),
                 color: AssetColors.blueButton,
                 icon: const Icon(IcoFontIcons.search),
               ),
               IconButton(
                 iconSize: 20,
                 splashRadius: 20,
-                onPressed: () {},
+                onPressed: () => Get.to(() => const MessageriePages()),
                 color: AssetColors.blueButton,
                 icon: const Icon(IcoFontIcons.uiMessaging),
               ),
@@ -256,6 +260,29 @@ class HomePage extends StatelessWidget {
                                         ),
                                       ],
                                     ),
+
+                                    CardMenu(
+                                      title: "Services de proximité",
+                                      children: [
+                                        ButtonMenu(
+                                          icon: Image.asset(
+                                            "assets/images/icons8-durabilite.gif",
+                                          ),
+                                          title: "Gaz",
+                                          onPressed: () =>
+                                              Get.to(() => const GazMapPage()),
+                                        ),
+                                        ButtonMenu(
+                                          icon: Image.asset(
+                                            "assets/images/icons/icons8-repassage-64.png",
+                                          ),
+                                          title: "Pressing",
+                                          onPressed: () => Get.to(
+                                            () => const PressingMapPage(),
+                                          ),
+                                        ),
+                                      ],
+                                    ),
                                     // MenuCon
                                     PageableMenu(
                                       children: [
@@ -307,14 +334,6 @@ class HomePage extends StatelessWidget {
                                           title: "Don",
                                           onPressed: () => Get.to(
                                               () => const DonationPage()),
-                                        ),
-                                        ButtonMenu(
-                                          icon: Image.asset(
-                                            "assets/images/icons8-durabilite.gif",
-                                          ),
-                                          title: "Gaz",
-                                          onPressed: () =>
-                                              Get.to(() => const GazMapPage()),
                                         ),
                                         ButtonMenu(
                                           icon: Image.asset(
@@ -434,9 +453,8 @@ class HomePage extends StatelessWidget {
                                             ),
                                           ),
                                           title: "Voir Plus",
-                                          onPressed: () {
-                                            //Tools.openBottomSheet(JobProfileSelectionDialog());
-                                          },
+                                          onPressed: () => Get.to(
+                                              () => const MoreOptionHomePage()),
                                         ),
                                       ],
                                     ),
@@ -481,27 +499,8 @@ class HomePage extends StatelessWidget {
                                                     children: [
                                                       ButtonMenu(
                                                         icon: Image.asset(
-                                                            "assets/images/icons8-cadeau.gif"),
-                                                        title: "Cadeau",
-                                                        onPressed: () {},
-                                                      ),
-                                                      ButtonMenu(
-                                                        icon: Image.asset(
-                                                            "assets/images/icons8-hôtel-5-étoiles-48.png"),
-                                                        title: "Hotels",
-                                                        onPressed: () {},
-                                                      ),
-                                                      ButtonMenu(
-                                                        icon: Image.asset(
-                                                            "assets/images/icons8-train-64.png"),
-                                                        title:
-                                                            "Billet de train",
-                                                        onPressed: () {},
-                                                      ),
-                                                      ButtonMenu(
-                                                        icon: Image.asset(
-                                                            "assets/images/icons8-avion-vue-de-face-64.png"),
-                                                        title: "Billet d'avion",
+                                                            "assets/images/icons/icons8-arrêt-de-bus-64.png"),
+                                                        title: "Bus et Car",
                                                         onPressed: () {},
                                                       ),
                                                       ButtonMenu(
@@ -513,8 +512,27 @@ class HomePage extends StatelessWidget {
                                                       ),
                                                       ButtonMenu(
                                                         icon: Image.asset(
-                                                            "assets/images/icons8-assurance-64.png"),
-                                                        title: "Assurance",
+                                                          "assets/images/icons/icons8-events-64.png",
+                                                        ),
+                                                        title: "Evènements",
+                                                        onPressed: () {},
+                                                      ),
+                                                      ButtonMenu(
+                                                        icon: Image.asset(
+                                                            "assets/images/icons8-hôtel-5-étoiles-48.png"),
+                                                        title: "Hotels",
+                                                        onPressed: () {},
+                                                      ),
+                                                      ButtonMenu(
+                                                        icon: Image.asset(
+                                                            "assets/images/icons8-train-64.png"),
+                                                        title: "Métro",
+                                                        onPressed: () {},
+                                                      ),
+                                                      ButtonMenu(
+                                                        icon: Image.asset(
+                                                            "assets/images/icons8-avion-vue-de-face-64.png"),
+                                                        title: "Billet d'avion",
                                                         onPressed: () {},
                                                       ),
                                                     ],
@@ -653,6 +671,12 @@ class HomePage extends StatelessWidget {
                                       children: [
                                         ButtonMenu(
                                           icon: Image.asset(
+                                              "assets/images/icons8-cadeau.gif"),
+                                          title: "Cadeau",
+                                          onPressed: () {},
+                                        ),
+                                        ButtonMenu(
+                                          icon: Image.asset(
                                               "assets/images/icons8-liquor-shelf-64.png"),
                                           title: "Brasserie",
                                           onPressed: () {},
@@ -706,11 +730,6 @@ class HomePage extends StatelessWidget {
                                       ),
                                       ButtonMenu(
                                         icon: Image.asset(
-                                            "assets/images/icons/icons8-casino-48.png"),
-                                        title: "Pari",
-                                      ),
-                                      ButtonMenu(
-                                        icon: Image.asset(
                                             "assets/images/icons/icons8-fast-cart-64.png"),
                                         title: "Shoping",
                                       ),
@@ -719,7 +738,25 @@ class HomePage extends StatelessWidget {
                                             "assets/images/icons/icons8-google-play-store-96.png"),
                                         title: "Playstore",
                                       ),
-                                    ])
+                                    ]),
+                                    Opacity(
+                                      opacity: 0.4,
+                                      child: ClipRRect(
+                                        borderRadius: BorderRadius.circular(10),
+                                        child: Image.asset(
+                                            "assets/images/6006701.jpg"),
+                                      ),
+                                    ),
+                                    const ListTile(
+                                      title: Text(
+                                        "${Const.appName} © 2023 - V${Const.appVersion}",
+                                        textAlign: TextAlign.center,
+                                        style: TextStyle(
+                                          fontSize: 12,
+                                          color: Colors.black26,
+                                        ),
+                                      ),
+                                    ),
                                   ],
                                 ),
                               ),

@@ -126,17 +126,20 @@ class _PressingInfoPageState extends State<PressingInfoPage> {
           const SizedBox(height: 10),
           Row(
             children: [
-              Image.network(
-                _pressing!.imageUrl,
-                width: 100,
-                height: 70,
-                fit: BoxFit.cover,
-                errorBuilder: (context, _, __) {
-                  return const Placeholder(
-                    fallbackWidth: 100,
-                    fallbackHeight: 70,
-                  );
-                },
+              ClipRRect(
+                borderRadius: BorderRadius.circular(10),
+                child: Image.network(
+                  _pressing!.imageUrl,
+                  width: 100,
+                  height: 70,
+                  fit: BoxFit.cover,
+                  errorBuilder: (context, _, __) {
+                    return const Placeholder(
+                      fallbackWidth: 100,
+                      fallbackHeight: 70,
+                    );
+                  },
+                ),
               ),
               const SizedBox(width: 10),
               Expanded(
@@ -208,27 +211,30 @@ class _PressingInfoPageState extends State<PressingInfoPage> {
                 children: [
                   SizedBox(
                     width: double.infinity,
-                    height: 90,
+                    height: 80,
                     child: ListView.separated(
                       separatorBuilder: (context, index) {
-                        return const SizedBox(width: 20);
+                        return const SizedBox(width: 10);
                       },
                       itemBuilder: (context, index) {
                         var service = services[index];
                         return Column(
                           children: [
-                            Image.network(
-                              service.imageUrl,
-                              width: 50,
-                              height: 50,
-                              errorBuilder: (context, _, __) {
-                                return const Placeholder(
-                                  fallbackWidth: 50,
-                                  fallbackHeight: 50,
-                                );
-                              },
+                            Expanded(
+                              child: Center(
+                                child: Image.network(
+                                  service.imageUrl,
+                                  width: 75,
+                                  height: 75,
+                                  errorBuilder: (context, _, __) {
+                                    return const Placeholder(
+                                      fallbackWidth: 50,
+                                      fallbackHeight: 50,
+                                    );
+                                  },
+                                ),
+                              ),
                             ),
-                            const SizedBox(height: 10),
                             Text(
                               service.name!,
                               textAlign: TextAlign.center,
@@ -242,6 +248,7 @@ class _PressingInfoPageState extends State<PressingInfoPage> {
                       scrollDirection: Axis.horizontal,
                     ),
                   ),
+                  const SizedBox(height: 5),
                   InkWell(
                     onTap: () {
                       widget.showArticle();

@@ -10,8 +10,6 @@ import 'package:wan_mobile/tools/widgets/c_textform_field.dart';
 import 'package:wan_mobile/tools/widgets/date_time_range_editing_controller.dart';
 import 'package:wan_mobile/views/controllers/location_vehicule/detail_location_page_vctl.dart';
 
-import 'resume_location_vehicule_page.dart';
-
 class DetailLocationVehiculePage extends StatelessWidget {
   final Car vehicule;
   const DetailLocationVehiculePage(this.vehicule, {super.key});
@@ -19,7 +17,7 @@ class DetailLocationVehiculePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GetBuilder<DetailLocationVehiculePageVctl>(
-        init: DetailLocationVehiculePageVctl(),
+        init: DetailLocationVehiculePageVctl(vehicule),
         builder: (ctl) {
           return Scaffold(
             appBar: AppBar(
@@ -29,13 +27,7 @@ class DetailLocationVehiculePage extends StatelessWidget {
               padding: const EdgeInsets.all(20),
               child: CButton(
                 height: 50,
-                onPressed: () => Get.to(
-                  () => ResumeLocationVehiculePage(
-                    vehicule,
-                    ctl.seletedDays,
-                    withDriver: ctl.withDriver,
-                  ),
-                ),
+                onPressed: ctl.checkDate,
                 child: const Text("Continuer"),
               ),
             ),

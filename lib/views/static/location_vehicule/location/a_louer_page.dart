@@ -57,6 +57,7 @@ class VehiculeALouerPage extends StatelessWidget {
             WrapperBodyGridView(
               primary: false,
               childAspectRatio: .8,
+              crossAxisSpacing: 5,
               shrinkWrap: true,
               onRefresh: ctl.fecthMarketCars,
               loading: ctl.loadMarketCars,

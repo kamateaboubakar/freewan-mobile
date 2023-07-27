@@ -26,15 +26,18 @@ class CardVehicule extends StatelessWidget {
                 width: double.infinity,
                 height: double.infinity,
                 child: (vehicule.images.isEmpty)
-                    ? const Icon(
-                        Icons.broken_image_rounded,
-                        color: AssetColors.blueButton,
-                      )
-                    : Image.network(
-                        vehicule.images.first.url.value,
-                        fit: BoxFit.cover,
-                        errorBuilder: (context, error, stackTrace) =>
-                            const Icon(Icons.broken_image_rounded),
+                    ? const Icon(Icons.broken_image_rounded,
+                        color: AssetColors.blueButton)
+                    : ClipRRect(
+                        borderRadius: const BorderRadius.vertical(
+                          top: Radius.circular(10),
+                        ),
+                        child: Image.network(
+                          vehicule.images.first.url.value,
+                          fit: BoxFit.cover,
+                          errorBuilder: (context, error, stackTrace) =>
+                              const Icon(Icons.broken_image_rounded),
+                        ),
                       ),
               ),
             ),

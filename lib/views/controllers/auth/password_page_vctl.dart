@@ -1,3 +1,4 @@
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:local_auth/local_auth.dart';
@@ -79,10 +80,14 @@ class PasswordPageVctl extends ViewController {
             submit();
           }
         } catch (e) {
-          Tools.messageBox(
+          if (kDebugMode) {
+            Tools.messageBox(
               message:
                   "Désolé, un problème est survenu pendant l'authentification."
-                  " Veuillez réessayer.");
+                  " Veuillez réessayer.",
+            );
+            print(e);
+          }
         }
       } else {
         hasAlreadyAuthenticated = false;

@@ -60,13 +60,12 @@ class ResumeLocationVehiculePageVctl extends ViewController {
 
   Future<void> requestPermissionForLocation() async {
     await pr.show();
+
     var hasLocationPermission = await LocationService.hasLocationPermission();
     await pr.hide();
     if (hasLocationPermission) {
-      await pr.show();
       locationModel =
           await LocationService.getLocation(withLocationDescription: true);
-      await pr.hide();
       update();
       return;
     }

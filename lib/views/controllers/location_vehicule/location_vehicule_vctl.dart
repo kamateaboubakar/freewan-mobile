@@ -5,7 +5,7 @@ import 'package:wan_mobile/tools/types/types.dart';
 import 'package:wan_mobile/views/controllers/abstracts/view_controller.dart';
 
 class LocationVehiculeVclt extends ViewController {
-  List<Car> marketCars = [];
+  List<Car> _marketCars = [];
   List<Car> userCars = [];
   List<CategorieVehicule> categories = [];
   bool loadMarketCars = false;
@@ -13,7 +13,8 @@ class LocationVehiculeVclt extends ViewController {
   bool loadUserCars = false;
   String? userCarsError;
   String? marketCarsError;
-  CategorieVehicule? selectedCategorie;
+  int? selectedCategorie;
+  String search = "";
 
   Future<void> fecthMarketCars() async {
     loadMarketCars = true;
@@ -22,7 +23,7 @@ class LocationVehiculeVclt extends ViewController {
     loadMarketCars = false;
     update();
     if (res.status) {
-      marketCars = res.data!;
+      _marketCars = res.data!;
       update();
     } else {
       marketCarsError = res.message;
@@ -68,5 +69,28 @@ class LocationVehiculeVclt extends ViewController {
   void onReady() {
     super.onReady();
     Future.wait([fecthCategories(), fecthMarketCars(), fecthUserCars()]);
+  }
+
+  List<Car> get getMarketCars {
+    var finalCars = _marketCars;
+    if (selectedCategorie != null) {
+      finalCars =
+          _marketCars.where((e) => e.categoryId == selectedCategorie).toList();
+    }
+
+    if (search.isNotEmpty) {
+      finalCars = finalCars
+          .where((e) =>
+              e.brand?.name.value
+                  .toLowerCase()
+                  .contains(search.toLowerCase()) ==
+              true)
+          .toList();
+      // finalCars = finalCars
+      //     .where(
+      //         (e) => e.model.value.toLowerCase().contains(search.toLowerCase()))
+      //     .toList();
+    }
+    return finalCars;
   }
 }

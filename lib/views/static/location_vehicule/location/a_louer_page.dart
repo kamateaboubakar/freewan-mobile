@@ -17,11 +17,15 @@ class VehiculeALouerPage extends StatelessWidget {
       child: SingleChildScrollView(
         child: Column(
           children: [
-            const Padding(
-              padding: EdgeInsets.all(20),
+            Padding(
+              padding: const EdgeInsets.all(20),
               child: CTextFormField(
                 hintText: "Chercher une voiture",
-                suffixIcon: Icon(Icons.search),
+                suffixIcon: const Icon(Icons.search),
+                onChanged: (e) {
+                  ctl.search = e;
+                  ctl.update();
+                },
               ),
             ),
             SizedBox(
@@ -37,14 +41,15 @@ class VehiculeALouerPage extends StatelessWidget {
                     .map(
                       (e) => BanVehicule(
                         e,
-                        seleted: ctl.selectedCategorie?.id == e.id,
+                        seleted: ctl.selectedCategorie == e.id,
                         onTap: () {
-                          if (ctl.selectedCategorie?.id == e.id) {
+                          if (ctl.selectedCategorie == e.id) {
                             ctl.selectedCategorie = null;
+                            ctl.update();
                           } else {
-                            ctl.selectedCategorie = e;
+                            ctl.selectedCategorie = e.id;
+                            ctl.update();
                           }
-                          ctl.update();
                         },
                       ),
                     )
@@ -61,12 +66,7 @@ class VehiculeALouerPage extends StatelessWidget {
               shrinkWrap: true,
               onRefresh: ctl.fecthMarketCars,
               loading: ctl.loadMarketCars,
-              children: ((ctl.selectedCategorie == null)
-                      ? ctl.marketCars
-                      : ctl.marketCars.where(
-                          (e) => e.categoryId == ctl.selectedCategorie?.id))
-                  .map((e) => CardVehicule(e))
-                  .toList(),
+              children: ctl.getMarketCars.map((e) => CardVehicule(e)).toList(),
             ),
             // GridView.count(
             //   padding: const EdgeInsets.all(10),

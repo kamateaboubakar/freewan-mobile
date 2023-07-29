@@ -164,6 +164,7 @@ class HomePage extends StatelessWidget {
                             ),
                             child: Column(
                               children: [
+                                const Gap(10),
                                 Container(
                                   margin: const EdgeInsets.only(
                                     bottom: 4,
@@ -176,6 +177,7 @@ class HomePage extends StatelessWidget {
                                     borderRadius: BorderRadius.circular(10),
                                   ),
                                 ),
+                                const Gap(10),
                                 Expanded(
                                   child: SingleChildScrollView(
                                     padding: const EdgeInsets.only(

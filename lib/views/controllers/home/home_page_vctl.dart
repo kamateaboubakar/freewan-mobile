@@ -26,6 +26,7 @@ class HomePageVctl extends ViewController {
   var scrollController = ScrollController();
 
   var isScrolling = false.obs;
+  PageController pageViewCtl = PageController();
 
   HomePageVctl(this.displayWelcome);
 

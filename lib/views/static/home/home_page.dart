@@ -41,735 +41,760 @@ class HomePage extends StatelessWidget {
     return GetBuilder<HomePageVctl>(
       init: HomePageVctl(displayWelcome),
       builder: (ctl) {
-        return Scaffold(
-          extendBodyBehindAppBar: true,
-          backgroundColor: Colors.blue.shade50,
-          appBar: AppBar(
-            leadingWidth: 45,
-            backgroundColor: Colors.transparent,
-            leading: Builder(builder: (context) {
-              return Padding(
-                padding: const EdgeInsets.only(left: 10),
-                child: GestureDetector(
-                  onTap: () => Scaffold.of(context).openDrawer(),
-                  child: const CircleAvatar(
-                    backgroundColor: AssetColors.blueButton,
-                    foregroundColor: Colors.white,
-                    child: Icon(Icons.person, size: 20),
-                  ),
-                ),
-              );
-            }),
-            title: Image.asset(
-              Const.inLineAppLogo,
-              width: 100,
-              height: 50,
-            ),
-            actions: [
-              IconButton(
-                iconSize: 20,
-                splashRadius: 20,
-                onPressed: () => Get.to(() => const PageRecherche()),
-                color: AssetColors.blueButton,
-                icon: const Icon(IcoFontIcons.search),
-              ),
-              IconButton(
-                iconSize: 20,
-                splashRadius: 20,
-                onPressed: () => Get.to(() => const MessageriePages()),
-                color: AssetColors.blueButton,
-                icon: const Icon(IcoFontIcons.uiMessaging),
-              ),
-            ],
-          ),
-          drawer: HomeDrawer(ctl),
-          floatingActionButtonLocation:
-              FloatingActionButtonLocation.centerFloat,
-          floatingActionButton: AnimatedContainer(
-            height: 60,
-            duration: const Duration(milliseconds: 100),
-            child: Obx(() {
-              if (ctl.isScrolling.value) {
-                return FloatingActionButton(
-                  backgroundColor: AssetColors.blueButton,
-                  isExtended: true,
-                  onPressed: () => Get.to(() => const ScanPayCamera()),
-                  child: Image.asset(
-                    "assets/images/icons/scan_float_button.png",
-                    width: 20,
-                    height: 20,
-                  ),
-                );
-              } else {
-                return FloatingActionButton.extended(
-                  backgroundColor: AssetColors.blueButton,
-                  onPressed: () => Get.to(() => const ScanPayCamera()),
-                  label: const Text(
-                    "Scan Any QR",
-                    style: TextStyle(
-                      fontWeight: FontWeight.w600,
+        return PageView(
+          physics: const BouncingScrollPhysics(),
+          controller: ctl.pageViewCtl,
+          children: [
+            Scaffold(
+              extendBodyBehindAppBar: true,
+              backgroundColor: Colors.blue.shade50,
+              appBar: AppBar(
+                leadingWidth: 45,
+                backgroundColor: Colors.transparent,
+                leading: Builder(builder: (context) {
+                  return Padding(
+                    padding: const EdgeInsets.only(left: 10),
+                    child: GestureDetector(
+                      onTap: () => Scaffold.of(context).openDrawer(),
+                      child: const CircleAvatar(
+                        backgroundColor: AssetColors.blueButton,
+                        foregroundColor: Colors.white,
+                        child: Icon(Icons.person, size: 20),
+                      ),
                     ),
+                  );
+                }),
+                title: Image.asset(Const.inLineAppLogo, width: 100, height: 50),
+                actions: [
+                  IconButton(
+                    iconSize: 20,
+                    splashRadius: 20,
+                    onPressed: () => Get.to(() => const PageRecherche()),
+                    color: AssetColors.blueButton,
+                    icon: const Icon(IcoFontIcons.search),
                   ),
-                  icon: Image.asset(
-                    "assets/images/icons/scan_float_button.png",
-                    width: 20,
-                    height: 20,
-                  ),
-                );
-              }
-            }),
-          ),
-          body: SizedBox.expand(
-            child: NotificationListener<ScrollNotification>(
-              onNotification: (notification) {
-                if (notification.metrics.axis == Axis.vertical) {
-                  if (notification is UserScrollNotification) {
-                    if (!ctl.isScrolling.value) {
-                      ctl.isScrolling.value = true;
-                    }
-                  } else if (notification is ScrollEndNotification) {
-                    if (ctl.isScrolling.value) {
-                      Future.delayed(const Duration(seconds: 1)).then((value) {
-                        ctl.isScrolling.value = false;
-                      });
-                    }
-                  }
-                }
-                return true;
-              },
-              child: Stack(
-                children: [
-                  SizedBox(
-                    height: Get.height * 0.4,
-                    child: Image.asset(
-                      "assets/images/pub_lbd.jpeg",
-                      fit: BoxFit.fitWidth,
-                    ),
-                  ),
-                  DraggableScrollableSheet(
-                    snap: true,
-                    initialChildSize: 0.7,
-                    minChildSize: 0.7,
-                    maxChildSize: 0.9,
-                    builder: (context, scrollController) {
-                      return Container(
-                        decoration: BoxDecoration(
-                          color: Colors.blue.shade50,
-                          borderRadius: const BorderRadius.vertical(
-                            top: Radius.circular(20),
-                          ),
-                        ),
-                        child: Column(
-                          children: [
-                            Container(
-                              margin: const EdgeInsets.only(
-                                bottom: 4,
-                                top: 3,
-                              ),
-                              height: 4,
-                              width: 30,
-                              decoration: BoxDecoration(
-                                color: Colors.grey,
-                                borderRadius: BorderRadius.circular(10),
-                              ),
-                            ),
-                            Expanded(
-                              child: SingleChildScrollView(
-                                padding: const EdgeInsets.only(
-                                  left: 8.0,
-                                  right: 8.0,
-                                  bottom: 80,
-                                ),
-                                controller: scrollController,
-                                child: Column(
-                                  children: [
-                                    Container(
-                                      height: 130,
-                                      decoration: BoxDecoration(
-                                        borderRadius: BorderRadius.circular(10),
-                                        border: Border.all(
-                                          width: .1,
-                                          color: Colors.grey,
-                                        ),
-                                      ),
-                                      child: ImageSlideshow(
-                                        isLoop: true,
-                                        autoPlayInterval: 6000,
-                                        children: ctl.ads
-                                            .map(
-                                              (e) => ClipRRect(
-                                                borderRadius:
-                                                    BorderRadius.circular(10),
-                                                child: Stack(
-                                                  fit: StackFit.expand,
-                                                  children: [
-                                                    Shimmer.fromColors(
-                                                      baseColor:
-                                                          Colors.grey[300]!,
-                                                      highlightColor:
-                                                          Colors.grey[100]!,
-                                                      child: Container(
-                                                        color: Colors.white,
-                                                      ),
-                                                    ),
-                                                    Image.network(e,
-                                                        fit: BoxFit.cover),
-                                                  ],
-                                                ),
-                                              ),
-                                            )
-                                            .toList(),
-                                      ),
-                                    ),
-                                    const SizedBox(height: 20),
-                                    CardMenu(
-                                      title: "Hub Financier",
-                                      children: [
-                                        ButtonMenu(
-                                          icon: Image.asset(
-                                            "assets/images/icons8-envoyé.gif",
-                                            // "assets/images/icons/envoyer_mobile.png",
-                                          ),
-                                          title: "Envoyer vers mobile",
-                                          onPressed: () {},
-                                        ),
-                                        ButtonMenu(
-                                          icon: Image.asset(
-                                            "assets/images/icons8-tirelire.gif",
-                                            // "assets/images/icons/recevoir_argent.png",
-                                          ),
-                                          title: "Recevoir argent",
-                                          onPressed: () => Get.to(
-                                              () => const RecevoirPaiement()),
-                                        ),
-                                        ButtonMenu(
-                                          icon: Image.asset(
-                                              "assets/images/icons8-échange-de-cartes.gif"
-                                              // "assets/images/icons/transfert_banquaire.png",
-
-                                              ),
-                                          title: "Transfert bancaire",
-                                          onPressed: () {},
-                                        ),
-                                        ButtonMenu(
-                                          icon: Image.asset(
-                                            "assets/images/icons/mon_bedoo.png",
-                                          ),
-                                          title: "Lebedoo",
-                                          onPressed: () {},
-                                        ),
-                                      ],
-                                    ),
-
-                                    CardMenu(
-                                      title: "Services de proximité",
-                                      children: [
-                                        ButtonMenu(
-                                          icon: Image.asset(
-                                            "assets/images/icons8-durabilite.gif",
-                                          ),
-                                          title: "Gaz",
-                                          onPressed: () =>
-                                              Get.to(() => const GazMapPage()),
-                                        ),
-                                        ButtonMenu(
-                                          icon: Image.asset(
-                                            "assets/images/icons/icons8-repassage-64.png",
-                                          ),
-                                          title: "Pressing",
-                                          onPressed: () => Get.to(
-                                            () => const PressingMapPage(),
-                                          ),
-                                        ),
-                                      ],
-                                    ),
-                                    // MenuCon
-                                    PageableMenu(
-                                      children: [
-                                        ButtonMenu(
-                                          icon: Image.asset(
-                                            "assets/images/icons/historique_transaction.png",
-                                          ),
-                                          title: "Solde et historique",
-                                          onPressed: () {},
-                                        ),
-                                        ButtonMenu(
-                                          icon: Image.asset(
-                                            "assets/images/icons/paiement_loyer.png",
-                                          ),
-                                          title: "Paiement Loyer",
-                                          onPressed: () =>
-                                              Tools.openBottomSheet(
-                                                  const LoyerBottomSheet()),
-                                        ),
-                                        ButtonMenu(
-                                          icon: Image.asset(
-                                            "assets/images/icons/paiement_assurance.png",
-                                          ),
-                                          title: "Paiement Assurances",
-                                          onPressed: () {},
-                                        ),
-                                        ButtonMenu(
-                                          icon: Image.asset(
-                                            "assets/images/icons8-mallette.gif",
-                                          ),
-                                          title: "Job",
-                                          onPressed: () {
-                                            Tools.openBottomSheet(
-                                                const JobProfileSelectionDialog());
-                                          },
-                                        ),
-                                        ButtonMenu(
-                                          icon: Image.asset(
-                                            "assets/images/icons8-exchange-money-64.png",
-                                          ),
-                                          title: "Tontine",
-                                          onPressed: () =>
-                                              Get.to(() => const TontinePage()),
-                                        ),
-                                        ButtonMenu(
-                                          icon: Image.asset(
-                                            "assets/images/icons8-confiance.gif",
-                                          ),
-                                          title: "Don",
-                                          onPressed: () => Get.to(
-                                              () => const DonationPage()),
-                                        ),
-                                        ButtonMenu(
-                                          icon: Image.asset(
-                                            "assets/images/icons/icons8-voiture-64.png",
-                                          ),
-                                          title: "Location de véhicule",
-                                          onPressed: () => Get.to(
-                                              () => const LocationVehicule()),
-                                        ),
-                                        ButtonMenu(
-                                          icon: Image.asset(
-                                            "assets/images/icons/icons8-construction-96.png",
-                                          ),
-                                          title: "Construction de maison",
-                                          onPressed: () => Get.to(
-                                              () => const ConstructionPage()),
-                                        ),
-                                        ButtonMenu(
-                                          icon: Image.asset(
-                                              "assets/images/icons/boutique.png"),
-                                          title: "Boutique",
-                                          onPressed: () => Get.to(
-                                              () => const BoutiquePage()),
-                                        ),
-                                      ],
-                                    ),
-                                    Row(
-                                      children: [
-                                        Expanded(
-                                          child: SingleChildCardMenu(
-                                            onTap: () {},
-                                            icon: Image.asset(
-                                              "assets/images/icons/box_cadeau.png",
-                                              height: 18,
-                                              width: 18,
-                                            ),
-                                            title: "Partager et Gagner",
-                                            subtitle: "Récompenses garanties",
-                                          ),
-                                        ),
-                                        const SizedBox(width: 8),
-                                        Expanded(
-                                          child: SingleChildCardMenu(
-                                            onTap: () {},
-                                            icon: Image.asset(
-                                              "assets/images/icons/carte_virtuelle.png",
-                                              height: 18,
-                                              width: 18,
-                                            ),
-                                            title: "Carte Virtuelle",
-                                            subtitle:
-                                                "Achetez sur sites ecommerce",
-                                          ),
-                                        ),
-                                      ],
-                                    ),
-                                    CardMenu(
-                                      title: "Recharges et Factures",
-                                      children: [
-                                        ButtonMenu(
-                                          icon: Image.asset(
-                                              "assets/images/icons/achat_unite.png"),
-                                          title: "Achat d’unités",
-                                          onPressed: () => Get.to(
-                                              () => const AchatUnitePage()),
-                                        ),
-                                        ButtonMenu(
-                                          icon: Image.asset(
-                                              "assets/images/icons/acaht_data.png"),
-                                          title: "Achat de pass",
-                                          onPressed: () {},
-                                        ),
-                                        ButtonMenu(
-                                          icon: Image.asset(
-                                              "assets/images/icons/facture_electricite.png"),
-                                          title: "Facture d’électricité",
-                                          onPressed: () =>
-                                              Tools.openBottomSheet(
-                                            const BillsCompanySelectionDialog(),
-                                          ),
-                                        ),
-                                        ButtonMenu(
-                                          icon: Image.asset(
-                                              "assets/images/icons8-entrepot-96.png"),
-                                          title: "CIE Prépayé",
-                                          onPressed: () {},
-                                        ),
-                                        ButtonMenu(
-                                          icon: Image.asset(
-                                              "assets/images/icons/abonnement_tele.png"),
-                                          title: "Abonnement\nTélé",
-                                          onPressed: () {
-                                            Tools.openBottomSheet(
-                                                const TvBillsSelectionDialog());
-                                          },
-                                        ),
-                                        ButtonMenu(
-                                          icon: Image.asset(
-                                              "assets/images/icons/abonnement_payage.png"),
-                                          title: "Abonnement\nPéage",
-                                          onPressed: () {},
-                                        ),
-                                        ButtonMenu(
-                                          icon: Image.asset(
-                                              "assets/images/icons/abonnement_fibre.png"),
-                                          title: "Abonnement\nFibre",
-                                          onPressed: () {},
-                                        ),
-                                        ButtonMenu(
-                                          icon: const CircleAvatar(
-                                            backgroundColor: Color.fromRGBO(
-                                                50, 132, 229, 0.16),
-                                            child: Icon(
-                                              Icons.arrow_forward,
-                                              color:
-                                                  Color.fromRGBO(7, 21, 60, 1),
-                                            ),
-                                          ),
-                                          title: "Voir Plus",
-                                          onPressed: () => Get.to(
-                                              () => const MoreOptionHomePage()),
-                                        ),
-                                      ],
-                                    ),
-                                    Column(
-                                      crossAxisAlignment:
-                                          CrossAxisAlignment.start,
-                                      children: [
-                                        const Text(
-                                          "Voyage • Allez où le vent vous emporte",
-                                          style: TextStyle(
-                                            fontSize: 14,
-                                            fontWeight: FontWeight.bold,
-                                          ),
-                                        ),
-                                        Container(
-                                          height: 220,
-                                          margin: const EdgeInsets.only(
-                                            bottom: 20,
-                                            top: 10,
-                                          ),
-                                          child: ListView(
-                                            padding: EdgeInsets.zero,
-                                            shrinkWrap: true,
-                                            scrollDirection: Axis.horizontal,
-                                            children: [
-                                              Container(
-                                                width: 300,
-                                                decoration: BoxDecoration(
-                                                  color: Colors.white,
-                                                  borderRadius:
-                                                      BorderRadius.circular(10),
-                                                ),
-                                                child: Center(
-                                                  child: GridView.count(
-                                                    padding:
-                                                        const EdgeInsets.all(
-                                                            10),
-                                                    crossAxisCount: 3,
-                                                    shrinkWrap: true,
-                                                    physics:
-                                                        const NeverScrollableScrollPhysics(),
-                                                    children: [
-                                                      ButtonMenu(
-                                                        icon: Image.asset(
-                                                            "assets/images/icons/icons8-arrêt-de-bus-64.png"),
-                                                        title: "Bus et Car",
-                                                        onPressed: () {},
-                                                      ),
-                                                      ButtonMenu(
-                                                        icon: Image.asset(
-                                                            "assets/images/icons8-ticket.gif"),
-                                                        title:
-                                                            "Ticket de cinéma",
-                                                        onPressed: () {},
-                                                      ),
-                                                      ButtonMenu(
-                                                        icon: Image.asset(
-                                                          "assets/images/icons/icons8-events-64.png",
-                                                        ),
-                                                        title: "Evènements",
-                                                        onPressed: () {},
-                                                      ),
-                                                      ButtonMenu(
-                                                        icon: Image.asset(
-                                                            "assets/images/icons8-hôtel-5-étoiles-48.png"),
-                                                        title: "Hotels",
-                                                        onPressed: () {},
-                                                      ),
-                                                      ButtonMenu(
-                                                        icon: Image.asset(
-                                                            "assets/images/icons8-train-64.png"),
-                                                        title: "Métro",
-                                                        onPressed: () {},
-                                                      ),
-                                                      ButtonMenu(
-                                                        icon: Image.asset(
-                                                            "assets/images/icons8-avion-vue-de-face-64.png"),
-                                                        title: "Billet d'avion",
-                                                        onPressed: () {},
-                                                      ),
-                                                    ],
-                                                  ),
-                                                ),
-                                              ),
-                                              const SizedBox(width: 10),
-                                              Container(
-                                                height: double.infinity,
-                                                width: Get.width / 2,
-                                                decoration: BoxDecoration(
-                                                  color: Colors.white,
-                                                  borderRadius:
-                                                      BorderRadius.circular(10),
-                                                ),
-                                                child: ClipRRect(
-                                                  borderRadius:
-                                                      BorderRadius.circular(10),
-                                                  child: Image.network(
-                                                    "https://img.freepik.com/psd-premium/"
-                                                    "modele-publication-instagram-vacances-"
-                                                    "vacances-voyage-banniere-medias-sociaux_597327-466.jpg?w=1060",
-                                                    fit: BoxFit.cover,
-                                                  ),
-                                                ),
-                                              ),
-                                              const SizedBox(width: 10),
-                                              Container(
-                                                height: double.infinity,
-                                                width: Get.width,
-                                                decoration: BoxDecoration(
-                                                  color: Colors.white,
-                                                  borderRadius:
-                                                      BorderRadius.circular(10),
-                                                ),
-                                                child: ClipRRect(
-                                                  borderRadius:
-                                                      BorderRadius.circular(10),
-                                                  child: Image.network(
-                                                    "https://img.freepik.com/psd-gratuit/"
-                                                    "modele-facebook-journee-mondiale-du-"
-                                                    "tourisme-geometrique_23-2149558429.jpg"
-                                                    "?w=2000&t=st=1685113012~exp=1685113612~"
-                                                    "hmac=21b853d605686ae1bc072a02faa079e81d2"
-                                                    "adfa502e9b14add136e1f309ad5d6",
-                                                    fit: BoxFit.cover,
-                                                  ),
-                                                ),
-                                              ),
-                                              const SizedBox(width: 10),
-                                              Column(
-                                                children: [
-                                                  Expanded(
-                                                    child: SizedBox(
-                                                      width: 250,
-                                                      child: ClipRRect(
-                                                        borderRadius:
-                                                            BorderRadius
-                                                                .circular(10),
-                                                        child: Image.network(
-                                                          "https://img.freepik.com/vecteurs"
-                                                          "-libre/banniere-hotel-degrade-photo_23"
-                                                          "-2148918442.jpg?w=2000&t=st=1685113784~exp="
-                                                          "1685114384~hmac=46e4192837faef30051c4995031ae671"
-                                                          "c5620a08a9a50e1f5dc66bccb747ae8e",
-                                                          fit: BoxFit.cover,
-                                                        ),
-                                                      ),
-                                                    ),
-                                                  ),
-                                                  const SizedBox(height: 10),
-                                                  Expanded(
-                                                    child: SizedBox(
-                                                      width: 250,
-                                                      child: ClipRRect(
-                                                        borderRadius:
-                                                            BorderRadius
-                                                                .circular(10),
-                                                        child: Image.network(
-                                                          "https://img.freepik.com/vecteurs"
-                                                          "-libre/banniere-hotel-design-plat-photo"
-                                                          "_23-2148924625.jpg?w=2000&t=st=1685114108~exp="
-                                                          "1685114708~hmac=e242529b9ce89cb11d3943609"
-                                                          "19049b396a44f3f40f18a1701bcedb802de0317",
-                                                          fit: BoxFit.cover,
-                                                        ),
-                                                      ),
-                                                    ),
-                                                  ),
-                                                ],
-                                              )
-                                            ],
-                                          ),
-                                        ),
-                                      ],
-                                    ),
-                                    PageableMenu(
-                                      margin: const EdgeInsets.only(bottom: 20),
-                                      title: "Pariez et Gagnez !",
-                                      children: [
-                                        ButtonMenu(
-                                          icon: Image.asset(
-                                              "assets/images/42ba0891133d09b46e2e"
-                                              "dd0537c2f2265350876d-1.png"),
-                                          title: "Lonaci",
-                                          onPressed: () {},
-                                        ),
-                                        ButtonMenu(
-                                          icon: Image.asset(
-                                              "assets/images/5b28ce4349be5-"
-                                              "pmu-lonaci-cote-ivoire.png"),
-                                          title: "PMU",
-                                          onPressed: () {},
-                                        ),
-                                        ButtonMenu(
-                                          icon: Image.asset(
-                                              "assets/images/1xbet.png"),
-                                          title: "1xBet",
-                                          onPressed: () {},
-                                        ),
-                                        ButtonMenu(
-                                          icon: Image.asset(
-                                              "assets/images/premier_bet.webp"),
-                                          title: "Premier Bet",
-                                          onPressed: () {},
-                                        ),
-                                        ButtonMenu(
-                                          icon: Image.asset(
-                                              "assets/images/sport_cash.png"),
-                                          title: "Sport cash",
-                                          onPressed: () {},
-                                        ),
-                                      ],
-                                    ),
-                                    CardMenu(
-                                      children: [
-                                        ButtonMenu(
-                                          icon: Image.asset(
-                                              "assets/images/icons8-cadeau.gif"),
-                                          title: "Cadeau",
-                                          onPressed: () {},
-                                        ),
-                                        ButtonMenu(
-                                          icon: Image.asset(
-                                              "assets/images/icons8-liquor-shelf-64.png"),
-                                          title: "Brasserie",
-                                          onPressed: () {},
-                                        ),
-                                      ],
-                                    ),
-                                    Container(
-                                      height: 180,
-                                      decoration: BoxDecoration(
-                                        borderRadius: BorderRadius.circular(10),
-                                        border: Border.all(
-                                          width: .1,
-                                          color: Colors.grey,
-                                        ),
-                                      ),
-                                      child: ImageSlideshow(
-                                        isLoop: true,
-                                        autoPlayInterval: 6000,
-                                        children: ctl.ads2
-                                            .map(
-                                              (e) => ClipRRect(
-                                                borderRadius:
-                                                    BorderRadius.circular(10),
-                                                child: Stack(
-                                                  fit: StackFit.expand,
-                                                  children: [
-                                                    Shimmer.fromColors(
-                                                      baseColor:
-                                                          Colors.grey[300]!,
-                                                      highlightColor:
-                                                          Colors.grey[100]!,
-                                                      child: Container(
-                                                        color: Colors.white,
-                                                      ),
-                                                    ),
-                                                    Image.network(e,
-                                                        fit: BoxFit.cover),
-                                                  ],
-                                                ),
-                                              ),
-                                            )
-                                            .toList(),
-                                      ),
-                                    ),
-                                    const Gap(20),
-                                    CardMenu(children: [
-                                      ButtonMenu(
-                                        icon: Image.asset(
-                                            "assets/images/icons/icons8-etudiant-homme-64.png"),
-                                        title: "Scolarité",
-                                      ),
-                                      ButtonMenu(
-                                        icon: Image.asset(
-                                            "assets/images/icons/icons8-fast-cart-64.png"),
-                                        title: "Shoping",
-                                      ),
-                                      ButtonMenu(
-                                        icon: Image.asset(
-                                            "assets/images/icons/icons8-google-play-store-96.png"),
-                                        title: "Playstore",
-                                      ),
-                                    ]),
-                                    Opacity(
-                                      opacity: 0.4,
-                                      child: ClipRRect(
-                                        borderRadius: BorderRadius.circular(10),
-                                        child: Image.asset(
-                                            "assets/images/6006701.jpg"),
-                                      ),
-                                    ),
-                                    const ListTile(
-                                      title: Text(
-                                        "${Const.appName} © 2023 - V${Const.appVersion}",
-                                        textAlign: TextAlign.center,
-                                        style: TextStyle(
-                                          fontSize: 12,
-                                          color: Colors.black26,
-                                        ),
-                                      ),
-                                    ),
-                                  ],
-                                ),
-                              ),
-                            ),
-                          ],
-                        ),
-                      );
-                    },
+                  IconButton(
+                    iconSize: 20,
+                    splashRadius: 20,
+                    onPressed: () => ctl.pageViewCtl.nextPage(
+                        duration: const Duration(milliseconds: 500),
+                        curve: Curves.ease),
+                    color: AssetColors.blueButton,
+                    icon: const Icon(IcoFontIcons.uiMessaging),
                   ),
                 ],
               ),
+              drawer: HomeDrawer(ctl),
+              floatingActionButtonLocation:
+                  FloatingActionButtonLocation.centerFloat,
+              floatingActionButton: AnimatedContainer(
+                height: 60,
+                duration: const Duration(milliseconds: 100),
+                child: Obx(() {
+                  if (ctl.isScrolling.value) {
+                    return FloatingActionButton(
+                      backgroundColor: AssetColors.blueButton,
+                      isExtended: true,
+                      onPressed: () => Get.to(() => const ScanPayCamera()),
+                      child: Image.asset(
+                        "assets/images/icons/scan_float_button.png",
+                        width: 20,
+                        height: 20,
+                      ),
+                    );
+                  } else {
+                    return FloatingActionButton.extended(
+                      backgroundColor: AssetColors.blueButton,
+                      onPressed: () => Get.to(() => const ScanPayCamera()),
+                      label: const Text(
+                        "Scan Any QR",
+                        style: TextStyle(
+                          fontWeight: FontWeight.w600,
+                        ),
+                      ),
+                      icon: Image.asset(
+                        "assets/images/icons/scan_float_button.png",
+                        width: 20,
+                        height: 20,
+                      ),
+                    );
+                  }
+                }),
+              ),
+              body: SizedBox.expand(
+                child: NotificationListener<ScrollNotification>(
+                  onNotification: (notification) {
+                    if (notification.metrics.axis == Axis.vertical) {
+                      if (notification is UserScrollNotification) {
+                        if (!ctl.isScrolling.value) {
+                          ctl.isScrolling.value = true;
+                        }
+                      } else if (notification is ScrollEndNotification) {
+                        if (ctl.isScrolling.value) {
+                          Future.delayed(const Duration(seconds: 1))
+                              .then((value) {
+                            ctl.isScrolling.value = false;
+                          });
+                        }
+                      }
+                    }
+                    return true;
+                  },
+                  child: Stack(
+                    children: [
+                      SizedBox(
+                        height: Get.height * 0.4,
+                        child: Image.asset(
+                          "assets/images/pub_lbd.jpeg",
+                          fit: BoxFit.fitWidth,
+                        ),
+                      ),
+                      DraggableScrollableSheet(
+                        snap: true,
+                        initialChildSize: 0.7,
+                        minChildSize: 0.7,
+                        maxChildSize: 0.9,
+                        builder: (context, scrollController) {
+                          return Container(
+                            decoration: BoxDecoration(
+                              color: Colors.blue.shade50,
+                              borderRadius: const BorderRadius.vertical(
+                                top: Radius.circular(20),
+                              ),
+                            ),
+                            child: Column(
+                              children: [
+                                Container(
+                                  margin: const EdgeInsets.only(
+                                    bottom: 4,
+                                    top: 3,
+                                  ),
+                                  height: 4,
+                                  width: 30,
+                                  decoration: BoxDecoration(
+                                    color: Colors.grey,
+                                    borderRadius: BorderRadius.circular(10),
+                                  ),
+                                ),
+                                Expanded(
+                                  child: SingleChildScrollView(
+                                    padding: const EdgeInsets.only(
+                                      left: 8.0,
+                                      right: 8.0,
+                                      bottom: 80,
+                                    ),
+                                    controller: scrollController,
+                                    child: Column(
+                                      children: [
+                                        Container(
+                                          height: 130,
+                                          decoration: BoxDecoration(
+                                            borderRadius:
+                                                BorderRadius.circular(10),
+                                            border: Border.all(
+                                              width: .1,
+                                              color: Colors.grey,
+                                            ),
+                                          ),
+                                          child: ImageSlideshow(
+                                            isLoop: true,
+                                            autoPlayInterval: 6000,
+                                            children: ctl.ads
+                                                .map(
+                                                  (e) => ClipRRect(
+                                                    borderRadius:
+                                                        BorderRadius.circular(
+                                                            10),
+                                                    child: Stack(
+                                                      fit: StackFit.expand,
+                                                      children: [
+                                                        Shimmer.fromColors(
+                                                          baseColor:
+                                                              Colors.grey[300]!,
+                                                          highlightColor:
+                                                              Colors.grey[100]!,
+                                                          child: Container(
+                                                            color: Colors.white,
+                                                          ),
+                                                        ),
+                                                        Image.network(e,
+                                                            fit: BoxFit.cover),
+                                                      ],
+                                                    ),
+                                                  ),
+                                                )
+                                                .toList(),
+                                          ),
+                                        ),
+                                        const SizedBox(height: 20),
+                                        CardMenu(
+                                          title: "Hub Financier",
+                                          children: [
+                                            ButtonMenu(
+                                              icon: Image.asset(
+                                                "assets/images/icons8-envoyé.gif",
+                                                // "assets/images/icons/envoyer_mobile.png",
+                                              ),
+                                              title: "Envoyer vers mobile",
+                                              onPressed: () {},
+                                            ),
+                                            ButtonMenu(
+                                              icon: Image.asset(
+                                                "assets/images/icons8-tirelire.gif",
+                                                // "assets/images/icons/recevoir_argent.png",
+                                              ),
+                                              title: "Recevoir argent",
+                                              onPressed: () => Get.to(() =>
+                                                  const RecevoirPaiement()),
+                                            ),
+                                            ButtonMenu(
+                                              icon: Image.asset(
+                                                  "assets/images/icons8-échange-de-cartes.gif"
+                                                  // "assets/images/icons/transfert_banquaire.png",
+
+                                                  ),
+                                              title: "Transfert bancaire",
+                                              onPressed: () {},
+                                            ),
+                                            ButtonMenu(
+                                              icon: Image.asset(
+                                                "assets/images/icons/mon_bedoo.png",
+                                              ),
+                                              title: "Lebedoo",
+                                              onPressed: () {},
+                                            ),
+                                          ],
+                                        ),
+
+                                        CardMenu(
+                                          title: "Services de proximité",
+                                          children: [
+                                            ButtonMenu(
+                                              icon: Image.asset(
+                                                "assets/images/icons8-durabilite.gif",
+                                              ),
+                                              title: "Gaz",
+                                              onPressed: () => Get.to(
+                                                  () => const GazMapPage()),
+                                            ),
+                                            ButtonMenu(
+                                              icon: Image.asset(
+                                                "assets/images/icons/icons8-repassage-64.png",
+                                              ),
+                                              title: "Pressing",
+                                              onPressed: () => Get.to(
+                                                () => const PressingMapPage(),
+                                              ),
+                                            ),
+                                          ],
+                                        ),
+                                        // MenuCon
+                                        PageableMenu(
+                                          children: [
+                                            ButtonMenu(
+                                              icon: Image.asset(
+                                                "assets/images/icons/historique_transaction.png",
+                                              ),
+                                              title: "Solde et historique",
+                                              onPressed: () {},
+                                            ),
+                                            ButtonMenu(
+                                              icon: Image.asset(
+                                                "assets/images/icons/paiement_loyer.png",
+                                              ),
+                                              title: "Paiement Loyer",
+                                              onPressed: () =>
+                                                  Tools.openBottomSheet(
+                                                      const LoyerBottomSheet()),
+                                            ),
+                                            ButtonMenu(
+                                              icon: Image.asset(
+                                                "assets/images/icons/paiement_assurance.png",
+                                              ),
+                                              title: "Paiement Assurances",
+                                              onPressed: () {},
+                                            ),
+                                            ButtonMenu(
+                                              icon: Image.asset(
+                                                "assets/images/icons8-mallette.gif",
+                                              ),
+                                              title: "Job",
+                                              onPressed: () {
+                                                Tools.openBottomSheet(
+                                                    const JobProfileSelectionDialog());
+                                              },
+                                            ),
+                                            ButtonMenu(
+                                              icon: Image.asset(
+                                                "assets/images/icons8-exchange-money-64.png",
+                                              ),
+                                              title: "Tontine",
+                                              onPressed: () => Get.to(
+                                                  () => const TontinePage()),
+                                            ),
+                                            ButtonMenu(
+                                              icon: Image.asset(
+                                                "assets/images/icons8-confiance.gif",
+                                              ),
+                                              title: "Don",
+                                              onPressed: () => Get.to(
+                                                  () => const DonationPage()),
+                                            ),
+                                            ButtonMenu(
+                                              icon: Image.asset(
+                                                "assets/images/icons/icons8-voiture-64.png",
+                                              ),
+                                              title: "Location de véhicule",
+                                              onPressed: () => Get.to(() =>
+                                                  const LocationVehicule()),
+                                            ),
+                                            ButtonMenu(
+                                              icon: Image.asset(
+                                                "assets/images/icons/icons8-construction-96.png",
+                                              ),
+                                              title: "Construction de maison",
+                                              onPressed: () => Get.to(() =>
+                                                  const ConstructionPage()),
+                                            ),
+                                            ButtonMenu(
+                                              icon: Image.asset(
+                                                  "assets/images/icons/boutique.png"),
+                                              title: "Boutique",
+                                              onPressed: () => Get.to(
+                                                  () => const BoutiquePage()),
+                                            ),
+                                          ],
+                                        ),
+                                        Row(
+                                          children: [
+                                            Expanded(
+                                              child: SingleChildCardMenu(
+                                                onTap: () {},
+                                                icon: Image.asset(
+                                                  "assets/images/icons/box_cadeau.png",
+                                                  height: 18,
+                                                  width: 18,
+                                                ),
+                                                title: "Partager et Gagner",
+                                                subtitle:
+                                                    "Récompenses garanties",
+                                              ),
+                                            ),
+                                            const SizedBox(width: 8),
+                                            Expanded(
+                                              child: SingleChildCardMenu(
+                                                onTap: () {},
+                                                icon: Image.asset(
+                                                  "assets/images/icons/carte_virtuelle.png",
+                                                  height: 18,
+                                                  width: 18,
+                                                ),
+                                                title: "Carte Virtuelle",
+                                                subtitle:
+                                                    "Achetez sur sites ecommerce",
+                                              ),
+                                            ),
+                                          ],
+                                        ),
+                                        CardMenu(
+                                          title: "Recharges et Factures",
+                                          children: [
+                                            ButtonMenu(
+                                              icon: Image.asset(
+                                                  "assets/images/icons/achat_unite.png"),
+                                              title: "Achat d’unités",
+                                              onPressed: () => Get.to(
+                                                  () => const AchatUnitePage()),
+                                            ),
+                                            ButtonMenu(
+                                              icon: Image.asset(
+                                                  "assets/images/icons/acaht_data.png"),
+                                              title: "Achat de pass",
+                                              onPressed: () {},
+                                            ),
+                                            ButtonMenu(
+                                              icon: Image.asset(
+                                                  "assets/images/icons/facture_electricite.png"),
+                                              title: "Facture d’électricité",
+                                              onPressed: () =>
+                                                  Tools.openBottomSheet(
+                                                const BillsCompanySelectionDialog(),
+                                              ),
+                                            ),
+                                            ButtonMenu(
+                                              icon: Image.asset(
+                                                  "assets/images/icons8-entrepot-96.png"),
+                                              title: "CIE Prépayé",
+                                              onPressed: () {},
+                                            ),
+                                            ButtonMenu(
+                                              icon: Image.asset(
+                                                  "assets/images/icons/abonnement_tele.png"),
+                                              title: "Abonnement\nTélé",
+                                              onPressed: () {
+                                                Tools.openBottomSheet(
+                                                    const TvBillsSelectionDialog());
+                                              },
+                                            ),
+                                            ButtonMenu(
+                                              icon: Image.asset(
+                                                  "assets/images/icons/abonnement_payage.png"),
+                                              title: "Abonnement\nPéage",
+                                              onPressed: () {},
+                                            ),
+                                            ButtonMenu(
+                                              icon: Image.asset(
+                                                  "assets/images/icons/abonnement_fibre.png"),
+                                              title: "Abonnement\nFibre",
+                                              onPressed: () {},
+                                            ),
+                                            ButtonMenu(
+                                              icon: const CircleAvatar(
+                                                backgroundColor: Color.fromRGBO(
+                                                    50, 132, 229, 0.16),
+                                                child: Icon(
+                                                  Icons.arrow_forward,
+                                                  color: Color.fromRGBO(
+                                                      7, 21, 60, 1),
+                                                ),
+                                              ),
+                                              title: "Voir Plus",
+                                              onPressed: () => Get.to(() =>
+                                                  const MoreOptionHomePage()),
+                                            ),
+                                          ],
+                                        ),
+                                        Column(
+                                          crossAxisAlignment:
+                                              CrossAxisAlignment.start,
+                                          children: [
+                                            const Text(
+                                              "Voyage • Allez où le vent vous emporte",
+                                              style: TextStyle(
+                                                fontSize: 14,
+                                                fontWeight: FontWeight.bold,
+                                              ),
+                                            ),
+                                            Container(
+                                              height: 220,
+                                              margin: const EdgeInsets.only(
+                                                bottom: 20,
+                                                top: 10,
+                                              ),
+                                              child: ListView(
+                                                padding: EdgeInsets.zero,
+                                                shrinkWrap: true,
+                                                scrollDirection:
+                                                    Axis.horizontal,
+                                                children: [
+                                                  Container(
+                                                    width: 300,
+                                                    decoration: BoxDecoration(
+                                                      color: Colors.white,
+                                                      borderRadius:
+                                                          BorderRadius.circular(
+                                                              10),
+                                                    ),
+                                                    child: Center(
+                                                      child: GridView.count(
+                                                        padding:
+                                                            const EdgeInsets
+                                                                .all(10),
+                                                        crossAxisCount: 3,
+                                                        shrinkWrap: true,
+                                                        physics:
+                                                            const NeverScrollableScrollPhysics(),
+                                                        children: [
+                                                          ButtonMenu(
+                                                            icon: Image.asset(
+                                                                "assets/images/icons/icons8-arrêt-de-bus-64.png"),
+                                                            title: "Bus et Car",
+                                                            onPressed: () {},
+                                                          ),
+                                                          ButtonMenu(
+                                                            icon: Image.asset(
+                                                                "assets/images/icons8-ticket.gif"),
+                                                            title:
+                                                                "Ticket de cinéma",
+                                                            onPressed: () {},
+                                                          ),
+                                                          ButtonMenu(
+                                                            icon: Image.asset(
+                                                              "assets/images/icons/icons8-events-64.png",
+                                                            ),
+                                                            title: "Evènements",
+                                                            onPressed: () {},
+                                                          ),
+                                                          ButtonMenu(
+                                                            icon: Image.asset(
+                                                                "assets/images/icons8-hôtel-5-étoiles-48.png"),
+                                                            title: "Hotels",
+                                                            onPressed: () {},
+                                                          ),
+                                                          ButtonMenu(
+                                                            icon: Image.asset(
+                                                                "assets/images/icons8-train-64.png"),
+                                                            title: "Métro",
+                                                            onPressed: () {},
+                                                          ),
+                                                          ButtonMenu(
+                                                            icon: Image.asset(
+                                                                "assets/images/icons8-avion-vue-de-face-64.png"),
+                                                            title:
+                                                                "Billet d'avion",
+                                                            onPressed: () {},
+                                                          ),
+                                                        ],
+                                                      ),
+                                                    ),
+                                                  ),
+                                                  const SizedBox(width: 10),
+                                                  Container(
+                                                    height: double.infinity,
+                                                    width: Get.width / 2,
+                                                    decoration: BoxDecoration(
+                                                      color: Colors.white,
+                                                      borderRadius:
+                                                          BorderRadius.circular(
+                                                              10),
+                                                    ),
+                                                    child: ClipRRect(
+                                                      borderRadius:
+                                                          BorderRadius.circular(
+                                                              10),
+                                                      child: Image.network(
+                                                        "https://img.freepik.com/psd-premium/"
+                                                        "modele-publication-instagram-vacances-"
+                                                        "vacances-voyage-banniere-medias-sociaux_597327-466.jpg?w=1060",
+                                                        fit: BoxFit.cover,
+                                                      ),
+                                                    ),
+                                                  ),
+                                                  const SizedBox(width: 10),
+                                                  Container(
+                                                    height: double.infinity,
+                                                    width: Get.width,
+                                                    decoration: BoxDecoration(
+                                                      color: Colors.white,
+                                                      borderRadius:
+                                                          BorderRadius.circular(
+                                                              10),
+                                                    ),
+                                                    child: ClipRRect(
+                                                      borderRadius:
+                                                          BorderRadius.circular(
+                                                              10),
+                                                      child: Image.network(
+                                                        "https://img.freepik.com/psd-gratuit/"
+                                                        "modele-facebook-journee-mondiale-du-"
+                                                        "tourisme-geometrique_23-2149558429.jpg"
+                                                        "?w=2000&t=st=1685113012~exp=1685113612~"
+                                                        "hmac=21b853d605686ae1bc072a02faa079e81d2"
+                                                        "adfa502e9b14add136e1f309ad5d6",
+                                                        fit: BoxFit.cover,
+                                                      ),
+                                                    ),
+                                                  ),
+                                                  const SizedBox(width: 10),
+                                                  Column(
+                                                    children: [
+                                                      Expanded(
+                                                        child: SizedBox(
+                                                          width: 250,
+                                                          child: ClipRRect(
+                                                            borderRadius:
+                                                                BorderRadius
+                                                                    .circular(
+                                                                        10),
+                                                            child:
+                                                                Image.network(
+                                                              "https://img.freepik.com/vecteurs"
+                                                              "-libre/banniere-hotel-degrade-photo_23"
+                                                              "-2148918442.jpg?w=2000&t=st=1685113784~exp="
+                                                              "1685114384~hmac=46e4192837faef30051c4995031ae671"
+                                                              "c5620a08a9a50e1f5dc66bccb747ae8e",
+                                                              fit: BoxFit.cover,
+                                                            ),
+                                                          ),
+                                                        ),
+                                                      ),
+                                                      const SizedBox(
+                                                          height: 10),
+                                                      Expanded(
+                                                        child: SizedBox(
+                                                          width: 250,
+                                                          child: ClipRRect(
+                                                            borderRadius:
+                                                                BorderRadius
+                                                                    .circular(
+                                                                        10),
+                                                            child:
+                                                                Image.network(
+                                                              "https://img.freepik.com/vecteurs"
+                                                              "-libre/banniere-hotel-design-plat-photo"
+                                                              "_23-2148924625.jpg?w=2000&t=st=1685114108~exp="
+                                                              "1685114708~hmac=e242529b9ce89cb11d3943609"
+                                                              "19049b396a44f3f40f18a1701bcedb802de0317",
+                                                              fit: BoxFit.cover,
+                                                            ),
+                                                          ),
+                                                        ),
+                                                      ),
+                                                    ],
+                                                  )
+                                                ],
+                                              ),
+                                            ),
+                                          ],
+                                        ),
+                                        PageableMenu(
+                                          margin:
+                                              const EdgeInsets.only(bottom: 20),
+                                          title: "Pariez et Gagnez !",
+                                          children: [
+                                            ButtonMenu(
+                                              icon: Image.asset(
+                                                  "assets/images/42ba0891133d09b46e2e"
+                                                  "dd0537c2f2265350876d-1.png"),
+                                              title: "Lonaci",
+                                              onPressed: () {},
+                                            ),
+                                            ButtonMenu(
+                                              icon: Image.asset(
+                                                  "assets/images/5b28ce4349be5-"
+                                                  "pmu-lonaci-cote-ivoire.png"),
+                                              title: "PMU",
+                                              onPressed: () {},
+                                            ),
+                                            ButtonMenu(
+                                              icon: Image.asset(
+                                                  "assets/images/1xbet.png"),
+                                              title: "1xBet",
+                                              onPressed: () {},
+                                            ),
+                                            ButtonMenu(
+                                              icon: Image.asset(
+                                                  "assets/images/premier_bet.webp"),
+                                              title: "Premier Bet",
+                                              onPressed: () {},
+                                            ),
+                                            ButtonMenu(
+                                              icon: Image.asset(
+                                                  "assets/images/sport_cash.png"),
+                                              title: "Sport cash",
+                                              onPressed: () {},
+                                            ),
+                                          ],
+                                        ),
+                                        CardMenu(
+                                          children: [
+                                            ButtonMenu(
+                                              icon: Image.asset(
+                                                  "assets/images/icons8-cadeau.gif"),
+                                              title: "Cadeau",
+                                              onPressed: () {},
+                                            ),
+                                            ButtonMenu(
+                                              icon: Image.asset(
+                                                  "assets/images/icons8-liquor-shelf-64.png"),
+                                              title: "Brasserie",
+                                              onPressed: () {},
+                                            ),
+                                          ],
+                                        ),
+                                        Container(
+                                          height: 180,
+                                          decoration: BoxDecoration(
+                                            borderRadius:
+                                                BorderRadius.circular(10),
+                                            border: Border.all(
+                                              width: .1,
+                                              color: Colors.grey,
+                                            ),
+                                          ),
+                                          child: ImageSlideshow(
+                                            isLoop: true,
+                                            autoPlayInterval: 6000,
+                                            children: ctl.ads2
+                                                .map(
+                                                  (e) => ClipRRect(
+                                                    borderRadius:
+                                                        BorderRadius.circular(
+                                                            10),
+                                                    child: Stack(
+                                                      fit: StackFit.expand,
+                                                      children: [
+                                                        Shimmer.fromColors(
+                                                          baseColor:
+                                                              Colors.grey[300]!,
+                                                          highlightColor:
+                                                              Colors.grey[100]!,
+                                                          child: Container(
+                                                            color: Colors.white,
+                                                          ),
+                                                        ),
+                                                        Image.network(e,
+                                                            fit: BoxFit.cover),
+                                                      ],
+                                                    ),
+                                                  ),
+                                                )
+                                                .toList(),
+                                          ),
+                                        ),
+                                        const Gap(20),
+                                        CardMenu(children: [
+                                          ButtonMenu(
+                                            icon: Image.asset(
+                                                "assets/images/icons/icons8-etudiant-homme-64.png"),
+                                            title: "Scolarité",
+                                          ),
+                                          ButtonMenu(
+                                            icon: Image.asset(
+                                                "assets/images/icons/icons8-fast-cart-64.png"),
+                                            title: "Shoping",
+                                          ),
+                                          ButtonMenu(
+                                            icon: Image.asset(
+                                                "assets/images/icons/icons8-google-play-store-96.png"),
+                                            title: "Playstore",
+                                          ),
+                                        ]),
+                                        Opacity(
+                                          opacity: 0.4,
+                                          child: ClipRRect(
+                                            borderRadius:
+                                                BorderRadius.circular(10),
+                                            child: Image.asset(
+                                                "assets/images/6006701.jpg"),
+                                          ),
+                                        ),
+                                        const ListTile(
+                                          title: Text(
+                                            "${Const.appName} © 2023 - V${Const.appVersion}",
+                                            textAlign: TextAlign.center,
+                                            style: TextStyle(
+                                              fontSize: 12,
+                                              color: Colors.black26,
+                                            ),
+                                          ),
+                                        ),
+                                      ],
+                                    ),
+                                  ),
+                                ),
+                              ],
+                            ),
+                          );
+                        },
+                      ),
+                    ],
+                  ),
+                ),
+              ),
             ),
-          ),
+            MessageriePages(ctl.pageViewCtl),
+          ],
         );
       },
     );

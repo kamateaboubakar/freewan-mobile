@@ -39,6 +39,7 @@ class PasswordPageVctl extends ViewController {
           AnswerSecurityQuestionPage(res.data!, phone, codeCtl.text, pays));
     } else {
       Tools.messageBox(message: res.message);
+      codeCtl.clear();
     }
   }
 

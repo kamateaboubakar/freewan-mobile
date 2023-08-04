@@ -16,10 +16,12 @@ import 'package:wan_mobile/views/static/achat_unite/achat_unite_page.dart';
 import 'package:wan_mobile/views/static/boutique/boutique_page.dart';
 import 'package:wan_mobile/views/static/construction/construction_page.dart';
 import 'package:wan_mobile/views/static/donation/campagne_page.dart';
+import 'package:wan_mobile/views/static/envoyer_vers_mobile/envoyer_vers_mobile.dart';
 import 'package:wan_mobile/views/static/home/home_drawer.dart';
 import 'package:wan_mobile/views/static/home/messagerie/messagerie_page.dart';
 import 'package:wan_mobile/views/static/home/more_option_home_page.dart';
 import 'package:wan_mobile/views/static/home/page_recherche.dart';
+import 'package:wan_mobile/views/static/lebedoo/lebedoo_page.dart';
 import 'package:wan_mobile/views/static/location_vehicule/location_vehicule.dart';
 import 'package:wan_mobile/views/static/loyer/loyer_bottom_sheet.dart';
 import 'package:wan_mobile/views/static/recevoir_paiement/recevoir_paiement.dart';
@@ -238,7 +240,8 @@ class HomePage extends StatelessWidget {
                                                 // "assets/images/icons/envoyer_mobile.png",
                                               ),
                                               title: "Envoyer vers mobile",
-                                              onPressed: () {},
+                                              onPressed: () => Get.to(() =>
+                                                  EnvoyerVersMobilePage(ctl)),
                                             ),
                                             ButtonMenu(
                                               icon: Image.asset(
@@ -263,7 +266,8 @@ class HomePage extends StatelessWidget {
                                                 "assets/images/icons/mon_bedoo.png",
                                               ),
                                               title: "Lebedoo",
-                                              onPressed: () {},
+                                              onPressed: () => Get.to(
+                                                  () => LebedooPage(ctl)),
                                             ),
                                           ],
                                         ),

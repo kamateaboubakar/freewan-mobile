@@ -16,7 +16,7 @@ class SplashScreen extends StatelessWidget {
           return Center(
             child: Image.asset(
               Const.inLineAppLogo,
-              height: 70,
+              height: 180,
             ),
           );
         },

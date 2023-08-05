@@ -19,7 +19,7 @@ void main() async {
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
         primarySwatch: Colors.blue,
-        fontFamily: Const.defaultFont.fontFamily,
+        fontFamily: Const.defaultFont,
         appBarTheme: const AppBarTheme(
           centerTitle: true,
           elevation: 0,

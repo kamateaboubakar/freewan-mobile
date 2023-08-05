@@ -11,12 +11,14 @@ import 'package:wan_mobile/tools/widgets/button_menu.dart';
 import 'package:wan_mobile/tools/widgets/card_menu.dart';
 import 'package:wan_mobile/tools/widgets/pageable_menu.dart';
 import 'package:wan_mobile/tools/widgets/single_child_card_menu.dart';
+import 'package:wan_mobile/tools/widgets/toggle_button_widget/listable_menu.dart';
 import 'package:wan_mobile/views/controllers/home/home_page_vctl.dart';
 import 'package:wan_mobile/views/static/achat_unite/achat_unite_page.dart';
 import 'package:wan_mobile/views/static/boutique/boutique_page.dart';
 import 'package:wan_mobile/views/static/construction/construction_page.dart';
 import 'package:wan_mobile/views/static/donation/campagne_page.dart';
 import 'package:wan_mobile/views/static/envoyer_vers_mobile/envoyer_vers_mobile.dart';
+import 'package:wan_mobile/views/static/home/categorized_home.dart';
 import 'package:wan_mobile/views/static/home/home_drawer.dart';
 import 'package:wan_mobile/views/static/home/messagerie/messagerie_page.dart';
 import 'package:wan_mobile/views/static/home/more_option_home_page.dart';
@@ -272,30 +274,6 @@ class HomePage extends StatelessWidget {
                                             ),
                                           ],
                                         ),
-
-                                        CardMenu(
-                                          title: "Services de proximité",
-                                          children: [
-                                            ButtonMenu(
-                                              icon: Image.asset(
-                                                "assets/images/icons8-durabilite.gif",
-                                              ),
-                                              title: "Gaz",
-                                              onPressed: () => Get.to(
-                                                  () => const GazMapPage()),
-                                            ),
-                                            ButtonMenu(
-                                              icon: Image.asset(
-                                                "assets/images/icons/icons8-repassage-64.png",
-                                              ),
-                                              title: "Pressing",
-                                              onPressed: () => Get.to(
-                                                () => const PressingMapPage(),
-                                              ),
-                                            ),
-                                          ],
-                                        ),
-                                        // MenuCon
                                         PageableMenu(
                                           children: [
                                             ButtonMenu(
@@ -370,6 +348,35 @@ class HomePage extends StatelessWidget {
                                               title: "Boutique",
                                               onPressed: () => Get.to(
                                                   () => const BoutiquePage()),
+                                            ),
+                                            ButtonMenu(
+                                              icon: Image.asset(
+                                                "assets/images/icons8-durabilite.gif",
+                                              ),
+                                              title: "Gaz",
+                                              onPressed: () => Get.to(
+                                                  () => const GazMapPage()),
+                                            ),
+                                            ButtonMenu(
+                                              icon: Image.asset(
+                                                "assets/images/icons/icons8-repassage-64.png",
+                                              ),
+                                              title: "Pressing",
+                                              onPressed: () => Get.to(
+                                                () => const PressingMapPage(),
+                                              ),
+                                            ),
+                                            ButtonMenu(
+                                              icon: Image.asset(
+                                                  "assets/images/icons8-cadeau.gif"),
+                                              title: "Cadeau",
+                                              onPressed: () {},
+                                            ),
+                                            ButtonMenu(
+                                              icon: Image.asset(
+                                                  "assets/images/icons8-liquor-shelf-64.png"),
+                                              title: "Brasserie",
+                                              onPressed: () {},
                                             ),
                                           ],
                                         ),
@@ -476,10 +483,11 @@ class HomePage extends StatelessWidget {
                                           crossAxisAlignment:
                                               CrossAxisAlignment.start,
                                           children: [
+                                            const Gap(10),
                                             const Text(
-                                              "Voyage • Allez où le vent vous emporte",
+                                              "Loans & Credit Cards",
                                               style: TextStyle(
-                                                fontSize: 14,
+                                                fontSize: 18,
                                                 fontWeight: FontWeight.bold,
                                               ),
                                             ),
@@ -655,6 +663,808 @@ class HomePage extends StatelessWidget {
                                             ),
                                           ],
                                         ),
+                                        ListableMenu(
+                                          title: "Fonctionnalités",
+                                          children: [
+                                            ButtonMenu(
+                                              minWidth: 30,
+                                              icon: Image.asset(
+                                                "assets/images/icons8-mallette.gif",
+                                              ),
+                                              title: "Job",
+                                              onPressed: () {
+                                                Tools.openBottomSheet(
+                                                    const JobProfileSelectionDialog());
+                                              },
+                                            ),
+                                            ButtonMenu(
+                                              minWidth: 40,
+                                              icon: Image.asset(
+                                                "assets/images/icons8-exchange-money-64.png",
+                                              ),
+                                              title: "Tontine",
+                                              onPressed: () => Get.to(
+                                                  () => const TontinePage()),
+                                            ),
+                                            ButtonMenu(
+                                              minWidth: 40,
+                                              icon: Image.asset(
+                                                "assets/images/icons8-confiance.gif",
+                                              ),
+                                              title: "Don",
+                                              onPressed: () => Get.to(
+                                                  () => const DonationPage()),
+                                            ),
+                                            ButtonMenu(
+                                              icon: Image.asset(
+                                                "assets/images/icons/historique_transaction.png",
+                                              ),
+                                              title: "Solde et\nhistorique",
+                                              onPressed: () => Get.to(() =>
+                                                  SoldeHistoriquePage(ctl)),
+                                            ),
+                                            ButtonMenu(
+                                              icon: Image.asset(
+                                                "assets/images/icons/paiement_loyer.png",
+                                              ),
+                                              title: "Paiement\nLoyer",
+                                              onPressed: () =>
+                                                  Tools.openBottomSheet(
+                                                      const LoyerBottomSheet()),
+                                            ),
+                                            ButtonMenu(
+                                              icon: Image.asset(
+                                                  "assets/images/icons/icons8-arrêt-de-bus-64.png"),
+                                              title: "Bus et Car",
+                                              onPressed: () {},
+                                            ),
+                                            ButtonMenu(
+                                              icon: Image.asset(
+                                                  "assets/images/icons8-ticket.gif"),
+                                              title: "Ticket de cinéma",
+                                              onPressed: () {},
+                                            ),
+                                            ButtonMenu(
+                                              icon: Image.asset(
+                                                "assets/images/icons/icons8-events-64.png",
+                                              ),
+                                              title: "Evènements",
+                                              onPressed: () {},
+                                            ),
+                                            ButtonMenu(
+                                              icon: const CircleAvatar(
+                                                backgroundColor: Color.fromRGBO(
+                                                    50, 132, 229, 0.16),
+                                                child: Icon(
+                                                  Icons.arrow_forward,
+                                                  color: Color.fromRGBO(
+                                                      7, 21, 60, 1),
+                                                ),
+                                              ),
+                                              title: "Voir Plus",
+                                              onPressed: () => Get.to(() =>
+                                                  const CategorizedHome()),
+                                            ),
+                                          ],
+                                        ),
+                                        Column(
+                                          crossAxisAlignment:
+                                              CrossAxisAlignment.start,
+                                          children: [
+                                            const Gap(10),
+                                            const Text(
+                                              "Ticket Booking",
+                                              style: TextStyle(
+                                                fontSize: 18,
+                                                fontWeight: FontWeight.bold,
+                                              ),
+                                            ),
+                                            Container(
+                                              height: 220,
+                                              margin: const EdgeInsets.only(
+                                                bottom: 20,
+                                                top: 10,
+                                              ),
+                                              child: ListView(
+                                                padding: EdgeInsets.zero,
+                                                shrinkWrap: true,
+                                                scrollDirection:
+                                                    Axis.horizontal,
+                                                children: [
+                                                  Container(
+                                                    width: 300,
+                                                    decoration: BoxDecoration(
+                                                      color: Colors.white,
+                                                      borderRadius:
+                                                          BorderRadius.circular(
+                                                              10),
+                                                    ),
+                                                    child: Center(
+                                                      child: GridView.count(
+                                                        padding:
+                                                            const EdgeInsets
+                                                                .all(10),
+                                                        crossAxisCount: 3,
+                                                        shrinkWrap: true,
+                                                        physics:
+                                                            const NeverScrollableScrollPhysics(),
+                                                        children: [
+                                                          ButtonMenu(
+                                                            icon: Image.asset(
+                                                                "assets/images/icons/icons8-arrêt-de-bus-64.png"),
+                                                            title: "Bus et Car",
+                                                            onPressed: () {},
+                                                          ),
+                                                          ButtonMenu(
+                                                            icon: Image.asset(
+                                                                "assets/images/icons8-ticket.gif"),
+                                                            title:
+                                                                "Ticket de cinéma",
+                                                            onPressed: () {},
+                                                          ),
+                                                          ButtonMenu(
+                                                            icon: Image.asset(
+                                                              "assets/images/icons/icons8-events-64.png",
+                                                            ),
+                                                            title: "Evènements",
+                                                            onPressed: () {},
+                                                          ),
+                                                          ButtonMenu(
+                                                            icon: Image.asset(
+                                                                "assets/images/icons8-hôtel-5-étoiles-48.png"),
+                                                            title: "Hotels",
+                                                            onPressed: () {},
+                                                          ),
+                                                          ButtonMenu(
+                                                            icon: Image.asset(
+                                                                "assets/images/icons8-train-64.png"),
+                                                            title: "Métro",
+                                                            onPressed: () {},
+                                                          ),
+                                                          ButtonMenu(
+                                                            icon: Image.asset(
+                                                                "assets/images/icons8-avion-vue-de-face-64.png"),
+                                                            title:
+                                                                "Billet d'avion",
+                                                            onPressed: () {},
+                                                          ),
+                                                        ],
+                                                      ),
+                                                    ),
+                                                  ),
+                                                  const SizedBox(width: 10),
+                                                  Container(
+                                                    height: double.infinity,
+                                                    width: Get.width / 2,
+                                                    decoration: BoxDecoration(
+                                                      color: Colors.white,
+                                                      borderRadius:
+                                                          BorderRadius.circular(
+                                                              10),
+                                                    ),
+                                                    child: ClipRRect(
+                                                      borderRadius:
+                                                          BorderRadius.circular(
+                                                              10),
+                                                      child: Image.network(
+                                                        "https://img.freepik.com/psd-premium/"
+                                                        "modele-publication-instagram-vacances-"
+                                                        "vacances-voyage-banniere-medias-sociaux_597327-466.jpg?w=1060",
+                                                        fit: BoxFit.cover,
+                                                      ),
+                                                    ),
+                                                  ),
+                                                  const SizedBox(width: 10),
+                                                  Container(
+                                                    height: double.infinity,
+                                                    width: Get.width,
+                                                    decoration: BoxDecoration(
+                                                      color: Colors.white,
+                                                      borderRadius:
+                                                          BorderRadius.circular(
+                                                              10),
+                                                    ),
+                                                    child: ClipRRect(
+                                                      borderRadius:
+                                                          BorderRadius.circular(
+                                                              10),
+                                                      child: Image.network(
+                                                        "https://img.freepik.com/psd-gratuit/"
+                                                        "modele-facebook-journee-mondiale-du-"
+                                                        "tourisme-geometrique_23-2149558429.jpg"
+                                                        "?w=2000&t=st=1685113012~exp=1685113612~"
+                                                        "hmac=21b853d605686ae1bc072a02faa079e81d2"
+                                                        "adfa502e9b14add136e1f309ad5d6",
+                                                        fit: BoxFit.cover,
+                                                      ),
+                                                    ),
+                                                  ),
+                                                  const SizedBox(width: 10),
+                                                  Column(
+                                                    children: [
+                                                      Expanded(
+                                                        child: SizedBox(
+                                                          width: 250,
+                                                          child: ClipRRect(
+                                                            borderRadius:
+                                                                BorderRadius
+                                                                    .circular(
+                                                                        10),
+                                                            child:
+                                                                Image.network(
+                                                              "https://img.freepik.com/vecteurs"
+                                                              "-libre/banniere-hotel-degrade-photo_23"
+                                                              "-2148918442.jpg?w=2000&t=st=1685113784~exp="
+                                                              "1685114384~hmac=46e4192837faef30051c4995031ae671"
+                                                              "c5620a08a9a50e1f5dc66bccb747ae8e",
+                                                              fit: BoxFit.cover,
+                                                            ),
+                                                          ),
+                                                        ),
+                                                      ),
+                                                      const SizedBox(
+                                                          height: 10),
+                                                      Expanded(
+                                                        child: SizedBox(
+                                                          width: 250,
+                                                          child: ClipRRect(
+                                                            borderRadius:
+                                                                BorderRadius
+                                                                    .circular(
+                                                                        10),
+                                                            child:
+                                                                Image.network(
+                                                              "https://img.freepik.com/vecteurs"
+                                                              "-libre/banniere-hotel-design-plat-photo"
+                                                              "_23-2148924625.jpg?w=2000&t=st=1685114108~exp="
+                                                              "1685114708~hmac=e242529b9ce89cb11d3943609"
+                                                              "19049b396a44f3f40f18a1701bcedb802de0317",
+                                                              fit: BoxFit.cover,
+                                                            ),
+                                                          ),
+                                                        ),
+                                                      ),
+                                                    ],
+                                                  )
+                                                ],
+                                              ),
+                                            ),
+                                          ],
+                                        ),
+                                        Container(
+                                          color: Colors.white,
+                                          child: ListTile(
+                                            leading: CircleAvatar(
+                                              backgroundImage: AssetImage(
+                                                  "assets/images/icons8-argent-liquide-en-main-100.png"),
+                                            ),
+                                            shape: RoundedRectangleBorder(
+                                              side: BorderSide(
+                                                color: Colors.grey,
+                                              ),
+                                              borderRadius:
+                                                  BorderRadius.circular(20),
+                                            ),
+                                            title: const Text(
+                                              "Cash crunch se pareshaan?",
+                                              style: TextStyle(
+                                                fontSize: 16,
+                                                fontWeight: FontWeight.bold,
+                                              ),
+                                            ),
+                                            subtitle: const Text(
+                                              "Paayein 3 Lakh ka Loan bina kisi paperwork",
+                                              style: TextStyle(
+                                                fontSize: 14,
+                                              ),
+                                            ),
+                                            trailing: const Row(
+                                              mainAxisSize: MainAxisSize.min,
+                                              children: [
+                                                Text(
+                                                  "Apply",
+                                                  style: TextStyle(
+                                                    color:
+                                                        AssetColors.blueButton,
+                                                  ),
+                                                ),
+                                                SizedBox(width: 5),
+                                                Icon(
+                                                  Icons.arrow_forward_ios,
+                                                  size: 10,
+                                                ),
+                                              ],
+                                            ),
+                                          ),
+                                        ),
+                                        const Gap(20),
+                                        Column(
+                                          crossAxisAlignment:
+                                              CrossAxisAlignment.start,
+                                          children: [
+                                            const Gap(10),
+                                            const Text(
+                                              "Ticket Booking",
+                                              style: TextStyle(
+                                                fontSize: 18,
+                                                fontWeight: FontWeight.bold,
+                                              ),
+                                            ),
+                                            Container(
+                                              height: 220,
+                                              margin: const EdgeInsets.only(
+                                                bottom: 20,
+                                                top: 10,
+                                              ),
+                                              child: ListView(
+                                                padding: EdgeInsets.zero,
+                                                shrinkWrap: true,
+                                                scrollDirection:
+                                                    Axis.horizontal,
+                                                children: [
+                                                  Container(
+                                                    width: 200,
+                                                    decoration: BoxDecoration(
+                                                      color: Colors.white,
+                                                      borderRadius:
+                                                          BorderRadius.circular(
+                                                              10),
+                                                    ),
+                                                    child: Center(
+                                                      child: GridView.count(
+                                                        padding:
+                                                            const EdgeInsets
+                                                                .all(10),
+                                                        crossAxisCount: 2,
+                                                        childAspectRatio: 1,
+                                                        shrinkWrap: true,
+                                                        physics:
+                                                            const NeverScrollableScrollPhysics(),
+                                                        children: [
+                                                          ButtonMenu(
+                                                            icon: Image.asset(
+                                                                "assets/images/icons/icons8-arrêt-de-bus-64.png"),
+                                                            title: "Bus et Car",
+                                                            onPressed: () {},
+                                                          ),
+                                                          ButtonMenu(
+                                                            icon: Image.asset(
+                                                                "assets/images/icons8-ticket.gif"),
+                                                            title:
+                                                                "Ticket de cinéma",
+                                                            onPressed: () {},
+                                                          ),
+                                                          ButtonMenu(
+                                                            icon: Image.asset(
+                                                              "assets/images/icons/icons8-events-64.png",
+                                                            ),
+                                                            title: "Evènements",
+                                                            onPressed: () {},
+                                                          ),
+                                                          ButtonMenu(
+                                                            icon: Image.asset(
+                                                                "assets/images/icons8-hôtel-5-étoiles-48.png"),
+                                                            title: "Hotels",
+                                                            onPressed: () {},
+                                                          ),
+                                                        ],
+                                                      ),
+                                                    ),
+                                                  ),
+                                                  const SizedBox(width: 10),
+                                                  Container(
+                                                    height: double.infinity,
+                                                    width: Get.width / 2,
+                                                    decoration: BoxDecoration(
+                                                      color: Colors.white,
+                                                      borderRadius:
+                                                          BorderRadius.circular(
+                                                              10),
+                                                    ),
+                                                    child: ClipRRect(
+                                                      borderRadius:
+                                                          BorderRadius.circular(
+                                                              10),
+                                                      child: Image.network(
+                                                        "https://img.freepik.com/psd-premium/"
+                                                        "modele-publication-instagram-vacances-"
+                                                        "vacances-voyage-banniere-medias-sociaux_597327-466.jpg?w=1060",
+                                                        fit: BoxFit.cover,
+                                                      ),
+                                                    ),
+                                                  ),
+                                                  const SizedBox(width: 10),
+                                                  Container(
+                                                    height: double.infinity,
+                                                    width: Get.width,
+                                                    decoration: BoxDecoration(
+                                                      color: Colors.white,
+                                                      borderRadius:
+                                                          BorderRadius.circular(
+                                                              10),
+                                                    ),
+                                                    child: ClipRRect(
+                                                      borderRadius:
+                                                          BorderRadius.circular(
+                                                              10),
+                                                      child: Image.network(
+                                                        "https://img.freepik.com/psd-gratuit/"
+                                                        "modele-facebook-journee-mondiale-du-"
+                                                        "tourisme-geometrique_23-2149558429.jpg"
+                                                        "?w=2000&t=st=1685113012~exp=1685113612~"
+                                                        "hmac=21b853d605686ae1bc072a02faa079e81d2"
+                                                        "adfa502e9b14add136e1f309ad5d6",
+                                                        fit: BoxFit.cover,
+                                                      ),
+                                                    ),
+                                                  ),
+                                                  const SizedBox(width: 10),
+                                                  Column(
+                                                    children: [
+                                                      Expanded(
+                                                        child: SizedBox(
+                                                          width: 250,
+                                                          child: ClipRRect(
+                                                            borderRadius:
+                                                                BorderRadius
+                                                                    .circular(
+                                                                        10),
+                                                            child:
+                                                                Image.network(
+                                                              "https://img.freepik.com/vecteurs"
+                                                              "-libre/banniere-hotel-degrade-photo_23"
+                                                              "-2148918442.jpg?w=2000&t=st=1685113784~exp="
+                                                              "1685114384~hmac=46e4192837faef30051c4995031ae671"
+                                                              "c5620a08a9a50e1f5dc66bccb747ae8e",
+                                                              fit: BoxFit.cover,
+                                                            ),
+                                                          ),
+                                                        ),
+                                                      ),
+                                                      const SizedBox(
+                                                          height: 10),
+                                                      Expanded(
+                                                        child: SizedBox(
+                                                          width: 250,
+                                                          child: ClipRRect(
+                                                            borderRadius:
+                                                                BorderRadius
+                                                                    .circular(
+                                                                        10),
+                                                            child:
+                                                                Image.network(
+                                                              "https://img.freepik.com/vecteurs"
+                                                              "-libre/banniere-hotel-design-plat-photo"
+                                                              "_23-2148924625.jpg?w=2000&t=st=1685114108~exp="
+                                                              "1685114708~hmac=e242529b9ce89cb11d3943609"
+                                                              "19049b396a44f3f40f18a1701bcedb802de0317",
+                                                              fit: BoxFit.cover,
+                                                            ),
+                                                          ),
+                                                        ),
+                                                      ),
+                                                    ],
+                                                  )
+                                                ],
+                                              ),
+                                            ),
+                                          ],
+                                        ),
+                                        Container(
+                                          color: Colors.white,
+                                          child: ListTile(
+                                            leading: CircleAvatar(
+                                              backgroundImage: AssetImage(
+                                                  "assets/images/icons8-argent-liquide-en-main-100.png"),
+                                            ),
+                                            shape: RoundedRectangleBorder(
+                                              side: BorderSide(
+                                                color: Colors.grey,
+                                              ),
+                                              borderRadius:
+                                                  BorderRadius.circular(20),
+                                            ),
+                                            title: const Text(
+                                              "Cash crunch se pareshaan?",
+                                              style: TextStyle(
+                                                fontSize: 16,
+                                                fontWeight: FontWeight.bold,
+                                              ),
+                                            ),
+                                            subtitle: const Text(
+                                              "Paayein 3 Lakh ka Loan bina kisi paperwork",
+                                              style: TextStyle(
+                                                fontSize: 14,
+                                              ),
+                                            ),
+                                            trailing: const Row(
+                                              mainAxisSize: MainAxisSize.min,
+                                              children: [
+                                                Text(
+                                                  "Apply",
+                                                  style: TextStyle(
+                                                    color:
+                                                        AssetColors.blueButton,
+                                                  ),
+                                                ),
+                                                SizedBox(width: 5),
+                                                Icon(
+                                                  Icons.arrow_forward_ios,
+                                                  size: 10,
+                                                ),
+                                              ],
+                                            ),
+                                          ),
+                                        ),
+                                        Column(
+                                          crossAxisAlignment:
+                                              CrossAxisAlignment.start,
+                                          children: [
+                                            const Gap(10),
+                                            const Text(
+                                              "Ticket Booking",
+                                              style: TextStyle(
+                                                fontSize: 18,
+                                                fontWeight: FontWeight.bold,
+                                              ),
+                                            ),
+                                            Container(
+                                              height: 220,
+                                              margin: const EdgeInsets.only(
+                                                bottom: 20,
+                                                top: 10,
+                                              ),
+                                              child: ListView(
+                                                padding: EdgeInsets.zero,
+                                                shrinkWrap: true,
+                                                scrollDirection:
+                                                    Axis.horizontal,
+                                                children: [
+                                                  Container(
+                                                    width: 300,
+                                                    decoration: BoxDecoration(
+                                                      color: Colors.white,
+                                                      borderRadius:
+                                                          BorderRadius.circular(
+                                                              10),
+                                                    ),
+                                                    child: Center(
+                                                      child: GridView.count(
+                                                        padding:
+                                                            const EdgeInsets
+                                                                .all(10),
+                                                        crossAxisCount: 3,
+                                                        shrinkWrap: true,
+                                                        physics:
+                                                            const NeverScrollableScrollPhysics(),
+                                                        children: [
+                                                          ButtonMenu(
+                                                            icon: Image.asset(
+                                                                "assets/images/icons/icons8-arrêt-de-bus-64.png"),
+                                                            title: "Bus et Car",
+                                                            onPressed: () {},
+                                                          ),
+                                                          ButtonMenu(
+                                                            icon: Image.asset(
+                                                                "assets/images/icons8-ticket.gif"),
+                                                            title:
+                                                                "Ticket de cinéma",
+                                                            onPressed: () {},
+                                                          ),
+                                                          ButtonMenu(
+                                                            icon: Image.asset(
+                                                              "assets/images/icons/icons8-events-64.png",
+                                                            ),
+                                                            title: "Evènements",
+                                                            onPressed: () {},
+                                                          ),
+                                                          ButtonMenu(
+                                                            icon: Image.asset(
+                                                                "assets/images/icons8-hôtel-5-étoiles-48.png"),
+                                                            title: "Hotels",
+                                                            onPressed: () {},
+                                                          ),
+                                                          ButtonMenu(
+                                                            icon: Image.asset(
+                                                                "assets/images/icons8-train-64.png"),
+                                                            title: "Métro",
+                                                            onPressed: () {},
+                                                          ),
+                                                          ButtonMenu(
+                                                            icon: Image.asset(
+                                                                "assets/images/icons8-avion-vue-de-face-64.png"),
+                                                            title:
+                                                                "Billet d'avion",
+                                                            onPressed: () {},
+                                                          ),
+                                                        ],
+                                                      ),
+                                                    ),
+                                                  ),
+                                                  const SizedBox(width: 10),
+                                                  Container(
+                                                    height: double.infinity,
+                                                    width: Get.width / 2,
+                                                    decoration: BoxDecoration(
+                                                      color: Colors.white,
+                                                      borderRadius:
+                                                          BorderRadius.circular(
+                                                              10),
+                                                    ),
+                                                    child: ClipRRect(
+                                                      borderRadius:
+                                                          BorderRadius.circular(
+                                                              10),
+                                                      child: Image.network(
+                                                        "https://img.freepik.com/psd-premium/"
+                                                        "modele-publication-instagram-vacances-"
+                                                        "vacances-voyage-banniere-medias-sociaux_597327-466.jpg?w=1060",
+                                                        fit: BoxFit.cover,
+                                                      ),
+                                                    ),
+                                                  ),
+                                                  const SizedBox(width: 10),
+                                                  Container(
+                                                    height: double.infinity,
+                                                    width: Get.width,
+                                                    decoration: BoxDecoration(
+                                                      color: Colors.white,
+                                                      borderRadius:
+                                                          BorderRadius.circular(
+                                                              10),
+                                                    ),
+                                                    child: ClipRRect(
+                                                      borderRadius:
+                                                          BorderRadius.circular(
+                                                              10),
+                                                      child: Image.network(
+                                                        "https://img.freepik.com/psd-gratuit/"
+                                                        "modele-facebook-journee-mondiale-du-"
+                                                        "tourisme-geometrique_23-2149558429.jpg"
+                                                        "?w=2000&t=st=1685113012~exp=1685113612~"
+                                                        "hmac=21b853d605686ae1bc072a02faa079e81d2"
+                                                        "adfa502e9b14add136e1f309ad5d6",
+                                                        fit: BoxFit.cover,
+                                                      ),
+                                                    ),
+                                                  ),
+                                                  const SizedBox(width: 10),
+                                                  Column(
+                                                    children: [
+                                                      Expanded(
+                                                        child: SizedBox(
+                                                          width: 250,
+                                                          child: ClipRRect(
+                                                            borderRadius:
+                                                                BorderRadius
+                                                                    .circular(
+                                                                        10),
+                                                            child:
+                                                                Image.network(
+                                                              "https://img.freepik.com/vecteurs"
+                                                              "-libre/banniere-hotel-degrade-photo_23"
+                                                              "-2148918442.jpg?w=2000&t=st=1685113784~exp="
+                                                              "1685114384~hmac=46e4192837faef30051c4995031ae671"
+                                                              "c5620a08a9a50e1f5dc66bccb747ae8e",
+                                                              fit: BoxFit.cover,
+                                                            ),
+                                                          ),
+                                                        ),
+                                                      ),
+                                                      const SizedBox(
+                                                          height: 10),
+                                                      Expanded(
+                                                        child: SizedBox(
+                                                          width: 250,
+                                                          child: ClipRRect(
+                                                            borderRadius:
+                                                                BorderRadius
+                                                                    .circular(
+                                                                        10),
+                                                            child:
+                                                                Image.network(
+                                                              "https://img.freepik.com/vecteurs"
+                                                              "-libre/banniere-hotel-design-plat-photo"
+                                                              "_23-2148924625.jpg?w=2000&t=st=1685114108~exp="
+                                                              "1685114708~hmac=e242529b9ce89cb11d3943609"
+                                                              "19049b396a44f3f40f18a1701bcedb802de0317",
+                                                              fit: BoxFit.cover,
+                                                            ),
+                                                          ),
+                                                        ),
+                                                      ),
+                                                    ],
+                                                  )
+                                                ],
+                                              ),
+                                            ),
+                                          ],
+                                        ),
+                                        ListableMenu(
+                                          title: "Promotions",
+                                          children: [
+                                            ButtonMenu(
+                                              minWidth: 30,
+                                              icon: Image.asset(
+                                                "assets/images/icons8-mallette.gif",
+                                              ),
+                                              title: "Job",
+                                              onPressed: () {
+                                                Tools.openBottomSheet(
+                                                    const JobProfileSelectionDialog());
+                                              },
+                                            ),
+                                            ButtonMenu(
+                                              minWidth: 40,
+                                              icon: Image.asset(
+                                                "assets/images/icons8-exchange-money-64.png",
+                                              ),
+                                              title: "Tontine",
+                                              onPressed: () => Get.to(
+                                                  () => const TontinePage()),
+                                            ),
+                                            ButtonMenu(
+                                              minWidth: 40,
+                                              icon: Image.asset(
+                                                "assets/images/icons8-confiance.gif",
+                                              ),
+                                              title: "Don",
+                                              onPressed: () => Get.to(
+                                                  () => const DonationPage()),
+                                            ),
+                                            ButtonMenu(
+                                              icon: Image.asset(
+                                                "assets/images/icons/historique_transaction.png",
+                                              ),
+                                              title: "Solde et\nhistorique",
+                                              onPressed: () => Get.to(() =>
+                                                  SoldeHistoriquePage(ctl)),
+                                            ),
+                                            ButtonMenu(
+                                              icon: Image.asset(
+                                                "assets/images/icons/paiement_loyer.png",
+                                              ),
+                                              title: "Paiement\nLoyer",
+                                              onPressed: () =>
+                                                  Tools.openBottomSheet(
+                                                      const LoyerBottomSheet()),
+                                            ),
+                                            ButtonMenu(
+                                              icon: Image.asset(
+                                                  "assets/images/icons/icons8-arrêt-de-bus-64.png"),
+                                              title: "Bus et Car",
+                                              onPressed: () {},
+                                            ),
+                                            ButtonMenu(
+                                              icon: Image.asset(
+                                                  "assets/images/icons8-ticket.gif"),
+                                              title: "Ticket de cinéma",
+                                              onPressed: () {},
+                                            ),
+                                            ButtonMenu(
+                                              icon: Image.asset(
+                                                "assets/images/icons/icons8-events-64.png",
+                                              ),
+                                              title: "Evènements",
+                                              onPressed: () {},
+                                            ),
+                                            ButtonMenu(
+                                              icon: const CircleAvatar(
+                                                backgroundColor: Color.fromRGBO(
+                                                    50, 132, 229, 0.16),
+                                                child: Icon(
+                                                  Icons.arrow_forward,
+                                                  color: Color.fromRGBO(
+                                                      7, 21, 60, 1),
+                                                ),
+                                              ),
+                                              title: "Voir Plus",
+                                              onPressed: () => Get.to(() =>
+                                                  const CategorizedHome()),
+                                            ),
+                                          ],
+                                        ),
+                                        const Gap(10),
                                         PageableMenu(
                                           margin:
                                               const EdgeInsets.only(bottom: 20),
@@ -690,22 +1500,6 @@ class HomePage extends StatelessWidget {
                                               icon: Image.asset(
                                                   "assets/images/sport_cash.png"),
                                               title: "Sport cash",
-                                              onPressed: () {},
-                                            ),
-                                          ],
-                                        ),
-                                        CardMenu(
-                                          children: [
-                                            ButtonMenu(
-                                              icon: Image.asset(
-                                                  "assets/images/icons8-cadeau.gif"),
-                                              title: "Cadeau",
-                                              onPressed: () {},
-                                            ),
-                                            ButtonMenu(
-                                              icon: Image.asset(
-                                                  "assets/images/icons8-liquor-shelf-64.png"),
-                                              title: "Brasserie",
                                               onPressed: () {},
                                             ),
                                           ],
@@ -751,23 +1545,6 @@ class HomePage extends StatelessWidget {
                                           ),
                                         ),
                                         const Gap(20),
-                                        CardMenu(children: [
-                                          ButtonMenu(
-                                            icon: Image.asset(
-                                                "assets/images/icons/icons8-etudiant-homme-64.png"),
-                                            title: "Scolarité",
-                                          ),
-                                          ButtonMenu(
-                                            icon: Image.asset(
-                                                "assets/images/icons/icons8-fast-cart-64.png"),
-                                            title: "Shoping",
-                                          ),
-                                          ButtonMenu(
-                                            icon: Image.asset(
-                                                "assets/images/icons/icons8-google-play-store-96.png"),
-                                            title: "Playstore",
-                                          ),
-                                        ]),
                                         Opacity(
                                           opacity: 0.4,
                                           child: ClipRRect(

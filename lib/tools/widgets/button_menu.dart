@@ -4,14 +4,27 @@ import 'package:flutter/material.dart';
 class ButtonMenu extends StatelessWidget {
   final Widget icon;
   final String title;
+  final double? minWidth;
+  final double? height;
+  final String? categorie;
+
   final void Function()? onPressed;
 
-  const ButtonMenu(
-      {required this.icon, required this.title, this.onPressed, super.key});
+  const ButtonMenu({
+    this.minWidth,
+    this.height,
+    this.categorie,
+    required this.icon,
+    required this.title,
+    this.onPressed,
+    super.key,
+  });
 
   @override
   Widget build(BuildContext context) {
     return MaterialButton(
+      minWidth: minWidth,
+      height: height,
       padding: EdgeInsets.zero,
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
       onPressed: onPressed,

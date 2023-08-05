@@ -1,17 +1,17 @@
 import 'package:flutter/material.dart';
+import 'package:gap/gap.dart';
 import 'package:wan_mobile/tools/types/types.dart';
 import 'package:wan_mobile/tools/widgets/button_menu.dart';
 
-class CardMenu extends StatelessWidget {
+class ListableMenu extends StatelessWidget {
   final String? title;
-
   final List<ButtonMenu> children;
-
   final EdgeInsetsGeometry margin;
-  const CardMenu(
+
+  const ListableMenu(
       {this.margin = const EdgeInsets.only(bottom: 10),
-      this.title,
       this.children = const [],
+      this.title,
       super.key});
 
   @override
@@ -39,23 +39,28 @@ class CardMenu extends StatelessWidget {
         children: [
           Visibility(
             visible: title != null,
-            child: Text(
-              title.value,
-              style: const TextStyle(
-                fontSize: 18,
-                fontWeight: FontWeight.bold,
-              ),
+            child: Column(
+              children: [
+                Text(
+                  title.value,
+                  style: const TextStyle(
+                    fontSize: 18,
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
+                const Gap(10),
+              ],
             ),
           ),
-          GridView(
-            padding: const EdgeInsets.only(top: 7),
-            physics: const NeverScrollableScrollPhysics(),
-            shrinkWrap: true,
-            gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-              crossAxisCount: 4,
-              childAspectRatio: .85,
+          SizedBox(
+            width: double.infinity,
+            height: 100,
+            child: ListView(
+              padding: EdgeInsets.zero,
+              physics: const BouncingScrollPhysics(),
+              scrollDirection: Axis.horizontal,
+              children: children,
             ),
-            children: children,
           ),
         ],
       ),

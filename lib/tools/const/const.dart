@@ -17,7 +17,7 @@ abstract class Const {
   static var boutiquerUrl = "https://freewan.io/store.lebedoo.ci";
 
   static var localUrl = "";
-  static var defaultFont = GoogleFonts.poppins();
+  static var defaultFont = "cooljazz";
 
   static String appLogo = "assets/images/lebedoo_logo.png";
   static String inLineAppLogo = "assets/images/lebedoo_inline_logo.png";

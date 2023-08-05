@@ -26,6 +26,7 @@ import 'package:wan_mobile/views/static/location_vehicule/location_vehicule.dart
 import 'package:wan_mobile/views/static/loyer/loyer_bottom_sheet.dart';
 import 'package:wan_mobile/views/static/recevoir_paiement/recevoir_paiement.dart';
 import 'package:wan_mobile/views/static/scan_pay/scan_pay_camera.dart';
+import 'package:wan_mobile/views/static/solde_historique/solde_historique_page.dart';
 import 'package:wan_mobile/views/static/tontine/tontine_page.dart';
 import 'package:wan_mobile/views/static/tv_bills/tv_bills_selection_dialog.dart';
 import '../bills/bills_views.dart';
@@ -302,7 +303,8 @@ class HomePage extends StatelessWidget {
                                                 "assets/images/icons/historique_transaction.png",
                                               ),
                                               title: "Solde et historique",
-                                              onPressed: () {},
+                                              onPressed: () => Get.to(() =>
+                                                  SoldeHistoriquePage(ctl)),
                                             ),
                                             ButtonMenu(
                                               icon: Image.asset(

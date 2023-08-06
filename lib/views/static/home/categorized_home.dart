@@ -55,7 +55,7 @@ class _CategorizedHomeState extends State<CategorizedHome> {
                           child: Container(
                             decoration: BoxDecoration(
                               color: Colors.grey.shade50,
-                              border: Border(
+                              border: const Border(
                                 right: BorderSide(width: .1),
                               ),
                             ),

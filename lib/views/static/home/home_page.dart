@@ -913,12 +913,12 @@ class HomePage extends StatelessWidget {
                                         Container(
                                           color: Colors.white,
                                           child: ListTile(
-                                            leading: CircleAvatar(
+                                            leading: const CircleAvatar(
                                               backgroundImage: AssetImage(
                                                   "assets/images/icons8-argent-liquide-en-main-100.png"),
                                             ),
                                             shape: RoundedRectangleBorder(
-                                              side: BorderSide(
+                                              side: const BorderSide(
                                                 color: Colors.grey,
                                               ),
                                               borderRadius:
@@ -1081,12 +1081,12 @@ class HomePage extends StatelessWidget {
                                         Container(
                                           color: Colors.white,
                                           child: ListTile(
-                                            leading: CircleAvatar(
+                                            leading: const CircleAvatar(
                                               backgroundImage: AssetImage(
                                                   "assets/images/icons8-argent-liquide-en-main-100.png"),
                                             ),
                                             shape: RoundedRectangleBorder(
-                                              side: BorderSide(
+                                              side: const BorderSide(
                                                 color: Colors.grey,
                                               ),
                                               borderRadius:

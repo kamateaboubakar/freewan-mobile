@@ -7,9 +7,11 @@ class ListableMenu extends StatelessWidget {
   final String? title;
   final List<ButtonMenu> children;
   final EdgeInsetsGeometry margin;
+  final double? height;
 
   const ListableMenu(
       {this.margin = const EdgeInsets.only(bottom: 10),
+      this.height,
       this.children = const [],
       this.title,
       super.key});
@@ -18,6 +20,7 @@ class ListableMenu extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       margin: margin,
+      height: height,
       padding: const EdgeInsets.all(15),
       decoration: BoxDecoration(
           border: Border.all(

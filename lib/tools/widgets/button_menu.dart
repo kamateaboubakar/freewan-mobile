@@ -1,9 +1,10 @@
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
+import 'package:wan_mobile/tools/types/types.dart';
 
 class ButtonMenu extends StatelessWidget {
   final Widget icon;
-  final String title;
+  final String? title;
   final double? minWidth;
   final double? height;
   final String? categorie;
@@ -15,7 +16,7 @@ class ButtonMenu extends StatelessWidget {
     this.height,
     this.categorie,
     required this.icon,
-    required this.title,
+    this.title,
     this.onPressed,
     super.key,
   });
@@ -34,17 +35,20 @@ class ButtonMenu extends StatelessWidget {
           children: [
             Expanded(child: icon),
             const SizedBox(height: 5),
-            Expanded(
-              child: Padding(
-                padding: const EdgeInsets.all(2),
-                child: AutoSizeText(
-                  title,
-                  textAlign: TextAlign.center,
-                  maxLines: 2,
-                  maxFontSize: 12,
-                  minFontSize: 9,
-                  style: const TextStyle(
-                    fontWeight: FontWeight.w600,
+            Visibility(
+              visible: title != null,
+              child: Expanded(
+                child: Padding(
+                  padding: const EdgeInsets.all(2),
+                  child: AutoSizeText(
+                    title.value,
+                    textAlign: TextAlign.center,
+                    maxLines: 2,
+                    maxFontSize: 12,
+                    minFontSize: 9,
+                    style: const TextStyle(
+                      fontWeight: FontWeight.w600,
+                    ),
                   ),
                 ),
               ),

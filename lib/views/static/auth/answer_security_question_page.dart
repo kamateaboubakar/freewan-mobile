@@ -54,6 +54,7 @@ class AnswerSecurityQuestionPage extends StatelessWidget {
                   ),
                   const SizedBox(height: 20),
                   CTextFormField(
+                    autofocus: true,
                     controller: ctl.answerCtl,
                     hintText: "Réponse",
                   ),

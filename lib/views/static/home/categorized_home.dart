@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:wan_mobile/tools/types/types.dart';
 import 'package:wan_mobile/tools/widgets/c_textform_field.dart';
 import 'package:wan_mobile/views/controllers/home/categorized_home_vctl.dart';
 
@@ -88,7 +89,7 @@ class _CategorizedHomeState extends State<CategorizedHome> {
                                       crossAxisCount: 3),
                               children: (ctl.search.isNotEmpty)
                                   ? ctl.menuItems
-                                      .where((e) => e.title
+                                      .where((e) => e.title.value
                                           .toLowerCase()
                                           .contains(ctl.search.toLowerCase()))
                                       .toList()

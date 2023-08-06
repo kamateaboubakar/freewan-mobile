@@ -4,6 +4,7 @@ import 'package:gap/gap.dart';
 import 'package:get/get.dart';
 import 'package:icofont_flutter/icofont_flutter.dart';
 import 'package:shimmer/shimmer.dart';
+import 'package:url_launcher/url_launcher.dart';
 import 'package:wan_mobile/tools/const/const.dart';
 import 'package:wan_mobile/tools/utils/asset_colors.dart';
 import 'package:wan_mobile/tools/utils/tools.dart';
@@ -485,7 +486,7 @@ class HomePage extends StatelessWidget {
                                           children: [
                                             const Gap(10),
                                             const Text(
-                                              "Loans & Credit Cards",
+                                              "Prêts & Cartes de Crédit",
                                               style: TextStyle(
                                                 fontSize: 18,
                                                 fontWeight: FontWeight.bold,
@@ -504,7 +505,7 @@ class HomePage extends StatelessWidget {
                                                     Axis.horizontal,
                                                 children: [
                                                   Container(
-                                                    width: 300,
+                                                    width: 200,
                                                     decoration: BoxDecoration(
                                                       color: Colors.white,
                                                       borderRadius:
@@ -513,51 +514,40 @@ class HomePage extends StatelessWidget {
                                                     ),
                                                     child: Center(
                                                       child: GridView.count(
+                                                        childAspectRatio: .95,
                                                         padding:
                                                             const EdgeInsets
                                                                 .all(10),
-                                                        crossAxisCount: 3,
+                                                        crossAxisCount: 2,
                                                         shrinkWrap: true,
                                                         physics:
                                                             const NeverScrollableScrollPhysics(),
                                                         children: [
                                                           ButtonMenu(
                                                             icon: Image.asset(
-                                                                "assets/images/icons/icons8-arrêt-de-bus-64.png"),
-                                                            title: "Bus et Car",
-                                                            onPressed: () {},
-                                                          ),
-                                                          ButtonMenu(
-                                                            icon: Image.asset(
-                                                                "assets/images/icons8-ticket.gif"),
+                                                                "assets/images/icons/icons8-google-play-store-96.png"),
                                                             title:
-                                                                "Ticket de cinéma",
+                                                                "Google Play Recharge",
                                                             onPressed: () {},
                                                           ),
                                                           ButtonMenu(
                                                             icon: Image.asset(
-                                                              "assets/images/icons/icons8-events-64.png",
-                                                            ),
-                                                            title: "Evènements",
-                                                            onPressed: () {},
-                                                          ),
-                                                          ButtonMenu(
-                                                            icon: Image.asset(
-                                                                "assets/images/icons8-hôtel-5-étoiles-48.png"),
-                                                            title: "Hotels",
-                                                            onPressed: () {},
-                                                          ),
-                                                          ButtonMenu(
-                                                            icon: Image.asset(
-                                                                "assets/images/icons8-train-64.png"),
-                                                            title: "Métro",
-                                                            onPressed: () {},
-                                                          ),
-                                                          ButtonMenu(
-                                                            icon: Image.asset(
-                                                                "assets/images/icons8-avion-vue-de-face-64.png"),
+                                                                "assets/images/icons/pret.png"),
                                                             title:
-                                                                "Billet d'avion",
+                                                                "Payemenent prêts",
+                                                            onPressed: () {},
+                                                          ),
+                                                          ButtonMenu(
+                                                            icon: Image.asset(
+                                                                "assets/images/icons/scolarite.png"),
+                                                            title: "Scolarité",
+                                                            onPressed: () {},
+                                                          ),
+                                                          ButtonMenu(
+                                                            icon: Image.asset(
+                                                                "assets/images/icons/bank_to_wallet.png"),
+                                                            title:
+                                                                "Bank to Wallet",
                                                             onPressed: () {},
                                                           ),
                                                         ],
@@ -567,7 +557,7 @@ class HomePage extends StatelessWidget {
                                                   const SizedBox(width: 10),
                                                   Container(
                                                     height: double.infinity,
-                                                    width: Get.width / 2,
+                                                    width: 400,
                                                     decoration: BoxDecoration(
                                                       color: Colors.white,
                                                       borderRadius:
@@ -579,10 +569,14 @@ class HomePage extends StatelessWidget {
                                                           BorderRadius.circular(
                                                               10),
                                                       child: Image.network(
-                                                        "https://img.freepik.com/psd-premium/"
-                                                        "modele-publication-instagram-vacances-"
-                                                        "vacances-voyage-banniere-medias-sociaux_597327-466.jpg?w=1060",
-                                                        fit: BoxFit.cover,
+                                                        "https://scontent.fabj4-2.fna"
+                                                        ".fbcdn.net/v/t39.30808-6/263722691"
+                                                        "_1749910921880669_6052967051042002553_n"
+                                                        ".jpg?_nc_cat=100&ccb=1-7&_nc_sid=730e14&_nc_o"
+                                                        "hc=xd1ta_z43pUAX8BNWwE&_nc_ht=scontent.fabj4-"
+                                                        "2.fna&oh=00_AfCfnUGBA3SSb74AGQcGZyWVDlltYD7tQnf"
+                                                        "IGoxaTqOhdw&oe=64D484B8",
+                                                        fit: BoxFit.fill,
                                                       ),
                                                     ),
                                                   ),
@@ -601,12 +595,7 @@ class HomePage extends StatelessWidget {
                                                           BorderRadius.circular(
                                                               10),
                                                       child: Image.network(
-                                                        "https://img.freepik.com/psd-gratuit/"
-                                                        "modele-facebook-journee-mondiale-du-"
-                                                        "tourisme-geometrique_23-2149558429.jpg"
-                                                        "?w=2000&t=st=1685113012~exp=1685113612~"
-                                                        "hmac=21b853d605686ae1bc072a02faa079e81d2"
-                                                        "adfa502e9b14add136e1f309ad5d6",
+                                                        "https://cofeb.bceao.int/sites/default/files/2022-08/Visuel-Formation_A_LA_CARTE_ONLINE.jpg",
                                                         fit: BoxFit.cover,
                                                       ),
                                                     ),
@@ -624,11 +613,7 @@ class HomePage extends StatelessWidget {
                                                                         10),
                                                             child:
                                                                 Image.network(
-                                                              "https://img.freepik.com/vecteurs"
-                                                              "-libre/banniere-hotel-degrade-photo_23"
-                                                              "-2148918442.jpg?w=2000&t=st=1685113784~exp="
-                                                              "1685114384~hmac=46e4192837faef30051c4995031ae671"
-                                                              "c5620a08a9a50e1f5dc66bccb747ae8e",
+                                                              "https://www.nsiabanque.ci/wp-content/uploads/2023/06/Campagne_GIM-UEMOA_SLIDER_Site-web.jpg",
                                                               fit: BoxFit.cover,
                                                             ),
                                                           ),
@@ -646,11 +631,7 @@ class HomePage extends StatelessWidget {
                                                                         10),
                                                             child:
                                                                 Image.network(
-                                                              "https://img.freepik.com/vecteurs"
-                                                              "-libre/banniere-hotel-design-plat-photo"
-                                                              "_23-2148924625.jpg?w=2000&t=st=1685114108~exp="
-                                                              "1685114708~hmac=e242529b9ce89cb11d3943609"
-                                                              "19049b396a44f3f40f18a1701bcedb802de0317",
+                                                              "https://www.bankobserver-wavestone.com/wp-content/uploads/2021/12/online_banking_fr.png",
                                                               fit: BoxFit.cover,
                                                             ),
                                                           ),
@@ -753,7 +734,7 @@ class HomePage extends StatelessWidget {
                                           children: [
                                             const Gap(10),
                                             const Text(
-                                              "Ticket Booking",
+                                              "Réservation de billets",
                                               style: TextStyle(
                                                 fontSize: 18,
                                                 fontWeight: FontWeight.bold,
@@ -835,7 +816,7 @@ class HomePage extends StatelessWidget {
                                                   const SizedBox(width: 10),
                                                   Container(
                                                     height: double.infinity,
-                                                    width: Get.width / 2,
+                                                    width: 400,
                                                     decoration: BoxDecoration(
                                                       color: Colors.white,
                                                       borderRadius:
@@ -847,9 +828,12 @@ class HomePage extends StatelessWidget {
                                                           BorderRadius.circular(
                                                               10),
                                                       child: Image.network(
-                                                        "https://img.freepik.com/psd-premium/"
-                                                        "modele-publication-instagram-vacances-"
-                                                        "vacances-voyage-banniere-medias-sociaux_597327-466.jpg?w=1060",
+                                                        "https://scontent.fabj4-2.fna."
+                                                        "fbcdn.net/v/t39.30808-6/293438045"
+                                                        "_1603079463426152_4943171103011728654_n.jpg?"
+                                                        "_nc_cat=104&ccb=1-7&_nc_sid=8bfeb9&_nc_ohc=aJR"
+                                                        "9wiinP9IAX8jzRn5&_nc_ht=scontent.fabj4-2.fna&oh=0"
+                                                        "0_AfAV9Tl4KfBu8aPx3aiu_sOUrDDkubIkdwogGOcYmTBwgA&oe=64D56F40",
                                                         fit: BoxFit.cover,
                                                       ),
                                                     ),
@@ -869,12 +853,7 @@ class HomePage extends StatelessWidget {
                                                           BorderRadius.circular(
                                                               10),
                                                       child: Image.network(
-                                                        "https://img.freepik.com/psd-gratuit/"
-                                                        "modele-facebook-journee-mondiale-du-"
-                                                        "tourisme-geometrique_23-2149558429.jpg"
-                                                        "?w=2000&t=st=1685113012~exp=1685113612~"
-                                                        "hmac=21b853d605686ae1bc072a02faa079e81d2"
-                                                        "adfa502e9b14add136e1f309ad5d6",
+                                                        "https://www.goafricaonline.com/media/cache/resolve/w800/uploads/media/company_media/0001/37/5b06a7658ff50-visuel-destination-rev-cote-ivoire.jpg",
                                                         fit: BoxFit.cover,
                                                       ),
                                                     ),
@@ -946,14 +925,14 @@ class HomePage extends StatelessWidget {
                                                   BorderRadius.circular(20),
                                             ),
                                             title: const Text(
-                                              "Cash crunch se pareshaan?",
+                                              "Inquiet du manque de liquidités ?",
                                               style: TextStyle(
                                                 fontSize: 16,
                                                 fontWeight: FontWeight.bold,
                                               ),
                                             ),
                                             subtitle: const Text(
-                                              "Paayein 3 Lakh ka Loan bina kisi paperwork",
+                                              "Obtenez un prêt sans aucune paperasse",
                                               style: TextStyle(
                                                 fontSize: 14,
                                               ),
@@ -962,7 +941,7 @@ class HomePage extends StatelessWidget {
                                               mainAxisSize: MainAxisSize.min,
                                               children: [
                                                 Text(
-                                                  "Apply",
+                                                  "Postuler",
                                                   style: TextStyle(
                                                     color:
                                                         AssetColors.blueButton,
@@ -984,7 +963,7 @@ class HomePage extends StatelessWidget {
                                           children: [
                                             const Gap(10),
                                             const Text(
-                                              "Ticket Booking",
+                                              "Trading",
                                               style: TextStyle(
                                                 fontSize: 18,
                                                 fontWeight: FontWeight.bold,
@@ -1023,28 +1002,30 @@ class HomePage extends StatelessWidget {
                                                         children: [
                                                           ButtonMenu(
                                                             icon: Image.asset(
-                                                                "assets/images/icons/icons8-arrêt-de-bus-64.png"),
-                                                            title: "Bus et Car",
+                                                                "assets/images/icons/icons8-buffle-64.png"),
+                                                            title: "Open Demat",
                                                             onPressed: () {},
                                                           ),
                                                           ButtonMenu(
                                                             icon: Image.asset(
-                                                                "assets/images/icons8-ticket.gif"),
+                                                                "assets/images/icons/icons8-argent-64.png"),
                                                             title:
-                                                                "Ticket de cinéma",
+                                                                "Investir avec\n10K Fcfa",
                                                             onPressed: () {},
                                                           ),
                                                           ButtonMenu(
                                                             icon: Image.asset(
-                                                              "assets/images/icons/icons8-events-64.png",
+                                                              "assets/images/lebedoo_logo.png",
                                                             ),
-                                                            title: "Evènements",
+                                                            title:
+                                                                "Lebedoo Money",
                                                             onPressed: () {},
                                                           ),
                                                           ButtonMenu(
                                                             icon: Image.asset(
-                                                                "assets/images/icons8-hôtel-5-étoiles-48.png"),
-                                                            title: "Hotels",
+                                                                "assets/images/icons8-bourse-48.png"),
+                                                            title:
+                                                                "Bourse\nd'investissement",
                                                             onPressed: () {},
                                                           ),
                                                         ],
@@ -1054,7 +1035,7 @@ class HomePage extends StatelessWidget {
                                                   const SizedBox(width: 10),
                                                   Container(
                                                     height: double.infinity,
-                                                    width: Get.width / 2,
+                                                    width: 400,
                                                     decoration: BoxDecoration(
                                                       color: Colors.white,
                                                       borderRadius:
@@ -1066,9 +1047,7 @@ class HomePage extends StatelessWidget {
                                                           BorderRadius.circular(
                                                               10),
                                                       child: Image.network(
-                                                        "https://img.freepik.com/psd-premium/"
-                                                        "modele-publication-instagram-vacances-"
-                                                        "vacances-voyage-banniere-medias-sociaux_597327-466.jpg?w=1060",
+                                                        "https://www.bourseensemble.com/wp-content/uploads/2022/06/tout-savoir-sur-le-fractionnement-actions.jpg",
                                                         fit: BoxFit.cover,
                                                       ),
                                                     ),
@@ -1076,7 +1055,7 @@ class HomePage extends StatelessWidget {
                                                   const SizedBox(width: 10),
                                                   Container(
                                                     height: double.infinity,
-                                                    width: Get.width,
+                                                    width: 300,
                                                     decoration: BoxDecoration(
                                                       color: Colors.white,
                                                       borderRadius:
@@ -1088,63 +1067,12 @@ class HomePage extends StatelessWidget {
                                                           BorderRadius.circular(
                                                               10),
                                                       child: Image.network(
-                                                        "https://img.freepik.com/psd-gratuit/"
-                                                        "modele-facebook-journee-mondiale-du-"
-                                                        "tourisme-geometrique_23-2149558429.jpg"
-                                                        "?w=2000&t=st=1685113012~exp=1685113612~"
-                                                        "hmac=21b853d605686ae1bc072a02faa079e81d2"
-                                                        "adfa502e9b14add136e1f309ad5d6",
+                                                        "https://www.paricilargent.com/wp-content/uploads/2021/04/Investir-dans-l-immobilier-ou-en-bourse-850x500.jpg",
                                                         fit: BoxFit.cover,
                                                       ),
                                                     ),
                                                   ),
                                                   const SizedBox(width: 10),
-                                                  Column(
-                                                    children: [
-                                                      Expanded(
-                                                        child: SizedBox(
-                                                          width: 250,
-                                                          child: ClipRRect(
-                                                            borderRadius:
-                                                                BorderRadius
-                                                                    .circular(
-                                                                        10),
-                                                            child:
-                                                                Image.network(
-                                                              "https://img.freepik.com/vecteurs"
-                                                              "-libre/banniere-hotel-degrade-photo_23"
-                                                              "-2148918442.jpg?w=2000&t=st=1685113784~exp="
-                                                              "1685114384~hmac=46e4192837faef30051c4995031ae671"
-                                                              "c5620a08a9a50e1f5dc66bccb747ae8e",
-                                                              fit: BoxFit.cover,
-                                                            ),
-                                                          ),
-                                                        ),
-                                                      ),
-                                                      const SizedBox(
-                                                          height: 10),
-                                                      Expanded(
-                                                        child: SizedBox(
-                                                          width: 250,
-                                                          child: ClipRRect(
-                                                            borderRadius:
-                                                                BorderRadius
-                                                                    .circular(
-                                                                        10),
-                                                            child:
-                                                                Image.network(
-                                                              "https://img.freepik.com/vecteurs"
-                                                              "-libre/banniere-hotel-design-plat-photo"
-                                                              "_23-2148924625.jpg?w=2000&t=st=1685114108~exp="
-                                                              "1685114708~hmac=e242529b9ce89cb11d3943609"
-                                                              "19049b396a44f3f40f18a1701bcedb802de0317",
-                                                              fit: BoxFit.cover,
-                                                            ),
-                                                          ),
-                                                        ),
-                                                      ),
-                                                    ],
-                                                  )
                                                 ],
                                               ),
                                             ),
@@ -1165,14 +1093,14 @@ class HomePage extends StatelessWidget {
                                                   BorderRadius.circular(20),
                                             ),
                                             title: const Text(
-                                              "Cash crunch se pareshaan?",
+                                              "Obtenir des récompenses assurées",
                                               style: TextStyle(
                                                 fontSize: 16,
                                                 fontWeight: FontWeight.bold,
                                               ),
                                             ),
                                             subtitle: const Text(
-                                              "Paayein 3 Lakh ka Loan bina kisi paperwork",
+                                              "en invitant vos amis sur lebedoo",
                                               style: TextStyle(
                                                 fontSize: 14,
                                               ),
@@ -1200,9 +1128,213 @@ class HomePage extends StatelessWidget {
                                           crossAxisAlignment:
                                               CrossAxisAlignment.start,
                                           children: [
+                                            const Gap(20),
+                                            const Text(
+                                              "Gagnez de l'argent avec lebedoo",
+                                              style: TextStyle(
+                                                fontSize: 18,
+                                                fontWeight: FontWeight.bold,
+                                              ),
+                                            ),
+                                            Container(
+                                              height: 220,
+                                              margin: const EdgeInsets.only(
+                                                bottom: 20,
+                                                top: 10,
+                                              ),
+                                              child: ListView(
+                                                padding: EdgeInsets.zero,
+                                                shrinkWrap: true,
+                                                scrollDirection:
+                                                    Axis.horizontal,
+                                                children: [
+                                                  Container(
+                                                    width: 200,
+                                                    decoration: BoxDecoration(
+                                                      color: Colors.white,
+                                                      borderRadius:
+                                                          BorderRadius.circular(
+                                                              10),
+                                                    ),
+                                                    child: Center(
+                                                      child: GridView.count(
+                                                        padding:
+                                                            const EdgeInsets
+                                                                .all(10),
+                                                        crossAxisCount: 2,
+                                                        childAspectRatio: .95,
+                                                        shrinkWrap: true,
+                                                        physics:
+                                                            const NeverScrollableScrollPhysics(),
+                                                        children: [
+                                                          ButtonMenu(
+                                                            icon: Image.asset(
+                                                                "assets/images/icons/icons8-casino-48.png"),
+                                                            title:
+                                                                "Lebedoo Jackpot",
+                                                            onPressed: () {},
+                                                          ),
+                                                          ButtonMenu(
+                                                            icon: Image.asset(
+                                                                "assets/images/icons/icons8-roulette-80.png"),
+                                                            title:
+                                                                "La roulette de Lebedoo",
+                                                            onPressed: () {},
+                                                          ),
+                                                          ButtonMenu(
+                                                            icon: Image.asset(
+                                                                "assets/images/icons/icons8-bet-62.png"),
+                                                            title:
+                                                                "Paris sportifs",
+                                                            onPressed: () {},
+                                                          ),
+                                                          ButtonMenu(
+                                                            icon: Image.asset(
+                                                                "assets/images/icons/icons8-horse-racing-96.png"),
+                                                            title:
+                                                                "Paris courses de chevaux",
+                                                            onPressed: () {},
+                                                          ),
+                                                        ],
+                                                      ),
+                                                    ),
+                                                  ),
+                                                  const SizedBox(width: 10),
+                                                  Container(
+                                                    height: double.infinity,
+                                                    width: 300,
+                                                    decoration: BoxDecoration(
+                                                      color: Colors.white,
+                                                      borderRadius:
+                                                          BorderRadius.circular(
+                                                              10),
+                                                    ),
+                                                    child: ClipRRect(
+                                                      borderRadius:
+                                                          BorderRadius.circular(
+                                                              10),
+                                                      child: Image.network(
+                                                        "https://www.lepoint.fr/images/2016/12"
+                                                        "/15/6476009lpw-6476232-article-horse-racing-on"
+                                                        "-the-hippodrome-of-cagnes-sur-mer-france-jpg_3968108_1250x625.jpg",
+                                                        fit: BoxFit.cover,
+                                                      ),
+                                                    ),
+                                                  ),
+                                                  const SizedBox(width: 10),
+                                                  Container(
+                                                    height: double.infinity,
+                                                    width: Get.width,
+                                                    decoration: BoxDecoration(
+                                                      color: Colors.white,
+                                                      borderRadius:
+                                                          BorderRadius.circular(
+                                                              10),
+                                                    ),
+                                                    child: ClipRRect(
+                                                      borderRadius:
+                                                          BorderRadius.circular(
+                                                              10),
+                                                      child: Image.network(
+                                                        "https://burkina24.com/wp-content/uploads/2023/06/1XBeta-scaled.jpg",
+                                                        fit: BoxFit.cover,
+                                                      ),
+                                                    ),
+                                                  ),
+                                                  const SizedBox(width: 10),
+                                                  Column(
+                                                    children: [
+                                                      Expanded(
+                                                        child: SizedBox(
+                                                          width: 250,
+                                                          child: ClipRRect(
+                                                            borderRadius:
+                                                                BorderRadius
+                                                                    .circular(
+                                                                        10),
+                                                            child:
+                                                                Image.network(
+                                                              "https://i.ytimg.com/vi/eO4q6KXQlU8/mqdefault.jpg",
+                                                              fit: BoxFit.cover,
+                                                            ),
+                                                          ),
+                                                        ),
+                                                      ),
+                                                      const SizedBox(
+                                                          height: 10),
+                                                      Expanded(
+                                                        child: SizedBox(
+                                                          width: 250,
+                                                          child: ClipRRect(
+                                                            borderRadius:
+                                                                BorderRadius
+                                                                    .circular(
+                                                                        10),
+                                                            child:
+                                                                Image.network(
+                                                              "https://bonus-malin.info/wp-content/uploads/2018/11/turf-unibet-bonus-47.jpg",
+                                                              fit: BoxFit.cover,
+                                                            ),
+                                                          ),
+                                                        ),
+                                                      ),
+                                                    ],
+                                                  )
+                                                ],
+                                              ),
+                                            ),
+                                          ],
+                                        ),
+                                        ListableMenu(
+                                          title: "Promotions",
+                                          children: [
+                                            ButtonMenu(
+                                              minWidth: 30,
+                                              icon: Image.asset(
+                                                "assets/images/carrefour.png",
+                                              ),
+                                              onPressed: () {},
+                                            ),
+                                            ButtonMenu(
+                                              minWidth: 40,
+                                              icon: Image.asset(
+                                                "assets/images/jumia_food.jpeg",
+                                              ),
+                                              onPressed: () {},
+                                            ),
+                                            ButtonMenu(
+                                              minWidth: 40,
+                                              icon: Image.asset(
+                                                "assets/images/majestic.png",
+                                              ),
+                                              onPressed: () {},
+                                            ),
+                                            ButtonMenu(
+                                              icon: Image.asset(
+                                                "assets/images/yango.png",
+                                              ),
+                                              onPressed: () {},
+                                            ),
+                                            ButtonMenu(
+                                              icon: Image.asset(
+                                                "assets/images/uber.jpg",
+                                              ),
+                                              onPressed: () {},
+                                            ),
+                                            ButtonMenu(
+                                              icon: Image.asset(
+                                                  "assets/images/socofrais.png"),
+                                              onPressed: () {},
+                                            ),
+                                          ],
+                                        ),
+                                        Column(
+                                          crossAxisAlignment:
+                                              CrossAxisAlignment.start,
+                                          children: [
                                             const Gap(10),
                                             const Text(
-                                              "Ticket Booking",
+                                              "Pariez et Gagnez !",
                                               style: TextStyle(
                                                 fontSize: 18,
                                                 fontWeight: FontWeight.bold,
@@ -1240,41 +1372,41 @@ class HomePage extends StatelessWidget {
                                                         children: [
                                                           ButtonMenu(
                                                             icon: Image.asset(
-                                                                "assets/images/icons/icons8-arrêt-de-bus-64.png"),
-                                                            title: "Bus et Car",
+                                                                "assets/images/42ba0891133d09b46e2e"
+                                                                "dd0537c2f2265350876d-1.png"),
+                                                            title: "Lonaci",
                                                             onPressed: () {},
                                                           ),
                                                           ButtonMenu(
                                                             icon: Image.asset(
-                                                                "assets/images/icons8-ticket.gif"),
+                                                                "assets/images/5b28ce4349be5-"
+                                                                "pmu-lonaci-cote-ivoire.png"),
+                                                            title: "PMU",
+                                                            onPressed: () {},
+                                                          ),
+                                                          ButtonMenu(
+                                                            icon: Image.asset(
+                                                                "assets/images/1xbet.png"),
+                                                            title: "1xBet",
+                                                            onPressed: () {},
+                                                          ),
+                                                          ButtonMenu(
+                                                            icon: Image.asset(
+                                                                "assets/images/premier_bet.webp"),
                                                             title:
-                                                                "Ticket de cinéma",
+                                                                "Premier Bet",
                                                             onPressed: () {},
                                                           ),
                                                           ButtonMenu(
                                                             icon: Image.asset(
-                                                              "assets/images/icons/icons8-events-64.png",
-                                                            ),
-                                                            title: "Evènements",
+                                                                "assets/images/sport_cash.png"),
+                                                            title: "Sport cash",
                                                             onPressed: () {},
                                                           ),
                                                           ButtonMenu(
                                                             icon: Image.asset(
-                                                                "assets/images/icons8-hôtel-5-étoiles-48.png"),
-                                                            title: "Hotels",
-                                                            onPressed: () {},
-                                                          ),
-                                                          ButtonMenu(
-                                                            icon: Image.asset(
-                                                                "assets/images/icons8-train-64.png"),
-                                                            title: "Métro",
-                                                            onPressed: () {},
-                                                          ),
-                                                          ButtonMenu(
-                                                            icon: Image.asset(
-                                                                "assets/images/icons8-avion-vue-de-face-64.png"),
-                                                            title:
-                                                                "Billet d'avion",
+                                                                "assets/images/casinocash.png"),
+                                                            title: "Casinocash",
                                                             onPressed: () {},
                                                           ),
                                                         ],
@@ -1284,7 +1416,7 @@ class HomePage extends StatelessWidget {
                                                   const SizedBox(width: 10),
                                                   Container(
                                                     height: double.infinity,
-                                                    width: Get.width / 2,
+                                                    width: 290,
                                                     decoration: BoxDecoration(
                                                       color: Colors.white,
                                                       borderRadius:
@@ -1296,17 +1428,15 @@ class HomePage extends StatelessWidget {
                                                           BorderRadius.circular(
                                                               10),
                                                       child: Image.network(
-                                                        "https://img.freepik.com/psd-premium/"
-                                                        "modele-publication-instagram-vacances-"
-                                                        "vacances-voyage-banniere-medias-sociaux_597327-466.jpg?w=1060",
-                                                        fit: BoxFit.cover,
+                                                        "https://www.pigroup360.com/wp-content/uploads/2021/06/4X3-3.jpg",
+                                                        fit: BoxFit.fill,
                                                       ),
                                                     ),
                                                   ),
                                                   const SizedBox(width: 10),
                                                   Container(
                                                     height: double.infinity,
-                                                    width: Get.width,
+                                                    width: 300,
                                                     decoration: BoxDecoration(
                                                       color: Colors.white,
                                                       borderRadius:
@@ -1318,194 +1448,32 @@ class HomePage extends StatelessWidget {
                                                           BorderRadius.circular(
                                                               10),
                                                       child: Image.network(
-                                                        "https://img.freepik.com/psd-gratuit/"
-                                                        "modele-facebook-journee-mondiale-du-"
-                                                        "tourisme-geometrique_23-2149558429.jpg"
-                                                        "?w=2000&t=st=1685113012~exp=1685113612~"
-                                                        "hmac=21b853d605686ae1bc072a02faa079e81d2"
-                                                        "adfa502e9b14add136e1f309ad5d6",
-                                                        fit: BoxFit.cover,
+                                                        "https://www.goafricaonline.com/media/cache/resolve/w800/uploads/media/company_media/0001/38/5b27743f77795-mur-packing-pmu-lonaci-cote-ivoire.jpg",
+                                                        fit: BoxFit.fill,
                                                       ),
                                                     ),
                                                   ),
                                                   const SizedBox(width: 10),
-                                                  Column(
-                                                    children: [
-                                                      Expanded(
-                                                        child: SizedBox(
-                                                          width: 250,
-                                                          child: ClipRRect(
-                                                            borderRadius:
-                                                                BorderRadius
-                                                                    .circular(
-                                                                        10),
-                                                            child:
-                                                                Image.network(
-                                                              "https://img.freepik.com/vecteurs"
-                                                              "-libre/banniere-hotel-degrade-photo_23"
-                                                              "-2148918442.jpg?w=2000&t=st=1685113784~exp="
-                                                              "1685114384~hmac=46e4192837faef30051c4995031ae671"
-                                                              "c5620a08a9a50e1f5dc66bccb747ae8e",
-                                                              fit: BoxFit.cover,
-                                                            ),
-                                                          ),
-                                                        ),
+                                                  SizedBox(
+                                                    width: 250,
+                                                    child: ClipRRect(
+                                                      borderRadius:
+                                                          BorderRadius.circular(
+                                                              10),
+                                                      child: Image.network(
+                                                        "https://kanjulien.files.wordpress.com/2013/10/megajackpot.jpg",
+                                                        fit: BoxFit.cover,
                                                       ),
-                                                      const SizedBox(
-                                                          height: 10),
-                                                      Expanded(
-                                                        child: SizedBox(
-                                                          width: 250,
-                                                          child: ClipRRect(
-                                                            borderRadius:
-                                                                BorderRadius
-                                                                    .circular(
-                                                                        10),
-                                                            child:
-                                                                Image.network(
-                                                              "https://img.freepik.com/vecteurs"
-                                                              "-libre/banniere-hotel-design-plat-photo"
-                                                              "_23-2148924625.jpg?w=2000&t=st=1685114108~exp="
-                                                              "1685114708~hmac=e242529b9ce89cb11d3943609"
-                                                              "19049b396a44f3f40f18a1701bcedb802de0317",
-                                                              fit: BoxFit.cover,
-                                                            ),
-                                                          ),
-                                                        ),
-                                                      ),
-                                                    ],
-                                                  )
+                                                    ),
+                                                  ),
                                                 ],
                                               ),
                                             ),
                                           ],
                                         ),
-                                        ListableMenu(
-                                          title: "Promotions",
-                                          children: [
-                                            ButtonMenu(
-                                              minWidth: 30,
-                                              icon: Image.asset(
-                                                "assets/images/icons8-mallette.gif",
-                                              ),
-                                              title: "Job",
-                                              onPressed: () {
-                                                Tools.openBottomSheet(
-                                                    const JobProfileSelectionDialog());
-                                              },
-                                            ),
-                                            ButtonMenu(
-                                              minWidth: 40,
-                                              icon: Image.asset(
-                                                "assets/images/icons8-exchange-money-64.png",
-                                              ),
-                                              title: "Tontine",
-                                              onPressed: () => Get.to(
-                                                  () => const TontinePage()),
-                                            ),
-                                            ButtonMenu(
-                                              minWidth: 40,
-                                              icon: Image.asset(
-                                                "assets/images/icons8-confiance.gif",
-                                              ),
-                                              title: "Don",
-                                              onPressed: () => Get.to(
-                                                  () => const DonationPage()),
-                                            ),
-                                            ButtonMenu(
-                                              icon: Image.asset(
-                                                "assets/images/icons/historique_transaction.png",
-                                              ),
-                                              title: "Solde et\nhistorique",
-                                              onPressed: () => Get.to(() =>
-                                                  SoldeHistoriquePage(ctl)),
-                                            ),
-                                            ButtonMenu(
-                                              icon: Image.asset(
-                                                "assets/images/icons/paiement_loyer.png",
-                                              ),
-                                              title: "Paiement\nLoyer",
-                                              onPressed: () =>
-                                                  Tools.openBottomSheet(
-                                                      const LoyerBottomSheet()),
-                                            ),
-                                            ButtonMenu(
-                                              icon: Image.asset(
-                                                  "assets/images/icons/icons8-arrêt-de-bus-64.png"),
-                                              title: "Bus et Car",
-                                              onPressed: () {},
-                                            ),
-                                            ButtonMenu(
-                                              icon: Image.asset(
-                                                  "assets/images/icons8-ticket.gif"),
-                                              title: "Ticket de cinéma",
-                                              onPressed: () {},
-                                            ),
-                                            ButtonMenu(
-                                              icon: Image.asset(
-                                                "assets/images/icons/icons8-events-64.png",
-                                              ),
-                                              title: "Evènements",
-                                              onPressed: () {},
-                                            ),
-                                            ButtonMenu(
-                                              icon: const CircleAvatar(
-                                                backgroundColor: Color.fromRGBO(
-                                                    50, 132, 229, 0.16),
-                                                child: Icon(
-                                                  Icons.arrow_forward,
-                                                  color: Color.fromRGBO(
-                                                      7, 21, 60, 1),
-                                                ),
-                                              ),
-                                              title: "Voir Plus",
-                                              onPressed: () => Get.to(() =>
-                                                  const CategorizedHome()),
-                                            ),
-                                          ],
-                                        ),
                                         const Gap(10),
-                                        PageableMenu(
-                                          margin:
-                                              const EdgeInsets.only(bottom: 20),
-                                          title: "Pariez et Gagnez !",
-                                          children: [
-                                            ButtonMenu(
-                                              icon: Image.asset(
-                                                  "assets/images/42ba0891133d09b46e2e"
-                                                  "dd0537c2f2265350876d-1.png"),
-                                              title: "Lonaci",
-                                              onPressed: () {},
-                                            ),
-                                            ButtonMenu(
-                                              icon: Image.asset(
-                                                  "assets/images/5b28ce4349be5-"
-                                                  "pmu-lonaci-cote-ivoire.png"),
-                                              title: "PMU",
-                                              onPressed: () {},
-                                            ),
-                                            ButtonMenu(
-                                              icon: Image.asset(
-                                                  "assets/images/1xbet.png"),
-                                              title: "1xBet",
-                                              onPressed: () {},
-                                            ),
-                                            ButtonMenu(
-                                              icon: Image.asset(
-                                                  "assets/images/premier_bet.webp"),
-                                              title: "Premier Bet",
-                                              onPressed: () {},
-                                            ),
-                                            ButtonMenu(
-                                              icon: Image.asset(
-                                                  "assets/images/sport_cash.png"),
-                                              title: "Sport cash",
-                                              onPressed: () {},
-                                            ),
-                                          ],
-                                        ),
                                         Container(
-                                          height: 180,
+                                          height: 220,
                                           decoration: BoxDecoration(
                                             borderRadius:
                                                 BorderRadius.circular(10),
@@ -1535,14 +1503,77 @@ class HomePage extends StatelessWidget {
                                                             color: Colors.white,
                                                           ),
                                                         ),
-                                                        Image.network(e,
-                                                            fit: BoxFit.cover),
+                                                        Image.network(
+                                                          e,
+                                                          fit: BoxFit.cover,
+                                                        ),
                                                       ],
                                                     ),
                                                   ),
                                                 )
                                                 .toList(),
                                           ),
+                                        ),
+                                        const Gap(10),
+                                        ListableMenu(
+                                          height: 180,
+                                          title: "Shopping - Jumia",
+                                          children: [
+                                            ButtonMenu(
+                                              height: 150,
+                                              icon: Image.network(
+                                                  "https://ci.jumia.is/unsafe/fit-in/300x300/filters:fill(white)/product/47/059442/1.jpg?0223"),
+                                              onPressed: () => launchUrl(
+                                                Uri.parse(
+                                                    "https://www.jumia.ci/win-tv-led-24-pouces-acdc-12-volt-energie-solaire-usb-hdmi-noir-garantie-12-mois-24495074.html"),
+                                              ),
+                                            ),
+                                            ButtonMenu(
+                                              height: 150,
+                                              icon: Image.network(
+                                                "https://ci.jumia.is/unsafe/fit-in/500x500/filters:fill(white)/product/73/794891/1.jpg?4285",
+                                                fit: BoxFit.cover,
+                                              ),
+                                              onPressed: () => launchUrl(
+                                                Uri.parse(
+                                                    "https://www.jumia.ci/xper-tv-led-32ln4100d-32-pouces-hd-decodeur-integre-noir-19849737.html"),
+                                              ),
+                                            ),
+                                            ButtonMenu(
+                                              height: 150,
+                                              icon: Image.network(
+                                                "https://ci.jumia.is/unsafe/fit-in/300x300/filters:fill(white)/product/00/548311/1.jpg?8307",
+                                                fit: BoxFit.cover,
+                                              ),
+                                              onPressed: () => launchUrl(
+                                                Uri.parse(
+                                                  "https://www.jumia.ci/smart-technology-refrigerateur-2-battants-str-99h-85-l-gris-12-mois-de-garantie-11384500.html",
+                                                ),
+                                              ),
+                                            ),
+                                            ButtonMenu(
+                                              height: 150,
+                                              icon: Image.network(
+                                                "https://ci.jumia.is/unsafe/fit-in/500x500/filters:fill(white)/product/50/723791/1.jpg?8443",
+                                                fit: BoxFit.cover,
+                                              ),
+                                              onPressed: () => launchUrl(
+                                                Uri.parse(
+                                                    "https://www.jumia.ci/rocco-petits-pois-boite-400g-19732705.html"),
+                                              ),
+                                            ),
+                                            ButtonMenu(
+                                              height: 150,
+                                              icon: Image.network(
+                                                "https://ci.jumia.is/unsafe/fit-in/500x500/filters:fill(white)/product/72/350241/1.jpg?5791",
+                                                fit: BoxFit.cover,
+                                              ),
+                                              onPressed: () => launchUrl(
+                                                Uri.parse(
+                                                    "https://www.jumia.ci/fashion-t-shirt-short-pour-homme-bleu-14205327.html"),
+                                              ),
+                                            ),
+                                          ],
                                         ),
                                         const Gap(20),
                                         Opacity(

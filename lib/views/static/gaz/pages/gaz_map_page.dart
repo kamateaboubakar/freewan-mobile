@@ -24,20 +24,6 @@ class GazMapPage extends StatefulWidget {
 }
 
 class _GazMapPageState extends State<GazMapPage> {
-  final List<Service> serviceFilterItems = [
-    Service(label: "Tous", icon: "assets/images/all_icon.png"),
-    Service(label: "Gaz", icon: "assets/images/gaz_selection_icon.png"),
-    Service(label: "Pressing", icon: "assets/images/pressing_icon.png"),
-    Service(label: "Restos", icon: "assets/images/ion_fast-food-outline.png"),
-  ];
-
-  final List<GazPos> gazPos = [
-    GazPos(position: LatLng(5.379946, -3.933305)),
-    GazPos(position: LatLng(5.380910, -3.935291)),
-    GazPos(position: LatLng(5.379331, -3.935650)),
-    GazPos(position: LatLng(5.380526, -3.936791)),
-    GazPos(position: LatLng(5.378974, -3.933182)),
-  ];
 
   final MapController _mapController = MapController();
 
@@ -201,105 +187,6 @@ class _GazMapPageState extends State<GazMapPage> {
             ],
           );
         },
-      ),
-    );
-  }
-
-  Widget showServiceFilterView() {
-    return SizedBox(
-      height: 200,
-      child: Stack(
-        children: [
-          Container(
-            decoration: BoxDecoration(
-              gradient: LinearGradient(
-                  begin: Alignment.topCenter,
-                  end: Alignment.bottomCenter,
-                  colors: [
-                    const Color(0xffFCFFFF).withOpacity(0),
-                    const Color(0xffFCFFFF),
-                  ],
-                  stops: const [
-                    0,
-                    0.3,
-                  ]),
-            ),
-          ),
-          Positioned(
-            left: 0,
-            right: 0,
-            bottom: 0,
-            top: 16,
-            child: Column(
-              children: [
-                SizedBox(
-                  height: 80,
-                  child: ListView.builder(
-                    itemCount: serviceFilterItems.length,
-                    scrollDirection: Axis.horizontal,
-                    itemBuilder: (context, index) {
-                      var item = serviceFilterItems[index];
-                      var selected = index == 1;
-                      return Padding(
-                        padding: const EdgeInsets.symmetric(horizontal: 16),
-                        child: InkWell(
-                          onTap: () {
-                            if (index == 2) {
-                              Get.off(const PressingMapPage());
-                            }
-                          },
-                          child: Column(
-                            children: [
-                              Container(
-                                width: 55,
-                                height: 55,
-                                decoration: BoxDecoration(
-                                  color: selected
-                                      ? const Color(0xff0042FF).withOpacity(0.15)
-                                      : const Color(0xffB5C4D8)
-                                          .withOpacity(0.15),
-                                  shape: BoxShape.circle,
-                                ),
-                                padding: const EdgeInsets.all(12),
-                                child: Center(
-                                  child: Image.asset(
-                                    item.icon,
-                                    width: 25,
-                                    height: 25,
-                                  ),
-                                ),
-                              ),
-                              Text(
-                                item.label,
-                                style: TextStyle(
-                                  color: selected
-                                      ? const Color(0xff0042FF)
-                                      : AssetColors.blueGrey,
-                                ),
-                              ),
-                            ],
-                          ),
-                        ),
-                      );
-                    },
-                  ),
-                ),
-                const Spacer(),
-                Padding(
-                  padding: const EdgeInsets.all(16.0),
-                  child: CTextFormField(
-                    hintText: "Chercher un",
-                    suffixIcon: const Padding(
-                      padding: EdgeInsets.all(8),
-                      child: Icon(Icons.search),
-                    ),
-                    fillColor: const Color(0xffCFD8DC).withOpacity(.56),
-                  ),
-                ),
-              ],
-            ),
-          )
-        ],
       ),
     );
   }

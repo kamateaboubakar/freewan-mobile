@@ -24,7 +24,6 @@ class GazMapPage extends StatefulWidget {
 }
 
 class _GazMapPageState extends State<GazMapPage> {
-
   final MapController _mapController = MapController();
 
   final double mapZoom = 16.2;
@@ -158,7 +157,6 @@ class _GazMapPageState extends State<GazMapPage> {
                         ),
                         const SizedBox(height: 5)
                       ],
-                      showServiceFilterView(),
                     ],
                   ),
                 ),

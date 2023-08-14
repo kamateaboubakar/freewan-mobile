@@ -45,13 +45,7 @@ class HomeDrawer extends StatelessWidget {
                 ],
               ),
             ),
-            Opacity(
-              opacity: .3,
-              child: Image.asset("assets/images/abidjan-vectoriel.png"),
-              // Lottie.asset(
-              //   "assets/lotties/130053-animated-africa-continent.json",
-              // ),
-            ),
+            Image.asset("assets/images/abidjan-vectoriel.png"),
             const ListTile(
               contentPadding: EdgeInsets.zero,
               title: Text(
@@ -59,7 +53,6 @@ class HomeDrawer extends StatelessWidget {
                 textAlign: TextAlign.center,
                 style: TextStyle(
                   fontSize: 12,
-                  color: Colors.black26,
                 ),
               ),
             ),

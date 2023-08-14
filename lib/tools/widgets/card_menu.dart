@@ -42,7 +42,7 @@ class CardMenu extends StatelessWidget {
             child: Text(
               title.value,
               style: const TextStyle(
-                fontSize: 18,
+                fontSize: 22,
                 fontWeight: FontWeight.bold,
               ),
             ),

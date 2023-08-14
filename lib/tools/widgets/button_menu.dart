@@ -8,11 +8,13 @@ class ButtonMenu extends StatelessWidget {
   final double? minWidth;
   final double? height;
   final String? categorie;
+  final int iconFlex;
 
   final void Function()? onPressed;
 
   const ButtonMenu({
     this.minWidth,
+    this.iconFlex = 1,
     this.height,
     this.categorie,
     required this.icon,
@@ -33,7 +35,7 @@ class ButtonMenu extends StatelessWidget {
         padding: const EdgeInsets.all(10),
         child: Column(
           children: [
-            Expanded(child: icon),
+            Expanded(flex: iconFlex, child: icon),
             const SizedBox(height: 5),
             Visibility(
               visible: title != null,

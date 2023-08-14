@@ -47,7 +47,7 @@ class ListableMenu extends StatelessWidget {
                 Text(
                   title.value,
                   style: const TextStyle(
-                    fontSize: 18,
+                    fontSize: 20,
                     fontWeight: FontWeight.bold,
                   ),
                 ),

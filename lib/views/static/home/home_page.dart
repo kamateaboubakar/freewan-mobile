@@ -1028,7 +1028,7 @@ class HomePage extends StatelessWidget {
                                             ),
                                             ButtonMenu(
                                               icon: Image.asset(
-                                                  "assets/images/icons/icons8-arrêt-de-bus-64.png"),
+                                                  "assets/images/icons/bus_car.png"),
                                               title: "Bus et Car",
                                               onPressed: () {},
                                             ),
@@ -1105,7 +1105,7 @@ class HomePage extends StatelessWidget {
                                                         children: [
                                                           ButtonMenu(
                                                             icon: Image.asset(
-                                                                "assets/images/icons/icons8-arrêt-de-bus-64.png"),
+                                                                "assets/images/icons/bus_car.png"),
                                                             title: "Bus et Car",
                                                             onPressed: () {},
                                                           ),

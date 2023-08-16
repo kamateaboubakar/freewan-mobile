@@ -5,10 +5,8 @@ import 'package:flutter_map/flutter_map.dart';
 import 'package:get/get.dart';
 import 'package:latlong2/latlong.dart';
 import 'package:wan_mobile/models/location_model.dart';
-import 'package:wan_mobile/tools/utils/asset_colors.dart';
-import '../../../../tools/utils/tools.dart';
+import 'package:module_master/module_master.dart';
 import '../../../../tools/widgets/address_type_item.dart';
-import '../../../../tools/widgets/c_button.dart';
 import '../../../../tools/widgets/error_view.dart';
 import '../../../controllers/pressing/address_vctl.dart';
 import '../../../controllers/pressing/pressing_vctl.dart';
@@ -236,8 +234,12 @@ class _PressingDeliveryAddressPageState
                                   itemBuilder: (context, index) {
                                     var type = addressTypes[index];
 
-                                    var selected = (userLocalisation != null && userLocalisation.localisationType!.id == type.id)  || (addressType != null &&
-                                        type.id == addressType.id!);
+                                    var selected = (userLocalisation != null &&
+                                            userLocalisation
+                                                    .localisationType!.id ==
+                                                type.id) ||
+                                        (addressType != null &&
+                                            type.id == addressType.id!);
                                     return SizedBox(
                                       width: MediaQuery.of(context).size.width *
                                           0.4,
@@ -248,7 +250,8 @@ class _PressingDeliveryAddressPageState
                                         onTap: () {
                                           _pressingController
                                               .updateAddressType(type);
-                                          _pressingController.updateUserLocalisation(null);
+                                          _pressingController
+                                              .updateUserLocalisation(null);
                                         },
                                       ),
                                     );
@@ -257,8 +260,7 @@ class _PressingDeliveryAddressPageState
                               );
                             }),
                         const SizedBox(height: 20),
-
-                        if(isLocationNameLoading)...{
+                        if (isLocationNameLoading) ...{
                           const Center(
                             child: CircularProgressIndicator(),
                           )
@@ -297,7 +299,8 @@ class _PressingDeliveryAddressPageState
   }
 
   bool isFormValid() {
-    if (!_pressingController.hasUserLocalisation && !_pressingController.hasAddressTypeSeleced) {
+    if (!_pressingController.hasUserLocalisation &&
+        !_pressingController.hasAddressTypeSeleced) {
       return false;
     }
 
@@ -347,84 +350,83 @@ class _PressingDeliveryAddressPageState
 
   Future<dynamic> _showAddressesDialog() {
     return Tools.openModal(
-      Container(
-        width: double.infinity,
-        decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(20),
-          color: Colors.white,
-        ),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.stretch,
-          mainAxisSize: MainAxisSize.min,
-          children: [
-            Container(
-              width: MediaQuery.of(context).size.width,
-
-              color: const Color(0xffB5C4D8).withOpacity(0.15),
-              padding: const EdgeInsets.all(16),
-              child: const Text(
-                'Séléctionner l\'adresse',
-                style: TextStyle(
-                  fontWeight: FontWeight.bold,
-                  fontSize: 16,
+        Container(
+          width: double.infinity,
+          decoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(20),
+            color: Colors.white,
+          ),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.stretch,
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              Container(
+                width: MediaQuery.of(context).size.width,
+                color: const Color(0xffB5C4D8).withOpacity(0.15),
+                padding: const EdgeInsets.all(16),
+                child: const Text(
+                  'Séléctionner l\'adresse',
+                  style: TextStyle(
+                    fontWeight: FontWeight.bold,
+                    fontSize: 16,
+                  ),
                 ),
               ),
-            ),
-            GetBuilder(
-              init: _addressController,
-              builder: (controller) {
-                _addressController = controller;
-                var items =
-                    _addressController.userLocalisationResponse!.data ?? [];
-                return Column(
-                  crossAxisAlignment: CrossAxisAlignment.stretch,
-                  children: [
-                    for (int i = 0; i < items.length; i++) ...[
-                      InkWell(
-                        onTap: () {
-                          _pressingController
-                              .updateAddressType(null);
-                          _pressingController.updateUserLocalisation(items[i]);
-                          Get.back();
-                          _mapController.move(
-                              LatLng(items[i].latitude!, items[i].longitude!),
-                              mapZoom);
-                        },
-                        child: Padding(
-                          padding: const EdgeInsets.all(8),
-                          child: Row(
-                            children: [
-                              Expanded(
-                                  child: Text(
-                                items[i].address!,
-                                style: const TextStyle(
-                                  fontSize: 12,
-                                ),
-                              )),
-                              if (_pressingController.userLocalisation !=
-                                      null &&
-                                  items[i].id ==
-                                      _pressingController.userLocalisation!.id)
-                                Image.asset(
-                                  'assets/images/check.png',
-                                  width: 15,
-                                )
-                            ],
+              GetBuilder(
+                init: _addressController,
+                builder: (controller) {
+                  _addressController = controller;
+                  var items =
+                      _addressController.userLocalisationResponse!.data ?? [];
+                  return Column(
+                    crossAxisAlignment: CrossAxisAlignment.stretch,
+                    children: [
+                      for (int i = 0; i < items.length; i++) ...[
+                        InkWell(
+                          onTap: () {
+                            _pressingController.updateAddressType(null);
+                            _pressingController
+                                .updateUserLocalisation(items[i]);
+                            Get.back();
+                            _mapController.move(
+                                LatLng(items[i].latitude!, items[i].longitude!),
+                                mapZoom);
+                          },
+                          child: Padding(
+                            padding: const EdgeInsets.all(8),
+                            child: Row(
+                              children: [
+                                Expanded(
+                                    child: Text(
+                                  items[i].address!,
+                                  style: const TextStyle(
+                                    fontSize: 12,
+                                  ),
+                                )),
+                                if (_pressingController.userLocalisation !=
+                                        null &&
+                                    items[i].id ==
+                                        _pressingController
+                                            .userLocalisation!.id)
+                                  Image.asset(
+                                    'assets/images/check.png',
+                                    width: 15,
+                                  )
+                              ],
+                            ),
                           ),
                         ),
-                      ),
-                      const Divider()
-                    ]
-                  ],
-                );
-              },
-            ),
-          ],
+                        const Divider()
+                      ]
+                    ],
+                  );
+                },
+              ),
+            ],
+          ),
         ),
-      ),
-      backgroundColor: Colors.transparent,
-      elevation: 0,
-      contentPadding: EdgeInsets.zero
-    );
+        backgroundColor: Colors.transparent,
+        elevation: 0,
+        contentPadding: EdgeInsets.zero);
   }
 }

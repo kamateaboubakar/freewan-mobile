@@ -1,10 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:module_master/utils/asset_colors.dart';
 import 'package:qr_code_scanner/qr_code_scanner.dart';
 import 'package:wan_mobile/views/controllers/scan_pay/scan_pay_camera_vctl.dart';
 import 'package:wan_mobile/views/static/paiement/paiement_montant.dart';
-
-import '../../../tools/utils/asset_colors.dart';
 
 class ScanPayCamera extends StatelessWidget {
   const ScanPayCamera({super.key});

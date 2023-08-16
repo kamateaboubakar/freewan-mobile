@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 import 'package:get/get.dart';
-import 'package:wan_mobile/tools/utils/asset_colors.dart';
-import 'package:wan_mobile/tools/widgets/c_button.dart';
+import 'package:module_master/module_master.dart';
+import 'package:module_master/module_master.dart';
 import 'package:wan_mobile/tools/widgets/construction/panier_materiau_construction_listtile.dart';
 import 'package:wan_mobile/views/static/construction/confirmation_commande_construction_page.dart';
 

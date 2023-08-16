@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:wan_mobile/tools/utils/tools.dart';
+import 'package:module_master/tools/tools.dart';
+
 import 'package:wan_mobile/tools/widgets/button_menu.dart';
 import 'package:wan_mobile/views/static/achat_unite/achat_unite_page.dart';
 import 'package:wan_mobile/views/static/bills/views/bills_company_selection_dialog.dart';

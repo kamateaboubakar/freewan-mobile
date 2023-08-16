@@ -1,6 +1,6 @@
 import 'package:flutter/foundation.dart';
 import 'package:get/get.dart';
-import 'package:wan_mobile/tools/const/const.dart';
+import 'package:module_master/const/const.dart';
 
 import '../../views/controllers/app_ctl.dart';
 

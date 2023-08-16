@@ -5,15 +5,14 @@ import 'package:latlong2/latlong.dart';
 import 'package:sliding_up_panel/sliding_up_panel.dart';
 import 'package:wan_mobile/api/services/location_service.dart';
 import 'package:wan_mobile/models/pressing/pressing.dart';
-import 'package:wan_mobile/tools/const/const.dart';
-import 'package:wan_mobile/tools/utils/asset_colors.dart';
-import 'package:wan_mobile/tools/utils/tools.dart';
+
+import 'package:module_master/module_master.dart';
+
 import 'package:wan_mobile/views/controllers/pressing/pressing_vctl.dart';
 import 'package:wan_mobile/views/static/gaz/gaz_view.dart';
 import 'package:wan_mobile/views/static/pressing/pages/pages.dart';
 
 import '../../../../models/service.dart';
-import '../../../../tools/widgets/c_textform_field.dart';
 
 class PressingMapPage extends StatefulWidget {
   const PressingMapPage({Key? key}) : super(key: key);

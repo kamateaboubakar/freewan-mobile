@@ -1,9 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:wan_mobile/tools/utils/asset_colors.dart';
-import 'package:wan_mobile/tools/widgets/c_button.dart';
-import 'package:wan_mobile/tools/widgets/c_dropdown_field.dart';
-import 'package:wan_mobile/tools/widgets/c_textform_field.dart';
+
+import 'package:module_master/module_master.dart';
+
 import 'package:wan_mobile/tools/widgets/toggle_button_widget/c_toggle_button.dart';
 import 'package:wan_mobile/tools/widgets/toggle_button_widget/toggle_item.dart';
 import 'package:wan_mobile/views/controllers/tontine/edition_tontine_page_vctl.dart';

@@ -1,7 +1,7 @@
 import 'package:get/get.dart';
+import 'package:module_master/tools/tools.dart';
 import 'package:wan_mobile/views/controllers/app_ctl.dart';
 import 'package:progress_dialog_null_safe/progress_dialog_null_safe.dart';
-import 'package:wan_mobile/tools/utils/tools.dart';
 
 abstract class ViewController extends GetxController {
   late AppCtl _appCtl;

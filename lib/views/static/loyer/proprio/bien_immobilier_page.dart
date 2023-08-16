@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_speed_dial/flutter_speed_dial.dart';
 import 'package:get/get.dart';
+import 'package:module_master/utils/asset_colors.dart';
 import 'package:wan_mobile/models/loyer/abstracts/bloc_appartement.dart';
 import 'package:wan_mobile/models/loyer/maison.dart';
 import 'package:wan_mobile/tools/widgets/loyer/bloc_appart_list_tile.dart';
@@ -11,8 +12,6 @@ import 'package:wan_mobile/views/static/loyer/proprio/detail_bloc_appartement_pa
 import 'package:wan_mobile/views/static/loyer/proprio/edition_maison_form.dart';
 import 'package:wan_mobile/views/static/loyer/proprio/form_edition_appartement.dart';
 import 'package:wan_mobile/views/static/loyer/proprio/form_edition_bien_immobilier.dart';
-
-import '../../../../tools/utils/asset_colors.dart';
 
 class BienImmobilierPage extends StatelessWidget {
   const BienImmobilierPage({super.key});

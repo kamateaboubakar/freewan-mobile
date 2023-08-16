@@ -4,7 +4,7 @@ import 'package:wan_mobile/models/loyer/abstracts/habitat.dart';
 import 'package:wan_mobile/models/loyer/appartement.dart';
 import 'package:wan_mobile/models/loyer/maison.dart';
 import 'package:wan_mobile/tools/types/types.dart';
-import 'package:wan_mobile/tools/widgets/c_button.dart';
+import 'package:module_master/module_master.dart';
 import 'package:wan_mobile/views/controllers/loyer/locataire/paiement_loyer_page_vctl.dart';
 
 class PaiementLoyerPage extends StatelessWidget {

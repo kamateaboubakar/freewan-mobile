@@ -6,10 +6,9 @@ import 'package:get/get.dart';
 import 'package:latlong2/latlong.dart';
 import 'package:wan_mobile/models/location_model.dart';
 import 'package:wan_mobile/models/shop.dart';
-import 'package:wan_mobile/tools/utils/asset_colors.dart';
+import 'package:module_master/module_master.dart';
 import 'package:wan_mobile/views/controllers/gaz/gas_vctl.dart';
 import '../../../../tools/widgets/address_type_item.dart';
-import '../../../../tools/widgets/c_button.dart';
 
 class GazDeliveryMapPage extends StatefulWidget {
   const GazDeliveryMapPage({Key? key}) : super(key: key);

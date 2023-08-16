@@ -6,10 +6,9 @@ import 'package:get/get.dart';
 import 'package:latlong2/latlong.dart';
 import 'package:wan_mobile/models/pressing/pressing.dart';
 import 'package:wan_mobile/models/pressing/time_delivery.dart';
-import 'package:wan_mobile/tools/utils/asset_colors.dart';
-import 'package:wan_mobile/tools/utils/tools.dart';
+import 'package:module_master/module_master.dart';
+
 import 'package:wan_mobile/views/controllers/pressing/pressing_vctl.dart';
-import '../../../../tools/widgets/c_button.dart';
 
 class PressingHourSelectionPage extends StatefulWidget {
   const PressingHourSelectionPage({Key? key}) : super(key: key);
@@ -240,8 +239,8 @@ class _PressingHourSelectionPageState extends State<PressingHourSelectionPage> {
                       CButton(
                         height: 50,
                         onPressed: () {
-                          if(canSelectHour &&
-                              _pressingController.deliveryHour != null ||
+                          if (canSelectHour &&
+                                  _pressingController.deliveryHour != null ||
                               !canSelectHour) {
                             Get.back();
                           }
@@ -254,8 +253,7 @@ class _PressingHourSelectionPageState extends State<PressingHourSelectionPage> {
                         child: const Text(
                           "Enregister l'heure",
                           style: TextStyle(
-                            color:
-                                true ? Colors.white : Color(0xffB5C4D8),
+                            color: true ? Colors.white : Color(0xffB5C4D8),
                           ),
                         ),
                       ),
@@ -272,80 +270,79 @@ class _PressingHourSelectionPageState extends State<PressingHourSelectionPage> {
 
   Future<dynamic> _showDeliveryTimeDialog() {
     return Tools.openModal(
-      Container(
-        decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(20),
-          color: Colors.white,
-        ),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.stretch,
-          mainAxisSize: MainAxisSize.min,
-          children: [
-            Container(
-              width: MediaQuery.of(context).size.width,
-              color: const Color(0xffB5C4D8).withOpacity(0.15),
-              padding: const EdgeInsets.all(16),
-              child: const Text(
-                'Séléctionner le moment',
-                style: TextStyle(
-                  fontWeight: FontWeight.bold,
-                  fontSize: 16,
+        Container(
+          decoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(20),
+            color: Colors.white,
+          ),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.stretch,
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              Container(
+                width: MediaQuery.of(context).size.width,
+                color: const Color(0xffB5C4D8).withOpacity(0.15),
+                padding: const EdgeInsets.all(16),
+                child: const Text(
+                  'Séléctionner le moment',
+                  style: TextStyle(
+                    fontWeight: FontWeight.bold,
+                    fontSize: 16,
+                  ),
                 ),
               ),
-            ),
-            GetBuilder(
-              init: _pressingController,
-              builder: (controller) {
-                _pressingController = controller;
-                var timeDelivery = _pressingController.timeDeliverySelection;
-                return SingleChildScrollView(
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.stretch,
-                    children: [
-                      for (int i = 0;
-                          i < TimeDeliverySelection.times.length;
-                          i++) ...[
-                        InkWell(
-                          onTap: () {
-                            _pressingController.updateDeliverySelectionTime(
-                                TimeDeliverySelection.times[i]);
-                            Get.back();
-                          },
-                          child: Padding(
-                            padding: const EdgeInsets.all(8),
-                            child: Row(
-                              children: [
-                                Expanded(
-                                    child: Text(
-                                  TimeDeliverySelection.times[i].title,
-                                  style: const TextStyle(
-                                    fontSize: 12,
-                                  ),
-                                )),
-                                if (TimeDeliverySelection.times[i].value ==
-                                    timeDelivery.value)
-                                  Image.asset(
-                                    'assets/images/check.png',
-                                    width: 15,
-                                  )
-                              ],
+              GetBuilder(
+                init: _pressingController,
+                builder: (controller) {
+                  _pressingController = controller;
+                  var timeDelivery = _pressingController.timeDeliverySelection;
+                  return SingleChildScrollView(
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.stretch,
+                      children: [
+                        for (int i = 0;
+                            i < TimeDeliverySelection.times.length;
+                            i++) ...[
+                          InkWell(
+                            onTap: () {
+                              _pressingController.updateDeliverySelectionTime(
+                                  TimeDeliverySelection.times[i]);
+                              Get.back();
+                            },
+                            child: Padding(
+                              padding: const EdgeInsets.all(8),
+                              child: Row(
+                                children: [
+                                  Expanded(
+                                      child: Text(
+                                    TimeDeliverySelection.times[i].title,
+                                    style: const TextStyle(
+                                      fontSize: 12,
+                                    ),
+                                  )),
+                                  if (TimeDeliverySelection.times[i].value ==
+                                      timeDelivery.value)
+                                    Image.asset(
+                                      'assets/images/check.png',
+                                      width: 15,
+                                    )
+                                ],
+                              ),
                             ),
                           ),
-                        ),
-                        const Divider()
-                      ]
-                    ],
-                  ),
-                );
-              },
-            ),
-          ],
+                          const Divider()
+                        ]
+                      ],
+                    ),
+                  );
+                },
+              ),
+            ],
+          ),
         ),
-      ),
-      backgroundColor: Colors.transparent,
-      elevation: 0,
-      contentPadding: EdgeInsets.zero
-    );
+        backgroundColor: Colors.transparent,
+        elevation: 0,
+        contentPadding: EdgeInsets.zero);
   }
 
   _showTimePicker() async {

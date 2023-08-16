@@ -1,4 +1,4 @@
-import 'package:wan_mobile/tools/const/const.dart';
+import 'package:module_master/const/const.dart';
 
 class Pressing {
   int? id;
@@ -12,13 +12,13 @@ class Pressing {
 
   Pressing(
       {this.id,
-        this.name,
-        this.address,
-        this.description,
-        this.rating,
-        this.latitude,
-        this.longitude,
-        this.photoLink});
+      this.name,
+      this.address,
+      this.description,
+      this.rating,
+      this.latitude,
+      this.longitude,
+      this.photoLink});
 
   Pressing.fromJson(Map<String, dynamic> json) {
     id = json['id'];

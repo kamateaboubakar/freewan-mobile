@@ -4,8 +4,8 @@ import 'package:get/get.dart';
 import 'package:latlong2/latlong.dart';
 import 'package:sliding_up_panel/sliding_up_panel.dart';
 import 'package:wan_mobile/api/services/location_service.dart';
-import 'package:wan_mobile/tools/utils/asset_colors.dart';
-import 'package:wan_mobile/tools/utils/tools.dart';
+import 'package:module_master/module_master.dart';
+
 import 'package:wan_mobile/views/controllers/gaz/gas_shop_vctl.dart';
 import 'package:wan_mobile/views/controllers/gaz/gas_vctl.dart';
 import 'package:wan_mobile/views/static/gaz/pages/gaz_pos_info_page.dart';
@@ -14,7 +14,6 @@ import 'package:wan_mobile/views/static/pressing/pages/pages.dart';
 import '../../../../models/gaz_pos.dart';
 import '../../../../models/service.dart';
 import '../../../../models/shop.dart';
-import '../../../../tools/widgets/c_textform_field.dart';
 
 class GazMapPage extends StatefulWidget {
   const GazMapPage({Key? key}) : super(key: key);
@@ -255,7 +254,8 @@ class _GazMapPageState extends State<GazMapPage> {
                                 height: 55,
                                 decoration: BoxDecoration(
                                   color: selected
-                                      ? const Color(0xff0042FF).withOpacity(0.15)
+                                      ? const Color(0xff0042FF)
+                                          .withOpacity(0.15)
                                       : const Color(0xffB5C4D8)
                                           .withOpacity(0.15),
                                   shape: BoxShape.circle,

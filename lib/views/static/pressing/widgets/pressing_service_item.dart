@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
-
-import '../../../../tools/utils/asset_colors.dart';
+import 'package:module_master/utils/asset_colors.dart';
 
 class PressingServiceItem extends StatelessWidget {
   final String image;

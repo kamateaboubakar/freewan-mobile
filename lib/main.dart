@@ -2,7 +2,7 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
-import 'package:wan_mobile/tools/const/const.dart';
+import 'package:module_master/module_master.dart';
 
 import 'views/static/splashscreen.dart';
 

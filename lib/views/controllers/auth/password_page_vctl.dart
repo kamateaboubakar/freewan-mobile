@@ -4,12 +4,13 @@ import 'package:get/get.dart';
 import 'package:local_auth/local_auth.dart';
 import 'package:local_auth_android/local_auth_android.dart';
 import 'package:local_auth_ios/local_auth_ios.dart';
+import 'package:module_master/tools/tools.dart';
 
 import 'package:wan_mobile/api/controllers/user_api_ctl.dart';
 import 'package:wan_mobile/models/pays.dart';
 import 'package:wan_mobile/tools/cache/cache.dart';
 import 'package:wan_mobile/tools/cache/cache_keys.dart';
-import 'package:wan_mobile/tools/utils/tools.dart';
+
 import 'package:wan_mobile/views/controllers/abstracts/view_controller.dart';
 import 'package:wan_mobile/views/static/auth/answer_security_question_page.dart';
 import 'package:wan_mobile/views/static/auth/phone_auth/phone_auth.dart';

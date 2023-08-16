@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:wan_mobile/tools/const/const.dart';
+import 'package:module_master/const/const.dart';
+
 import 'package:wan_mobile/views/controllers/home/home_page_vctl.dart';
 import 'package:wan_mobile/views/static/home/home_drawer.dart';
 import 'package:webview_flutter/webview_flutter.dart';

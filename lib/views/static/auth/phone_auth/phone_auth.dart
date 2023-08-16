@@ -1,9 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:wan_mobile/tools/const/const.dart';
-import 'package:wan_mobile/tools/utils/tools.dart';
-import 'package:wan_mobile/tools/widgets/c_button.dart';
-import 'package:wan_mobile/tools/widgets/c_textform_field.dart';
+
+import 'package:module_master/module_master.dart';
+
 import 'package:wan_mobile/views/controllers/auth/phone_auth_vctl.dart';
 import 'package:wan_mobile/views/static/auth/phone_auth/bottom_sheet_phone_auth.dart';
 

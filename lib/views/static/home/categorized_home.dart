@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:module_master/module_master.dart';
 import 'package:wan_mobile/tools/types/types.dart';
-import 'package:wan_mobile/tools/widgets/c_textform_field.dart';
+
 import 'package:wan_mobile/views/controllers/home/categorized_home_vctl.dart';
 
 class CategorizedHome extends StatefulWidget {

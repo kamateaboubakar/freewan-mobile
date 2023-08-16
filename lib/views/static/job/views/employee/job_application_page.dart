@@ -4,14 +4,11 @@ import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:wan_mobile/models/job/job_offer.dart';
-import 'package:wan_mobile/tools/utils/asset_colors.dart';
-import 'package:wan_mobile/tools/utils/tools.dart';
+import 'package:module_master/module_master.dart';
+
 import 'package:wan_mobile/views/controllers/job/apply_job_vctl.dart';
 import 'package:wan_mobile/views/controllers/job/job_list_vctl.dart';
 import 'package:wan_mobile/views/static/home/home_page.dart';
-
-import '../../../../../tools/widgets/c_button.dart';
-import '../../../../../tools/widgets/c_textform_field.dart';
 
 class JobApplicationPage extends StatefulWidget {
   const JobApplicationPage({Key? key}) : super(key: key);
@@ -115,9 +112,11 @@ class _JobApplicationPageState extends State<JobApplicationPage> {
                                       child: Container(
                                         decoration: BoxDecoration(
                                           border: Border.all(color: Colors.red),
-                                          borderRadius: BorderRadius.circular(20),
+                                          borderRadius:
+                                              BorderRadius.circular(20),
                                         ),
-                                       padding: const EdgeInsets.symmetric(vertical: 2, horizontal: 8),
+                                        padding: const EdgeInsets.symmetric(
+                                            vertical: 2, horizontal: 8),
                                         child: const Row(
                                           children: [
                                             Text(

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:wan_mobile/tools/widgets/c_button.dart';
-import 'package:wan_mobile/tools/widgets/c_textform_field.dart';
+import 'package:module_master/module_master.dart';
+
 import 'package:wan_mobile/views/controllers/achat_unite/achat_unite_page_vctl.dart';
 
 class AchatUnitePage extends StatelessWidget {
@@ -77,8 +77,7 @@ class AchatUnitePage extends StatelessWidget {
                 const Expanded(
                   flex: 4,
                   child: Padding(
-                    padding: EdgeInsets.symmetric(
-                        horizontal: 24, vertical: 10),
+                    padding: EdgeInsets.symmetric(horizontal: 24, vertical: 10),
                     child: Column(
                       children: [
                         CTextFormField(

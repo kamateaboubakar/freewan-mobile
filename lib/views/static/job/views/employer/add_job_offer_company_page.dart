@@ -3,15 +3,11 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:image_picker/image_picker.dart';
-import 'package:wan_mobile/tools/utils/asset_colors.dart';
+import 'package:module_master/module_master.dart';
 import 'package:wan_mobile/views/controllers/job/add_job_vctl.dart';
 
 import '../../../../../models/job/company.dart';
 import '../../../../../models/job/jobs_sector.dart';
-import '../../../../../tools/utils/tools.dart';
-import '../../../../../tools/widgets/c_button.dart';
-import '../../../../../tools/widgets/c_dropdown_field.dart';
-import '../../../../../tools/widgets/c_textform_field.dart';
 import '../../../home/home_page.dart';
 import '../../job_views.dart';
 
@@ -128,7 +124,8 @@ class _AddJobOfferCompanyPageState extends State<AddJobOfferCompanyPage> {
                         crossAxisAlignment: CrossAxisAlignment.stretch,
                         children: [
                           ListTile(
-                            contentPadding: const EdgeInsets.symmetric(vertical: 0),
+                            contentPadding:
+                                const EdgeInsets.symmetric(vertical: 0),
                             leading: Checkbox(
                               value: isNewCompany,
                               onChanged: (value) {
@@ -182,7 +179,8 @@ class _AddJobOfferCompanyPageState extends State<AddJobOfferCompanyPage> {
                               controller: _descriptionCtrl,
                               hintText: "Description *",
                               onChanged: (value) {
-                                _addJobController.updateCompanyDescription(value);
+                                _addJobController
+                                    .updateCompanyDescription(value);
                               },
                               maxLines: 5,
                             ),
@@ -332,7 +330,9 @@ class _AddJobOfferCompanyPageState extends State<AddJobOfferCompanyPage> {
       return;
     }
     Tools.messageBox(
-        message: _addJobController.forJobUpdate ? "Votre offre d'emploi a été modifiée" : "Votre offre d'emploi a été créée",
+        message: _addJobController.forJobUpdate
+            ? "Votre offre d'emploi a été modifiée"
+            : "Votre offre d'emploi a été créée",
         onConfirm: () {
           Get.offAll(const HomePage());
         });

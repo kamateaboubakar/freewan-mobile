@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 import 'package:get/get.dart';
-import 'package:wan_mobile/tools/utils/asset_colors.dart';
+import 'package:module_master/module_master.dart';
 import 'package:wan_mobile/views/static/construction/detail_materiau_construction_page.dart';
 
 class MateriauConstructionCard extends StatelessWidget {

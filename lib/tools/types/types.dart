@@ -2,7 +2,7 @@ import 'dart:convert';
 
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
-import 'package:wan_mobile/tools/utils/functions.dart';
+import 'package:module_master/tools/functions.dart';
 
 typedef Json = Map<String, dynamic>;
 

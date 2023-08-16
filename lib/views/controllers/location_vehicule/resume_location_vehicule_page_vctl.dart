@@ -1,4 +1,5 @@
 import 'package:get/get.dart';
+import 'package:module_master/tools/tools.dart';
 import 'package:wan_mobile/api/controllers/location_vehicule/location_vehicule_ctl.dart';
 import 'package:wan_mobile/api/services/location_service.dart';
 import 'package:wan_mobile/models/location_model.dart';
@@ -6,7 +7,7 @@ import 'package:wan_mobile/models/location_vehicule/booking.dart';
 import 'package:wan_mobile/models/location_vehicule/car.dart';
 import 'package:wan_mobile/models/location_vehicule/mode_paiement.dart';
 import 'package:wan_mobile/tools/types/types.dart';
-import 'package:wan_mobile/tools/utils/tools.dart';
+
 import 'package:wan_mobile/tools/widgets/date_time_range_editing_controller.dart';
 import 'package:wan_mobile/views/controllers/abstracts/view_controller.dart';
 import 'package:wan_mobile/views/static/home/home_page.dart';

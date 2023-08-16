@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:wan_mobile/models/job/apply_job.dart';
-import 'package:wan_mobile/tools/utils/asset_colors.dart';
+import 'package:module_master/module_master.dart';
 import 'package:get/get.dart';
 import 'package:wan_mobile/views/controllers/job/job_application_list_vctl.dart';
 import 'package:wan_mobile/views/static/job/views/employee/application_job_description_page.dart';
@@ -17,8 +17,10 @@ class JobApplicationsListPage extends StatefulWidget {
 }
 
 class _JobApplicationsListPageState extends State<JobApplicationsListPage> {
-  JobApplicationsListController _jobApplicationListController = Get.put(JobApplicationsListController());
-  final JobOfferAppliedController _jobOfferAppliedController = Get.put(JobOfferAppliedController());
+  JobApplicationsListController _jobApplicationListController =
+      Get.put(JobApplicationsListController());
+  final JobOfferAppliedController _jobOfferAppliedController =
+      Get.put(JobOfferAppliedController());
 
   @override
   void initState() {
@@ -127,8 +129,7 @@ class _JobApplicationsListPageState extends State<JobApplicationsListPage> {
                     color: AssetColors.blueButton,
                   ),
                 ),
-                Text(
-                    jobOffer.applicantDetails!.fullName),
+                Text(jobOffer.applicantDetails!.fullName),
                 Text("${jobOffer.applicantDetails!.email}"),
               ],
             ),

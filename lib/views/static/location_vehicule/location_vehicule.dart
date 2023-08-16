@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:wan_mobile/tools/utils/asset_colors.dart';
+import 'package:module_master/module_master.dart';
 import 'package:wan_mobile/views/controllers/location_vehicule/location_vehicule_vctl.dart';
 import 'package:wan_mobile/views/static/location_vehicule/location/a_louer_page.dart';
 import 'package:wan_mobile/views/static/location_vehicule/mes_voitures/mes_voitures_page.dart';

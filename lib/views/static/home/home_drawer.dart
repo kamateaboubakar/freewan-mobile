@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:wan_mobile/tools/const/const.dart';
+import 'package:module_master/module_master.dart';
+
 import 'package:wan_mobile/tools/types/types.dart';
 import 'package:wan_mobile/views/controllers/home/home_page_vctl.dart';
 import 'package:wan_mobile/views/static/auth/profil_page.dart';

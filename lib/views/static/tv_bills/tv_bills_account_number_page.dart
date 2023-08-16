@@ -1,9 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:module_master/module_master.dart';
 import 'package:wan_mobile/views/static/tv_bills/tv_bills_forumla_list_page.dart';
-
-import '../../../../tools/widgets/c_button.dart';
-import '../../../../tools/widgets/c_textform_field.dart';
 
 class TvBillsAccountNumberPage extends StatelessWidget {
   final TextEditingController _referenceCtrl = TextEditingController();

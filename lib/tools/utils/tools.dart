@@ -6,8 +6,8 @@ import 'package:get/get.dart';
 import 'package:icofont_flutter/icofont_flutter.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:progress_dialog_null_safe/progress_dialog_null_safe.dart';
-import 'package:wan_mobile/tools/const/const.dart';
-import 'package:wan_mobile/tools/utils/asset_colors.dart';
+
+import 'package:module_master/module_master.dart';
 
 class Tools {
   Tools._();

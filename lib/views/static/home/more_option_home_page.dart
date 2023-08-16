@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:wan_mobile/tools/const/const.dart';
+import 'package:module_master/const/const.dart';
+
 import 'package:wan_mobile/tools/widgets/button_menu.dart';
 import 'package:wan_mobile/tools/widgets/card_menu.dart';
 

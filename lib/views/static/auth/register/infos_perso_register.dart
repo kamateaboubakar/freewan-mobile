@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:wan_mobile/tools/widgets/c_textform_field.dart';
+import 'package:module_master/module_master.dart';
+
 import 'package:wan_mobile/views/controllers/auth/register_page_vctl.dart';
 
 class InfosPersoRegister extends StatelessWidget {

@@ -3,8 +3,8 @@ import 'package:gap/gap.dart';
 import 'package:get/get.dart';
 import 'package:wan_mobile/models/don/campagne.dart';
 import 'package:wan_mobile/tools/types/types.dart';
-import 'package:wan_mobile/tools/utils/asset_colors.dart';
-import 'package:wan_mobile/tools/widgets/c_button.dart';
+import 'package:module_master/module_master.dart';
+import 'package:module_master/module_master.dart';
 import 'package:wan_mobile/views/static/donation/detail_campagne_page.dart';
 
 class CampagneListTile extends StatelessWidget {

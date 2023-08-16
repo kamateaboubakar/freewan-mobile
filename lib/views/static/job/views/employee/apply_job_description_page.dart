@@ -1,12 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:url_launcher/url_launcher.dart';
-import 'package:wan_mobile/tools/utils/asset_colors.dart';
+import 'package:module_master/module_master.dart';
 import 'package:wan_mobile/views/controllers/job/job_offer_applied_vctl.dart';
 import 'package:wan_mobile/views/static/job/views/employee/employee_views.dart';
 
 import '../../../../../models/job/apply_job.dart';
-import '../../../../../tools/const/const.dart';
 import '../../../../../tools/widgets/job/job_header.dart';
 
 class ApplyJobDescriptionPage extends StatefulWidget {

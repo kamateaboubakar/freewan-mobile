@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:wan_mobile/models/pays.dart';
-import 'package:wan_mobile/tools/const/const.dart';
-import 'package:wan_mobile/tools/widgets/c_button.dart';
+
+import 'package:module_master/module_master.dart';
 import 'package:wan_mobile/views/controllers/auth/register_page_vctl.dart';
 import 'package:wan_mobile/views/static/auth/register/infos_perso_register.dart';
 import 'package:wan_mobile/views/static/auth/register/password_register.dart';

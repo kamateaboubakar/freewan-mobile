@@ -1,12 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:module_master/module_master.dart';
 import 'package:wan_mobile/api/controllers/security_question_ctl.dart';
 import 'package:wan_mobile/api/controllers/user_api_ctl.dart';
 import 'package:wan_mobile/models/pays.dart';
 import 'package:wan_mobile/models/security_question.dart';
 import 'package:wan_mobile/models/user.dart';
 import 'package:wan_mobile/tools/types/types.dart';
-import 'package:wan_mobile/tools/utils/tools.dart';
+
 import 'package:wan_mobile/views/controllers/abstracts/view_controller.dart';
 import 'package:wan_mobile/views/static/auth/phone_auth/phone_auth.dart';
 import 'package:wan_mobile/views/static/home/home_page.dart';

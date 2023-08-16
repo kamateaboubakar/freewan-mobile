@@ -1,4 +1,4 @@
-import 'package:wan_mobile/tools/const/const.dart';
+import 'package:module_master/const/const.dart';
 
 class PressingArticle {
   int? id;

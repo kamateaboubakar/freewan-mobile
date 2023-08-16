@@ -1,9 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:module_master/module_master.dart';
 import 'package:wan_mobile/views/static/tv_bills/tv_bills_account_number_page.dart';
 import 'package:wan_mobile/views/static/tv_bills/tv_bills_account_selection_page.dart';
-
-import '../../../../tools/utils/asset_colors.dart';
 
 class TvBillsMenuPage extends StatefulWidget {
   const TvBillsMenuPage({super.key});
@@ -43,7 +42,8 @@ class _TvBillsMenuPageState extends State<TvBillsMenuPage> {
                   color: AssetColors.lightGrey,
                   borderRadius: BorderRadius.circular(10),
                 ),
-                padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 24),
+                padding:
+                    const EdgeInsets.symmetric(horizontal: 16, vertical: 24),
                 child: Row(
                   children: [
                     Image.asset(

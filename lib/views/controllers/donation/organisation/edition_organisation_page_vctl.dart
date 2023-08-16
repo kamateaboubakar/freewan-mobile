@@ -3,11 +3,12 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:module_master/module_master.dart';
 import 'package:wan_mobile/api/controllers/don/donation_api_ctl.dart';
 import 'package:wan_mobile/models/don/organization.dart';
 import 'package:wan_mobile/models/fichier.dart';
 import 'package:wan_mobile/tools/types/types.dart';
-import 'package:wan_mobile/tools/utils/tools.dart';
+
 import 'package:wan_mobile/views/controllers/abstracts/view_controller.dart';
 
 class EditionOrganisationPageVctl extends ViewController {

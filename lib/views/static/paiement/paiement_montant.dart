@@ -1,9 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:wan_mobile/tools/widgets/c_button.dart';
+import 'package:module_master/module_master.dart';
 import 'package:wan_mobile/views/static/paiement/paiement_mode_paiement.dart';
-
-import '../../../tools/utils/asset_colors.dart';
 
 class PaiementMontant extends StatelessWidget {
   final bool isForMontant;

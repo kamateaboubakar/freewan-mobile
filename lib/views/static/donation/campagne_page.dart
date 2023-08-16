@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';
-import 'package:wan_mobile/tools/utils/asset_colors.dart';
+import 'package:module_master/module_master.dart';
 import 'package:wan_mobile/views/controllers/donation/donation_page_vctl.dart';
 import 'package:wan_mobile/views/static/donation/campagne_list_page.dart';
 import 'package:wan_mobile/views/static/donation/edition_campagne/edition_campagne_page.dart';

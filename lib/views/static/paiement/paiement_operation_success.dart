@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:lottie/lottie.dart';
-import 'package:wan_mobile/tools/utils/asset_colors.dart';
-import 'package:wan_mobile/tools/widgets/c_button.dart';
+import 'package:module_master/module_master.dart';
+import 'package:module_master/module_master.dart';
 import 'package:wan_mobile/views/static/home/home_page.dart';
 
 class PaiementOperationSucess extends StatelessWidget {

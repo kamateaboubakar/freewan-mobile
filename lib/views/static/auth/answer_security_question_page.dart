@@ -2,9 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:wan_mobile/models/pays.dart';
 import 'package:wan_mobile/models/security_question.dart';
-import 'package:wan_mobile/tools/const/const.dart';
-import 'package:wan_mobile/tools/widgets/c_button.dart';
-import 'package:wan_mobile/tools/widgets/c_textform_field.dart';
+
+import 'package:module_master/module_master.dart';
+
 import 'package:wan_mobile/views/controllers/auth/answer_security_question_page_vctl.dart';
 
 class AnswerSecurityQuestionPage extends StatelessWidget {

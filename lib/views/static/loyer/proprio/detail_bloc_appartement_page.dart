@@ -3,7 +3,7 @@ import 'package:get/get.dart';
 import 'package:wan_mobile/models/loyer/abstracts/bloc_appartement.dart';
 import 'package:wan_mobile/models/loyer/appartement.dart';
 import 'package:wan_mobile/tools/types/types.dart';
-import 'package:wan_mobile/tools/utils/asset_colors.dart';
+import 'package:module_master/module_master.dart';
 import 'package:wan_mobile/views/controllers/loyer/detail_bloc_appartement_page_vctl.dart';
 import 'package:wan_mobile/views/static/loyer/proprio/form_edition_appartement.dart';
 import 'package:wan_mobile/views/static/loyer/proprio/historique_paiement_loyer_page.dart';

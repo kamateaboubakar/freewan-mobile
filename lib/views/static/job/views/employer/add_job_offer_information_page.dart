@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:module_master/module_master.dart';
 import 'package:wan_mobile/models/job/category.dart';
 import 'package:wan_mobile/models/job/contract_type.dart';
 import 'package:wan_mobile/models/job/job_offer.dart';
@@ -8,10 +9,6 @@ import 'package:wan_mobile/views/controllers/job/add_job_vctl.dart';
 
 import '../../../../../models/job/jobs_sector.dart';
 import '../../../../../models/pays.dart';
-import '../../../../../tools/utils/asset_colors.dart';
-import '../../../../../tools/widgets/c_button.dart';
-import '../../../../../tools/widgets/c_dropdown_field.dart';
-import '../../../../../tools/widgets/c_textform_field.dart';
 import '../../job_views.dart';
 import 'employer_views.dart';
 

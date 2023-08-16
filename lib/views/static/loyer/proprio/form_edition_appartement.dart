@@ -4,10 +4,9 @@ import 'package:share_plus/share_plus.dart';
 import 'package:wan_mobile/models/loyer/abstracts/bloc_appartement.dart';
 import 'package:wan_mobile/models/loyer/appartement.dart';
 import 'package:wan_mobile/tools/types/types.dart';
-import 'package:wan_mobile/tools/utils/asset_colors.dart';
-import 'package:wan_mobile/tools/widgets/c_button.dart';
-import 'package:wan_mobile/tools/widgets/c_dropdown_field.dart';
-import 'package:wan_mobile/tools/widgets/c_textform_field.dart';
+import 'package:module_master/module_master.dart';
+import 'package:module_master/module_master.dart';
+
 import 'package:wan_mobile/views/controllers/loyer/form_edition_appartement_ctl.dart';
 
 class FormEditionAppartement extends StatelessWidget {

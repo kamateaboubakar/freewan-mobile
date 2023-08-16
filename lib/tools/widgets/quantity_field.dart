@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:wan_mobile/tools/utils/asset_colors.dart';
+import 'package:module_master/module_master.dart';
 
 class QuantityField extends StatefulWidget {
   final bool isPositive;

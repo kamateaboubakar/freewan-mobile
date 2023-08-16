@@ -2,13 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:intl/intl.dart';
 import 'package:wan_mobile/tools/utils/amount_util.dart';
-import 'package:wan_mobile/tools/utils/tools.dart';
-import 'package:wan_mobile/tools/widgets/c_button.dart';
+
+import 'package:module_master/module_master.dart';
 import 'package:wan_mobile/views/controllers/pressing/pressing_articles_vctl.dart';
 import 'package:wan_mobile/views/controllers/pressing/pressing_services_vctl.dart';
 import 'package:wan_mobile/views/controllers/pressing/pressing_vctl.dart';
 import 'package:wan_mobile/views/static/paiement/paiement_operation_success.dart';
-
 
 class PressingPaymentRecapPage extends StatefulWidget {
   const PressingPaymentRecapPage({super.key});
@@ -41,12 +40,12 @@ class _PressingPaymentRecapPageState extends State<PressingPaymentRecapPage> {
         margin: const EdgeInsets.only(bottom: 34, left: 20, right: 20),
         child: isLoading
             ? const Center(
-              child: SizedBox(
+                child: SizedBox(
                   width: 20,
                   height: 20,
                   child: CircularProgressIndicator(),
                 ),
-            )
+              )
             : CButton(
                 height: 48,
                 onPressed: () {
@@ -222,9 +221,11 @@ class _PressingPaymentRecapPageState extends State<PressingPaymentRecapPage> {
       var hours = deliveryHour.hour < 10
           ? "0${deliveryHour.hour}"
           : "${deliveryHour.hour}";
-      var minutes = deliveryHour.minute < 10 ? '0${deliveryHour.minute}' : deliveryHour.minute;
+      var minutes = deliveryHour.minute < 10
+          ? '0${deliveryHour.minute}'
+          : deliveryHour.minute;
       recuperationDate =
-      "$hours:$minutes:00 ${currentDate.day < 10 ? '0${currentDate.day}' : currentDate.day}-${currentDate.month < 10 ? '0${currentDate.month}' : currentDate.month}-${currentDate.year}";
+          "$hours:$minutes:00 ${currentDate.day < 10 ? '0${currentDate.day}' : currentDate.day}-${currentDate.month < 10 ? '0${currentDate.month}' : currentDate.month}-${currentDate.year}";
     } else {
       recuperationDate = _dateFormat.format(currentDate.add(
           Duration(minutes: _pressingController.timeDeliverySelection.value)));

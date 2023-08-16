@@ -2,10 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 import 'package:wan_mobile/models/location_vehicule/marque_vehicule.dart';
 import 'package:wan_mobile/tools/types/types.dart';
-import 'package:wan_mobile/tools/utils/asset_colors.dart';
-import 'package:wan_mobile/tools/widgets/c_button.dart';
-import 'package:wan_mobile/tools/widgets/c_dropdown_field.dart';
-import 'package:wan_mobile/tools/widgets/c_textform_field.dart';
+import 'package:module_master/module_master.dart';
+import 'package:module_master/module_master.dart';
+
 import 'package:wan_mobile/tools/widgets/location_vehicule/ban_vehicule.dart';
 import 'package:wan_mobile/tools/widgets/wrapper_body_listview.dart';
 import 'package:wan_mobile/views/controllers/location_vehicule/edition_location_vehicule_vctl.dart';

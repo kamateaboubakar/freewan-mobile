@@ -4,9 +4,9 @@ import 'package:get/get.dart';
 import 'package:share_plus/share_plus.dart';
 import 'package:wan_mobile/models/loyer/maison.dart';
 import 'package:wan_mobile/tools/types/types.dart';
-import 'package:wan_mobile/tools/utils/asset_colors.dart';
-import 'package:wan_mobile/tools/widgets/c_button.dart';
-import 'package:wan_mobile/tools/widgets/c_textform_field.dart';
+import 'package:module_master/module_master.dart';
+import 'package:module_master/module_master.dart';
+
 import 'package:wan_mobile/views/controllers/loyer/edition_maison_form_vctl.dart';
 import 'package:wan_mobile/views/static/loyer/proprio/historique_paiement_loyer_page.dart';
 

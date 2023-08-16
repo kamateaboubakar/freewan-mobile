@@ -4,9 +4,8 @@ import 'package:gap/gap.dart';
 import 'package:get/get.dart';
 import 'package:wan_mobile/models/location_vehicule/car.dart';
 import 'package:wan_mobile/tools/types/types.dart';
-import 'package:wan_mobile/tools/utils/asset_colors.dart';
-import 'package:wan_mobile/tools/utils/tools.dart';
-import 'package:wan_mobile/tools/widgets/c_button.dart';
+import 'package:module_master/module_master.dart';
+
 import 'package:wan_mobile/tools/widgets/date_time_range_editing_controller.dart';
 import 'package:wan_mobile/tools/widgets/wrapper_body_listview.dart';
 import 'package:wan_mobile/views/controllers/location_vehicule/resume_location_vehicule_page_vctl.dart';

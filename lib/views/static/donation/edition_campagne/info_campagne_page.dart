@@ -7,11 +7,9 @@ import 'package:wan_mobile/models/don/categorie_campagne.dart';
 import 'package:wan_mobile/models/don/organization.dart';
 import 'package:wan_mobile/tools/types/types.dart';
 
-import 'package:wan_mobile/tools/utils/asset_colors.dart';
-import 'package:wan_mobile/tools/widgets/c_button.dart';
-import 'package:wan_mobile/tools/widgets/c_dropdown_field.dart';
-import 'package:wan_mobile/tools/widgets/c_outlined_button.dart';
-import 'package:wan_mobile/tools/widgets/c_textform_field.dart';
+import 'package:module_master/module_master.dart';
+import 'package:module_master/module_master.dart';
+
 import 'package:wan_mobile/views/controllers/donation/edition_donation_page_vctl.dart';
 
 class InfosCampagne extends StatelessWidget {

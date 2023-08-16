@@ -4,8 +4,8 @@ import 'package:gap/gap.dart';
 import 'package:get/get.dart';
 import 'package:shimmer/shimmer.dart';
 import 'package:wan_mobile/tools/types/types.dart';
-import 'package:wan_mobile/tools/utils/asset_colors.dart';
-import 'package:wan_mobile/tools/widgets/c_textform_field.dart';
+import 'package:module_master/module_master.dart';
+
 import 'package:wan_mobile/tools/widgets/construction/materiau_construction_card.dart';
 import 'package:wan_mobile/views/controllers/construction/construction_page_vctl.dart';
 import 'package:wan_mobile/views/static/construction/detail_categorie_materiau_construction_page.dart';

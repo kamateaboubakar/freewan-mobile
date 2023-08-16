@@ -30,6 +30,11 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
+  #Package
+  module_master:
+    path: ../module_master
+
+  # Plugins
   get: ^4.6.5
   auto_size_text: ^3.0.0
   carousel_slider: ^4.2.1

@@ -1,9 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:module_master/module_master.dart';
 import 'package:wan_mobile/views/static/paiement/paiement_mode_paiement.dart';
-
-import '../../../../tools/utils/asset_colors.dart';
-import '../../../../tools/widgets/c_button.dart';
 
 class TvBillsFormulaListPage extends StatefulWidget {
   final bool newSubscription;
@@ -126,7 +124,9 @@ class _TvBillsFormulaListPageState extends State<TvBillsFormulaListPage> {
               child: Text(
                 "Continuer",
                 style: TextStyle(
-                  color: hasBillSelected() ? Colors.white : const Color(0xffB5C4D8),
+                  color: hasBillSelected()
+                      ? Colors.white
+                      : const Color(0xffB5C4D8),
                 ),
               ),
             ),

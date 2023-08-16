@@ -1,9 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:wan_mobile/tools/widgets/c_button.dart';
-import 'package:wan_mobile/tools/widgets/c_textform_field.dart';
+import 'package:module_master/module_master.dart';
+
 import 'package:wan_mobile/views/controllers/loyer/form_edition_bien_immobilier_vctl.dart';
-import '../../../../tools/utils/asset_colors.dart';
 
 class FormEditionBienImmobilier extends StatelessWidget {
   final bool isMaison;

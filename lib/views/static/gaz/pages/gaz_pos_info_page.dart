@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:wan_mobile/models/gas_purchase_action.dart';
 import 'package:wan_mobile/models/shop.dart';
-import 'package:wan_mobile/tools/utils/asset_colors.dart';
+import 'package:module_master/module_master.dart';
 import 'package:wan_mobile/views/controllers/gaz/gas_format_vctl.dart';
 import 'package:wan_mobile/views/controllers/gaz/gas_shop_vctl.dart';
 import 'package:wan_mobile/views/controllers/gaz/gas_vctl.dart';
@@ -10,7 +10,7 @@ import 'package:wan_mobile/views/static/gaz/pages/gaz_delivery_map_page.dart';
 import 'package:wan_mobile/views/static/gaz/pages/gaz_payment_recap_page.dart';
 
 import '../../../../tools/utils/brands_item.dart';
-import '../../../../tools/widgets/c_button.dart';
+
 import '../../../../tools/widgets/payment_account_selection_item.dart';
 import '../widgets/brand_list_view.dart';
 

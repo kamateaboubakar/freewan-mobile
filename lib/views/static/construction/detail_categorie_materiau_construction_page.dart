@@ -3,10 +3,8 @@ import 'package:gap/gap.dart';
 import 'package:get/get.dart';
 import 'package:wan_mobile/models/construction/categorie_materiau_construction.dart';
 import 'package:wan_mobile/tools/types/types.dart';
-import 'package:wan_mobile/tools/utils/asset_colors.dart';
-import 'package:wan_mobile/tools/utils/tools.dart';
-import 'package:wan_mobile/tools/widgets/c_outlined_button.dart';
-import 'package:wan_mobile/tools/widgets/c_textform_field.dart';
+import 'package:module_master/module_master.dart';
+
 import 'package:wan_mobile/tools/widgets/construction/materiau_construction_card.dart';
 import 'package:wan_mobile/views/static/construction/bottom_construction_filter_page.dart';
 import 'package:wan_mobile/views/static/construction/panier_materiau_construction_page.dart';

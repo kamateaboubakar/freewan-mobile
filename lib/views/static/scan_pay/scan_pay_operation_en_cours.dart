@@ -1,11 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_otp_text_field/flutter_otp_text_field.dart';
 import 'package:get/get.dart';
-import 'package:wan_mobile/tools/const/const.dart';
-import 'package:wan_mobile/tools/widgets/c_button.dart';
+import 'package:module_master/module_master.dart';
 import 'package:wan_mobile/views/static/paiement/paiement_operation_success.dart';
-
-import '../../../tools/utils/asset_colors.dart';
 
 class ScanPayOperationEnCours extends StatelessWidget {
   const ScanPayOperationEnCours({super.key});

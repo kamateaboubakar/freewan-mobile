@@ -4,8 +4,8 @@ import 'package:sliding_up_panel/sliding_up_panel.dart';
 import 'package:wan_mobile/api/controllers/user_api_ctl.dart';
 import 'package:wan_mobile/tools/cache/cache.dart';
 import 'package:wan_mobile/tools/cache/cache_keys.dart';
-import 'package:wan_mobile/tools/utils/tools.dart';
-import 'package:wan_mobile/tools/widgets/c_button.dart';
+
+import 'package:module_master/module_master.dart';
 import 'package:wan_mobile/views/controllers/abstracts/view_controller.dart';
 import 'package:wan_mobile/views/static/auth/phone_auth/phone_auth.dart';
 

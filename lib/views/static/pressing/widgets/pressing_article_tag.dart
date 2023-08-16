@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:wan_mobile/tools/utils/asset_colors.dart';
+import 'package:module_master/module_master.dart';
 
 class PressingArticleTag extends StatelessWidget {
   final String title;
@@ -21,9 +21,7 @@ class PressingArticleTag extends StatelessWidget {
       onTap: onTap,
       child: Container(
         decoration: BoxDecoration(
-          color: selected
-              ? AssetColors.blueButton
-              : null,
+          color: selected ? AssetColors.blueButton : null,
           borderRadius: BorderRadius.circular(8),
           border: Border.all(
             color: selected ? AssetColors.blueButton : AssetColors.lightGrey3,
@@ -34,7 +32,8 @@ class PressingArticleTag extends StatelessWidget {
         child: Text(
           title,
           style: TextStyle(
-              color: selected ? Colors.white : AssetColors.grey3, fontSize: fontSize ?? 13),
+              color: selected ? Colors.white : AssetColors.grey3,
+              fontSize: fontSize ?? 13),
           maxLines: 1,
           overflow: TextOverflow.ellipsis,
         ),

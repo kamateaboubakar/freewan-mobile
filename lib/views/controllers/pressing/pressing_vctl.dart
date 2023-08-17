@@ -25,7 +25,6 @@ class PressingController extends ViewController {
 
   bool get hasUserLocalisation {
     var result = _userLocalisation != null;
-    print('hasUserLocalisation $result');
     return result;
   }
 
@@ -156,9 +155,9 @@ class PressingController extends ViewController {
   void saveRecuperationPlace() {
     if (!hasUserLocalisation) {
       _userLocalisation = UserLocalisation(
-        address: _recuperationPlace!.title,
-        longitude: _recuperationPlace!.longitude,
-        latitude: _recuperationPlace!.latitude,
+        address: _recuperationPlace?.title ?? _userLocation!.title,
+        longitude: _recuperationPlace?.longitude ?? _userLocation!.longitude,
+        latitude: _recuperationPlace?.latitude ?? _userLocation!.longitude,
         localisationType: LocalisationType(
           id: _addressType!.id,
           name: _addressType!.name,

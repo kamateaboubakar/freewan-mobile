@@ -64,14 +64,16 @@ class _PressingMapPageState extends State<PressingMapPage> {
               FlutterMap(
                 mapController: _mapController,
                 options: MapOptions(
-                    center: LatLng(5.379617, -3.934711),
-                    zoom: mapZoom,
-                    onTap: (_, __) {
-                      _pressingController.reset();
-                      if (panelController.isPanelOpen) {
-                        panelController.close();
-                      }
-                    }),
+                  center: LatLng(5.379617, -3.934711),
+                  zoom: mapZoom,
+                  onTap: (_, __) {
+                    _pressingController.reset();
+                    if (panelController.isPanelOpen) {
+                      panelController.close();
+                    }
+                  },
+                  interactiveFlags: InteractiveFlag.pinchZoom | InteractiveFlag.drag,
+                ),
                 children: [
                   TileLayer(
                     urlTemplate:
@@ -112,11 +114,11 @@ class _PressingMapPageState extends State<PressingMapPage> {
                                   : 0.5,
                               child: Image.asset(
                                 'assets/images/pressing_pin.png',
-                                width: 40,
-                                height: 40,
                               ),
                             ),
                           ),
+                          width: 40,
+                          height: 40,
                         )
                       ]
                     ]

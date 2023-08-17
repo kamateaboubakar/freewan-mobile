@@ -73,20 +73,22 @@ class _GazMapPageState extends State<GazMapPage> {
               FlutterMap(
                 mapController: _mapController,
                 options: MapOptions(
-                    center: LatLng(5.379617, -3.934711),
-                    zoom: mapZoom,
-                    onTap: (_, __) {
-                      _gazController.clearSelectedShop();
-                      _gazShopController.clearSelectedPurchaseAction();
-                      if (panelController.isPanelOpen) {
-                        panelController.close();
-                      }
-                    }),
+                  center: LatLng(5.379617, -3.934711),
+                  zoom: mapZoom,
+                  onTap: (_, __) {
+                    _gazController.clearSelectedShop();
+                    _gazShopController.clearSelectedPurchaseAction();
+                    if (panelController.isPanelOpen) {
+                      panelController.close();
+                    }
+                  },
+                  interactiveFlags:
+                      InteractiveFlag.pinchZoom | InteractiveFlag.drag,
+                ),
                 children: [
                   TileLayer(
                     urlTemplate:
                         'https://tile.openstreetmap.org/{z}/{x}/{y}.png',
-                    userAgentPackageName: 'com.example.app',
                   ),
                   MarkerLayer(markers: [
                     if (_gazController.hasUserLocation) ...{
@@ -95,37 +97,36 @@ class _GazMapPageState extends State<GazMapPage> {
                           builder: (context) {
                             return Image.asset(
                               'assets/images/pin_red.png',
-                              width: 40,
-                              height: 40,
+                              width: 50,
+                              height: 50,
                             );
                           })
                     },
                     if (shops != null) ...[
                       for (int i = 0; i < shops.length; i++) ...[
                         Marker(
-                          point:
-                              LatLng(shops[i].latitude!, shops[i].longitude!),
-                          builder: (context) => InkWell(
-                            onTap: () {
-                              _gazController.updateShop(shops[i]);
-                              _mapController.move(
-                                  LatLng(
-                                      shops[i].latitude!, shops[i].longitude!),
-                                  mapZoom);
-                            },
-                            child: Opacity(
-                              opacity:
-                                  (hasNoGazPosSelected || isGazPosSelected(i))
-                                      ? 1
-                                      : 0.5,
-                              child: Image.asset(
-                                'assets/images/gaz_pin.png',
-                                width: 40,
-                                height: 40,
-                              ),
-                            ),
-                          ),
-                        )
+                            point:
+                                LatLng(shops[i].latitude!, shops[i].longitude!),
+                            builder: (context) => InkWell(
+                                  onTap: () {
+                                    _gazController.updateShop(shops[i]);
+                                    _mapController.move(
+                                        LatLng(shops[i].latitude!,
+                                            shops[i].longitude!),
+                                        mapZoom);
+                                  },
+                                  child: Opacity(
+                                    opacity: (hasNoGazPosSelected ||
+                                            isGazPosSelected(i))
+                                        ? 1
+                                        : 0.5,
+                                    child: Image.asset(
+                                      'assets/images/gaz_pin.png',
+                                    ),
+                                  ),
+                                ),
+                            width: 40,
+                            height: 40)
                       ]
                     ]
                   ]),

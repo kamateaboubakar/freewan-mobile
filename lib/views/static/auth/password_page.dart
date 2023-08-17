@@ -37,7 +37,7 @@ class PasswordPage extends StatelessWidget {
                           Image.asset(
                             Const.inLineAppLogo,
                             width: 120,
-                            height: 63,
+                            height: 80,
                           ),
                           const SizedBox(height: 10),
                           const Text(

@@ -11,15 +11,20 @@ import 'package:wan_mobile/views/static/auth/phone_auth/phone_auth.dart';
 
 class HomePageVctl extends ViewController {
   List<String> ads = [
+    "https://baab.ci/wp-content/uploads/2023/04/Abidjan-Restaurant-Week-3-BAAB.jpeg",
     "https://www.wordstream.com/wp-content/uploads/2021/07/persuasive-ads-coca-cola-1.jpg",
+    "https://annonces.abidjan.net/media/cache/ticket_slide/images_directory/event-649186c5da97f.jpg",
     "https://165225.fs1.hubspotusercontent-na1.net/hubfs/165225/Video-ads-meta.jpg",
-    "https://www.shutterstock.com/image-vector/deluxe-king-size-burger-ads-260nw-1121447561.jpg"
+    "https://www.shutterstock.com/image-vector/deluxe-king-size-burger-ads-260nw-1121447561.jpg",
+    "https://www.fr.masa.ci/wp-content/uploads/2020/03/30-ans-zouglou.png",
   ];
 
   List<String> ads2 = [
-    "https://myplace-events.com/public/upload/events/2022/05/resize-event-image-1653322579-XafKF.jpeg",
-    "https://img.freepik.com/vecteurs-libre/fond-plat-pour-saison-estivale_23-2150238033.jpg?w=1800&t=st=1690145166~exp=1690145766~hmac=1e68e74fe52cbe2ea6df5bcb27023b8c81cbdbcb780bf0e04ca04dd36af51b10",
-    "https://media.s-bol.com/7NRp2wpO5NO/550x368.jpg"
+    "https://www.origin7.com/img/portfolio/vue/elephant.png",
+    "https://baab.ci/wp-content/uploads/2022/12/Roseline-Layo-BAAB.jpeg",
+    "https://zouglounonstop.net/upload/event/Zouglounonstop-photo-events-24-02-2021-13-16-24.jpg",
+    "https://live.ci/script/timthumb.php?src=images/image_agenda/f693f36385a26f421ca08a4331bb66c3.jpg&w=640",
+    "https://live.ci/script/timthumb.php?src=images/image_agenda/c0f32009b2da1cbe46ca46e8b18d6b25.jpg&w=640"
   ];
   bool displayWelcome;
 

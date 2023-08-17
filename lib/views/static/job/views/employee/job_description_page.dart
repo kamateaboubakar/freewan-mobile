@@ -188,7 +188,7 @@ class _JobDescriptionPageState extends State<JobDescriptionPage> {
         text: TextSpan(
             style: TextStyle(
               color: AssetColors.grey3,
-              fontFamily: Const.defaultFont.fontFamily,
+              fontFamily: Const.defaultFont,
             ),
             children: [
               TextSpan(
@@ -237,7 +237,7 @@ class JobDescription extends StatelessWidget {
         text: TextSpan(
             style: TextStyle(
               color: AssetColors.grey3,
-              fontFamily: Const.defaultFont.fontFamily,
+              fontFamily: Const.defaultFont,
             ),
             children: [
               const TextSpan(

@@ -9,7 +9,7 @@ class SingleChildCardMenu extends StatelessWidget {
   final EdgeInsetsGeometry? margin;
   final void Function()? onTap;
   const SingleChildCardMenu(
-      {this.margin = const EdgeInsets.only(bottom: 20),
+      {this.margin = const EdgeInsets.only(bottom: 5),
       required this.icon,
       this.onTap,
       required this.title,
@@ -19,9 +19,10 @@ class SingleChildCardMenu extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-        margin: margin,
-        padding: EdgeInsets.zero,
-        child: LayoutBuilder(builder: (context, constraints) {
+      margin: margin,
+      padding: EdgeInsets.zero,
+      child: LayoutBuilder(
+        builder: (context, constraints) {
           return MaterialButton(
             elevation: 0,
             highlightElevation: 0,
@@ -64,23 +65,8 @@ class SingleChildCardMenu extends StatelessWidget {
               ],
             ),
           );
-        })
-        // ListTile(
-        //   leading: icon,
-        //   title: AutoSizeText(
-        //     title.value,
-        //     maxLines: 1,
-        //     maxFontSize: 9,
-        //     minFontSize: 8,
-        //   ),
-        //   subtitle: AutoSizeText(
-        //     subtitle.value,
-        //     maxLines: 1,
-        //     maxFontSize: 9,
-        //     minFontSize: 8,
-        //   ),
-        //   onTap: onTap,
-        // ),
-        );
+        },
+      ),
+    );
   }
 }

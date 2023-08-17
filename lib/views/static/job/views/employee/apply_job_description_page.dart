@@ -138,7 +138,7 @@ class _ApplyJobDescriptionPageState extends State<ApplyJobDescriptionPage> {
             text: TextSpan(
                 style: TextStyle(
                   color: AssetColors.grey3,
-                  fontFamily: Const.defaultFont.fontFamily,
+                  fontFamily: Const.defaultFont,
                 ),
                 children: [
                   const TextSpan(
@@ -172,8 +172,8 @@ class _ApplyJobDescriptionPageState extends State<ApplyJobDescriptionPage> {
                     ),
                   ),
                   TextSpan(
-                    text:
-                        _applyJob.motivationLetter ?? 'Pas de lettre de motivation',
+                    text: _applyJob.motivationLetter ??
+                        'Pas de lettre de motivation',
                     style: const TextStyle(
                       color: AssetColors.grey3,
                     ),

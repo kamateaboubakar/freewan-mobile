@@ -27,6 +27,21 @@ class MoreOptionHomePage extends StatelessWidget {
                   title: "Assurance",
                   onPressed: () {},
                 ),
+                ButtonMenu(
+                  icon: Image.asset(
+                      "assets/images/icons/icons8-etudiant-homme-64.png"),
+                  title: "Scolarité",
+                ),
+                ButtonMenu(
+                  icon: Image.asset(
+                      "assets/images/icons/icons8-fast-cart-64.png"),
+                  title: "Shoping",
+                ),
+                ButtonMenu(
+                  icon: Image.asset(
+                      "assets/images/icons/icons8-google-play-store-96.png"),
+                  title: "Playstore",
+                ),
               ],
             )
           ],

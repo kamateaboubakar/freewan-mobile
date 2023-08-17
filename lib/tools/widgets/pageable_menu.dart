@@ -20,7 +20,7 @@ class PageableMenu extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       margin: margin,
-      padding: const EdgeInsets.all(15),
+      padding: const EdgeInsets.only(top: 10, left: 10, right: 10),
       decoration: BoxDecoration(
           border: Border.all(
             width: .2,
@@ -44,7 +44,7 @@ class PageableMenu extends StatelessWidget {
             child: Text(
               title.value,
               style: const TextStyle(
-                fontSize: 14,
+                fontSize: 18,
                 fontWeight: FontWeight.bold,
               ),
             ),

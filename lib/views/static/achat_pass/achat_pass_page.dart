@@ -23,8 +23,8 @@ class AchatPassPage extends StatelessWidget {
             body: WebViewWidget(
               controller: WebViewController()
                 ..setJavaScriptMode(JavaScriptMode.unrestricted)
-                ..loadRequest(Uri.parse(
-                    "http://148.113.143.59:6006/${ctl.appCtl.user.phoneNumber}")),
+                ..loadRequest(
+                    Uri.parse("http://148.113.143.59:6006/SaisieNumero")),
             ),
           );
         });

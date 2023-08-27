@@ -4,6 +4,7 @@ import 'package:wan_mobile/tools/const/const.dart';
 import 'package:wan_mobile/tools/types/types.dart';
 import 'package:wan_mobile/views/controllers/home/home_page_vctl.dart';
 import 'package:wan_mobile/views/static/auth/profil_page.dart';
+import 'package:wan_mobile/views/static/home/qr_login/qr_login.dart';
 
 class HomeDrawer extends StatelessWidget {
   final HomePageVctl ctl;
@@ -40,6 +41,13 @@ class HomeDrawer extends StatelessWidget {
                     title: const Text("Mon profil"),
                     onTap: () => Get.to(
                       () => const ProfilPage(),
+                    ),
+                  ),
+                  ListTile(
+                    leading: const Icon(Icons.qr_code),
+                    title: const Text("Se connecter sur le web"),
+                    onTap: () => Get.to(
+                      () => const QrLogin(),
                     ),
                   ),
                 ],

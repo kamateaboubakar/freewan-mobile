@@ -16,7 +16,6 @@ class HomePageVctl extends ViewController {
     "https://annonces.abidjan.net/media/cache/ticket_slide/images_directory/event-649186c5da97f.jpg",
     "https://165225.fs1.hubspotusercontent-na1.net/hubfs/165225/Video-ads-meta.jpg",
     "https://www.shutterstock.com/image-vector/deluxe-king-size-burger-ads-260nw-1121447561.jpg",
-    "https://www.fr.masa.ci/wp-content/uploads/2020/03/30-ans-zouglou.png",
   ];
 
   List<String> ads2 = [

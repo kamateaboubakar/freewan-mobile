@@ -15,6 +15,8 @@ import 'package:wan_mobile/tools/widgets/pageable_menu.dart';
 import 'package:wan_mobile/tools/widgets/single_child_card_menu.dart';
 import 'package:wan_mobile/tools/widgets/toggle_button_widget/listable_menu.dart';
 import 'package:wan_mobile/views/controllers/home/home_page_vctl.dart';
+import 'package:wan_mobile/views/static/achat_fibre/achat_fibre_page.dart';
+import 'package:wan_mobile/views/static/achat_pass/achat_pass_page.dart';
 import 'package:wan_mobile/views/static/achat_unite/achat_unite_page.dart';
 import 'package:wan_mobile/views/static/boutique/boutique_page.dart';
 import 'package:wan_mobile/views/static/construction/construction_page.dart';
@@ -428,7 +430,8 @@ class HomePage extends StatelessWidget {
                                               icon: Image.asset(
                                                   "assets/images/icons/acaht_data.png"),
                                               title: "Achat de pass",
-                                              onPressed: () {},
+                                              onPressed: () => Get.to(
+                                                  () => AchatPassPage(ctl)),
                                             ),
                                             ButtonMenu(
                                               icon: Image.asset(
@@ -464,7 +467,8 @@ class HomePage extends StatelessWidget {
                                               icon: Image.asset(
                                                   "assets/images/icons/abonnement_fibre.png"),
                                               title: "Abonnement\nFibre",
-                                              onPressed: () {},
+                                              onPressed: () => Get.to(
+                                                  () => AchatFibrePage(ctl)),
                                             ),
                                             ButtonMenu(
                                               icon: const CircleAvatar(

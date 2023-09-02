@@ -238,13 +238,15 @@ class _PressingArticlesPageState extends State<PressingArticlesPage> {
                               return PressingArticleItem(
                                 item: article,
                                 increase: () {
-                                  if(_pressingServiceController.hasSelectedServices) {
+                                  if (_pressingServiceController
+                                      .hasSelectedServices) {
                                     _pressingArticlesController
                                         .increaseQuantity(article);
                                   }
                                 },
                                 decrease: () {
-                                  if(_pressingServiceController.hasSelectedServices) {
+                                  if (_pressingServiceController
+                                      .hasSelectedServices) {
                                     _pressingArticlesController
                                         .decreaseQuantity(article);
                                   }
@@ -324,18 +326,18 @@ class _PressingArticlesPageState extends State<PressingArticlesPage> {
                 ),
                 const SizedBox(height: 10),
                 InkWell(
-                  onTap: (){
+                  onTap: () {
                     Get.to(const PressingDeliveryAddressPage());
                   },
-                  child : Container(
+                  child: Container(
                     decoration: BoxDecoration(
                       border: Border.all(
                         color: AssetColors.blueButton.withOpacity(0.15),
                       ),
                       borderRadius: BorderRadius.circular(10),
                     ),
-                    padding:
-                        const EdgeInsets.symmetric(horizontal: 12, vertical: 18),
+                    padding: const EdgeInsets.symmetric(
+                        horizontal: 12, vertical: 18),
                     child: Row(
                       children: [
                         Expanded(
@@ -347,7 +349,8 @@ class _PressingArticlesPageState extends State<PressingArticlesPage> {
                               ),
                               Row(
                                 children: [
-                                  Image.asset('assets/images/pin.png', width: 10),
+                                  Image.asset('assets/images/pin.png',
+                                      width: 10),
                                   const SizedBox(width: 5),
                                   Expanded(
                                     child: GetBuilder(
@@ -355,12 +358,14 @@ class _PressingArticlesPageState extends State<PressingArticlesPage> {
                                       builder: (controller) {
                                         _pressingController = controller;
                                         var userLocalisation =
-                                            _pressingController.userLocalisation;
+                                            _pressingController
+                                                .userLocalisation;
                                         return Text(
                                           userLocalisation?.address ??
                                               'Sélectionner votre adresse',
                                           style: const TextStyle(
-                                              color: AssetColors.blueButton),
+                                            color: AssetColors.blueButton,
+                                          ),
                                         );
                                       },
                                     ),
@@ -484,11 +489,11 @@ class _PressingArticlesPageState extends State<PressingArticlesPage> {
                       CButton(
                         height: 50,
                         onPressed: () {
-                          if(isFormValid(articleCount)){
+                          if (isFormValid(articleCount)) {
                             Get.to(const PressingPaymentRecapPage());
                           }
                         },
-                        color:isFormValid(articleCount)
+                        color: isFormValid(articleCount)
                             ? AssetColors.blueButton
                             : const Color(0xffEDF2F9),
                         child: Text(
@@ -509,7 +514,8 @@ class _PressingArticlesPageState extends State<PressingArticlesPage> {
     );
   }
 
-  bool isFormValid(int articleCount) => articleCount > 0 && _pressingController.hasUserLocalisation;
+  bool isFormValid(int articleCount) =>
+      articleCount > 0 && _pressingController.hasUserLocalisation;
 
   void _getUpdateArticlesPrice() {
     _pressingArticlesController.getUpdateArticlesPrice(

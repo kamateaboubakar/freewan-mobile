@@ -23,14 +23,6 @@ class PressingMapPage extends StatefulWidget {
 }
 
 class _PressingMapPageState extends State<PressingMapPage> {
-  final List<Service> serviceFilterItems = [
-    Service(label: "Tous", icon: "assets/images/all_icon.png"),
-    Service(label: "Gaz", icon: "assets/images/gaz_icon.png"),
-    Service(
-        label: "Pressing", icon: "assets/images/pressing_selection_icon.png"),
-    Service(label: "Restos", icon: "assets/images/ion_fast-food-outline.png"),
-  ];
-
   final MapController _mapController = MapController();
 
   final double mapZoom = 16.2;
@@ -53,7 +45,6 @@ class _PressingMapPageState extends State<PressingMapPage> {
 
   @override
   Widget build(BuildContext context) {
-    double screenWidth = MediaQuery.of(context).size.width;
     double screenHeight = MediaQuery.of(context).size.height;
     return Scaffold(
       appBar: AppBar(
@@ -73,14 +64,16 @@ class _PressingMapPageState extends State<PressingMapPage> {
               FlutterMap(
                 mapController: _mapController,
                 options: MapOptions(
-                    center: LatLng(5.379617, -3.934711),
-                    zoom: mapZoom,
-                    onTap: (_, __) {
-                      _pressingController.reset();
-                      if (panelController.isPanelOpen) {
-                        panelController.close();
-                      }
-                    }),
+                  center: LatLng(5.379617, -3.934711),
+                  zoom: mapZoom,
+                  onTap: (_, __) {
+                    _pressingController.reset();
+                    if (panelController.isPanelOpen) {
+                      panelController.close();
+                    }
+                  },
+                  interactiveFlags: InteractiveFlag.pinchZoom | InteractiveFlag.drag,
+                ),
                 children: [
                   TileLayer(
                     urlTemplate:
@@ -121,11 +114,11 @@ class _PressingMapPageState extends State<PressingMapPage> {
                                   : 0.5,
                               child: Image.asset(
                                 'assets/images/pressing_pin.png',
-                                width: 40,
-                                height: 40,
                               ),
                             ),
                           ),
+                          width: 40,
+                          height: 40,
                         )
                       ]
                     ]
@@ -158,7 +151,6 @@ class _PressingMapPageState extends State<PressingMapPage> {
                         ),
                         const SizedBox(height: 5)
                       ],
-                      showServiceFilterView(),
                     ],
                   ),
                 ),
@@ -185,106 +177,6 @@ class _PressingMapPageState extends State<PressingMapPage> {
             ],
           );
         },
-      ),
-    );
-  }
-
-  Widget showServiceFilterView() {
-    return SizedBox(
-      height: 200,
-      child: Stack(
-        children: [
-          Container(
-            decoration: BoxDecoration(
-              gradient: LinearGradient(
-                  begin: Alignment.topCenter,
-                  end: Alignment.bottomCenter,
-                  colors: [
-                    const Color(0xffFCFFFF).withOpacity(0),
-                    const Color(0xffFCFFFF),
-                  ],
-                  stops: const [
-                    0,
-                    0.3,
-                  ]),
-            ),
-          ),
-          Positioned(
-            left: 0,
-            right: 0,
-            bottom: 0,
-            top: 16,
-            child: Column(
-              children: [
-                SizedBox(
-                  height: 80,
-                  child: ListView.builder(
-                    itemCount: serviceFilterItems.length,
-                    scrollDirection: Axis.horizontal,
-                    itemBuilder: (context, index) {
-                      var item = serviceFilterItems[index];
-                      var selected = index == 2;
-                      return Padding(
-                        padding: const EdgeInsets.symmetric(horizontal: 16),
-                        child: InkWell(
-                          onTap: () {
-                            if (index == 1) {
-                              Get.off(const GazMapPage());
-                            }
-                          },
-                          child: Column(
-                            children: [
-                              Container(
-                                width: 55,
-                                height: 55,
-                                decoration: BoxDecoration(
-                                  color: selected
-                                      ? const Color(0xffFC5E93)
-                                          .withOpacity(0.15)
-                                      : const Color(0xffB5C4D8)
-                                          .withOpacity(0.15),
-                                  shape: BoxShape.circle,
-                                ),
-                                padding: const EdgeInsets.all(12),
-                                child: Center(
-                                  child: Image.asset(
-                                    item.icon,
-                                    width: 25,
-                                    height: 25,
-                                  ),
-                                ),
-                              ),
-                              Text(
-                                item.label,
-                                style: TextStyle(
-                                  color: selected
-                                      ? const Color(0xffFC5E93)
-                                      : AssetColors.blueGrey,
-                                ),
-                              ),
-                            ],
-                          ),
-                        ),
-                      );
-                    },
-                  ),
-                ),
-                const Spacer(),
-                Padding(
-                  padding: const EdgeInsets.all(16.0),
-                  child: CTextFormField(
-                    hintText: "Chercher un",
-                    suffixIcon: const Padding(
-                      padding: EdgeInsets.all(8),
-                      child: Icon(Icons.search),
-                    ),
-                    fillColor: const Color(0xffCFD8DC).withOpacity(.56),
-                  ),
-                ),
-              ],
-            ),
-          )
-        ],
       ),
     );
   }

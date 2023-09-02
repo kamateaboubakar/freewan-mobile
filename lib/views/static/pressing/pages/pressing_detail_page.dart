@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:wan_mobile/views/static/pressing/pages/pages.dart';
 
-
 class PressingDetailsPage extends StatefulWidget {
   final ScrollController scrollController;
   final Function() togglePanel;

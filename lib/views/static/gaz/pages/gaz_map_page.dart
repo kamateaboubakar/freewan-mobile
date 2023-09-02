@@ -24,21 +24,6 @@ class GazMapPage extends StatefulWidget {
 }
 
 class _GazMapPageState extends State<GazMapPage> {
-  final List<Service> serviceFilterItems = [
-    Service(label: "Tous", icon: "assets/images/all_icon.png"),
-    Service(label: "Gaz", icon: "assets/images/gaz_selection_icon.png"),
-    Service(label: "Pressing", icon: "assets/images/pressing_icon.png"),
-    Service(label: "Restos", icon: "assets/images/ion_fast-food-outline.png"),
-  ];
-
-  final List<GazPos> gazPos = [
-    GazPos(position: LatLng(5.379946, -3.933305)),
-    GazPos(position: LatLng(5.380910, -3.935291)),
-    GazPos(position: LatLng(5.379331, -3.935650)),
-    GazPos(position: LatLng(5.380526, -3.936791)),
-    GazPos(position: LatLng(5.378974, -3.933182)),
-  ];
-
   final MapController _mapController = MapController();
 
   final double mapZoom = 16.2;
@@ -88,20 +73,22 @@ class _GazMapPageState extends State<GazMapPage> {
               FlutterMap(
                 mapController: _mapController,
                 options: MapOptions(
-                    center: LatLng(5.379617, -3.934711),
-                    zoom: mapZoom,
-                    onTap: (_, __) {
-                      _gazController.clearSelectedShop();
-                      _gazShopController.clearSelectedPurchaseAction();
-                      if (panelController.isPanelOpen) {
-                        panelController.close();
-                      }
-                    }),
+                  center: LatLng(5.379617, -3.934711),
+                  zoom: mapZoom,
+                  onTap: (_, __) {
+                    _gazController.clearSelectedShop();
+                    _gazShopController.clearSelectedPurchaseAction();
+                    if (panelController.isPanelOpen) {
+                      panelController.close();
+                    }
+                  },
+                  interactiveFlags:
+                      InteractiveFlag.pinchZoom | InteractiveFlag.drag,
+                ),
                 children: [
                   TileLayer(
                     urlTemplate:
                         'https://tile.openstreetmap.org/{z}/{x}/{y}.png',
-                    userAgentPackageName: 'com.example.app',
                   ),
                   MarkerLayer(markers: [
                     if (_gazController.hasUserLocation) ...{
@@ -110,37 +97,36 @@ class _GazMapPageState extends State<GazMapPage> {
                           builder: (context) {
                             return Image.asset(
                               'assets/images/pin_red.png',
-                              width: 40,
-                              height: 40,
+                              width: 50,
+                              height: 50,
                             );
                           })
                     },
                     if (shops != null) ...[
                       for (int i = 0; i < shops.length; i++) ...[
                         Marker(
-                          point:
-                              LatLng(shops[i].latitude!, shops[i].longitude!),
-                          builder: (context) => InkWell(
-                            onTap: () {
-                              _gazController.updateShop(shops[i]);
-                              _mapController.move(
-                                  LatLng(
-                                      shops[i].latitude!, shops[i].longitude!),
-                                  mapZoom);
-                            },
-                            child: Opacity(
-                              opacity:
-                                  (hasNoGazPosSelected || isGazPosSelected(i))
-                                      ? 1
-                                      : 0.5,
-                              child: Image.asset(
-                                'assets/images/gaz_pin.png',
-                                width: 40,
-                                height: 40,
-                              ),
-                            ),
-                          ),
-                        )
+                            point:
+                                LatLng(shops[i].latitude!, shops[i].longitude!),
+                            builder: (context) => InkWell(
+                                  onTap: () {
+                                    _gazController.updateShop(shops[i]);
+                                    _mapController.move(
+                                        LatLng(shops[i].latitude!,
+                                            shops[i].longitude!),
+                                        mapZoom);
+                                  },
+                                  child: Opacity(
+                                    opacity: (hasNoGazPosSelected ||
+                                            isGazPosSelected(i))
+                                        ? 1
+                                        : 0.5,
+                                    child: Image.asset(
+                                      'assets/images/gaz_pin.png',
+                                    ),
+                                  ),
+                                ),
+                            width: 40,
+                            height: 40)
                       ]
                     ]
                   ]),
@@ -172,7 +158,6 @@ class _GazMapPageState extends State<GazMapPage> {
                         ),
                         const SizedBox(height: 5)
                       ],
-                      showServiceFilterView(),
                     ],
                   ),
                 ),
@@ -201,105 +186,6 @@ class _GazMapPageState extends State<GazMapPage> {
             ],
           );
         },
-      ),
-    );
-  }
-
-  Widget showServiceFilterView() {
-    return SizedBox(
-      height: 200,
-      child: Stack(
-        children: [
-          Container(
-            decoration: BoxDecoration(
-              gradient: LinearGradient(
-                  begin: Alignment.topCenter,
-                  end: Alignment.bottomCenter,
-                  colors: [
-                    const Color(0xffFCFFFF).withOpacity(0),
-                    const Color(0xffFCFFFF),
-                  ],
-                  stops: const [
-                    0,
-                    0.3,
-                  ]),
-            ),
-          ),
-          Positioned(
-            left: 0,
-            right: 0,
-            bottom: 0,
-            top: 16,
-            child: Column(
-              children: [
-                SizedBox(
-                  height: 80,
-                  child: ListView.builder(
-                    itemCount: serviceFilterItems.length,
-                    scrollDirection: Axis.horizontal,
-                    itemBuilder: (context, index) {
-                      var item = serviceFilterItems[index];
-                      var selected = index == 1;
-                      return Padding(
-                        padding: const EdgeInsets.symmetric(horizontal: 16),
-                        child: InkWell(
-                          onTap: () {
-                            if (index == 2) {
-                              Get.off(const PressingMapPage());
-                            }
-                          },
-                          child: Column(
-                            children: [
-                              Container(
-                                width: 55,
-                                height: 55,
-                                decoration: BoxDecoration(
-                                  color: selected
-                                      ? const Color(0xff0042FF).withOpacity(0.15)
-                                      : const Color(0xffB5C4D8)
-                                          .withOpacity(0.15),
-                                  shape: BoxShape.circle,
-                                ),
-                                padding: const EdgeInsets.all(12),
-                                child: Center(
-                                  child: Image.asset(
-                                    item.icon,
-                                    width: 25,
-                                    height: 25,
-                                  ),
-                                ),
-                              ),
-                              Text(
-                                item.label,
-                                style: TextStyle(
-                                  color: selected
-                                      ? const Color(0xff0042FF)
-                                      : AssetColors.blueGrey,
-                                ),
-                              ),
-                            ],
-                          ),
-                        ),
-                      );
-                    },
-                  ),
-                ),
-                const Spacer(),
-                Padding(
-                  padding: const EdgeInsets.all(16.0),
-                  child: CTextFormField(
-                    hintText: "Chercher un",
-                    suffixIcon: const Padding(
-                      padding: EdgeInsets.all(8),
-                      child: Icon(Icons.search),
-                    ),
-                    fillColor: const Color(0xffCFD8DC).withOpacity(.56),
-                  ),
-                ),
-              ],
-            ),
-          )
-        ],
       ),
     );
   }

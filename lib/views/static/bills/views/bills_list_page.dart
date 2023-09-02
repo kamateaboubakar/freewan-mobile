@@ -102,7 +102,8 @@ class _BillsListPageState extends State<BillsListPage> {
                                 Container(
                                   decoration: BoxDecoration(
                                     borderRadius: BorderRadius.circular(10),
-                                    color: const Color(0xff4724FB).withOpacity(.10),
+                                    color: const Color(0xff4724FB)
+                                        .withOpacity(.10),
                                   ),
                                   padding: const EdgeInsets.all(8),
                                   child: const Text(
@@ -131,7 +132,15 @@ class _BillsListPageState extends State<BillsListPage> {
               height: 50,
               onPressed: () {
                 if (hasBillSelected()) {
-                  Get.to(const PaiementModePaiement());
+                  Get.to(
+                    () => PaiementModePaiement(
+                      route: Get.currentRoute,
+                      motifPaiement: "Paiement par Scan",
+                      frais: 0,
+                      montant: 90000,
+                      service: "Paiement Facture",
+                    ),
+                  );
                 }
               },
               color: hasBillSelected()
@@ -140,7 +149,9 @@ class _BillsListPageState extends State<BillsListPage> {
               child: Text(
                 "Continuer",
                 style: TextStyle(
-                  color: hasBillSelected() ? Colors.white : const Color(0xffB5C4D8),
+                  color: hasBillSelected()
+                      ? Colors.white
+                      : const Color(0xffB5C4D8),
                 ),
               ),
             ),

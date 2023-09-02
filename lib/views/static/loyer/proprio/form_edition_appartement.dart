@@ -37,7 +37,7 @@ class FormEditionAppartement extends StatelessWidget {
                       // height: 200,
                       child: Column(
                         children: [
-                          Text(
+                          SelectableText(
                             ctl.editedItem?.code?.value ?? "",
                             style: const TextStyle(
                               color: Color.fromRGBO(242, 153, 74, 1),

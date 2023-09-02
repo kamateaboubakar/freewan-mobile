@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 
 class CTextFormField extends StatelessWidget {
   final String? labelText;
@@ -24,8 +25,12 @@ class CTextFormField extends StatelessWidget {
   final TextCapitalization textCapitalization;
   final double? height;
   final EdgeInsetsGeometry? contentPadding;
+  final TextInputAction? textInputAction;
+  final List<TextInputFormatter>? inputFormatters;
   const CTextFormField(
       {this.controller,
+      this.inputFormatters,
+      this.textInputAction,
       this.contentPadding =
           const EdgeInsets.symmetric(horizontal: 10, vertical: 15),
       this.autofocus = false,
@@ -57,6 +62,8 @@ class CTextFormField extends StatelessWidget {
       margin: margin,
       height: height,
       child: TextFormField(
+        inputFormatters: inputFormatters,
+        textInputAction: textInputAction,
         initialValue: initialValue,
         readOnly: readOnly,
         maxLines: maxLines,

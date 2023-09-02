@@ -96,6 +96,9 @@ extension StringExt on String? {
       return false;
     }
   }
+
+  String toAmount({bool withDevise = true}) =>
+      Functions.formatMontant(toString(), withDevise: withDevise);
 }
 
 extension DoubleExt on double? {

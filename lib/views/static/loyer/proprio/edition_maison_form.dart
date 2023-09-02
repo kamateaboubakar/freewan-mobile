@@ -41,7 +41,7 @@ class EditionMaisonForm extends StatelessWidget {
                       // height: 200,
                       child: Column(
                         children: [
-                          Text(
+                          SelectableText(
                             ctl.item.code.value,
                             style: const TextStyle(
                               color: Color.fromRGBO(242, 153, 74, 1),

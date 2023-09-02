@@ -11,7 +11,18 @@ import '../../../tools/utils/asset_colors.dart';
 import '../bills/bills_views.dart';
 
 class PaiementChoixNumero extends StatelessWidget {
-  const PaiementChoixNumero({super.key});
+  final String motifPaiement;
+  final String route;
+  final int montant, frais;
+  final String service;
+  const PaiementChoixNumero({
+    required this.route,
+    required this.frais,
+    required this.motifPaiement,
+    required this.montant,
+    required this.service,
+    super.key,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -62,8 +73,13 @@ class PaiementChoixNumero extends StatelessWidget {
                                   color: Color.fromRGBO(7, 21, 60, 1),
                                 ),
                                 onTap: () => Get.to(
-                                  () => const PaiementRecap(
-                                    description: "Paiement par mobile money",
+                                  () => PaiementRecap(
+                                    motifPaiement: motifPaiement,
+                                    route: route,
+                                    moyenPaiement: e,
+                                    frais: frais,
+                                    montant: montant,
+                                    service: service,
                                   ),
                                 ),
                               ),

@@ -5,7 +5,17 @@ import 'package:wan_mobile/views/static/paiement/paiement_choix_carte.dart';
 import 'package:wan_mobile/views/static/paiement/paiement_choix_numero.dart';
 
 class PaiementModePaiement extends StatelessWidget {
-  const PaiementModePaiement({super.key});
+  final String route;
+  final String motifPaiement;
+  final int montant, frais;
+  final String service;
+  const PaiementModePaiement(
+      {required this.route,
+      required this.motifPaiement,
+      required this.frais,
+      required this.montant,
+      required this.service,
+      super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -68,9 +78,21 @@ class PaiementModePaiement extends StatelessWidget {
             return InkWell(
               onTap: () {
                 if (item.isMobileMoney) {
-                  Get.to(() => const PaiementChoixNumero());
+                  Get.to(() => PaiementChoixNumero(
+                        route: route,
+                        motifPaiement: motifPaiement,
+                        frais: frais,
+                        montant: montant,
+                        service: service,
+                      ));
                 } else {
-                  Get.to(() => const PaiementChoixCart());
+                  Get.to(() => PaiementChoixCart(
+                        route: route,
+                        motifPaiement: motifPaiement,
+                        frais: frais,
+                        montant: montant,
+                        service: service,
+                      ));
                 }
               },
               child: Container(

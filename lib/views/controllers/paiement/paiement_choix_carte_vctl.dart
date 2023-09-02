@@ -1,4 +1,4 @@
-import 'package:wan_mobile/api/controllers/paiement/paiement_api_ctl.dart';
+import 'package:wan_mobile/api/controllers/paiement/wallet_api_ctl.dart';
 import 'package:wan_mobile/models/paiement/carte_bancaire.dart';
 import 'package:wan_mobile/tools/types/types.dart';
 import 'package:wan_mobile/tools/utils/tools.dart';
@@ -9,7 +9,7 @@ class PaiementChoixCarteVctl extends ViewController {
 
   Future<void> getMobileMoneys() async {
     await pr.show();
-    var res = await PaiementApiCtl()
+    var res = await WalletApiCtl()
         .getUserCarteBancaires(userId: appCtl.user.accountId.value);
     await pr.hide();
     if (res.status) {

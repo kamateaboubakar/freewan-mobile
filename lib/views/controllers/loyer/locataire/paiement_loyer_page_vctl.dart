@@ -2,9 +2,11 @@ import 'package:get/get.dart';
 import 'package:wan_mobile/api/controllers/loyer/loyer_api_ctl.dart';
 import 'package:wan_mobile/models/loyer/abstracts/habitat.dart';
 import 'package:wan_mobile/models/loyer/paiement_loyer.dart';
+import 'package:wan_mobile/tools/types/types.dart';
 import 'package:wan_mobile/tools/utils/tools.dart';
 import 'package:wan_mobile/views/controllers/abstracts/view_controller.dart';
 import 'package:wan_mobile/views/static/home/home_page.dart';
+import 'package:wan_mobile/views/static/paiement/paiement_mode_paiement.dart';
 
 class PaiementLoyerPageVctl extends ViewController {
   Habitat habitat;
@@ -12,31 +14,42 @@ class PaiementLoyerPageVctl extends ViewController {
   PaiementLoyerPageVctl(this.habitat);
 
   Future<void> submit() async {
-    //  Get.to(
-    //   () => PaiementRecap(
-    //     description:
-    //         "Paiement de loyer de ${habitat.loyer.toAmount()}",
-    //   ),
-    // );
     var rep =
         await Tools.showChoiceMessage(message: "Confirmez-vous le paiement ?");
     if (rep == true) {
-      await pr.show();
-      PaiementLoyer paie = PaiementLoyer();
-      paie.annee = DateTime.now().year;
-      paie.mois = DateTime.now().month;
-      paie.habitat = habitat;
-      paie.idUserPaiement = appCtl.user.accountId;
-      paie.montant = habitat.loyer;
-      paie.telPaiement = appCtl.user.phoneNumber;
+      var page = Get.currentRoute;
+      await Get.to(
+        () => PaiementModePaiement(
+          route: page,
+          motifPaiement: "Paiement de loyer",
+          montant: habitat.loyer.value.toInt(),
+          frais: 0,
+          service: "Paiement Loyer",
+        ),
+      );
 
-      var res = await LoyerApiCtl().payerLoyer(paie);
-      await pr.hide();
-      if (res.status) {
-        Get.offAll(() => const HomePage());
-        Tools.showToast(message: "Paiement effectué avec succès");
+      var result = Get.parameters['paiementResult'];
+      if (result == "true") {
+        await pr.show();
+        PaiementLoyer paie = PaiementLoyer();
+        paie.annee = DateTime.now().year;
+        paie.mois = DateTime.now().month;
+        paie.habitat = habitat;
+        paie.idUserPaiement = appCtl.user.accountId;
+        paie.montant = habitat.loyer;
+        paie.telPaiement = appCtl.user.phoneNumber;
+
+        var res = await LoyerApiCtl().payerLoyer(paie);
+        await pr.hide();
+        if (res.status) {
+          Get.offAll(() => const HomePage());
+          Tools.showToast(message: "Paiement effectué avec succès");
+        } else {
+          Tools.messageBox(message: res.message);
+        }
       } else {
-        Tools.messageBox(message: res.message);
+        Tools.messageBox(
+            message: "Désolé, le paiement n'a pas pu être effectué.");
       }
     }
   }

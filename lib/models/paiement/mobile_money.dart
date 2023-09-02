@@ -1,4 +1,7 @@
-class MobileMoney {
+import 'package:wan_mobile/models/paiement/mode_paiement.dart';
+import 'package:wan_mobile/tools/types/types.dart';
+
+class MobileMoney extends MoyenPaiements {
   int? id;
   int? userId;
   String? idUser;
@@ -37,4 +40,10 @@ class MobileMoney {
     data['updated_at'] = this.updatedAt;
     return data;
   }
+
+  @override
+  String get label => numeroTelephone.value;
+
+  @override
+  String get typePaiment => "MM";
 }

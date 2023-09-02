@@ -52,7 +52,15 @@ class PaiementMontant extends StatelessWidget {
                 height: 48,
                 minWidth: 149,
                 borderRadius: 8,
-                onPressed: () => Get.to(() => const PaiementModePaiement()),
+                onPressed: () => Get.to(
+                  () => PaiementModePaiement(
+                    route: Get.currentRoute,
+                    motifPaiement: "Paiement par Scan",
+                    frais: 0,
+                    montant: 90000,
+                    service: "ScanPay",
+                  ),
+                ),
                 child: const Text(
                   "Payer",
                   style: TextStyle(

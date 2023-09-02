@@ -117,7 +117,15 @@ class _TvBillsFormulaListPageState extends State<TvBillsFormulaListPage> {
               height: 50,
               onPressed: () {
                 if (hasBillSelected()) {
-                  Get.to(const PaiementModePaiement());
+                  Get.to(
+                    () => PaiementModePaiement(
+                      route: Get.currentRoute,
+                      motifPaiement: "Paiement d'abonnement TV",
+                      frais: 0,
+                      montant: 90000,
+                      service: "Abonnement TV",
+                    ),
+                  );
                 }
               },
               color: hasBillSelected()
@@ -126,7 +134,9 @@ class _TvBillsFormulaListPageState extends State<TvBillsFormulaListPage> {
               child: Text(
                 "Continuer",
                 style: TextStyle(
-                  color: hasBillSelected() ? Colors.white : const Color(0xffB5C4D8),
+                  color: hasBillSelected()
+                      ? Colors.white
+                      : const Color(0xffB5C4D8),
                 ),
               ),
             ),

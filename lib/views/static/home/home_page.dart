@@ -287,7 +287,7 @@ class HomePage extends StatelessWidget {
                                               ),
                                               title: "Solde et historique",
                                               onPressed: () => Get.to(() =>
-                                                  SoldeHistoriquePage(ctl)),
+                                                  const SoldeHistoriquePage()),
                                             ),
                                             ButtonMenu(
                                               icon: Image.asset(
@@ -1019,7 +1019,7 @@ class HomePage extends StatelessWidget {
                                               ),
                                               title: "Solde et\nhistorique",
                                               onPressed: () => Get.to(() =>
-                                                  SoldeHistoriquePage(ctl)),
+                                                  const SoldeHistoriquePage()),
                                             ),
                                             ButtonMenu(
                                               icon: Image.asset(

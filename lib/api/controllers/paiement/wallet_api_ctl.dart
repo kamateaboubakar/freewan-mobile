@@ -5,7 +5,7 @@ import 'package:wan_mobile/models/paiement/mobile_money.dart';
 import 'package:wan_mobile/tools/types/types.dart';
 import 'package:wan_mobile/tools/utils/http_response.dart';
 
-class PaiementApiCtl extends WebController {
+class WalletApiCtl extends WebController {
   String url = "http://148.113.143.59:8182/api";
   Future<HttpResponse<List<MobileMoney>>> getUserMobileMoneys(
       {required String userId}) async {

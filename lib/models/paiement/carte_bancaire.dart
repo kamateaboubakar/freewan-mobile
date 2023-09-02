@@ -1,4 +1,7 @@
-class CarteBancaire {
+import 'package:wan_mobile/models/paiement/mode_paiement.dart';
+import 'package:wan_mobile/tools/types/types.dart';
+
+class CarteBancaire extends MoyenPaiements {
   int? id;
   int? userId;
   String? idUser;
@@ -49,4 +52,10 @@ class CarteBancaire {
     data['ower_name'] = this.owerName;
     return data;
   }
+
+  @override
+  String get label => "************${numeroCarte.value.substring(12)}";
+
+  @override
+  String get typePaiment => "CB";
 }

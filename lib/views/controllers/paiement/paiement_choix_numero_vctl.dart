@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:wan_mobile/api/controllers/paiement/paiement_api_ctl.dart';
+import 'package:wan_mobile/api/controllers/paiement/wallet_api_ctl.dart';
 import 'package:wan_mobile/models/paiement/mobile_money.dart';
 import 'package:wan_mobile/tools/const/paiement/wallet_account_typ.dart';
 import 'package:wan_mobile/tools/types/types.dart';
@@ -14,7 +14,7 @@ class PaiementChoixNumeroVctl extends ViewController {
 
   Future<void> getMobileMoneys() async {
     await pr.show();
-    var res = await PaiementApiCtl()
+    var res = await WalletApiCtl()
         .getUserMobileMoneys(userId: appCtl.user.accountId.value);
     await pr.hide();
     if (res.status) {
@@ -34,7 +34,7 @@ class PaiementChoixNumeroVctl extends ViewController {
       item.categorieId = WalletAccountType.catMobileMoney;
       item.userId = 1;
 
-      var res = await PaiementApiCtl().addMobileMoney(mobileMoney: item);
+      var res = await WalletApiCtl().addMobileMoney(mobileMoney: item);
       await pr.hide();
       if (res.status) {
         mobileMoneys.add(res.data!);

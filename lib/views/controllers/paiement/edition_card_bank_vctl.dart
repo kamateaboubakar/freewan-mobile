@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:wan_mobile/api/controllers/paiement/paiement_api_ctl.dart';
+import 'package:wan_mobile/api/controllers/paiement/wallet_api_ctl.dart';
 import 'package:wan_mobile/models/paiement/carte_bancaire.dart';
 import 'package:wan_mobile/tools/const/paiement/wallet_account_typ.dart';
 import 'package:wan_mobile/tools/types/types.dart';
@@ -27,7 +27,7 @@ class EditionCardBankVctl extends ViewController {
       item.idUser = appCtl.user.accountId.value;
       item.userId = 1;
 
-      var res = await PaiementApiCtl().addCarteBancaire(carteBancaire: item);
+      var res = await WalletApiCtl().addCarteBancaire(carteBancaire: item);
       await pr.hide();
       if (res.status) {
         update();

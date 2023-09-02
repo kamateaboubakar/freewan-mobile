@@ -8,12 +8,21 @@ import 'package:wan_mobile/tools/widgets/c_textform_field.dart';
 import 'package:wan_mobile/views/controllers/paiement/edition_card_bank.dart';
 import 'package:wan_mobile/views/controllers/paiement/paiement_choix_carte_vctl.dart';
 import 'package:wan_mobile/views/static/paiement/paiement_pay_recap.dart';
-
-import '../../../tools/utils/asset_colors.dart';
 import '../bills/bills_views.dart';
 
 class PaiementChoixCart extends StatelessWidget {
-  const PaiementChoixCart({super.key});
+  final String motifPaiement;
+  final String route;
+  final int montant, frais;
+  final String service;
+  const PaiementChoixCart({
+    required this.route,
+    required this.frais,
+    required this.motifPaiement,
+    required this.montant,
+    required this.service,
+    super.key,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -74,8 +83,14 @@ class PaiementChoixCart extends StatelessWidget {
                                   color: Color.fromRGBO(7, 21, 60, 1),
                                 ),
                                 onTap: () => Get.to(
-                                  () => const PaiementRecap(
-                                    description: "Paiement par carte bancaire",
+                                  () => PaiementRecap(
+                                    motifPaiement:
+                                        "Paiement par carte bancaire",
+                                    route: route,
+                                    moyenPaiement: e,
+                                    frais: frais,
+                                    montant: montant,
+                                    service: service,
                                   ),
                                 ),
                               ),

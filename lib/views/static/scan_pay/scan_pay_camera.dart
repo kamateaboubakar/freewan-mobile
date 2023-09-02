@@ -39,7 +39,7 @@ class ScanPayCamera extends StatelessWidget {
               FloatingActionButtonLocation.centerFloat,
           floatingActionButton: FloatingActionButton.extended(
             backgroundColor: AssetColors.blueButton,
-            onPressed: () => Get.to(() => PaiementMontant()),
+            onPressed: () => Get.off(() => const PaiementMontant()),
             label: const Row(
               children: [
                 Icon(Icons.keyboard_alt, size: 19),

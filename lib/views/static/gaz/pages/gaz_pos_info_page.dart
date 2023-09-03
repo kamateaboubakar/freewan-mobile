@@ -10,8 +10,11 @@ import 'package:wan_mobile/views/static/gaz/pages/gaz_delivery_map_page.dart';
 import 'package:wan_mobile/views/static/gaz/pages/gaz_payment_recap_page.dart';
 
 import '../../../../tools/utils/brands_item.dart';
+import '../../../../tools/utils/tools.dart';
 import '../../../../tools/widgets/c_button.dart';
 import '../../../../tools/widgets/payment_account_selection_item.dart';
+import '../../paiement/paiement_mode_paiement.dart';
+import '../../paiement/paiement_operation_success.dart';
 import '../widgets/brand_list_view.dart';
 
 class GazPosInfoPage extends StatefulWidget {
@@ -375,6 +378,7 @@ class _GazPosInfoPageState extends State<GazPosInfoPage> {
                                     image:
                                         'assets/images/${format.pictureName}.png',
                                     label: format.name!,
+                                    price: format.price!,
                                     selected: selected,
                                   ),
                                 );
@@ -448,27 +452,13 @@ class _GazPosInfoPageState extends State<GazPosInfoPage> {
                               ),
                             );
                           }),
-                      const SizedBox(height: 15),
-                      const Text(
-                        'Paiement',
-                        style: TextStyle(
-                          fontSize: 12,
-                        ),
-                      ),
-                      const SizedBox(height: 10),
-                      PaiementAccountSelectionItem(
-                        title: "**** **** **** **02",
-                        onTap: () {},
-                        image: 'assets/images/master_card.png',
-                        imageWidth: 25,
-                      ),
                       const SizedBox(height: 25),
                       CButton(
                         height: 50,
                         onPressed: () {
                           if (_gasShopController.isFormValid &&
                               _gasController.isLocationTypeSelected) {
-                            Get.to(() => const GazPaymentRecapPage());
+                            _submitPayment();
                           }
                         },
                         color: _gasShopController.isFormValid &&
@@ -502,5 +492,53 @@ class _GazPosInfoPageState extends State<GazPosInfoPage> {
     var brandId = _gasShopController.brand!.id!;
     var shopId = _shop?.id ?? 0;
     _gasFormatController.getGasSize(shopId: shopId, brandId: brandId);
+  }
+
+  _submitPayment() async {
+    var rep =
+        await Tools.showChoiceMessage(message: "Confirmez-vous le paiement ?");
+    if (rep == true) {
+      var page = Get.currentRoute;
+      await Get.to(
+        () => PaiementModePaiement(
+          route: page,
+          motifPaiement: "Paiement de gaz",
+          montant: _gasShopController.gasSize!.price!,
+          frais: 0,
+          service: "Paiement Gaz",
+        ),
+      );
+
+      var result = Get.parameters['paiementResult'];
+      if (result == "true") {
+        _submitOrder();
+      } else {
+        Tools.messageBox(
+            message: "Désolé, le paiement n'a pas pu être effectué.");
+      }
+    }
+  }
+
+  void _submitOrder() async {
+    var pr = Tools.progressDialog(isDismissible: true);
+    pr.show();
+    var response = await _gasController.submitOrder(
+      gasSize: _gasShopController.gasSize!,
+      shop: _gasController.shop!,
+      userlocation:
+          _gasController.deliveryLocation ?? _gasController.userLocation!,
+    );
+    Get.back();
+    if (!response.status) {
+      Tools.messageBox(message: response.message);
+      return;
+    }
+
+    Get.to(
+      () => const PaiementOperationSucess(
+        animationAsset: "assets/lotties/88063-delivery-icon.json",
+        description: "Vous serez livrés dans les plus\nbrefs délais",
+      ),
+    );
   }
 }

@@ -6,11 +6,12 @@ class BrandsItem extends StatelessWidget {
   final String image;
   final String? label;
   final bool selected;
-
+  final int? price;
   const BrandsItem({
     Key? key,
     required this.image,
     this.label,
+    this.price,
     this.selected = false,
   }) : super(key: key);
 
@@ -40,6 +41,15 @@ class BrandsItem extends StatelessWidget {
                 if (label != null)
                   Text(
                     label!,
+                    style: const TextStyle(
+                      fontSize: 12,
+                      color: Color(0xff07153C),
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
+                if (price != null)
+                  Text(
+                    "$price FCFA",
                     style: const TextStyle(
                       fontSize: 12,
                       color: Color(0xff07153C),

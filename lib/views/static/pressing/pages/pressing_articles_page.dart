@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:intl/intl.dart';
 import 'package:wan_mobile/models/pressing/pressing.dart';
 import 'package:wan_mobile/tools/utils/amount_util.dart';
 import 'package:wan_mobile/tools/utils/asset_colors.dart';
@@ -9,9 +10,12 @@ import 'package:wan_mobile/views/static/pressing/pages/pressing_payment_recap_pa
 import 'package:wan_mobile/views/static/pressing/pressing_view.dart';
 import 'package:wan_mobile/views/static/pressing/widgets/pressing_article_item.dart';
 
+import '../../../../tools/utils/tools.dart';
 import '../../../../tools/widgets/c_button.dart';
 import '../../../../tools/widgets/payment_account_selection_item.dart';
 import '../../../controllers/pressing/pressing_vctl.dart';
+import '../../paiement/paiement_mode_paiement.dart';
+import '../../paiement/paiement_operation_success.dart';
 
 class PressingArticlesPage extends StatefulWidget {
   final Function() showArticle;
@@ -34,6 +38,10 @@ class _PressingArticlesPageState extends State<PressingArticlesPage> {
       Get.put(PressingArticlesController());
 
   Pressing? _pressing;
+
+  final DateFormat _dateFormat = DateFormat("HH:mm:ss dd-MM-yyyy");
+
+  bool isLoading = false;
 
   @override
   void initState() {
@@ -399,20 +407,6 @@ class _PressingArticlesPageState extends State<PressingArticlesPage> {
                   ),
                 ),
                 const SizedBox(height: 15),
-                const Text(
-                  'Paiement',
-                  style: TextStyle(
-                    fontSize: 12,
-                  ),
-                ),
-                const SizedBox(height: 10),
-                PaiementAccountSelectionItem(
-                  title: "**** **** **** **02",
-                  onTap: () {},
-                  image: 'assets/images/master_card.png',
-                  imageWidth: 25,
-                ),
-                const SizedBox(height: 20),
               ],
             ),
           ),
@@ -490,20 +484,29 @@ class _PressingArticlesPageState extends State<PressingArticlesPage> {
                         height: 50,
                         onPressed: () {
                           if (isFormValid(articleCount)) {
-                            Get.to(const PressingPaymentRecapPage());
+                            _submitPayment();
+                            //Get.to(const PressingPaymentRecapPage());
                           }
                         },
                         color: isFormValid(articleCount)
                             ? AssetColors.blueButton
                             : const Color(0xffEDF2F9),
-                        child: Text(
-                          "Payer",
-                          style: TextStyle(
-                            color: isFormValid(articleCount)
-                                ? Colors.white
-                                : const Color(0xffB5C4D8),
-                          ),
-                        ),
+                        child: isLoading
+                            ? const Center(
+                                child: SizedBox(
+                                  width: 20,
+                                  height: 20,
+                                  child: CircularProgressIndicator(),
+                                ),
+                              )
+                            : Text(
+                                "Payer",
+                                style: TextStyle(
+                                  color: isFormValid(articleCount)
+                                      ? Colors.white
+                                      : const Color(0xffB5C4D8),
+                                ),
+                              ),
                       ),
                     ],
                   ),
@@ -524,5 +527,72 @@ class _PressingArticlesPageState extends State<PressingArticlesPage> {
 
   void _getPressingArticles() {
     _pressingArticlesController.getPressingArticle(_pressing!.id ?? 0);
+  }
+
+  _submitPayment() async {
+    var rep =
+        await Tools.showChoiceMessage(message: "Confirmez-vous le paiement ?");
+    if (rep == true) {
+      var page = Get.currentRoute;
+      await Get.to(
+        () => PaiementModePaiement(
+          route: page,
+          motifPaiement: "Paiement de pressing",
+          montant: _pressingArticlesController.totalPrice.toInt(),
+          frais: 0,
+          service: "Paiement Pressing",
+        ),
+      );
+
+      var result = Get.parameters['paiementResult'];
+      if (result == "true") {
+        _submitOrder();
+      } else {
+        Tools.messageBox(
+            message: "Désolé, le paiement n'a pas pu être effectué.");
+      }
+    }
+  }
+
+  void _submitOrder() async {
+    var pr = Tools.progressDialog(isDismissible: true);
+    pr.show();
+    var currentDate = DateTime.now();
+    var recuperationDate = '';
+    if (_pressingController.deliveryHour != null) {
+      var deliveryHour = _pressingController.deliveryHour!;
+      var hours = deliveryHour.hour < 10
+          ? "0${deliveryHour.hour}"
+          : "${deliveryHour.hour}";
+      var minutes = deliveryHour.minute < 10
+          ? '0${deliveryHour.minute}'
+          : deliveryHour.minute;
+      recuperationDate =
+          "$hours:$minutes:00 ${currentDate.day < 10 ? '0${currentDate.day}' : currentDate.day}-${currentDate.month < 10 ? '0${currentDate.month}' : currentDate.month}-${currentDate.year}";
+    } else {
+      recuperationDate = _dateFormat.format(currentDate.add(
+          Duration(minutes: _pressingController.timeDeliverySelection.value)));
+    }
+
+    var response = await _pressingController.submitOrder(
+      userLocalisation: _pressingController.userLocalisation!,
+      pressingId: _pressingController.pressing!.id!,
+      articles: _pressingArticlesController.selectedArticles,
+      services: _pressingServiceController.selectedServices,
+      totalAmount: _pressingArticlesController.totalPrice,
+      recuperationDate: recuperationDate,
+    );
+    Get.back();
+    if (!response.status) {
+      Tools.messageBox(message: response.message);
+      return;
+    }
+
+    Get.to(
+      () => const PaiementOperationSucess(
+        animationAsset: "assets/lotties/88063-delivery-icon.json",
+        description: "Nous venons récupérer votre\nlinge à l’heure indiquée",
+      ),
+    );
   }
 }

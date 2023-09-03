@@ -1,10 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_credit_card/flutter_credit_card.dart';
 import 'package:get/get.dart';
 import 'package:wan_mobile/tools/types/types.dart';
-import 'package:wan_mobile/tools/utils/tools.dart';
-import 'package:wan_mobile/tools/widgets/c_button.dart';
-import 'package:wan_mobile/tools/widgets/c_textform_field.dart';
 import 'package:wan_mobile/views/controllers/paiement/edition_card_bank.dart';
 import 'package:wan_mobile/views/controllers/paiement/paiement_choix_carte_vctl.dart';
 import 'package:wan_mobile/views/static/paiement/paiement_pay_recap.dart';
@@ -84,8 +80,7 @@ class PaiementChoixCart extends StatelessWidget {
                                 ),
                                 onTap: () => Get.to(
                                   () => PaiementRecap(
-                                    motifPaiement:
-                                        "Paiement par carte bancaire",
+                                    motifPaiement: motifPaiement,
                                     route: route,
                                     moyenPaiement: e,
                                     frais: frais,

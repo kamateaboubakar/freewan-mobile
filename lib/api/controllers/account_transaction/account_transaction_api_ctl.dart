@@ -5,7 +5,7 @@ import 'package:wan_mobile/tools/types/types.dart';
 import 'package:wan_mobile/tools/utils/http_response.dart';
 
 class AccountTransactionApiCtl extends WebController {
-  final url = "http://192.168.1.2:8000/api/transactions";
+  final url = "http://148.113.143.59:8184/api/transactions";
   Future<HttpResponse<List<AccountTransaction>>> getUserTransactions(
       {required String userId}) async {
     try {

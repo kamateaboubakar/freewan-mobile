@@ -55,7 +55,11 @@ class Car {
     id = json['id'];
     brandId = json['brandId'];
     if (json['brand'] != null) {
-      brand = MarqueVehicule.fromJson(json['brand']);
+      if (json['brand'] is String) {
+        brand = MarqueVehicule(name: json['brand']);
+      } else {
+        brand = MarqueVehicule.fromJson(json['brand']);
+      }
     }
     model = json['model'];
     categoryId = json['categoryId'];

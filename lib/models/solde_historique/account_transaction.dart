@@ -39,18 +39,18 @@ class AccountTransaction {
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['id'] = this.id;
-    data['id_users'] = this.idUsers;
-    data['libele'] = this.libele;
-    data['amount'] = this.amount;
-    data['frais'] = this.frais;
-    data['service'] = this.service;
-    data['mode_payment'] = this.modePayment;
-    data['mobile_money_id'] = this.mobileMoneyId;
-    data['bankcard_id'] = this.bankcardId;
-    data['created_at'] = this.createdAt;
-    data['updated_at'] = this.updatedAt;
+    final Map<String, dynamic> data = <String, dynamic>{};
+    data['id'] = id;
+    data['id_users'] = idUsers;
+    data['libele'] = libele;
+    data['amount'] = amount;
+    data['frais'] = frais;
+    data['service'] = service;
+    data['mode_payment'] = modePayment;
+    data['mobile_money_id'] = mobileMoneyId;
+    data['bankcard_id'] = bankcardId;
+    data['created_at'] = createdAt;
+    data['updated_at'] = updatedAt;
     return data;
   }
 }

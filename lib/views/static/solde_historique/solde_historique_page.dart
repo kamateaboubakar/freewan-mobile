@@ -22,102 +22,102 @@ class SoldeHistoriquePage extends StatelessWidget {
             ),
             body: Column(
               children: [
-                Container(
-                  padding: const EdgeInsets.all(10),
-                  height: 250,
-                  color: AssetColors.blue,
-                  child: Row(
-                    children: [
-                      Expanded(
-                        child: Card(
-                          child: Padding(
-                            padding: const EdgeInsets.all(8.0),
-                            child: Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                Image.asset(
-                                  "assets/images/icons/depense.png",
-                                  width: 35,
-                                ),
-                                const Gap(15),
-                                const Text(
-                                  "Mes dépenses",
-                                  style: TextStyle(
-                                    fontSize: 25,
-                                    fontWeight: FontWeight.bold,
-                                  ),
-                                ),
-                                const Gap(10),
-                                ListTile(
-                                  contentPadding: EdgeInsets.zero,
-                                  title: Text(
-                                    1500.toAmount(),
-                                    style: const TextStyle(
-                                      fontSize: 25,
-                                      fontWeight: FontWeight.bold,
-                                      color: Colors.red,
-                                    ),
-                                  ),
-                                ),
-                                const Gap(10),
-                                const Text(
-                                  "Transactions et achats",
-                                  style: TextStyle(
-                                    fontSize: 20,
-                                    color: Colors.black45,
-                                  ),
-                                ),
-                              ],
-                            ),
-                          ),
-                        ),
-                      ),
-                      const Gap(10),
-                      Expanded(
-                        child: Card(
-                          child: Padding(
-                            padding: const EdgeInsets.all(8.0),
-                            child: Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                Image.asset("assets/images/icons/gain.png",
-                                    width: 35),
-                                const Gap(15),
-                                const Text(
-                                  "Mes gains",
-                                  style: TextStyle(
-                                    fontSize: 25,
-                                    fontWeight: FontWeight.bold,
-                                  ),
-                                ),
-                                const Gap(10),
-                                ListTile(
-                                  contentPadding: EdgeInsets.zero,
-                                  title: Text(
-                                    20000.toAmount(),
-                                    style: const TextStyle(
-                                      fontSize: 25,
-                                      fontWeight: FontWeight.bold,
-                                      color: Colors.green,
-                                    ),
-                                  ),
-                                ),
-                                const Gap(10),
-                                const Text(
-                                  "Dépôts et ventes",
-                                  style: TextStyle(
-                                    fontSize: 20,
-                                    color: Colors.black45,
-                                  ),
-                                ),
-                              ],
-                            ),
-                          ),
-                        ),
-                      ),
-                    ],
-                  ),
-                ),
+                // Container(
+                //   padding: const EdgeInsets.all(10),
+                //   height: 250,
+                //   color: AssetColors.blue,
+                //   child: Row(
+                //     children: [
+                //       Expanded(
+                //         child: Card(
+                //           child: Padding(
+                //             padding: const EdgeInsets.all(8.0),
+                //             child: Column(
+                //               crossAxisAlignment: CrossAxisAlignment.start,
+                //               children: [
+                //                 Image.asset(
+                //                   "assets/images/icons/depense.png",
+                //                   width: 35,
+                //                 ),
+                //                 const Gap(15),
+                //                 const Text(
+                //                   "Mes dépenses",
+                //                   style: TextStyle(
+                //                     fontSize: 25,
+                //                     fontWeight: FontWeight.bold,
+                //                   ),
+                //                 ),
+                //                 const Gap(10),
+                //                 ListTile(
+                //                   contentPadding: EdgeInsets.zero,
+                //                   title: Text(
+                //                     1500.toAmount(),
+                //                     style: const TextStyle(
+                //                       fontSize: 25,
+                //                       fontWeight: FontWeight.bold,
+                //                       color: Colors.red,
+                //                     ),
+                //                   ),
+                //                 ),
+                //                 const Gap(10),
+                //                 const Text(
+                //                   "Transactions et achats",
+                //                   style: TextStyle(
+                //                     fontSize: 20,
+                //                     color: Colors.black45,
+                //                   ),
+                //                 ),
+                //               ],
+                //             ),
+                //           ),
+                //         ),
+                //       ),
+                //       const Gap(10),
+                //       Expanded(
+                //         child: Card(
+                //           child: Padding(
+                //             padding: const EdgeInsets.all(8.0),
+                //             child: Column(
+                //               crossAxisAlignment: CrossAxisAlignment.start,
+                //               children: [
+                //                 Image.asset("assets/images/icons/gain.png",
+                //                     width: 35),
+                //                 const Gap(15),
+                //                 const Text(
+                //                   "Mes gains",
+                //                   style: TextStyle(
+                //                     fontSize: 25,
+                //                     fontWeight: FontWeight.bold,
+                //                   ),
+                //                 ),
+                //                 const Gap(10),
+                //                 ListTile(
+                //                   contentPadding: EdgeInsets.zero,
+                //                   title: Text(
+                //                     20000.toAmount(),
+                //                     style: const TextStyle(
+                //                       fontSize: 25,
+                //                       fontWeight: FontWeight.bold,
+                //                       color: Colors.green,
+                //                     ),
+                //                   ),
+                //                 ),
+                //                 const Gap(10),
+                //                 const Text(
+                //                   "Dépôts et ventes",
+                //                   style: TextStyle(
+                //                     fontSize: 20,
+                //                     color: Colors.black45,
+                //                   ),
+                //                 ),
+                //               ],
+                //             ),
+                //           ),
+                //         ),
+                //       ),
+                //     ],
+                //   ),
+                // ),
                 const ListTile(
                   title: Text(
                     "Transactions récentes",

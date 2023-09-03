@@ -239,11 +239,15 @@ class LoyerApiCtl extends WebController {
         headers: HttpClientConst.headers,
       );
 
-      var body = HttpResponse.decodeBody<Json>(res);
+      var body = HttpResponse.decodeBody(res);
       if (body.status) {
         return HttpResponse.success(data: PaiementLoyer.fromJson(body.data!));
       } else {
-        return HttpResponse.error();
+        if (body.message is String) {
+          return HttpResponse.error(message: body.message);
+        } else {
+          return HttpResponse.error();
+        }
       }
     } catch (e, st) {
       return HttpResponse.error(systemError: e, systemtraceError: st);

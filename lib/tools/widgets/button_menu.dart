@@ -9,6 +9,7 @@ class ButtonMenu extends StatelessWidget {
   final double? height;
   final String? categorie;
   final int iconFlex;
+  final BorderSide side;
 
   final void Function()? onPressed;
 
@@ -20,6 +21,7 @@ class ButtonMenu extends StatelessWidget {
     required this.icon,
     this.title,
     this.onPressed,
+    this.side = BorderSide.none,
     super.key,
   });
 
@@ -29,7 +31,10 @@ class ButtonMenu extends StatelessWidget {
       minWidth: minWidth,
       height: height,
       padding: EdgeInsets.zero,
-      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
+      shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.circular(10),
+        side: side,
+      ),
       onPressed: onPressed,
       child: Padding(
         padding: const EdgeInsets.all(10),

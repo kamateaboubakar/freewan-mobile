@@ -2,6 +2,7 @@ import 'package:wan_mobile/models/paiement/mode_paiement.dart';
 import 'package:wan_mobile/tools/types/types.dart';
 
 class MobileMoney extends MoyenPaiements {
+  @override
   int? id;
   int? userId;
   String? idUser;
@@ -30,14 +31,14 @@ class MobileMoney extends MoyenPaiements {
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['id'] = this.id;
-    data['user_id'] = this.userId;
-    data['id_user'] = this.idUser;
-    data['categorie_id'] = this.categorieId;
-    data['numero_telephone'] = this.numeroTelephone;
-    data['created_at'] = this.createdAt;
-    data['updated_at'] = this.updatedAt;
+    final Map<String, dynamic> data = <String, dynamic>{};
+    data['id'] = id;
+    data['user_id'] = userId;
+    data['id_user'] = idUser;
+    data['categorie_id'] = categorieId;
+    data['numero_telephone'] = numeroTelephone;
+    data['created_at'] = createdAt;
+    data['updated_at'] = updatedAt;
     return data;
   }
 

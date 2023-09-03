@@ -1,3 +1,4 @@
+import 'package:auto_size_text/auto_size_text.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_image_slideshow/flutter_image_slideshow.dart';
@@ -442,12 +443,12 @@ class HomePage extends StatelessWidget {
                                                 const BillsCompanySelectionDialog(),
                                               ),
                                             ),
-                                            ButtonMenu(
-                                              icon: Image.asset(
-                                                  "assets/images/icons8-entrepot-96.png"),
-                                              title: "CIE Prépayé",
-                                              onPressed: () {},
-                                            ),
+                                            // ButtonMenu(
+                                            //   icon: Image.asset(
+                                            //       "assets/images/icons8-entrepot-96.png"),
+                                            //   title: "CIE Prépayé",
+                                            //   onPressed: () {},
+                                            // ),
                                             ButtonMenu(
                                               icon: Image.asset(
                                                   "assets/images/icons/abonnement_tele.png"),
@@ -494,8 +495,10 @@ class HomePage extends StatelessWidget {
                                             Row(
                                               children: [
                                                 const Expanded(
-                                                  child: Text(
+                                                  child: AutoSizeText(
                                                     "Pariez et Gagnez avec la LONACI",
+                                                    minFontSize: 10,
+                                                    maxFontSize: 20,
                                                     style: TextStyle(
                                                       fontSize: 20,
                                                       fontWeight:
@@ -981,6 +984,49 @@ class HomePage extends StatelessWidget {
                                             ),
                                           ],
                                         ),
+                                        Container(
+                                          margin: const EdgeInsets.symmetric(
+                                              vertical: 10),
+                                          child: CardMenu(
+                                            children: [
+                                              ButtonMenu(
+                                                icon: Image.asset(
+                                                  "assets/images/playstation_store.png",
+                                                ),
+                                              ),
+                                              ButtonMenu(
+                                                icon: Image.asset(
+                                                  "assets/images/Xbox_store.jpg",
+                                                ),
+                                              ),
+                                              ButtonMenu(
+                                                icon: Image.asset(
+                                                  "assets/images/icons/icons8-google-play-store-96.png",
+                                                ),
+                                              ),
+                                              ButtonMenu(
+                                                icon: Image.asset(
+                                                  "assets/images/Steam_icon.png",
+                                                ),
+                                              ),
+                                              ButtonMenu(
+                                                icon: Image.asset(
+                                                  "assets/images/Logo_App_Store_Apple.png",
+                                                ),
+                                              ),
+                                              ButtonMenu(
+                                                icon: Image.asset(
+                                                  "assets/images/Virgin-logo.png",
+                                                ),
+                                              ),
+                                              ButtonMenu(
+                                                icon: Image.asset(
+                                                  "assets/images/Nintendo_logo.png",
+                                                ),
+                                              ),
+                                            ],
+                                          ),
+                                        ),
                                         ListableMenu(
                                           title: "Fonctionnalités",
                                           children: [
@@ -1133,12 +1179,12 @@ class HomePage extends StatelessWidget {
                                                             title: "Hotels",
                                                             onPressed: () {},
                                                           ),
-                                                          ButtonMenu(
-                                                            icon: Image.asset(
-                                                                "assets/images/icons8-train-64.png"),
-                                                            title: "Métro",
-                                                            onPressed: () {},
-                                                          ),
+                                                          // ButtonMenu(
+                                                          //   icon: Image.asset(
+                                                          //       "assets/images/icons8-train-64.png"),
+                                                          //   title: "Métro",
+                                                          //   onPressed: () {},
+                                                          // ),
                                                           ButtonMenu(
                                                             icon: Image.asset(
                                                                 "assets/images/icons8-avion-vue-de-face-64.png"),

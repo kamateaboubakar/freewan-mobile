@@ -54,7 +54,11 @@ class LocationVehiculeVclt extends ViewController {
     loadCategories = false;
     update();
     if (res.status) {
+      marketCarsError = "";
       categories = res.data!;
+      update();
+    } else {
+      marketCarsError = res.message;
       update();
     }
   }

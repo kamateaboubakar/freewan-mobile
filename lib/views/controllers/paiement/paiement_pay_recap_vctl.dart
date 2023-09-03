@@ -3,6 +3,7 @@ import 'package:wan_mobile/api/controllers/account_transaction/account_transacti
 import 'package:wan_mobile/models/paiement/mobile_money.dart';
 import 'package:wan_mobile/models/paiement/mode_paiement.dart';
 import 'package:wan_mobile/models/solde_historique/account_transaction.dart';
+import 'package:wan_mobile/tools/utils/tools.dart';
 import 'package:wan_mobile/views/controllers/abstracts/view_controller.dart';
 
 class PaiementRecapVctl extends ViewController {
@@ -40,9 +41,10 @@ class PaiementRecapVctl extends ViewController {
     await pr.hide();
     if (res.status) {
       Get.parameters['paiementResult'] = "true";
+      Get.until((route) => Get.currentRoute == this.route);
     } else {
-      Get.parameters['paiementResult'] = "false";
+      // Get.parameters['paiementResult'] = "false";
+      await Tools.messageBox(message: res.message);
     }
-    Get.until((route) => Get.currentRoute == this.route);
   }
 }

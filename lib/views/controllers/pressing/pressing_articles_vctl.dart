@@ -32,11 +32,12 @@ class PressingArticlesController extends ViewController {
   List<PressingArticle> get updatePriceArticles => _updatePriceArticles;
 
   double _totalPrice = 0.0;
+
   double get totalPrice => _totalPrice;
 
   increaseQuantity(PressingArticle article) {
     var index =
-    _selectedArticles.indexWhere((element) => element.id == article.id);
+        _selectedArticles.indexWhere((element) => element.id == article.id);
     if (index == -1) {
       article.quantity = 1;
       _selectedArticles.add(article);
@@ -49,11 +50,9 @@ class PressingArticlesController extends ViewController {
     update();
   }
 
-
-
   decreaseQuantity(PressingArticle article) {
     var index =
-    _selectedArticles.indexWhere((element) => element.id == article.id);
+        _selectedArticles.indexWhere((element) => element.id == article.id);
     if (index != -1) {
       var existArticle = _selectedArticles[index];
       if (existArticle.quantity! - 1 <= 0) {
@@ -73,7 +72,7 @@ class PressingArticlesController extends ViewController {
     _response = null;
     update();
     _response =
-    await _pressingApiCtl.getPressingArticles(pressingId: pressingId);
+        await _pressingApiCtl.getPressingArticles(pressingId: pressingId);
     if (_response!.status) {
       _pressingArticleCategories = response!.data!;
     }
@@ -89,8 +88,7 @@ class PressingArticlesController extends ViewController {
     return false;
   }
 
-  int get selectedArticleCount => _selectedArticles.length;
-
+  int get selectedArticleCount => _selectedArticles.fold(0, (prev, current) => prev + current.quantity!);
 
   void reset() {
     _pressingArticleCategories = null;
@@ -102,13 +100,13 @@ class PressingArticlesController extends ViewController {
 
   int getArticleQuantity(PressingArticle article) {
     var index =
-    _selectedArticles.indexWhere((element) => element.id == article.id);
+        _selectedArticles.indexWhere((element) => element.id == article.id);
     if (index == -1) return 0;
     return _selectedArticles[index].quantity!;
   }
 
-  void getUpdateArticlesPrice(Pressing pressing,
-      List<PressingService> selectedServices) async {
+  void getUpdateArticlesPrice(
+      Pressing pressing, List<PressingService> selectedServices) async {
     _response = null;
 
     update();
@@ -122,6 +120,14 @@ class PressingArticlesController extends ViewController {
       return;
     }
     var updateArticles = response.data ?? [];
+    _updateArticlePrices(updateArticles);
+    _updateSelectedArticlePrices();
+    _computeTotalPrice();
+    _response = HttpResponse.success(data: _pressingArticleCategories);
+    update();
+  }
+
+  void _updateArticlePrices(List<PressingArticle> updateArticles) {
     for (int i = 0; i < updateArticles.length; i++) {
       int index = _pressingArticleCategories![_selectedCategoryIndex]
           .articles!
@@ -130,11 +136,28 @@ class PressingArticlesController extends ViewController {
           .articles![index]
           .price = updateArticles[i].price!;
     }
-    _response = HttpResponse.success(data: _pressingArticleCategories);
-    update();
   }
 
   void _computeTotalPrice() {
-    _totalPrice = _selectedArticles.fold(0, (previousValue, element) => previousValue + (element.price! * element.quantity!));
+    _totalPrice = _selectedArticles.isEmpty
+        ? 0
+        : _selectedArticles.fold(
+            0,
+            (previousValue, element) =>
+                previousValue + (element.price! * element.quantity!),
+          );
+  }
+
+  void _updateSelectedArticlePrices() {
+    var articles =
+        _pressingArticleCategories![_selectedCategoryIndex].articles!;
+    for (int i = 0; i < _selectedArticles.length; i++) {
+      var selectedArticle = _selectedArticles[i];
+      var articleIndex =
+          articles.indexWhere((element) => element.id == selectedArticle.id);
+      if (articleIndex != -1) {
+        _selectedArticles[i].price = articles[articleIndex].price;
+      }
+    }
   }
 }

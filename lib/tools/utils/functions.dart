@@ -4,7 +4,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 import 'package:wan_mobile/tools/const/const.dart';
 
 class Functions {
-  static Map<String, String> _getMonthLib(DateTime date) {
+  static Map<String, String> getMonthLib(DateTime date) {
     var months = [
       {"lite": "Jan.", "full": "Janvier"},
       {"lite": "Fev.", "full": "Février"},
@@ -45,7 +45,7 @@ class Functions {
       var day =
           date.day.toString().length < 2 ? "0${date.day}" : date.day.toString();
       var year = date.year.toString();
-      return "$day ${_getMonthLib(date)[mode]!} $year${(withTime) ? separator + getTime(date) : ""}";
+      return "$day ${getMonthLib(date)[mode]!} $year${(withTime) ? separator + getTime(date) : ""}";
     }
     return "";
   }

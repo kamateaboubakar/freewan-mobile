@@ -7,8 +7,8 @@ import '../../../../tools/widgets/c_textform_field.dart';
 
 class TvBillsAccountNumberPage extends StatelessWidget {
   final TextEditingController _referenceCtrl = TextEditingController();
-
-  TvBillsAccountNumberPage({super.key});
+  final String route;
+  TvBillsAccountNumberPage({required this.route, super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -50,7 +50,11 @@ class TvBillsAccountNumberPage extends StatelessWidget {
             CButton(
               height: 50,
               onPressed: () => Get.to(
-                  () => const TvBillsFormulaListPage(newSubscription: false)),
+                () => TvBillsFormulaListPage(
+                  newSubscription: false,
+                  route: route,
+                ),
+              ),
               child: const Text("Confirmer"),
             ),
           ],

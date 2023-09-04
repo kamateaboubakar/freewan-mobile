@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:wan_mobile/tools/utils/tools.dart';
 import 'package:wan_mobile/views/static/tv_bills/tv_bills_menu_page.dart';
 
 class TvBillsSelectionDialog extends StatelessWidget {
@@ -49,7 +50,13 @@ class TvBillsSelectionDialog extends StatelessWidget {
                 color: Color.fromRGBO(38, 82, 140, 1),
               ),
             ),
-            onTap: () => Get.to(() => const TvBillsMenuPage()),
+            onTap: () async {
+              var page = Get.currentRoute;
+              await Get.to(() => TvBillsMenuPage(route: page));
+              if (Get.parameters["paiementResult"] == "true") {
+                Tools.showToast();
+              }
+            },
           ),
           const Divider(
             thickness: 1,

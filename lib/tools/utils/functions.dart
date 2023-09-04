@@ -4,23 +4,39 @@ import 'package:shared_preferences/shared_preferences.dart';
 import 'package:wan_mobile/tools/const/const.dart';
 
 class Functions {
+  static List<Map<String, String>> months = [
+    {"lite": "Jan.", "full": "Janvier"},
+    {"lite": "Fev.", "full": "Février"},
+    {"lite": "Mars", "full": "Mars"},
+    {"lite": "Avr.", "full": "Avril"},
+    {"lite": "Mai.", "full": "Mai"},
+    {"lite": "Juin", "full": "Juin"},
+    {"lite": "Juil.", "full": "Juillet"},
+    {"lite": "Août", "full": "Août"},
+    {"lite": "Sept.", "full": "Septembre"},
+    {"lite": "Oct.", "full": "Octobre"},
+    {"lite": "Nov.", "full": "Novembre"},
+    {"lite": "Dec.", "full": "Décembre"},
+  ];
+
   static Map<String, String> getMonthLib(DateTime date) {
-    var months = [
-      {"lite": "Jan.", "full": "Janvier"},
-      {"lite": "Fev.", "full": "Février"},
-      {"lite": "Mars", "full": "Mars"},
-      {"lite": "Avr.", "full": "Avril"},
-      {"lite": "Mai.", "full": "Mai"},
-      {"lite": "Juin", "full": "Juin"},
-      {"lite": "Juil.", "full": "Juillet"},
-      {"lite": "Août", "full": "Août"},
-      {"lite": "Sept.", "full": "Septembre"},
-      {"lite": "Oct.", "full": "Octobre"},
-      {"lite": "Nov.", "full": "Novembre"},
-      {"lite": "Dec.", "full": "Décembre"},
-    ];
     var index = date.month - 1;
     return months[index];
+  }
+
+  static int? getMonthIndex(String month, {bool lite = true}) {
+    int? index;
+    if (lite) {
+      index = months.indexWhere((element) => element["lite"] == month);
+    } else {
+      index = months.indexWhere((element) => element["full"] == month);
+    }
+
+    if (index == -1) {
+      return null;
+    } else {
+      return index + 1;
+    }
   }
 
   static String getDate(DateTime? date,

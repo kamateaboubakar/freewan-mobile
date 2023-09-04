@@ -9,7 +9,6 @@ import 'package:wan_mobile/tools/widgets/c_textform_field.dart';
 import 'package:wan_mobile/tools/widgets/toggle_button_widget/c_toggle_button.dart';
 import 'package:wan_mobile/tools/widgets/toggle_button_widget/toggle_item.dart';
 import 'package:wan_mobile/views/controllers/donation/finalise_donation_page_vctl.dart';
-import 'package:wan_mobile/views/static/paiement/paiement_mode_paiement.dart';
 
 class FinaliseDonPage extends StatelessWidget {
   final Campagne don;
@@ -24,18 +23,13 @@ class FinaliseDonPage extends StatelessWidget {
             appBar: AppBar(title: const Text('Don')),
             bottomNavigationBar: Padding(
               padding: const EdgeInsets.all(20),
-              child: CButton(
-                height: 50,
-                onPressed: () => Get.to(
-                  () => PaiementModePaiement(
-                    route: Get.currentRoute,
-                    motifPaiement: "Paiement pour don",
-                    frais: 0,
-                    montant: ctl.montant,
-                    service: "Don",
-                  ),
+              child: Visibility(
+                visible: ctl.montant.value > 0,
+                child: CButton(
+                  height: 50,
+                  onPressed: ctl.submit,
+                  child: Text("Donner ${ctl.montant.toAmount()}"),
                 ),
-                child: const Text("Donner"),
               ),
             ),
             body: GestureDetector(
@@ -55,28 +49,31 @@ class FinaliseDonPage extends StatelessWidget {
                       ),
                     ),
                     const SizedBox(height: 25),
-                    CToggleButton(
+                    CToggleButton<int>(
                       crossAxisCount: 3,
                       crossAxisSpacing: 10,
-                      items: [
+                      items: <ToggleItem<int>>[
                         ToggleItem(
-                          selected: ctl.selectedIndexSomme == 0,
+                          selected: ctl.montant == 1000,
                           label: "F 1 000",
                           fontSize: 20,
+                          value: 1000,
                         ),
                         ToggleItem(
-                          selected: ctl.selectedIndexSomme == 1,
+                          selected: ctl.montant == 5000,
                           label: "F 5 000",
                           fontSize: 20,
+                          value: 5000,
                         ),
                         ToggleItem(
-                          selected: ctl.selectedIndexSomme == 2,
+                          selected: ctl.montant == 10000,
                           label: "F 10 000",
                           fontSize: 20,
+                          value: 10000,
                         ),
                       ],
-                      onItemSelected: (index) {
-                        ctl.selectedIndexSomme = index;
+                      onItemSelected: (index, value) {
+                        ctl.montant = value;
                         ctl.update();
                       },
                     ),

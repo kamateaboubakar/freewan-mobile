@@ -85,6 +85,9 @@ dependencies:
   flutter_chat_ui: ^1.6.9
   cached_network_image: ^3.2.3
 
+  # majesticmodel:
+    # path: ../majesticmodel
+
 
 dev_dependencies:
   flutter_test:

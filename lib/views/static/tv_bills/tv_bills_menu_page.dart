@@ -6,7 +6,8 @@ import 'package:wan_mobile/views/static/tv_bills/tv_bills_account_selection_page
 import '../../../../tools/utils/asset_colors.dart';
 
 class TvBillsMenuPage extends StatefulWidget {
-  const TvBillsMenuPage({super.key});
+  final String route;
+  const TvBillsMenuPage({required this.route, super.key});
 
   @override
   State<TvBillsMenuPage> createState() => _TvBillsMenuPageState();
@@ -33,9 +34,10 @@ class _TvBillsMenuPageState extends State<TvBillsMenuPage> {
             return InkWell(
               onTap: () {
                 if (index == 0) {
-                  Get.to(TvBillsAccountNumberPage());
+                  Get.to(() => TvBillsAccountNumberPage(route: widget.route));
                 } else {
-                  Get.to(() => const TvBillsAccountSelectionPage());
+                  Get.to(
+                      () => TvBillsAccountSelectionPage(route: widget.route));
                 }
               },
               child: Container(
@@ -43,7 +45,8 @@ class _TvBillsMenuPageState extends State<TvBillsMenuPage> {
                   color: AssetColors.lightGrey,
                   borderRadius: BorderRadius.circular(10),
                 ),
-                padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 24),
+                padding:
+                    const EdgeInsets.symmetric(horizontal: 16, vertical: 24),
                 child: Row(
                   children: [
                     Image.asset(

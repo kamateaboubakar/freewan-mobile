@@ -6,7 +6,9 @@ import '../../../tools/widgets/account_selection_item.dart';
 import '../bills/widgets/add_account_button.dart';
 
 class TvBillsAccountSelectionPage extends StatelessWidget {
-  const TvBillsAccountSelectionPage({Key? key}) : super(key: key);
+  final String route;
+  const TvBillsAccountSelectionPage({required this.route, Key? key})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -26,7 +28,7 @@ class TvBillsAccountSelectionPage extends StatelessWidget {
               image: "assets/images/Canal+1.png",
               imageWidth: 25,
               onTap: () {
-                Get.to(() => const TvBillsFormulaListPage());
+                Get.to(() => TvBillsFormulaListPage(route: route));
               },
             ),
             AddAccountButton(

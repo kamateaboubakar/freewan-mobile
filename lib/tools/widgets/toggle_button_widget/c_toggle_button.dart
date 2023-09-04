@@ -1,12 +1,12 @@
 import 'package:flutter/widgets.dart';
 import 'package:wan_mobile/tools/widgets/toggle_button_widget/toggle_item.dart';
 
-class CToggleButton extends StatelessWidget {
+class CToggleButton<T> extends StatelessWidget {
   final int crossAxisCount;
   final List<ToggleItem> items;
   final EdgeInsetsGeometry? padding;
   final double childAspectRatio;
-  final Function(int) onItemSelected;
+  final Function(int, T? value) onItemSelected;
   final double crossAxisSpacing;
 
   const CToggleButton(
@@ -33,7 +33,7 @@ class CToggleButton extends StatelessWidget {
               child: e,
               onTap: () {
                 final index = items.indexOf(e);
-                onItemSelected(index);
+                onItemSelected(index, e.value);
               },
             ),
           )

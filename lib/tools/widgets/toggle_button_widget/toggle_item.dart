@@ -1,14 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:wan_mobile/tools/utils/asset_colors.dart';
 
-class ToggleItem extends StatelessWidget {
+class ToggleItem<T> extends StatelessWidget {
   final String label;
   final bool selected;
+  final T? value;
+
   final EdgeInsetsGeometry padding;
   final double? fontSize;
   const ToggleItem(
       {this.padding = const EdgeInsets.symmetric(horizontal: 10, vertical: 14),
       this.selected = false,
+      this.value,
       this.fontSize,
       required this.label,
       super.key});

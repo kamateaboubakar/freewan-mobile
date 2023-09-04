@@ -276,7 +276,7 @@ class HomePage extends StatelessWidget {
                                               ),
                                               title: "Lebedoo",
                                               onPressed: () => Get.to(
-                                                  () => LebedooPage(ctl)),
+                                                  () => const LebedooPage()),
                                             ),
                                           ],
                                         ),
@@ -286,7 +286,7 @@ class HomePage extends StatelessWidget {
                                               icon: Image.asset(
                                                 "assets/images/icons/historique_transaction.png",
                                               ),
-                                              title: "Solde et historique",
+                                              title: "Historique Transactions",
                                               onPressed: () => Get.to(() =>
                                                   const SoldeHistoriquePage()),
                                             ),
@@ -1086,7 +1086,11 @@ class HomePage extends StatelessWidget {
                                               icon: Image.asset(
                                                   "assets/images/icons8-ticket.gif"),
                                               title: "Ticket de cinéma",
-                                              onPressed: () {},
+                                              // onPressed: () => Get.to(
+                                              //   () => Material(
+                                              //     child: MyHomePage(),
+                                              //   ),
+                                              // ),
                                             ),
                                             ButtonMenu(
                                               icon: Image.asset(

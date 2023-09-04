@@ -65,7 +65,7 @@ class EditionTontinePage extends StatelessWidget {
                     margin: const EdgeInsets.symmetric(vertical: 17),
                     child: CToggleButton(
                       crossAxisSpacing: 20,
-                      onItemSelected: (index) {
+                      onItemSelected: (index, value) {
                         ctl.selectedVersement = index;
                         ctl.update();
                       },
@@ -103,7 +103,7 @@ class EditionTontinePage extends StatelessWidget {
                         : CToggleButton(
                             crossAxisSpacing: 13,
                             childAspectRatio: 0.4,
-                            onItemSelected: (index) {
+                            onItemSelected: (index, value) {
                               ctl.selectedDelaiContr = index;
                               ctl.update();
                             },

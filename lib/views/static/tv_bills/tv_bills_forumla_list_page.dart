@@ -7,8 +7,10 @@ import '../../../../tools/widgets/c_button.dart';
 
 class TvBillsFormulaListPage extends StatefulWidget {
   final bool newSubscription;
+  final String route;
 
-  const TvBillsFormulaListPage({super.key, this.newSubscription = true});
+  const TvBillsFormulaListPage(
+      {required this.route, super.key, this.newSubscription = true});
 
   @override
   State<TvBillsFormulaListPage> createState() => _TvBillsFormulaListPageState();
@@ -119,7 +121,7 @@ class _TvBillsFormulaListPageState extends State<TvBillsFormulaListPage> {
                 if (hasBillSelected()) {
                   Get.to(
                     () => PaiementModePaiement(
-                      route: Get.currentRoute,
+                      route: widget.route,
                       motifPaiement: "Paiement d'abonnement TV",
                       frais: 0,
                       montant: 90000,

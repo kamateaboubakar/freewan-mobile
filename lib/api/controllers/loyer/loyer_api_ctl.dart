@@ -243,11 +243,27 @@ class LoyerApiCtl extends WebController {
       if (body.status) {
         return HttpResponse.success(data: PaiementLoyer.fromJson(body.data!));
       } else {
-        if (body.message is String) {
-          return HttpResponse.error(message: body.message);
-        } else {
-          return HttpResponse.error();
-        }
+        return HttpResponse.error(message: body.message);
+      }
+    } catch (e, st) {
+      return HttpResponse.error(systemError: e, systemtraceError: st);
+    }
+  }
+
+  Future<HttpResponse<Json>> checkPaiement(
+      {required int habitatId, required int mois, required int annee}) async {
+    try {
+      var res = await post(
+        "${Links.loyer}/paiements/checkPaiement",
+        {"mois": mois, "annee": annee, "habitat": habitatId}.parseToJson(),
+        headers: HttpClientConst.headers,
+      );
+
+      var body = HttpResponse.decodeBody(res);
+      if (body.status) {
+        return HttpResponse.success(data: body.data);
+      } else {
+        return HttpResponse.error(message: body.message);
       }
     } catch (e, st) {
       return HttpResponse.error(systemError: e, systemtraceError: st);

@@ -104,21 +104,10 @@ class HomePageVctl extends ViewController {
     });
   }
 
-  Future<void> fetchUserProfil() async {
-    var res = await UserApiCtl().getUserProfil();
-    if (res.status) {
-      appCtl.user = res.data!;
-      update();
-    } else {
-      Tools.messageBox(message: res.message);
-    }
-  }
-
   @override
   void onReady() {
     super.onReady();
     _displayWelcomeMessage();
-    fetchUserProfil();
   }
 
   Future<void> logout() async {
@@ -129,7 +118,7 @@ class HomePageVctl extends ViewController {
       var res = await UserApiCtl().logout();
       await pr.hide();
       if (res.status) {
-        await Cache.remove(CacheKey.credentials);
+        await Cache.clear();
         Get.off(() => const PhoneAuth());
       } else {
         Tools.messageBox(message: res.message);

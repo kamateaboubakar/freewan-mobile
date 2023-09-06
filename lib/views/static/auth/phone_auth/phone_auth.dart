@@ -72,7 +72,7 @@ class PhoneAuth extends StatelessWidget {
                         onTap: () =>
                             Tools.openBottomSheet(BottomSheetPhoneAuth(ctl)),
                         child: Container(
-                          height: 54,
+                          height: 58,
                           width: 90,
                           padding: const EdgeInsets.symmetric(horizontal: 10),
                           decoration: BoxDecoration(
@@ -110,10 +110,10 @@ class PhoneAuth extends StatelessWidget {
                       Expanded(
                         flex: 4,
                         child: CTextFormField(
+                          contentPadding: null,
                           keyboardType: TextInputType.phone,
-                          controller: ctl.telCtl,
+                          controller: ctl.phoneCtl,
                           hintText: "Numéro de téléphone",
-                          onChanged: (value) {},
                           maxLength: ctl.selectedPays?.phoneNumberLength,
                         ),
                       )

@@ -86,8 +86,7 @@ class BottomSheetPhoneAuth extends StatelessWidget {
                   child: WrapperBodyListView(
                     loading: ctl.loading,
                     onRefresh: () => ctl.fetchPays(force: true),
-                    lottieEmptyImage:
-                        "assets/lotties/131585-blue-pinging-map-edit-no-australia.json",
+                    lottieEmptyImage: "assets/lotties/123725-box-empty.json",
                     emptyText: "Aucun pays à afficher",
                     children: pCtl.pays
                         .map(

@@ -43,10 +43,7 @@ abstract class Cache {
 
   static Future<bool> clear() async {
     var pref = await SharedPreferences.getInstance();
-    await pref.remove("userId");
-    await pref.remove("navigation");
-    await pref.remove("dateNextGame");
-    await pref.remove("userPrenom");
+    await pref.clear();
     return true;
   }
 }

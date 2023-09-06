@@ -24,11 +24,10 @@ class User {
   User.fromJson(Map<String, dynamic> json) {
     id = json['id'];
     phoneNumber = json['phoneNumber'] ?? json["login"];
-    countryCallingCode = json['countryCallingCode'];
     email = json['email'];
     password = json['password'];
-    firstName = json['firstName'];
-    lastName = json['lastName'];
+    firstName = json['first_name'];
+    lastName = json['last_name'];
     if (json['securityQuestions'] != null) {
       securityQuestions = <SecurityQuestion>[];
       json['securityQuestions'].forEach((v) {
@@ -39,17 +38,16 @@ class User {
 
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = {};
-    data['phoneNumber'] = phoneNumber;
-    data['countryCallingCode'] = countryCallingCode;
+    data['login'] = phoneNumber;
     data['email'] = email;
     data['password'] = password;
     if (birthDate != null) {
-      data['birthDate'] = birthDate!.toStringDateOnly();
+      data['birth_date'] = birthDate!.toStringDateOnly();
     } else {
-      data["birthDate"] = null;
+      data["birth_date"] = null;
     }
-    data["firstName"] = firstName;
-    data["lastName"] = lastName;
+    data["first_name"] = firstName;
+    data["last_name"] = lastName;
     data['securityQuestions'] =
         securityQuestions.map((v) => v.toJson()).toList();
 

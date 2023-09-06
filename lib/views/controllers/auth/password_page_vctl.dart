@@ -6,7 +6,6 @@ import 'package:local_auth_android/local_auth_android.dart';
 import 'package:local_auth_ios/local_auth_ios.dart';
 
 import 'package:wan_mobile/api/controllers/user_api_ctl.dart';
-import 'package:wan_mobile/models/pays.dart';
 import 'package:wan_mobile/tools/cache/cache.dart';
 import 'package:wan_mobile/tools/cache/cache_keys.dart';
 import 'package:wan_mobile/tools/utils/tools.dart';
@@ -16,30 +15,29 @@ import 'package:wan_mobile/views/static/auth/phone_auth/phone_auth.dart';
 
 class PasswordPageVctl extends ViewController {
   final userApiCtrl = Get.put(UserApiCtl());
-  var codeCtl = TextEditingController();
+  var passwordCtl = TextEditingController();
   String phone;
-  Pays pays;
+
   final LocalAuthentication _auth = LocalAuthentication();
   bool supportBiometrics = false;
   bool hasAlreadyAuthenticated = false;
 
-  PasswordPageVctl(this.pays, this.phone);
+  PasswordPageVctl(this.phone);
 
   Future<void> submit() async {
     await pr.show();
     var res = await userApiCtrl.authenticate(
-        phone: pays.callingCode! + phone, password: codeCtl.text);
+        phone: phone, password: passwordCtl.text);
     await pr.hide();
     if (res.status) {
-      var resp = await Cache.setBool(CacheKey.password, true);
-      if (resp) {
-        await Cache.setString(CacheKey.password, codeCtl.text);
-      }
-      Get.to(() =>
-          AnswerSecurityQuestionPage(res.data!, phone, codeCtl.text, pays));
+      await Cache.setString(CacheKey.password, passwordCtl.text);
+
+      passwordCtl.clear();
+      Get.to(
+          () => AnswerSecurityQuestionPage(res.data!, phone, passwordCtl.text));
     } else {
       Tools.messageBox(message: res.message);
-      codeCtl.clear();
+      passwordCtl.clear();
     }
   }
 
@@ -47,7 +45,7 @@ class PasswordPageVctl extends ViewController {
     var rep = await Tools.showChoiceMessage(
         message: "Voulez-vous vraiment vous déconnecter ?");
     if (rep == true) {
-      await Cache.remove(CacheKey.credentials);
+      await Cache.clear();
       Get.offAll(() => const PhoneAuth());
     }
   }
@@ -77,7 +75,7 @@ class PasswordPageVctl extends ViewController {
             ],
           );
           if (result) {
-            codeCtl.text = password;
+            passwordCtl.text = password;
             submit();
           }
         } catch (e) {

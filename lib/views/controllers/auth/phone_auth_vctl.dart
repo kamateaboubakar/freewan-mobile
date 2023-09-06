@@ -10,7 +10,7 @@ import 'package:wan_mobile/views/static/auth/password_page.dart';
 import 'package:wan_mobile/views/static/auth/register/register_page.dart';
 
 class PhoneAuthVctl extends ViewController {
-  var telCtl = TextEditingController();
+  var phoneCtl = TextEditingController();
   List<Pays> pays = [];
 
   Pays? selectedPays;
@@ -18,27 +18,31 @@ class PhoneAuthVctl extends ViewController {
   bool acceptCgu = false;
 
   Future<void> submit() async {
-    if (selectedPays?.callingCode != null) {
-      if (telCtl.text.isNotEmpty) {
+    if (selectedPays?.id != null) {
+      if (phoneCtl.text.isNotEmpty) {
         if (acceptCgu) {
           await pr.show();
           var res = await UserApiCtl()
-              .loginPhone(phone: selectedPays!.callingCode.value + telCtl.text);
+              .loginPhone(phone: phoneCtl.text, paysId: selectedPays!.id!);
           await pr.hide();
           if (res.status) {
-            if (res.data == true) {
-              Get.to(() => PasswordPage(selectedPays!, telCtl.text));
+            if (res.data == null) {
+              await Get.to(() => PasswordPage(phone: phoneCtl.text));
             } else {
-              Get.to(
+              await Get.to(
                 () => OPTAuth(
-                  phone: telCtl.text,
+                  phone: phoneCtl.text,
                   selectedPays: selectedPays!,
                   onSubmit: (code) => submitOtp(
-                      code, selectedPays!.callingCode.value + telCtl.text),
+                      code, selectedPays!.callingCode.value + phoneCtl.text),
                   resendOtp: () => submit(),
                 ),
               );
             }
+            phoneCtl.clear();
+            selectedPays = null;
+            acceptCgu = false;
+            update();
           } else {
             Tools.messageBox(message: res.message);
           }
@@ -86,7 +90,7 @@ class PhoneAuthVctl extends ViewController {
       var res = await UserApiCtl().verifyOtp(phone: phone, code: code);
       await pr.hide();
       if (res.status) {
-        Get.to(() => RegisterPage(selectedPays!, telCtl.text));
+        Get.to(() => RegisterPage(selectedPays!, phoneCtl.text));
       } else {
         Tools.messageBox(message: res.message);
       }

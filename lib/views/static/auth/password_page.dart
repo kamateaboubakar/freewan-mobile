@@ -9,13 +9,13 @@ import 'package:wan_mobile/views/controllers/auth/password_page_vctl.dart';
 
 class PasswordPage extends StatelessWidget {
   final String phone;
-  final Pays pays;
-  const PasswordPage(this.pays, this.phone, {super.key});
+
+  const PasswordPage({required this.phone, super.key});
 
   @override
   Widget build(BuildContext context) {
     return GetBuilder<PasswordPageVctl>(
-        init: PasswordPageVctl(pays, phone),
+        init: PasswordPageVctl(phone),
         builder: (ctl) {
           return Scaffold(
               appBar: AppBar(
@@ -52,7 +52,7 @@ class PasswordPage extends StatelessWidget {
                           PinCodeTextField(
                             readOnly: true,
                             obscureText: true,
-                            controller: ctl.codeCtl,
+                            controller: ctl.passwordCtl,
                             animationType: AnimationType.scale,
                             cursorColor: AssetColors.blueButton,
                             appContext: context,
@@ -82,17 +82,17 @@ class PasswordPage extends StatelessWidget {
                   const Divider(height: 0),
                   NumericKeyboard(
                     onKeyboardTap: (String text) {
-                      if (ctl.codeCtl.text.length < 5) {
-                        ctl.codeCtl.text += text;
-                        if (ctl.codeCtl.text.length == 5) {
+                      if (ctl.passwordCtl.text.length < 5) {
+                        ctl.passwordCtl.text += text;
+                        if (ctl.passwordCtl.text.length == 5) {
                           ctl.submit();
                         }
                       }
                     },
                     rightButtonFn: () {
-                      if (ctl.codeCtl.text.isNotEmpty) {
-                        ctl.codeCtl.text = ctl.codeCtl.text
-                            .substring(0, ctl.codeCtl.text.length - 1);
+                      if (ctl.passwordCtl.text.isNotEmpty) {
+                        ctl.passwordCtl.text = ctl.passwordCtl.text
+                            .substring(0, ctl.passwordCtl.text.length - 1);
                       }
                     },
                     leftButtonFn: ctl.biometricAuthenticate,

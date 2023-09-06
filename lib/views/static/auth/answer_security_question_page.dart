@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:wan_mobile/models/pays.dart';
 import 'package:wan_mobile/models/security_question.dart';
 import 'package:wan_mobile/tools/const/const.dart';
 import 'package:wan_mobile/tools/widgets/c_button.dart';
@@ -11,16 +10,15 @@ class AnswerSecurityQuestionPage extends StatelessWidget {
   final SecurityQuestion question;
   final String phone;
   final String password;
-  final Pays pays;
-  const AnswerSecurityQuestionPage(
-      this.question, this.phone, this.password, this.pays,
+
+  const AnswerSecurityQuestionPage(this.question, this.phone, this.password,
       {super.key});
 
   @override
   Widget build(BuildContext context) {
     return GetBuilder<AnswerSecurityQuestionPageVctl>(
         init: AnswerSecurityQuestionPageVctl(
-            question: question, password: password, phone: phone, pays: pays),
+            question: question, password: password, phone: phone),
         builder: (ctl) {
           return Scaffold(
             appBar: AppBar(

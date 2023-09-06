@@ -6,7 +6,7 @@ class SecurityQuestion {
   SecurityQuestion({this.id, this.code, this.label});
 
   SecurityQuestion.fromJson(Map<String, dynamic> json) {
-    id = json['securityQuestionId'];
+    id = json['id'];
     code = json['code'];
     label = json['label'];
   }

@@ -5,7 +5,6 @@ import 'package:wan_mobile/api/controllers/user_api_ctl.dart';
 import 'package:wan_mobile/models/pays.dart';
 import 'package:wan_mobile/models/security_question.dart';
 import 'package:wan_mobile/models/user.dart';
-import 'package:wan_mobile/tools/types/types.dart';
 import 'package:wan_mobile/tools/utils/tools.dart';
 import 'package:wan_mobile/views/controllers/abstracts/view_controller.dart';
 import 'package:wan_mobile/views/static/auth/phone_auth/phone_auth.dart';
@@ -103,8 +102,8 @@ class RegisterPageVctl extends ViewController {
       var res = await UserApiCtl().register(user);
       await pr.hide();
       if (res.status) {
-        await Cache.setString(CacheKey.credentials,
-            {"phone": phone, "pays": selectedPays.toJson()}.parseToJson());
+        await Cache.setString(CacheKey.login, phone);
+        await Cache.setString(CacheKey.password, passwordCtl.text);
         appCtl.user = user;
         Get.offAll(() => const HomePage(displayWelcome: true));
       } else {

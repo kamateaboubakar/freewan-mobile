@@ -16,8 +16,8 @@ class Pays {
     id = json['countryId'] ?? json['id'];
     code = json['code'];
     label = json['label'];
-    callingCode = json['callingCode'];
-    phoneNumberLength = json['phoneNumberLength'];
+    callingCode = json['calling_code'];
+    phoneNumberLength = json['phone_number_length'];
   }
 
   Map<String, dynamic> toJson() {
@@ -25,8 +25,8 @@ class Pays {
     data['countryId'] = id;
     data['code'] = code;
     data['label'] = label;
-    data['callingCode'] = callingCode;
-    data['phoneNumberLength'] = phoneNumberLength;
+    data['calling_code'] = callingCode;
+    data['phone_number_length'] = phoneNumberLength;
     return data;
   }
 

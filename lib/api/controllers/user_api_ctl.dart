@@ -7,17 +7,17 @@ import 'package:wan_mobile/tools/types/types.dart';
 import 'package:wan_mobile/tools/utils/http_response.dart';
 
 class UserApiCtl extends WebController {
-  Future<HttpResponse<bool>> register(User user) async {
+  Future<HttpResponse<User>> register(User user) async {
     try {
       var res = await post(
-        HttpClientConst.baseUrl(module: "register"),
+        HttpClientConst.baseUrl(module: "auth/register"),
         HttpResponse.encodeBody(user.toJson()),
         headers: HttpClientConst.headers,
       );
       var body = HttpResponse.decodeBody(res);
       if (body.status) {
         appCtl.jwtToken = body.data["accessToken"];
-        return HttpResponse.success(data: true);
+        return HttpResponse.success(data: User.fromJson(body.data["data"]));
       } else {
         return HttpResponse.error(message: body.message);
       }
@@ -35,19 +35,28 @@ class UserApiCtl extends WebController {
     }
   }
 
-  Future<HttpResponse<bool>> loginPhone({required String phone}) async {
+  Future<HttpResponse<int>> loginPhone(
+      {required String phone, required int paysId}) async {
     try {
-      var res = await post(
-        HttpClientConst.baseUrl(module: "challenge-otp"),
-        {"login": phone}.parseToJson(),
+      var res = await get(
+        HttpClientConst.baseUrl(module: "auth/phoneAuth/$phone/$paysId"),
         headers: HttpClientConst.headers,
       );
       var body = HttpResponse.decodeBody(res);
       if (body.status) {
-        if (body.data != null && body.data["userExist"] == true) {
-          return HttpResponse.success(data: true);
+        if (body.data["status"] == true) {
+          if (body.data["data"] is int) {
+            return HttpResponse.success(data: body.data["data"]);
+          } else {
+            return HttpResponse.success(data: null);
+          }
+        } else {
+          if (body.data["message"] != null) {
+            return HttpResponse.success(data: null);
+          } else {
+            return HttpResponse.error(message: body.message);
+          }
         }
-        return HttpResponse.success(data: false);
       } else {
         return HttpResponse.error(message: body.message);
       }
@@ -89,13 +98,18 @@ class UserApiCtl extends WebController {
       {required String phone, required String password}) async {
     try {
       var res = await post(
-        HttpClientConst.baseUrl(module: "auth/authenticate"),
+        HttpClientConst.baseUrl(module: "auth/checkPassword"),
         {"login": phone, "password": password}.parseToJson(),
         headers: HttpClientConst.headers,
       );
       var body = HttpResponse.decodeBody(res);
       if (body.status) {
-        return HttpResponse.success(data: SecurityQuestion.fromJson(body.data));
+        if (body.data["status"] == false) {
+          return HttpResponse.error(message: body.data["message"]);
+        } else {
+          return HttpResponse.success(
+              data: SecurityQuestion.fromJson(body.data["data"]));
+        }
       } else {
         return HttpResponse.error(message: body.message);
       }
@@ -104,28 +118,24 @@ class UserApiCtl extends WebController {
     }
   }
 
-  Future<HttpResponse<bool>> answerSecurityQuestionLogin(
+  Future<HttpResponse<User>> answerSecurityQuestionLogin(
       {required String phone,
-      required String password,
       required int securityQuestionId,
       required String answer}) async {
     try {
       var res = await post(
-        HttpClientConst.baseUrl(module: "auth/challenge-questions"),
+        HttpClientConst.baseUrl(module: "auth/checkSecurityQuestionAnswer"),
         {
           "login": phone,
-          "password": password,
-          "securityQuestion": {
-            "securityQuestionId": securityQuestionId,
-            "answer": answer,
-          }
+          "security_question_id": securityQuestionId,
+          "answer": answer,
         }.parseToJson(),
         headers: HttpClientConst.headers,
       );
       var body = HttpResponse.decodeBody(res);
       if (body.status) {
-        appCtl.jwtToken = body.data["accessToken"];
-        return HttpResponse.success(data: true);
+        appCtl.jwtToken = body.data["token"];
+        return HttpResponse.success(data: User.fromJson(body.data["data"]));
       } else {
         return HttpResponse.error(message: body.message);
       }
@@ -173,7 +183,7 @@ class UserApiCtl extends WebController {
   Future<HttpResponse<bool>> logout() async {
     try {
       var res = await post(
-        HttpClientConst.baseUrl(module: "auth/revoke"),
+        HttpClientConst.baseUrl(module: "auth/logout"),
         {}.parseToJson(),
         headers: HttpClientConst.authHeaders,
       );

@@ -15,7 +15,7 @@ class PaiementChoixNumeroVctl extends ViewController {
   Future<void> getMobileMoneys() async {
     await pr.show();
     var res = await WalletApiCtl()
-        .getUserMobileMoneys(userId: appCtl.user.accountId.value);
+        .getUserMobileMoneys(userId: appCtl.user.id.value.toString());
     await pr.hide();
     if (res.status) {
       mobileMoneys = res.data!;
@@ -30,7 +30,7 @@ class PaiementChoixNumeroVctl extends ViewController {
       await pr.show();
       var item = MobileMoney();
       item.numeroTelephone = appCtl.user.countryCallingCode.value + telCtl.text;
-      item.idUser = appCtl.user.accountId.value;
+      item.idUser = appCtl.user.id.value.toString();
       item.categorieId = WalletAccountType.catMobileMoney;
       item.userId = 1;
 

@@ -10,7 +10,7 @@ class PaiementChoixCarteVctl extends ViewController {
   Future<void> getMobileMoneys() async {
     await pr.show();
     var res = await WalletApiCtl()
-        .getUserCarteBancaires(userId: appCtl.user.accountId.value);
+        .getUserCarteBancaires(userId: appCtl.user.id.value.toString());
     await pr.hide();
     if (res.status) {
       cards = res.data!;

@@ -41,7 +41,7 @@ class FormEditionBienImmobilierVctl extends ViewController {
         BlocAppartement bloc = BlocAppartement();
         bloc.libelle = nomLocalCtl.text;
         bloc.lieu = lieuCtl.text;
-        bloc.ownerId = appCtl.user.accountId;
+        bloc.ownerId = appCtl.user.id.value.toString();
         await pr.show();
         var res = await LoyerApiCtl().createBloc(bloc);
         await pr.hide();

@@ -49,7 +49,7 @@ class PaiementLoyerPageVctl extends ViewController {
               paie.annee = DateTime.now().year;
               paie.mois = DateTime.now().month;
               paie.habitat = habitat;
-              paie.idUserPaiement = appCtl.user.accountId;
+              paie.idUserPaiement = appCtl.user.id.value.toString();
               paie.montant = habitat.loyer;
               paie.telPaiement = appCtl.user.phoneNumber;
 

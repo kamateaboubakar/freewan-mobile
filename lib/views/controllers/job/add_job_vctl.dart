@@ -12,6 +12,7 @@ import 'package:wan_mobile/models/job/category.dart';
 import 'package:wan_mobile/models/job/job_offer.dart';
 import 'package:wan_mobile/models/job/work_experience.dart';
 import 'package:wan_mobile/models/pays.dart';
+import 'package:wan_mobile/tools/types/types.dart';
 import 'package:wan_mobile/views/controllers/abstracts/view_controller.dart';
 import 'package:wan_mobile/tools/utils/http_response.dart';
 
@@ -216,7 +217,7 @@ class AddJobController extends ViewController {
       }
 
       _newCompany.logo = fileUploadResponse.data!.filename!;
-      _newCompany.customerAccountId = appCtl.user.accountId!;
+      _newCompany.customerAccountId = appCtl.user.id.value.toString();
       companyResponse = await _companyApiCtrl.createCompany(_newCompany);
       if (!companyResponse.status) {
         return companyResponse;

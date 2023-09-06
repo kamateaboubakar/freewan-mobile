@@ -22,7 +22,7 @@ class SoldeHistoriquePageVctl extends ViewController {
     loading = true;
     update();
     var res = await AccountTransactionApiCtl()
-        .getUserTransactions(userId: appCtl.user.accountId.value);
+        .getUserTransactions(userId: appCtl.user.id.value.toString());
     loading = false;
     update();
     if (res.status) {
@@ -37,7 +37,7 @@ class SoldeHistoriquePageVctl extends ViewController {
     mthloading = true;
     update();
     var res = await AccountTransactionApiCtl()
-        .getUserPerMonth(userId: appCtl.user.accountId.value);
+        .getUserPerMonth(userId: appCtl.user.id.value.toString());
     mthloading = false;
     update();
     if (res.status) {
@@ -52,7 +52,7 @@ class SoldeHistoriquePageVctl extends ViewController {
     serviceloading = true;
     update();
     var res = await AccountTransactionApiCtl()
-        .getUserPerService(userId: appCtl.user.accountId.value);
+        .getUserPerService(userId: appCtl.user.id.value.toString());
     serviceloading = false;
     update();
     if (res.status) {
@@ -67,7 +67,7 @@ class SoldeHistoriquePageVctl extends ViewController {
     modePaiementLoading = true;
     update();
     var res = await AccountTransactionApiCtl()
-        .getUserPerModePaiement(userId: appCtl.user.accountId.value);
+        .getUserPerModePaiement(userId: appCtl.user.id.value.toString());
     modePaiementLoading = false;
     update();
     if (res.status) {
@@ -80,7 +80,7 @@ class SoldeHistoriquePageVctl extends ViewController {
 
   Future<void> getTotalUserDepense() async {
     var res = await AccountTransactionApiCtl()
-        .getTotalUserDepense(userId: appCtl.user.accountId.value);
+        .getTotalUserDepense(userId: appCtl.user.id.value.toString());
     if (res.status) {
       totalDepense = res.data!;
       update();

@@ -30,7 +30,7 @@ class ResumeLocationVehiculePageVctl extends ViewController {
         Booking book = Booking();
         book.carId = vehicule.id;
         // book.customer = appCtl.user.fullName;
-        book.userId = appCtl.user.accountId;
+        book.userId = appCtl.user.id.value.toString();
         book.destination = locationModel!.title;
         book.paymentModeId = selectedModePaiement!.id;
         book.lat = locationModel!.latitude;

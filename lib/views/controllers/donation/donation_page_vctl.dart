@@ -1,6 +1,7 @@
 import 'package:wan_mobile/api/controllers/don/donation_api_ctl.dart';
 import 'package:wan_mobile/models/don/campagne.dart';
 import 'package:wan_mobile/models/don/categorie_campagne.dart';
+import 'package:wan_mobile/tools/types/types.dart';
 import 'package:wan_mobile/tools/utils/http_response.dart';
 import 'package:wan_mobile/views/controllers/abstracts/view_controller.dart';
 
@@ -43,7 +44,8 @@ class DonationPageVctl extends ViewController {
   Future<void> fetchUserCampagnes() async {
     loadUserCampagne = true;
     update();
-    var res = await DonationApiCtl().getAllUserCampagne(appCtl.user.accountId!);
+    var res = await DonationApiCtl()
+        .getAllUserCampagne(appCtl.user.id.value.toString());
     loadUserCampagne = false;
     update();
     if (res.status) {

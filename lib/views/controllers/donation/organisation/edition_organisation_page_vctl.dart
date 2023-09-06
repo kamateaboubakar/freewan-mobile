@@ -101,7 +101,7 @@ class EditionOrganisationPageVctl extends ViewController {
     item.address = adresseCtl.text;
     item.description = descriptionCtl.text;
     item.logo = image;
-    item.customerAccountId = appCtl.user.accountId;
+    item.customerAccountId = appCtl.user.id.value.toString();
     return item;
   }
 
@@ -115,7 +115,7 @@ class EditionOrganisationPageVctl extends ViewController {
       adresseCtl.text = editedItem!.address.value;
       descriptionCtl.text = editedItem!.description.value;
       image = editedItem!.logoUrl;
-      appCtl.user.accountId = editedItem!.customerAccountId;
+      appCtl.user.id = editedItem!.customerAccountId.toInt();
       update();
     }
   }

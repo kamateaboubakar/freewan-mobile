@@ -53,7 +53,7 @@ class FormEditionAppartementVctl extends ViewController {
     item.nbPiece = nbPiece.text.toInt();
     item.loyer = loyer.text.toDouble();
     item.jourMoisPaiement = jourPaiement.text.toInt();
-    item.ownerId = appCtl.user.accountId;
+    item.ownerId = appCtl.user.id.value.toString();
     return item;
   }
 
@@ -67,8 +67,8 @@ class FormEditionAppartementVctl extends ViewController {
   }
 
   Future<List<BlocAppartement>> fetchBlockApparts() async {
-    var res =
-        await LoyerApiCtl().getAllBlocAppartByUser(appCtl.user.accountId!);
+    var res = await LoyerApiCtl()
+        .getAllBlocAppartByUser(appCtl.user.id.value.toString());
     if (res.status) {
       return res.data!;
     } else {

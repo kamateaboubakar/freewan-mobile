@@ -30,7 +30,7 @@ class JobListController extends ViewController {
   bool get isAleardySubmitApplication => _isAleardySubmitApplication;
 
   bool get canEditPost {
-    return _jobOffer!.company!.customerAccountId == appCtl.user.accountId!;
+    return _jobOffer!.company!.customerAccountId == appCtl.user.id!;
   }
 
   JobSector? _selectedJobCategory;
@@ -52,7 +52,9 @@ class JobListController extends ViewController {
   getJobOffers() async {
     _response = null;
     update();
-    _response = _selectedJobCategory == null ? (await _jobApiCtl.getAllJobs()) : (await _jobApiCtl.getAllJobByCategory(_selectedJobCategory!.id!));
+    _response = _selectedJobCategory == null
+        ? (await _jobApiCtl.getAllJobs())
+        : (await _jobApiCtl.getAllJobByCategory(_selectedJobCategory!.id!));
     update();
   }
 

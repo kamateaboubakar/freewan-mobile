@@ -117,7 +117,7 @@ class PressingApiCtl extends WebController {
   }) async {
     var url = "${Const.pressingBaseUrl}/commande";
     var requestBody = {
-      "customer_id": appCtl.user.accountId,
+      "customer_id": appCtl.user.id,
       "transaction_id": "TRANS-${DateTime.now().microsecondsSinceEpoch}",
       "asked_recuperation_date": recuperationDate,
       "fees": totalAmount,
@@ -128,7 +128,7 @@ class PressingApiCtl extends WebController {
           .toList(),
       "customer_localisation": {
         "address": userLocalisation.address!,
-        "customer_id": appCtl.user.accountId,
+        "customer_id": appCtl.user.id,
         "latitude": userLocalisation.latitude!,
         "longitude": userLocalisation.longitude!,
         "localisation_type": userLocalisation.localisationType!.id!,
@@ -151,7 +151,7 @@ class PressingApiCtl extends WebController {
     try {
       var url = "${Const.pressingBaseUrl}/commande";
       var requestBody = {
-        "customer_id": appCtl.user.accountId,
+        "customer_id": appCtl.user.id,
         "transaction_id": "TRANS-${DateTime.now().microsecondsSinceEpoch}",
         "asked_recuperation_date": recuperationDate,
         "fees": totalAmount,

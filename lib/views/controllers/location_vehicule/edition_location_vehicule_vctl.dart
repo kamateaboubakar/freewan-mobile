@@ -70,7 +70,7 @@ class EditionLocationVehiculeVctl extends ViewController {
       car.categoryId = categorieVehicule?.id;
       car.brandId = marqueVehicule?.id;
       car.model = modeleVehiculeCtl.text;
-      car.ownerId = appCtl.user.accountId;
+      car.ownerId = appCtl.user.id.value.toString();
       car.year = anneeVehiculeCtl.text;
       car.maxSpeed = vitesseMaxCtl.text;
       car.transmission = transmission;

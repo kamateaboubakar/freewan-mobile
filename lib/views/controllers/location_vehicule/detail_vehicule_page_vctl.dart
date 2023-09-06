@@ -13,7 +13,7 @@ class DetailVehiculePageVctl extends ViewController {
   DetailVehiculePageVctl(this.vehicule);
 
   Future<void> fetchPropritaire() async {
-    if (vehicule.ownerId != appCtl.user.accountId) {
+    if (vehicule.ownerId != appCtl.user.id) {
       await pr.show();
       var res = await UserApiCtl().getUserProfilById(vehicule.ownerId.value);
       await pr.hide();

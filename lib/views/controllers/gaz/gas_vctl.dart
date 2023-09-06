@@ -3,6 +3,7 @@ import 'package:wan_mobile/api/services/location_service.dart';
 import 'package:wan_mobile/models/gas_size.dart';
 import 'package:wan_mobile/models/location_model.dart';
 import 'package:wan_mobile/models/shop.dart';
+import 'package:wan_mobile/tools/types/types.dart';
 import 'package:wan_mobile/tools/utils/http_response.dart';
 import 'package:wan_mobile/views/controllers/abstracts/view_controller.dart';
 
@@ -95,7 +96,7 @@ class GasController extends ViewController {
       required Shop shop}) {
     return _gazApiCtl.submitOrder(
       brandInShopId: gasSize.brandInShopId!,
-      customerSessionId: appCtl.user.accountId!,
+      customerSessionId: appCtl.user.id.value.toString(),
       customerAddressId: 0,
       latitude: userLocation!.latitude,
       longitude: userLocation!.longitude,

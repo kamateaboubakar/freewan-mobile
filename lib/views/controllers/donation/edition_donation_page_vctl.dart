@@ -125,8 +125,8 @@ class EditionDonationVctl extends ViewController {
   }
 
   Future<List<Organization>> fetchOrganisations() async {
-    var res =
-        await DonationApiCtl().getAllUserOrganization(appCtl.user.accountId!);
+    var res = await DonationApiCtl()
+        .getAllUserOrganization(appCtl.user.id.value.toString());
     if (res.status) {
       return res.data!;
     } else {

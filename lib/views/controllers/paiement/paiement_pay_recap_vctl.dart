@@ -3,6 +3,7 @@ import 'package:wan_mobile/api/controllers/account_transaction/account_transacti
 import 'package:wan_mobile/models/paiement/mobile_money.dart';
 import 'package:wan_mobile/models/paiement/mode_paiement.dart';
 import 'package:wan_mobile/models/solde_historique/account_transaction.dart';
+import 'package:wan_mobile/tools/types/types.dart';
 import 'package:wan_mobile/tools/utils/tools.dart';
 import 'package:wan_mobile/views/controllers/abstracts/view_controller.dart';
 
@@ -25,7 +26,7 @@ class PaiementRecapVctl extends ViewController {
     await pr.show();
     var trx = AccountTransaction();
 
-    trx.idUsers = appCtl.user.accountId;
+    trx.idUsers = appCtl.user.id.value.toString();
     trx.libele = motifPaiement;
     trx.amount = montant.toString();
     trx.frais = frais.toString();

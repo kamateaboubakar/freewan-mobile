@@ -1,5 +1,6 @@
 import 'package:wan_mobile/api/controllers/address_api_ctl.dart';
 import 'package:wan_mobile/models/address/address_type.dart';
+import 'package:wan_mobile/tools/types/types.dart';
 import 'package:wan_mobile/views/controllers/abstracts/view_controller.dart';
 
 import '../../../models/pressing/user_localisation.dart';
@@ -22,7 +23,7 @@ class AddressController extends ViewController {
     _userLocalisationResponse = null;
     update(['userLocalisationView']);
     _userLocalisationResponse = await _addressApiCtl.getCustomerAddress(
-        customerId: appCtl.user.accountId!);
+        customerId: appCtl.user.id.value.toString());
     if (_userLocalisationResponse!.status) {
       getAddressTypes();
     }

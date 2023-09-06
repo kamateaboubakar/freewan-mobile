@@ -1,4 +1,5 @@
 import 'package:wan_mobile/api/controllers/job_api_ctl.dart';
+import 'package:wan_mobile/tools/types/types.dart';
 import 'package:wan_mobile/tools/utils/http_response.dart';
 import 'package:wan_mobile/views/controllers/abstracts/view_controller.dart';
 
@@ -18,12 +19,12 @@ class JobOfferEmployerController extends ViewController {
   getJobOffers() async {
     _response = null;
     update();
-    _response = await _jobApiCtl.getAllJobs(customerId: appCtl.user.accountId);
+    _response = await _jobApiCtl.getAllJobs(
+        customerId: appCtl.user.id.value.toString());
     update();
   }
 
-  Future<HttpResponse>deleteJobOffer(int id) {
+  Future<HttpResponse> deleteJobOffer(int id) {
     return _jobApiCtl.deleteJobOffer(id);
   }
-
 }

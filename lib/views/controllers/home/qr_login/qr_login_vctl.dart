@@ -13,7 +13,7 @@ class QrLoginVctl extends ViewController {
   Future<void> onScan(String code) async {
     await pr.show();
     var res = await QrLoginApiCtl()
-        .setUser(qrCode: code, userId: appCtl.user.accountId.value);
+        .setUser(qrCode: code, userId: appCtl.user.id.value.toString());
     await pr.hide();
     if (res.status) {
       Get.back();

@@ -1,5 +1,6 @@
 import 'package:get/get.dart';
 import 'package:wan_mobile/api/controllers/job_api_ctl.dart';
+import 'package:wan_mobile/tools/types/types.dart';
 import 'package:wan_mobile/tools/utils/http_response.dart';
 import 'package:wan_mobile/views/controllers/abstracts/view_controller.dart';
 
@@ -19,7 +20,7 @@ class JobOfferAppliedController extends ViewController {
   getJobOffersApplied() async {
     _response = null;
     update();
-    _response = await _jobApiCtl.getJobApplied(appCtl.user.accountId);
+    _response = await _jobApiCtl.getJobApplied(appCtl.user.id.value.toString());
     update();
   }
 
@@ -42,5 +43,4 @@ class JobOfferAppliedController extends ViewController {
   updateDescriptionTabIndex(int value) {
     _descriptionTabIndex.value = value;
   }
-
 }

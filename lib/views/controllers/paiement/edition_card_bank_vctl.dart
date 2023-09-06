@@ -24,7 +24,7 @@ class EditionCardBankVctl extends ViewController {
       item.dateExpiration = "$monthExpireDate/$yearExpireDate";
       item.cvc = cvc;
       item.categorieId = WalletAccountType.catBankCard;
-      item.idUser = appCtl.user.accountId.value;
+      item.idUser = appCtl.user.id.value.toString();
       item.userId = 1;
 
       var res = await WalletApiCtl().addCarteBancaire(carteBancaire: item);

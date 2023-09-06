@@ -34,8 +34,8 @@ class LocationVehiculeVclt extends ViewController {
   Future<void> fecthUserCars() async {
     loadUserCars = true;
     update();
-    var res =
-        await LocationVehiculeCtl().getUserCars(appCtl.user.accountId.value);
+    var res = await LocationVehiculeCtl()
+        .getUserCars(appCtl.user.id.value.toString());
     loadUserCars = false;
     update();
     if (res.status) {

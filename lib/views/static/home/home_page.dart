@@ -425,7 +425,7 @@ class HomePage extends StatelessWidget {
                                                   "assets/images/icons/achat_unite.png"),
                                               title: "Achat d’unités",
                                               onPressed: () => Get.to(
-                                                  () => const AchatUnitePage()),
+                                                  () => AchatUnitePage(ctl)),
                                             ),
                                             ButtonMenu(
                                               icon: Image.asset(

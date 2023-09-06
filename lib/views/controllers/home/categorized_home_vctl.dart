@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:wan_mobile/tools/utils/tools.dart';
 import 'package:wan_mobile/tools/widgets/button_menu.dart';
-import 'package:wan_mobile/views/static/achat_unite/achat_unite_page.dart';
 import 'package:wan_mobile/views/static/bills/views/bills_company_selection_dialog.dart';
 import 'package:wan_mobile/views/static/boutique/boutique_page.dart';
 import 'package:wan_mobile/views/static/construction/construction_page.dart';
@@ -202,12 +201,12 @@ class CategorizedHomeVctl extends GetxController {
       title: "Brasserie",
       onPressed: () {},
     ),
-    ButtonMenu(
-      categorie: "Achats",
-      icon: Image.asset("assets/images/icons/achat_unite.png"),
-      title: "Achat d’unités",
-      onPressed: () => Get.to(() => const AchatUnitePage()),
-    ),
+    // ButtonMenu(
+    //   categorie: "Achats",
+    //   icon: Image.asset("assets/images/icons/achat_unite.png"),
+    //   title: "Achat d’unités",
+    //   onPressed: () => Get.to(() => AchatUnitePage()),
+    // ),
     ButtonMenu(
       categorie: "Achats",
       icon: Image.asset("assets/images/icons/acaht_data.png"),

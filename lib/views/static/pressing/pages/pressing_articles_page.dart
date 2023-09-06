@@ -6,13 +6,11 @@ import 'package:wan_mobile/tools/utils/amount_util.dart';
 import 'package:wan_mobile/tools/utils/asset_colors.dart';
 import 'package:wan_mobile/views/controllers/pressing/pressing_articles_vctl.dart';
 import 'package:wan_mobile/views/controllers/pressing/pressing_services_vctl.dart';
-import 'package:wan_mobile/views/static/pressing/pages/pressing_payment_recap_page.dart';
 import 'package:wan_mobile/views/static/pressing/pressing_view.dart';
 import 'package:wan_mobile/views/static/pressing/widgets/pressing_article_item.dart';
 
 import '../../../../tools/utils/tools.dart';
 import '../../../../tools/widgets/c_button.dart';
-import '../../../../tools/widgets/payment_account_selection_item.dart';
 import '../../../controllers/pressing/pressing_vctl.dart';
 import '../../paiement/paiement_mode_paiement.dart';
 import '../../paiement/paiement_operation_success.dart';
@@ -189,7 +187,8 @@ class _PressingArticlesPageState extends State<PressingArticlesPage> {
 
                             var pressingCategories = response.data ?? [];
                             int selectedCategoryIndex =
-                                _pressingArticlesController.selectedCategoryIndex;
+                                _pressingArticlesController
+                                    .selectedCategoryIndex;
                             var articles = pressingCategories.isNotEmpty
                                 ? pressingCategories[selectedCategoryIndex]
                                         .articles ??
@@ -510,20 +509,20 @@ class _PressingArticlesPageState extends State<PressingArticlesPage> {
                             : const Color(0xffEDF2F9),
                         child: isLoading
                             ? const Center(
-                          child: SizedBox(
-                            width: 20,
-                            height: 20,
-                            child: CircularProgressIndicator(),
-                          ),
-                        )
+                                child: SizedBox(
+                                  width: 20,
+                                  height: 20,
+                                  child: CircularProgressIndicator(),
+                                ),
+                              )
                             : Text(
-                          "Payer",
-                          style: TextStyle(
-                            color: isFormValid(articleCount)
-                                ? Colors.white
-                                : const Color(0xffB5C4D8),
-                          ),
-                        ),
+                                "Payer",
+                                style: TextStyle(
+                                  color: isFormValid(articleCount)
+                                      ? Colors.white
+                                      : const Color(0xffB5C4D8),
+                                ),
+                              ),
                       ),
                     ],
                   ),

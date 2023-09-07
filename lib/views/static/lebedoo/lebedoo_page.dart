@@ -97,7 +97,7 @@ class LebedooPage extends StatelessWidget {
               length: 2,
               child: Column(
                 children: [
-                  TabBar(
+                  const TabBar(
                     labelColor: AssetColors.blueButton,
                     tabs: [
                       Tab(

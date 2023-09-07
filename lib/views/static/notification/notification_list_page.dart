@@ -10,7 +10,7 @@ class NotificationListPage extends StatelessWidget {
       appBar: AppBar(
         title: const Text("Notifications"),
       ),
-      body: WrapperBodyListView(
+      body: const WrapperBodyListView(
         loading: false,
         children: [],
       ),

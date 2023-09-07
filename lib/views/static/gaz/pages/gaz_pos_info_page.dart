@@ -7,12 +7,10 @@ import 'package:wan_mobile/views/controllers/gaz/gas_format_vctl.dart';
 import 'package:wan_mobile/views/controllers/gaz/gas_shop_vctl.dart';
 import 'package:wan_mobile/views/controllers/gaz/gas_vctl.dart';
 import 'package:wan_mobile/views/static/gaz/pages/gaz_delivery_map_page.dart';
-import 'package:wan_mobile/views/static/gaz/pages/gaz_payment_recap_page.dart';
 
 import '../../../../tools/utils/brands_item.dart';
 import '../../../../tools/utils/tools.dart';
 import '../../../../tools/widgets/c_button.dart';
-import '../../../../tools/widgets/payment_account_selection_item.dart';
 import '../../paiement/paiement_mode_paiement.dart';
 import '../../paiement/paiement_operation_success.dart';
 import '../widgets/brand_list_view.dart';

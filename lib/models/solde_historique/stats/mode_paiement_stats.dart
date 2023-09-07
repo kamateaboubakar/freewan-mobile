@@ -1,5 +1,4 @@
 import 'package:wan_mobile/tools/types/types.dart';
-import 'package:wan_mobile/tools/utils/functions.dart';
 
 class ModePaiementStats {
   String? modePayment;

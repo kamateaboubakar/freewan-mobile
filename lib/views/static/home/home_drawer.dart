@@ -3,6 +3,7 @@ import 'package:get/get.dart';
 import 'package:wan_mobile/tools/const/const.dart';
 import 'package:wan_mobile/tools/types/types.dart';
 import 'package:wan_mobile/views/controllers/home/home_page_vctl.dart';
+import 'package:wan_mobile/views/static/adresse/adresse_list_page.dart';
 import 'package:wan_mobile/views/static/auth/profil_page.dart';
 import 'package:wan_mobile/views/static/home/qr_login/qr_login.dart';
 
@@ -46,9 +47,12 @@ class HomeDrawer extends StatelessWidget {
                   ListTile(
                     leading: const Icon(Icons.qr_code),
                     title: const Text("Se connecter sur le web"),
-                    onTap: () => Get.to(
-                      () => const QrLogin(),
-                    ),
+                    onTap: () => Get.to(() => const QrLogin()),
+                  ),
+                  ListTile(
+                    leading: const Icon(Icons.pin_drop_rounded),
+                    title: const Text("Mes adresses"),
+                    onTap: () => Get.to(() => const AdresseListPage()),
                   ),
                 ],
               ),

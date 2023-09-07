@@ -9,6 +9,7 @@ class User {
   String? password;
   String? firstName, lastName;
   DateTime? birthDate;
+  String? fcmToken;
 
   List<SecurityQuestion> securityQuestions = [];
 
@@ -19,6 +20,10 @@ class User {
     this.password,
     this.id,
     this.securityQuestions = const [],
+    this.firstName,
+    this.lastName,
+    this.birthDate,
+    this.fcmToken,
   });
 
   User.fromJson(Map<String, dynamic> json) {
@@ -28,6 +33,7 @@ class User {
     password = json['password'];
     firstName = json['first_name'];
     lastName = json['last_name'];
+    fcmToken = json['fcm_token'];
     if (json['securityQuestions'] != null) {
       securityQuestions = <SecurityQuestion>[];
       json['securityQuestions'].forEach((v) {
@@ -48,7 +54,8 @@ class User {
     }
     data["first_name"] = firstName;
     data["last_name"] = lastName;
-    data['securityQuestions'] =
+    data["fcm_token"] = fcmToken;
+    data['security_questions'] =
         securityQuestions.map((v) => v.toJson()).toList();
 
     return data;

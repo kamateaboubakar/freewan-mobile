@@ -1,3 +1,4 @@
+import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:wan_mobile/models/moyen_paiement.dart';
@@ -21,40 +22,14 @@ class PaiementModePaiement extends StatelessWidget {
   Widget build(BuildContext context) {
     List<MoyenPaiement> moyensPaiements = [
       MoyenPaiement(
-        label: "Orange Money",
-        icon: "assets/images/Orange-Money-logo-2048x1375_1.png",
+        label: "Mobile Money",
+        icon: "assets/images/icons/mobile_money.png",
       ),
       MoyenPaiement(
-        label: "MTN Money",
-        icon: "assets/images/mtn_1.png",
-      ),
-      MoyenPaiement(
-        label: "Moov Money",
-        icon: "assets/images/moov2-PhotoRoom_1.png",
-      ),
-      MoyenPaiement(
-        label: "Wave",
-        icon: "assets/images/wave.png",
-      ),
-      MoyenPaiement(
-        label: "Carte Visa",
-        icon: "assets/images/visa.png",
+        label: "Carte Bancaire",
+        icon: "assets/images/icons/carte_bancaire.png",
         isMobileMoney: false,
       ),
-      MoyenPaiement(
-        label: "Mastercard",
-        icon: "assets/images/master_card.png",
-        isMobileMoney: false,
-      )
-    ];
-
-    List<Color> colors = [
-      const Color(0xffff7900).withOpacity(0.09),
-      const Color(0xfffcc916).withOpacity(0.09),
-      const Color(0xffff7900).withOpacity(0.09),
-      const Color(0xff4AD2FA).withOpacity(0.09),
-      const Color(0xff2566AF).withOpacity(0.09),
-      const Color(0xffEA001B).withOpacity(0.15),
     ];
 
     return Scaffold(
@@ -109,12 +84,9 @@ class PaiementModePaiement extends StatelessWidget {
                   children: [
                     ClipRRect(
                       borderRadius: BorderRadius.circular(8),
-                      child: Container(
+                      child: SizedBox(
                         width: 50,
                         height: 50,
-                        decoration: BoxDecoration(
-                          color: colors[index],
-                        ),
                         child: Center(
                           child: Image.asset(
                             item.icon,
@@ -125,10 +97,14 @@ class PaiementModePaiement extends StatelessWidget {
                       ),
                     ),
                     const SizedBox(height: 10),
-                    Text(
+                    AutoSizeText(
                       item.label,
+                      maxLines: 15,
+                      minFontSize: 10,
                       style: const TextStyle(
-                          fontWeight: FontWeight.bold, fontSize: 12),
+                        fontWeight: FontWeight.bold,
+                        fontSize: 15,
+                      ),
                     )
                   ],
                 ),

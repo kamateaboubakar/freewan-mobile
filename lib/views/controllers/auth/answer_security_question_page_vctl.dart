@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:wan_mobile/api/controllers/user_api_ctl.dart';
+import 'package:wan_mobile/api/controllers/auth/user_api_ctl.dart';
 import 'package:wan_mobile/models/security_question.dart';
 import 'package:wan_mobile/tools/cache/cache.dart';
 import 'package:wan_mobile/tools/cache/cache_keys.dart';

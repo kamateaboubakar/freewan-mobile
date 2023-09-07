@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:sliding_up_panel/sliding_up_panel.dart';
-import 'package:wan_mobile/api/controllers/user_api_ctl.dart';
+import 'package:wan_mobile/api/controllers/auth/user_api_ctl.dart';
 import 'package:wan_mobile/tools/cache/cache.dart';
 import 'package:wan_mobile/tools/cache/cache_keys.dart';
 import 'package:wan_mobile/tools/utils/tools.dart';

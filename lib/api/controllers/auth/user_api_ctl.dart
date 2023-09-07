@@ -16,7 +16,7 @@ class UserApiCtl extends WebController {
       );
       var body = HttpResponse.decodeBody(res);
       if (body.status) {
-        appCtl.jwtToken = body.data["accessToken"];
+        appCtl.jwtToken = body.data["token"];
         return HttpResponse.success(data: User.fromJson(body.data["data"]));
       } else {
         return HttpResponse.error(message: body.message);
@@ -51,10 +51,10 @@ class UserApiCtl extends WebController {
             return HttpResponse.success(data: null);
           }
         } else {
-          if (body.data["message"] != null) {
+          if (body.data["message"] == null) {
             return HttpResponse.success(data: null);
           } else {
-            return HttpResponse.error(message: body.message);
+            return HttpResponse.error(message: body.data["message"]);
           }
         }
       } else {
@@ -69,9 +69,9 @@ class UserApiCtl extends WebController {
       {required String code, required String phone}) async {
     try {
       var response = await post(
-        HttpClientConst.baseUrl(module: "challenge-otp/verify"),
+        HttpClientConst.baseUrl(module: "auth/checkOTP"),
         headers: HttpClientConst.headers,
-        {"otp": code, "login": phone}.parseToJson(),
+        {"fullPhoneNumber": phone, "otp": code}.parseToJson(),
       );
       var body = HttpResponse.decodeBody(response);
       if (body.status) {

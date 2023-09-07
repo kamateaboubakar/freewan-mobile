@@ -1,6 +1,6 @@
 class AccountTransaction {
   int? id;
-  String? idUsers;
+  int? userId;
   String? libele;
   String? amount;
   String? frais;
@@ -13,7 +13,7 @@ class AccountTransaction {
 
   AccountTransaction(
       {this.id,
-      this.idUsers,
+      this.userId,
       this.libele,
       this.amount,
       this.frais,
@@ -26,7 +26,7 @@ class AccountTransaction {
 
   AccountTransaction.fromJson(Map<String, dynamic> json) {
     id = json['id'];
-    idUsers = json['id_users'];
+    userId = json['user_id'];
     libele = json['libele'];
     amount = json['amount'];
     frais = json['frais'];
@@ -41,7 +41,7 @@ class AccountTransaction {
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = <String, dynamic>{};
     data['id'] = id;
-    data['id_users'] = idUsers;
+    data['user_id'] = userId;
     data['libele'] = libele;
     data['amount'] = amount;
     data['frais'] = frais;

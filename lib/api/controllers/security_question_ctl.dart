@@ -7,14 +7,14 @@ class SecurityQuestionCtl extends WebController {
   Future<HttpResponse<List<SecurityQuestion>>> getAll() async {
     try {
       var res = await get(
-        HttpClientConst.baseUrl(module: "security-questions"),
+        HttpClientConst.baseUrl(module: "security-questions/all"),
         headers: HttpClientConst.headers,
       );
 
       var body = HttpResponse.decodeBody(res);
       if (body.status) {
         return HttpResponse.success(
-          data: (body.data as List)
+          data: (body.data["data"] as List)
               .map((e) => SecurityQuestion.fromJson(e))
               .toList(),
         );

@@ -8,7 +8,7 @@ class QrLoginApiCtl extends WebController {
       {required String userId, required String qrCode}) async {
     try {
       var res = await post(
-        "http://148.113.143.59:8183/api/v1/auth/qrLogin/setUser",
+        "http://148.113.143.59:8081/api/v1/auth/qrLogin/setUser",
         {"qrCode": qrCode}.parseToJson(),
         headers: HttpClientConst.authHeaders,
       );

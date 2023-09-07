@@ -50,7 +50,7 @@ dependencies:
   lottie: ^2.3.2
   flutter_credit_card: ^3.0.6
   flutter_speed_dial: ^6.2.0
-  firebase_core: ^2.12.0
+  firebase_core: ^2.15.1
   jwt_decode: ^0.3.1
   text_divider: ^1.0.0
   image_picker: ^0.8.7+5
@@ -84,6 +84,8 @@ dependencies:
   pin_code_fields: ^8.0.1
   flutter_chat_ui: ^1.6.9
   cached_network_image: ^3.2.3
+  firebase_messaging: ^14.6.7
+  flutter_local_notifications: ^15.1.1
 
   # majesticmodel:
     # path: ../majesticmodel

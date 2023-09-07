@@ -1,6 +1,6 @@
 import 'package:get/get.dart';
 import 'package:wan_mobile/api/controllers/location_vehicule/location_vehicule_ctl.dart';
-import 'package:wan_mobile/api/services/location_service.dart';
+import 'package:wan_mobile/tools/services/location_service.dart';
 import 'package:wan_mobile/models/location_model.dart';
 import 'package:wan_mobile/models/location_vehicule/booking.dart';
 import 'package:wan_mobile/models/location_vehicule/car.dart';

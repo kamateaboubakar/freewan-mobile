@@ -8,6 +8,7 @@ import 'package:icofont_flutter/icofont_flutter.dart';
 import 'package:shimmer/shimmer.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'package:wan_mobile/tools/const/const.dart';
+import 'package:wan_mobile/tools/types/types.dart';
 import 'package:wan_mobile/tools/utils/asset_colors.dart';
 import 'package:wan_mobile/tools/utils/tools.dart';
 import 'package:wan_mobile/tools/widgets/button_menu.dart';
@@ -31,6 +32,7 @@ import 'package:wan_mobile/views/static/home/page_recherche.dart';
 import 'package:wan_mobile/views/static/lebedoo/lebedoo_page.dart';
 import 'package:wan_mobile/views/static/location_vehicule/location_vehicule.dart';
 import 'package:wan_mobile/views/static/loyer/loyer_bottom_sheet.dart';
+import 'package:wan_mobile/views/static/notification/notification_list_page.dart';
 import 'package:wan_mobile/views/static/recevoir_paiement/recevoir_paiement.dart';
 import 'package:wan_mobile/views/static/scan_pay/scan_pay_camera.dart';
 import 'package:wan_mobile/views/static/solde_historique/solde_historique_page.dart';
@@ -83,14 +85,16 @@ class HomePage extends StatelessWidget {
                     color: AssetColors.blueButton,
                     icon: const Icon(IcoFontIcons.search),
                   ),
-                  IconButton(
-                    iconSize: 20,
-                    splashRadius: 20,
-                    onPressed: () => ctl.pageViewCtl.nextPage(
-                        duration: const Duration(milliseconds: 500),
-                        curve: Curves.ease),
-                    color: AssetColors.blueButton,
-                    icon: const Icon(IcoFontIcons.uiMessaging),
+                  Badge(
+                    offset: const Offset(-5, 5),
+                    label: Text(ctl.nbNotif.toString()),
+                    child: IconButton(
+                      splashRadius: 20,
+                      onPressed: () =>
+                          Get.to(() => const NotificationListPage()),
+                      color: AssetColors.blueButton,
+                      icon: const Icon(Icons.notifications),
+                    ),
                   ),
                 ],
               ),

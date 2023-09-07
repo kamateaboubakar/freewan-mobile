@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 import 'package:get/get.dart';
-import 'package:wan_mobile/api/services/location_service.dart';
+import 'package:wan_mobile/tools/services/location_service.dart';
 import 'package:wan_mobile/models/adresse.dart';
 import 'package:wan_mobile/tools/widgets/c_button.dart';
 import 'package:wan_mobile/tools/widgets/c_textform_field.dart';

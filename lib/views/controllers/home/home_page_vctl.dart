@@ -4,6 +4,7 @@ import 'package:sliding_up_panel/sliding_up_panel.dart';
 import 'package:wan_mobile/api/controllers/auth/user_api_ctl.dart';
 import 'package:wan_mobile/tools/cache/cache.dart';
 import 'package:wan_mobile/tools/cache/cache_keys.dart';
+import 'package:wan_mobile/tools/services/notification_service.dart';
 import 'package:wan_mobile/tools/utils/tools.dart';
 import 'package:wan_mobile/tools/widgets/c_button.dart';
 import 'package:wan_mobile/views/controllers/abstracts/view_controller.dart';
@@ -26,6 +27,7 @@ class HomePageVctl extends ViewController {
     "https://live.ci/script/timthumb.php?src=images/image_agenda/c0f32009b2da1cbe46ca46e8b18d6b25.jpg&w=640"
   ];
   bool displayWelcome;
+  int nbNotif = 0;
 
   var scrollController = ScrollController();
 
@@ -124,5 +126,16 @@ class HomePageVctl extends ViewController {
         Tools.messageBox(message: res.message);
       }
     }
+  }
+
+  Future<void> _initNotificationListener() async {
+    //listen the remote notification
+    NotificationService.listNotification();
+  }
+
+  @override
+  void onInit() {
+    super.onInit();
+    _initNotificationListener();
   }
 }

@@ -4,7 +4,7 @@ import 'package:wan_mobile/models/address/address_type.dart';
 import 'package:wan_mobile/models/pressing/pressing.dart';
 import 'package:wan_mobile/views/controllers/abstracts/view_controller.dart';
 
-import '../../../api/services/location_service.dart';
+import '../../../tools/services/location_service.dart';
 import '../../../models/location_model.dart';
 import '../../../models/pressing/pressing_article.dart';
 import '../../../models/pressing/pressing_service.dart';

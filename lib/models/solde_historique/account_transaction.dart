@@ -55,7 +55,6 @@ class AccountTransaction {
     data['created_at'] = createdAt;
     data['updated_at'] = updatedAt;
     data['receved_id'] = recevedId;
-    print(data);
     return data;
   }
 }

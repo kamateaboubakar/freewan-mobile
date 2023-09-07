@@ -11,12 +11,14 @@ class PaiementChoixCart extends StatelessWidget {
   final String route;
   final int montant, frais;
   final String service;
+  final int? userDestinationId;
   const PaiementChoixCart({
     required this.route,
     required this.frais,
     required this.motifPaiement,
     required this.montant,
     required this.service,
+    this.userDestinationId,
     super.key,
   });
 
@@ -86,6 +88,7 @@ class PaiementChoixCart extends StatelessWidget {
                                     frais: frais,
                                     montant: montant,
                                     service: service,
+                                    userDestinationId: userDestinationId,
                                   ),
                                 ),
                               ),

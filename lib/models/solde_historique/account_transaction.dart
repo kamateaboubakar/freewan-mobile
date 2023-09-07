@@ -10,6 +10,7 @@ class AccountTransaction {
   String? bankcardId;
   String? createdAt;
   String? updatedAt;
+  int? recevedId;
 
   AccountTransaction(
       {this.id,
@@ -22,7 +23,8 @@ class AccountTransaction {
       this.mobileMoneyId,
       this.bankcardId,
       this.createdAt,
-      this.updatedAt});
+      this.updatedAt,
+      this.recevedId});
 
   AccountTransaction.fromJson(Map<String, dynamic> json) {
     id = json['id'];
@@ -36,12 +38,13 @@ class AccountTransaction {
     bankcardId = json['bankcard_id'].toString();
     createdAt = json['created_at'];
     updatedAt = json['updated_at'];
+    recevedId = json['receved_id'];
   }
 
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = <String, dynamic>{};
     data['id'] = id;
-    data['user_id'] = userId;
+    data['id_users'] = userId;
     data['libele'] = libele;
     data['amount'] = amount;
     data['frais'] = frais;
@@ -51,6 +54,8 @@ class AccountTransaction {
     data['bankcard_id'] = bankcardId;
     data['created_at'] = createdAt;
     data['updated_at'] = updatedAt;
+    data['receved_id'] = recevedId;
+    print(data);
     return data;
   }
 }

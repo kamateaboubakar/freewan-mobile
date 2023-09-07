@@ -10,12 +10,14 @@ class PaiementModePaiement extends StatelessWidget {
   final String motifPaiement;
   final int montant, frais;
   final String service;
+  final int? userDestinationId;
   const PaiementModePaiement(
       {required this.route,
       required this.motifPaiement,
       required this.frais,
       required this.montant,
       required this.service,
+      this.userDestinationId,
       super.key});
 
   @override
@@ -59,6 +61,7 @@ class PaiementModePaiement extends StatelessWidget {
                         frais: frais,
                         montant: montant,
                         service: service,
+                        userDestinationId: userDestinationId,
                       ));
                 } else {
                   Get.to(() => PaiementChoixCart(
@@ -67,6 +70,7 @@ class PaiementModePaiement extends StatelessWidget {
                         frais: frais,
                         montant: montant,
                         service: service,
+                        userDestinationId: userDestinationId,
                       ));
                 }
               },

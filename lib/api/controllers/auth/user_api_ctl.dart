@@ -197,4 +197,23 @@ class UserApiCtl extends WebController {
       return HttpResponse.error(systemError: e, systemtraceError: st);
     }
   }
+
+  Future<HttpResponse<User>> checkUserQrCode(
+      {required String qrAccount}) async {
+    try {
+      var res = await post(
+        HttpClientConst.baseUrl(module: "auth/profil/qrAccount"),
+        {"qrAccount": qrAccount}.parseToJson(),
+        headers: HttpClientConst.authHeaders,
+      );
+      var body = HttpResponse.decodeBody(res);
+      if (body.status) {
+        return HttpResponse.success(data: User.fromJson(body.data["data"]));
+      } else {
+        return HttpResponse.error(message: body.message);
+      }
+    } catch (e, st) {
+      return HttpResponse.error(systemError: e, systemtraceError: st);
+    }
+  }
 }

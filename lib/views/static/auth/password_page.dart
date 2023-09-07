@@ -70,10 +70,10 @@ class PasswordPage extends StatelessWidget {
                               activeFillColor: Colors.white,
                             ),
                           ),
-                          TextButton(
-                            onPressed: () {},
-                            child: const Text("Mot de passe oublié?"),
-                          ),
+                          // TextButton(
+                          //   onPressed: () {},
+                          //   child: const Text("Mot de passe oublié?"),
+                          // ),
                         ],
                       ),
                     ),

@@ -105,7 +105,10 @@ class HomePage extends StatelessWidget {
                     return FloatingActionButton(
                       backgroundColor: AssetColors.blueButton,
                       isExtended: true,
-                      onPressed: () => Get.to(() => const ScanPayCamera()),
+                      onPressed: () {
+                        var page = Get.currentRoute;
+                        Get.to(() => ScanPayCamera(page));
+                      },
                       child: Image.asset(
                         "assets/images/icons/scan_float_button.png",
                         width: 20,
@@ -115,7 +118,10 @@ class HomePage extends StatelessWidget {
                   } else {
                     return FloatingActionButton.extended(
                       backgroundColor: AssetColors.blueButton,
-                      onPressed: () => Get.to(() => const ScanPayCamera()),
+                      onPressed: () {
+                        var page = Get.currentRoute;
+                        Get.to(() => ScanPayCamera(page));
+                      },
                       label: const Text(
                         "Scan Any QR",
                         style: TextStyle(

@@ -12,6 +12,7 @@ class PaiementRecapVctl extends ViewController {
   String route;
   int montant, frais;
   String service;
+  int? userDestinationId;
 
   PaiementRecapVctl(
       {required this.moyenPaiement,
@@ -19,7 +20,8 @@ class PaiementRecapVctl extends ViewController {
       required this.montant,
       required this.motifPaiement,
       required this.route,
-      required this.service});
+      required this.service,
+      this.userDestinationId});
 
   Future<void> submit() async {
     await pr.show();
@@ -30,6 +32,7 @@ class PaiementRecapVctl extends ViewController {
     trx.amount = montant.toString();
     trx.frais = frais.toString();
     trx.service = service;
+    trx.recevedId = userDestinationId;
     trx.modePayment = moyenPaiement.typePaiment;
     if (moyenPaiement is MobileMoney) {
       trx.mobileMoneyId = moyenPaiement.id.toString();

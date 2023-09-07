@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:gap/gap.dart';
+import 'package:get/get.dart';
 import 'package:qr_flutter/qr_flutter.dart';
+import 'package:wan_mobile/tools/types/types.dart';
 import 'package:wan_mobile/tools/utils/asset_colors.dart';
+import 'package:wan_mobile/views/controllers/recevoir_paiement/recevoir_paiement_vctl.dart';
 
 class RecevoirPaiement extends StatelessWidget {
   const RecevoirPaiement({super.key});
@@ -13,62 +15,48 @@ class RecevoirPaiement extends StatelessWidget {
       appBar: AppBar(
         title: const Text("Réception d’argent"),
       ),
-      body: SingleChildScrollView(
-        padding: const EdgeInsets.all(16),
-        child: Column(
-          children: [
-            Container(
-              padding: const EdgeInsets.all(10),
-              width: double.infinity,
-              decoration: BoxDecoration(
-                color: Colors.white,
-                borderRadius: BorderRadius.circular(9),
-              ),
-              child: Column(
-                children: [
-                  const ListTile(
-                    leading: Icon(
-                      Icons.check_circle,
-                    ),
-                    title: Text("Faites scanner le qr code"),
-                    trailing: Icon(
-                      Icons.more_horiz_rounded,
-                      color: Colors.black,
-                    ),
-                  ),
-                  const Gap(30),
-                  const Text("Utilisez Scan pour me payer"),
-                  QrImageView(
-                    data: 'KLD450',
-                    version: QrVersions.auto,
-                    size: 200.0,
-                  ),
-                  const Gap(27),
-                  Padding(
-                    padding: const EdgeInsets.all(10),
-                    child: Row(
-                      children: [
-                        const Text("ID: KLD450"),
-                        const Spacer(),
-                        TextButton.icon(
-                          style: ButtonStyle(
-                            foregroundColor: MaterialStateProperty.all(
-                              AssetColors.blueButton,
+      body: GetBuilder<RecevoirPaiementVctl>(
+          init: RecevoirPaiementVctl(),
+          builder: (ctl) {
+            return Center(
+              child: Padding(
+                padding: const EdgeInsets.all(16),
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Container(
+                      padding: const EdgeInsets.all(10),
+                      width: double.infinity,
+                      height: Get.height / 2,
+                      decoration: BoxDecoration(
+                        color: Colors.white,
+                        borderRadius: BorderRadius.circular(9),
+                      ),
+                      child: Column(
+                        children: [
+                          const ListTile(
+                            title: Text(
+                              "Faites scanner le qr code",
+                              textAlign: TextAlign.center,
+                              style: TextStyle(
+                                fontSize: 20,
+                              ),
                             ),
                           ),
-                          onPressed: () {},
-                          icon: const Icon(Icons.copy),
-                          label: const Text("Copier ID"),
-                        ),
-                      ],
-                    ),
-                  )
-                ],
+                          Expanded(
+                            child: (ctl.qrData == null)
+                                ? const Center(
+                                    child: CircularProgressIndicator())
+                                : QrImageView(data: ctl.qrData.value),
+                          ),
+                        ],
+                      ),
+                    )
+                  ],
+                ),
               ),
-            )
-          ],
-        ),
-      ),
+            );
+          }),
     );
   }
 }

@@ -10,6 +10,7 @@ class User {
   String? firstName, lastName;
   DateTime? birthDate;
   String? fcmToken;
+  String? qrAccount;
 
   List<SecurityQuestion> securityQuestions = [];
 
@@ -34,12 +35,7 @@ class User {
     firstName = json['first_name'];
     lastName = json['last_name'];
     fcmToken = json['fcm_token'];
-    if (json['securityQuestions'] != null) {
-      securityQuestions = <SecurityQuestion>[];
-      json['securityQuestions'].forEach((v) {
-        securityQuestions.add(SecurityQuestion.fromJson(v));
-      });
-    }
+    qrAccount = json['qr_account'];
   }
 
   Map<String, dynamic> toJson() {
@@ -55,9 +51,9 @@ class User {
     data["first_name"] = firstName;
     data["last_name"] = lastName;
     data["fcm_token"] = fcmToken;
+    data["qr_account"] = qrAccount;
     data['security_questions'] =
-        securityQuestions.map((v) => v.toJson()).toList();
-
+        securityQuestions.map((e) => e.toJson()).toList();
     return data;
   }
 

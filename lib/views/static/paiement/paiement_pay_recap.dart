@@ -13,6 +13,7 @@ class PaiementRecap extends StatelessWidget {
   final MoyenPaiements moyenPaiement;
   final int montant, frais;
   final String service;
+  final int? userDestinationId;
   const PaiementRecap(
       {required this.route,
       required this.motifPaiement,
@@ -20,6 +21,7 @@ class PaiementRecap extends StatelessWidget {
       required this.moyenPaiement,
       required this.montant,
       required this.service,
+      this.userDestinationId,
       super.key});
 
   @override
@@ -30,6 +32,7 @@ class PaiementRecap extends StatelessWidget {
             montant: montant,
             motifPaiement: motifPaiement,
             moyenPaiement: moyenPaiement,
+            userDestinationId: userDestinationId,
             route: route,
             service: service),
         builder: (ctl) {

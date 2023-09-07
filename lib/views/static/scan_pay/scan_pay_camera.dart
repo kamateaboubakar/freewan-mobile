@@ -7,12 +7,13 @@ import 'package:wan_mobile/views/static/paiement/paiement_montant.dart';
 import '../../../tools/utils/asset_colors.dart';
 
 class ScanPayCamera extends StatelessWidget {
-  const ScanPayCamera({super.key});
+  final String route;
+  const ScanPayCamera(this.route, {super.key});
 
   @override
   Widget build(BuildContext context) {
     return GetBuilder<ScanPayCameraVctl>(
-      init: ScanPayCameraVctl(),
+      init: ScanPayCameraVctl(route),
       builder: (ctl) {
         return Scaffold(
           appBar: AppBar(
@@ -37,20 +38,21 @@ class ScanPayCamera extends StatelessWidget {
           extendBodyBehindAppBar: true,
           floatingActionButtonLocation:
               FloatingActionButtonLocation.centerFloat,
-          floatingActionButton: FloatingActionButton.extended(
-            backgroundColor: AssetColors.blueButton,
-            onPressed: () => Get.off(() => const PaiementMontant()),
-            label: const Row(
-              children: [
-                Icon(Icons.keyboard_alt, size: 19),
-                SizedBox(width: 10),
-                Text(
-                  "Pas de QR, Payez via ID",
-                  style: TextStyle(),
-                )
-              ],
-            ),
-          ),
+          //TODO
+          // floatingActionButton: FloatingActionButton.extended(
+          //   backgroundColor: AssetColors.blueButton,
+          //   onPressed: () => Get.off(() => const PaiementMontant()),
+          //   label: const Row(
+          //     children: [
+          //       Icon(Icons.keyboard_alt, size: 19),
+          //       SizedBox(width: 10),
+          //       Text(
+          //         "Pas de QR, Payez via ID",
+          //         style: TextStyle(),
+          //       )
+          //     ],
+          //   ),
+          // ),
           body: Stack(
             children: [
               QRView(

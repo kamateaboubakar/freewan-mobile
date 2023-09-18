@@ -134,8 +134,12 @@ class UserApiCtl extends WebController {
       );
       var body = HttpResponse.decodeBody(res);
       if (body.status) {
-        appCtl.jwtToken = body.data["token"];
-        return HttpResponse.success(data: User.fromJson(body.data["data"]));
+        if (body.data["status"] == false) {
+          return HttpResponse.error(message: body.data["message"]);
+        } else {
+          appCtl.jwtToken = body.data["token"];
+          return HttpResponse.success(data: User.fromJson(body.data["data"]));
+        }
       } else {
         return HttpResponse.error(message: body.message);
       }

@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:icofont_flutter/icofont_flutter.dart';
+import 'package:url_launcher/url_launcher.dart';
+import 'package:url_launcher/url_launcher_string.dart';
 import 'package:wan_mobile/tools/const/const.dart';
 import 'package:wan_mobile/tools/types/types.dart';
 import 'package:wan_mobile/views/controllers/home/home_page_vctl.dart';
@@ -53,6 +56,14 @@ class HomeDrawer extends StatelessWidget {
                     leading: const Icon(Icons.pin_drop_rounded),
                     title: const Text("Mes adresses"),
                     onTap: () => Get.to(() => const AdresseListPage()),
+                  ),
+                  ListTile(
+                    leading: const Icon(IcoFontIcons.whatsapp),
+                    title: const Text("Contactez-nous"),
+                    onTap: () => launchUrl(
+                      Uri.parse("https://wa.me/${Const.supportWhatsapp}"),
+                      mode: LaunchMode.externalApplication,
+                    ),
                   ),
                 ],
               ),

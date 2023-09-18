@@ -556,7 +556,6 @@ class HomePage extends StatelessWidget {
                                                               "assets/images/betclic.svg.png",
                                                               height: 40,
                                                             ),
-                                                            title: "Betclic",
                                                             onPressed: () {},
                                                           ),
                                                           ButtonMenu(
@@ -565,7 +564,6 @@ class HomePage extends StatelessWidget {
                                                               "pmu-lonaci-cote-ivoire.png",
                                                               height: 40,
                                                             ),
-                                                            title: "PMU",
                                                             onPressed: () {},
                                                           ),
                                                           ButtonMenu(
@@ -573,7 +571,6 @@ class HomePage extends StatelessWidget {
                                                               "assets/images/1xbet.png",
                                                               height: 40,
                                                             ),
-                                                            title: "1xBet",
                                                             onPressed: () {},
                                                           ),
                                                           ButtonMenu(
@@ -581,8 +578,6 @@ class HomePage extends StatelessWidget {
                                                               "assets/images/premier_bet.webp",
                                                               height: 40,
                                                             ),
-                                                            title:
-                                                                "Premier Bet",
                                                             onPressed: () {},
                                                           ),
                                                           ButtonMenu(
@@ -590,7 +585,6 @@ class HomePage extends StatelessWidget {
                                                               "assets/images/sportcash.png",
                                                               height: 40,
                                                             ),
-                                                            title: "Sport cash",
                                                             onPressed: () {},
                                                           ),
                                                           ButtonMenu(
@@ -598,7 +592,6 @@ class HomePage extends StatelessWidget {
                                                               "assets/images/casinocash.png",
                                                               width: 100,
                                                             ),
-                                                            title: "Casinocash",
                                                             onPressed: () {},
                                                           ),
                                                         ],

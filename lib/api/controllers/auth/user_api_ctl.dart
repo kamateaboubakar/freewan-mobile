@@ -3,6 +3,7 @@ import 'package:wan_mobile/api/abstracts/web_controller.dart';
 import 'package:wan_mobile/models/security_question.dart';
 import 'package:wan_mobile/models/user.dart';
 import 'package:wan_mobile/tools/types/types.dart';
+import 'package:wan_mobile/tools/utils/functions.dart';
 
 import 'package:wan_mobile/tools/utils/http_response.dart';
 
@@ -215,6 +216,29 @@ class UserApiCtl extends WebController {
         return HttpResponse.success(data: User.fromJson(body.data["data"]));
       } else {
         return HttpResponse.error(message: body.message);
+      }
+    } catch (e, st) {
+      return HttpResponse.error(systemError: e, systemtraceError: st);
+    }
+  }
+
+  Future<HttpResponse<bool>> updateFCMToken() async {
+    try {
+      var token = await Functions.getFcmToken();
+      if (token != null) {
+        var res = await post(
+          HttpClientConst.baseUrl(module: "auth/updateFcmToken"),
+          {"fcm_token": token}.parseToJson(),
+          headers: HttpClientConst.authHeaders,
+        );
+        var body = HttpResponse.decodeBody(res);
+        if (body.status) {
+          return HttpResponse.success(data: true);
+        }
+        return HttpResponse.error(message: body.message);
+      } else {
+        return HttpResponse.error(
+            message: "Nous n'avons pas pu récupérer le token.");
       }
     } catch (e, st) {
       return HttpResponse.error(systemError: e, systemtraceError: st);

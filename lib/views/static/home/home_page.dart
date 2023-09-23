@@ -5,12 +5,16 @@ import 'package:flutter_image_slideshow/flutter_image_slideshow.dart';
 import 'package:gap/gap.dart';
 import 'package:get/get.dart';
 import 'package:icofont_flutter/icofont_flutter.dart';
+import 'package:lottie/lottie.dart';
 import 'package:shimmer/shimmer.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'package:wan_mobile/tools/const/const.dart';
+import 'package:wan_mobile/tools/types/types.dart';
 import 'package:wan_mobile/tools/utils/asset_colors.dart';
+import 'package:wan_mobile/tools/utils/functions.dart';
 import 'package:wan_mobile/tools/utils/tools.dart';
 import 'package:wan_mobile/tools/widgets/button_menu.dart';
+import 'package:wan_mobile/tools/widgets/c_button.dart';
 import 'package:wan_mobile/tools/widgets/card_menu.dart';
 import 'package:wan_mobile/tools/widgets/pageable_menu.dart';
 import 'package:wan_mobile/tools/widgets/single_child_card_menu.dart';
@@ -1522,6 +1526,20 @@ class HomePage extends StatelessWidget {
                                             ButtonMenu(
                                               minWidth: 30,
                                               icon: Image.asset(
+                                                "assets/images/texas-grillz.jpg",
+                                              ),
+                                              onPressed: () {},
+                                            ),
+                                            ButtonMenu(
+                                              minWidth: 30,
+                                              icon: Image.asset(
+                                                "assets/images/DABALI-EXPRESS-OK.png",
+                                              ),
+                                              onPressed: () {},
+                                            ),
+                                            ButtonMenu(
+                                              minWidth: 30,
+                                              icon: Image.asset(
                                                 "assets/images/carrefour.png",
                                               ),
                                               onPressed: () {},
@@ -1560,47 +1578,63 @@ class HomePage extends StatelessWidget {
                                           ],
                                         ),
                                         const Gap(10),
-                                        Container(
-                                          height: 220,
-                                          decoration: BoxDecoration(
-                                            borderRadius:
-                                                BorderRadius.circular(10),
-                                            border: Border.all(
-                                              width: .1,
-                                              color: Colors.grey,
+                                        Column(
+                                          crossAxisAlignment:
+                                              CrossAxisAlignment.start,
+                                          children: [
+                                            const Text(
+                                              "En affiche",
+                                              style: TextStyle(
+                                                fontSize: 20,
+                                                fontWeight: FontWeight.bold,
+                                              ),
                                             ),
-                                          ),
-                                          child: ImageSlideshow(
-                                            isLoop: true,
-                                            autoPlayInterval: 6000,
-                                            children: ctl.ads2
-                                                .map(
-                                                  (e) => ClipRRect(
-                                                    borderRadius:
-                                                        BorderRadius.circular(
-                                                            10),
-                                                    child: Stack(
-                                                      fit: StackFit.expand,
-                                                      children: [
-                                                        Shimmer.fromColors(
-                                                          baseColor:
-                                                              Colors.grey[300]!,
-                                                          highlightColor:
-                                                              Colors.grey[100]!,
-                                                          child: Container(
-                                                            color: Colors.white,
-                                                          ),
+                                            const Gap(10),
+                                            Container(
+                                              height: 220,
+                                              decoration: BoxDecoration(
+                                                borderRadius:
+                                                    BorderRadius.circular(10),
+                                                border: Border.all(
+                                                  width: .1,
+                                                  color: Colors.grey,
+                                                ),
+                                              ),
+                                              child: ImageSlideshow(
+                                                isLoop: true,
+                                                autoPlayInterval: 6000,
+                                                children: ctl.ads2
+                                                    .map(
+                                                      (e) => ClipRRect(
+                                                        borderRadius:
+                                                            BorderRadius
+                                                                .circular(10),
+                                                        child: Stack(
+                                                          fit: StackFit.expand,
+                                                          children: [
+                                                            Shimmer.fromColors(
+                                                              baseColor: Colors
+                                                                  .grey[300]!,
+                                                              highlightColor:
+                                                                  Colors.grey[
+                                                                      100]!,
+                                                              child: Container(
+                                                                color: Colors
+                                                                    .white,
+                                                              ),
+                                                            ),
+                                                            CachedNetworkImage(
+                                                              imageUrl: e,
+                                                              fit: BoxFit.cover,
+                                                            ),
+                                                          ],
                                                         ),
-                                                        CachedNetworkImage(
-                                                          imageUrl: e,
-                                                          fit: BoxFit.cover,
-                                                        ),
-                                                      ],
-                                                    ),
-                                                  ),
-                                                )
-                                                .toList(),
-                                          ),
+                                                      ),
+                                                    )
+                                                    .toList(),
+                                              ),
+                                            ),
+                                          ],
                                         ),
                                         const Gap(10),
                                         ListableMenu(
@@ -1670,16 +1704,56 @@ class HomePage extends StatelessWidget {
                                         ),
                                         const Gap(20),
                                         ImageSlideshow(
-                                          children: [
+                                          children: <Object>[
+                                            Row(
+                                              children: [
+                                                Expanded(
+                                                  child: Padding(
+                                                    padding:
+                                                        const EdgeInsets.all(
+                                                            10),
+                                                    child: Column(
+                                                      mainAxisAlignment:
+                                                          MainAxisAlignment
+                                                              .center,
+                                                      children: [
+                                                        const Text(
+                                                          "Invitez vos amis "
+                                                          "sur ${Const.appName} et gagnez des récompenses...",
+                                                          textAlign:
+                                                              TextAlign.center,
+                                                        ),
+                                                        const Gap(10),
+                                                        CButton(
+                                                          onPressed: () => Functions
+                                                              .shareAppText(
+                                                                  codeParrain: ctl
+                                                                      .appCtl
+                                                                      .user
+                                                                      .ownerCode
+                                                                      .value),
+                                                          child: const Text(
+                                                              "Inviter"),
+                                                        )
+                                                      ],
+                                                    ),
+                                                  ),
+                                                ),
+                                                Lottie.asset(
+                                                    "assets/lotties/animation_lmw1phml.json")
+                                              ],
+                                            ),
                                             "https://blog.easyflyer.fr/wp-content/uploads/2018/03/supports-communication-promotion-sac-tissu-drapeau-voile.jpg",
                                             "https://www.rayon-boissons.com/var/site/storage/images/_aliases/large/1/9/5/1/1921591-2-fre-FR/import_file_Auchan-promo-100-volvic.png",
                                             "https://d1csarkz8obe9u.cloudfront.net/posterpreviews/product-promotion-flyer-poster-instagram-design-template-c47a97e2c5053e78a059e718077e639a_screen.jpg?ts=1618104409"
                                           ]
                                               .map(
-                                                (e) => CachedNetworkImage(
-                                                  imageUrl: e,
-                                                  fit: BoxFit.cover,
-                                                ),
+                                                (e) => (e is Widget)
+                                                    ? e
+                                                    : CachedNetworkImage(
+                                                        imageUrl: e as String,
+                                                        fit: BoxFit.cover,
+                                                      ),
                                               )
                                               .toList(),
                                         ),

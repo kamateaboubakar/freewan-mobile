@@ -1,5 +1,8 @@
 import 'package:date_format/date_format.dart';
+import 'package:firebase_messaging/firebase_messaging.dart';
+import 'package:flutter/foundation.dart';
 import 'package:intl/intl.dart';
+import 'package:share_plus/share_plus.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:wan_mobile/tools/const/const.dart';
 
@@ -96,20 +99,27 @@ class Functions {
     return "0";
   }
 
-  // static Future<String?> getFcmToken() async {
-  //   try {
-  //     String? token;
-  //     FirebaseMessaging.instance.getToken().then((value) {
-  //       token = value;
-  //     }, onError: (obj) {
-  //       token = null;
-  //     });
-  //     return token;
-  //   } catch (e, st) {
-  //     if (kDebugMode) {
-  //       print(st);
-  //     }
-  //     return null;
-  //   }
-  // }
+  static Future<String?> getFcmToken() async {
+    try {
+      return FirebaseMessaging.instance.getToken();
+    } catch (e, st) {
+      if (kDebugMode) {
+        print(st);
+      }
+      return null;
+    }
+  }
+
+  static Future<void> shareAppText({required String codeParrain}) async {
+    Share.share(
+        """😀 hey, inscris-toi sur *${Const.appName}* avec mon code de parrain : *$codeParrain*
+
+Le premier Hub de service ivoirien totalement digital.
+
+Téléchargez directement l'application sur :
+AppStore : ${Const.appStoreLink}
+PlayStore : ${Const.playStoreLink}
+
+🥳🥳 ${Const.appSlogan}""");
+  }
 }

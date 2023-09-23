@@ -1,3 +1,4 @@
+import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:wan_mobile/tools/const/const.dart';
@@ -6,6 +7,7 @@ import 'package:wan_mobile/tools/widgets/c_button.dart';
 import 'package:wan_mobile/tools/widgets/c_textform_field.dart';
 import 'package:wan_mobile/views/controllers/auth/phone_auth_vctl.dart';
 import 'package:wan_mobile/views/static/auth/phone_auth/bottom_sheet_phone_auth.dart';
+import 'package:wan_mobile/views/static/cgu_page.dart';
 
 class PhoneAuth extends StatelessWidget {
   const PhoneAuth({super.key});
@@ -129,28 +131,30 @@ class PhoneAuth extends StatelessWidget {
                       },
                       checkColor: const Color.fromRGBO(229, 229, 229, 1),
                     ),
-                    title: const Text.rich(
+                    title: Text.rich(
                       TextSpan(
                         text: "Cochez pour signifier que vous avez lu nos ",
                         children: [
                           TextSpan(
                             text: "termes et conditions",
-                            style: TextStyle(
+                            recognizer: TapGestureRecognizer()
+                              ..onTap = () => Get.to(() => const CGUPage()),
+                            style: const TextStyle(
                               color: Color.fromRGBO(0, 159, 249, 1),
                             ),
                           ),
-                          TextSpan(text: " et notre "),
+                          const TextSpan(text: " et notre "),
                           TextSpan(
                             text: "politique de confidentialité",
-                            style: TextStyle(
+                            recognizer: TapGestureRecognizer()
+                              ..onTap = () => Get.to(() => const CGUPage()),
+                            style: const TextStyle(
                               color: Color.fromRGBO(0, 159, 249, 1),
                             ),
                           ),
                         ],
                       ),
-                      style: TextStyle(
-                        fontSize: 10,
-                      ),
+                      style: const TextStyle(fontSize: 15),
                     ),
                   ),
                   const SizedBox(height: 10),

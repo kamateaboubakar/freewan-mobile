@@ -26,4 +26,8 @@ abstract class Const {
 
   static var pressingImageUrl = "http://148.113.143.59:8008/pressing";
   static const supportWhatsapp = "+2250101001437";
+
+  static const appStoreLink = "http://148.113.143.59:8183/";
+  static const playStoreLink = "http://148.113.143.59:8183/";
+  static const appSlogan = "Dans LEBEDOO y'a tous dedans";
 }

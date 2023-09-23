@@ -197,4 +197,33 @@ class Tools {
   }) =>
       Get.bottomSheet<T>(SizedBox(height: height, child: content),
           backgroundColor: Colors.white);
+
+  static SnackbarController showSnackbar({
+    String title = Const.appName,
+    String message = "Effectué avec succès",
+    Color? color = Colors.green,
+    Color bodyTextColor = Colors.black,
+    Color titleTextColor = Const.primaryColor,
+  }) =>
+      Get.snackbar(
+        title,
+        message,
+        maxWidth: 500,
+        backgroundColor: Colors.white,
+        colorText: Const.primaryColor,
+        titleText: Text(
+          title,
+          style: TextStyle(
+            color: titleTextColor,
+            fontWeight: FontWeight.bold,
+          ),
+        ),
+        messageText: Text(
+          message,
+          style: TextStyle(
+            color: bodyTextColor,
+            fontWeight: FontWeight.bold,
+          ),
+        ),
+      );
 }

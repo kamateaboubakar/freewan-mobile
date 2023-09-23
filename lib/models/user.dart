@@ -11,6 +11,8 @@ class User {
   DateTime? birthDate;
   String? fcmToken;
   String? qrAccount;
+  String? ownerCode;
+  String? parentCode;
 
   List<SecurityQuestion> securityQuestions = [];
 
@@ -25,6 +27,9 @@ class User {
     this.lastName,
     this.birthDate,
     this.fcmToken,
+    this.qrAccount,
+    this.ownerCode,
+    this.parentCode,
   });
 
   User.fromJson(Map<String, dynamic> json) {
@@ -36,6 +41,8 @@ class User {
     lastName = json['last_name'];
     fcmToken = json['fcm_token'];
     qrAccount = json['qr_account'];
+    ownerCode = json['owner_code'];
+    parentCode = json['parent_code'];
   }
 
   Map<String, dynamic> toJson() {
@@ -54,6 +61,8 @@ class User {
     data["qr_account"] = qrAccount;
     data['security_questions'] =
         securityQuestions.map((e) => e.toJson()).toList();
+    data["owner_code"] = ownerCode;
+    data["parent_code"] = parentCode;
     return data;
   }
 

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:permission_handler/permission_handler.dart';
 import 'package:sliding_up_panel/sliding_up_panel.dart';
 import 'package:wan_mobile/api/controllers/auth/user_api_ctl.dart';
 import 'package:wan_mobile/tools/cache/cache.dart';
@@ -25,6 +26,7 @@ class HomePageVctl extends ViewController {
     "https://live.ci/script/timthumb.php?src=images/image_agenda/f693f36385a26f421ca08a4331bb66c3.jpg&w=640",
     "https://live.ci/script/timthumb.php?src=images/image_agenda/c0f32009b2da1cbe46ca46e8b18d6b25.jpg&w=640"
   ];
+
   bool displayWelcome;
   int nbNotif = 0;
 
@@ -128,8 +130,12 @@ class HomePageVctl extends ViewController {
   }
 
   Future<void> _initNotificationListener() async {
-    //listen the remote notification
-    NotificationService.listNotification();
+    //Update the fcmToken
+    var res = await UserApiCtl().updateFCMToken();
+    if (res.status) {
+      //listen the remote notification
+      NotificationService.listNotification();
+    }
   }
 
   @override

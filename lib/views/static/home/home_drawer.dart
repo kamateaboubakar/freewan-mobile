@@ -2,12 +2,13 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:icofont_flutter/icofont_flutter.dart';
 import 'package:url_launcher/url_launcher.dart';
-import 'package:url_launcher/url_launcher_string.dart';
 import 'package:wan_mobile/tools/const/const.dart';
 import 'package:wan_mobile/tools/types/types.dart';
+import 'package:wan_mobile/tools/utils/functions.dart';
 import 'package:wan_mobile/views/controllers/home/home_page_vctl.dart';
 import 'package:wan_mobile/views/static/adresse/adresse_list_page.dart';
 import 'package:wan_mobile/views/static/auth/profil_page.dart';
+import 'package:wan_mobile/views/static/cgu_page.dart';
 import 'package:wan_mobile/views/static/home/qr_login/qr_login.dart';
 
 class HomeDrawer extends StatelessWidget {
@@ -64,6 +65,17 @@ class HomeDrawer extends StatelessWidget {
                       Uri.parse("https://wa.me/${Const.supportWhatsapp}"),
                       mode: LaunchMode.externalApplication,
                     ),
+                  ),
+                  ListTile(
+                    leading: const Icon(IcoFontIcons.share),
+                    title: const Text("Partager l'application"),
+                    onTap: () => Functions.shareAppText(
+                        codeParrain: ctl.appCtl.user.ownerCode.value),
+                  ),
+                  ListTile(
+                    leading: const Icon(IcoFontIcons.law),
+                    title: const Text("Conditions d'utilisation"),
+                    onTap: () => Get.to(() => const CGUPage()),
                   ),
                 ],
               ),

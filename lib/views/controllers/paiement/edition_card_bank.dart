@@ -1,8 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_credit_card/credit_card_widget.dart';
+import 'package:gap/gap.dart';
 import 'package:get/get.dart';
+import 'package:text_divider/text_divider.dart';
 import 'package:wan_mobile/tools/utils/asset_colors.dart';
 import 'package:wan_mobile/tools/widgets/c_button.dart';
+import 'package:wan_mobile/tools/widgets/c_outlined_button.dart';
 import 'package:wan_mobile/tools/widgets/c_textform_field.dart';
 import 'package:wan_mobile/views/controllers/paiement/edition_card_bank_vctl.dart';
 
@@ -39,27 +42,37 @@ class EditionCardBank extends StatelessWidget {
                   child: Column(
                     children: [
                       CreditCardWidget(
-                        cardNumber: ctl.numCard,
+                        cardNumber: ctl.numCardCtl.text,
                         expiryDate:
-                            "${ctl.monthExpireDate}/${ctl.yearExpireDate}",
+                            "${ctl.monthExpireDateCtl.text}/${ctl.yearExpireDateCtl.text}",
                         labelCardHolder: "Nom sur la Carte",
-                        cardHolderName: ctl.ownerName,
+                        cardHolderName: ctl.ownerNameCtl.text,
                         isHolderNameVisible: true,
                         isChipVisible: false,
-                        cvvCode: ctl.cvc,
+                        cvvCode: ctl.cvcCtl.text,
                         showBackView: false,
                         onCreditCardWidgetChange: (creditCardBrand) {},
                       ),
-                      const SizedBox(height: 26),
+                      COutlinedButton(
+                        onPressed: ctl.scanCard,
+                        child: const Text("Scanner la carte"),
+                      ),
+                      const Gap(10),
+                      const TextDivider(
+                        text: Text("Saisir les informations de la carte"),
+                      ),
+                      const Gap(30),
                       CTextFormField(
+                        controller: ctl.ownerNameCtl,
                         require: true,
                         hintText: "Nom sur la Carte",
                         onChanged: (value) {
-                          ctl.ownerName = value;
+                          ctl.ownerNameCtl.text = value;
                           ctl.update();
                         },
                       ),
                       CTextFormField(
+                        controller: ctl.numCardCtl,
                         require: true,
                         maxLength: 16,
                         hintText: "Numéro de Carte",
@@ -70,7 +83,7 @@ class EditionCardBank extends StatelessWidget {
                           height: 29,
                         ),
                         onChanged: (value) {
-                          ctl.numCard = value;
+                          ctl.numCardCtl.text = value;
                           ctl.update();
                         },
                       ),
@@ -78,12 +91,13 @@ class EditionCardBank extends StatelessWidget {
                         children: [
                           Expanded(
                             child: CTextFormField(
+                              controller: ctl.monthExpireDateCtl,
                               require: true,
                               maxLength: 2,
                               hintText: "mois d’expiration",
                               keyboardType: TextInputType.number,
                               onChanged: (value) {
-                                ctl.monthExpireDate = value;
+                                ctl.monthExpireDateCtl.text = value;
                                 ctl.update();
                               },
                             ),
@@ -91,12 +105,13 @@ class EditionCardBank extends StatelessWidget {
                           const SizedBox(width: 10),
                           Expanded(
                             child: CTextFormField(
+                              controller: ctl.yearExpireDateCtl,
                               require: true,
                               maxLength: 4,
                               hintText: "Année d’expiration",
                               keyboardType: TextInputType.number,
                               onChanged: (value) {
-                                ctl.yearExpireDate = value;
+                                ctl.yearExpireDateCtl.text = value;
                                 ctl.update();
                               },
                             ),
@@ -104,12 +119,13 @@ class EditionCardBank extends StatelessWidget {
                         ],
                       ),
                       CTextFormField(
+                        controller: ctl.cvcCtl,
                         require: true,
                         maxLength: 3,
                         hintText: "CVC",
                         keyboardType: TextInputType.number,
                         onChanged: (value) {
-                          ctl.cvc = value;
+                          ctl.cvcCtl.text = value;
                           ctl.update();
                         },
                       ),

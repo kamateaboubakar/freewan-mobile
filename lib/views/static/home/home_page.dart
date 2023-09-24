@@ -88,17 +88,23 @@ class HomePage extends StatelessWidget {
                     color: AssetColors.blueButton,
                     icon: const Icon(IcoFontIcons.search),
                   ),
-                  Badge(
-                    offset: const Offset(-5, 5),
-                    label: Text(ctl.nbNotif.toString()),
-                    child: IconButton(
-                      splashRadius: 20,
-                      onPressed: () =>
-                          Get.to(() => const NotificationListPage()),
-                      color: AssetColors.blueButton,
-                      icon: const Icon(Icons.notifications),
+                  Obx(
+                    () => Badge.count(
+                      count: ctl.appCtl.notifAccount.value,
+                      offset: const Offset(-5, 5),
+                      child: IconButton(
+                        splashRadius: 20,
+                        onPressed: () {
+                          if (ctl.appCtl.notifAccount.value > 0) {
+                            ctl.appCtl.notifAccount.value = 0;
+                          }
+                          Get.to(() => const NotificationListPage());
+                        },
+                        color: AssetColors.blueButton,
+                        icon: const Icon(Icons.notifications),
+                      ),
                     ),
-                  ),
+                  )
                 ],
               ),
               drawer: HomeDrawer(ctl),

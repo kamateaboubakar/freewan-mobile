@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 import 'package:wan_mobile/tools/const/const.dart';
+import 'package:wan_mobile/tools/services/notification_service.dart';
 
 import 'views/static/splashscreen.dart';
 
@@ -13,6 +14,8 @@ void main() async {
       [DeviceOrientation.portraitUp, DeviceOrientation.portraitDown]);
 
   await Firebase.initializeApp();
+
+  await NotificationService.setup();
 
   runApp(
     GetMaterialApp(

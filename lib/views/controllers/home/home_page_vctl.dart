@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:permission_handler/permission_handler.dart';
 import 'package:sliding_up_panel/sliding_up_panel.dart';
 import 'package:wan_mobile/api/controllers/auth/user_api_ctl.dart';
 import 'package:wan_mobile/tools/cache/cache.dart';
@@ -134,7 +133,11 @@ class HomePageVctl extends ViewController {
     var res = await UserApiCtl().updateFCMToken();
     if (res.status) {
       //listen the remote notification
-      NotificationService.listNotification();
+      NotificationService.listNotification(
+        handler: () {
+          appCtl.notifAccount.value++;
+        },
+      );
     }
   }
 

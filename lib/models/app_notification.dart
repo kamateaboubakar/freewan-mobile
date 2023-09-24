@@ -1,3 +1,5 @@
+import 'package:firebase_messaging/firebase_messaging.dart';
+
 class AppNotification {
   String? title;
   String? body;
@@ -13,12 +15,17 @@ class AppNotification {
     isRead = json['is_read'];
   }
 
+  AppNotification.fromRemonteMessage(RemoteMessage notification) {
+    title = notification.data["title"];
+    body = notification.data["body"];
+  }
+
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['title'] = this.title;
-    data['body'] = this.body;
-    data['user_id'] = this.userId;
-    data['is_read'] = this.isRead;
+    final Map<String, dynamic> data = <String, dynamic>{};
+    data['title'] = title;
+    data['body'] = body;
+    data['user_id'] = userId;
+    data['is_read'] = isRead;
     return data;
   }
 }

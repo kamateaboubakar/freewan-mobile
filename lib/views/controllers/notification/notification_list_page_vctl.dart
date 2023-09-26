@@ -7,6 +7,9 @@ class NotificationListPageVctl extends ViewController {
   List<AppNotification> notifs = [];
 
   Future<void> fetchNotifications() async {
+    if (appCtl.notifAccount.value > 0) {
+      appCtl.notifAccount.value = 0;
+    }
     await pr.show();
     var res = await NotificationApiCtl().getNotifications();
     await pr.hide();

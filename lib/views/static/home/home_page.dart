@@ -94,12 +94,8 @@ class HomePage extends StatelessWidget {
                       offset: const Offset(-5, 5),
                       child: IconButton(
                         splashRadius: 20,
-                        onPressed: () {
-                          if (ctl.appCtl.notifAccount.value > 0) {
-                            ctl.appCtl.notifAccount.value = 0;
-                          }
-                          Get.to(() => const NotificationListPage());
-                        },
+                        onPressed: () =>
+                            Get.to(() => const NotificationListPage()),
                         color: AssetColors.blueButton,
                         icon: const Icon(Icons.notifications),
                       ),

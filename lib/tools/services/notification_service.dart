@@ -1,17 +1,21 @@
+import 'dart:math';
+
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
+import 'package:get/get.dart';
 import 'package:wan_mobile/models/app_notification.dart';
+import 'package:wan_mobile/views/static/notification/notification_list_page.dart';
 
-class NotificationService {
+abstract class NotificationService {
   static final FirebaseMessaging _messaging = FirebaseMessaging.instance;
   static final _localNotificationService = FlutterLocalNotificationsPlugin();
 
   static Future<void> setup() async {
     await _initializeFirebaseNotification();
-    await initLocalNotification();
+    await _initLocalNotification();
   }
 
-  static void _showLocalNotification(AppNotification notification,
+  static void showLocalNotification(AppNotification notification,
       {int? notifId}) {
     if (notification.title != null && notification.body != null) {
       const androidPlatformChannelSpecifics = AndroidNotificationDetails(
@@ -22,7 +26,7 @@ class NotificationService {
       );
       const iOSPlatformChannelSpecifics = DarwinNotificationDetails();
       _localNotificationService.show(
-        notifId ?? 0,
+        notifId ?? Random().nextInt(1000),
         notification.title,
         notification.body,
         const NotificationDetails(
@@ -33,13 +37,19 @@ class NotificationService {
     }
   }
 
-  static Future<void> initLocalNotification() async {
+  static Future<void> _initLocalNotification() async {
     var initializationSettings = const InitializationSettings(
       android: AndroidInitializationSettings("@mipmap/ic_launcher"),
-      iOS: DarwinInitializationSettings(),
+      iOS: DarwinInitializationSettings(
+        onDidReceiveLocalNotification: onDidReceiveLocalNotification,
+      ),
     );
 
-    await _localNotificationService.initialize(initializationSettings);
+    await _localNotificationService.initialize(
+      initializationSettings,
+      onDidReceiveBackgroundNotificationResponse: onNotificationClick,
+      onDidReceiveNotificationResponse: onNotificationClick,
+    );
   }
 
   static Future<void> _initializeFirebaseNotification() async {
@@ -56,15 +66,30 @@ class NotificationService {
   static Future<void> listNotification({void Function()? handler}) async {
     FirebaseMessaging.onMessage.listen((RemoteMessage message) async {
       if (message.data.isNotEmpty) {
-        // Tools.showSnackbar(
-        //     title: message.data["title"], message: message.data["body"]);
-        _showLocalNotification(AppNotification.fromRemonteMessage(message));
+        showLocalNotification(AppNotification.fromRemonteMessage(message));
         if (handler != null) {
           handler.call();
         }
       }
     });
   }
+
+  static Future<void> onNotificationClick(NotificationResponse detail) async {
+    Get.to(() => const NotificationListPage());
+  }
+
+  static Future<void> onDidReceiveLocalNotification(
+      int id, String? title, String? body, String? payload) async {
+    var notif = AppNotification(
+      title: title,
+      body: body,
+    );
+    showLocalNotification(notif);
+  }
 }
 
-Future<void> onBackgroundMessage(RemoteMessage message) async {}
+@pragma('vm:entry-point')
+Future<void> onBackgroundMessage(RemoteMessage message) async {
+  NotificationService.showLocalNotification(
+      AppNotification.fromRemonteMessage(message));
+}

@@ -7,7 +7,6 @@ import 'package:get/get.dart';
 import 'package:icofont_flutter/icofont_flutter.dart';
 import 'package:lottie/lottie.dart';
 import 'package:shimmer/shimmer.dart';
-import 'package:url_launcher/url_launcher.dart';
 import 'package:wan_mobile/tools/const/const.dart';
 import 'package:wan_mobile/tools/types/types.dart';
 import 'package:wan_mobile/tools/utils/asset_colors.dart';
@@ -31,7 +30,6 @@ import 'package:wan_mobile/views/static/home/categorized_home.dart';
 import 'package:wan_mobile/views/static/home/home_drawer.dart';
 import 'package:wan_mobile/views/static/home/messagerie/messagerie_page.dart';
 import 'package:wan_mobile/views/static/home/more_option_home_page.dart';
-import 'package:wan_mobile/views/static/home/page_recherche.dart';
 import 'package:wan_mobile/views/static/lebedoo/lebedoo_page.dart';
 import 'package:wan_mobile/views/static/location_vehicule/location_vehicule.dart';
 import 'package:wan_mobile/views/static/loyer/loyer_bottom_sheet.dart';
@@ -283,7 +281,7 @@ class HomePage extends StatelessWidget {
                                                   // "assets/images/icons/transfert_banquaire.png",
 
                                                   ),
-                                              title: "Banques & micro-finances",
+                                              title: "Banks &\nmicrofinances",
                                               onPressed: () {},
                                             ),
                                             ButtonMenu(
@@ -1642,6 +1640,7 @@ class HomePage extends StatelessWidget {
                                         ),
                                         const Gap(20),
                                         ImageSlideshow(
+                                          height: 200,
                                           children: <Object>[
                                             Row(
                                               children: [
@@ -1678,7 +1677,9 @@ class HomePage extends StatelessWidget {
                                                   ),
                                                 ),
                                                 Lottie.asset(
-                                                    "assets/lotties/animation_lmw1phml.json")
+                                                  "assets/lotties/animation_lmw1phml.json",
+                                                  width: 200,
+                                                )
                                               ],
                                             ),
                                             "https://blog.easyflyer.fr/wp-content/uploads/2018/03/supports-communication-promotion-sac-tissu-drapeau-voile.jpg",

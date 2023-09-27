@@ -84,13 +84,14 @@ class HomePage extends StatelessWidget {
                   IconButton(
                     iconSize: 20,
                     splashRadius: 20,
-                    onPressed: () => Get.to(() => const PageRecherche()),
+                    onPressed: () => Get.to(() => const CategorizedHome()),
                     color: AssetColors.blueButton,
                     icon: const Icon(IcoFontIcons.search),
                   ),
                   Obx(
-                    () => Badge.count(
-                      count: ctl.appCtl.notifAccount.value,
+                    () => Badge(
+                      isLabelVisible: ctl.appCtl.notifAccount.value > 0,
+                      label: Text(ctl.appCtl.notifAccount.value.toString()),
                       offset: const Offset(-5, 5),
                       child: IconButton(
                         splashRadius: 20,
@@ -265,7 +266,7 @@ class HomePage extends StatelessWidget {
                                               ),
                                               title: "Envoyer vers mobile",
                                               onPressed: () => Get.to(() =>
-                                                  EnvoyerVersMobilePage(ctl)),
+                                                  const EnvoyerVersMobilePage()),
                                             ),
                                             ButtonMenu(
                                               icon: Image.asset(
@@ -282,7 +283,7 @@ class HomePage extends StatelessWidget {
                                                   // "assets/images/icons/transfert_banquaire.png",
 
                                                   ),
-                                              title: "Transfert bancaire",
+                                              title: "Banques & micro-finances",
                                               onPressed: () {},
                                             ),
                                             ButtonMenu(
@@ -301,7 +302,7 @@ class HomePage extends StatelessWidget {
                                               icon: Image.asset(
                                                 "assets/images/icons/historique_transaction.png",
                                               ),
-                                              title: "Historique Transactions",
+                                              title: "Solde & historique",
                                               onPressed: () => Get.to(() =>
                                                   const SoldeHistoriquePage()),
                                             ),
@@ -318,7 +319,7 @@ class HomePage extends StatelessWidget {
                                               icon: Image.asset(
                                                 "assets/images/icons/paiement_assurance.png",
                                               ),
-                                              title: "Paiement Assurances",
+                                              title: "Assurances",
                                               onPressed: () {},
                                             ),
                                             ButtonMenu(
@@ -365,8 +366,15 @@ class HomePage extends StatelessWidget {
                                             ),
                                             ButtonMenu(
                                               icon: Image.asset(
-                                                  "assets/images/icons/boutique.png"),
-                                              title: "Boutique",
+                                                  "assets/images/icons/pharmacie.png"),
+                                              title: "Pharmacies",
+                                              onPressed: () => Get.to(
+                                                  () => const BoutiquePage()),
+                                            ),
+                                            ButtonMenu(
+                                              icon: Image.asset(
+                                                  "assets/images/restaurant.png"),
+                                              title: "Restaurants",
                                               onPressed: () => Get.to(
                                                   () => const BoutiquePage()),
                                             ),
@@ -407,13 +415,12 @@ class HomePage extends StatelessWidget {
                                               child: SingleChildCardMenu(
                                                 onTap: () {},
                                                 icon: Image.asset(
-                                                  "assets/images/icons/box_cadeau.png",
+                                                  "assets/images/icons/carte-bancaire_lbd.png",
                                                   height: 18,
                                                   width: 18,
                                                 ),
-                                                title: "Partager et Gagner",
-                                                subtitle:
-                                                    "Récompenses garanties",
+                                                title:
+                                                    "Carte prépayée ${Const.appName}",
                                               ),
                                             ),
                                             const SizedBox(width: 8),
@@ -425,9 +432,8 @@ class HomePage extends StatelessWidget {
                                                   height: 18,
                                                   width: 18,
                                                 ),
-                                                title: "Carte Virtuelle",
-                                                subtitle:
-                                                    "Achetez sur sites ecommerce",
+                                                title:
+                                                    "Carte Virtuelle ${Const.appName}",
                                               ),
                                             ),
                                           ],
@@ -458,12 +464,12 @@ class HomePage extends StatelessWidget {
                                                 const BillsCompanySelectionDialog(),
                                               ),
                                             ),
-                                            // ButtonMenu(
-                                            //   icon: Image.asset(
-                                            //       "assets/images/icons8-entrepot-96.png"),
-                                            //   title: "CIE Prépayé",
-                                            //   onPressed: () {},
-                                            // ),
+                                            ButtonMenu(
+                                              icon: Image.asset(
+                                                  "assets/images/icons8-entrepot-96.png"),
+                                              title: "Facture d'eau",
+                                              onPressed: () {},
+                                            ),
                                             ButtonMenu(
                                               icon: Image.asset(
                                                   "assets/images/icons/abonnement_tele.png"),
@@ -581,7 +587,7 @@ class HomePage extends StatelessWidget {
                                                           ),
                                                           ButtonMenu(
                                                             icon: Image.asset(
-                                                              "assets/images/premier_bet.webp",
+                                                              "assets/images/premier_bet.jpg",
                                                               height: 40,
                                                             ),
                                                             onPressed: () {},
@@ -996,6 +1002,7 @@ class HomePage extends StatelessWidget {
                                           margin: const EdgeInsets.symmetric(
                                               vertical: 10),
                                           child: CardMenu(
+                                            title: "Vouchers",
                                             children: [
                                               ButtonMenu(
                                                 icon: Image.asset(
@@ -1035,7 +1042,7 @@ class HomePage extends StatelessWidget {
                                             ],
                                           ),
                                         ),
-                                        ListableMenu(
+                                        CardMenu(
                                           title: "Fonctionnalités",
                                           children: [
                                             ButtonMenu(
@@ -1066,46 +1073,6 @@ class HomePage extends StatelessWidget {
                                               title: "Don",
                                               onPressed: () => Get.to(
                                                   () => const DonationPage()),
-                                            ),
-                                            ButtonMenu(
-                                              icon: Image.asset(
-                                                "assets/images/icons/historique_transaction.png",
-                                              ),
-                                              title: "Solde et\nhistorique",
-                                              onPressed: () => Get.to(() =>
-                                                  const SoldeHistoriquePage()),
-                                            ),
-                                            ButtonMenu(
-                                              icon: Image.asset(
-                                                "assets/images/icons/paiement_loyer.png",
-                                              ),
-                                              title: "Paiement\nLoyer",
-                                              onPressed: () =>
-                                                  Tools.openBottomSheet(
-                                                      const LoyerBottomSheet()),
-                                            ),
-                                            ButtonMenu(
-                                              icon: Image.asset(
-                                                  "assets/images/icons/bus_car.png"),
-                                              title: "Bus et Car",
-                                              onPressed: () {},
-                                            ),
-                                            ButtonMenu(
-                                              icon: Image.asset(
-                                                  "assets/images/icons8-ticket.gif"),
-                                              title: "Ticket de cinéma",
-                                              // onPressed: () => Get.to(
-                                              //   () => Material(
-                                              //     child: MyHomePage(),
-                                              //   ),
-                                              // ),
-                                            ),
-                                            ButtonMenu(
-                                              icon: Image.asset(
-                                                "assets/images/icons/icons8-events-64.png",
-                                              ),
-                                              title: "Evénements",
-                                              onPressed: () {},
                                             ),
                                             ButtonMenu(
                                               icon: const CircleAvatar(
@@ -1641,66 +1608,35 @@ class HomePage extends StatelessWidget {
                                         const Gap(10),
                                         ListableMenu(
                                           height: 180,
-                                          title: "Shopping - Jumia",
+                                          title: "Le Mall",
                                           children: [
                                             ButtonMenu(
-                                              height: 150,
-                                              icon: CachedNetworkImage(
-                                                  imageUrl:
-                                                      "https://ci.jumia.is/unsafe/fit-in/300x300/filters:fill(white)/product/47/059442/1.jpg?0223"),
-                                              onPressed: () => launchUrl(
-                                                Uri.parse(
-                                                    "https://www.jumia.ci/win-tv-led-24-pouces-acdc-12-volt-energie-solaire-usb-hdmi-noir-garantie-12-mois-24495074.html"),
+                                              minWidth: 30,
+                                              icon: Image.asset(
+                                                "assets/images/logo_Galerie_Peyrissac_black.png",
                                               ),
+                                              onPressed: () {},
                                             ),
                                             ButtonMenu(
-                                              height: 150,
-                                              icon: CachedNetworkImage(
-                                                imageUrl:
-                                                    "https://ci.jumia.is/unsafe/fit-in/500x500/filters:fill(white)/product/73/794891/1.jpg?4285",
-                                                fit: BoxFit.cover,
+                                              minWidth: 30,
+                                              icon: Image.asset(
+                                                "assets/images/carrefour.png",
                                               ),
-                                              onPressed: () => launchUrl(
-                                                Uri.parse(
-                                                    "https://www.jumia.ci/xper-tv-led-32ln4100d-32-pouces-hd-decodeur-integre-noir-19849737.html"),
-                                              ),
+                                              onPressed: () {},
                                             ),
                                             ButtonMenu(
-                                              height: 150,
-                                              icon: CachedNetworkImage(
-                                                imageUrl:
-                                                    "https://ci.jumia.is/unsafe/fit-in/300x300/filters:fill(white)/product/00/548311/1.jpg?8307",
-                                                fit: BoxFit.cover,
+                                              minWidth: 30,
+                                              icon: Image.asset(
+                                                "assets/images/Prosuma_logo_HD.png",
                                               ),
-                                              onPressed: () => launchUrl(
-                                                Uri.parse(
-                                                  "https://www.jumia.ci/smart-technology-refrigerateur-2-battants-str-99h-85-l-gris-12-mois-de-garantie-11384500.html",
-                                                ),
-                                              ),
+                                              onPressed: () {},
                                             ),
                                             ButtonMenu(
-                                              height: 150,
-                                              icon: CachedNetworkImage(
-                                                imageUrl:
-                                                    "https://ci.jumia.is/unsafe/fit-in/500x500/filters:fill(white)/product/50/723791/1.jpg?8443",
-                                                fit: BoxFit.cover,
-                                              ),
-                                              onPressed: () => launchUrl(
-                                                Uri.parse(
-                                                    "https://www.jumia.ci/rocco-petits-pois-boite-400g-19732705.html"),
-                                              ),
-                                            ),
-                                            ButtonMenu(
-                                              height: 150,
-                                              icon: CachedNetworkImage(
-                                                imageUrl:
-                                                    "https://ci.jumia.is/unsafe/fit-in/500x500/filters:fill(white)/product/72/350241/1.jpg?5791",
-                                                fit: BoxFit.cover,
-                                              ),
-                                              onPressed: () => launchUrl(
-                                                Uri.parse(
-                                                    "https://www.jumia.ci/fashion-t-shirt-short-pour-homme-bleu-14205327.html"),
-                                              ),
+                                              minWidth: 30,
+                                              icon: const Icon(
+                                                  Icons.arrow_forward),
+                                              title: "Voir le Mall",
+                                              onPressed: () {},
                                             ),
                                           ],
                                         ),

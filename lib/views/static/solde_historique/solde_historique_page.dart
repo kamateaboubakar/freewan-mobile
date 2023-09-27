@@ -19,7 +19,7 @@ class SoldeHistoriquePage extends StatelessWidget {
             appBar: AppBar(
               leadingWidth: 45,
               backgroundColor: Colors.transparent,
-              title: const Text("Solde historique"),
+              title: const Text("Solde & historique"),
             ),
             body: Column(
               children: [

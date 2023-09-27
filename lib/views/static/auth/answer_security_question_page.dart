@@ -29,10 +29,12 @@ class AnswerSecurityQuestionPage extends StatelessWidget {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Image.asset(
-                    Const.inLineAppLogo,
-                    width: 120,
-                    height: 80,
+                  Center(
+                    child: Image.asset(
+                      Const.inLineAppLogo,
+                      width: 120,
+                      height: 200,
+                    ),
                   ),
                   const SizedBox(height: 10),
                   const Text(

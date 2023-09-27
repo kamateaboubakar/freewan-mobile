@@ -14,9 +14,12 @@ class SplashScreen extends StatelessWidget {
         init: SplashscreenVctl(),
         builder: (ctl) {
           return Center(
-            child: Image.asset(
-              Const.inLineAppLogo,
-              height: 180,
+            child: Padding(
+              padding: const EdgeInsets.all(40),
+              child: Image.asset(
+                Const.inLineAppLogo,
+                height: 180,
+              ),
             ),
           );
         },

@@ -212,45 +212,57 @@ class HomePage extends StatelessWidget {
                                     controller: scrollController,
                                     child: Column(
                                       children: [
-                                        Container(
-                                          height: 130,
-                                          decoration: BoxDecoration(
-                                            borderRadius:
-                                                BorderRadius.circular(10),
-                                            border: Border.all(
-                                              width: .1,
-                                              color: Colors.grey,
+                                        Visibility(
+                                          visible: ctl.ads
+                                              .where(
+                                                  (e) => e.categorie == "main")
+                                              .isNotEmpty,
+                                          child: Container(
+                                            height: 130,
+                                            decoration: BoxDecoration(
+                                              borderRadius:
+                                                  BorderRadius.circular(10),
+                                              border: Border.all(
+                                                width: .1,
+                                                color: Colors.grey,
+                                              ),
                                             ),
-                                          ),
-                                          child: ImageSlideshow(
-                                            isLoop: true,
-                                            autoPlayInterval: 6000,
-                                            children: ctl.ads
-                                                .map(
-                                                  (e) => ClipRRect(
-                                                    borderRadius:
-                                                        BorderRadius.circular(
-                                                            10),
-                                                    child: Stack(
-                                                      fit: StackFit.expand,
-                                                      children: [
-                                                        Shimmer.fromColors(
-                                                          baseColor:
-                                                              Colors.grey[300]!,
-                                                          highlightColor:
-                                                              Colors.grey[100]!,
-                                                          child: Container(
-                                                            color: Colors.white,
+                                            child: ImageSlideshow(
+                                              isLoop: true,
+                                              autoPlayInterval: 6000,
+                                              children: ctl.ads
+                                                  .where((e) =>
+                                                      e.categorie == "main")
+                                                  .map(
+                                                    (e) => ClipRRect(
+                                                      borderRadius:
+                                                          BorderRadius.circular(
+                                                              10),
+                                                      child: Stack(
+                                                        fit: StackFit.expand,
+                                                        children: [
+                                                          Shimmer.fromColors(
+                                                            baseColor: Colors
+                                                                .grey[300]!,
+                                                            highlightColor:
+                                                                Colors
+                                                                    .grey[100]!,
+                                                            child: Container(
+                                                              color:
+                                                                  Colors.white,
+                                                            ),
                                                           ),
-                                                        ),
-                                                        CachedNetworkImage(
-                                                            imageUrl: e,
-                                                            fit: BoxFit.cover),
-                                                      ],
+                                                          CachedNetworkImage(
+                                                            imageUrl:
+                                                                e.url.value,
+                                                            fit: BoxFit.cover,
+                                                          ),
+                                                        ],
+                                                      ),
                                                     ),
-                                                  ),
-                                                )
-                                                .toList(),
+                                                  )
+                                                  .toList(),
+                                            ),
                                           ),
                                         ),
                                         const SizedBox(height: 20),
@@ -609,61 +621,52 @@ class HomePage extends StatelessWidget {
                                                     ),
                                                   ),
                                                   const SizedBox(width: 10),
-                                                  Container(
-                                                    height: double.infinity,
-                                                    width: 290,
-                                                    decoration: BoxDecoration(
-                                                      color: Colors.white,
-                                                      borderRadius:
-                                                          BorderRadius.circular(
-                                                              10),
-                                                    ),
-                                                    child: ClipRRect(
-                                                      borderRadius:
-                                                          BorderRadius.circular(
-                                                              10),
-                                                      child: CachedNetworkImage(
-                                                        imageUrl:
-                                                            "https://www.pigroup360.com/wp-content/uploads/2021/06/4X3-3.jpg",
-                                                        fit: BoxFit.fill,
-                                                      ),
-                                                    ),
-                                                  ),
-                                                  const SizedBox(width: 10),
-                                                  Container(
-                                                    height: double.infinity,
-                                                    width: 300,
-                                                    decoration: BoxDecoration(
-                                                      color: Colors.white,
-                                                      borderRadius:
-                                                          BorderRadius.circular(
-                                                              10),
-                                                    ),
-                                                    child: ClipRRect(
-                                                      borderRadius:
-                                                          BorderRadius.circular(
-                                                              10),
-                                                      child: CachedNetworkImage(
-                                                        imageUrl:
-                                                            "https://www.goafricaonline.com/media/cache/resolve/w800/uploads/media/company_media/0001/38/5b27743f77795-mur-packing-pmu-lonaci-cote-ivoire.jpg",
-                                                        fit: BoxFit.fill,
-                                                      ),
-                                                    ),
-                                                  ),
-                                                  const SizedBox(width: 10),
-                                                  SizedBox(
-                                                    width: 250,
-                                                    child: ClipRRect(
-                                                      borderRadius:
-                                                          BorderRadius.circular(
-                                                              10),
-                                                      child: CachedNetworkImage(
-                                                        imageUrl:
-                                                            "https://kanjulien.files.wordpress.com/2013/10/megajackpot.jpg",
-                                                        fit: BoxFit.cover,
-                                                      ),
-                                                    ),
-                                                  ),
+                                                  Row(
+                                                    children: ctl.ads
+                                                        .where(
+                                                          (e) =>
+                                                              e.categorie ==
+                                                              "lonaci",
+                                                        )
+                                                        .map(
+                                                          (e) => Row(
+                                                            children: [
+                                                              Container(
+                                                                height: double
+                                                                    .infinity,
+                                                                // width: 300,
+                                                                decoration:
+                                                                    BoxDecoration(
+                                                                  color: Colors
+                                                                      .white,
+                                                                  borderRadius:
+                                                                      BorderRadius
+                                                                          .circular(
+                                                                              10),
+                                                                ),
+                                                                child:
+                                                                    ClipRRect(
+                                                                  borderRadius:
+                                                                      BorderRadius
+                                                                          .circular(
+                                                                              10),
+                                                                  child:
+                                                                      CachedNetworkImage(
+                                                                    imageUrl: e
+                                                                        .url
+                                                                        .value,
+                                                                    fit: BoxFit
+                                                                        .fill,
+                                                                  ),
+                                                                ),
+                                                              ),
+                                                              const SizedBox(
+                                                                  width: 10),
+                                                            ],
+                                                          ),
+                                                        )
+                                                        .toList(),
+                                                  )
                                                 ],
                                               ),
                                             ),
@@ -743,90 +746,77 @@ class HomePage extends StatelessWidget {
                                                     ),
                                                   ),
                                                   const SizedBox(width: 10),
-                                                  Container(
-                                                    height: double.infinity,
-                                                    width: 300,
-                                                    decoration: BoxDecoration(
-                                                      color: Colors.white,
-                                                      borderRadius:
-                                                          BorderRadius.circular(
-                                                              10),
-                                                    ),
-                                                    child: ClipRRect(
-                                                      borderRadius:
-                                                          BorderRadius.circular(
-                                                              10),
-                                                      child: CachedNetworkImage(
-                                                        imageUrl:
-                                                            "https://www.lepoint.fr/images/2016/12"
-                                                            "/15/6476009lpw-6476232-article-horse-racing-on"
-                                                            "-the-hippodrome-of-cagnes-sur-mer-france-jpg_3968108_1250x625.jpg",
-                                                        fit: BoxFit.cover,
-                                                      ),
-                                                    ),
-                                                  ),
-                                                  const SizedBox(width: 10),
-                                                  Container(
-                                                    height: double.infinity,
-                                                    width: Get.width,
-                                                    decoration: BoxDecoration(
-                                                      color: Colors.white,
-                                                      borderRadius:
-                                                          BorderRadius.circular(
-                                                              10),
-                                                    ),
-                                                    child: ClipRRect(
-                                                      borderRadius:
-                                                          BorderRadius.circular(
-                                                              10),
-                                                      child: CachedNetworkImage(
-                                                        imageUrl:
-                                                            "https://burkina24.com/wp-content/uploads/2023/06/1XBeta-scaled.jpg",
-                                                        fit: BoxFit.cover,
-                                                      ),
-                                                    ),
-                                                  ),
-                                                  const SizedBox(width: 10),
-                                                  Column(
-                                                    children: [
-                                                      Expanded(
-                                                        child: SizedBox(
-                                                          width: 250,
-                                                          child: ClipRRect(
-                                                            borderRadius:
-                                                                BorderRadius
-                                                                    .circular(
-                                                                        10),
-                                                            child:
-                                                                CachedNetworkImage(
-                                                              imageUrl:
-                                                                  "https://i.ytimg.com/vi/eO4q6KXQlU8/mqdefault.jpg",
-                                                              fit: BoxFit.cover,
-                                                            ),
-                                                          ),
-                                                        ),
-                                                      ),
-                                                      const SizedBox(
-                                                          height: 10),
-                                                      Expanded(
-                                                        child: SizedBox(
-                                                          width: 250,
-                                                          child: ClipRRect(
-                                                            borderRadius:
-                                                                BorderRadius
-                                                                    .circular(
-                                                                        10),
-                                                            child:
-                                                                CachedNetworkImage(
-                                                              imageUrl:
-                                                                  "https://bonus-malin.info/wp-content/uploads/2018/11/turf-unibet-bonus-47.jpg",
-                                                              fit: BoxFit.cover,
-                                                            ),
-                                                          ),
-                                                        ),
-                                                      ),
-                                                    ],
-                                                  )
+                                                  Row(
+                                                      children: ctl.ads
+                                                          .where((e) =>
+                                                              e.categorie ==
+                                                              "paris_lebedoo")
+                                                          .map(
+                                                            (e) =>
+                                                                (e.secondUrl ==
+                                                                        null)
+                                                                    ? Row(
+                                                                        children: [
+                                                                          Container(
+                                                                            height:
+                                                                                double.infinity,
+                                                                            width:
+                                                                                300,
+                                                                            decoration:
+                                                                                BoxDecoration(
+                                                                              color: Colors.white,
+                                                                              borderRadius: BorderRadius.circular(10),
+                                                                            ),
+                                                                            child:
+                                                                                ClipRRect(
+                                                                              borderRadius: BorderRadius.circular(10),
+                                                                              child: CachedNetworkImage(
+                                                                                imageUrl: e.url.value,
+                                                                                fit: BoxFit.cover,
+                                                                              ),
+                                                                            ),
+                                                                          ),
+                                                                          const SizedBox(
+                                                                              width: 10),
+                                                                        ],
+                                                                      )
+                                                                    : Row(
+                                                                        children: [
+                                                                          Column(
+                                                                            children: [
+                                                                              Expanded(
+                                                                                child: SizedBox(
+                                                                                  width: 250,
+                                                                                  child: ClipRRect(
+                                                                                    borderRadius: BorderRadius.circular(10),
+                                                                                    child: CachedNetworkImage(
+                                                                                      imageUrl: e.url.value,
+                                                                                      fit: BoxFit.cover,
+                                                                                    ),
+                                                                                  ),
+                                                                                ),
+                                                                              ),
+                                                                              const SizedBox(height: 10),
+                                                                              Expanded(
+                                                                                child: SizedBox(
+                                                                                  width: 250,
+                                                                                  child: ClipRRect(
+                                                                                    borderRadius: BorderRadius.circular(10),
+                                                                                    child: CachedNetworkImage(
+                                                                                      imageUrl: e.secondUrl.value,
+                                                                                      fit: BoxFit.cover,
+                                                                                    ),
+                                                                                  ),
+                                                                                ),
+                                                                              ),
+                                                                            ],
+                                                                          ),
+                                                                          const SizedBox(
+                                                                              width: 10),
+                                                                        ],
+                                                                      ),
+                                                          )
+                                                          .toList()),
                                                 ],
                                               ),
                                             ),
@@ -907,90 +897,77 @@ class HomePage extends StatelessWidget {
                                                     ),
                                                   ),
                                                   const SizedBox(width: 10),
-                                                  Container(
-                                                    height: double.infinity,
-                                                    width: 400,
-                                                    decoration: BoxDecoration(
-                                                      color: Colors.white,
-                                                      borderRadius:
-                                                          BorderRadius.circular(
-                                                              10),
-                                                    ),
-                                                    child: ClipRRect(
-                                                      borderRadius:
-                                                          BorderRadius.circular(
-                                                              10),
-                                                      child: CachedNetworkImage(
-                                                        imageUrl:
-                                                            "https://www.ladn.eu/wp-content/"
-                                                            "uploads/2020/01/TUI-campagne-communication-vacances"
-                                                            "-revees-francais.jpg",
-                                                        fit: BoxFit.fill,
-                                                      ),
-                                                    ),
-                                                  ),
-                                                  const SizedBox(width: 10),
-                                                  Container(
-                                                    height: double.infinity,
-                                                    width: Get.width,
-                                                    decoration: BoxDecoration(
-                                                      color: Colors.white,
-                                                      borderRadius:
-                                                          BorderRadius.circular(
-                                                              10),
-                                                    ),
-                                                    child: ClipRRect(
-                                                      borderRadius:
-                                                          BorderRadius.circular(
-                                                              10),
-                                                      child: CachedNetworkImage(
-                                                        imageUrl:
-                                                            "https://cofeb.bceao.int/sites/default/files/2022-08/Visuel-Formation_A_LA_CARTE_ONLINE.jpg",
-                                                        fit: BoxFit.cover,
-                                                      ),
-                                                    ),
-                                                  ),
-                                                  const SizedBox(width: 10),
-                                                  Column(
-                                                    children: [
-                                                      Expanded(
-                                                        child: SizedBox(
-                                                          width: 250,
-                                                          child: ClipRRect(
-                                                            borderRadius:
-                                                                BorderRadius
-                                                                    .circular(
-                                                                        10),
-                                                            child:
-                                                                CachedNetworkImage(
-                                                              imageUrl:
-                                                                  "https://www.nsiabanque.ci/wp-content/uploads/2023/06/Campagne_GIM-UEMOA_SLIDER_Site-web.jpg",
-                                                              fit: BoxFit.cover,
-                                                            ),
-                                                          ),
-                                                        ),
-                                                      ),
-                                                      const SizedBox(
-                                                          height: 10),
-                                                      Expanded(
-                                                        child: SizedBox(
-                                                          width: 250,
-                                                          child: ClipRRect(
-                                                            borderRadius:
-                                                                BorderRadius
-                                                                    .circular(
-                                                                        10),
-                                                            child:
-                                                                CachedNetworkImage(
-                                                              imageUrl:
-                                                                  "https://www.bankobserver-wavestone.com/wp-content/uploads/2021/12/online_banking_fr.png",
-                                                              fit: BoxFit.cover,
-                                                            ),
-                                                          ),
-                                                        ),
-                                                      ),
-                                                    ],
-                                                  )
+                                                  Row(
+                                                      children: ctl.ads
+                                                          .where((e) =>
+                                                              e.categorie ==
+                                                              "pret")
+                                                          .map(
+                                                            (e) =>
+                                                                (e.secondUrl ==
+                                                                        null)
+                                                                    ? Row(
+                                                                        children: [
+                                                                          Container(
+                                                                            height:
+                                                                                double.infinity,
+                                                                            width:
+                                                                                300,
+                                                                            decoration:
+                                                                                BoxDecoration(
+                                                                              color: Colors.white,
+                                                                              borderRadius: BorderRadius.circular(10),
+                                                                            ),
+                                                                            child:
+                                                                                ClipRRect(
+                                                                              borderRadius: BorderRadius.circular(10),
+                                                                              child: CachedNetworkImage(
+                                                                                imageUrl: e.url.value,
+                                                                                fit: BoxFit.cover,
+                                                                              ),
+                                                                            ),
+                                                                          ),
+                                                                          const SizedBox(
+                                                                              width: 10),
+                                                                        ],
+                                                                      )
+                                                                    : Row(
+                                                                        children: [
+                                                                          Column(
+                                                                            children: [
+                                                                              Expanded(
+                                                                                child: SizedBox(
+                                                                                  width: 250,
+                                                                                  child: ClipRRect(
+                                                                                    borderRadius: BorderRadius.circular(10),
+                                                                                    child: CachedNetworkImage(
+                                                                                      imageUrl: e.url.value,
+                                                                                      fit: BoxFit.cover,
+                                                                                    ),
+                                                                                  ),
+                                                                                ),
+                                                                              ),
+                                                                              const SizedBox(height: 10),
+                                                                              Expanded(
+                                                                                child: SizedBox(
+                                                                                  width: 250,
+                                                                                  child: ClipRRect(
+                                                                                    borderRadius: BorderRadius.circular(10),
+                                                                                    child: CachedNetworkImage(
+                                                                                      imageUrl: e.secondUrl.value,
+                                                                                      fit: BoxFit.cover,
+                                                                                    ),
+                                                                                  ),
+                                                                                ),
+                                                                              ),
+                                                                            ],
+                                                                          ),
+                                                                          const SizedBox(
+                                                                              width: 10),
+                                                                        ],
+                                                                      ),
+                                                          )
+                                                          .toList()),
                                                 ],
                                               ),
                                             ),
@@ -1174,96 +1151,77 @@ class HomePage extends StatelessWidget {
                                                     ),
                                                   ),
                                                   const SizedBox(width: 10),
-                                                  Container(
-                                                    height: double.infinity,
-                                                    width: 400,
-                                                    decoration: BoxDecoration(
-                                                      color: Colors.white,
-                                                      borderRadius:
-                                                          BorderRadius.circular(
-                                                              10),
-                                                    ),
-                                                    child: ClipRRect(
-                                                      borderRadius:
-                                                          BorderRadius.circular(
-                                                              10),
-                                                      child: CachedNetworkImage(
-                                                        imageUrl:
-                                                            "https://i.ytimg.com/vi/on0zd4LUWQI/hq720.jpg?sqp=-oaymwEhCK4FEIIDSFryq4qpAxMIARUAAAAAGAElAADIQj0AgKJD&rs=AOn4CLAcryAHlDWPgBPToz1c1Y78_k2NIA",
-                                                        fit: BoxFit.cover,
-                                                      ),
-                                                    ),
-                                                  ),
-                                                  const SizedBox(width: 10),
-                                                  Container(
-                                                    height: double.infinity,
-                                                    width: Get.width,
-                                                    decoration: BoxDecoration(
-                                                      color: Colors.white,
-                                                      borderRadius:
-                                                          BorderRadius.circular(
-                                                              10),
-                                                    ),
-                                                    child: ClipRRect(
-                                                      borderRadius:
-                                                          BorderRadius.circular(
-                                                              10),
-                                                      child: CachedNetworkImage(
-                                                        imageUrl:
-                                                            "https://www.goafricaonline.com/media/cache/resolve/w800/uploads/media/company_media/0001/37/5b06a7658ff50-visuel-destination-rev-cote-ivoire.jpg",
-                                                        fit: BoxFit.cover,
-                                                      ),
-                                                    ),
-                                                  ),
-                                                  const SizedBox(width: 10),
-                                                  Column(
-                                                    children: [
-                                                      Expanded(
-                                                        child: SizedBox(
-                                                          width: 250,
-                                                          child: ClipRRect(
-                                                            borderRadius:
-                                                                BorderRadius
-                                                                    .circular(
-                                                                        10),
-                                                            child:
-                                                                CachedNetworkImage(
-                                                              imageUrl:
-                                                                  "https://img.freepik.com/vecteurs"
-                                                                  "-libre/banniere-hotel-degrade-photo_23"
-                                                                  "-2148918442.jpg?w=2000&t=st=1685113784~exp="
-                                                                  "1685114384~hmac=46e4192837faef30051c4995031ae671"
-                                                                  "c5620a08a9a50e1f5dc66bccb747ae8e",
-                                                              fit: BoxFit.cover,
-                                                            ),
-                                                          ),
-                                                        ),
-                                                      ),
-                                                      const SizedBox(
-                                                          height: 10),
-                                                      Expanded(
-                                                        child: SizedBox(
-                                                          width: 250,
-                                                          child: ClipRRect(
-                                                            borderRadius:
-                                                                BorderRadius
-                                                                    .circular(
-                                                                        10),
-                                                            child:
-                                                                CachedNetworkImage(
-                                                              imageUrl:
-                                                                  "https://img.freepik.com/vecteurs"
-                                                                  "-libre/banniere-hotel-design-plat-photo"
-                                                                  "_23-2148924625.jpg?w=2000&t=st=1685114108~exp="
-                                                                  "1685114708~hmac=e242529b9ce89cb11d3943609"
-                                                                  "19049b396a44f3f40f18a1701bcedb802de0317",
-                                                              fit: BoxFit.cover,
-                                                            ),
-                                                          ),
-                                                        ),
-                                                      ),
-                                                    ],
-                                                  )
+                                                  Row(
+                                                      children: ctl.ads
+                                                          .where((e) =>
+                                                              e.categorie ==
+                                                              "reservation_billet")
+                                                          .map(
+                                                            (e) =>
+                                                                (e.secondUrl ==
+                                                                        null)
+                                                                    ? Row(
+                                                                        children: [
+                                                                          Container(
+                                                                            height:
+                                                                                double.infinity,
+                                                                            width:
+                                                                                300,
+                                                                            decoration:
+                                                                                BoxDecoration(
+                                                                              color: Colors.white,
+                                                                              borderRadius: BorderRadius.circular(10),
+                                                                            ),
+                                                                            child:
+                                                                                ClipRRect(
+                                                                              borderRadius: BorderRadius.circular(10),
+                                                                              child: CachedNetworkImage(
+                                                                                imageUrl: e.url.value,
+                                                                                fit: BoxFit.cover,
+                                                                              ),
+                                                                            ),
+                                                                          ),
+                                                                          const SizedBox(
+                                                                              width: 10),
+                                                                        ],
+                                                                      )
+                                                                    : Row(
+                                                                        children: [
+                                                                          Column(
+                                                                            children: [
+                                                                              Expanded(
+                                                                                child: SizedBox(
+                                                                                  width: 250,
+                                                                                  child: ClipRRect(
+                                                                                    borderRadius: BorderRadius.circular(10),
+                                                                                    child: CachedNetworkImage(
+                                                                                      imageUrl: e.url.value,
+                                                                                      fit: BoxFit.cover,
+                                                                                    ),
+                                                                                  ),
+                                                                                ),
+                                                                              ),
+                                                                              const SizedBox(height: 10),
+                                                                              Expanded(
+                                                                                child: SizedBox(
+                                                                                  width: 250,
+                                                                                  child: ClipRRect(
+                                                                                    borderRadius: BorderRadius.circular(10),
+                                                                                    child: CachedNetworkImage(
+                                                                                      imageUrl: e.secondUrl.value,
+                                                                                      fit: BoxFit.cover,
+                                                                                    ),
+                                                                                  ),
+                                                                                ),
+                                                                              ),
+                                                                            ],
+                                                                          ),
+                                                                          const SizedBox(
+                                                                              width: 10),
+                                                                        ],
+                                                                      ),
+                                                          )
+                                                          .toList()),
                                                 ],
                                               ),
                                             ),
@@ -1392,47 +1350,77 @@ class HomePage extends StatelessWidget {
                                                     ),
                                                   ),
                                                   const SizedBox(width: 10),
-                                                  Container(
-                                                    height: double.infinity,
-                                                    width: 400,
-                                                    decoration: BoxDecoration(
-                                                      color: Colors.white,
-                                                      borderRadius:
-                                                          BorderRadius.circular(
-                                                              10),
-                                                    ),
-                                                    child: ClipRRect(
-                                                      borderRadius:
-                                                          BorderRadius.circular(
-                                                              10),
-                                                      child: CachedNetworkImage(
-                                                        imageUrl:
-                                                            "https://www.bourseensemble.com/wp-content/uploads/2022/06/tout-savoir-sur-le-fractionnement-actions.jpg",
-                                                        fit: BoxFit.cover,
-                                                      ),
-                                                    ),
-                                                  ),
-                                                  const SizedBox(width: 10),
-                                                  Container(
-                                                    height: double.infinity,
-                                                    width: 300,
-                                                    decoration: BoxDecoration(
-                                                      color: Colors.white,
-                                                      borderRadius:
-                                                          BorderRadius.circular(
-                                                              10),
-                                                    ),
-                                                    child: ClipRRect(
-                                                      borderRadius:
-                                                          BorderRadius.circular(
-                                                              10),
-                                                      child: CachedNetworkImage(
-                                                        imageUrl:
-                                                            "https://www.paricilargent.com/wp-content/uploads/2021/04/Investir-dans-l-immobilier-ou-en-bourse-850x500.jpg",
-                                                        fit: BoxFit.cover,
-                                                      ),
-                                                    ),
-                                                  ),
+                                                  Row(
+                                                      children: ctl.ads
+                                                          .where((e) =>
+                                                              e.categorie ==
+                                                              "trading")
+                                                          .map(
+                                                            (e) =>
+                                                                (e.secondUrl ==
+                                                                        null)
+                                                                    ? Row(
+                                                                        children: [
+                                                                          Container(
+                                                                            height:
+                                                                                double.infinity,
+                                                                            width:
+                                                                                300,
+                                                                            decoration:
+                                                                                BoxDecoration(
+                                                                              color: Colors.white,
+                                                                              borderRadius: BorderRadius.circular(10),
+                                                                            ),
+                                                                            child:
+                                                                                ClipRRect(
+                                                                              borderRadius: BorderRadius.circular(10),
+                                                                              child: CachedNetworkImage(
+                                                                                imageUrl: e.url.value,
+                                                                                fit: BoxFit.cover,
+                                                                              ),
+                                                                            ),
+                                                                          ),
+                                                                          const SizedBox(
+                                                                              width: 10),
+                                                                        ],
+                                                                      )
+                                                                    : Row(
+                                                                        children: [
+                                                                          Column(
+                                                                            children: [
+                                                                              Expanded(
+                                                                                child: SizedBox(
+                                                                                  width: 250,
+                                                                                  child: ClipRRect(
+                                                                                    borderRadius: BorderRadius.circular(10),
+                                                                                    child: CachedNetworkImage(
+                                                                                      imageUrl: e.url.value,
+                                                                                      fit: BoxFit.cover,
+                                                                                    ),
+                                                                                  ),
+                                                                                ),
+                                                                              ),
+                                                                              const SizedBox(height: 10),
+                                                                              Expanded(
+                                                                                child: SizedBox(
+                                                                                  width: 250,
+                                                                                  child: ClipRRect(
+                                                                                    borderRadius: BorderRadius.circular(10),
+                                                                                    child: CachedNetworkImage(
+                                                                                      imageUrl: e.secondUrl.value,
+                                                                                      fit: BoxFit.cover,
+                                                                                    ),
+                                                                                  ),
+                                                                                ),
+                                                                              ),
+                                                                            ],
+                                                                          ),
+                                                                          const SizedBox(
+                                                                              width: 10),
+                                                                        ],
+                                                                      ),
+                                                          )
+                                                          .toList()),
                                                   const SizedBox(width: 10),
                                                 ],
                                               ),
@@ -1570,7 +1558,10 @@ class HomePage extends StatelessWidget {
                                               child: ImageSlideshow(
                                                 isLoop: true,
                                                 autoPlayInterval: 6000,
-                                                children: ctl.ads2
+                                                children: ctl.ads
+                                                    .where((e) =>
+                                                        e.categorie ==
+                                                        "en_affiche")
                                                     .map(
                                                       (e) => ClipRRect(
                                                         borderRadius:
@@ -1591,7 +1582,8 @@ class HomePage extends StatelessWidget {
                                                               ),
                                                             ),
                                                             CachedNetworkImage(
-                                                              imageUrl: e,
+                                                              imageUrl:
+                                                                  e.url.value,
                                                               fit: BoxFit.cover,
                                                             ),
                                                           ],
@@ -1682,9 +1674,10 @@ class HomePage extends StatelessWidget {
                                                 )
                                               ],
                                             ),
-                                            "https://blog.easyflyer.fr/wp-content/uploads/2018/03/supports-communication-promotion-sac-tissu-drapeau-voile.jpg",
-                                            "https://www.rayon-boissons.com/var/site/storage/images/_aliases/large/1/9/5/1/1921591-2-fre-FR/import_file_Auchan-promo-100-volvic.png",
-                                            "https://d1csarkz8obe9u.cloudfront.net/posterpreviews/product-promotion-flyer-poster-instagram-design-template-c47a97e2c5053e78a059e718077e639a_screen.jpg?ts=1618104409"
+                                            ...ctl.ads
+                                                .where((e) =>
+                                                    e.categorie == "pub_bas")
+                                                .map((e) => e.url.value)
                                           ]
                                               .map(
                                                 (e) => (e is Widget)

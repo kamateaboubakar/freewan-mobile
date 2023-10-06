@@ -27,6 +27,7 @@ class CTextFormField extends StatelessWidget {
   final EdgeInsetsGeometry? contentPadding;
   final TextInputAction? textInputAction;
   final List<TextInputFormatter>? inputFormatters;
+  final String? Function(String?)? validator;
   const CTextFormField(
       {this.controller,
       this.inputFormatters,
@@ -36,6 +37,7 @@ class CTextFormField extends StatelessWidget {
       this.autofocus = false,
       this.height,
       this.keyboardType,
+      this.validator,
       this.enabled,
       this.onTap,
       this.fillColor = Colors.white,
@@ -80,12 +82,13 @@ class CTextFormField extends StatelessWidget {
         style: const TextStyle(
           fontSize: 15,
         ),
-        validator: (value) {
-          if (require && value?.isEmpty == true) {
-            return "Ce champs est obligatoire";
-          }
-          return null;
-        },
+        validator: validator ??
+            (value) {
+              if (require && value?.isEmpty == true) {
+                return "Ce champs est obligatoire";
+              }
+              return null;
+            },
         decoration: InputDecoration(
           counterText: "",
           contentPadding: contentPadding,

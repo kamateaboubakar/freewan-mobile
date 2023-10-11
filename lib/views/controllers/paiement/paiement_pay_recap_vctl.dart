@@ -1,4 +1,3 @@
-import 'package:get/get.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'package:wan_mobile/api/controllers/account_transaction/account_transaction_api_ctl.dart';
 import 'package:wan_mobile/models/paiement/carte_bancaire.dart';

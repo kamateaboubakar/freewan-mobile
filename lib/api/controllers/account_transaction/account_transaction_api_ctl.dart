@@ -167,6 +167,7 @@ class AccountTransactionApiCtl extends WebController {
   Future<HttpResponse<AccountTransaction>> makePaiement(
       AccountTransaction accountTransaction) async {
     try {
+      print(accountTransaction.toJson().parseToJson());
       var res = await post(
         "$url/transactions",
         accountTransaction.toJson().parseToJson(),
@@ -174,8 +175,12 @@ class AccountTransactionApiCtl extends WebController {
       );
       var body = HttpResponse.decodeBody(res);
       if (body.status) {
-        return HttpResponse.success(
-            data: AccountTransaction.fromJson(body.data["data"]));
+        if (body.data["data"]["payment_url"] != null) {
+          return HttpResponse.success(
+              data: AccountTransaction.fromJson(body.data["data"]));
+        } else {
+          return HttpResponse.error();
+        }
       } else {
         return HttpResponse.error(message: body.message);
       }

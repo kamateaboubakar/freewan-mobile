@@ -6,11 +6,11 @@ class AccountTransaction {
   String? frais;
   String? service;
   String? modePayment;
-  String? mobileMoneyId;
-  String? bankcardId;
   String? createdAt;
   String? updatedAt;
   int? recevedId;
+  String? numberPayment;
+  String? paymentUrl;
 
   AccountTransaction(
       {this.id,
@@ -20,11 +20,11 @@ class AccountTransaction {
       this.frais,
       this.service,
       this.modePayment,
-      this.mobileMoneyId,
-      this.bankcardId,
+      this.numberPayment,
       this.createdAt,
       this.updatedAt,
-      this.recevedId});
+      this.recevedId,
+      this.paymentUrl});
 
   AccountTransaction.fromJson(Map<String, dynamic> json) {
     id = json['id'];
@@ -34,11 +34,11 @@ class AccountTransaction {
     frais = json['frais'];
     service = json['service'];
     modePayment = json['mode_payment'];
-    mobileMoneyId = json['mobile_money_id'].toString();
-    bankcardId = json['bankcard_id'].toString();
+    numberPayment = json['number_payment'];
     createdAt = json['created_at'];
     updatedAt = json['updated_at'];
     recevedId = json['receved_id'];
+    paymentUrl = json['payment_url'];
   }
 
   Map<String, dynamic> toJson() {
@@ -50,11 +50,11 @@ class AccountTransaction {
     data['frais'] = frais;
     data['service'] = service;
     data['mode_payment'] = modePayment;
-    data['mobile_money_id'] = mobileMoneyId;
-    data['bankcard_id'] = bankcardId;
+    data['number_payment'] = numberPayment;
     data['created_at'] = createdAt;
     data['updated_at'] = updatedAt;
     data['receved_id'] = recevedId;
+    data['payment_url'] = paymentUrl;
     return data;
   }
 }

@@ -1,7 +1,9 @@
+import 'package:geolocator/geolocator.dart';
+import 'package:get/utils.dart';
 import 'package:location/location.dart';
-
 import '../../models/location_model.dart';
 import 'package:geocoding/geocoding.dart' hide Location;
+import 'package:latlong2/latlong.dart';
 
 class LocationService {
   static final Location _location = Location();
@@ -55,5 +57,17 @@ class LocationService {
     if (placemarks.isEmpty) return '';
     var placeMark = placemarks.first;
     return '${placeMark.street}, ${placeMark.subLocality}, ${placeMark.locality}';
+  }
+
+  static int getDistanceBetweenTwoPoints(
+      {required LatLng? point1, required LatLng? point2}) {
+    if (point1 == null || point2 == null) {
+      return 0;
+    } else {
+      return (Geolocator.distanceBetween(point1.latitude, point1.longitude,
+                  point2.latitude, point2.longitude) /
+              1000)
+          .ceil();
+    }
   }
 }

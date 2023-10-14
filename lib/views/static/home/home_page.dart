@@ -1555,43 +1555,52 @@ class HomePage extends StatelessWidget {
                                                   color: Colors.grey,
                                                 ),
                                               ),
-                                              child: ImageSlideshow(
-                                                isLoop: true,
-                                                autoPlayInterval: 6000,
-                                                children: ctl.ads
-                                                    .where((e) =>
-                                                        e.categorie ==
-                                                        "en_affiche")
-                                                    .map(
-                                                      (e) => ClipRRect(
-                                                        borderRadius:
-                                                            BorderRadius
-                                                                .circular(10),
-                                                        child: Stack(
-                                                          fit: StackFit.expand,
-                                                          children: [
-                                                            Shimmer.fromColors(
-                                                              baseColor: Colors
-                                                                  .grey[300]!,
-                                                              highlightColor:
-                                                                  Colors.grey[
-                                                                      100]!,
-                                                              child: Container(
-                                                                color: Colors
-                                                                    .white,
+                                              child: (ctl.ads.isEmpty)
+                                                  ? const SizedBox.shrink()
+                                                  : ImageSlideshow(
+                                                      isLoop: true,
+                                                      autoPlayInterval: 6000,
+                                                      children: ctl.ads
+                                                          .where((e) =>
+                                                              e.categorie ==
+                                                              "en_affiche")
+                                                          .map(
+                                                            (e) => ClipRRect(
+                                                              borderRadius:
+                                                                  BorderRadius
+                                                                      .circular(
+                                                                          10),
+                                                              child: Stack(
+                                                                fit: StackFit
+                                                                    .expand,
+                                                                children: [
+                                                                  Shimmer
+                                                                      .fromColors(
+                                                                    baseColor:
+                                                                        Colors.grey[
+                                                                            300]!,
+                                                                    highlightColor:
+                                                                        Colors.grey[
+                                                                            100]!,
+                                                                    child:
+                                                                        Container(
+                                                                      color: Colors
+                                                                          .white,
+                                                                    ),
+                                                                  ),
+                                                                  CachedNetworkImage(
+                                                                    imageUrl: e
+                                                                        .url
+                                                                        .value,
+                                                                    fit: BoxFit
+                                                                        .cover,
+                                                                  ),
+                                                                ],
                                                               ),
                                                             ),
-                                                            CachedNetworkImage(
-                                                              imageUrl:
-                                                                  e.url.value,
-                                                              fit: BoxFit.cover,
-                                                            ),
-                                                          ],
-                                                        ),
-                                                      ),
-                                                    )
-                                                    .toList(),
-                                              ),
+                                                          )
+                                                          .toList(),
+                                                    ),
                                             ),
                                           ],
                                         ),

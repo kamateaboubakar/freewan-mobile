@@ -88,7 +88,7 @@ dependencies:
   firebase_messaging: ^14.6.7
   credit_card_scanner: ^1.0.5
   flutter_local_notifications: ^15.1.1
-  geolocator: ^10.1.0
+  # geolocator: ^10.1.0
 
   # majesticmodel:
     # path: ../majesticmodel

@@ -22,36 +22,41 @@ class FormEditionBienImmobilierVctl extends ViewController {
 
   Future<void> submit() async {
     if (formKey.currentState!.validate()) {
-      if (isMaison) {
-        Maison maison = Maison();
-        maison.libelle = nomLocalCtl.text;
-        maison.lieu = lieuCtl.text;
-        maison.nbPiece = nbPieceCtl.text.toInt();
-        maison.loyer = loyerCtl.text.toDouble();
-        maison.jourMoisPaiement = jourPaiement.text.toInt();
-        await pr.show();
-        var res = await LoyerApiCtl().createMaison(maison);
-        await pr.hide();
-        if (res.status) {
-          Get.back(result: maison);
+      if (appCtl.user.id != null) {
+        if (isMaison) {
+          Maison maison = Maison();
+          maison.libelle = nomLocalCtl.text;
+          maison.lieu = lieuCtl.text;
+          maison.nbPiece = nbPieceCtl.text.toInt();
+          maison.loyer = loyerCtl.text.toDouble();
+          maison.jourMoisPaiement = jourPaiement.text.toInt();
+          maison.ownerId = appCtl.user.id.toString();
+          await pr.show();
+          var res = await LoyerApiCtl().createMaison(maison);
+          await pr.hide();
+          if (res.status) {
+            Get.back(result: maison);
+          } else {
+            Tools.messageBox(message: res.message);
+          }
         } else {
-          Tools.messageBox(message: res.message);
+          BlocAppartement bloc = BlocAppartement();
+          bloc.libelle = nomLocalCtl.text;
+          bloc.lieu = lieuCtl.text;
+          bloc.ownerId = appCtl.user.id!.toString();
+          await pr.show();
+          var res = await LoyerApiCtl().createBloc(bloc);
+          await pr.hide();
+          if (res.status) {
+            Get.back(result: bloc);
+          } else {
+            Tools.messageBox(message: res.message);
+          }
         }
+        await pr.hide();
       } else {
-        BlocAppartement bloc = BlocAppartement();
-        bloc.libelle = nomLocalCtl.text;
-        bloc.lieu = lieuCtl.text;
-        bloc.ownerId = appCtl.user.id.value.toString();
-        await pr.show();
-        var res = await LoyerApiCtl().createBloc(bloc);
-        await pr.hide();
-        if (res.status) {
-          Get.back(result: bloc);
-        } else {
-          Tools.messageBox(message: res.message);
-        }
+        Tools.messageBox(message: "Veuillez vous connecter");
       }
-      await pr.hide();
     }
   }
 }

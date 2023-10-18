@@ -87,14 +87,15 @@ class _GazMapPageState extends State<GazMapPage> {
                   MarkerLayer(markers: [
                     if (_gazController.hasUserLocation) ...{
                       Marker(
-                          point: _gazController.userLocation!.toLatLng(),
-                          builder: (context) {
-                            return Image.asset(
-                              'assets/images/pin_red.png',
-                              width: 50,
-                              height: 50,
-                            );
-                          })
+                        point: _gazController.userLocation!.toLatLng(),
+                        builder: (context) {
+                          return Image.asset(
+                            'assets/images/icons/marker_map.gif',
+                            width: 100,
+                            height: 100,
+                          );
+                        },
+                      )
                     },
                     if (shops != null) ...[
                       for (int i = 0; i < shops.length; i++) ...[

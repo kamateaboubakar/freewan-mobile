@@ -95,6 +95,7 @@ class PaiementLoyerPage extends StatelessWidget {
                               require: true,
                               contentPadding: null,
                               labelText: "Année",
+                              keyboardType: TextInputType.number,
                             ),
                           ),
                         ],

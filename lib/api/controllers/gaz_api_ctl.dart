@@ -31,14 +31,19 @@ class GazApiCtl extends WebController {
 
   Future<HttpResponse<Shop>> getShopById({required int id}) async {
     try {
-      var res = await get("${Const.gazBaseUrl}/shops/$id",
-          headers: HttpClientConst.headers);
-      var body = HttpResponse.decodeBody(res);
-      print(body.data);
-      if (body.status) {
-        return HttpResponse.success(data: Shop.fromJson(body.data));
+      if (id > 0) {
+        var res = await get("${Const.gazBaseUrl}/shops/$id",
+            headers: HttpClientConst.headers);
+        var body = HttpResponse.decodeBody(res);
+
+        if (body.status) {
+          return HttpResponse.success(data: Shop.fromJson(body.data));
+        } else {
+          return HttpResponse.error(message: body.message);
+        }
       } else {
-        return HttpResponse.error(message: body.message);
+        return HttpResponse.error(
+            message: "L'identifiant doit être supérieur à 0");
       }
     } catch (e) {
       return HttpResponse.error(detailErrors: e.toString());

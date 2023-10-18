@@ -423,112 +423,107 @@ class _PressingArticlesPageState extends State<PressingArticlesPage> {
             ),
           ),
         ),
-        Positioned(
-          bottom: 0,
-          left: 0,
-          right: 0,
-          child: GetBuilder(
-              init: _pressingArticlesController,
-              builder: (controller) {
-                _pressingArticlesController = controller;
-                var articleCount =
-                    _pressingArticlesController.selectedArticleCount;
-                var totalAmount = _pressingArticlesController.totalPrice;
-                return Container(
-                  decoration: BoxDecoration(
-                    color: Colors.white,
-                    boxShadow: [
-                      BoxShadow(
-                        color: Colors.grey.withOpacity(0.5),
-                        // Shadow color
-                        spreadRadius: 5,
-                        // Spread radius
-                        blurRadius: 10,
-                        // Blur radius
-                        offset: const Offset(0, 3), // Offset
-                      ),
-                    ],
-                  ),
-                  padding: const EdgeInsets.all(16),
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.stretch,
-                    children: [
-                      Row(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Container(
-                            decoration: BoxDecoration(
-                              color: const Color(0xffFC5E93).withOpacity(0.15),
-                              shape: BoxShape.circle,
-                            ),
-                            padding: const EdgeInsets.all(8),
+        GetBuilder(
+            init: _pressingArticlesController,
+            builder: (controller) {
+              _pressingArticlesController = controller;
+              var articleCount =
+                  _pressingArticlesController.selectedArticleCount;
+              var totalAmount = _pressingArticlesController.totalPrice;
+              return Container(
+                decoration: BoxDecoration(
+                  color: Colors.white,
+                  boxShadow: [
+                    BoxShadow(
+                      color: Colors.grey.withOpacity(0.5),
+                      // Shadow color
+                      spreadRadius: 5,
+                      // Spread radius
+                      blurRadius: 10,
+                      // Blur radius
+                      offset: const Offset(0, 3), // Offset
+                    ),
+                  ],
+                ),
+                padding: const EdgeInsets.all(16),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.stretch,
+                  children: [
+                    Row(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Container(
+                          decoration: BoxDecoration(
+                            color: const Color(0xffFC5E93).withOpacity(0.15),
+                            shape: BoxShape.circle,
                           ),
-                          const SizedBox(width: 10),
-                          Expanded(
-                            child: Column(
-                              crossAxisAlignment: CrossAxisAlignment.stretch,
-                              children: [
-                                const Text(
-                                  'Total',
-                                  style: TextStyle(
-                                      fontSize: 10, color: Colors.grey),
-                                ),
-                                const SizedBox(height: 10),
-                                Row(
-                                  children: [
-                                    Expanded(
-                                      child: Text(
-                                        articleCount == 0 || articleCount == 1
-                                            ? '$articleCount article'
-                                            : '$articleCount articles',
-                                        style: const TextStyle(fontSize: 14),
-                                      ),
-                                    ),
-                                    Text(
-                                      totalAmount.toString().formatAmount,
+                          padding: const EdgeInsets.all(8),
+                        ),
+                        const SizedBox(width: 10),
+                        Expanded(
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.stretch,
+                            children: [
+                              const Text(
+                                'Total',
+                                style:
+                                    TextStyle(fontSize: 10, color: Colors.grey),
+                              ),
+                              const SizedBox(height: 10),
+                              Row(
+                                children: [
+                                  Expanded(
+                                    child: Text(
+                                      articleCount == 0 || articleCount == 1
+                                          ? '$articleCount article'
+                                          : '$articleCount articles',
                                       style: const TextStyle(fontSize: 14),
                                     ),
-                                  ],
-                                ),
-                                const SizedBox(height: 10),
-                              ],
-                            ),
-                          )
-                        ],
-                      ),
-                      CButton(
-                        height: 50,
-                        onPressed: () {
-                          if (isFormValid(articleCount)) {
-                            _submitPayment();
-                            //Get.to(const PressingPaymentRecapPage());
-                          }
-                        },
-                        color: isFormValid(articleCount)
-                            ? AssetColors.blueButton
-                            : const Color(0xffEDF2F9),
-                        child: isLoading
-                            ? const Center(
-                                child: SizedBox(
-                                  width: 20,
-                                  height: 20,
-                                  child: CircularProgressIndicator(),
-                                ),
-                              )
-                            : Text(
-                                "Payer",
-                                style: TextStyle(
-                                  color: isFormValid(articleCount)
-                                      ? Colors.white
-                                      : const Color(0xffB5C4D8),
-                                ),
+                                  ),
+                                  Text(
+                                    totalAmount.toString().formatAmount,
+                                    style: const TextStyle(fontSize: 14),
+                                  ),
+                                ],
                               ),
-                      ),
-                    ],
-                  ),
-                );
-              }),
-        )
+                              const SizedBox(height: 10),
+                            ],
+                          ),
+                        )
+                      ],
+                    ),
+                    CButton(
+                      height: 50,
+                      onPressed: () {
+                        if (isFormValid(articleCount)) {
+                          _submitPayment();
+                          //Get.to(const PressingPaymentRecapPage());
+                        }
+                      },
+                      color: isFormValid(articleCount)
+                          ? AssetColors.blueButton
+                          : const Color(0xffEDF2F9),
+                      child: isLoading
+                          ? const Center(
+                              child: SizedBox(
+                                width: 20,
+                                height: 20,
+                                child: CircularProgressIndicator(),
+                              ),
+                            )
+                          : Text(
+                              "Payer",
+                              style: TextStyle(
+                                color: isFormValid(articleCount)
+                                    ? Colors.white
+                                    : const Color(0xffB5C4D8),
+                              ),
+                            ),
+                    ),
+                  ],
+                ),
+              );
+            })
       ],
     );
   }

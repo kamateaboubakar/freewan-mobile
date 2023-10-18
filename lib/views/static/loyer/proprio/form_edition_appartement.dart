@@ -125,6 +125,21 @@ class FormEditionAppartement extends StatelessWidget {
                     hintText: "Jour du mois limit de paiement",
                     require: true,
                     keyboardType: TextInputType.datetime,
+                    validator: (value) {
+                      if (value != null && value.isNotEmpty) {
+                        if (value.isNum) {
+                          if (value.toInt() >= 1 && value.toInt() <= 31) {
+                            return null;
+                          } else {
+                            return "Veuillez saisir un nombre entre 1 et 31";
+                          }
+                        } else {
+                          return "Veuillez saisir un nombre entre 1 et 31";
+                        }
+                      } else {
+                        return "Ce champs est obligatoire";
+                      }
+                    },
                   ),
                   const SizedBox(height: 20),
                   CButton(

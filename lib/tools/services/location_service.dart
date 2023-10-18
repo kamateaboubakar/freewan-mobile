@@ -2,7 +2,6 @@
 import 'package:location/location.dart';
 import '../../models/location_model.dart';
 import 'package:geocoding/geocoding.dart' hide Location;
-import 'package:latlong2/latlong.dart';
 
 class LocationService {
   static final Location _location = Location();

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:wan_mobile/tools/types/types.dart';
 import 'package:wan_mobile/tools/widgets/c_button.dart';
 import 'package:wan_mobile/tools/widgets/c_textform_field.dart';
 import 'package:wan_mobile/views/controllers/loyer/form_edition_bien_immobilier_vctl.dart';
@@ -154,6 +155,21 @@ class FormEditionBienImmobilier extends StatelessWidget {
                           hintText: "Jour du mois limit de paiement",
                           require: true,
                           keyboardType: TextInputType.datetime,
+                          validator: (value) {
+                            if (value != null && value.isNotEmpty) {
+                              if (value.isNum) {
+                                if (value.toInt() >= 1 && value.toInt() <= 31) {
+                                  return null;
+                                } else {
+                                  return "Veuillez saisir un nombre entre 1 et 31";
+                                }
+                              } else {
+                                return "Veuillez saisir un nombre entre 1 et 31";
+                              }
+                            } else {
+                              return "Ce champs est obligatoire";
+                            }
+                          },
                         ),
                       ),
                     ],

@@ -71,7 +71,9 @@ class GasController extends ViewController {
     var response = await _gazApiCtl.getClosestShop(
         latitude: _userLocation!.latitude, longitude: _userLocation!.longitude);
     if (response.status) {
-      _shops = response.data!;
+      _shops = response.data!
+          .where((e) => e.latitude != null && e.longitude != null)
+          .toList();
     }
     update();
     return response;

@@ -1,8 +1,10 @@
 import 'dart:convert';
+import 'dart:math';
 
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:wan_mobile/tools/utils/functions.dart';
+import 'package:latlong2/latlong.dart';
 
 typedef Json = Map<String, dynamic>;
 
@@ -121,4 +123,15 @@ extension IntExt on int? {
   int get value => this ?? 0;
   String toAmount({bool withDevise = true}) =>
       Functions.formatMontant(toString(), withDevise: withDevise);
+}
+
+extension LatLngExt on LatLng {
+  double calculateDistance(double lat, double lon) {
+    var p = 0.017453292519943295;
+    var c = cos;
+    var a = 0.5 -
+        c((lat - latitude) * p) / 2 +
+        c(latitude * p) * c(lat * p) * (1 - c((lon - longitude) * p)) / 2;
+    return 12742 * asin(sqrt(a));
+  }
 }

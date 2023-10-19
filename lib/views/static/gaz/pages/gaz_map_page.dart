@@ -3,6 +3,7 @@ import 'package:flutter_map/flutter_map.dart';
 import 'package:get/get.dart';
 import 'package:latlong2/latlong.dart';
 import 'package:sliding_up_panel/sliding_up_panel.dart';
+import 'package:speech_bubble/speech_bubble.dart';
 import 'package:wan_mobile/tools/services/location_service.dart';
 import 'package:wan_mobile/tools/utils/tools.dart';
 import 'package:wan_mobile/views/controllers/gaz/gas_shop_vctl.dart';
@@ -47,7 +48,6 @@ class _GazMapPageState extends State<GazMapPage> {
 
   @override
   Widget build(BuildContext context) {
-    double screenWidth = MediaQuery.of(context).size.width;
     double screenHeight = MediaQuery.of(context).size.height;
     return Scaffold(
       appBar: AppBar(
@@ -81,9 +81,8 @@ class _GazMapPageState extends State<GazMapPage> {
                 ),
                 children: [
                   TileLayer(
-                    urlTemplate:
-                        'https://tile.openstreetmap.org/{z}/{x}/{y}.png',
-                  ),
+                      urlTemplate:
+                          'https://tile.openstreetmap.org/{z}/{x}/{y}.png'),
                   MarkerLayer(markers: [
                     if (_gazController.hasUserLocation) ...{
                       Marker(
@@ -100,9 +99,53 @@ class _GazMapPageState extends State<GazMapPage> {
                     if (shops != null) ...[
                       for (int i = 0; i < shops.length; i++) ...[
                         Marker(
-                            point:
-                                LatLng(shops[i].latitude!, shops[i].longitude!),
-                            builder: (context) => InkWell(
+                          width: 250,
+                          height: 65,
+                          point:
+                              LatLng(shops[i].latitude!, shops[i].longitude!),
+                          builder: (context) => SpeechBubble(
+                            padding: EdgeInsets.zero,
+                            borderRadius: 14,
+                            color: Colors.red,
+                            width: 250,
+                            child: Column(
+                              children: [
+                                ListTile(
+                                  dense: true,
+                                  horizontalTitleGap: 0,
+                                  textColor: Colors.white,
+                                  leading: CircleAvatar(
+                                    radius: 15,
+                                    backgroundColor: Colors.white,
+                                    child: Image.asset(
+                                      'assets/images/icons/boutique.png',
+                                      height: 20,
+                                      width: 20,
+                                    ),
+                                  ),
+                                  title: Text(
+                                    shops[i].name!,
+                                    maxLines: 1,
+                                  ),
+                                  subtitle: Text(
+                                    shops[i].address!,
+                                    maxLines: 1,
+                                  ),
+                                  trailing: Row(
+                                    mainAxisSize: MainAxisSize.min,
+                                    children: [
+                                      Text(
+                                        "${shops[i].distance(_gazController.userLocation!.toLatLng())}km",
+                                        maxLines: 1,
+                                      ),
+                                      const SizedBox(width: 5),
+                                      const Icon(
+                                        Icons.arrow_forward_ios,
+                                        color: Colors.white,
+                                        size: 12,
+                                      ),
+                                    ],
+                                  ),
                                   onTap: () {
                                     _gazController.updateShop(shops[i]);
                                     _mapController.move(
@@ -110,18 +153,53 @@ class _GazMapPageState extends State<GazMapPage> {
                                             shops[i].longitude!),
                                         mapZoom);
                                   },
-                                  child: Opacity(
-                                    opacity: (hasNoGazPosSelected ||
-                                            isGazPosSelected(i))
-                                        ? 1
-                                        : 0.5,
-                                    child: Image.asset(
-                                      'assets/images/gaz_pin.png',
-                                    ),
-                                  ),
                                 ),
-                            width: 40,
-                            height: 40)
+                              ],
+                            ),
+                          ),
+                        ),
+                        // Marker(
+                        //     point:
+                        //         LatLng(shops[i].latitude!, shops[i].longitude!),
+                        //     builder: (context) => InkWell(
+                        //           onTap: () {
+                        //             _gazController.updateShop(shops[i]);
+                        //             _mapController.move(
+                        //                 LatLng(shops[i].latitude!,
+                        //                     shops[i].longitude!),
+                        //                 mapZoom);
+                        //           },
+                        //           child: Opacity(
+                        //             opacity: (hasNoGazPosSelected ||
+                        //                     isGazPosSelected(i))
+                        //                 ? 1
+                        //                 : 0.5,
+                        //             child: SpeechBalloon(
+                        //               width: 350,
+
+                        //               color: Colors.red,
+                        //               child: ListTile(
+                        //                 dense: true,
+                        //                 title: Text(shops[i].name!),
+                        //               ),
+                        //               // Column(
+                        //               //   mainAxisSize: MainAxisSize.min,
+                        //               //   children: [
+                        //               //     ListTile(
+                        //               //       leading: Image.asset(
+                        //               //         'assets/images/gaz_pin.png',
+                        //               //       ),
+                        //               //     )
+                        //               //   ],
+                        //               // ),
+                        //             ),
+                        //             //  Image.asset(
+                        //             //   'assets/images/gaz_pin.png',
+                        //             // ),
+                        //           ),
+                        //         ),
+                        //     width: 40,
+                        //     height: 40)
                       ]
                     ]
                   ]),

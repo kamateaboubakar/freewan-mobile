@@ -33,6 +33,7 @@ import 'package:wan_mobile/views/static/home/more_option_home_page.dart';
 import 'package:wan_mobile/views/static/lebedoo/lebedoo_page.dart';
 import 'package:wan_mobile/views/static/location_vehicule/location_vehicule.dart';
 import 'package:wan_mobile/views/static/loyer/loyer_bottom_sheet.dart';
+import 'package:wan_mobile/views/static/mall/mall_page.dart';
 import 'package:wan_mobile/views/static/notification/notification_list_page.dart';
 import 'package:wan_mobile/views/static/recevoir_paiement/recevoir_paiement.dart';
 import 'package:wan_mobile/views/static/scan_pay/scan_pay_camera.dart';
@@ -417,6 +418,13 @@ class HomePage extends StatelessWidget {
                                               title: "Brasserie",
                                               onPressed: () {},
                                             ),
+                                            ButtonMenu(
+                                              icon: Image.asset(
+                                                "assets/images/icons/caves.png",
+                                              ),
+                                              title: "Caves",
+                                              onPressed: () {},
+                                            ),
                                           ],
                                         ),
                                         Row(
@@ -476,7 +484,7 @@ class HomePage extends StatelessWidget {
                                             ),
                                             ButtonMenu(
                                               icon: Image.asset(
-                                                  "assets/images/icons8-entrepot-96.png"),
+                                                  "assets/images/icons/facture_eau.png"),
                                               title: "Facture d'eau",
                                               onPressed: () {},
                                             ),
@@ -1605,40 +1613,65 @@ class HomePage extends StatelessWidget {
                                           ],
                                         ),
                                         const Gap(10),
-                                        ListableMenu(
-                                          height: 180,
-                                          title: "Le Mall",
-                                          children: [
-                                            ButtonMenu(
-                                              minWidth: 30,
-                                              icon: Image.asset(
-                                                "assets/images/logo_Galerie_Peyrissac_black.png",
+                                        SizedBox(
+                                          width: double.infinity,
+                                          height: 200,
+                                          child: Column(
+                                            children: [
+                                              const ListTile(
+                                                title: Text(
+                                                  "Le Mall",
+                                                ),
                                               ),
-                                              onPressed: () {},
-                                            ),
-                                            ButtonMenu(
-                                              minWidth: 30,
-                                              icon: Image.asset(
-                                                "assets/images/carrefour.png",
+                                              GestureDetector(
+                                                onTap: () => Get.to(
+                                                    () => const MallPage()),
+                                                child: ClipRRect(
+                                                  borderRadius:
+                                                      BorderRadius.circular(15),
+                                                  child: Image.asset(
+                                                    "assets/images/mall.png",
+                                                    fit: BoxFit.cover,
+                                                  ),
+                                                ),
                                               ),
-                                              onPressed: () {},
-                                            ),
-                                            ButtonMenu(
-                                              minWidth: 30,
-                                              icon: Image.asset(
-                                                "assets/images/Prosuma_logo_HD.png",
-                                              ),
-                                              onPressed: () {},
-                                            ),
-                                            ButtonMenu(
-                                              minWidth: 30,
-                                              icon: const Icon(
-                                                  Icons.arrow_forward),
-                                              title: "Voir le Mall",
-                                              onPressed: () {},
-                                            ),
-                                          ],
+                                            ],
+                                          ),
                                         ),
+                                        // ListableMenu(
+                                        //   height: 180,
+                                        //   title: "Le Mall",
+                                        //   children: [
+                                        //     ButtonMenu(
+                                        //       minWidth: 30,
+                                        //       icon: Image.asset(
+                                        //         "assets/images/logo_Galerie_Peyrissac_black.png",
+                                        //       ),
+                                        //       onPressed: () {},
+                                        //     ),
+                                        //     ButtonMenu(
+                                        //       minWidth: 30,
+                                        //       icon: Image.asset(
+                                        //         "assets/images/carrefour.png",
+                                        //       ),
+                                        //       onPressed: () {},
+                                        //     ),
+                                        //     ButtonMenu(
+                                        //       minWidth: 30,
+                                        //       icon: Image.asset(
+                                        //         "assets/images/Prosuma_logo_HD.png",
+                                        //       ),
+                                        //       onPressed: () {},
+                                        //     ),
+                                        //     ButtonMenu(
+                                        //       minWidth: 30,
+                                        //       icon: const Icon(
+                                        //           Icons.arrow_forward),
+                                        //       title: "Voir le Mall",
+                                        //       onPressed: () {},
+                                        //     ),
+                                        //   ],
+                                        // ),
                                         const Gap(20),
                                         ImageSlideshow(
                                           height: 200,

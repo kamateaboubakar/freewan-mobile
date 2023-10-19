@@ -3,13 +3,13 @@ import 'package:flutter_map/flutter_map.dart';
 import 'package:get/get.dart';
 import 'package:latlong2/latlong.dart';
 import 'package:sliding_up_panel/sliding_up_panel.dart';
+import 'package:speech_bubble/speech_bubble.dart';
 import 'package:wan_mobile/tools/services/location_service.dart';
 import 'package:wan_mobile/models/pressing/pressing.dart';
 import 'package:wan_mobile/tools/const/const.dart';
 import 'package:wan_mobile/tools/utils/tools.dart';
 import 'package:wan_mobile/views/controllers/pressing/pressing_vctl.dart';
 import 'package:wan_mobile/views/static/pressing/pages/pages.dart';
-
 
 class PressingMapPage extends StatefulWidget {
   const PressingMapPage({Key? key}) : super(key: key);
@@ -68,7 +68,8 @@ class _PressingMapPageState extends State<PressingMapPage> {
                       panelController.close();
                     }
                   },
-                  interactiveFlags: InteractiveFlag.pinchZoom | InteractiveFlag.drag,
+                  interactiveFlags:
+                      InteractiveFlag.pinchZoom | InteractiveFlag.drag,
                 ),
                 children: [
                   TileLayer(
@@ -79,43 +80,108 @@ class _PressingMapPageState extends State<PressingMapPage> {
                   MarkerLayer(markers: [
                     if (_pressingController.hasUserLocation) ...{
                       Marker(
-                          point: _pressingController.userLocation!.toLatLng(),
-                          builder: (context) {
-                            return Image.asset(
-                              'assets/images/pin_red.png',
-                              width: 40,
-                              height: 40,
-                            );
-                          })
+                        point: _pressingController.userLocation!.toLatLng(),
+                        builder: (context) {
+                          return Image.asset(
+                            'assets/images/icons/marker_map.gif',
+                            width: 100,
+                            height: 100,
+                          );
+                        },
+                      ),
                     },
                     if (pressings != null) ...[
                       for (int i = 0; i < pressings.length; i++) ...[
                         Marker(
+                          width: 250,
+                          height: 65,
                           point: LatLng(
                               pressings[i].latitude!, pressings[i].longitude!),
-                          builder: (context) => InkWell(
-                            onTap: () {
-                              _pressingController.updatePressing(pressings[i]);
-                              _mapController.move(
-                                LatLng(
-                                  pressings[i].latitude!,
-                                  pressings[i].longitude!,
+                          builder: (context) => SpeechBubble(
+                            padding: EdgeInsets.zero,
+                            borderRadius: 14,
+                            color: Colors.red,
+                            width: 250,
+                            child: Column(
+                              children: [
+                                ListTile(
+                                  dense: true,
+                                  horizontalTitleGap: 0,
+                                  textColor: Colors.white,
+                                  leading: CircleAvatar(
+                                    radius: 15,
+                                    backgroundColor: Colors.white,
+                                    child: Image.asset(
+                                      'assets/images/icons/boutique.png',
+                                      height: 20,
+                                      width: 20,
+                                    ),
+                                  ),
+                                  title: Text(
+                                    pressings[i].name!,
+                                    maxLines: 1,
+                                  ),
+                                  subtitle: Text(
+                                    pressings[i].address!,
+                                    maxLines: 1,
+                                  ),
+                                  trailing: Row(
+                                    mainAxisSize: MainAxisSize.min,
+                                    children: [
+                                      Text(
+                                        "${pressings[i].distance(_pressingController.userLocation!.toLatLng())}km",
+                                        maxLines: 1,
+                                      ),
+                                      const SizedBox(width: 5),
+                                      const Icon(
+                                        Icons.arrow_forward_ios,
+                                        color: Colors.white,
+                                        size: 12,
+                                      ),
+                                    ],
+                                  ),
+                                  onTap: () {
+                                    _pressingController
+                                        .updatePressing(pressings[i]);
+                                    _mapController.move(
+                                      LatLng(
+                                        pressings[i].latitude!,
+                                        pressings[i].longitude!,
+                                      ),
+                                      mapZoom,
+                                    );
+                                  },
                                 ),
-                                mapZoom,
-                              );
-                            },
-                            child: Opacity(
-                              opacity: (hasPosSelected || isPosSelected(i))
-                                  ? 1
-                                  : 0.5,
-                              child: Image.asset(
-                                'assets/images/pressing_pin.png',
-                              ),
+                              ],
                             ),
                           ),
-                          width: 40,
-                          height: 40,
-                        )
+                        ),
+                        // Marker(
+                        //   point: LatLng(
+                        //       pressings[i].latitude!, pressings[i].longitude!),
+                        //   builder: (context) => InkWell(
+                        //     onTap: () {
+                        //       _pressingController.updatePressing(pressings[i]);
+                        //       _mapController.move(
+                        //         LatLng(
+                        //           pressings[i].latitude!,
+                        //           pressings[i].longitude!,
+                        //         ),
+                        //         mapZoom,
+                        //       );
+                        //     },
+                        //     child: Opacity(
+                        //       opacity: (hasPosSelected || isPosSelected(i))
+                        //           ? 1
+                        //           : 0.5,
+                        //       child: Image.asset(
+                        //         'assets/images/pressing_pin.png',
+                        //       ),
+                        //     ),
+                        //   ),
+                        //   width: 40,
+                        //   height: 40,
+                        // )
                       ]
                     ]
                   ]),

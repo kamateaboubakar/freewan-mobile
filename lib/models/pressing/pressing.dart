@@ -1,4 +1,7 @@
+import 'package:get/get.dart';
 import 'package:wan_mobile/tools/const/const.dart';
+import 'package:latlong2/latlong.dart';
+import 'package:wan_mobile/tools/types/types.dart';
 
 class Pressing {
   int? id;
@@ -12,13 +15,13 @@ class Pressing {
 
   Pressing(
       {this.id,
-        this.name,
-        this.address,
-        this.description,
-        this.rating,
-        this.latitude,
-        this.longitude,
-        this.photoLink});
+      this.name,
+      this.address,
+      this.description,
+      this.rating,
+      this.latitude,
+      this.longitude,
+      this.photoLink});
 
   Pressing.fromJson(Map<String, dynamic> json) {
     id = json['id'];
@@ -44,5 +47,14 @@ class Pressing {
     data['longitude'] = longitude;
     data['photo_link'] = photoLink;
     return data;
+  }
+
+  double distance(LatLng latLng) {
+    if (latitude != null && longitude != null) {
+      return LatLng(latLng.latitude, latLng.longitude)
+          .calculateDistance(latitude!, longitude!)
+          .toPrecision(2);
+    }
+    return 0;
   }
 }

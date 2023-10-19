@@ -1,3 +1,7 @@
+import 'package:get/get.dart';
+import 'package:latlong2/latlong.dart';
+import 'package:wan_mobile/tools/types/types.dart';
+
 class Shop {
   String? availableWorkDays;
   String? description;
@@ -73,6 +77,15 @@ class Shop {
       data['brands'] = brands!.map((v) => v.toJson()).toList();
     }
     return data;
+  }
+
+  double distance(LatLng latLng) {
+    if (latitude != null && longitude != null) {
+      return LatLng(latLng.latitude, latLng.longitude)
+          .calculateDistance(latitude!, longitude!)
+          .toPrecision(2);
+    }
+    return 0;
   }
 }
 

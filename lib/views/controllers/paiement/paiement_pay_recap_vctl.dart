@@ -1,12 +1,15 @@
-import 'package:url_launcher/url_launcher.dart';
+import 'package:get/get.dart';
 import 'package:wan_mobile/api/controllers/account_transaction/account_transaction_api_ctl.dart';
 import 'package:wan_mobile/models/paiement/carte_bancaire.dart';
 import 'package:wan_mobile/models/paiement/mobile_money.dart';
 import 'package:wan_mobile/models/paiement/mode_paiement.dart';
 import 'package:wan_mobile/models/solde_historique/account_transaction.dart';
+import 'package:wan_mobile/tools/const/paiement/account_transaction_status.dart';
+import 'package:wan_mobile/tools/services/notification_service.dart';
 import 'package:wan_mobile/tools/types/types.dart';
 import 'package:wan_mobile/tools/utils/tools.dart';
 import 'package:wan_mobile/views/controllers/abstracts/view_controller.dart';
+import 'package:wan_mobile/views/static/paiement/webview_paiement_page.dart';
 
 class PaiementRecapVctl extends ViewController {
   MoyenPaiements moyenPaiement;
@@ -48,12 +51,27 @@ class PaiementRecapVctl extends ViewController {
     var res = await AccountTransactionApiCtl().makePaiement(trx);
     await pr.hide();
     if (res.status) {
-      launchUrl(Uri.parse(res.data!.paymentUrl.value));
-      // Get.parameters['paiementResult'] = "true";
-      // Get.until((route) => Get.currentRoute == this.route);
+      Get.to(() => WebviewPaiementPage(url: res.data!.paymentUrl.value));
+
+      onListenTransactionStatus();
     } else {
       // Get.parameters['paiementResult'] = "false";
       await Tools.messageBox(message: res.message);
     }
   }
+
+  Future<void> onListenTransactionStatus() =>
+      NotificationService.listNotification(
+        handler: (message) async {
+          int? trxStatus = message!.data["status"].toString().toInt();
+          if (trxStatus == TransactionStatus.success) {
+            Get.parameters['paiementResult'] = "true";
+            Get.until((route) => Get.currentRoute == this.route);
+          } else {
+            await Tools.messageBox(
+                message: "La transaction a échoué. Veuillez reessayer.");
+            Get.back();
+          }
+        },
+      );
 }

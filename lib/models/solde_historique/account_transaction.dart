@@ -11,6 +11,7 @@ class AccountTransaction {
   int? recevedId;
   String? numberPayment;
   String? paymentUrl;
+  int? status;
 
   AccountTransaction(
       {this.id,
@@ -24,7 +25,8 @@ class AccountTransaction {
       this.createdAt,
       this.updatedAt,
       this.recevedId,
-      this.paymentUrl});
+      this.paymentUrl,
+      this.status});
 
   AccountTransaction.fromJson(Map<String, dynamic> json) {
     id = json['id'];
@@ -39,6 +41,7 @@ class AccountTransaction {
     updatedAt = json['updated_at'];
     recevedId = json['receved_id'];
     paymentUrl = json['payment_url'];
+    status = json['status'];
   }
 
   Map<String, dynamic> toJson() {

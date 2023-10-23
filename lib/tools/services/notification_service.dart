@@ -63,12 +63,13 @@ abstract class NotificationService {
     }
   }
 
-  static Future<void> listNotification({void Function()? handler}) async {
+  static Future<void> listNotification(
+      {void Function(RemoteMessage? message)? handler}) async {
     FirebaseMessaging.onMessage.listen((RemoteMessage message) async {
       if (message.data.isNotEmpty) {
         showLocalNotification(AppNotification.fromRemonteMessage(message));
         if (handler != null) {
-          handler.call();
+          handler.call(message);
         }
       }
     });

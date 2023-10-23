@@ -123,7 +123,7 @@ class HomePageVctl extends ViewController {
     if (res.status) {
       //listen the remote notification
       NotificationService.listNotification(
-        handler: () {
+        handler: (message) {
           appCtl.notifAccount.value++;
         },
       );

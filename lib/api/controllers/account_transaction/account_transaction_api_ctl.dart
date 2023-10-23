@@ -167,7 +167,6 @@ class AccountTransactionApiCtl extends WebController {
   Future<HttpResponse<AccountTransaction>> makePaiement(
       AccountTransaction accountTransaction) async {
     try {
-      print(accountTransaction.toJson().parseToJson());
       var res = await post(
         "$url/transactions",
         accountTransaction.toJson().parseToJson(),

@@ -1615,7 +1615,7 @@ class HomePage extends StatelessWidget {
                                         const Gap(10),
                                         SizedBox(
                                           width: double.infinity,
-                                          height: 200,
+                                          height: 220,
                                           child: Column(
                                             children: [
                                               const ListTile(

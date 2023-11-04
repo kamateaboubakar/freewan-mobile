@@ -28,7 +28,7 @@ class PaiementModePaiement extends StatelessWidget {
         icon: "assets/images/icons/mobile_money.png",
       ),
       MoyenPaiement(
-        label: "Carte Bancaire",
+        label: "Carte Bancaire/Prépayée",
         icon: "assets/images/icons/carte_bancaire.png",
         isMobileMoney: false,
       ),

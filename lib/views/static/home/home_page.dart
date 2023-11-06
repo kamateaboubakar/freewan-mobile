@@ -35,6 +35,7 @@ import 'package:wan_mobile/views/static/location_vehicule/location_vehicule.dart
 import 'package:wan_mobile/views/static/loyer/loyer_bottom_sheet.dart';
 import 'package:wan_mobile/views/static/mall/mall_page.dart';
 import 'package:wan_mobile/views/static/notification/notification_list_page.dart';
+import 'package:wan_mobile/views/static/peage/peage_page.dart';
 import 'package:wan_mobile/views/static/recevoir_paiement/recevoir_paiement.dart';
 import 'package:wan_mobile/views/static/scan_pay/scan_pay_camera.dart';
 import 'package:wan_mobile/views/static/solde_historique/solde_historique_page.dart';
@@ -501,7 +502,8 @@ class HomePage extends StatelessWidget {
                                               icon: Image.asset(
                                                   "assets/images/icons/abonnement_payage.png"),
                                               title: "Abonnement\nPéage",
-                                              onPressed: () {},
+                                              onPressed: () => Get.to(
+                                                  () => const PeagePage()),
                                             ),
                                             ButtonMenu(
                                               icon: Image.asset(

@@ -1,9 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
 import 'package:wan_mobile/tools/const/const.dart';
-import 'package:wan_mobile/tools/widgets/button_menu.dart';
 import 'package:wan_mobile/tools/widgets/card_menu.dart';
-import 'package:wan_mobile/views/static/scolarite/scolarite_page.dart';
+import 'package:wan_mobile/views/tools/menu_button_enum.dart';
+import 'package:wan_mobile/views/tools/routes.dart';
 
 class MoreOptionHomePage extends StatelessWidget {
   const MoreOptionHomePage({super.key});
@@ -23,14 +22,9 @@ class MoreOptionHomePage extends StatelessWidget {
         padding: const EdgeInsets.all(10),
         children: [
           CardMenu(
-            children: [
-              ButtonMenu(
-                icon: Image.asset(
-                    "assets/images/icons/icons8-etudiant-homme-64.png"),
-                title: "Scolarité",
-                onPressed: () => Get.to(() => const ScolaritePage()),
-              ),
-            ],
+            children: Routes.routes(menus: [
+              MenuButtonEnum.scolarite,
+            ]).map((e) => e.button).toList(),
           )
         ],
       ),

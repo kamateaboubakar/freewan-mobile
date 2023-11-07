@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
-import 'package:get/get.dart';
 import 'package:wan_mobile/models/app_notification.dart';
 import 'package:wan_mobile/tools/types/types.dart';
 

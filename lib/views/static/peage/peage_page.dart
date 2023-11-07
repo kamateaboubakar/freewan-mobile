@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:gap/gap.dart';
 import 'package:get/get.dart';
-import 'package:text_divider/text_divider.dart';
 import 'package:wan_mobile/tools/types/types.dart';
 import 'package:wan_mobile/tools/widgets/wrapper_body_listview.dart';
 import 'package:wan_mobile/views/controllers/peage/peage_page_vctl.dart';

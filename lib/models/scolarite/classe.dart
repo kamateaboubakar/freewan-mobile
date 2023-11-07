@@ -32,22 +32,22 @@ class Classe {
     updatedAt = json['updated_at'];
     etudiantId = json['etudiant_id'];
     niveauScolaire = json['niveau_scolaire'] != null
-        ? new NiveauScolaire.fromJson(json['niveau_scolaire'])
+        ? NiveauScolaire.fromJson(json['niveau_scolaire'])
         : null;
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['id'] = this.id;
-    data['annee_scolaire'] = this.anneeScolaire;
-    data['niveau_id'] = this.niveauId;
-    data['montant_frais_scolarite'] = this.montantFraisScolarite;
-    data['date_fin_reglement_frais'] = this.dateFinReglementFrais;
-    data['created_at'] = this.createdAt;
-    data['updated_at'] = this.updatedAt;
-    data['etudiant_id'] = this.etudiantId;
-    if (this.niveauScolaire != null) {
-      data['niveau_scolaire'] = this.niveauScolaire!.toJson();
+    final Map<String, dynamic> data = <String, dynamic>{};
+    data['id'] = id;
+    data['annee_scolaire'] = anneeScolaire;
+    data['niveau_id'] = niveauId;
+    data['montant_frais_scolarite'] = montantFraisScolarite;
+    data['date_fin_reglement_frais'] = dateFinReglementFrais;
+    data['created_at'] = createdAt;
+    data['updated_at'] = updatedAt;
+    data['etudiant_id'] = etudiantId;
+    if (niveauScolaire != null) {
+      data['niveau_scolaire'] = niveauScolaire!.toJson();
     }
     return data;
   }

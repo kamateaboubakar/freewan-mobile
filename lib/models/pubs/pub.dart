@@ -27,14 +27,14 @@ class Pub {
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['title'] = this.title;
-    data['description'] = this.description;
-    data['url'] = this.url;
-    data['categorie'] = this.categorie;
-    data['date_end'] = this.dateEnd;
-    data['redirection_url'] = this.redirectionUrl;
-    data['second_url'] = this.secondUrl;
+    final Map<String, dynamic> data = <String, dynamic>{};
+    data['title'] = title;
+    data['description'] = description;
+    data['url'] = url;
+    data['categorie'] = categorie;
+    data['date_end'] = dateEnd;
+    data['redirection_url'] = redirectionUrl;
+    data['second_url'] = secondUrl;
     return data;
   }
 }

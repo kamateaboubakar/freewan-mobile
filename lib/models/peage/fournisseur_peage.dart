@@ -10,9 +10,9 @@ class FournisseurPeage {
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['id'] = this.id;
-    data['libelle'] = this.libelle;
+    final Map<String, dynamic> data = <String, dynamic>{};
+    data['id'] = id;
+    data['libelle'] = libelle;
     return data;
   }
 }

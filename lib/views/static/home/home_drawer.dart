@@ -30,6 +30,7 @@ class HomeDrawer extends StatelessWidget {
               accountEmail: Text(ctl.appCtl.user.phoneNumber.value),
               otherAccountsPictures: [
                 IconButton(
+                  tooltip: "Déconnexion",
                   onPressed: ctl.logout,
                   color: Colors.white,
                   icon: const Icon(Icons.logout),

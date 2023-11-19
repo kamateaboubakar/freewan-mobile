@@ -254,6 +254,8 @@ class HomePage extends StatelessWidget {
                                           children: Routes.routes(menus: [
                                             MenuButtonEnum.envoyerVersMobile,
                                             MenuButtonEnum.recevoirArgent,
+                                            MenuButtonEnum
+                                                .carteBancairePrepayee,
                                             MenuButtonEnum.bankEtMicrofinance,
                                             MenuButtonEnum.lebedoo,
                                           ]).map((e) => e.button).toList(),

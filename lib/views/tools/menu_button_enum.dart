@@ -59,4 +59,5 @@ enum MenuButtonEnum {
   lebedooMoney,
   bourseDinvestissement,
   googlePlayStore,
+  carteBancairePrepayee,
 }

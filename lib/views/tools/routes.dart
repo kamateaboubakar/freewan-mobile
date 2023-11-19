@@ -624,6 +624,15 @@ class Routes {
       ),
       menuButtonEnum: MenuButtonEnum.bourseDinvestissement,
     ),
+    RouteItem(
+      groupe: "Banques",
+      button: ButtonMenu(
+        icon: Image.asset("assets/images/icons/bank.png"),
+        title: "Carte bancaire/prépayée",
+        onPressed: () {},
+      ),
+      menuButtonEnum: MenuButtonEnum.bourseDinvestissement,
+    ),
   ];
 
   static List<RouteItem> routes({List<MenuButtonEnum> menus = const []}) =>

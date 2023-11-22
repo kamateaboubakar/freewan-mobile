@@ -1,7 +1,7 @@
 import 'package:get/get.dart';
 import 'package:wan_mobile/tools/types/types.dart';
 import 'package:wan_mobile/tools/utils/tools.dart';
-import 'package:wan_mobile/views/controllers/abstracts/view_controller.dart';
+import 'package:lebedoo_assets/views/controllers/abstracts/view_controller.dart';
 import 'package:wan_mobile/views/static/paiement/paiement_mode_paiement.dart';
 
 class FinaliseDonPageVctl extends ViewController {

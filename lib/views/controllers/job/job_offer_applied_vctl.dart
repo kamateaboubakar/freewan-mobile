@@ -1,8 +1,8 @@
 import 'package:get/get.dart';
 import 'package:wan_mobile/api/controllers/job_api_ctl.dart';
 import 'package:wan_mobile/tools/types/types.dart';
-import 'package:wan_mobile/tools/utils/http_response.dart';
-import 'package:wan_mobile/views/controllers/abstracts/view_controller.dart';
+import 'package:tools_flutter_project/tools/http/http_response.dart';
+import 'package:lebedoo_assets/views/controllers/abstracts/view_controller.dart';
 
 import '../../../models/job/apply_job.dart';
 

@@ -1,21 +1,22 @@
-import 'package:wan_mobile/api/abstracts/http_client_const.dart';
-import 'package:wan_mobile/api/abstracts/request_body_object.dart';
-import 'package:wan_mobile/api/abstracts/request_verbe_enum.dart';
-import 'package:wan_mobile/api/abstracts/web_controller.dart';
-import 'package:wan_mobile/models/peage/fournisseur_peage.dart';
-import 'package:wan_mobile/tools/utils/http_response.dart';
+import 'package:lebedoo_assets/lebedoo_assets.dart';
+import 'package:lebedoo_assets/tools/web/app_http_hearders.dart';
+import 'package:lebedoo_assets/tools/web/web_request.dart';
 
-class PeageApiCtl extends WebController {
+import 'package:wan_mobile/models/peage/fournisseur_peage.dart';
+import 'package:tools_flutter_project/tools/http/http_response.dart';
+
+class PeageApiCtl {
   Future<HttpResponse<List<FournisseurPeage>>> getAllFournisseur() async {
     try {
-      var res = await post(
-        HttpClientConst.baseUrl(module: "external"),
-        RequestBodyObject(
+      var res = await WebRequest.nativRequest(
+        verbe: RequestVerbeEnum.POST,
+        AppHttpHeaders.baseUrl(module: "external"),
+        body: const BodyObject(
           port: 8091,
           service: "api/v1/providers/all",
           verbe: RequestVerbeEnum.GET,
-        ).toJson(),
-        headers: HttpClientConst.authHeaders,
+        ),
+        headers: AppHttpHeaders.authHeaders,
       );
       var body = HttpResponse.decodeBody(res);
       if (body.status) {

@@ -7,7 +7,7 @@ import 'package:wan_mobile/models/location_vehicule/marque_vehicule.dart';
 import 'package:wan_mobile/models/location_vehicule/option_vehicule.dart';
 import 'package:wan_mobile/tools/types/types.dart';
 import 'package:wan_mobile/tools/utils/tools.dart';
-import 'package:wan_mobile/views/controllers/abstracts/view_controller.dart';
+import 'package:lebedoo_assets/views/controllers/abstracts/view_controller.dart';
 
 class EditionLocationVehiculeVctl extends ViewController {
   bool loadCategories = false;

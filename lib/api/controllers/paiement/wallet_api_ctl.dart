@@ -1,18 +1,19 @@
-import 'package:wan_mobile/api/abstracts/http_client_const.dart';
-import 'package:wan_mobile/api/abstracts/web_controller.dart';
+import 'package:lebedoo_assets/lebedoo_assets.dart';
+import 'package:lebedoo_assets/tools/web/app_http_hearders.dart';
+import 'package:lebedoo_assets/tools/web/web_request.dart';
 import 'package:wan_mobile/models/paiement/carte_bancaire.dart';
 import 'package:wan_mobile/models/paiement/mobile_money.dart';
+import 'package:tools_flutter_project/tools/http/http_response.dart';
 import 'package:wan_mobile/tools/types/types.dart';
-import 'package:wan_mobile/tools/utils/http_response.dart';
 
-class WalletApiCtl extends WebController {
+class WalletApiCtl {
   String url = "http://148.113.143.59:8182/api";
   Future<HttpResponse<List<MobileMoney>>> getUserMobileMoneys(
       {required String userId}) async {
     try {
-      var res = await get(
+      var res = await WebRequest.nativRequest(
         "$url/mobile-moneys/users/$userId/mobile-moneys",
-        headers: HttpClientConst.authHeaders,
+        headers: AppHttpHeaders.authHeaders,
       );
       var body = HttpResponse.decodeBody(res);
 
@@ -31,9 +32,9 @@ class WalletApiCtl extends WebController {
   Future<HttpResponse<List<CarteBancaire>>> getUserCarteBancaires(
       {required String userId}) async {
     try {
-      var res = await get(
+      var res = await WebRequest.nativRequest(
         "$url/carte-bancaires/users/$userId/carte-bancaires",
-        headers: HttpClientConst.authHeaders,
+        headers: AppHttpHeaders.authHeaders,
       );
       var body = HttpResponse.decodeBody(res);
 
@@ -52,10 +53,11 @@ class WalletApiCtl extends WebController {
   Future<HttpResponse<MobileMoney>> addMobileMoney(
       {required MobileMoney mobileMoney}) async {
     try {
-      var res = await post(
+      var res = await WebRequest.nativRequest(
+        verbe: RequestVerbeEnum.POST,
         "$url/mobile-moneys",
-        mobileMoney.toJson().parseToJson(),
-        headers: HttpClientConst.authHeaders,
+        body: mobileMoney.toJson().parseToJson(),
+        headers: AppHttpHeaders.authHeaders,
       );
       var body = HttpResponse.decodeBody(res);
 
@@ -72,10 +74,11 @@ class WalletApiCtl extends WebController {
   Future<HttpResponse<CarteBancaire>> addCarteBancaire(
       {required CarteBancaire carteBancaire}) async {
     try {
-      var res = await post(
+      var res = await WebRequest.nativRequest(
+        verbe: RequestVerbeEnum.POST,
         "$url/carte-bancaires",
-        carteBancaire.toJson().parseToJson(),
-        headers: HttpClientConst.authHeaders,
+        body: carteBancaire.toJson().parseToJson(),
+        headers: AppHttpHeaders.authHeaders,
       );
       var body = HttpResponse.decodeBody(res);
 

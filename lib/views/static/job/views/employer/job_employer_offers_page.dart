@@ -80,20 +80,20 @@ class _JobEmployerOffersPageState extends State<JobEmployerOffersPage> {
       ),
       floatingActionButton: GetBuilder(
         init: _jobOfferEmployerController,
-        builder: (controller){
+        builder: (controller) {
           _jobOfferEmployerController = controller;
           var response = _jobOfferEmployerController.response;
-          if(response == null){
+          if (response == null) {
             return Container();
           }
 
-          if(!response.status){
+          if (!response.status) {
             return Container();
           }
 
           var jobOffers = response.data ?? [];
 
-          if(jobOffers.isEmpty){
+          if (jobOffers.isEmpty) {
             return Container();
           }
 
@@ -187,7 +187,8 @@ class _JobEmployerOffersPageState extends State<JobEmployerOffersPage> {
           },
           deleteCall: () async {
             var result = await Tools.showChoiceMessage(
-                message: "Voulez-vous supprimer l'offre : ${jobOffer.label} - ${jobOffer.company!.name!}?");
+                message:
+                    "Voulez-vous supprimer l'offre : ${jobOffer.label} - ${jobOffer.company!.name!}?");
             if (result != null && result) {
               _deleteJobOffer(jobOffer);
             }
@@ -204,12 +205,16 @@ class _JobEmployerOffersPageState extends State<JobEmployerOffersPage> {
   _deleteJobOffer(JobOffer jobOffer) async {
     var pr = Tools.progressDialog();
     pr.show();
-    var response = await _jobOfferEmployerController.deleteJobOffer(jobOffer.id!);
+    var response =
+        await _jobOfferEmployerController.deleteJobOffer(jobOffer.id!);
     Get.back();
-    Tools.messageBox(message: response.status ? "Offre d'emploi supprimée" : response.message, onConfirm: (){
-      if(response.status){
-        _getJobOfferEmployer();
-      }
-    });
+    Tools.messageBox(
+        message:
+            response.status ? "Offre d'emploi supprimée" : response.message,
+        onConfirm: () {
+          if (response.status) {
+            _getJobOfferEmployer();
+          }
+        });
   }
 }

@@ -49,8 +49,8 @@ class SingleChildCardMenu extends StatelessWidget {
                       AutoSizeText(
                         title.value,
                         maxLines: 1,
-                        maxFontSize: 9,
-                        minFontSize: 8,
+                        maxFontSize: 12,
+                        minFontSize: 10,
                         style: const TextStyle(fontWeight: FontWeight.bold),
                       ),
                       Visibility(

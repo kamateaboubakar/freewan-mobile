@@ -8,10 +8,13 @@ import 'package:wan_mobile/tools/cache/cache.dart';
 import 'package:wan_mobile/tools/services/notification_service.dart';
 import 'package:wan_mobile/tools/utils/tools.dart';
 import 'package:wan_mobile/tools/widgets/c_button.dart';
-import 'package:wan_mobile/views/controllers/abstracts/view_controller.dart';
+import 'package:lebedoo_assets/views/controllers/abstracts/view_controller.dart';
 import 'package:wan_mobile/views/static/auth/phone_auth/phone_auth.dart';
+import 'package:wan_mobile/views/tools/routes.dart';
 
 class HomePageVctl extends ViewController {
+  Routes routes = Routes();
+
   List<Pub> ads = [];
 
   bool displayWelcome;

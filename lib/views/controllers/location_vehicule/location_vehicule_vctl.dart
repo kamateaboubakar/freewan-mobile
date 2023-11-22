@@ -2,7 +2,7 @@ import 'package:wan_mobile/api/controllers/location_vehicule/location_vehicule_c
 import 'package:wan_mobile/models/location_vehicule/car.dart';
 import 'package:wan_mobile/models/location_vehicule/categorie_vehicule.dart';
 import 'package:wan_mobile/tools/types/types.dart';
-import 'package:wan_mobile/views/controllers/abstracts/view_controller.dart';
+import 'package:lebedoo_assets/views/controllers/abstracts/view_controller.dart';
 
 class LocationVehiculeVclt extends ViewController {
   List<Car> _marketCars = [];

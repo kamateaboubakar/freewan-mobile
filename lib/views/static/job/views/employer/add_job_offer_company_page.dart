@@ -3,6 +3,7 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:wan_mobile/models/job/job_offer.dart';
 import 'package:wan_mobile/tools/utils/asset_colors.dart';
 import 'package:wan_mobile/views/controllers/job/add_job_vctl.dart';
 
@@ -23,7 +24,7 @@ class AddJobOfferCompanyPage extends StatefulWidget {
 }
 
 class _AddJobOfferCompanyPageState extends State<AddJobOfferCompanyPage> {
-  AddJobController _addJobController = Get.put(AddJobController());
+  AddJobController _addJobController = Get.put(AddJobController(JobOffer()));
 
   final TextEditingController _nameCtrl = TextEditingController();
   final TextEditingController _descriptionCtrl = TextEditingController();
@@ -128,7 +129,8 @@ class _AddJobOfferCompanyPageState extends State<AddJobOfferCompanyPage> {
                         crossAxisAlignment: CrossAxisAlignment.stretch,
                         children: [
                           ListTile(
-                            contentPadding: const EdgeInsets.symmetric(vertical: 0),
+                            contentPadding:
+                                const EdgeInsets.symmetric(vertical: 0),
                             leading: Checkbox(
                               value: isNewCompany,
                               onChanged: (value) {
@@ -152,37 +154,28 @@ class _AddJobOfferCompanyPageState extends State<AddJobOfferCompanyPage> {
                               },
                             ),
                             const SizedBox(height: 5),
-                            GetBuilder(
-                                id: 'add_job_sector',
-                                init: _addJobController,
-                                builder: (controller) {
-                                  _addJobController = controller;
-                                  var response = controller.jobSectorResponse;
-
-                                  var jobSectors = response!.data!;
-
-                                  return CDropdownField<JobSector>(
-                                    labelText: "Catégorie *",
-                                    items: jobSectors,
-                                    backgroundColor: Colors.white,
-                                    itemBuilder: (jobSector) =>
-                                        Text(jobSector.label!),
-                                    selectedItemBuilder: (jobSector) {
-                                      return Text(jobSector.label ?? '');
-                                    },
-                                    onChanged: (jobSector) {
-                                      _addJobController
-                                          .updateSelectedCompanySectorId(
-                                              jobSector!.id!);
-                                    },
-                                  );
-                                }),
+                            CDropdownField<JobSector>(
+                              labelText: "Catégorie *",
+                              asyncItems: (e) =>
+                                  _addJobController.getJobSectors(),
+                              backgroundColor: Colors.white,
+                              itemBuilder: (jobSector) =>
+                                  Text(jobSector.label!),
+                              selectedItemBuilder: (jobSector) {
+                                return Text(jobSector.label ?? '');
+                              },
+                              onChanged: (jobSector) {
+                                _addJobController.updateSelectedCompanySectorId(
+                                    jobSector!.id!);
+                              },
+                            ),
                             const SizedBox(height: 5),
                             CTextFormField(
                               controller: _descriptionCtrl,
                               hintText: "Description *",
                               onChanged: (value) {
-                                _addJobController.updateCompanyDescription(value);
+                                _addJobController
+                                    .updateCompanyDescription(value);
                               },
                               maxLines: 5,
                             ),
@@ -332,7 +325,9 @@ class _AddJobOfferCompanyPageState extends State<AddJobOfferCompanyPage> {
       return;
     }
     Tools.messageBox(
-        message: _addJobController.forJobUpdate ? "Votre offre d'emploi a été modifiée" : "Votre offre d'emploi a été créée",
+        message: _addJobController.forJobUpdate
+            ? "Votre offre d'emploi a été modifiée"
+            : "Votre offre d'emploi a été créée",
         onConfirm: () {
           Get.offAll(const HomePage());
         });

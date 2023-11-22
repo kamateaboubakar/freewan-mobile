@@ -65,7 +65,7 @@ class _PressingHourSelectionPageState extends State<PressingHourSelectionPage> {
                 markers: [
                   Marker(
                     point: LatLng(pressing.latitude!, pressing.longitude!),
-                    builder: (context) => Image.asset(
+                    child: Image.asset(
                       'assets/images/pressing_pin.png',
                       width: 40,
                       height: 40,

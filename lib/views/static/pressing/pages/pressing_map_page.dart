@@ -81,13 +81,11 @@ class _PressingMapPageState extends State<PressingMapPage> {
                     if (_pressingController.hasUserLocation) ...{
                       Marker(
                         point: _pressingController.userLocation!.toLatLng(),
-                        builder: (context) {
-                          return Image.asset(
-                            'assets/images/icons/marker_map.gif',
-                            width: 100,
-                            height: 100,
-                          );
-                        },
+                        child: Image.asset(
+                          'assets/images/icons/marker_map.gif',
+                          width: 100,
+                          height: 100,
+                        ),
                       ),
                     },
                     if (pressings != null) ...[
@@ -97,7 +95,7 @@ class _PressingMapPageState extends State<PressingMapPage> {
                           height: 65,
                           point: LatLng(
                               pressings[i].latitude!, pressings[i].longitude!),
-                          builder: (context) => SpeechBubble(
+                          child: SpeechBubble(
                             padding: EdgeInsets.zero,
                             borderRadius: 14,
                             color: Colors.red,

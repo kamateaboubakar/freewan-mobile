@@ -1,21 +1,20 @@
-import 'dart:convert';
-
+import 'package:lebedoo_assets/lebedoo_assets.dart';
+import 'package:lebedoo_assets/tools/web/web_request.dart';
+import 'package:tools_flutter_project/tools/http/http_response.dart';
 import 'package:wan_mobile/models/gas_size.dart';
 import 'package:wan_mobile/models/shop.dart';
 import 'package:wan_mobile/tools/types/types.dart';
-
 import '../../tools/const/const.dart';
-import '../../tools/utils/http_response.dart';
-import '../abstracts/http_client_const.dart';
-import '../abstracts/web_controller.dart';
+import 'package:lebedoo_assets/tools/web/app_http_hearders.dart';
 
-class GazApiCtl extends WebController {
+class GazApiCtl {
   Future<HttpResponse<List<Shop>>> getClosestShop(
       {required double latitude, required double longitude}) async {
     try {
       var url =
           "${Const.gazBaseUrl}/shops/closests?latitude=$latitude&longitude=$longitude";
-      var res = await get(url, headers: HttpClientConst.headers);
+      var res =
+          await WebRequest.nativRequest(url, headers: AppHttpHeaders.headers);
       var body = HttpResponse.decodeBody(res);
 
       if (body.status) {
@@ -32,8 +31,8 @@ class GazApiCtl extends WebController {
   Future<HttpResponse<Shop>> getShopById({required int id}) async {
     try {
       if (id > 0) {
-        var res = await get("${Const.gazBaseUrl}/shops/$id",
-            headers: HttpClientConst.headers);
+        var res = await WebRequest.nativRequest("${Const.gazBaseUrl}/shops/$id",
+            headers: AppHttpHeaders.headers);
         var body = HttpResponse.decodeBody(res);
 
         if (body.status) {
@@ -55,9 +54,9 @@ class GazApiCtl extends WebController {
     required int brandId,
   }) async {
     try {
-      var res = await get(
+      var res = await WebRequest.nativRequest(
           "${Const.gazBaseUrl}/brandsInShop/gasSizes?shop_id=$shopId&brand_id=$brandId",
-          headers: HttpClientConst.headers);
+          headers: AppHttpHeaders.headers);
       var body = HttpResponse.decodeBody(res);
 
       if (body.status) {
@@ -91,13 +90,14 @@ class GazApiCtl extends WebController {
         "price": "$price"
       };
 
-      print(jsonEncode(requestBody.parseToJson()));
-
       var url = "${Const.gazBaseUrl}/orders/";
-      var res = await post(url, requestBody.parseToJson(),
-          headers: HttpClientConst.headers);
+      var res = await WebRequest.nativRequest(
+          verbe: RequestVerbeEnum.POST,
+          url,
+          body: requestBody.parseToJson(),
+          headers: AppHttpHeaders.headers);
       var body = HttpResponse.decodeBody(res);
-      print(body.data);
+
       if (body.status) {
         if (body.data != null) {
           return HttpResponse.success(data: true);

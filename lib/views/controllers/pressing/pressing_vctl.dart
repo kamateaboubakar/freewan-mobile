@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:wan_mobile/api/controllers/pressing_api_ctl.dart';
 import 'package:wan_mobile/models/address/address_type.dart';
 import 'package:wan_mobile/models/pressing/pressing.dart';
-import 'package:wan_mobile/views/controllers/abstracts/view_controller.dart';
+import 'package:lebedoo_assets/views/controllers/abstracts/view_controller.dart';
 
 import '../../../tools/services/location_service.dart';
 import '../../../models/location_model.dart';
@@ -10,7 +10,7 @@ import '../../../models/pressing/pressing_article.dart';
 import '../../../models/pressing/pressing_service.dart';
 import '../../../models/pressing/time_delivery.dart';
 import '../../../models/pressing/user_localisation.dart';
-import '../../../tools/utils/http_response.dart';
+import 'package:tools_flutter_project/tools/http/http_response.dart';
 
 class PressingController extends ViewController {
   final PressingApiCtl _pressingApiCtl = PressingApiCtl();
@@ -83,8 +83,10 @@ class PressingController extends ViewController {
   }
 
   Future<HttpResponse<List<Pressing>>> getClosestPressing() async {
-    _userLocation = await LocationService.getLocation(withLocationDescription: true);
-    var response = await _pressingApiCtl.getClosestPressings(latitude: _userLocation!.latitude, longitude: _userLocation!.longitude);
+    _userLocation =
+        await LocationService.getLocation(withLocationDescription: true);
+    var response = await _pressingApiCtl.getClosestPressings(
+        latitude: _userLocation!.latitude, longitude: _userLocation!.longitude);
     if (response.status) {
       _pressings = response.data!;
     }

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:wan_mobile/models/job/job_offer.dart';
 import 'package:wan_mobile/views/controllers/job/add_job_vctl.dart';
 import 'package:wan_mobile/views/static/job/views/employer/add_job_offer_company_page.dart';
 
@@ -22,16 +23,18 @@ class _AddJobOfferDescriptionPageState
   final TextEditingController _preRequesiteCtrl = TextEditingController();
   final TextEditingController _salaryCtrl = TextEditingController();
 
-  final AddJobController _addJobController = Get.put(AddJobController());
+  final AddJobController _addJobController =
+      Get.put(AddJobController(JobOffer()));
 
   @override
   void initState() {
     var addJob = _addJobController.addJob;
-    _descriptionCtrl.text = addJob.description ?? '';
+    _descriptionCtrl.text = addJob!.description ?? '';
     _preRequesiteCtrl.text = addJob.prerequisites ?? '';
     _salaryCtrl.text = addJob.expectedSalary ?? '';
     super.initState();
   }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(

@@ -68,10 +68,9 @@ class _JobSectorViewState extends State<JobSectorView> {
                   selected: selected,
                   onTap: () {
                     _jobSectorController.updateSelectedJobSector(jobSector);
-                    if(jobSector.id == 0){
+                    if (jobSector.id == 0) {
                       _jobListController.resetSelectedJobCategory();
-                    }
-                    else{
+                    } else {
                       _jobListController.updateSelectedJobCategory(jobSector);
                     }
                     _jobListController.getJobOffers();

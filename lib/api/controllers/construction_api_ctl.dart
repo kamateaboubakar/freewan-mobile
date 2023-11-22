@@ -1,16 +1,18 @@
-import 'package:wan_mobile/api/abstracts/http_client_const.dart';
-import 'package:wan_mobile/api/abstracts/web_controller.dart';
+import 'package:lebedoo_assets/tools/web/app_http_hearders.dart';
+import 'package:lebedoo_assets/tools/web/web_request.dart';
+
 import 'package:wan_mobile/models/construction/categorie_materiau_construction.dart';
 import 'package:wan_mobile/models/construction/material_unit.dart';
 import 'package:wan_mobile/tools/const/const.dart';
-import 'package:wan_mobile/tools/utils/http_response.dart';
+import 'package:tools_flutter_project/tools/http/http_response.dart';
 
-class ConstructionApiCtl extends WebController {
+class ConstructionApiCtl {
   Future<HttpResponse<List<CategorieMateriauConstruction>>>
       getAllCategorieMateriauConstruction() async {
     try {
-      var response = await get("${Const.constructionBaseUrl}/categories",
-          headers: HttpClientConst.authHeaders);
+      var response = await WebRequest.nativRequest(
+          "${Const.constructionBaseUrl}/categories",
+          headers: AppHttpHeaders.authHeaders);
       var body = HttpResponse.decodeBody(response);
       if (body.status) {
         return HttpResponse.success(
@@ -28,8 +30,9 @@ class ConstructionApiCtl extends WebController {
   Future<HttpResponse<List<MaterialUnit>>> getMateriauByCategorie(
       {required int categorieId}) async {
     try {
-      var response = await get("${Const.constructionBaseUrl}/categories",
-          headers: HttpClientConst.authHeaders);
+      var response = await WebRequest.nativRequest(
+          "${Const.constructionBaseUrl}/categories",
+          headers: AppHttpHeaders.authHeaders);
       var body = HttpResponse.decodeBody(response);
       if (body.status) {
         return HttpResponse.success(

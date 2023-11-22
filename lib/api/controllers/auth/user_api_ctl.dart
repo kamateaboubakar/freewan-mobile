@@ -1,23 +1,24 @@
-import 'package:wan_mobile/api/abstracts/http_client_const.dart';
-import 'package:wan_mobile/api/abstracts/web_controller.dart';
-import 'package:wan_mobile/models/security_question.dart';
-import 'package:wan_mobile/models/user.dart';
+import 'package:lebedoo_assets/lebedoo_assets.dart';
+import 'package:lebedoo_assets/tools/web/app_http_hearders.dart';
+import 'package:lebedoo_assets/tools/web/web_request.dart';
+
 import 'package:wan_mobile/tools/types/types.dart';
 import 'package:wan_mobile/tools/utils/functions.dart';
 
-import 'package:wan_mobile/tools/utils/http_response.dart';
+import 'package:tools_flutter_project/tools/http/http_response.dart';
 
-class UserApiCtl extends WebController {
+class UserApiCtl {
   Future<HttpResponse<User>> register(User user) async {
     try {
-      var res = await post(
-        HttpClientConst.baseUrl(module: "auth/register"),
-        HttpResponse.encodeBody(user.toJson()),
-        headers: HttpClientConst.headers,
+      var res = await WebRequest.nativRequest(
+        verbe: RequestVerbeEnum.POST,
+        AppHttpHeaders.baseUrl(module: "auth/register"),
+        body: user.toJson().parseToJson(),
+        headers: AppHttpHeaders.headers,
       );
       var body = HttpResponse.decodeBody(res);
       if (body.status) {
-        appCtl.jwtToken = body.data["token"];
+        AppHttpHeaders.jwtToken = body.data["token"];
         return HttpResponse.success(data: User.fromJson(body.data["data"]));
       } else {
         return HttpResponse.error(message: body.message);
@@ -39,9 +40,9 @@ class UserApiCtl extends WebController {
   Future<HttpResponse<int>> loginPhone(
       {required String phone, required int paysId}) async {
     try {
-      var res = await get(
-        HttpClientConst.baseUrl(module: "auth/phoneAuth/$phone/$paysId"),
-        headers: HttpClientConst.headers,
+      var res = await WebRequest.nativRequest(
+        AppHttpHeaders.baseUrl(module: "auth/phoneAuth/$phone/$paysId"),
+        headers: AppHttpHeaders.headers,
       );
       var body = HttpResponse.decodeBody(res);
       if (body.status) {
@@ -69,10 +70,11 @@ class UserApiCtl extends WebController {
   Future<HttpResponse<bool>> verifyOtp(
       {required String code, required String phone}) async {
     try {
-      var response = await post(
-        HttpClientConst.baseUrl(module: "auth/checkOTP"),
-        headers: HttpClientConst.headers,
-        {"fullPhoneNumber": phone, "otp": code}.parseToJson(),
+      var response = await WebRequest.nativRequest(
+        verbe: RequestVerbeEnum.POST,
+        AppHttpHeaders.baseUrl(module: "auth/checkOTP"),
+        headers: AppHttpHeaders.headers,
+        body: {"fullPhoneNumber": phone, "otp": code}.parseToJson(),
       );
       var body = HttpResponse.decodeBody(response);
       if (body.status) {
@@ -98,12 +100,19 @@ class UserApiCtl extends WebController {
   Future<HttpResponse<SecurityQuestion>> authenticate(
       {required String phone, required String password}) async {
     try {
-      var res = await post(
-        HttpClientConst.baseUrl(module: "auth/checkPassword"),
-        {"login": phone, "password": password}.parseToJson(),
-        headers: HttpClientConst.headers,
+      var res = await WebRequest.nativRequest(
+        verbe: RequestVerbeEnum.POST,
+        AppHttpHeaders.baseUrl(module: "auth/checkPassword"),
+        body: {
+          "login": phone,
+          "password": password,
+        }.parseToJson(),
+        headers: AppHttpHeaders.headers,
+        displayRequest: true,
       );
+
       var body = HttpResponse.decodeBody(res);
+
       if (body.status) {
         if (body.data["status"] == false) {
           return HttpResponse.error(message: body.data["message"]);
@@ -124,21 +133,22 @@ class UserApiCtl extends WebController {
       required int securityQuestionId,
       required String answer}) async {
     try {
-      var res = await post(
-        HttpClientConst.baseUrl(module: "auth/checkSecurityQuestionAnswer"),
-        {
+      var res = await WebRequest.nativRequest(
+        verbe: RequestVerbeEnum.POST,
+        AppHttpHeaders.baseUrl(module: "auth/checkSecurityQuestionAnswer"),
+        body: {
           "login": phone,
           "security_question_id": securityQuestionId,
           "answer": answer,
         }.parseToJson(),
-        headers: HttpClientConst.headers,
+        headers: AppHttpHeaders.headers,
       );
       var body = HttpResponse.decodeBody(res);
       if (body.status) {
         if (body.data["status"] == false) {
           return HttpResponse.error(message: body.data["message"]);
         } else {
-          appCtl.jwtToken = body.data["token"];
+          AppHttpHeaders.jwtToken = body.data["token"];
           return HttpResponse.success(data: User.fromJson(body.data["data"]));
         }
       } else {
@@ -151,9 +161,9 @@ class UserApiCtl extends WebController {
 
   Future<HttpResponse<User>> getUserProfil() async {
     try {
-      var res = await get(
-        HttpClientConst.baseUrl(module: "profile"),
-        headers: HttpClientConst.authHeaders,
+      var res = await WebRequest.nativRequest(
+        AppHttpHeaders.baseUrl(module: "profile"),
+        headers: AppHttpHeaders.authHeaders,
       );
       var body = HttpResponse.decodeBody(res);
 
@@ -169,9 +179,9 @@ class UserApiCtl extends WebController {
 
   Future<HttpResponse<User>> getUserProfilById(String userId) async {
     try {
-      var res = await get(
-        HttpClientConst.baseUrl(module: "admin/api/v1/accounts/$userId"),
-        headers: HttpClientConst.authHeaders,
+      var res = await WebRequest.nativRequest(
+        AppHttpHeaders.baseUrl(module: "admin/api/v1/accounts/$userId"),
+        headers: AppHttpHeaders.authHeaders,
       );
       var body = HttpResponse.decodeBody(res);
 
@@ -187,10 +197,10 @@ class UserApiCtl extends WebController {
 
   Future<HttpResponse<bool>> logout() async {
     try {
-      var res = await post(
-        HttpClientConst.baseUrl(module: "auth/logout"),
-        {}.parseToJson(),
-        headers: HttpClientConst.authHeaders,
+      var res = await WebRequest.nativRequest(
+        verbe: RequestVerbeEnum.POST,
+        AppHttpHeaders.baseUrl(module: "auth/logout"),
+        headers: AppHttpHeaders.authHeaders,
       );
       var body = HttpResponse.decodeBody(res);
       if (body.status) {
@@ -206,10 +216,11 @@ class UserApiCtl extends WebController {
   Future<HttpResponse<User>> checkUserQrCode(
       {required String qrAccount}) async {
     try {
-      var res = await post(
-        HttpClientConst.baseUrl(module: "auth/profil/qrAccount"),
-        {"qrAccount": qrAccount}.parseToJson(),
-        headers: HttpClientConst.authHeaders,
+      var res = await WebRequest.nativRequest(
+        verbe: RequestVerbeEnum.POST,
+        AppHttpHeaders.baseUrl(module: "auth/profil/qrAccount"),
+        body: {"qrAccount": qrAccount}.parseToJson(),
+        headers: AppHttpHeaders.authHeaders,
       );
       var body = HttpResponse.decodeBody(res);
       if (body.status) {
@@ -226,10 +237,11 @@ class UserApiCtl extends WebController {
     try {
       var token = await Functions.getFcmToken();
       if (token != null) {
-        var res = await post(
-          HttpClientConst.baseUrl(module: "auth/updateFcmToken"),
-          {"fcm_token": token}.parseToJson(),
-          headers: HttpClientConst.authHeaders,
+        var res = await WebRequest.nativRequest(
+          verbe: RequestVerbeEnum.POST,
+          AppHttpHeaders.baseUrl(module: "auth/updateFcmToken"),
+          body: {"fcm_token": token}.parseToJson(),
+          headers: AppHttpHeaders.authHeaders,
         );
         var body = HttpResponse.decodeBody(res);
         if (body.status) {

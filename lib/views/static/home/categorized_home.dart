@@ -50,19 +50,19 @@ class _CategorizedHomeState extends State<CategorizedHome> {
                           separatorBuilder: (context, index) =>
                               const Divider(height: 0),
                           itemBuilder: (context, index) => ListTile(
-                            selected:
-                                ctl.selectedCategorie == Routes.groupes[index],
+                            selected: ctl.selectedCategorie ==
+                                ctl.routes.groupes[index],
                             contentPadding: EdgeInsets.zero,
                             title: Text(
-                              Routes.groupes[index],
+                              Routes().groupes[index],
                               textAlign: TextAlign.center,
                             ),
                             onTap: () {
-                              ctl.selectedCategorie = Routes.groupes[index];
+                              ctl.selectedCategorie = ctl.routes.groupes[index];
                               ctl.update();
                             },
                           ),
-                          itemCount: Routes.groupes.length,
+                          itemCount: ctl.routes.groupes.length,
                         ),
                       ),
                     ),
@@ -76,9 +76,9 @@ class _CategorizedHomeState extends State<CategorizedHome> {
                             crossAxisCount: 3,
                           ),
                           children: ((ctl.search.isEmpty)
-                                  ? Routes.routesByGroup(
+                                  ? ctl.routes.routesByGroup(
                                       groupe: ctl.selectedCategorie)
-                                  : Routes.search(value: ctl.search.value))
+                                  : ctl.routes.search(value: ctl.search.value))
                               .map((e) => e.button)
                               .toList(),
                         ),

@@ -1,28 +1,26 @@
 import 'dart:convert';
 import 'dart:developer';
 
-import 'package:wan_mobile/api/abstracts/http_client_const.dart';
-import 'package:wan_mobile/api/abstracts/web_controller.dart';
-import 'package:wan_mobile/tools/utils/http_response.dart';
+import 'package:lebedoo_assets/lebedoo_assets.dart';
+import 'package:lebedoo_assets/tools/web/app_http_hearders.dart';
+import 'package:lebedoo_assets/tools/web/web_request.dart';
+
+import 'package:tools_flutter_project/tools/http/http_response.dart';
+import 'package:wan_mobile/tools/types/types.dart';
 
 import '../../models/job/company.dart';
 import '../../tools/const/const.dart';
 
-class CompanyApiCtl extends WebController {
+class CompanyApiCtl {
   Future<HttpResponse<Company>> createCompany(Company newCompany) async {
-    print('company body');
-    log(jsonEncode(newCompany.toJson()));
-
     try {
       var url = "${Const.jobBaseUrl}/companies";
-      var res = await post(
+      var res = await WebRequest.nativRequest(
+        verbe: RequestVerbeEnum.POST,
         url,
-        newCompany.toJson(),
-        headers: HttpClientConst.headers,
+        body: newCompany.toJson().parseToJson(),
+        headers: AppHttpHeaders.headers,
       );
-
-      print('company response');
-      print(res.body);
 
       var body = HttpResponse.decodeBody(res);
 
@@ -41,9 +39,8 @@ class CompanyApiCtl extends WebController {
   Future<HttpResponse<List<Company>>> getCompanies() async {
     try {
       var url = "${Const.jobBaseUrl}/companies";
-      var res = await get(url, headers: HttpClientConst.headers);
-
-      print(res.body);
+      var res =
+          await WebRequest.nativRequest(url, headers: AppHttpHeaders.headers);
 
       var body = HttpResponse.decodeBody(res);
 

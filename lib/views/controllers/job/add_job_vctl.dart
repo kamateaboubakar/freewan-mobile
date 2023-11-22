@@ -1,5 +1,6 @@
 import 'dart:io';
 
+import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:wan_mobile/api/controllers/contract_type_api_ctrl.dart';
 import 'package:wan_mobile/api/controllers/file_api_ctl.dart';
@@ -13,8 +14,9 @@ import 'package:wan_mobile/models/job/job_offer.dart';
 import 'package:wan_mobile/models/job/work_experience.dart';
 import 'package:wan_mobile/models/pays.dart';
 import 'package:wan_mobile/tools/types/types.dart';
-import 'package:wan_mobile/views/controllers/abstracts/view_controller.dart';
-import 'package:wan_mobile/tools/utils/http_response.dart';
+import 'package:lebedoo_assets/views/controllers/abstracts/view_controller.dart';
+import 'package:tools_flutter_project/tools/http/http_response.dart';
+import 'package:wan_mobile/views/static/job/views/employer/add_job_offer_description_page.dart';
 
 import '../../../api/controllers/company_api_ctl.dart';
 import '../../../models/job/add_job.dart';
@@ -23,6 +25,7 @@ import '../../../models/job/contract_type.dart';
 import '../../../models/job/jobs_sector.dart';
 
 class AddJobController extends ViewController {
+  JobOffer? jobOffer;
   final JobApiCtrl _jobApiCtrl = JobApiCtrl();
   final ContractTypeApiCtl _contractTypeApiCtl = ContractTypeApiCtl();
   final JobSectorApiCtrl _jobSectorApiCtl = JobSectorApiCtrl();
@@ -32,62 +35,65 @@ class AddJobController extends ViewController {
   final WorkExperienceApiCtl _workExperienceCtl = WorkExperienceApiCtl();
   final JobCategoryApiCtl _jobCategoryCtl = JobCategoryApiCtl();
 
-  late AddJob _addJob;
-  late Company _newCompany;
+  final TextEditingController jobTitleCtrl = TextEditingController();
+  final TextEditingController jobPlaceCtrl = TextEditingController();
+  JobCategory? selectedJobCategory;
+  bool forJobUpdate = false;
+  bool isRemoteJob = false;
+
+  var formKey = GlobalKey<FormState>();
+
+  AddJob? addJob;
+  Company? newCompany;
+  Company? selectedCompany;
+
+  AddJobController(this.jobOffer);
 
   Rx<bool> _isNewCompany = false.obs;
 
   bool get isNewCompany => _isNewCompany.value;
 
-  Rx<bool> _isRemoteJob = false.obs;
-
-  bool get isRemoteJob => _isRemoteJob.value;
-
-  updateRemoteJobState(bool state) {
-    _isRemoteJob.value = state;
-  }
-
   File? _logoFile;
 
   File? get logoFile => _logoFile;
 
-  int get selectedPaysPhoneNumberLength => _selectedPays!.phoneNumberLength!;
+  int get selectedPaysPhoneNumberLength => selectedPays!.phoneNumberLength!;
 
   bool _forJobUpdate = false;
 
   initJobInfo({JobOffer? jobOffer}) {
     _forJobUpdate = jobOffer != null;
-    _addJob = AddJob();
+    addJob = AddJob();
     initCompanyInfo();
 
     if (jobOffer == null) {
-      _selectedJobSector = null;
-      _selectedContractType = null;
-      _selectedPays = null;
+      selectedJobSector = null;
+      selectedContractType = null;
+      selectedPays = null;
       _selectedCompany = null;
       _isNewCompany = false.obs;
       _logoFile = null;
       return;
     }
 
-    _addJob.id = jobOffer.id!;
-    _addJob.label = jobOffer.label!;
-    _selectedPays = jobOffer.country;
-    _selectedWorkExperience = jobOffer.workExperience;
-    _selectedJobCategory = jobOffer.category;
-    _selectedJobSector = jobOffer.activitySector;
-    _selectedContractType = jobOffer.contractType;
-    _addJob.workPlace = jobOffer.workPlace;
-    _addJob.remote = jobOffer.remote;
-    _isRemoteJob = Rx<bool>(_addJob.remote ?? false);
-    _addJob.description = jobOffer.description;
-    _addJob.prerequisites = jobOffer.prerequisites;
-    _addJob.expectedSalary = jobOffer.expectedSalary;
+    addJob!.id = jobOffer.id!;
+    addJob!.label = jobOffer.label!;
+    selectedPays = jobOffer.country;
+    selectedWorkExperience = jobOffer.workExperience;
+    selectedJobCategory = jobOffer.category;
+    selectedJobSector = jobOffer.activitySector;
+    selectedContractType = jobOffer.contractType;
+    addJob!.workPlace = jobOffer.workPlace;
+    addJob!.remote = jobOffer.remote;
+    isRemoteJob = addJob!.remote ?? false;
+    addJob!.description = jobOffer.description;
+    addJob!.prerequisites = jobOffer.prerequisites;
+    addJob!.expectedSalary = jobOffer.expectedSalary;
     _selectedCompany = jobOffer.company;
   }
 
   void initCompanyInfo() {
-    _newCompany = Company();
+    newCompany = Company();
   }
 
   updateIsNewCompany(bool state) {
@@ -95,28 +101,13 @@ class AddJobController extends ViewController {
     updateAddJobCreationSubmitButtonState();
   }
 
-  HttpResponse<List<JobSector>>? _jobSectorResponse;
+  JobSector? selectedJobSector;
 
-  HttpResponse<List<JobSector>>? get jobSectorResponse => _jobSectorResponse;
+  JobSector? get selectedSector => selectedJobSector;
 
-  JobSector? _selectedJobSector;
+  ContractType? selectedContractType;
 
-  JobSector? get selectedSector => _selectedJobSector;
-
-  HttpResponse<List<ContractType>>? _contractTypeResponse;
-
-  HttpResponse<List<ContractType>>? get contractTypeResponse =>
-      _contractTypeResponse;
-
-  ContractType? _selectedContractType;
-
-  HttpResponse<List<Pays>>? _paysResponse;
-
-  HttpResponse<List<Pays>>? get paysResponse => _paysResponse;
-
-  Pays? _selectedPays;
-
-  Pays? get selectedPays => _selectedPays;
+  Pays? selectedPays;
 
   HttpResponse<List<Company>>? _companyResponse;
 
@@ -124,25 +115,31 @@ class AddJobController extends ViewController {
 
   Company? _selectedCompany;
 
-  getJobSectors() async {
-    _jobSectorResponse = null;
-    update(['add_job_sector']);
-    _jobSectorResponse = await _jobSectorApiCtl.getJobSectors();
-    update(['add_job_sector']);
+  Future<List<JobSector>> getJobSectors() async {
+    var res = await _jobSectorApiCtl.getJobSectors();
+    if (res.status) {
+      return res.data!;
+    } else {
+      return [];
+    }
   }
 
-  getContractTypes() async {
-    _contractTypeResponse = null;
-    update(['add_job_contract_type']);
-    _contractTypeResponse = await _contractTypeApiCtl.getContractTypes();
-    update(['add_job_contract_type']);
+  Future<List<ContractType>> getContractTypes() async {
+    var res = await _contractTypeApiCtl.getContractTypes();
+    if (res.status) {
+      return res.data!;
+    } else {
+      return [];
+    }
   }
 
-  getPays() async {
-    _paysResponse = null;
-    update(['add_job_pays']);
-    _paysResponse = await _paysApiCtl.getAll();
-    update(['add_job_pays']);
+  Future<List<Pays>> getPays() async {
+    var res = await _paysApiCtl.getAll();
+    if (res.status) {
+      return res.data!;
+    } else {
+      return [];
+    }
   }
 
   getCompanies() async {
@@ -152,29 +149,14 @@ class AddJobController extends ViewController {
     update(['add_job_company']);
   }
 
-  updateSelectedJobSector(JobSector jobSector) {
-    _selectedJobSector = jobSector;
-    update();
-  }
-
-  updateSelectedContractType(ContractType contractType) {
-    _selectedContractType = contractType;
-    update();
-  }
-
   updateJobTitle(String value) {
-    _addJob.label = value;
+    addJob!.label = value;
     update();
   }
 
   updateJobDescription(String value) {
-    _addJob.description = value;
+    addJob!.description = value;
     update(['add_job_description_submit']);
-  }
-
-  updateSelectedPays(Pays pays) {
-    _selectedPays = pays;
-    update();
   }
 
   updateSelectedCompany(Company company) {
@@ -182,27 +164,13 @@ class AddJobController extends ViewController {
     updateAddJobCreationSubmitButtonState();
   }
 
-  void updateWorkPlace(String value) {
-    _addJob.workPlace = value;
-    update();
-  }
-
-  bool get isJobInfoValid =>
-      _addJob.label!.isNotEmpty &&
-      _addJob.workPlace!.isNotEmpty &&
-      _selectedContractType != null &&
-      _selectedJobSector != null &&
-      _selectedPays != null &&
-      _selectedWorkExperience != null &&
-      _selectedJobCategory != null;
-
   bool get isJobDescriptionValid =>
-      _addJob.description!.isNotEmpty &&
-      _addJob.expectedSalary!.isNotEmpty &&
-      _addJob.prerequisites!.isNotEmpty;
+      addJob!.description!.isNotEmpty &&
+      addJob!.expectedSalary!.isNotEmpty &&
+      addJob!.prerequisites!.isNotEmpty;
 
   void updateJobSalary(String value) {
-    _addJob.expectedSalary = value;
+    addJob!.expectedSalary = value;
     update(['add_job_description_submit']);
   }
 
@@ -216,30 +184,30 @@ class AddJobController extends ViewController {
         return fileUploadResponse;
       }
 
-      _newCompany.logo = fileUploadResponse.data!.filename!;
-      _newCompany.customerAccountId = appCtl.user.id.value.toString();
-      companyResponse = await _companyApiCtrl.createCompany(_newCompany);
+      newCompany!.logo = fileUploadResponse.data!.filename!;
+      newCompany!.customerAccountId = appCtl.user.id.value.toString();
+      companyResponse = await _companyApiCtrl.createCompany(newCompany!);
       if (!companyResponse.status) {
         return companyResponse;
       }
     }
 
-    _addJob.contractTypeId = _selectedContractType!.id!;
-    _addJob.activitySectorId = _selectedJobSector!.id!;
-    _addJob.companyId =
+    addJob!.contractTypeId = selectedContractType!.id!;
+    addJob!.activitySectorId = selectedJobSector!.id!;
+    addJob!.companyId =
         isNewCompany ? companyResponse.data!.id : _selectedCompany!.id!;
-    _addJob.countryId = _selectedPays!.id!;
-    _addJob.workExperienceId = _selectedWorkExperience!.id!;
-    _addJob.categoryId = _selectedJobCategory!.id!;
-    _addJob.remote = _isRemoteJob.value;
+    addJob!.countryId = selectedPays!.id!;
+    addJob!.workExperienceId = selectedWorkExperience!.id!;
+    addJob!.categoryId = selectedJobCategory!.id!;
+    addJob!.remote = isRemoteJob;
 
     return _forJobUpdate
-        ? _jobApiCtrl.updateJob(_addJob)
-        : _jobApiCtrl.addJob(_addJob);
+        ? _jobApiCtrl.updateJob(addJob!)
+        : _jobApiCtrl.addJob(addJob!);
   }
 
   void updateCompanyName(String value) {
-    _newCompany.name = value;
+    newCompany!.name = value;
     updateAddJobCreationSubmitButtonState();
   }
 
@@ -249,7 +217,7 @@ class AddJobController extends ViewController {
 
   bool get isCompanyInfoValid {
     if (isNewCompany) {
-      var verification1 = _newCompany.hasInformationFilled;
+      var verification1 = newCompany!.hasInformationFilled;
       var verification2 = _isNewCompanyPhoneValid;
       var verification3 = isCompanyLogoPicked;
       return verification1 && verification2 && verification3;
@@ -261,35 +229,34 @@ class AddJobController extends ViewController {
   bool get isCompanyLogoPicked => _logoFile != null;
 
   void updateSelectedCompanySectorId(int id) {
-    _newCompany.activitySectorId = id;
+    newCompany!.activitySectorId = id;
     updateAddJobCreationSubmitButtonState();
   }
 
   void updateCompanyEmail(String value) {
-    _newCompany.email = value;
+    newCompany!.email = value;
     updateAddJobCreationSubmitButtonState();
   }
 
   void updateCompanyLegalForm(String value) {
-    _newCompany.legalForm = value;
+    newCompany!.legalForm = value;
     updateAddJobCreationSubmitButtonState();
   }
 
   void updateCompanyAddress(String value) {
-    _newCompany.address = value;
+    newCompany!.address = value;
     updateAddJobCreationSubmitButtonState();
   }
 
   void updateCompanyPhoneNumber(String value) {
-    String countryPrexif = _selectedPays!.callingCode!;
-    _newCompany.phoneNumber = countryPrexif + value;
+    String countryPrexif = selectedPays!.callingCode!;
+    newCompany!.phoneNumber = countryPrexif + value;
     updateAddJobCreationSubmitButtonState();
   }
 
   bool get _isNewCompanyPhoneValid {
-    return _newCompany.phoneNumber!.length ==
-        (_selectedPays!.callingCode!.length +
-            _selectedPays!.phoneNumberLength!);
+    return newCompany!.phoneNumber!.length ==
+        (selectedPays!.callingCode!.length + selectedPays!.phoneNumberLength!);
   }
 
   void updateCompanyLogo(File file) {
@@ -297,63 +264,55 @@ class AddJobController extends ViewController {
     updateAddJobCreationSubmitButtonState();
   }
 
-  HttpResponse<List<WorkExperience>>? _workExperienceResponse;
+  WorkExperience? selectedWorkExperience;
 
-  HttpResponse<List<WorkExperience>>? get workExperienceResponse =>
-      _workExperienceResponse;
-
-  WorkExperience? _selectedWorkExperience;
-
-  WorkExperience? get selectedWorkExperience => _selectedWorkExperience;
-
-  void getWorkExperiences() async {
-    _workExperienceResponse = null;
-    update(['add_work_experience']);
-    _workExperienceResponse = await _workExperienceCtl.getWorkExperiences();
-    update(['add_work_experience']);
+  Future<List<WorkExperience>> getWorkExperiences() async {
+    var res = await _workExperienceCtl.getWorkExperiences();
+    if (res.status) {
+      return res.data!;
+    } else {
+      return [];
+    }
   }
 
-  updateSelectedWorkExperience(WorkExperience workExperience) {
-    _selectedWorkExperience = workExperience;
-    update();
-  }
-
-  HttpResponse<List<JobCategory>>? _jobCategoryResponse;
-
-  HttpResponse<List<JobCategory>>? get jobCategoryResponse =>
-      _jobCategoryResponse;
-
-  JobCategory? _selectedJobCategory;
-
-  ContractType? get selectedContractType => _selectedContractType;
-
-  getJobCategories() async {
-    _jobCategoryResponse = null;
-    update(['add_job_category']);
-    _jobCategoryResponse = await _jobCategoryCtl.getJobCategory();
-    update(['add_job_category']);
-  }
-
-  updateSelectedJobCategory(JobCategory jobCategory) {
-    _selectedJobCategory = jobCategory;
-    update();
+  Future<List<JobCategory>> getJobCategories() async {
+    var res = await _jobCategoryCtl.getJobCategory();
+    if (res.status) {
+      return res.data!;
+    } else {
+      return [];
+    }
   }
 
   void updatePrerequesite(String value) {
-    _addJob.prerequisites = value;
+    addJob!.prerequisites = value;
     update(['add_job_description_submit']);
   }
 
-  Company? get selectedCompany => _selectedCompany;
-
-  JobCategory? get selectedJobCategory => _selectedJobCategory;
-
-  AddJob get addJob => _addJob;
-
-  bool get forJobUpdate => _forJobUpdate;
-
   void updateCompanyDescription(String value) {
-    _newCompany.description = value;
+    newCompany!.description = value;
     updateAddJobCreationSubmitButtonState();
+  }
+
+  @override
+  void onReady() {
+    super.onReady();
+    initJobInfo(jobOffer: jobOffer);
+    if (jobOffer != null) {
+      jobTitleCtrl.text = jobOffer!.label!;
+      jobPlaceCtrl.text = jobOffer!.workPlace!;
+    }
+
+    getJobSectors();
+    getContractTypes();
+    getPays();
+    getWorkExperiences();
+    getJobCategories();
+  }
+
+  Future<void> submit() async {
+    if (formKey.currentState!.validate()) {
+      Get.to(const AddJobOfferDescriptionPage());
+    }
   }
 }

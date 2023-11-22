@@ -1,14 +1,15 @@
-import 'package:wan_mobile/api/abstracts/http_client_const.dart';
-import 'package:wan_mobile/api/abstracts/web_controller.dart';
-import 'package:wan_mobile/models/security_question.dart';
-import 'package:wan_mobile/tools/utils/http_response.dart';
+import 'package:lebedoo_assets/lebedoo_assets.dart';
+import 'package:lebedoo_assets/tools/web/app_http_hearders.dart';
+import 'package:lebedoo_assets/tools/web/web_request.dart';
 
-class SecurityQuestionCtl extends WebController {
+import 'package:tools_flutter_project/tools/http/http_response.dart';
+
+class SecurityQuestionCtl {
   Future<HttpResponse<List<SecurityQuestion>>> getAll() async {
     try {
-      var res = await get(
-        HttpClientConst.baseUrl(module: "security-questions/all"),
-        headers: HttpClientConst.headers,
+      var res = await WebRequest.nativRequest(
+        AppHttpHeaders.baseUrl(module: "security-questions/all"),
+        headers: AppHttpHeaders.headers,
       );
 
       var body = HttpResponse.decodeBody(res);

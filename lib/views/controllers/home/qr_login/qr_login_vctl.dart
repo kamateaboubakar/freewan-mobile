@@ -4,7 +4,7 @@ import 'package:qr_code_scanner/qr_code_scanner.dart';
 import 'package:wan_mobile/api/controllers/qr_login/qr_login_api_ctl.dart';
 import 'package:wan_mobile/tools/types/types.dart';
 import 'package:wan_mobile/tools/utils/tools.dart';
-import 'package:wan_mobile/views/controllers/abstracts/view_controller.dart';
+import 'package:lebedoo_assets/views/controllers/abstracts/view_controller.dart';
 
 class QrLoginVctl extends ViewController {
   final GlobalKey qrKey = GlobalKey(debugLabel: 'QR');

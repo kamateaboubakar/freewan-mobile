@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:wan_mobile/models/user.dart';
+import 'package:lebedoo_assets/lebedoo_assets.dart';
 import 'package:wan_mobile/tools/widgets/c_button.dart';
 import 'package:wan_mobile/views/controllers/paiement/paiement_montant_vctl.dart';
 
@@ -18,9 +18,7 @@ class PaiementMontant extends StatelessWidget {
             appBar: AppBar(
               backgroundColor: Colors.white,
               foregroundColor: Colors.black,
-              title: const Text(
-                "Montant",
-              ),
+              title: const Text("Montant"),
             ),
             bottomNavigationBar: Padding(
               padding: const EdgeInsets.all(20),

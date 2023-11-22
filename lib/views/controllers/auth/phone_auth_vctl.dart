@@ -4,7 +4,7 @@ import 'package:wan_mobile/api/controllers/auth/user_api_ctl.dart';
 import 'package:wan_mobile/models/pays.dart';
 import 'package:wan_mobile/tools/types/types.dart';
 import 'package:wan_mobile/tools/utils/tools.dart';
-import 'package:wan_mobile/views/controllers/abstracts/view_controller.dart';
+import 'package:lebedoo_assets/views/controllers/abstracts/view_controller.dart';
 import 'package:wan_mobile/views/static/auth/otp_auth.dart';
 import 'package:wan_mobile/views/static/auth/password_page.dart';
 import 'package:wan_mobile/views/static/auth/register/register_page.dart';

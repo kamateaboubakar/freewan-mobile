@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
-
+import 'package:tools_flutter_project/tools/http/http_response.dart';
 import '../../../../models/shop.dart';
-import '../../../../tools/utils/http_response.dart';
 
 class BrandList extends StatelessWidget {
   final HttpResponse<Shop>? response;

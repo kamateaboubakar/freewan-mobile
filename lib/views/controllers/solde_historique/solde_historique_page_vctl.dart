@@ -5,7 +5,7 @@ import 'package:wan_mobile/models/solde_historique/stats/month_stats.dart';
 import 'package:wan_mobile/models/solde_historique/stats/service_stats.dart';
 import 'package:wan_mobile/tools/types/types.dart';
 import 'package:wan_mobile/tools/utils/tools.dart';
-import 'package:wan_mobile/views/controllers/abstracts/view_controller.dart';
+import 'package:lebedoo_assets/views/controllers/abstracts/view_controller.dart';
 
 class SoldeHistoriquePageVctl extends ViewController {
   List<AccountTransaction> transactions = [];

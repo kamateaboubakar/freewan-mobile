@@ -87,13 +87,11 @@ class _GazMapPageState extends State<GazMapPage> {
                     if (_gazController.hasUserLocation) ...{
                       Marker(
                         point: _gazController.userLocation!.toLatLng(),
-                        builder: (context) {
-                          return Image.asset(
-                            'assets/images/icons/marker_map.gif',
-                            width: 100,
-                            height: 100,
-                          );
-                        },
+                        child: Image.asset(
+                          'assets/images/icons/marker_map.gif',
+                          width: 100,
+                          height: 100,
+                        ),
                       )
                     },
                     if (shops != null) ...[
@@ -103,7 +101,7 @@ class _GazMapPageState extends State<GazMapPage> {
                           height: 65,
                           point:
                               LatLng(shops[i].latitude!, shops[i].longitude!),
-                          builder: (context) => SpeechBubble(
+                          child: SpeechBubble(
                             padding: EdgeInsets.zero,
                             borderRadius: 14,
                             color: Colors.red,

@@ -115,9 +115,11 @@ class _JobApplicationPageState extends State<JobApplicationPage> {
                                       child: Container(
                                         decoration: BoxDecoration(
                                           border: Border.all(color: Colors.red),
-                                          borderRadius: BorderRadius.circular(20),
+                                          borderRadius:
+                                              BorderRadius.circular(20),
                                         ),
-                                       padding: const EdgeInsets.symmetric(vertical: 2, horizontal: 8),
+                                        padding: const EdgeInsets.symmetric(
+                                            vertical: 2, horizontal: 8),
                                         child: const Row(
                                           children: [
                                             Text(

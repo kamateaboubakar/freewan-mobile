@@ -52,7 +52,7 @@ class ButtonMenu extends StatelessWidget {
                     textAlign: TextAlign.center,
                     maxLines: 2,
                     maxFontSize: 12,
-                    minFontSize: 9,
+                    minFontSize: 10,
                     style: const TextStyle(
                       fontWeight: FontWeight.w600,
                     ),

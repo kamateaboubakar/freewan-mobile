@@ -18,13 +18,14 @@ class PasswordPage extends StatelessWidget {
         builder: (ctl) {
           return Scaffold(
               appBar: AppBar(
-                  leading: IconButton(
-                    tooltip: "Déconnectez-vous",
-                    color: AssetColors.blueButton,
-                    icon: const Icon(Icons.arrow_back),
-                    onPressed: ctl.logout,
-                  ),
-                  title: const Text("Mot de passe")),
+                leading: IconButton(
+                  tooltip: "Déconnectez-vous",
+                  color: AssetColors.blueButton,
+                  icon: const Icon(Icons.arrow_back),
+                  onPressed: ctl.logout,
+                ),
+                title: const Text("Mot de passe"),
+              ),
               body: Column(
                 children: [
                   Expanded(

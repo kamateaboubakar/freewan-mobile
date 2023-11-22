@@ -1,7 +1,13 @@
-import 'package:get/get.dart';
+import 'package:lebedoo_assets/views/controllers/abstracts/view_controller.dart';
 import 'package:wan_mobile/views/tools/routes.dart';
 
-class CategorizedHomeVctl extends GetxController {
-  String selectedCategorie = Routes.groupes.first;
+class CategorizedHomeVctl extends ViewController {
+  late String selectedCategorie;
+  Routes routes = Routes();
+
+  CategorizedHomeVctl() {
+    selectedCategorie = routes.groupes.first;
+  }
+
   var search = "";
 }

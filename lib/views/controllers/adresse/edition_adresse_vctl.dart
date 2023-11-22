@@ -5,9 +5,9 @@ import 'package:wan_mobile/tools/services/location_service.dart';
 import 'package:wan_mobile/models/adresse.dart';
 import 'package:wan_mobile/models/location_model.dart';
 import 'package:wan_mobile/tools/types/types.dart';
-import 'package:wan_mobile/tools/utils/http_response.dart';
+import 'package:tools_flutter_project/tools/http/http_response.dart';
 import 'package:wan_mobile/tools/utils/tools.dart';
-import 'package:wan_mobile/views/controllers/abstracts/view_controller.dart';
+import 'package:lebedoo_assets/views/controllers/abstracts/view_controller.dart';
 
 class EditionAdresseVctl extends ViewController {
   var labelCtl = TextEditingController();

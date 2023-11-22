@@ -5,7 +5,7 @@ import 'package:wan_mobile/models/loyer/abstracts/bloc_appartement.dart';
 import 'package:wan_mobile/models/loyer/maison.dart';
 import 'package:wan_mobile/tools/types/types.dart';
 import 'package:wan_mobile/tools/utils/tools.dart';
-import 'package:wan_mobile/views/controllers/abstracts/view_controller.dart';
+import 'package:lebedoo_assets/views/controllers/abstracts/view_controller.dart';
 
 class FormEditionBienImmobilierVctl extends ViewController {
   bool isMaison;

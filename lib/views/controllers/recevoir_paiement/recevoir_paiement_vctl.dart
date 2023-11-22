@@ -1,7 +1,7 @@
 import 'dart:async';
 
 import 'package:wan_mobile/tools/types/types.dart';
-import 'package:wan_mobile/views/controllers/abstracts/view_controller.dart';
+import 'package:lebedoo_assets/views/controllers/abstracts/view_controller.dart';
 
 class RecevoirPaiementVctl extends ViewController {
   String? qrData;

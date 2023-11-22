@@ -1,13 +1,15 @@
-import 'package:wan_mobile/api/abstracts/http_client_const.dart';
-import 'package:wan_mobile/api/abstracts/web_controller.dart';
-import 'package:wan_mobile/models/pays.dart';
-import 'package:wan_mobile/tools/utils/http_response.dart';
+import 'package:lebedoo_assets/tools/web/app_http_hearders.dart';
+import 'package:lebedoo_assets/tools/web/web_request.dart';
 
-class PaysApiCtl extends WebController {
+import 'package:wan_mobile/models/pays.dart';
+import 'package:tools_flutter_project/tools/http/http_response.dart';
+
+class PaysApiCtl {
   Future<HttpResponse<List<Pays>>> getAll() async {
     try {
-      var res = await get(HttpClientConst.baseUrl(module: "countries/all"),
-          headers: HttpClientConst.headers);
+      var res = await WebRequest.nativRequest(
+          AppHttpHeaders.baseUrl(module: "countries/all"),
+          headers: AppHttpHeaders.headers);
       var body = HttpResponse.decodeBody(res);
 
       if (body.status) {
@@ -23,7 +25,7 @@ class PaysApiCtl extends WebController {
     }
   }
 
-//  var response = await client.post(
+//  var response = await client.WebRequest.nativRequest(
 //       baseUrl(),
 //       body: {
 //         "query": "query GetCountryCodes{ "

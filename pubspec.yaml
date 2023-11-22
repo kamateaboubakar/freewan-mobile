@@ -36,11 +36,9 @@ dependencies:
   smooth_page_indicator: ^1.0.1
   shimmer: ^2.0.0
   badges: ^3.1.0
-  http: ^0.13.5
   dropdown_search: ^5.0.5
   progress_dialog_null_safe: ^1.0.6
   flutter_otp_text_field: ^1.1.1
-  google_fonts: ^4.0.3
   shared_preferences: ^2.0.15
   date_format: ^2.0.5
   advance_expansion_tile: ^1.0.2
@@ -62,7 +60,7 @@ dependencies:
 
   # The following adds the Cupertino Icons font to your application.
   # Use with the CupertinoIcons class for iOS style icons.
-  flutter_map: ^4.0.0
+  flutter_map: ^6.0.1
   location: ^4.4.0
   geocoding: ^2.1.1
   cupertino_icons: ^1.0.2
@@ -72,7 +70,6 @@ dependencies:
   flutter_scrolling_fab_animated: ^0.1.4
   path: ^1.8.2
   url_launcher: ^6.1.11
-  gap: ^3.0.0
   qr_flutter: ^4.1.0
   readmore: ^2.2.0
   flutter_rating_bar: ^4.0.1
@@ -89,12 +86,19 @@ dependencies:
   credit_card_scanner: ^1.0.5
   flutter_local_notifications: ^15.1.1
 
-  
-  
+  # Modules Lebedoo
+  job:
+    path: ../modules/job
 
-  # majesticmodel:
-    # path: ../majesticmodel
+  lebedoo_assets:
+    path: ../modules/lebedoo_assets
 
+  tools_flutter_project:
+    git: 
+      url: https://github.com/Isofth/tools_flutter_project.git
+      ref: main
+
+  # FIN Modules Lebedoo
 
 dev_dependencies:
   flutter_test:
@@ -125,6 +129,8 @@ flutter:
     - assets/images/flags/
     - assets/images/icons/
     - assets/images/don/
+    - assets/job/
+    - assets/.env
   #   - images/a_dot_ham.jpeg
 
   # An image asset can refer to one or more resolution-specific "variants", see

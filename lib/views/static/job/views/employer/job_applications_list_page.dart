@@ -17,8 +17,10 @@ class JobApplicationsListPage extends StatefulWidget {
 }
 
 class _JobApplicationsListPageState extends State<JobApplicationsListPage> {
-  JobApplicationsListController _jobApplicationListController = Get.put(JobApplicationsListController());
-  final JobOfferAppliedController _jobOfferAppliedController = Get.put(JobOfferAppliedController());
+  JobApplicationsListController _jobApplicationListController =
+      Get.put(JobApplicationsListController());
+  final JobOfferAppliedController _jobOfferAppliedController =
+      Get.put(JobOfferAppliedController());
 
   @override
   void initState() {
@@ -127,8 +129,7 @@ class _JobApplicationsListPageState extends State<JobApplicationsListPage> {
                     color: AssetColors.blueButton,
                   ),
                 ),
-                Text(
-                    jobOffer.applicantDetails!.fullName),
+                Text(jobOffer.applicantDetails!.fullName),
                 Text("${jobOffer.applicantDetails!.email}"),
               ],
             ),

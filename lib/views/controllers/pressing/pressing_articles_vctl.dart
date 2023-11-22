@@ -2,10 +2,10 @@ import 'package:wan_mobile/api/controllers/pressing_api_ctl.dart';
 import 'package:wan_mobile/models/pressing/pressing.dart';
 import 'package:wan_mobile/models/pressing/pressing_article_category.dart';
 import 'package:wan_mobile/models/pressing/pressing_service.dart';
-import 'package:wan_mobile/views/controllers/abstracts/view_controller.dart';
+import 'package:lebedoo_assets/views/controllers/abstracts/view_controller.dart';
 
 import '../../../models/pressing/pressing_article.dart';
-import '../../../tools/utils/http_response.dart';
+import 'package:tools_flutter_project/tools/http/http_response.dart';
 
 class PressingArticlesController extends ViewController {
   final PressingApiCtl _pressingApiCtl = PressingApiCtl();
@@ -88,7 +88,8 @@ class PressingArticlesController extends ViewController {
     return false;
   }
 
-  int get selectedArticleCount => _selectedArticles.fold(0, (prev, current) => prev + current.quantity!);
+  int get selectedArticleCount =>
+      _selectedArticles.fold(0, (prev, current) => prev + current.quantity!);
 
   void reset() {
     _pressingArticleCategories = null;

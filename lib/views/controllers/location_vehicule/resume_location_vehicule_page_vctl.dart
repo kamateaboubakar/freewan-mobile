@@ -8,7 +8,7 @@ import 'package:wan_mobile/models/location_vehicule/mode_paiement.dart';
 import 'package:wan_mobile/tools/types/types.dart';
 import 'package:wan_mobile/tools/utils/tools.dart';
 import 'package:wan_mobile/tools/widgets/date_time_range_editing_controller.dart';
-import 'package:wan_mobile/views/controllers/abstracts/view_controller.dart';
+import 'package:lebedoo_assets/views/controllers/abstracts/view_controller.dart';
 import 'package:wan_mobile/views/static/home/home_page.dart';
 
 class ResumeLocationVehiculePageVctl extends ViewController {

@@ -1,24 +1,27 @@
-import 'package:wan_mobile/api/abstracts/http_client_const.dart';
-import 'package:wan_mobile/api/abstracts/web_controller.dart';
+import 'package:lebedoo_assets/lebedoo_assets.dart';
+import 'package:lebedoo_assets/tools/web/app_http_hearders.dart';
+import 'package:lebedoo_assets/tools/web/web_request.dart';
+
 import 'package:wan_mobile/models/scolarite/search_etudiant_result.dart';
 import 'package:wan_mobile/tools/types/types.dart';
-import 'package:wan_mobile/tools/utils/http_response.dart';
+import 'package:tools_flutter_project/tools/http/http_response.dart';
 
-class ScolariteApiCtl extends WebController {
+class ScolariteApiCtl {
   Future<HttpResponse<SearchEtudiantResult>> searchEtudiant({
     required String numeroIdentification,
     required String anneeScolaire,
   }) async {
     try {
-      final response = await post(
-        HttpClientConst.baseUrl(module: "external"),
-        {
-          "verbe": "POST",
-          "port": "8087",
-          "service":
+      final response = await WebRequest.nativRequest(
+        verbe: RequestVerbeEnum.POST,
+        AppHttpHeaders.baseUrl(module: "external"),
+        body: BodyObject(
+          verbe: RequestVerbeEnum.POST,
+          port: 8087,
+          service:
               "api/v1/etudiants/search?numero_identification=$numeroIdentification&annee_scolaire=$anneeScolaire",
-        }.parseToJson(),
-        headers: HttpClientConst.authHeaders,
+        ),
+        headers: AppHttpHeaders.authHeaders,
       );
       var body = HttpResponse.decodeBody(response);
       if (body.status) {
@@ -46,22 +49,23 @@ class ScolariteApiCtl extends WebController {
     required int etudiantId,
   }) async {
     try {
-      final response = await post(
-        HttpClientConst.baseUrl(module: "external"),
-        {
-          "verbe": "POST",
-          "port": "8087",
-          "service": "api/v1/paiements/store",
-          "body": {
+      final response = await WebRequest.nativRequest(
+        verbe: RequestVerbeEnum.POST,
+        AppHttpHeaders.baseUrl(module: "external"),
+        body: BodyObject(
+          verbe: RequestVerbeEnum.POST,
+          port: 8087,
+          service: "api/v1/paiements/store",
+          body: {
             "moyen_paiement": moyenPaiement,
             "montant": montant,
             "numero_paiement": numeroPaiement,
             "user_paiement_id": userPaiementId,
             "classe_id": classeId,
             "etudiant_id": etudiantId,
-          }
-        }.parseToJson(),
-        headers: HttpClientConst.authHeaders,
+          },
+        ),
+        headers: AppHttpHeaders.authHeaders,
       );
       var body = HttpResponse.decodeBody(response);
       if (body.status) {

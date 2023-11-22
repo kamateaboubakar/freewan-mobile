@@ -1,6 +1,8 @@
-import 'package:wan_mobile/api/abstracts/http_client_const.dart';
+import 'package:lebedoo_assets/lebedoo_assets.dart';
+import 'package:lebedoo_assets/tools/web/app_http_hearders.dart';
+import 'package:lebedoo_assets/tools/web/web_request.dart';
 import 'package:wan_mobile/api/abstracts/links.dart';
-import 'package:wan_mobile/api/abstracts/web_controller.dart';
+
 import 'package:wan_mobile/models/loyer/abstracts/bien_immobilier.dart';
 import 'package:wan_mobile/models/loyer/abstracts/bloc_appartement.dart';
 import 'package:wan_mobile/models/loyer/abstracts/habitat.dart';
@@ -9,15 +11,15 @@ import 'package:wan_mobile/models/loyer/maison.dart';
 import 'package:wan_mobile/models/loyer/paiement_loyer.dart';
 import 'package:wan_mobile/models/loyer/type_appartement.dart';
 import 'package:wan_mobile/tools/types/types.dart';
-import 'package:wan_mobile/tools/utils/http_response.dart';
+import 'package:tools_flutter_project/tools/http/http_response.dart';
 
-class LoyerApiCtl extends WebController {
+class LoyerApiCtl {
   Future<HttpResponse<List<BlocAppartement>>> getBlocAppartementsByUser(
       String id) async {
     try {
-      var res = await get(
+      var res = await WebRequest.nativRequest(
         "${Links.loyer}/bienImmobiliers/blocAppartement/byOwner/$id",
-        headers: HttpClientConst.headers,
+        headers: AppHttpHeaders.headers,
       );
 
       var body = HttpResponse.decodeBody<List>(res);
@@ -34,9 +36,9 @@ class LoyerApiCtl extends WebController {
 
   Future<HttpResponse<List<Maison>>> getMaisonsByUser(String id) async {
     try {
-      var res = await get(
+      var res = await WebRequest.nativRequest(
         "${Links.loyer}/bienImmobiliers/maison/byOwner/$id",
-        headers: HttpClientConst.headers,
+        headers: AppHttpHeaders.headers,
       );
 
       var body = HttpResponse.decodeBody<List>(res);
@@ -54,10 +56,11 @@ class LoyerApiCtl extends WebController {
   Future<HttpResponse<BienImmobilier>> createBloc(
       BienImmobilier bienImmobilier) async {
     try {
-      var res = await post(
+      var res = await WebRequest.nativRequest(
         "${Links.loyer}/blocApparts/",
-        bienImmobilier.toJson().parseToJson(),
-        headers: HttpClientConst.headers,
+        verbe: RequestVerbeEnum.POST,
+        body: bienImmobilier.toJson().parseToJson(),
+        headers: AppHttpHeaders.headers,
       );
 
       var body = HttpResponse.decodeBody<Json>(res);
@@ -74,10 +77,11 @@ class LoyerApiCtl extends WebController {
   Future<HttpResponse<BienImmobilier>> createMaison(
       BienImmobilier bienImmobilier) async {
     try {
-      var res = await post(
+      var res = await WebRequest.nativRequest(
+        verbe: RequestVerbeEnum.POST,
         "${Links.loyer}/bienImmobiliers/maison",
-        bienImmobilier.toJson().parseToJson(),
-        headers: HttpClientConst.headers,
+        body: bienImmobilier.toJson().parseToJson(),
+        headers: AppHttpHeaders.headers,
       );
 
       var body = HttpResponse.decodeBody<Json>(res);
@@ -94,10 +98,11 @@ class LoyerApiCtl extends WebController {
   Future<HttpResponse<BienImmobilier>> updateMaison(
       BienImmobilier bienImmobilier) async {
     try {
-      var res = await post(
+      var res = await WebRequest.nativRequest(
+        verbe: RequestVerbeEnum.POST,
         "${Links.loyer}/bienImmobiliers/maison/update",
-        bienImmobilier.toJson().parseToJson(),
-        headers: HttpClientConst.headers,
+        body: bienImmobilier.toJson().parseToJson(),
+        headers: AppHttpHeaders.headers,
       );
 
       var body = HttpResponse.decodeBody<Json>(res);
@@ -114,9 +119,9 @@ class LoyerApiCtl extends WebController {
   Future<HttpResponse<List<BlocAppartement>>> getAllBlocAppartByUser(
       String userId) async {
     try {
-      var res = await get(
+      var res = await WebRequest.nativRequest(
         "${Links.loyer}/blocApparts/getblockByOwner/$userId",
-        headers: HttpClientConst.headers,
+        headers: AppHttpHeaders.headers,
       );
 
       var body = HttpResponse.decodeBody<List>(res);
@@ -133,8 +138,9 @@ class LoyerApiCtl extends WebController {
 
   Future<HttpResponse<List<TypeAppartement>>> getAllTypeAppartements() async {
     try {
-      var res = await get("${Links.loyer}/typeAppartements/",
-          headers: HttpClientConst.headers);
+      var res = await WebRequest.nativRequest(
+          "${Links.loyer}/typeAppartements/",
+          headers: AppHttpHeaders.headers);
 
       var body = HttpResponse.decodeBody<List>(res);
       if (body.status) {
@@ -151,10 +157,11 @@ class LoyerApiCtl extends WebController {
   Future<HttpResponse<Appartement>> createAppartement(
       Appartement appartement) async {
     try {
-      var res = await post(
+      var res = await WebRequest.nativRequest(
+        verbe: RequestVerbeEnum.POST,
         "${Links.loyer}/bienImmobiliers/appartement",
-        appartement.toJson().parseToJson(),
-        headers: HttpClientConst.headers,
+        body: appartement.toJson().parseToJson(),
+        headers: AppHttpHeaders.headers,
       );
 
       var body = HttpResponse.decodeBody<Json>(res);
@@ -171,10 +178,11 @@ class LoyerApiCtl extends WebController {
   Future<HttpResponse<Appartement>> updateAppartement(
       Appartement appartement) async {
     try {
-      var res = await post(
+      var res = await WebRequest.nativRequest(
+        verbe: RequestVerbeEnum.POST,
         "${Links.loyer}/bienImmobiliers/appartement/update",
-        appartement.toJson().parseToJson(),
-        headers: HttpClientConst.headers,
+        body: appartement.toJson().parseToJson(),
+        headers: AppHttpHeaders.headers,
       );
 
       var body = HttpResponse.decodeBody<Json>(res);
@@ -191,9 +199,9 @@ class LoyerApiCtl extends WebController {
   Future<HttpResponse<List<PaiementLoyer>>> historiquePaiementFromAppartementId(
       int appartementId) async {
     try {
-      var res = await get(
+      var res = await WebRequest.nativRequest(
         "${Links.loyer}/paiements/historique/habitat/$appartementId",
-        headers: HttpClientConst.headers,
+        headers: AppHttpHeaders.headers,
       );
 
       var body = HttpResponse.decodeBody<List>(res);
@@ -210,9 +218,9 @@ class LoyerApiCtl extends WebController {
 
   Future<HttpResponse<Habitat>> getHabitatByCode(String code) async {
     try {
-      var res = await get(
+      var res = await WebRequest.nativRequest(
         "${Links.loyer}/bienImmobiliers/getHabitat/$code",
-        headers: HttpClientConst.headers,
+        headers: AppHttpHeaders.headers,
       );
 
       var body = HttpResponse.decodeBody<Json>(res);
@@ -233,10 +241,11 @@ class LoyerApiCtl extends WebController {
   Future<HttpResponse<PaiementLoyer>> payerLoyer(
       PaiementLoyer paiementLoyer) async {
     try {
-      var res = await post(
+      var res = await WebRequest.nativRequest(
+        verbe: RequestVerbeEnum.POST,
         "${Links.loyer}/paiements/payer",
-        paiementLoyer.toJson().parseToJson(),
-        headers: HttpClientConst.headers,
+        body: paiementLoyer.toJson().parseToJson(),
+        headers: AppHttpHeaders.headers,
       );
 
       var body = HttpResponse.decodeBody(res);
@@ -253,10 +262,15 @@ class LoyerApiCtl extends WebController {
   Future<HttpResponse<Json>> checkPaiement(
       {required int habitatId, required int mois, required int annee}) async {
     try {
-      var res = await post(
+      var res = await WebRequest.nativRequest(
+        verbe: RequestVerbeEnum.POST,
         "${Links.loyer}/paiements/checkPaiement",
-        {"mois": mois, "annee": annee, "habitat": habitatId}.parseToJson(),
-        headers: HttpClientConst.headers,
+        body: {
+          "mois": mois,
+          "annee": annee,
+          "habitat": habitatId,
+        }.parseToJson(),
+        headers: AppHttpHeaders.headers,
       );
 
       var body = HttpResponse.decodeBody(res);

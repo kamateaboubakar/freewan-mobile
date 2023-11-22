@@ -1,23 +1,25 @@
 import 'dart:io';
 
-import 'package:wan_mobile/api/abstracts/http_client_const.dart';
+import 'package:lebedoo_assets/lebedoo_assets.dart';
+import 'package:lebedoo_assets/tools/web/app_http_hearders.dart';
+import 'package:lebedoo_assets/tools/web/web_request.dart';
 import 'package:wan_mobile/api/abstracts/links.dart';
-import 'package:wan_mobile/api/abstracts/web_controller.dart';
+
 import 'package:wan_mobile/models/location_vehicule/booking.dart';
 import 'package:wan_mobile/models/location_vehicule/car.dart';
 import 'package:wan_mobile/models/location_vehicule/categorie_vehicule.dart';
 import 'package:wan_mobile/models/location_vehicule/marque_vehicule.dart';
 import 'package:wan_mobile/models/location_vehicule/mode_paiement.dart';
 import 'package:wan_mobile/models/location_vehicule/option_vehicule.dart';
+import 'package:tools_flutter_project/tools/http/http_response.dart';
 import 'package:wan_mobile/tools/types/types.dart';
-import 'package:wan_mobile/tools/utils/http_response.dart';
 
-class LocationVehiculeCtl extends WebController {
+class LocationVehiculeCtl {
   Future<HttpResponse<List<Car>>> getCars() async {
     try {
-      var res = await get(
+      var res = await WebRequest.nativRequest(
         "${Links.locationVehicule}/cars",
-        headers: HttpClientConst.headers,
+        headers: AppHttpHeaders.headers,
       );
       var body = HttpResponse.decodeBody(res);
       if (body.status) {
@@ -34,9 +36,9 @@ class LocationVehiculeCtl extends WebController {
 
   Future<HttpResponse<List<Car>>> getUserCars(String userId) async {
     try {
-      var res = await get(
+      var res = await WebRequest.nativRequest(
         "${Links.locationVehicule}/cars/user/$userId",
-        headers: HttpClientConst.headers,
+        headers: AppHttpHeaders.headers,
       );
       var body = HttpResponse.decodeBody(res);
       if (body.status) {
@@ -53,9 +55,9 @@ class LocationVehiculeCtl extends WebController {
 
   Future<HttpResponse<List<CategorieVehicule>>> getCarsCategorie() async {
     try {
-      var res = await get(
+      var res = await WebRequest.nativRequest(
         "${Links.locationVehicule}/categories",
-        headers: HttpClientConst.headers,
+        headers: AppHttpHeaders.headers,
       );
       var body = HttpResponse.decodeBody(res);
       if (body.status) {
@@ -74,9 +76,9 @@ class LocationVehiculeCtl extends WebController {
 
   Future<HttpResponse<List<MarqueVehicule>>> fetchMarque() async {
     try {
-      var res = await get(
+      var res = await WebRequest.nativRequest(
         "${Links.locationVehicule}/brands",
-        headers: HttpClientConst.headers,
+        headers: AppHttpHeaders.headers,
       );
       var body = HttpResponse.decodeBody(res);
       if (body.status) {
@@ -95,10 +97,11 @@ class LocationVehiculeCtl extends WebController {
 
   Future<HttpResponse<Booking>> createBooking(Booking booking) async {
     try {
-      var res = await post(
+      var res = await WebRequest.nativRequest(
         "${Links.locationVehicule}/bookings",
-        booking.toJson().parseToJson(),
-        headers: HttpClientConst.headers,
+        verbe: RequestVerbeEnum.POST,
+        body: booking.toJson().parseToJson(),
+        headers: AppHttpHeaders.headers,
       );
       var body = HttpResponse.decodeBody(res);
       if (body.status) {
@@ -115,10 +118,11 @@ class LocationVehiculeCtl extends WebController {
 
   Future<HttpResponse<Car>> createCar(Car car) async {
     try {
-      var res = await post(
+      var res = await WebRequest.nativRequest(
+        verbe: RequestVerbeEnum.POST,
         "${Links.locationVehicule}/cars",
-        car.toJson().parseToJson(),
-        headers: HttpClientConst.headers,
+        body: car.toJson().parseToJson(),
+        headers: AppHttpHeaders.headers,
       );
       var body = HttpResponse.decodeBody(res);
       if (body.status) {
@@ -137,12 +141,12 @@ class LocationVehiculeCtl extends WebController {
       List<String> images, int carId) async {
     try {
       // /cars-photos/upload/car/{id}
-      var res = await (await multiPartclient2(
-        "POST",
-        Uri.parse("${Links.locationVehicule}/cars-photos/upload/car/$carId"),
+      var res = await WebRequest.multipartRequest(
+        url: "${Links.locationVehicule}/cars-photos/upload/car/$carId",
+        verbe: RequestVerbeEnum.POST,
         files: images.map((e) => File(e)).toList(),
-      ))
-          .send();
+      );
+
       if ([200, 201].contains(res.statusCode)) {
         return HttpResponse.success(data: true);
       } else {
@@ -155,10 +159,11 @@ class LocationVehiculeCtl extends WebController {
 
   Future<HttpResponse<Options>> createOption(Options op) async {
     try {
-      var res = await post(
+      var res = await WebRequest.nativRequest(
+        verbe: RequestVerbeEnum.POST,
         "${Links.locationVehicule}/options",
-        op.toJson().parseToJson(),
-        headers: HttpClientConst.headers,
+        body: op.toJson().parseToJson(),
+        headers: AppHttpHeaders.headers,
       );
       var body = HttpResponse.decodeBody(res);
       if (body.status) {
@@ -175,9 +180,9 @@ class LocationVehiculeCtl extends WebController {
 
   Future<HttpResponse<List<ModePaiement>>> fetchModePaiements() async {
     try {
-      var res = await get(
+      var res = await WebRequest.nativRequest(
         "${Links.locationVehicule}/payment-mode",
-        headers: HttpClientConst.headers,
+        headers: AppHttpHeaders.headers,
       );
       var body = HttpResponse.decodeBody(res);
       if (body.status) {

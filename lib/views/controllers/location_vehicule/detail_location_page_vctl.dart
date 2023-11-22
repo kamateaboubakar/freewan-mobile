@@ -3,7 +3,7 @@ import 'package:get/get.dart';
 import 'package:wan_mobile/models/location_vehicule/car.dart';
 import 'package:wan_mobile/tools/utils/tools.dart';
 import 'package:wan_mobile/tools/widgets/date_time_range_editing_controller.dart';
-import 'package:wan_mobile/views/controllers/abstracts/view_controller.dart';
+import 'package:lebedoo_assets/views/controllers/abstracts/view_controller.dart';
 import 'package:wan_mobile/views/static/location_vehicule/location/resume_location_vehicule_page.dart';
 
 class DetailLocationVehiculePageVctl extends ViewController {

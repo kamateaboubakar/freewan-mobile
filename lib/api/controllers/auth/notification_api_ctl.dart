@@ -1,16 +1,15 @@
-import 'package:wan_mobile/api/abstracts/http_client_const.dart';
-import 'package:wan_mobile/api/abstracts/web_controller.dart';
+import 'package:lebedoo_assets/lebedoo_assets.dart';
+import 'package:lebedoo_assets/tools/web/app_http_hearders.dart';
+import 'package:lebedoo_assets/tools/web/web_request.dart';
+import 'package:tools_flutter_project/tools/http/http_response.dart';
 import 'package:wan_mobile/models/app_notification.dart';
-import 'package:wan_mobile/tools/types/types.dart';
 
-import '../../../tools/utils/http_response.dart';
-
-class NotificationApiCtl extends WebController {
+class NotificationApiCtl {
   Future<HttpResponse<List<AppNotification>>> getNotifications() async {
     try {
-      var res = await get(
-        HttpClientConst.baseUrl(module: "notifications/userNotifications"),
-        headers: HttpClientConst.authHeaders,
+      var res = await WebRequest.nativRequest(
+        AppHttpHeaders.baseUrl(module: "notifications/userNotifications"),
+        headers: AppHttpHeaders.authHeaders,
       );
       var body = HttpResponse.decodeBody(res);
       if (body.status) {
@@ -28,11 +27,10 @@ class NotificationApiCtl extends WebController {
 
   Future<HttpResponse<bool>> setRead(int notificationId) async {
     try {
-      var response = await put(
-        HttpClientConst.baseUrl(
-            module: "notifications/setRead/$notificationId"),
-        {}.parseToJson(),
-        headers: HttpClientConst.authHeaders,
+      var response = await WebRequest.nativRequest(
+        verbe: RequestVerbeEnum.PUT,
+        AppHttpHeaders.baseUrl(module: "notifications/setRead/$notificationId"),
+        headers: AppHttpHeaders.authHeaders,
       );
 
       var body = HttpResponse.decodeBody(response);

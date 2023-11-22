@@ -22,9 +22,14 @@ class MoreOptionHomePage extends StatelessWidget {
         padding: const EdgeInsets.all(10),
         children: [
           CardMenu(
-            children: Routes.routes(menus: [
-              MenuButtonEnum.scolarite,
-            ]).map((e) => e.button).toList(),
+            children: Routes()
+                .routesByList(
+                  menus: [
+                    MenuButtonEnum.scolarite,
+                  ],
+                )
+                .map((e) => e.button)
+                .toList(),
           )
         ],
       ),

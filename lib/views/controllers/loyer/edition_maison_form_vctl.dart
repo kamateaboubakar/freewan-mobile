@@ -4,7 +4,7 @@ import 'package:wan_mobile/api/controllers/loyer/loyer_api_ctl.dart';
 import 'package:wan_mobile/models/loyer/maison.dart';
 import 'package:wan_mobile/tools/types/types.dart';
 import 'package:wan_mobile/tools/utils/tools.dart';
-import 'package:wan_mobile/views/controllers/abstracts/view_controller.dart';
+import 'package:lebedoo_assets/views/controllers/abstracts/view_controller.dart';
 
 class EditionMaisonFormCtl extends ViewController {
   Maison item;

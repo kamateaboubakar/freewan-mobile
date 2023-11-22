@@ -57,7 +57,10 @@ class _JobListViewState extends State<JobListView> {
             return Center(
               child: Column(
                 children: [
-                  Image.asset("assets/images/icons/empty_folder.png", width: 100,),
+                  Image.asset(
+                    "assets/images/icons/empty_folder.png",
+                    width: 100,
+                  ),
                   const SizedBox(height: 10),
                   const Text('Aucune offre'),
                 ],

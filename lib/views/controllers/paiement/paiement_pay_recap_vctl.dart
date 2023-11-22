@@ -8,7 +8,7 @@ import 'package:wan_mobile/tools/const/paiement/account_transaction_status.dart'
 import 'package:wan_mobile/tools/services/notification_service.dart';
 import 'package:wan_mobile/tools/types/types.dart';
 import 'package:wan_mobile/tools/utils/tools.dart';
-import 'package:wan_mobile/views/controllers/abstracts/view_controller.dart';
+import 'package:lebedoo_assets/views/controllers/abstracts/view_controller.dart';
 import 'package:wan_mobile/views/static/paiement/webview_paiement_page.dart';
 
 class PaiementRecapVctl extends ViewController {

@@ -1,15 +1,16 @@
-import 'package:wan_mobile/api/abstracts/http_client_const.dart';
-import 'package:wan_mobile/api/abstracts/web_controller.dart';
+import 'package:lebedoo_assets/lebedoo_assets.dart';
+import 'package:lebedoo_assets/tools/web/app_http_hearders.dart';
+import 'package:lebedoo_assets/tools/web/web_request.dart';
 import 'package:wan_mobile/models/adresse.dart';
+import 'package:tools_flutter_project/tools/http/http_response.dart';
 import 'package:wan_mobile/tools/types/types.dart';
-import 'package:wan_mobile/tools/utils/http_response.dart';
 
-class AdresseApiCtl extends WebController {
+class AdresseApiCtl {
   Future<HttpResponse<List<Adresse>>> getUserAdresses() async {
     try {
-      var res = await get(
-        HttpClientConst.baseUrl(module: "adresses/all"),
-        headers: HttpClientConst.authHeaders,
+      var res = await WebRequest.nativRequest(
+        AppHttpHeaders.baseUrl(module: "adresses/all"),
+        headers: AppHttpHeaders.authHeaders,
       );
       var body = HttpResponse.decodeBody(res);
       if (body.status) {
@@ -30,10 +31,11 @@ class AdresseApiCtl extends WebController {
 
   Future<HttpResponse<Adresse>> createAdresse(Adresse adresse) async {
     try {
-      var res = await post(
-        HttpClientConst.baseUrl(module: "adresses/create"),
-        adresse.toJson().parseToJson(),
-        headers: HttpClientConst.authHeaders,
+      var res = await WebRequest.nativRequest(
+        verbe: RequestVerbeEnum.POST,
+        AppHttpHeaders.baseUrl(module: "adresses/create"),
+        body: adresse.toJson().parseToJson(),
+        headers: AppHttpHeaders.authHeaders,
       );
       var body = HttpResponse.decodeBody(res);
       if (body.status) {
@@ -52,10 +54,11 @@ class AdresseApiCtl extends WebController {
 
   Future<HttpResponse<Adresse>> updateAdresse(Adresse adresse) async {
     try {
-      var res = await put(
-        HttpClientConst.baseUrl(module: "adresses/update/${adresse.id}"),
-        adresse.toJson().parseToJson(),
-        headers: HttpClientConst.authHeaders,
+      var res = await WebRequest.nativRequest(
+        verbe: RequestVerbeEnum.PUT,
+        AppHttpHeaders.baseUrl(module: "adresses/update/${adresse.id}"),
+        body: adresse.toJson().parseToJson(),
+        headers: AppHttpHeaders.authHeaders,
       );
       var body = HttpResponse.decodeBody(res);
       if (body.status) {
@@ -74,10 +77,10 @@ class AdresseApiCtl extends WebController {
 
   Future<HttpResponse<Adresse>> deleteAdresse(int adresseId) async {
     try {
-      var res = await put(
-        HttpClientConst.baseUrl(module: "adresses/$adresseId"),
-        {}.parseToJson(),
-        headers: HttpClientConst.authHeaders,
+      var res = await WebRequest.nativRequest(
+        verbe: RequestVerbeEnum.PUT,
+        AppHttpHeaders.baseUrl(module: "adresses/$adresseId"),
+        headers: AppHttpHeaders.authHeaders,
       );
 
       var body = HttpResponse.decodeBody(res);

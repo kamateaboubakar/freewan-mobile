@@ -1,16 +1,19 @@
 import 'dart:convert';
 import 'dart:developer';
 
-import 'package:wan_mobile/api/abstracts/http_client_const.dart';
-import 'package:wan_mobile/api/abstracts/web_controller.dart';
+import 'package:lebedoo_assets/lebedoo_assets.dart';
+import 'package:lebedoo_assets/tools/web/app_http_hearders.dart';
+import 'package:lebedoo_assets/tools/web/web_request.dart';
+
 import 'package:wan_mobile/models/job/add_job.dart';
 import 'package:wan_mobile/models/job/apply_job.dart';
-import 'package:wan_mobile/tools/utils/http_response.dart';
+import 'package:tools_flutter_project/tools/http/http_response.dart';
+import 'package:wan_mobile/tools/types/types.dart';
 
 import '../../models/job/job_offer.dart';
 import '../../tools/const/const.dart';
 
-class JobApiCtrl extends WebController {
+class JobApiCtrl {
   Future<HttpResponse<List<JobOffer>>> getAllJobs({String? customerId}) async {
     try {
       var url = "${Const.jobBaseUrl}/jobs";
@@ -18,7 +21,8 @@ class JobApiCtrl extends WebController {
         url += "/customers/$customerId";
       }
 
-      var res = await get(url, headers: HttpClientConst.headers);
+      var res =
+          await WebRequest.nativRequest(url, headers: AppHttpHeaders.headers);
       var body = HttpResponse.decodeBody(res);
 
       log(jsonEncode(body.data));
@@ -39,8 +43,9 @@ class JobApiCtrl extends WebController {
       int categoryId) async {
     try {
       var url = "${Const.jobBaseUrl}/jobs/category/$categoryId";
-      print(url);
-      var res = await get(url, headers: HttpClientConst.headers);
+
+      var res =
+          await WebRequest.nativRequest(url, headers: AppHttpHeaders.headers);
       var body = HttpResponse.decodeBody(res);
 
       log(jsonEncode(body.data));
@@ -62,13 +67,9 @@ class JobApiCtrl extends WebController {
     try {
       var url = "${Const.jobBaseUrl}/jobs/applications/customers/$customerId";
 
-      print('url $url');
-      var res = await get(url, headers: HttpClientConst.headers);
+      var res =
+          await WebRequest.nativRequest(url, headers: AppHttpHeaders.headers);
       var body = HttpResponse.decodeBody(res);
-
-      print('response');
-
-      print(body.data);
 
       if (body.status) {
         return HttpResponse.success(
@@ -83,19 +84,13 @@ class JobApiCtrl extends WebController {
   }
 
   Future<HttpResponse> addJob(AddJob addJob) async {
-    print('add job');
     try {
-
-      print(addJob.toJson());
-
-      var res = await post(
+      var res = await WebRequest.nativRequest(
+        verbe: RequestVerbeEnum.POST,
         "${Const.jobBaseUrl}/jobs",
-        addJob.toJson(),
-        headers: HttpClientConst.authHeaders,
+        body: addJob.toJson().parseToJson(),
+        headers: AppHttpHeaders.authHeaders,
       );
-
-      print("add job response");
-      print(res.body);
 
       var body = HttpResponse.decodeBody(res);
 
@@ -105,23 +100,18 @@ class JobApiCtrl extends WebController {
         return HttpResponse.error(message: body.message);
       }
     } catch (e) {
-      print('add job error');
       return HttpResponse.error(detailErrors: e.toString());
     }
   }
 
   Future<HttpResponse> updateJob(AddJob addJob) async {
-    print('update');
     try {
-      var res = await put(
+      var res = await WebRequest.nativRequest(
+        verbe: RequestVerbeEnum.PUT,
         "${Const.jobBaseUrl}/jobs",
-        addJob.toJson(),
-        headers: HttpClientConst.authHeaders,
+        body: addJob.toJson().parseToJson(),
+        headers: AppHttpHeaders.authHeaders,
       );
-
-      print(addJob.toJson());
-
-      print(res.body);
 
       var body = HttpResponse.decodeBody(res);
 
@@ -141,16 +131,14 @@ class JobApiCtrl extends WebController {
   }) async {
     try {
       String url = "${Const.jobBaseUrl}/jobs/${jobOffer.id!}/apply";
-      print(url);
 
       log(jsonEncode(applyJob.toJson()));
-      var res = await post(
+      var res = await WebRequest.nativRequest(
+        verbe: RequestVerbeEnum.POST,
         url,
-        applyJob.toJson(),
-        headers: HttpClientConst.headers,
+        body: applyJob.toJson().parseToJson(),
+        headers: AppHttpHeaders.headers,
       );
-
-      print(res.body);
 
       var body = HttpResponse.decodeBody(res);
 
@@ -168,13 +156,13 @@ class JobApiCtrl extends WebController {
     try {
       var url = "${Const.jobBaseUrl}/jobs/$id";
 
-      print('url $url');
-      var res = await delete(url, headers: HttpClientConst.headers);
+      var res = await WebRequest.nativRequest(
+        verbe: RequestVerbeEnum.DELETE,
+        url,
+        headers: AppHttpHeaders.headers,
+      );
+
       var body = HttpResponse.decodeBody(res);
-
-      print('response delete');
-
-      print(body.data);
 
       if (body.status) {
         return HttpResponse.success(data: JobOffer());
@@ -191,13 +179,9 @@ class JobApiCtrl extends WebController {
     try {
       var url = "${Const.jobBaseUrl}/jobs/$jobOfferId/applications";
 
-      print('url $url');
-      var res = await get(url, headers: HttpClientConst.headers);
+      var res =
+          await WebRequest.nativRequest(url, headers: AppHttpHeaders.headers);
       var body = HttpResponse.decodeBody(res);
-
-      print('response');
-
-      print(body.data);
 
       if (body.status) {
         return HttpResponse.success(

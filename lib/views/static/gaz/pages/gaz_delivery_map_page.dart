@@ -76,12 +76,12 @@ class _GazDeliveryMapPageState extends State<GazDeliveryMapPage> {
                 markers: [
                   Marker(
                     point: LatLng(shop.latitude!, shop.longitude!),
-                    builder: (context) => Image.asset(
+                    child: Image.asset(
                       'assets/images/gaz_pin.png',
                       width: 40,
                       height: 40,
                     ),
-                  )
+                  ),
                 ],
               ),
             ],

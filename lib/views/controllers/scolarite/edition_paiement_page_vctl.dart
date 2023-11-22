@@ -4,7 +4,7 @@ import 'package:wan_mobile/api/controllers/scolarite/scolarite_api_ctl.dart';
 import 'package:wan_mobile/models/scolarite/search_etudiant_result.dart';
 import 'package:wan_mobile/tools/types/types.dart';
 import 'package:wan_mobile/tools/utils/tools.dart';
-import 'package:wan_mobile/views/controllers/abstracts/view_controller.dart';
+import 'package:lebedoo_assets/views/controllers/abstracts/view_controller.dart';
 import 'package:wan_mobile/views/static/paiement/paiement_mode_paiement.dart';
 
 class EditionPaiementScolaritePageVctl extends ViewController {

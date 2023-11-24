@@ -342,7 +342,7 @@ class HomePage extends StatelessWidget {
                                                     ),
                                                     const Gap(10),
                                                     const Text(
-                                                      "Commander une carte physique",
+                                                      "Commandez autres cartes prépayées",
                                                       style: TextStyle(
                                                         fontSize: 15,
                                                         color: Colors.black,

@@ -4,8 +4,9 @@ import 'package:get/get.dart';
 import 'package:latlong2/latlong.dart';
 import 'package:sliding_up_panel/sliding_up_panel.dart';
 import 'package:speech_bubble/speech_bubble.dart';
+import 'package:tools_flutter_project/tools_flutter_project.dart';
 import 'package:wan_mobile/tools/services/location_service.dart';
-import 'package:wan_mobile/tools/utils/tools.dart';
+
 import 'package:wan_mobile/views/controllers/gaz/gas_shop_vctl.dart';
 import 'package:wan_mobile/views/controllers/gaz/gas_vctl.dart';
 import 'package:wan_mobile/views/static/gaz/pages/gaz_pos_info_page.dart';
@@ -67,7 +68,7 @@ class _GazMapPageState extends State<GazMapPage> {
               FlutterMap(
                 mapController: _mapController,
                 options: MapOptions(
-                  center: LatLng(5.379617, -3.934711),
+                  center: const LatLng(5.379617, -3.934711),
                   zoom: mapZoom,
                   onTap: (_, __) {
                     _gazController.clearSelectedShop();

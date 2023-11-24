@@ -1,12 +1,9 @@
-import 'dart:convert';
-import 'dart:developer';
-
 import 'package:lebedoo_assets/lebedoo_assets.dart';
 import 'package:lebedoo_assets/tools/web/app_http_hearders.dart';
 import 'package:lebedoo_assets/tools/web/web_request.dart';
 
 import 'package:tools_flutter_project/tools/http/http_response.dart';
-import 'package:wan_mobile/tools/types/types.dart';
+import 'package:tools_flutter_project/tools/types/map.dart';
 
 import '../../models/job/company.dart';
 import '../../tools/const/const.dart';
@@ -30,8 +27,6 @@ class CompanyApiCtl {
         return HttpResponse.error(message: body.message);
       }
     } catch (e) {
-      print('company error');
-      print(e);
       return HttpResponse.error(detailErrors: e.toString());
     }
   }
@@ -51,8 +46,6 @@ class CompanyApiCtl {
         return HttpResponse.error(message: body.message);
       }
     } catch (e) {
-      print("company exception");
-      print(e);
       return HttpResponse.error(detailErrors: e.toString());
     }
   }

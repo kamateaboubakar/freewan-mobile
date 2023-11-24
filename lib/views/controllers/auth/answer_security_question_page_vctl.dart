@@ -1,12 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
 import 'package:lebedoo_assets/lebedoo_assets.dart';
+import 'package:tools_flutter_project/tools/types/map.dart';
+import 'package:tools_flutter_project/tools_flutter_project.dart';
 import 'package:wan_mobile/api/controllers/auth/user_api_ctl.dart';
-import 'package:wan_mobile/tools/cache/cache.dart';
-import 'package:wan_mobile/tools/cache/cache_keys.dart';
-import 'package:wan_mobile/tools/types/types.dart';
-import 'package:wan_mobile/tools/utils/tools.dart';
 import 'package:lebedoo_assets/views/controllers/abstracts/view_controller.dart';
+import 'package:wan_mobile/tools/cache/cache_keys.dart';
 import 'package:wan_mobile/views/static/home/home_page.dart';
 
 class AnswerSecurityQuestionPageVctl extends ViewController {
@@ -30,7 +28,7 @@ class AnswerSecurityQuestionPageVctl extends ViewController {
           answer: answerCtl.text);
       await pr.hide();
       if (res.status) {
-        await Cache.setString(CacheKey.login,
+        await Cache.setString(CacheKey.login.name,
             {"phone": phone, "password": password}.parseToJson());
         appCtl.user = res.data!;
         Get.offAll(() => const HomePage());

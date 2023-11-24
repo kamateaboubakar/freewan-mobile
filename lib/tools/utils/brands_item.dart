@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:lebedoo_assets/themes/asset_colors.dart';
 
-import 'asset_colors.dart';
 
 class BrandsItem extends StatelessWidget {
   final String image;

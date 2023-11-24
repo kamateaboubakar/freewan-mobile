@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
-
-import '../../../../tools/utils/asset_colors.dart';
+import 'package:lebedoo_assets/themes/asset_colors.dart';
 
 class PressingServiceItem extends StatelessWidget {
   final String image;

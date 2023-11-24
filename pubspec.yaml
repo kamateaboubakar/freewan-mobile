@@ -75,7 +75,6 @@ dependencies:
   flutter_rating_bar: ^4.0.1
   rating_summary: ^1.0.2+1
   webview_flutter: ^4.2.2
-  share_plus: ^4.5.3
   table_calendar: ^3.0.9
   local_auth: ^2.1.6
   onscreen_num_keyboard: ^1.0.4
@@ -89,6 +88,8 @@ dependencies:
   # Modules Lebedoo
   job:
     path: ../modules/job
+  pharmacie:
+    path: ../modules/pharmacie
 
   lebedoo_assets:
     path: ../modules/lebedoo_assets
@@ -130,6 +131,7 @@ flutter:
     - assets/images/icons/
     - assets/images/don/
     - assets/job/
+    - assets/pharmacie/
     - assets/.env
   #   - images/a_dot_ham.jpeg
 

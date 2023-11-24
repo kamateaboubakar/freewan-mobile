@@ -1,6 +1,7 @@
+import 'package:tools_flutter_project/tools_flutter_project.dart';
 import 'package:wan_mobile/api/controllers/loyer/loyer_api_ctl.dart';
 import 'package:wan_mobile/models/loyer/paiement_loyer.dart';
-import 'package:wan_mobile/tools/utils/tools.dart';
+
 import 'package:lebedoo_assets/views/controllers/abstracts/view_controller.dart';
 
 class HistoriquePaiementLoyerPageVctl extends ViewController {

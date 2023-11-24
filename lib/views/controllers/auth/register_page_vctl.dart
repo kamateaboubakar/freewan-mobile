@@ -1,17 +1,13 @@
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
 import 'package:lebedoo_assets/lebedoo_assets.dart';
+import 'package:lebedoo_assets/models/pays.dart';
+import 'package:tools_flutter_project/tools_flutter_project.dart';
 import 'package:wan_mobile/api/controllers/security_question_ctl.dart';
 import 'package:wan_mobile/api/controllers/auth/user_api_ctl.dart';
-import 'package:wan_mobile/models/pays.dart';
-import 'package:wan_mobile/tools/utils/tools.dart';
 import 'package:lebedoo_assets/views/controllers/abstracts/view_controller.dart';
 import 'package:wan_mobile/views/static/auth/phone_auth/phone_auth.dart';
 import 'package:wan_mobile/views/static/home/home_page.dart';
-
-import '../../../tools/cache/cache.dart';
 import '../../../tools/cache/cache_keys.dart';
-import '../../../tools/widgets/date_time_editing_controller.dart';
 
 class RegisterPageVctl extends ViewController {
   var pageCtl = PageController();
@@ -101,8 +97,8 @@ class RegisterPageVctl extends ViewController {
       var res = await UserApiCtl().register(user);
       await pr.hide();
       if (res.status) {
-        await Cache.setString(CacheKey.login, phone);
-        await Cache.setString(CacheKey.password, passwordCtl.text);
+        await Cache.setString(CacheKey.login.name, phone);
+        await Cache.setString(CacheKey.password.name, passwordCtl.text);
         appCtl.user = user;
         Get.offAll(() => const HomePage(displayWelcome: true));
       } else {

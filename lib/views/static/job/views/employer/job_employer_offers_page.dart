@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:wan_mobile/tools/utils/asset_colors.dart';
 import 'package:get/get.dart';
-import 'package:wan_mobile/tools/utils/tools.dart';
+import 'package:lebedoo_assets/themes/asset_colors.dart';
+import 'package:tools_flutter_project/functions/tools.dart';
+
 import 'package:wan_mobile/views/controllers/job/job_list_vctl.dart';
 import 'package:wan_mobile/views/controllers/job/job_offer_employer_vctl.dart';
 import 'package:wan_mobile/views/static/job/views/employee/employee_views.dart';
@@ -33,7 +34,6 @@ class _JobEmployerOffersPageState extends State<JobEmployerOffersPage> {
 
   @override
   Widget build(BuildContext context) {
-    var isOfferAdded = true;
     double screenWidth = MediaQuery.of(context).size.width;
     return Scaffold(
       appBar: AppBar(

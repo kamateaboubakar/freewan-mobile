@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:lebedoo_assets/themes/asset_colors.dart';
 import 'package:qr_code_scanner/qr_code_scanner.dart';
-import 'package:wan_mobile/tools/utils/asset_colors.dart';
 import 'package:wan_mobile/views/controllers/home/qr_login/qr_login_vctl.dart';
 
 class QrLogin extends StatelessWidget {

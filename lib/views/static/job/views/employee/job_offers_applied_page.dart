@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:wan_mobile/models/job/apply_job.dart';
 import 'package:get/get.dart';
-import 'package:wan_mobile/views/controllers/job/job_list_vctl.dart';
 import 'package:wan_mobile/views/static/job/views/employee/apply_job_description_page.dart';
 
 import '../../../../../tools/widgets/error_view.dart';
@@ -18,7 +17,6 @@ class JobOffersAppliedPage extends StatefulWidget {
 class _JobOffersAppliedPageState extends State<JobOffersAppliedPage> {
   JobOfferAppliedController _jobOfferAppliedController =
       Get.put(JobOfferAppliedController());
-  final JobListController _jobListController = Get.put(JobListController());
 
   @override
   void initState() {
@@ -30,7 +28,6 @@ class _JobOffersAppliedPageState extends State<JobOffersAppliedPage> {
 
   @override
   Widget build(BuildContext context) {
-    var isOfferAdded = true;
     double screenWidth = MediaQuery.of(context).size.width;
     return Scaffold(
       appBar: AppBar(

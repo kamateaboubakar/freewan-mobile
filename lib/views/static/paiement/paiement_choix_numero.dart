@@ -1,13 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:wan_mobile/tools/types/types.dart';
-import 'package:wan_mobile/tools/utils/tools.dart';
-import 'package:wan_mobile/tools/widgets/c_button.dart';
-import 'package:wan_mobile/tools/widgets/c_textform_field.dart';
+
+import 'package:tools_flutter_project/tools_flutter_project.dart';
+import 'package:tools_flutter_project/widgets/c_textform_field.dart';
 import 'package:wan_mobile/views/controllers/paiement/paiement_choix_numero_vctl.dart';
 import 'package:wan_mobile/views/static/paiement/paiement_pay_recap.dart';
 
-import '../../../tools/utils/asset_colors.dart';
+import 'package:lebedoo_assets/themes/asset_colors.dart';
 import '../bills/bills_views.dart';
 
 class PaiementChoixNumero extends StatelessWidget {

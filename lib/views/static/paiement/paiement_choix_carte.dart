@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:wan_mobile/tools/types/types.dart';
+import 'package:tools_flutter_project/tools_flutter_project.dart';
+
 import 'package:wan_mobile/views/controllers/paiement/edition_card_bank.dart';
 import 'package:wan_mobile/views/controllers/paiement/paiement_choix_carte_vctl.dart';
 import 'package:wan_mobile/views/static/paiement/paiement_pay_recap.dart';

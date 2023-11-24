@@ -3,6 +3,7 @@ import 'dart:io';
 import 'package:lebedoo_assets/lebedoo_assets.dart';
 import 'package:lebedoo_assets/tools/web/app_http_hearders.dart';
 import 'package:lebedoo_assets/tools/web/web_request.dart';
+import 'package:tools_flutter_project/tools/types/map.dart';
 import 'package:wan_mobile/api/abstracts/links.dart';
 
 import 'package:wan_mobile/models/location_vehicule/booking.dart';
@@ -12,7 +13,6 @@ import 'package:wan_mobile/models/location_vehicule/marque_vehicule.dart';
 import 'package:wan_mobile/models/location_vehicule/mode_paiement.dart';
 import 'package:wan_mobile/models/location_vehicule/option_vehicule.dart';
 import 'package:tools_flutter_project/tools/http/http_response.dart';
-import 'package:wan_mobile/tools/types/types.dart';
 
 class LocationVehiculeCtl {
   Future<HttpResponse<List<Car>>> getCars() async {

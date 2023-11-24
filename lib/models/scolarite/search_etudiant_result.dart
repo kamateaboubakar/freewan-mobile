@@ -1,6 +1,7 @@
+import 'package:tools_flutter_project/tools/types/int.dart';
+import 'package:tools_flutter_project/tools_flutter_project.dart';
 import 'package:wan_mobile/models/scolarite/classe.dart';
 import 'package:wan_mobile/models/scolarite/etudiant.dart';
-import 'package:wan_mobile/tools/types/types.dart';
 
 class SearchEtudiantResult {
   Etudiant? etudiant;
@@ -20,5 +21,5 @@ class SearchEtudiantResult {
   }
 
   int? get resteAPayer =>
-      classe!.montantFraisScolarite.toInt() - totalPaiement.value;
+      classe!.montantFraisScolarite.toInt().value - totalPaiement.value;
 }

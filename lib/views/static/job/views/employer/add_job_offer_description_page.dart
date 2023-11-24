@@ -1,12 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:lebedoo_assets/themes/asset_colors.dart';
+import 'package:tools_flutter_project/widgets/c_button.dart';
+import 'package:tools_flutter_project/widgets/c_textform_field.dart';
 import 'package:wan_mobile/models/job/job_offer.dart';
 import 'package:wan_mobile/views/controllers/job/add_job_vctl.dart';
 import 'package:wan_mobile/views/static/job/views/employer/add_job_offer_company_page.dart';
-
-import '../../../../../tools/utils/asset_colors.dart';
-import '../../../../../tools/widgets/c_button.dart';
-import '../../../../../tools/widgets/c_textform_field.dart';
 import '../../job_views.dart';
 
 class AddJobOfferDescriptionPage extends StatefulWidget {

@@ -1,11 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:gap/gap.dart';
 import 'package:get/get.dart';
-import 'package:text_divider/text_divider.dart';
+import 'package:tools_flutter_project/tools/types/int.dart';
 import 'package:wan_mobile/models/scolarite/search_etudiant_result.dart';
-import 'package:wan_mobile/tools/types/types.dart';
-import 'package:wan_mobile/tools/widgets/c_button.dart';
-import 'package:wan_mobile/tools/widgets/c_textform_field.dart';
+
+import 'package:tools_flutter_project/tools_flutter_project.dart';
 import 'package:wan_mobile/views/static/scolarite/edition_paiement_scolarite_page.dart';
 
 class DetailsEtudiantPage extends StatelessWidget {

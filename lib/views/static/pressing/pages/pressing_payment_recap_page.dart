@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:intl/intl.dart';
 import 'package:wan_mobile/tools/utils/amount_util.dart';
-import 'package:wan_mobile/tools/utils/tools.dart';
-import 'package:wan_mobile/tools/widgets/c_button.dart';
+
+import 'package:tools_flutter_project/tools_flutter_project.dart';
 import 'package:wan_mobile/views/controllers/pressing/pressing_articles_vctl.dart';
 import 'package:wan_mobile/views/controllers/pressing/pressing_services_vctl.dart';
 import 'package:wan_mobile/views/controllers/pressing/pressing_vctl.dart';

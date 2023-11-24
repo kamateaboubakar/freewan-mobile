@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-
-import '../../../../tools/widgets/c_button.dart';
-import '../../../../tools/widgets/c_textform_field.dart';
+import 'package:tools_flutter_project/widgets/c_button.dart';
+import 'package:tools_flutter_project/widgets/c_textform_field.dart';
 
 class BillsAddReferencePage extends StatelessWidget {
   final TextEditingController _referenceCtrl = TextEditingController();

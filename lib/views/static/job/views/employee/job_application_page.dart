@@ -3,15 +3,15 @@ import 'dart:io';
 import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:lebedoo_assets/themes/asset_colors.dart';
+import 'package:tools_flutter_project/functions/tools.dart';
+import 'package:tools_flutter_project/widgets/c_button.dart';
+import 'package:tools_flutter_project/widgets/c_textform_field.dart';
 import 'package:wan_mobile/models/job/job_offer.dart';
-import 'package:wan_mobile/tools/utils/asset_colors.dart';
-import 'package:wan_mobile/tools/utils/tools.dart';
+
 import 'package:wan_mobile/views/controllers/job/apply_job_vctl.dart';
 import 'package:wan_mobile/views/controllers/job/job_list_vctl.dart';
 import 'package:wan_mobile/views/static/home/home_page.dart';
-
-import '../../../../../tools/widgets/c_button.dart';
-import '../../../../../tools/widgets/c_textform_field.dart';
 
 class JobApplicationPage extends StatefulWidget {
   const JobApplicationPage({Key? key}) : super(key: key);
@@ -36,7 +36,6 @@ class _JobApplicationPageState extends State<JobApplicationPage> {
 
   @override
   Widget build(BuildContext context) {
-    double screenWidth = MediaQuery.of(context).size.width;
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.white,

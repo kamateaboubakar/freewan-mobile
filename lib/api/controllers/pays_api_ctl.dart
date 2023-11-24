@@ -1,7 +1,7 @@
+import 'package:lebedoo_assets/models/pays.dart';
 import 'package:lebedoo_assets/tools/web/app_http_hearders.dart';
 import 'package:lebedoo_assets/tools/web/web_request.dart';
 
-import 'package:wan_mobile/models/pays.dart';
 import 'package:tools_flutter_project/tools/http/http_response.dart';
 
 class PaysApiCtl {

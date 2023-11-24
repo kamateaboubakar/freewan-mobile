@@ -1,10 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:gap/gap.dart';
-import 'package:get/get.dart';
+import 'package:lebedoo_assets/lebedoo_assets.dart';
+import 'package:tools_flutter_project/tools/types/double.dart';
+import 'package:tools_flutter_project/tools_flutter_project.dart';
 import 'package:wan_mobile/models/don/campagne.dart';
-import 'package:wan_mobile/tools/types/types.dart';
-import 'package:wan_mobile/tools/utils/asset_colors.dart';
-import 'package:wan_mobile/tools/widgets/c_button.dart';
 import 'package:wan_mobile/views/static/donation/detail_campagne_page.dart';
 
 class CampagneListTile extends StatelessWidget {
@@ -70,8 +68,8 @@ class CampagneListTile extends StatelessWidget {
                             ),
                             const Gap(10),
                             Text(
-                              "${campagne.collectedAmount.toAmount(withDevise: false)}"
-                              " sur ${campagne.amount.toAmount(withDevise: false)}",
+                              "${campagne.collectedAmount.toString().toAmount(withDevise: false)}"
+                              " sur ${campagne.amount.toString().toAmount(withDevise: false)}",
                             ),
                             const Gap(10),
                           ],

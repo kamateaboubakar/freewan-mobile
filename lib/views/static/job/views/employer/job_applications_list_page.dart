@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:lebedoo_assets/themes/asset_colors.dart';
 import 'package:wan_mobile/models/job/apply_job.dart';
-import 'package:wan_mobile/tools/utils/asset_colors.dart';
 import 'package:get/get.dart';
 import 'package:wan_mobile/views/controllers/job/job_application_list_vctl.dart';
 import 'package:wan_mobile/views/static/job/views/employee/application_job_description_page.dart';
@@ -32,7 +32,6 @@ class _JobApplicationsListPageState extends State<JobApplicationsListPage> {
 
   @override
   Widget build(BuildContext context) {
-    var isOfferAdded = true;
     double screenWidth = MediaQuery.of(context).size.width;
     return Scaffold(
       appBar: AppBar(

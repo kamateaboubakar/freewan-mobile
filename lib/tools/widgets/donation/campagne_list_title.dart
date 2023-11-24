@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:lebedoo_assets/lebedoo_assets.dart';
+import 'package:tools_flutter_project/tools_flutter_project.dart';
 import 'package:wan_mobile/models/don/campagne.dart';
-import 'package:wan_mobile/tools/types/types.dart';
-import 'package:wan_mobile/tools/utils/asset_colors.dart';
 
 class CampagneListTile extends StatelessWidget {
   final Campagne don;

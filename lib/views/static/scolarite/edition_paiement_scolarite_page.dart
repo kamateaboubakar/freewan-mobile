@@ -1,10 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:gap/gap.dart';
 import 'package:get/get.dart';
+import 'package:tools_flutter_project/tools/types/int.dart';
 import 'package:wan_mobile/models/scolarite/search_etudiant_result.dart';
-import 'package:wan_mobile/tools/types/types.dart';
-import 'package:wan_mobile/tools/widgets/c_button.dart';
-import 'package:wan_mobile/tools/widgets/c_textform_field.dart';
+import 'package:tools_flutter_project/tools_flutter_project.dart';
 import 'package:wan_mobile/views/controllers/scolarite/edition_paiement_page_vctl.dart';
 
 class EditionPaiementScolaritePage extends StatelessWidget {
@@ -50,7 +48,9 @@ class EditionPaiementScolaritePage extends StatelessWidget {
                         return "Le montant doit être supérieur à 0";
                       } else {
                         if (value.toInt().value >
-                            result.classe!.montantFraisScolarite.toInt()) {
+                            result.classe!.montantFraisScolarite
+                                .toInt()
+                                .value) {
                           return "Le montant doit être inférieur ou égal à ${result.resteAPayer.toAmount()}";
                         } else {
                           return null;

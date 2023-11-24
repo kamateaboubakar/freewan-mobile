@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:wan_mobile/tools/types/types.dart';
-import 'package:wan_mobile/tools/widgets/c_textform_field.dart';
+import 'package:tools_flutter_project/tools_flutter_project.dart';
+
+import 'package:tools_flutter_project/widgets/c_textform_field.dart';
 import 'package:wan_mobile/views/controllers/home/categorized_home_vctl.dart';
 import 'package:wan_mobile/views/tools/routes.dart';
 

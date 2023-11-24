@@ -1,7 +1,8 @@
+import 'package:tools_flutter_project/tools/types/int.dart';
 import 'package:wan_mobile/models/location_vehicule/image_vehicule.dart';
 import 'package:wan_mobile/models/location_vehicule/marque_vehicule.dart';
 import 'package:wan_mobile/models/location_vehicule/option_vehicule.dart';
-import 'package:wan_mobile/tools/types/types.dart';
+
 import 'package:wan_mobile/tools/widgets/location_vehicule/proprietaire_vehicule.dart';
 
 class Car {

@@ -1,12 +1,15 @@
 import 'package:flutter/widgets.dart';
 import 'package:get/get.dart';
+import 'package:tools_flutter_project/functions/tools.dart';
+import 'package:tools_flutter_project/tools/types/bool.dart';
+import 'package:tools_flutter_project/tools/types/int.dart';
+import 'package:tools_flutter_project/tools_flutter_project.dart';
 import 'package:wan_mobile/api/controllers/location_vehicule/location_vehicule_ctl.dart';
 import 'package:wan_mobile/models/location_vehicule/car.dart';
 import 'package:wan_mobile/models/location_vehicule/categorie_vehicule.dart';
 import 'package:wan_mobile/models/location_vehicule/marque_vehicule.dart';
 import 'package:wan_mobile/models/location_vehicule/option_vehicule.dart';
-import 'package:wan_mobile/tools/types/types.dart';
-import 'package:wan_mobile/tools/utils/tools.dart';
+
 import 'package:lebedoo_assets/views/controllers/abstracts/view_controller.dart';
 
 class EditionLocationVehiculeVctl extends ViewController {

@@ -1,10 +1,10 @@
 import 'package:lebedoo_assets/lebedoo_assets.dart';
 import 'package:lebedoo_assets/tools/web/app_http_hearders.dart';
 import 'package:lebedoo_assets/tools/web/web_request.dart';
+import 'package:tools_flutter_project/tools/types/map.dart';
 import 'package:wan_mobile/models/paiement/carte_bancaire.dart';
 import 'package:wan_mobile/models/paiement/mobile_money.dart';
 import 'package:tools_flutter_project/tools/http/http_response.dart';
-import 'package:wan_mobile/tools/types/types.dart';
 
 class WalletApiCtl {
   String url = "http://148.113.143.59:8182/api";

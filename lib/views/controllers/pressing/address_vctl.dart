@@ -1,6 +1,7 @@
+import 'package:tools_flutter_project/tools/types/int.dart';
 import 'package:wan_mobile/api/controllers/address_api_ctl.dart';
 import 'package:wan_mobile/models/address/address_type.dart';
-import 'package:wan_mobile/tools/types/types.dart';
+
 import 'package:lebedoo_assets/views/controllers/abstracts/view_controller.dart';
 
 import '../../../models/pressing/user_localisation.dart';

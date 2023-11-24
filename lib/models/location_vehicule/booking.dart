@@ -1,4 +1,4 @@
-import 'package:wan_mobile/tools/types/types.dart';
+import 'package:tools_flutter_project/tools_flutter_project.dart';
 
 class Booking {
   int? carId;

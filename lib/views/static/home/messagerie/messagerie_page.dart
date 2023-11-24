@@ -2,9 +2,8 @@ import 'dart:io';
 
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:wan_mobile/tools/utils/asset_colors.dart';
-import 'package:wan_mobile/tools/widgets/c_textform_field.dart';
-import 'package:wan_mobile/tools/widgets/wrapper_body_listview.dart';
+import 'package:lebedoo_assets/themes/asset_colors.dart';
+import 'package:tools_flutter_project/tools_flutter_project.dart';
 import 'package:wan_mobile/views/static/home/messagerie/chat_room.dart';
 
 class MessageriePages extends StatelessWidget {

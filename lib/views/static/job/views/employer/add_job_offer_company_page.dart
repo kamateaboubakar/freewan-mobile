@@ -3,16 +3,16 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:lebedoo_assets/themes/asset_colors.dart';
+import 'package:tools_flutter_project/tools_flutter_project.dart';
+import 'package:tools_flutter_project/widgets/c_button.dart';
+import 'package:tools_flutter_project/widgets/c_dropdown_field.dart';
+import 'package:tools_flutter_project/widgets/c_textform_field.dart';
 import 'package:wan_mobile/models/job/job_offer.dart';
-import 'package:wan_mobile/tools/utils/asset_colors.dart';
 import 'package:wan_mobile/views/controllers/job/add_job_vctl.dart';
 
 import '../../../../../models/job/company.dart';
 import '../../../../../models/job/jobs_sector.dart';
-import '../../../../../tools/utils/tools.dart';
-import '../../../../../tools/widgets/c_button.dart';
-import '../../../../../tools/widgets/c_dropdown_field.dart';
-import '../../../../../tools/widgets/c_textform_field.dart';
 import '../../../home/home_page.dart';
 import '../../job_views.dart';
 
@@ -45,7 +45,6 @@ class _AddJobOfferCompanyPageState extends State<AddJobOfferCompanyPage> {
 
   @override
   Widget build(BuildContext context) {
-    double screenWidth = MediaQuery.of(context).size.width;
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.white,
@@ -111,13 +110,13 @@ class _AddJobOfferCompanyPageState extends State<AddJobOfferCompanyPage> {
                             labelText: "Entreprise *",
                             items: companies,
                             selectedItem: _addJobController.selectedCompany,
-                            backgroundColor: Colors.white,
-                            itemBuilder: (company) {
-                              return Text(company.name!);
-                            },
-                            selectedItemBuilder: (company) {
-                              return Text(company.name ?? '');
-                            },
+                            // backgroundColor: Colors.white,
+                            // itemBuilder: (company) {
+                            //   return Text(company.name!);
+                            // },
+                            // selectedItemBuilder: (company) {
+                            //   return Text(company.name ?? '');
+                            // },
                             onChanged: (company) {
                               _addJobController.updateSelectedCompany(company!);
                             },
@@ -158,12 +157,12 @@ class _AddJobOfferCompanyPageState extends State<AddJobOfferCompanyPage> {
                               labelText: "Catégorie *",
                               asyncItems: (e) =>
                                   _addJobController.getJobSectors(),
-                              backgroundColor: Colors.white,
-                              itemBuilder: (jobSector) =>
-                                  Text(jobSector.label!),
-                              selectedItemBuilder: (jobSector) {
-                                return Text(jobSector.label ?? '');
-                              },
+                              // backgroundColor: Colors.white,
+                              // itemBuilder: (jobSector) =>
+                              //     Text(jobSector.label!),
+                              // selectedItemBuilder: (jobSector) {
+                              //   return Text(jobSector.label ?? '');
+                              // },
                               onChanged: (jobSector) {
                                 _addJobController.updateSelectedCompanySectorId(
                                     jobSector!.id!);

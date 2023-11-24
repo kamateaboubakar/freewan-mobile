@@ -1,10 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:icofont_flutter/icofont_flutter.dart';
+import 'package:tools_flutter_project/tools_flutter_project.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'package:wan_mobile/tools/const/const.dart';
-import 'package:wan_mobile/tools/types/types.dart';
-import 'package:wan_mobile/tools/utils/functions.dart';
+
 import 'package:wan_mobile/views/controllers/home/home_page_vctl.dart';
 import 'package:wan_mobile/views/static/adresse/adresse_list_page.dart';
 import 'package:wan_mobile/views/static/auth/profil_page.dart';
@@ -23,11 +22,38 @@ class HomeDrawer extends StatelessWidget {
         child: Column(
           children: [
             UserAccountsDrawerHeader(
-              currentAccountPicture: const CircleAvatar(
-                child: Icon(Icons.person),
+              margin: EdgeInsets.zero,
+              decoration: BoxDecoration(
+                color: Colors.blue.shade900,
+                image: DecorationImage(
+                  fit: BoxFit.cover,
+                  opacity: .8,
+                  image: Image.asset("assets/images/pont-cocody.jpg").image,
+                ),
               ),
-              accountName: Text("Akwaba, ${ctl.appCtl.user.firstPrenom}"),
-              accountEmail: Text(ctl.appCtl.user.phoneNumber.value),
+              currentAccountPicture: CircleAvatar(
+                child: Image.asset(
+                  "assets/images/icons/user_profil.png",
+                  height: 45,
+                  color: Colors.white,
+                ),
+              ),
+              accountName: Text(
+                "Akwaba, ${ctl.appCtl.user.firstPrenom}",
+                style: const TextStyle(
+                  fontSize: 20,
+                  // color: Colors.black,
+                  fontWeight: FontWeight.bold,
+                ),
+              ),
+              accountEmail: Text(
+                ctl.appCtl.user.phoneNumber.value,
+                style: const TextStyle(
+                  fontSize: 18,
+                  // color: Colors.black,
+                  fontWeight: FontWeight.bold,
+                ),
+              ),
               otherAccountsPictures: [
                 IconButton(
                   tooltip: "Déconnexion",
@@ -38,45 +64,120 @@ class HomeDrawer extends StatelessWidget {
               ],
             ),
             Expanded(
-              child: ListView(
-                padding: EdgeInsets.zero,
-                physics: const BouncingScrollPhysics(),
+              child: Stack(
                 children: [
-                  ListTile(
-                    leading: const Icon(Icons.person),
-                    title: const Text("Mon profil"),
-                    onTap: () => Get.to(
-                      () => const ProfilPage(),
+                  // Opacity(
+                  //   opacity: .3,
+                  //   child: Image.asset(
+                  //     "assets/images/pont_ado_carre.jpeg",
+                  //   ),
+                  // ),
+                  Container(
+                    height: double.infinity,
+                    width: double.infinity,
+                    decoration: BoxDecoration(
+                      gradient: LinearGradient(
+                          begin: Alignment.topCenter,
+                          // end: Alignment.bottomCenter,
+                          colors: [
+                            Colors.blue.shade700,
+                            Colors.white,
+                          ]),
                     ),
                   ),
-                  ListTile(
-                    leading: const Icon(Icons.qr_code),
-                    title: const Text("Se connecter sur le web"),
-                    onTap: () => Get.to(() => const QrLogin()),
-                  ),
-                  ListTile(
-                    leading: const Icon(Icons.pin_drop_rounded),
-                    title: const Text("Mes adresses"),
-                    onTap: () => Get.to(() => const AdresseListPage()),
-                  ),
-                  ListTile(
-                    leading: const Icon(IcoFontIcons.whatsapp),
-                    title: const Text("Contactez-nous"),
-                    onTap: () => launchUrl(
-                      Uri.parse("https://wa.me/${Const.supportWhatsapp}"),
-                      mode: LaunchMode.externalApplication,
-                    ),
-                  ),
-                  ListTile(
-                    leading: const Icon(IcoFontIcons.share),
-                    title: const Text("Partager l'application"),
-                    onTap: () => Functions.shareAppText(
-                        codeParrain: ctl.appCtl.user.ownerCode.value),
-                  ),
-                  ListTile(
-                    leading: const Icon(IcoFontIcons.law),
-                    title: const Text("Conditions d'utilisation"),
-                    onTap: () => Get.to(() => const CGUPage()),
+                  ListView(
+                    padding: EdgeInsets.zero,
+                    physics: const BouncingScrollPhysics(),
+                    children: [
+                      ListTile(
+                        leading: CircleAvatar(
+                          child: Image.asset(
+                            "assets/images/icons/user_profil.png",
+                            height: 30,
+                            color: Colors.white,
+                          ),
+                        ),
+                        title: const Text("Mon profil"),
+                        onTap: () => Get.to(() => const ProfilPage()),
+                      ),
+                      ListTile(
+                        leading: CircleAvatar(
+                          child: Image.asset(
+                            "assets/images/icons/iportefeuille.png",
+                            height: 25,
+                          ),
+                        ),
+                        title: const Text("Mes moyens de paiement"),
+                        onTap: () => Get.to(() => const CGUPage()),
+                      ),
+                      ListTile(
+                        leading: CircleAvatar(
+                          child: Image.asset(
+                            "assets/images/icons/qr_code.png",
+                            height: 30,
+                            color: Colors.white,
+                          ),
+                        ),
+                        title: const Text("Se connecter sur le web"),
+                        onTap: () => Get.to(() => const QrLogin()),
+                      ),
+                      ListTile(
+                        leading: CircleAvatar(
+                          child: Image.asset(
+                            "assets/images/icons/adresse.png",
+                            height: 30,
+                          ),
+                        ),
+                        title: const Text("Mes adresses"),
+                        onTap: () => Get.to(() => const AdresseListPage()),
+                      ),
+                      ListTile(
+                        leading: CircleAvatar(
+                          child: Image.asset(
+                            "assets/images/icons/agence_a_proximite.png",
+                            height: 30,
+                          ),
+                        ),
+                        title: const Text("Agences à proximité"),
+                        onTap: () => Get.to(() => const AdresseListPage()),
+                      ),
+                      ListTile(
+                        leading: CircleAvatar(
+                          child: Image.asset(
+                            "assets/images/icons/whatsapp.png",
+                            height: 35,
+                          ),
+                        ),
+                        title: const Text("Contactez-nous"),
+                        onTap: () => launchUrl(
+                          Uri.parse("https://wa.me/${Const.supportWhatsapp}"),
+                          mode: LaunchMode.externalApplication,
+                        ),
+                      ),
+                      ListTile(
+                        leading: CircleAvatar(
+                          child: Image.asset(
+                            "assets/images/icons/partager.png",
+                            height: 30,
+                            color: Colors.white,
+                          ),
+                        ),
+                        title: const Text("Partager l'application"),
+                        onTap: () => ctl.shareAppText(
+                            codeParrain: ctl.appCtl.user.ownerCode.value),
+                      ),
+                      ListTile(
+                        leading: CircleAvatar(
+                          child: Image.asset(
+                            "assets/images/icons/cgu.png",
+                            height: 30,
+                            color: Colors.white,
+                          ),
+                        ),
+                        title: const Text("Conditions d'utilisation"),
+                        onTap: () => Get.to(() => const CGUPage()),
+                      ),
+                    ],
                   ),
                 ],
               ),

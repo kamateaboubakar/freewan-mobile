@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 import 'package:get/get.dart';
+import 'package:lebedoo_assets/themes/asset_colors.dart';
+import 'package:tools_flutter_project/tools/types/int.dart';
 import 'package:wan_mobile/models/paiement/mode_paiement.dart';
-import 'package:wan_mobile/tools/types/types.dart';
-import 'package:wan_mobile/tools/utils/asset_colors.dart';
-import 'package:wan_mobile/tools/widgets/c_button.dart';
+
+import 'package:tools_flutter_project/tools_flutter_project.dart';
 import 'package:wan_mobile/views/controllers/paiement/paiement_pay_recap_vctl.dart';
 
 class PaiementRecap extends StatelessWidget {

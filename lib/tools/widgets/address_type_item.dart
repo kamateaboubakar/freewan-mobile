@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
-
-import '../utils/asset_colors.dart';
+import 'package:lebedoo_assets/themes/asset_colors.dart';
 
 class AddressTypeItem extends StatelessWidget {
   final bool selected;
@@ -40,7 +39,7 @@ class AddressTypeItem extends StatelessWidget {
                 width: 10,
                 color: selected ? Colors.white : AssetColors.blueButton,
                 colorBlendMode: BlendMode.srcIn,
-                errorBuilder: (context, _, __){
+                errorBuilder: (context, _, __) {
                   return Container();
                 },
               ),
@@ -50,10 +49,9 @@ class AddressTypeItem extends StatelessWidget {
               child: Text(
                 title,
                 style: TextStyle(
-                  fontWeight: FontWeight.bold,
-                  color: selected ? Colors.white : Colors.black,
-                  fontSize: 12
-                ),
+                    fontWeight: FontWeight.bold,
+                    color: selected ? Colors.white : Colors.black,
+                    fontSize: 12),
               ),
             )
           ],

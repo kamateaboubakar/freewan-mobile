@@ -1,10 +1,12 @@
+import 'package:tools_flutter_project/tools/types/double.dart';
+import 'package:tools_flutter_project/tools/types/int.dart';
+import 'package:tools_flutter_project/tools_flutter_project.dart';
 import 'package:wan_mobile/api/controllers/account_transaction/account_transaction_api_ctl.dart';
 import 'package:wan_mobile/models/solde_historique/account_transaction.dart';
 import 'package:wan_mobile/models/solde_historique/stats/mode_paiement_stats.dart';
 import 'package:wan_mobile/models/solde_historique/stats/month_stats.dart';
 import 'package:wan_mobile/models/solde_historique/stats/service_stats.dart';
-import 'package:wan_mobile/tools/types/types.dart';
-import 'package:wan_mobile/tools/utils/tools.dart';
+
 import 'package:lebedoo_assets/views/controllers/abstracts/view_controller.dart';
 
 class SoldeHistoriquePageVctl extends ViewController {
@@ -90,14 +92,14 @@ class SoldeHistoriquePageVctl extends ViewController {
   String getTotalUserCB() {
     return transactions
         .where((e) => e.modePayment == "CB")
-        .fold(0, (p, e) => p + e.amount.toDouble().toInt().value)
+        .fold(0, (p, e) => p + e.amount.toDouble().value.toInt().value)
         .toAmount();
   }
 
   String getTotalUserMM() {
     return transactions
         .where((e) => e.modePayment == "MM")
-        .fold(0, (p, e) => p + e.amount.toDouble().toInt().value)
+        .fold(0, (p, e) => p + e.amount.toDouble().value.toInt().value)
         .toAmount();
   }
 
@@ -105,7 +107,7 @@ class SoldeHistoriquePageVctl extends ViewController {
     var curMth = DateTime.now().toString().split("-")[1];
     return transactions
         .where((e) => e.createdAt.value.split("-")[1] == curMth)
-        .fold(0, (p, e) => p + e.amount.toDouble().toInt().value)
+        .fold(0, (p, e) => p + e.amount.toDouble().value.toInt().value)
         .toAmount();
   }
 

@@ -3,8 +3,10 @@ import 'package:get/get.dart';
 import 'package:job/job.dart';
 import 'package:lebedoo_assets/lebedoo_assets.dart';
 import 'package:lebedoo_assets/tools/web/app_http_hearders.dart';
-import 'package:wan_mobile/tools/types/types.dart';
-import 'package:wan_mobile/tools/utils/tools.dart';
+import 'package:pharmacie/views/static/pharmacie_home_page.dart';
+import 'package:tools_flutter_project/functions/tools.dart';
+import 'package:tools_flutter_project/tools_flutter_project.dart';
+
 import 'package:wan_mobile/tools/widgets/button_menu.dart';
 import 'package:lebedoo_assets/views/controllers/abstracts/view_controller.dart';
 import 'package:wan_mobile/views/static/achat_fibre/achat_fibre_page.dart';
@@ -29,7 +31,6 @@ import 'package:wan_mobile/views/static/solde_historique/solde_historique_page.d
 import 'package:wan_mobile/views/static/tontine/tontine_page.dart';
 import 'package:wan_mobile/views/static/tv_bills/tv_bills_selection_dialog.dart';
 import 'package:wan_mobile/views/tools/menu_button_enum.dart';
-import 'package:wan_mobile/views/tools/route_item.dart';
 import 'package:wan_mobile/views/tools/route_item.dart';
 
 class Routes extends ViewController {
@@ -167,7 +168,7 @@ class Routes extends ViewController {
           button: ButtonMenu(
             icon: Image.asset("assets/images/icons/pharmacie.png"),
             title: "Pharmacies",
-            onPressed: () => Get.to(() => const BoutiquePage()),
+            onPressed: () => Get.to(() => const PharmacieHomePage()),
           ),
           menuButtonEnum: MenuButtonEnum.pharmacies,
         ),

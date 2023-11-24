@@ -5,11 +5,11 @@ import 'package:flutter_image_slideshow/flutter_image_slideshow.dart';
 import 'package:icofont_flutter/icofont_flutter.dart';
 import 'package:lebedoo_assets/lebedoo_assets.dart';
 import 'package:shimmer/shimmer.dart';
+import 'package:tools_flutter_project/tools_flutter_project.dart';
+import 'package:tools_flutter_project/widgets/c_button.dart';
 import 'package:wan_mobile/tools/const/const.dart';
-import 'package:wan_mobile/tools/types/types.dart';
-import 'package:wan_mobile/tools/utils/functions.dart';
+
 import 'package:wan_mobile/tools/widgets/button_menu.dart';
-import 'package:wan_mobile/tools/widgets/c_button.dart';
 import 'package:wan_mobile/tools/widgets/card_menu.dart';
 import 'package:wan_mobile/tools/widgets/pageable_menu.dart';
 import 'package:wan_mobile/tools/widgets/single_child_card_menu.dart';
@@ -48,10 +48,9 @@ class HomePage extends StatelessWidget {
                     padding: const EdgeInsets.only(left: 10),
                     child: GestureDetector(
                       onTap: () => Scaffold.of(context).openDrawer(),
-                      child: const CircleAvatar(
-                        backgroundColor: AssetColors.blueButton,
-                        foregroundColor: Colors.white,
-                        child: Icon(Icons.person, size: 20),
+                      child: const Icon(
+                        IcoFontIcons.navigationMenu,
+                        color: AppConst.blueButton,
                       ),
                     ),
                   );
@@ -63,7 +62,7 @@ class HomePage extends StatelessWidget {
                     splashRadius: 20,
                     onPressed: () => Get.to(() => const CategorizedHome()),
                     color: AssetColors.blueButton,
-                    icon: const Icon(IcoFontIcons.search),
+                    icon: const Icon(IcoFontIcons.search1),
                   ),
                   Obx(
                     () => Badge(
@@ -75,7 +74,7 @@ class HomePage extends StatelessWidget {
                         onPressed: () =>
                             Get.to(() => const NotificationListPage()),
                         color: AssetColors.blueButton,
-                        icon: const Icon(Icons.notifications),
+                        icon: const Icon(IcoFontIcons.notification),
                       ),
                     ),
                   )
@@ -90,7 +89,7 @@ class HomePage extends StatelessWidget {
                 child: Obx(() {
                   if (ctl.isScrolling.value) {
                     return FloatingActionButton(
-                      backgroundColor: AssetColors.blueButton,
+                      backgroundColor: AssetColors.blue,
                       isExtended: true,
                       onPressed: () {
                         var page = Get.currentRoute;
@@ -104,7 +103,7 @@ class HomePage extends StatelessWidget {
                     );
                   } else {
                     return FloatingActionButton.extended(
-                      backgroundColor: AssetColors.blueButton,
+                      backgroundColor: AssetColors.blue,
                       onPressed: () {
                         var page = Get.currentRoute;
                         Get.to(() => ScanPayCamera(page));
@@ -156,7 +155,7 @@ class HomePage extends StatelessWidget {
                         snap: true,
                         initialChildSize: 0.7,
                         minChildSize: 0.7,
-                        maxChildSize: 0.9,
+                        maxChildSize: 0.88,
                         builder: (context, scrollController) {
                           return Container(
                             decoration: BoxDecoration(
@@ -171,10 +170,10 @@ class HomePage extends StatelessWidget {
                                 Container(
                                   margin: const EdgeInsets.only(
                                     bottom: 4,
-                                    top: 3,
+                                    top: 4,
                                   ),
-                                  height: 4,
-                                  width: 30,
+                                  height: 8,
+                                  width: 50,
                                   decoration: BoxDecoration(
                                     color: Colors.grey,
                                     borderRadius: BorderRadius.circular(10),
@@ -316,6 +315,47 @@ class HomePage extends StatelessWidget {
                                               ),
                                             ],
                                           ),
+                                          CButton(
+                                            color: AssetColors.blue,
+                                            minWidth: double.infinity,
+                                            onPressed: () {},
+                                            child: Container(
+                                              margin: const EdgeInsets.all(5),
+                                              decoration: const BoxDecoration(
+                                                color: Colors.white,
+                                              ),
+                                              child: Padding(
+                                                padding:
+                                                    const EdgeInsets.all(8.0),
+                                                child: Row(
+                                                  mainAxisAlignment:
+                                                      MainAxisAlignment.center,
+                                                  children: [
+                                                    ClipRRect(
+                                                      borderRadius:
+                                                          BorderRadius.circular(
+                                                              20),
+                                                      child: Image.asset(
+                                                        "assets/images/icons/carte_bancaire.png",
+                                                        height: 25,
+                                                      ),
+                                                    ),
+                                                    const Gap(10),
+                                                    const Text(
+                                                      "Commander une carte physique",
+                                                      style: TextStyle(
+                                                        fontSize: 15,
+                                                        color: Colors.black,
+                                                        fontWeight:
+                                                            FontWeight.bold,
+                                                      ),
+                                                    ),
+                                                  ],
+                                                ),
+                                              ),
+                                            ),
+                                          ),
+                                          const Gap(10),
                                           CardMenu(
                                             title: "Recharges et Factures",
                                             children: ctl.routes
@@ -1337,7 +1377,7 @@ class HomePage extends StatelessWidget {
                                                           ),
                                                           const Gap(10),
                                                           CButton(
-                                                            onPressed: () => Functions
+                                                            onPressed: () => ctl
                                                                 .shareAppText(
                                                                     codeParrain: ctl
                                                                         .appCtl

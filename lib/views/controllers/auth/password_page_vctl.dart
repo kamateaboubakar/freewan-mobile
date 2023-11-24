@@ -4,12 +4,12 @@ import 'package:get/get.dart';
 import 'package:local_auth/local_auth.dart';
 import 'package:local_auth_android/local_auth_android.dart';
 import 'package:local_auth_ios/local_auth_ios.dart';
+import 'package:tools_flutter_project/tools_flutter_project.dart';
 
 import 'package:wan_mobile/api/controllers/auth/user_api_ctl.dart';
-import 'package:wan_mobile/tools/cache/cache.dart';
-import 'package:wan_mobile/tools/cache/cache_keys.dart';
-import 'package:wan_mobile/tools/utils/tools.dart';
+
 import 'package:lebedoo_assets/views/controllers/abstracts/view_controller.dart';
+import 'package:wan_mobile/tools/cache/cache_keys.dart';
 import 'package:wan_mobile/views/static/auth/answer_security_question_page.dart';
 import 'package:wan_mobile/views/static/auth/phone_auth/phone_auth.dart';
 
@@ -30,7 +30,7 @@ class PasswordPageVctl extends ViewController {
         phone: phone, password: passwordCtl.text);
     await pr.hide();
     if (res.status) {
-      await Cache.setString(CacheKey.password, passwordCtl.text);
+      await Cache.setString(CacheKey.password.name, passwordCtl.text);
 
       passwordCtl.clear();
       Get.to(
@@ -57,7 +57,7 @@ class PasswordPageVctl extends ViewController {
 
   Future<void> biometricAuthenticate() async {
     if (supportBiometrics) {
-      var password = await Cache.getString(CacheKey.password);
+      var password = await Cache.getString(CacheKey.password.name);
       if (password != null) {
         try {
           hasAlreadyAuthenticated = true;

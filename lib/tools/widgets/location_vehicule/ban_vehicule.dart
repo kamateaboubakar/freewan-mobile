@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:lebedoo_assets/themes/asset_colors.dart';
+import 'package:tools_flutter_project/tools_flutter_project.dart';
 import 'package:wan_mobile/models/location_vehicule/categorie_vehicule.dart';
-import 'package:wan_mobile/tools/types/types.dart';
-import 'package:wan_mobile/tools/utils/asset_colors.dart';
 
 class BanVehicule extends StatelessWidget {
   final CategorieVehicule categorieVehicule;

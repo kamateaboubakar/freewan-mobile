@@ -1,13 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:gap/gap.dart';
+import 'package:lebedoo_assets/themes/asset_colors.dart';
 import 'package:wan_mobile/models/location_vehicule/marque_vehicule.dart';
-import 'package:wan_mobile/tools/types/types.dart';
-import 'package:wan_mobile/tools/utils/asset_colors.dart';
-import 'package:wan_mobile/tools/widgets/c_button.dart';
-import 'package:wan_mobile/tools/widgets/c_dropdown_field.dart';
-import 'package:wan_mobile/tools/widgets/c_textform_field.dart';
+import 'package:tools_flutter_project/tools_flutter_project.dart';
 import 'package:wan_mobile/tools/widgets/location_vehicule/ban_vehicule.dart';
-import 'package:wan_mobile/tools/widgets/wrapper_body_listview.dart';
 import 'package:wan_mobile/views/controllers/location_vehicule/edition_location_vehicule_vctl.dart';
 
 class EditionDetailsVehicule extends StatelessWidget {
@@ -36,7 +31,7 @@ class EditionDetailsVehicule extends StatelessWidget {
                     width: double.infinity,
                     child: WrapperBodyListView(
                       onRefresh: ctl.fecthCategories,
-                      scrollDirection: Axis.horizontal,
+                      // scrollDirection: Axis.horizontal,
                       emptyWidget: const SizedBox.shrink(),
                       loading: ctl.loadCategories,
                       children: ctl.categories

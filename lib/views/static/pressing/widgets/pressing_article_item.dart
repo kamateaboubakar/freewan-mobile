@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:lebedoo_assets/themes/asset_colors.dart';
 import 'package:wan_mobile/models/pressing/pressing_article.dart';
 import 'package:wan_mobile/tools/utils/amount_util.dart';
-
-import '../../../../tools/utils/asset_colors.dart';
 
 class PressingArticleItem extends StatelessWidget {
   final PressingArticle item;
@@ -32,7 +31,8 @@ class PressingArticleItem extends StatelessWidget {
           child: Container(
             decoration: BoxDecoration(
               border: Border.all(
-                color: selected ? AssetColors.blueButton : AssetColors.lightGrey3,
+                color:
+                    selected ? AssetColors.blueButton : AssetColors.lightGrey3,
               ),
               borderRadius: BorderRadius.circular(10),
             ),
@@ -101,7 +101,8 @@ class PressingArticleItem extends StatelessWidget {
                         borderRadius: BorderRadius.circular(5),
                         color: const Color(0xff00853F),
                       ),
-                      padding: const EdgeInsets.symmetric(vertical: 4, horizontal: 8),
+                      padding: const EdgeInsets.symmetric(
+                          vertical: 4, horizontal: 8),
                       child: Center(
                         child: Text(
                           quantity.toString(),
@@ -114,7 +115,6 @@ class PressingArticleItem extends StatelessWidget {
                       ),
                     ),
                   ),
-
               ],
             ),
           ),

@@ -1,7 +1,8 @@
+import 'package:tools_flutter_project/tools/types/int.dart';
 import 'package:wan_mobile/api/controllers/don/donation_api_ctl.dart';
 import 'package:wan_mobile/models/don/campagne.dart';
 import 'package:wan_mobile/models/don/categorie_campagne.dart';
-import 'package:wan_mobile/tools/types/types.dart';
+
 import 'package:tools_flutter_project/tools/http/http_response.dart';
 import 'package:lebedoo_assets/views/controllers/abstracts/view_controller.dart';
 

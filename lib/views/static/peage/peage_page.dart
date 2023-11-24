@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:wan_mobile/tools/types/types.dart';
-import 'package:wan_mobile/tools/widgets/wrapper_body_listview.dart';
+import 'package:tools_flutter_project/tools_flutter_project.dart';
+import 'package:tools_flutter_project/widgets/wrapper_body_listview.dart';
 import 'package:wan_mobile/views/controllers/peage/peage_page_vctl.dart';
 import 'package:wan_mobile/views/static/peage/reference_client_form.dart';
 

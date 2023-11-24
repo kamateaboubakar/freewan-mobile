@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:wan_mobile/tools/utils/asset_colors.dart';
+import 'package:lebedoo_assets/themes/asset_colors.dart';
 import 'package:wan_mobile/views/controllers/tontine/tontine_liste_page_vctl.dart';
 import 'package:wan_mobile/views/static/tontine/historique_tontine_page.dart';
 import 'package:wan_mobile/views/static/tontine/tontine_liste_page.dart';

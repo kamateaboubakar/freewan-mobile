@@ -1,6 +1,6 @@
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
-import 'package:wan_mobile/tools/types/types.dart';
+import 'package:tools_flutter_project/tools_flutter_project.dart';
 
 class ButtonMenu extends StatelessWidget {
   final Widget icon;

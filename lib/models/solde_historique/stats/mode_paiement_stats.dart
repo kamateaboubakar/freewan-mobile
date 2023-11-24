@@ -1,4 +1,5 @@
-import 'package:wan_mobile/tools/types/types.dart';
+import 'package:tools_flutter_project/tools/types/double.dart';
+import 'package:tools_flutter_project/tools_flutter_project.dart';
 
 class ModePaiementStats {
   String? modePayment;
@@ -8,7 +9,7 @@ class ModePaiementStats {
 
   ModePaiementStats.fromJson(Map<String, dynamic> json) {
     modePayment = json["mode_payment"];
-    totalAmount = json['total_amount'].toString().toDouble().toInt();
+    totalAmount = json['total_amount'].toString().toDouble().value.toInt();
   }
 
   Map<String, dynamic> toJson() {

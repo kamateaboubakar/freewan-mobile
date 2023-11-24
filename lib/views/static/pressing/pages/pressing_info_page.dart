@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:lebedoo_assets/themes/asset_colors.dart';
 import 'package:wan_mobile/models/pressing/pressing.dart';
-import 'package:wan_mobile/tools/utils/asset_colors.dart';
 import 'package:wan_mobile/views/controllers/pressing/pressing_services_vctl.dart';
 
 import '../../../controllers/pressing/pressing_vctl.dart';

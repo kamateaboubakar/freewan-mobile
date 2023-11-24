@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:wan_mobile/tools/widgets/c_textform_field.dart';
+import 'package:tools_flutter_project/widgets/c_textform_field.dart';
+import 'package:tools_flutter_project/widgets/wrapper_body_gridview.dart';
+import 'package:tools_flutter_project/widgets/wrapper_body_listview.dart';
 import 'package:wan_mobile/tools/widgets/location_vehicule/ban_vehicule.dart';
 import 'package:wan_mobile/tools/widgets/location_vehicule/card_vehicule.dart';
-import 'package:wan_mobile/tools/widgets/wrapper_body_gridview.dart';
-import 'package:wan_mobile/tools/widgets/wrapper_body_listview.dart';
 import 'package:wan_mobile/views/controllers/location_vehicule/location_vehicule_vctl.dart';
 
 class VehiculeALouerPage extends StatelessWidget {
@@ -32,9 +32,9 @@ class VehiculeALouerPage extends StatelessWidget {
               height: 130,
               width: double.infinity,
               child: WrapperBodyListView(
-                error: ctl.marketCarsError,
+                // error: ctl.marketCarsError,
                 onRefresh: ctl.fecthCategories,
-                scrollDirection: Axis.horizontal,
+                // scrollDirection: Axis.horizontal,
                 emptyWidget: const SizedBox.shrink(),
                 loading: ctl.loadCategories,
                 children: ctl.categories
@@ -60,12 +60,13 @@ class VehiculeALouerPage extends StatelessWidget {
               title: Text("Véhicules Disponibles"),
             ),
             WrapperBodyGridView(
-              primary: false,
+              // primary: false,
               childAspectRatio: .8,
               crossAxisSpacing: 5,
-              shrinkWrap: true,
+              // shrinkWrap: true,
               onRefresh: ctl.fecthMarketCars,
               loading: ctl.loadMarketCars,
+              crossAxisCount: 2,
               children: ctl.getMarketCars.map((e) => CardVehicule(e)).toList(),
             ),
             // GridView.count(

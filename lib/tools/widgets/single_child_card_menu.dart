@@ -1,6 +1,7 @@
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
-import 'package:wan_mobile/tools/types/types.dart';
+import 'package:lebedoo_assets/lebedoo_assets.dart';
+import 'package:tools_flutter_project/tools_flutter_project.dart';
 
 class SingleChildCardMenu extends StatelessWidget {
   final Widget icon;
@@ -20,7 +21,8 @@ class SingleChildCardMenu extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       margin: margin,
-      padding: EdgeInsets.zero,
+      padding: const EdgeInsets.only(left: 10, right: 10),
+      color: AssetColors.blue,
       child: LayoutBuilder(
         builder: (context, constraints) {
           return MaterialButton(

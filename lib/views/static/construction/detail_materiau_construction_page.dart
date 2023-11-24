@@ -1,11 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
-import 'package:gap/gap.dart';
 import 'package:get/get.dart';
+import 'package:lebedoo_assets/lebedoo_assets.dart';
 import 'package:readmore/readmore.dart';
-import 'package:wan_mobile/tools/utils/asset_colors.dart';
-import 'package:wan_mobile/tools/utils/tools.dart';
-import 'package:wan_mobile/tools/widgets/c_button.dart';
+
+import 'package:tools_flutter_project/tools_flutter_project.dart';
 import 'package:wan_mobile/tools/widgets/c_outlined_button.dart';
 import 'package:wan_mobile/tools/widgets/construction/materiau_construction_card.dart';
 import 'package:wan_mobile/tools/widgets/quantity_field.dart';

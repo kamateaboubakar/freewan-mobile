@@ -1,6 +1,6 @@
+import 'package:tools_flutter_project/tools_flutter_project.dart';
 import 'package:wan_mobile/models/don/categorie_campagne.dart';
 import 'package:wan_mobile/models/don/organization.dart';
-import 'package:wan_mobile/tools/types/types.dart';
 
 class Campagne {
   int? id;

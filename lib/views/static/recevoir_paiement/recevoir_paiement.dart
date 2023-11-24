@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:lebedoo_assets/themes/asset_colors.dart';
 import 'package:qr_flutter/qr_flutter.dart';
+import 'package:tools_flutter_project/tools_flutter_project.dart';
 import 'package:wan_mobile/tools/const/const.dart';
-import 'package:wan_mobile/tools/types/types.dart';
-import 'package:wan_mobile/tools/utils/asset_colors.dart';
+
 import 'package:wan_mobile/views/controllers/recevoir_paiement/recevoir_paiement_vctl.dart';
 
 class RecevoirPaiement extends StatelessWidget {

@@ -1,6 +1,7 @@
 import 'package:lebedoo_assets/lebedoo_assets.dart';
 import 'package:lebedoo_assets/tools/web/app_http_hearders.dart';
 import 'package:lebedoo_assets/tools/web/web_request.dart';
+import 'package:tools_flutter_project/tools/types/map.dart';
 import 'package:wan_mobile/api/abstracts/links.dart';
 
 import 'package:wan_mobile/models/loyer/abstracts/bien_immobilier.dart';
@@ -10,7 +11,7 @@ import 'package:wan_mobile/models/loyer/appartement.dart';
 import 'package:wan_mobile/models/loyer/maison.dart';
 import 'package:wan_mobile/models/loyer/paiement_loyer.dart';
 import 'package:wan_mobile/models/loyer/type_appartement.dart';
-import 'package:wan_mobile/tools/types/types.dart';
+
 import 'package:tools_flutter_project/tools/http/http_response.dart';
 
 class LoyerApiCtl {

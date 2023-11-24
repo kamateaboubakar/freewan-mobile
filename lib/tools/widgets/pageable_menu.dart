@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_image_slideshow/flutter_image_slideshow.dart';
-import 'package:wan_mobile/tools/types/types.dart';
+import 'package:tools_flutter_project/tools_flutter_project.dart';
+
 import 'package:wan_mobile/tools/widgets/button_menu.dart';
 
 class PageableMenu extends StatelessWidget {
@@ -20,6 +21,7 @@ class PageableMenu extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       margin: margin,
+      constraints: const BoxConstraints(minHeight: 150),
       padding: const EdgeInsets.only(top: 10, left: 10, right: 10),
       decoration: BoxDecoration(
           border: Border.all(
@@ -50,13 +52,13 @@ class PageableMenu extends StatelessWidget {
             ),
           ),
           ImageSlideshow(
-            height: 120,
+            height: 140,
             children: splitListIntoChunks(children)
                 .map(
                   (e) => GridView(
                     primary: false,
                     shrinkWrap: true,
-                    padding: const EdgeInsets.symmetric(vertical: 10),
+                    padding: const EdgeInsets.only(top: 15),
                     physics: const NeverScrollableScrollPhysics(),
                     gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
                       crossAxisCount: nbButtonPerPage,

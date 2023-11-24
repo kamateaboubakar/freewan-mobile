@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:wan_mobile/tools/utils/asset_colors.dart';
+import 'package:lebedoo_assets/themes/asset_colors.dart';
+import 'package:tools_flutter_project/widgets/c_button.dart';
 import 'package:wan_mobile/views/controllers/job/job_list_vctl.dart';
 import 'package:wan_mobile/views/static/job/views/employee/employee_views.dart';
 import 'package:wan_mobile/views/static/job/views/employer/add_job_offer_information_page.dart';
 
 import '../../../../../models/job/job_offer.dart';
 import '../../../../../tools/const/const.dart';
-import '../../../../../tools/widgets/c_button.dart';
 import '../../../../../tools/widgets/c_outlined_button.dart';
 import '../../../../../tools/widgets/job/job_header.dart';
 import '../../../../controllers/job/job_application_list_vctl.dart';

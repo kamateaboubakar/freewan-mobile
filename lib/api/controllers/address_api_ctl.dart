@@ -1,5 +1,3 @@
-import 'dart:developer';
-
 import 'package:lebedoo_assets/tools/web/app_http_hearders.dart';
 import 'package:lebedoo_assets/tools/web/web_request.dart';
 import 'package:tools_flutter_project/tools_flutter_project.dart';

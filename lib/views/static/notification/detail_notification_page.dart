@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:gap/gap.dart';
+import 'package:tools_flutter_project/tools_flutter_project.dart';
 import 'package:wan_mobile/models/app_notification.dart';
-import 'package:wan_mobile/tools/types/types.dart';
 
 class DetailNotificationPage extends StatelessWidget {
   final AppNotification notif;

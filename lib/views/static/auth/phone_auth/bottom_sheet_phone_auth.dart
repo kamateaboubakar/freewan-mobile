@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:wan_mobile/tools/types/types.dart';
-import 'package:wan_mobile/tools/widgets/c_textform_field.dart';
-import 'package:wan_mobile/tools/widgets/wrapper_body_listview.dart';
+import 'package:tools_flutter_project/tools_flutter_project.dart';
 import 'package:wan_mobile/views/controllers/auth/bottom_sheet_phone_auth_vctl.dart';
 import 'package:wan_mobile/views/controllers/auth/phone_auth_vctl.dart';
 
@@ -86,8 +84,8 @@ class BottomSheetPhoneAuth extends StatelessWidget {
                   child: WrapperBodyListView(
                     loading: ctl.loading,
                     onRefresh: () => ctl.fetchPays(force: true),
-                    lottieEmptyImage: "assets/lotties/123725-box-empty.json",
-                    emptyText: "Aucun pays à afficher",
+                    // lottieEmptyImage: "assets/lotties/123725-box-empty.json",
+                    // emptyText: "Aucun pays à afficher",
                     children: pCtl.pays
                         .map(
                           (e) => ListTile(

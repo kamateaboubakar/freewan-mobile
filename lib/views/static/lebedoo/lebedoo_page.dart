@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:wan_mobile/tools/types/types.dart';
-import 'package:wan_mobile/tools/utils/asset_colors.dart';
+import 'package:lebedoo_assets/themes/asset_colors.dart';
+import 'package:tools_flutter_project/tools/types/int.dart';
 
 class LebedooPage extends StatelessWidget {
   const LebedooPage({super.key});

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:wan_mobile/tools/widgets/c_button.dart';
+import 'package:tools_flutter_project/tools_flutter_project.dart';
 
 class TontineSuccessCreationPage extends StatelessWidget {
   const TontineSuccessCreationPage({super.key});

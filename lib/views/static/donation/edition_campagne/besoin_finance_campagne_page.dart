@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:lebedoo_assets/themes/asset_colors.dart';
 
-import 'package:wan_mobile/tools/utils/asset_colors.dart';
-import 'package:wan_mobile/tools/widgets/c_button.dart';
-import 'package:wan_mobile/tools/widgets/c_textform_field.dart';
+import 'package:tools_flutter_project/tools_flutter_project.dart';
 import 'package:wan_mobile/views/controllers/donation/edition_donation_page_vctl.dart';
 
 class BesoinFinanceCampagnePage extends StatelessWidget {

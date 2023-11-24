@@ -1,14 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:gap/gap.dart';
 import 'package:get/get.dart';
+import 'package:tools_flutter_project/tools/types/double.dart';
 import 'package:wan_mobile/models/loyer/abstracts/habitat.dart';
 import 'package:wan_mobile/models/loyer/appartement.dart';
 import 'package:wan_mobile/models/loyer/maison.dart';
-import 'package:wan_mobile/tools/types/types.dart';
-import 'package:wan_mobile/tools/utils/functions.dart';
-import 'package:wan_mobile/tools/widgets/c_button.dart';
-import 'package:wan_mobile/tools/widgets/c_dropdown_field.dart';
-import 'package:wan_mobile/tools/widgets/c_textform_field.dart';
+
+import 'package:tools_flutter_project/tools_flutter_project.dart';
 import 'package:wan_mobile/views/controllers/loyer/locataire/paiement_loyer_page_vctl.dart';
 
 class PaiementLoyerPage extends StatelessWidget {
@@ -76,15 +73,15 @@ class PaiementLoyerPage extends StatelessWidget {
                             child: CDropdownField(
                               labelText: "Mois",
                               require: true,
-                              items: Functions.months
-                                  .map((e) => e["full"])
-                                  .toList(),
+                              // items: Functions.months
+                              //     .map((e) => e["full"])
+                              //     .toList(),
                               onChanged: (value) {
-                                ctl.selectedMois = Functions.getMonthIndex(
-                                    value.value,
-                                    lite: false);
+                                // ctl.selectedMois = Functions.getMonthIndex(
+                                //     value.value,
+                                //     lite: false);
 
-                                ctl.update();
+                                // ctl.update();
                               },
                             ),
                           ),

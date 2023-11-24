@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:wan_mobile/tools/types/types.dart';
+import 'package:tools_flutter_project/tools_flutter_project.dart';
+
 import 'package:wan_mobile/tools/widgets/button_menu.dart';
 
 class CardMenu extends StatelessWidget {
@@ -19,6 +20,7 @@ class CardMenu extends StatelessWidget {
     return Container(
       margin: margin,
       padding: const EdgeInsets.all(15),
+      constraints: const BoxConstraints(minHeight: 150),
       decoration: BoxDecoration(
           border: Border.all(
             width: .2,

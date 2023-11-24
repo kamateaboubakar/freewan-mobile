@@ -1,10 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:wan_mobile/tools/types/types.dart';
-import 'package:wan_mobile/tools/widgets/c_button.dart';
-import 'package:wan_mobile/tools/widgets/c_textform_field.dart';
+import 'package:lebedoo_assets/themes/asset_colors.dart';
+import 'package:tools_flutter_project/tools/types/int.dart';
+import 'package:tools_flutter_project/tools_flutter_project.dart';
 import 'package:wan_mobile/views/controllers/loyer/form_edition_bien_immobilier_vctl.dart';
-import '../../../../tools/utils/asset_colors.dart';
 
 class FormEditionBienImmobilier extends StatelessWidget {
   final bool isMaison;
@@ -158,7 +157,8 @@ class FormEditionBienImmobilier extends StatelessWidget {
                           validator: (value) {
                             if (value != null && value.isNotEmpty) {
                               if (value.isNum) {
-                                if (value.toInt() >= 1 && value.toInt() <= 31) {
+                                if (value.toInt().value >= 1 &&
+                                    value.toInt().value <= 31) {
                                   return null;
                                 } else {
                                   return "Veuillez saisir un nombre entre 1 et 31";

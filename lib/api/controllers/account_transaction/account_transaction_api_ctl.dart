@@ -2,11 +2,12 @@ import 'package:lebedoo_assets/lebedoo_assets.dart';
 import 'package:lebedoo_assets/tools/web/app_http_hearders.dart';
 import 'package:lebedoo_assets/tools/web/web_request.dart';
 import 'package:tools_flutter_project/tools/http/http_response.dart';
+import 'package:tools_flutter_project/tools/types/map.dart';
 import 'package:wan_mobile/models/solde_historique/account_transaction.dart';
 import 'package:wan_mobile/models/solde_historique/stats/mode_paiement_stats.dart';
 import 'package:wan_mobile/models/solde_historique/stats/month_stats.dart';
 import 'package:wan_mobile/models/solde_historique/stats/service_stats.dart';
-import 'package:wan_mobile/tools/types/types.dart';
+
 
 class AccountTransactionApiCtl {
   final url = "http://148.113.143.59:8184/api";

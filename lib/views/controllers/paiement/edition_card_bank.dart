@@ -1,12 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_credit_card/credit_card_widget.dart';
-import 'package:gap/gap.dart';
 import 'package:get/get.dart';
-import 'package:text_divider/text_divider.dart';
-import 'package:wan_mobile/tools/utils/asset_colors.dart';
-import 'package:wan_mobile/tools/widgets/c_button.dart';
+import 'package:tools_flutter_project/tools_flutter_project.dart';
+import 'package:lebedoo_assets/themes/asset_colors.dart';
 import 'package:wan_mobile/tools/widgets/c_outlined_button.dart';
-import 'package:wan_mobile/tools/widgets/c_textform_field.dart';
 import 'package:wan_mobile/views/controllers/paiement/edition_card_bank_vctl.dart';
 
 class EditionCardBank extends StatelessWidget {

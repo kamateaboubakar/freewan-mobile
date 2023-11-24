@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:wan_mobile/tools/utils/asset_colors.dart';
+import 'package:lebedoo_assets/themes/asset_colors.dart';
+import 'package:tools_flutter_project/widgets/c_textform_field.dart';
 import 'package:wan_mobile/views/static/job/views/employee/employee_views.dart';
 import 'package:wan_mobile/views/static/job/views/employee/job_list/job_list_view.dart';
 
 import '../../../../../models/job/job_entity.dart';
-import '../../../../../tools/widgets/c_textform_field.dart';
 import '../../job_views.dart';
 import 'job_offers_applied_page.dart';
 
@@ -63,7 +63,7 @@ class _JobHomePageState extends State<JobHomePage> {
                         ),
                       ),
                       fillColor: const Color(0xffD8ECFE).withOpacity(.56),
-                      hintColor: AssetColors.blue,
+                      // hintColor: AssetColors.blue,
                     ),
                   ),
                   const SizedBox(width: 10),

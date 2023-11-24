@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:wan_mobile/tools/utils/tools.dart';
+import 'package:tools_flutter_project/tools_flutter_project.dart';
+
 import 'package:wan_mobile/views/static/tv_bills/tv_bills_menu_page.dart';
 
 class TvBillsSelectionDialog extends StatelessWidget {

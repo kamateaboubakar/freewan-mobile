@@ -3,7 +3,7 @@ import 'package:lebedoo_assets/tools/web/app_http_hearders.dart';
 import 'package:lebedoo_assets/tools/web/web_request.dart';
 
 import 'package:wan_mobile/models/scolarite/search_etudiant_result.dart';
-import 'package:wan_mobile/tools/types/types.dart';
+
 import 'package:tools_flutter_project/tools/http/http_response.dart';
 
 class ScolariteApiCtl {

@@ -1,13 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:lebedoo_assets/lebedoo_assets.dart';
 import 'package:sliding_up_panel/sliding_up_panel.dart';
 import 'package:wan_mobile/api/controllers/auth/user_api_ctl.dart';
 import 'package:wan_mobile/api/controllers/pubs/pub_api_ctl.dart';
 import 'package:wan_mobile/models/pubs/pub.dart';
-import 'package:wan_mobile/tools/cache/cache.dart';
+import 'package:wan_mobile/tools/const/const.dart';
+
 import 'package:wan_mobile/tools/services/notification_service.dart';
-import 'package:wan_mobile/tools/utils/tools.dart';
-import 'package:wan_mobile/tools/widgets/c_button.dart';
+
+import 'package:tools_flutter_project/tools_flutter_project.dart';
 import 'package:lebedoo_assets/views/controllers/abstracts/view_controller.dart';
 import 'package:wan_mobile/views/static/auth/phone_auth/phone_auth.dart';
 import 'package:wan_mobile/views/tools/routes.dart';
@@ -90,8 +92,6 @@ class HomePageVctl extends ViewController {
               ],
             ),
           ),
-          contentPadding: EdgeInsets.zero,
-          backgroundColor: Colors.transparent,
         );
       }
     });
@@ -141,6 +141,19 @@ class HomePageVctl extends ViewController {
     } else {
       Tools.messageBox(message: res.message);
     }
+  }
+
+  Future<void> shareAppText({required String codeParrain}) async {
+    Share.share(
+        """😀 hey, inscris-toi sur *${Const.appName}* avec mon code de parrain : *$codeParrain*
+
+Le premier Hub de service ivoirien totalement digital.
+
+Téléchargez directement l'application sur :
+AppStore : ${Const.appStoreLink}
+PlayStore : ${Const.playStoreLink}
+
+🥳🥳 ${Const.appSlogan}""");
   }
 
   @override

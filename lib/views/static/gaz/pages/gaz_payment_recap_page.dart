@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:wan_mobile/tools/utils/tools.dart';
-import 'package:wan_mobile/tools/widgets/c_button.dart';
+
+import 'package:tools_flutter_project/tools_flutter_project.dart';
 import 'package:wan_mobile/views/static/paiement/paiement_operation_success.dart';
 
 import '../../../controllers/gaz/gas_shop_vctl.dart';

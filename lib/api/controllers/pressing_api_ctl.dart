@@ -1,11 +1,12 @@
 import 'dart:developer';
 import 'package:lebedoo_assets/lebedoo_assets.dart';
 import 'package:lebedoo_assets/tools/web/web_request.dart';
+import 'package:tools_flutter_project/tools/types/map.dart';
 import 'package:tools_flutter_project/tools_flutter_project.dart';
 import 'package:wan_mobile/models/pressing/pressing.dart';
 import 'package:wan_mobile/models/pressing/pressing_article.dart';
 import 'package:wan_mobile/models/pressing/pressing_service.dart';
-import 'package:wan_mobile/tools/types/types.dart';
+
 import '../../models/pressing/pressing_article_category.dart';
 import '../../models/pressing/user_localisation.dart';
 import '../../tools/const/const.dart';

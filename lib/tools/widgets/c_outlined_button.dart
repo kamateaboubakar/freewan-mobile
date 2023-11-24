@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:wan_mobile/tools/utils/asset_colors.dart';
+import 'package:lebedoo_assets/lebedoo_assets.dart';
 
 class COutlinedButton extends StatelessWidget {
   final Widget child;

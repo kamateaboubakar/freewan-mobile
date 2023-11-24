@@ -1,11 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:text_divider/text_divider.dart';
+import 'package:tools_flutter_project/tools/types/int.dart';
 import 'package:wan_mobile/models/don/campagne.dart';
-import 'package:wan_mobile/tools/types/types.dart';
-import 'package:wan_mobile/tools/utils/asset_colors.dart';
-import 'package:wan_mobile/tools/widgets/c_button.dart';
-import 'package:wan_mobile/tools/widgets/c_textform_field.dart';
+import 'package:tools_flutter_project/tools_flutter_project.dart';
+import 'package:lebedoo_assets/themes/asset_colors.dart';
 import 'package:wan_mobile/tools/widgets/toggle_button_widget/c_toggle_button.dart';
 import 'package:wan_mobile/tools/widgets/toggle_button_widget/toggle_item.dart';
 import 'package:wan_mobile/views/controllers/donation/finalise_donation_page_vctl.dart';

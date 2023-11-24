@@ -1,10 +1,7 @@
 import 'dart:io';
-
 import 'package:flutter/material.dart';
-import 'package:gap/gap.dart';
-import 'package:wan_mobile/tools/utils/asset_colors.dart';
-import 'package:wan_mobile/tools/utils/tools.dart';
-import 'package:wan_mobile/tools/widgets/c_button.dart';
+import 'package:lebedoo_assets/themes/asset_colors.dart';
+import 'package:tools_flutter_project/tools_flutter_project.dart';
 import 'package:wan_mobile/tools/widgets/c_outlined_button.dart';
 import 'package:wan_mobile/views/controllers/location_vehicule/edition_location_vehicule_vctl.dart';
 
@@ -36,13 +33,13 @@ class EditionImageVehicule extends StatelessWidget {
             heroTag: "btn2",
             tooltip: "Ouvrir la galérie",
             onPressed: () async {
-              var images = await Tools.pickMultipleImage();
-              if (ctl.images.isNotEmpty) {
-                ctl.images.addAll(images.map((e) => e.path).toList());
-              } else {
-                ctl.images = images.map((e) => e.path).toList();
-              }
-              ctl.update();
+              // var images = await Tools.pickMultipleImage();
+              // if (ctl.images.isNotEmpty) {
+              //   ctl.images.addAll(images.map((e) => e.path).toList());
+              // } else {
+              //   ctl.images = images.map((e) => e.path).toList();
+              // }
+              // ctl.update();
             },
             backgroundColor: AssetColors.blueButton,
             child: const Icon(Icons.add_to_photos_rounded),

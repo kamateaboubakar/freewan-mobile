@@ -1,8 +1,8 @@
+import 'package:lebedoo_assets/models/pays.dart';
 import 'package:wan_mobile/models/job/category.dart';
 import 'package:wan_mobile/models/job/jobs_sector.dart';
 import 'package:wan_mobile/models/job/work_experience.dart';
 
-import '../pays.dart';
 import 'company.dart';
 import 'contract_type.dart';
 

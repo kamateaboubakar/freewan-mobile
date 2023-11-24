@@ -3,11 +3,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter_countdown_timer/flutter_countdown_timer.dart';
 import 'package:flutter_otp_text_field/flutter_otp_text_field.dart';
 import 'package:get/get.dart';
-import 'package:wan_mobile/models/pays.dart';
+import 'package:lebedoo_assets/models/pays.dart';
+import 'package:lebedoo_assets/themes/asset_colors.dart';
 import 'package:wan_mobile/tools/const/const.dart';
 import 'package:wan_mobile/views/controllers/auth/opt_auth_vctl.dart';
-
-import '../../../tools/utils/asset_colors.dart';
 
 class OPTAuth extends StatelessWidget {
   final void Function(String code) onSubmit;

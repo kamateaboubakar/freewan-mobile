@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:tools_flutter_project/tools/types/double.dart';
+import 'package:tools_flutter_project/tools/types/int.dart';
+import 'package:tools_flutter_project/tools_flutter_project.dart';
 import 'package:wan_mobile/api/controllers/loyer/loyer_api_ctl.dart';
 import 'package:wan_mobile/models/loyer/abstracts/habitat.dart';
 import 'package:wan_mobile/models/loyer/paiement_loyer.dart';
-import 'package:wan_mobile/tools/types/types.dart';
-import 'package:wan_mobile/tools/utils/tools.dart';
+
 import 'package:lebedoo_assets/views/controllers/abstracts/view_controller.dart';
 import 'package:wan_mobile/views/static/home/home_page.dart';
 import 'package:wan_mobile/views/static/paiement/paiement_mode_paiement.dart';
@@ -24,9 +26,10 @@ class PaiementLoyerPageVctl extends ViewController {
       if (rep == true) {
         await pr.show();
         var verPaiement = await LoyerApiCtl().checkPaiement(
-            habitatId: habitat.id!,
-            mois: selectedMois!,
-            annee: anneeCtl.text.toInt());
+          habitatId: habitat.id!,
+          mois: selectedMois!,
+          annee: anneeCtl.text.toInt().value,
+        );
         await pr.hide();
         if (verPaiement.status) {
           if (verPaiement.data!["status"] == false) {

@@ -3,7 +3,7 @@ import 'package:get/get.dart';
 import 'package:qr_code_scanner/qr_code_scanner.dart';
 import 'package:wan_mobile/views/controllers/scan_pay/scan_pay_camera_vctl.dart';
 
-import '../../../tools/utils/asset_colors.dart';
+import 'package:lebedoo_assets/themes/asset_colors.dart';
 
 class ScanPayCamera extends StatelessWidget {
   final String route;

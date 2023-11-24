@@ -1,8 +1,9 @@
+import 'package:tools_flutter_project/tools/types/int.dart';
+import 'package:tools_flutter_project/tools_flutter_project.dart';
 import 'package:wan_mobile/api/controllers/loyer/loyer_api_ctl.dart';
 import 'package:wan_mobile/models/loyer/abstracts/bloc_appartement.dart';
 import 'package:wan_mobile/models/loyer/maison.dart';
-import 'package:wan_mobile/tools/types/types.dart';
-import 'package:wan_mobile/tools/utils/tools.dart';
+
 import 'package:lebedoo_assets/views/controllers/abstracts/view_controller.dart';
 
 class BienImmobilierPageVctl extends ViewController {

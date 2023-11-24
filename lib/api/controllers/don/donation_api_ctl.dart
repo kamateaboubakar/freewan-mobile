@@ -2,13 +2,14 @@ import 'dart:io';
 import 'package:lebedoo_assets/lebedoo_assets.dart';
 import 'package:lebedoo_assets/tools/web/app_http_hearders.dart';
 import 'package:lebedoo_assets/tools/web/web_request.dart';
+import 'package:tools_flutter_project/tools/types/map.dart';
 
 import 'package:wan_mobile/models/don/campagne.dart';
 import 'package:wan_mobile/models/don/categorie_campagne.dart';
 import 'package:wan_mobile/models/don/organization.dart';
 import 'package:wan_mobile/models/fichier.dart';
 import 'package:wan_mobile/tools/const/const.dart';
-import 'package:wan_mobile/tools/types/types.dart';
+
 import 'package:tools_flutter_project/tools/http/http_response.dart';
 
 class DonationApiCtl {

@@ -1,9 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
+import 'package:lebedoo_assets/lebedoo_assets.dart';
 import 'package:onscreen_num_keyboard/onscreen_num_keyboard.dart';
 import 'package:pin_code_fields/pin_code_fields.dart';
 import 'package:wan_mobile/tools/const/const.dart';
-import 'package:wan_mobile/tools/utils/asset_colors.dart';
 import 'package:wan_mobile/views/controllers/auth/password_page_vctl.dart';
 
 class PasswordPage extends StatelessWidget {

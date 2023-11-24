@@ -1,9 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:lebedoo_assets/themes/asset_colors.dart';
+import 'package:tools_flutter_project/widgets/c_button.dart';
 import 'package:wan_mobile/views/static/paiement/paiement_mode_paiement.dart';
-
-import '../../../../tools/utils/asset_colors.dart';
-import '../../../../tools/widgets/c_button.dart';
 
 class TvBillsFormulaListPage extends StatefulWidget {
   final bool newSubscription;

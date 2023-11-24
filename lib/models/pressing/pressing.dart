@@ -1,7 +1,7 @@
 import 'package:get/get.dart';
 import 'package:wan_mobile/tools/const/const.dart';
 import 'package:latlong2/latlong.dart';
-import 'package:wan_mobile/tools/types/types.dart';
+import 'package:tools_flutter_project/tools_flutter_project.dart';
 
 class Pressing {
   int? id;
@@ -51,9 +51,10 @@ class Pressing {
 
   double distance(LatLng latLng) {
     if (latitude != null && longitude != null) {
-      return LatLng(latLng.latitude, latLng.longitude)
-          .calculateDistance(latitude!, longitude!)
-          .toPrecision(2);
+      return 0;
+      // return LatLng(latLng.latitude, latLng.longitude)
+      //     .calculateDistance(latitude!, longitude!)
+      //     .toPrecision(2);
     }
     return 0;
   }

@@ -61,7 +61,7 @@ class Routes extends ViewController {
           groupe: "Banques",
           menuButtonEnum: MenuButtonEnum.bankEtMicrofinance,
           button: ButtonMenu(
-            icon: Image.asset("assets/images/icons8-échange-de-cartes.gif"),
+            icon: Image.asset("assets/images/icons/bank.png"),
             title: "Banks &\nmicrofinances",
             onPressed: () {},
           ),
@@ -624,6 +624,15 @@ class Routes extends ViewController {
             onPressed: () {},
           ),
           menuButtonEnum: MenuButtonEnum.bourseDinvestissement,
+        ),
+        RouteItem(
+          groupe: "Banques",
+          menuButtonEnum: MenuButtonEnum.cartesBancairesEtPrepayees,
+          button: ButtonMenu(
+            icon: Image.asset("assets/images/icons8-échange-de-cartes.gif"),
+            title: "Cartes\nbancaires/prépayée",
+            onPressed: () {},
+          ),
         ),
       ];
 

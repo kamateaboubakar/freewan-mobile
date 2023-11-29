@@ -4,6 +4,7 @@ enum MenuButtonEnum {
   envoyerVersMobile,
   recevoirArgent,
   bankEtMicrofinance,
+  cartesBancairesEtPrepayees,
   lebedoo,
   soldeHistorique,
   paiementLoyer,

@@ -57,6 +57,7 @@ class AnswerSecurityQuestionPage extends StatelessWidget {
                   const SizedBox(height: 20),
                   CButton(
                     height: 50,
+                    color: AssetColors.blue,
                     minWidth: double.infinity,
                     onPressed: () => ctl.submit(),
                     child: const Text("Valider"),

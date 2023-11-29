@@ -22,7 +22,10 @@ class SingleChildCardMenu extends StatelessWidget {
     return Container(
       margin: margin,
       padding: const EdgeInsets.only(left: 10, right: 10),
-      color: AssetColors.blue,
+      decoration: BoxDecoration(
+        color: AssetColors.blue,
+        borderRadius: BorderRadius.circular(5),
+      ),
       child: LayoutBuilder(
         builder: (context, constraints) {
           return MaterialButton(

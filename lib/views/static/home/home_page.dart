@@ -6,9 +6,7 @@ import 'package:icofont_flutter/icofont_flutter.dart';
 import 'package:lebedoo_assets/lebedoo_assets.dart';
 import 'package:shimmer/shimmer.dart';
 import 'package:tools_flutter_project/tools_flutter_project.dart';
-import 'package:tools_flutter_project/widgets/c_button.dart';
 import 'package:wan_mobile/tools/const/const.dart';
-
 import 'package:wan_mobile/tools/widgets/button_menu.dart';
 import 'package:wan_mobile/tools/widgets/card_menu.dart';
 import 'package:wan_mobile/tools/widgets/pageable_menu.dart';
@@ -255,6 +253,8 @@ class HomePage extends StatelessWidget {
                                                   MenuButtonEnum.recevoirArgent,
                                                   MenuButtonEnum
                                                       .bankEtMicrofinance,
+                                                  MenuButtonEnum
+                                                      .cartesBancairesEtPrepayees,
                                                   MenuButtonEnum.lebedoo,
                                                 ])
                                                 .map((e) => e.button)
@@ -321,8 +321,10 @@ class HomePage extends StatelessWidget {
                                             onPressed: () {},
                                             child: Container(
                                               margin: const EdgeInsets.all(5),
-                                              decoration: const BoxDecoration(
+                                              decoration: BoxDecoration(
                                                 color: Colors.white,
+                                                borderRadius:
+                                                    BorderRadius.circular(5),
                                               ),
                                               child: Padding(
                                                 padding:
@@ -1377,6 +1379,8 @@ class HomePage extends StatelessWidget {
                                                           ),
                                                           const Gap(10),
                                                           CButton(
+                                                            color: AssetColors
+                                                                .blue,
                                                             onPressed: () => ctl
                                                                 .shareAppText(
                                                                     codeParrain: ctl

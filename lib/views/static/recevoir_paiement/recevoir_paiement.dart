@@ -23,10 +23,17 @@ class RecevoirPaiement extends StatelessWidget {
           mainAxisSize: MainAxisSize.min,
           children: [
             const Text("Powered by", style: TextStyle(color: Colors.white)),
-            Image.asset(
-              Const.inLineAppLogo,
-              height: 80,
-              color: Colors.white,
+            Container(
+              height: 50,
+              margin: const EdgeInsets.only(top: 10),
+              decoration: BoxDecoration(
+                color: Colors.white,
+                borderRadius: BorderRadius.circular(10),
+              ),
+              child: Image.asset(
+                "assets/images/logo_freewan.png",
+                height: 80,
+              ),
             ),
           ],
         ),
@@ -50,6 +57,12 @@ class RecevoirPaiement extends StatelessWidget {
                       child: (ctl.qrData == null)
                           ? const Center(child: CircularProgressIndicator())
                           : QrImageView(data: ctl.qrData.value),
+                    ),
+                    const Gap(10),
+                    Image.asset(
+                      Const.inLineAppLogo,
+                      height: 35,
+                      color: Colors.white,
                     ),
                   ],
                 ),

@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:gap/gap.dart';
 import 'package:get/get.dart';
 import 'package:tools_flutter_project/tools_flutter_project.dart';
-import 'package:tools_flutter_project/widgets/c_textform_field.dart';
 import 'package:wan_mobile/views/controllers/scolarite/scolarite_page_vctl.dart';
 
 class ScolaritePage extends StatelessWidget {

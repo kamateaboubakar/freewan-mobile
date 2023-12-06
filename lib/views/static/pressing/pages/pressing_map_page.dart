@@ -61,7 +61,7 @@ class _PressingMapPageState extends State<PressingMapPage> {
               FlutterMap(
                 mapController: _mapController,
                 options: MapOptions(
-                  center: LatLng(5.379617, -3.934711),
+                  center: const LatLng(5.379617, -3.934711),
                   zoom: mapZoom,
                   onTap: (_, __) {
                     _pressingController.reset();

@@ -4,7 +4,6 @@ import 'package:jwt_decode/jwt_decode.dart';
 import 'package:lebedoo_assets/lebedoo_assets.dart';
 import 'package:lebedoo_assets/tools/web/request_verbe_enum.dart';
 import 'package:lebedoo_assets/tools/web/web_request.dart';
-import 'package:path/path.dart' as p;
 import 'package:tools_flutter_project/tools/http/http_response.dart';
 
 import 'package:wan_mobile/models/file_upload_result.dart';

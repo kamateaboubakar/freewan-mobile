@@ -5,9 +5,6 @@ import 'package:get/get.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:lebedoo_assets/themes/asset_colors.dart';
 import 'package:tools_flutter_project/tools_flutter_project.dart';
-import 'package:tools_flutter_project/widgets/c_button.dart';
-import 'package:tools_flutter_project/widgets/c_dropdown_field.dart';
-import 'package:tools_flutter_project/widgets/c_textform_field.dart';
 import 'package:wan_mobile/models/job/job_offer.dart';
 import 'package:wan_mobile/views/controllers/job/add_job_vctl.dart';
 

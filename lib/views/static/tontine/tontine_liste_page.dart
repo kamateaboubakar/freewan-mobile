@@ -2,10 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:lebedoo_assets/themes/asset_colors.dart';
 import 'package:tools_flutter_project/tools_flutter_project.dart';
-import 'package:tools_flutter_project/widgets/wrapper_body_listview.dart';
-import 'package:wan_mobile/models/tontine/tontine.dart';
 
-import 'package:wan_mobile/tools/widgets/c_outlined_button.dart';
 import 'package:wan_mobile/views/controllers/tontine/tontine_liste_page_vctl.dart';
 import 'package:wan_mobile/views/static/tontine/edition_tontine_page.dart';
 

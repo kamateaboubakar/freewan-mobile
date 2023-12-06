@@ -46,29 +46,35 @@ class PageableMenu extends StatelessWidget {
             child: Text(
               title.value,
               style: const TextStyle(
-                fontSize: 18,
+                fontSize: 22,
                 fontWeight: FontWeight.bold,
               ),
             ),
           ),
-          ImageSlideshow(
-            height: 140,
-            children: splitListIntoChunks(children)
-                .map(
-                  (e) => GridView(
-                    primary: false,
-                    shrinkWrap: true,
-                    padding: const EdgeInsets.only(top: 15),
-                    physics: const NeverScrollableScrollPhysics(),
-                    gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                      crossAxisCount: nbButtonPerPage,
-                      childAspectRatio: 1,
-                    ),
-                    children: e,
-                  ),
+          (children.isEmpty)
+              ? const SizedBox(
+                  width: double.infinity,
+                  height: 140,
                 )
-                .toList(),
-          ),
+              : ImageSlideshow(
+                  height: 140,
+                  children: splitListIntoChunks(children)
+                      .map(
+                        (e) => GridView(
+                          primary: false,
+                          shrinkWrap: true,
+                          padding: const EdgeInsets.only(top: 15),
+                          physics: const NeverScrollableScrollPhysics(),
+                          gridDelegate:
+                              SliverGridDelegateWithFixedCrossAxisCount(
+                            crossAxisCount: nbButtonPerPage,
+                            childAspectRatio: 1,
+                          ),
+                          children: e,
+                        ),
+                      )
+                      .toList(),
+                ),
         ],
       ),
     );

@@ -6,7 +6,6 @@ import 'package:wan_mobile/tools/services/location_service.dart';
 import 'package:wan_mobile/models/adresse.dart';
 import 'package:wan_mobile/models/location_model.dart';
 
-import 'package:tools_flutter_project/tools/http/http_response.dart';
 
 import 'package:lebedoo_assets/views/controllers/abstracts/view_controller.dart';
 

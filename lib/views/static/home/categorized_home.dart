@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:tools_flutter_project/tools_flutter_project.dart';
 
-import 'package:tools_flutter_project/widgets/c_textform_field.dart';
 import 'package:wan_mobile/views/controllers/home/categorized_home_vctl.dart';
 import 'package:wan_mobile/views/tools/routes.dart';
 
@@ -53,7 +52,8 @@ class _CategorizedHomeState extends State<CategorizedHome> {
                           itemBuilder: (context, index) => ListTile(
                             selected: ctl.selectedCategorie ==
                                 ctl.routes.groupes[index],
-                            contentPadding: EdgeInsets.zero,
+                            contentPadding:
+                                const EdgeInsets.symmetric(horizontal: 5),
                             title: Text(
                               Routes().groupes[index],
                               textAlign: TextAlign.center,

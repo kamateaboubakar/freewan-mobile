@@ -1,7 +1,5 @@
-import 'package:get/get.dart';
 import 'package:wan_mobile/tools/const/const.dart';
 import 'package:latlong2/latlong.dart';
-import 'package:tools_flutter_project/tools_flutter_project.dart';
 
 class Pressing {
   int? id;

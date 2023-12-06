@@ -1,6 +1,5 @@
 import 'package:tools_flutter_project/tools/types/double.dart';
 import 'package:tools_flutter_project/tools_flutter_project.dart';
-import 'package:wan_mobile/tools/utils/functions.dart';
 
 class MonthStats {
   String? month;

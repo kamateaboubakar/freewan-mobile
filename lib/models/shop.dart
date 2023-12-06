@@ -1,4 +1,3 @@
-import 'package:get/get.dart';
 import 'package:latlong2/latlong.dart';
 
 class Shop {

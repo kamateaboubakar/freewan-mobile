@@ -5,12 +5,13 @@ class RouteItem {
   bool isFeature = true;
   String? title;
   String? groupe;
-  MenuButtonEnum menuButtonEnum;
+  MenuButtonEnum menuId;
   ButtonMenu button;
+
   RouteItem(
       {this.title,
       this.isFeature = true,
       this.groupe,
       required this.button,
-      required this.menuButtonEnum});
+      required this.menuId});
 }

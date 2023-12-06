@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
 import 'package:lebedoo_assets/lebedoo_assets.dart';
 import 'package:tools_flutter_project/tools_flutter_project.dart';
-import 'package:tools_flutter_project/widgets/wrapper_body_listview.dart';
 import 'package:wan_mobile/views/controllers/notification/notification_list_page_vctl.dart';
 import 'package:wan_mobile/views/static/notification/detail_notification_page.dart';
 

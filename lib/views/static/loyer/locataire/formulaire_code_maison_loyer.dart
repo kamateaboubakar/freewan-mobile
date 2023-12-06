@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:tools_flutter_project/tools_flutter_project.dart';
-import 'package:tools_flutter_project/widgets/c_textform_field.dart';
 import 'package:wan_mobile/views/controllers/loyer/locataire/formulaire_code_maison_loyer_vctl.dart';
 
 class FormulaireCodeMaisonLoyer extends StatelessWidget {

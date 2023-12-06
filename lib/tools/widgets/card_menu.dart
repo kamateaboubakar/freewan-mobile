@@ -6,6 +6,7 @@ import 'package:wan_mobile/tools/widgets/button_menu.dart';
 class CardMenu extends StatelessWidget {
   final String? title;
   final String? externalTitle;
+  final double height;
 
   final List<ButtonMenu> children;
 
@@ -13,6 +14,7 @@ class CardMenu extends StatelessWidget {
   const CardMenu(
       {this.margin = const EdgeInsets.only(bottom: 10),
       this.title,
+      this.height = 150,
       this.externalTitle,
       this.children = const [],
       super.key});
@@ -35,7 +37,7 @@ class CardMenu extends StatelessWidget {
         Container(
           margin: margin,
           padding: const EdgeInsets.all(15),
-          constraints: const BoxConstraints(minHeight: 150),
+          constraints: BoxConstraints(minHeight: height),
           decoration: BoxDecoration(
             border: Border.all(
               width: .2,

@@ -25,7 +25,7 @@ class HomePageVctl extends ViewController {
 
   var isScrolling = false.obs;
   PageController pageViewCtl = PageController();
-  bool hideAmount = false;
+  bool hideAmount = true;
 
   HomePageVctl(this.displayWelcome);
 
@@ -106,7 +106,10 @@ class HomePageVctl extends ViewController {
 
   Future<void> logout() async {
     var res = await Tools.showChoiceMessage(
-        message: "Voulez-vous vraiment vous déconnecter ?");
+      message: "Voulez-vous vraiment vous déconnecter ?",
+      secondaryColor: AssetColors.blue,
+      title: AppConst.appName,
+    );
     if (res == true) {
       await pr.show();
       var res = await UserApiCtl().logout();

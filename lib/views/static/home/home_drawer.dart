@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
+import 'package:lebedoo_assets/lebedoo_assets.dart';
 import 'package:tools_flutter_project/tools_flutter_project.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'package:wan_mobile/tools/const/const.dart';
@@ -9,6 +9,7 @@ import 'package:wan_mobile/views/static/adresse/adresse_list_page.dart';
 import 'package:wan_mobile/views/static/auth/profil_page.dart';
 import 'package:wan_mobile/views/static/cgu_page.dart';
 import 'package:wan_mobile/views/static/home/qr_login/qr_login.dart';
+import 'package:wan_mobile/views/static/moyens_paiements/moyens_paiements_page.dart';
 
 class HomeDrawer extends StatelessWidget {
   final HomePageVctl ctl;
@@ -18,20 +19,24 @@ class HomeDrawer extends StatelessWidget {
   Widget build(BuildContext context) {
     if (ctl.appCtl.user.phoneNumber != null) {
       return Drawer(
-        width: Get.width - 40,
+        width: Get.width - 80,
         child: Column(
           children: [
             UserAccountsDrawerHeader(
               margin: EdgeInsets.zero,
               decoration: BoxDecoration(
-                color: Colors.blue.shade900,
                 image: DecorationImage(
                   fit: BoxFit.cover,
-                  opacity: .8,
+                  opacity: .78,
                   image: Image.asset("assets/images/pont-cocody.jpg").image,
+                  colorFilter: const ColorFilter.mode(
+                    AssetColors.blue,
+                    BlendMode.exclusion,
+                  ),
                 ),
               ),
               currentAccountPicture: CircleAvatar(
+                backgroundColor: AssetColors.blue,
                 child: Image.asset(
                   "assets/images/icons/user_profil.png",
                   height: 45,
@@ -40,56 +45,41 @@ class HomeDrawer extends StatelessWidget {
               ),
               accountName: Text(
                 "Akwaba, ${ctl.appCtl.user.firstPrenom}",
+                maxLines: 1,
                 style: const TextStyle(
-                  fontSize: 20,
-                  // color: Colors.black,
+                  fontSize: 17,
                   fontWeight: FontWeight.bold,
                 ),
               ),
               accountEmail: Text(
                 ctl.appCtl.user.phoneNumber.value,
                 style: const TextStyle(
-                  fontSize: 18,
-                  // color: Colors.black,
+                  fontSize: 15,
                   fontWeight: FontWeight.bold,
                 ),
               ),
-              otherAccountsPictures: [
-                IconButton(
-                  tooltip: "Déconnexion",
-                  onPressed: ctl.logout,
-                  color: Colors.white,
-                  icon: const Icon(Icons.logout),
-                ),
-              ],
+              // otherAccountsPictures: [
+              //   IconButton(
+              //     tooltip: "Déconnexion",
+              //     onPressed: ctl.logout,
+              //     color: Colors.white,
+              //     icon: const Icon(Icons.logout),
+              //   ),
+              // ],
             ),
             Expanded(
               child: Stack(
                 children: [
-                  // Opacity(
-                  //   opacity: .3,
-                  //   child: Image.asset(
-                  //     "assets/images/pont_ado_carre.jpeg",
-                  //   ),
-                  // ),
-                  Container(
+                  const SizedBox(
                     height: double.infinity,
                     width: double.infinity,
-                    decoration: BoxDecoration(
-                      gradient: LinearGradient(
-                          begin: Alignment.topCenter,
-                          // end: Alignment.bottomCenter,
-                          colors: [
-                            Colors.blue.shade700,
-                            Colors.white,
-                          ]),
-                    ),
                   ),
                   ListView(
-                    padding: EdgeInsets.zero,
+                    padding: const EdgeInsets.symmetric(vertical: 10),
                     physics: const BouncingScrollPhysics(),
                     children: [
                       ListTile(
+                        style: ListTileStyle.drawer,
                         leading: CircleAvatar(
                           child: Image.asset(
                             "assets/images/icons/user_profil.png",
@@ -101,6 +91,7 @@ class HomeDrawer extends StatelessWidget {
                         onTap: () => Get.to(() => const ProfilPage()),
                       ),
                       ListTile(
+                        style: ListTileStyle.drawer,
                         leading: CircleAvatar(
                           child: Image.asset(
                             "assets/images/icons/iportefeuille.png",
@@ -108,9 +99,10 @@ class HomeDrawer extends StatelessWidget {
                           ),
                         ),
                         title: const Text("Mes moyens de paiement"),
-                        onTap: () => Get.to(() => const CGUPage()),
+                        onTap: () => Get.to(() => const MoyensPaiementsPage()),
                       ),
                       ListTile(
+                        style: ListTileStyle.drawer,
                         leading: CircleAvatar(
                           child: Image.asset(
                             "assets/images/icons/qr_code.png",
@@ -122,6 +114,7 @@ class HomeDrawer extends StatelessWidget {
                         onTap: () => Get.to(() => const QrLogin()),
                       ),
                       ListTile(
+                        style: ListTileStyle.drawer,
                         leading: CircleAvatar(
                           child: Image.asset(
                             "assets/images/icons/adresse.png",
@@ -132,6 +125,7 @@ class HomeDrawer extends StatelessWidget {
                         onTap: () => Get.to(() => const AdresseListPage()),
                       ),
                       ListTile(
+                        style: ListTileStyle.drawer,
                         leading: CircleAvatar(
                           child: Image.asset(
                             "assets/images/icons/agence_a_proximite.png",
@@ -142,10 +136,12 @@ class HomeDrawer extends StatelessWidget {
                         onTap: () => Get.to(() => const AdresseListPage()),
                       ),
                       ListTile(
+                        style: ListTileStyle.drawer,
                         leading: CircleAvatar(
                           child: Image.asset(
-                            "assets/images/icons/whatsapp.png",
-                            height: 35,
+                            "assets/images/icons/assistant.png",
+                            height: 25,
+                            color: Colors.white,
                           ),
                         ),
                         title: const Text("Contactez-nous"),
@@ -155,6 +151,7 @@ class HomeDrawer extends StatelessWidget {
                         ),
                       ),
                       ListTile(
+                        style: ListTileStyle.drawer,
                         leading: CircleAvatar(
                           child: Image.asset(
                             "assets/images/icons/partager.png",
@@ -167,6 +164,7 @@ class HomeDrawer extends StatelessWidget {
                             codeParrain: ctl.appCtl.user.ownerCode.value),
                       ),
                       ListTile(
+                        style: ListTileStyle.drawer,
                         leading: CircleAvatar(
                           child: Image.asset(
                             "assets/images/icons/cgu.png",
@@ -177,13 +175,26 @@ class HomeDrawer extends StatelessWidget {
                         title: const Text("Conditions d'utilisation"),
                         onTap: () => Get.to(() => const CGUPage()),
                       ),
+                      ListTile(
+                        style: ListTileStyle.drawer,
+                        leading: const CircleAvatar(
+                          child: Icon(Icons.logout_sharp),
+                        ),
+                        title: const Text("Déconnexion"),
+                        onTap: ctl.logout,
+                      ),
                     ],
                   ),
                 ],
               ),
             ),
-            Image.asset("assets/images/abidjan-vectoriel.png"),
+            Image.asset(
+              "assets/images/abidjan-vectoriel.png",
+              color: AssetColors.blue.withOpacity(.5),
+            ),
             const ListTile(
+              style: ListTileStyle.drawer,
+              dense: true,
               contentPadding: EdgeInsets.zero,
               title: Text(
                 "${Const.appName} © 2023 - V${Const.appVersion}",
@@ -195,111 +206,6 @@ class HomeDrawer extends StatelessWidget {
             ),
           ],
         ),
-        // Scaffold(
-        //   appBar: AppBar(
-        //     backgroundColor: Colors.transparent,
-        //     leading: IconButton(
-        //       splashRadius: 20,
-        //       icon: const Icon(
-        //         Icons.arrow_back,
-        //         color: Colors.black,
-        //       ),
-        //       onPressed: () => Get.back(),
-        //     ),
-        //     title: Image.asset(
-        //       Const.appLogo,
-        //       width: 100,
-        //     ),
-        //   ),
-        //   bottomNavigationBar: const SizedBox(
-        //     height: 30,
-        //     child: Center(
-        //       child: Text(
-        //         "${Const.appName} © 2023 - V${Const.appVersion}",
-        //         style: TextStyle(
-        //           fontSize: 12,
-        //           color: Colors.black26,
-        //         ),
-        //       ),
-        //     ),
-        //   ),
-        //   body: (ctl.appCtl.user.email != null)
-        //       ? ListView(
-        //           children: [
-        //             ListTile(
-        //               title: const Text("Bienvenue"),
-        //               subtitle: Text(ctl.appCtl.user.firstName.value),
-        //             ),
-        //             ListTile(
-        //               title: const Text("Email"),
-        //               subtitle: Text(ctl.appCtl.user.email.value),
-        //             ),
-        //             ListTile(
-        //               title: const Text("Téléphone"),
-        //               subtitle: Text(ctl.appCtl.user.phoneNumber.value),
-        //             ),
-        //             ListTile(
-        //               title: const Text("Déconnexion"),
-        //               trailing: const Icon(Icons.logout),
-        //               onTap: () => ctl.logout(),
-        //             ),
-        //           ],
-        //         )
-        //       : ListView(
-        //           padding: const EdgeInsets.all(20),
-        //           children: [
-        //             const SizedBox(height: 20),
-        //             const Text(
-        //               "Welcome to Wan",
-        //               style: TextStyle(fontSize: 20),
-        //             ),
-        //             const SizedBox(height: 8),
-        //             const Text("Unlock the full Paytm Experience by"
-        //                 " logging into your account"),
-        //             const SizedBox(height: 30),
-        //             CButton(
-        //               borderRadius: 3,
-        //               height: 45,
-        //               onPressed: () => Get.to(() => const PhoneAuth()),
-        //               child: const Text("Login"),
-        //             ),
-        //             const SizedBox(height: 40),
-        //             Container(
-        //               decoration: BoxDecoration(
-        //                 borderRadius: BorderRadius.circular(10),
-        //                 border: Border.all(
-        //                   color: Colors.grey.withOpacity(0.5),
-        //                 ),
-        //               ),
-        //               padding: const EdgeInsets.only(left: 10, top: 5, bottom: 5),
-        //               child: Column(
-        //                 children: [
-        //                   const ListTile(
-        //                     leading: Icon(Icons.tire_repair),
-        //                     title: Text("24x7 Help & Support"),
-        //                     subtitle: Text(
-        //                       "Customer support, Your Queries, Frequenlty asked Questions",
-        //                       style: TextStyle(fontSize: 11),
-        //                     ),
-        //                   ),
-        //                   Divider(
-        //                     indent: 80,
-        //                     color: Colors.grey.withOpacity(0.5),
-        //                   ),
-        //                   const ListTile(
-        //                     leading: Icon(Icons.translate),
-        //                     title: Text("24x7 Help & Support"),
-        //                     subtitle: Text(
-        //                       "Use Wan in your prefered language",
-        //                       style: TextStyle(fontSize: 11),
-        //                     ),
-        //                   ),
-        //                 ],
-        //               ),
-        //             )
-        //           ],
-        //         ),
-        // ),
       );
     }
     return const Drawer();

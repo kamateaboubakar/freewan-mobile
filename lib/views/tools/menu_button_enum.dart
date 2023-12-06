@@ -48,6 +48,7 @@ enum MenuButtonEnum {
   rechargeYango,
   annulerTransfert,
   evenements,
+  nounous,
 }
   // voirPlus,
   // voirPlusCategorie,

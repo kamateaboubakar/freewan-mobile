@@ -2,10 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:lebedoo_assets/lebedoo_assets.dart';
 import 'package:tools_flutter_project/tools_flutter_project.dart';
-
 import 'package:wan_mobile/tools/widgets/button_menu.dart';
 import 'package:lebedoo_assets/views/controllers/abstracts/view_controller.dart';
-import 'package:wan_mobile/views/static/envoyer_vers_mobile/envoyer_vers_mobile.dart';
 import 'package:wan_mobile/views/static/home/more_option_home_page.dart';
 import 'package:wan_mobile/views/tools/menu_button_enum.dart';
 import 'package:wan_mobile/views/tools/route_item.dart';
@@ -106,7 +104,7 @@ class Routes extends ViewController {
         ),
         //-----------------------------
         RouteItem(
-          groupe: "Gestion cartes et comptes",
+          groupe: "Cartes & comptes",
           menuId: MenuButtonEnum.cartesBancaires,
           button: ButtonMenu(
             icon: Image.asset("assets/images/icons/carte-bancaire_lbd.png"),
@@ -115,7 +113,7 @@ class Routes extends ViewController {
           ),
         ),
         RouteItem(
-          groupe: "Gestion cartes et comptes",
+          groupe: "Cartes & comptes",
           menuId: MenuButtonEnum.comptesBancaires,
           button: ButtonMenu(
             icon: Image.asset("assets/images/icons/bank.png"),
@@ -303,6 +301,15 @@ class Routes extends ViewController {
                 },
               ),
             ),
+          ),
+        ),
+        RouteItem(
+          groupe: "Services innovants",
+          menuId: MenuButtonEnum.nounous,
+          button: ButtonMenu(
+            icon: Image.asset("assets/images/icons/nounou.png"),
+            title: "Nounous",
+            onPressed: () {},
           ),
         ),
         //-----------------------------

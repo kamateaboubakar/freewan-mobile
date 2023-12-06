@@ -28,7 +28,12 @@ class AdresseListPage extends StatelessWidget {
             children: ctl.adresses
                 .map(
                   (e) => ListTile(
-                    leading: const Icon(Icons.pin_drop_rounded),
+                    leading: CircleAvatar(
+                      child: Image.asset(
+                        "assets/images/icons/emplacement.png",
+                        height: 30,
+                      ),
+                    ),
                     title: Text(e.libelle.value),
                     subtitle: Text(e.locationLabel.value),
                     onTap: () =>

@@ -11,7 +11,7 @@ class WalletCard extends StatelessWidget {
   final void Function()? onLoadAmount;
 
   const WalletCard({
-    this.hideAmount = false,
+    this.hideAmount = true,
     this.amount = "0",
     this.currency = "Fcfa",
     this.qrData = "data",
@@ -27,17 +27,15 @@ class WalletCard extends StatelessWidget {
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.circular(20),
       ),
-      elevation: 3,
+      elevation: 5,
       child: Stack(
         children: [
           Container(
-            height: 260,
+            height: 210.h,
             width: double.infinity,
             decoration: BoxDecoration(
               image: DecorationImage(
-                image: Image.asset(
-                  "assets/images/fond_carte.jpg",
-                ).image,
+                image: Image.asset("assets/images/fond_carte.jpg").image,
                 fit: BoxFit.cover,
               ),
               borderRadius: BorderRadius.circular(20),
@@ -46,7 +44,7 @@ class WalletCard extends StatelessWidget {
           Container(
             alignment: Alignment.topCenter,
             width: double.infinity,
-            height: 225,
+            height: 155.h,
             decoration: BoxDecoration(
               color: Colors.black.withOpacity(.79),
               borderRadius: const BorderRadius.vertical(
@@ -61,7 +59,7 @@ class WalletCard extends StatelessWidget {
               ListTile(
                 dense: true,
                 leading: MaterialButton(
-                  height: 25,
+                  height: 25.w,
                   color: Colors.white,
                   onPressed: () {},
                   shape: RoundedRectangleBorder(
@@ -93,8 +91,8 @@ class WalletCard extends StatelessWidget {
                 title: Text(
                   (hideAmount) ? "•••••••••••" : amount,
                   maxLines: 1,
-                  style: const TextStyle(
-                    fontSize: 25,
+                  style: TextStyle(
+                    fontSize: 23.sp,
                     fontWeight: FontWeight.bold,
                   ),
                   textAlign: TextAlign.end,
@@ -103,9 +101,9 @@ class WalletCard extends StatelessWidget {
                   currency,
                   maxLines: 1,
                   textAlign: TextAlign.end,
-                  style: const TextStyle(
+                  style: TextStyle(
                     color: Colors.white,
-                    fontSize: 20,
+                    fontSize: 13.sp,
                     fontWeight: FontWeight.bold,
                   ),
                 ),
@@ -115,7 +113,7 @@ class WalletCard extends StatelessWidget {
                 child: QrImageView(
                   data: qrData,
                   padding: const EdgeInsets.all(8),
-                  size: 125,
+                  size: 120.w,
                   backgroundColor: Colors.white,
                   eyeStyle: const QrEyeStyle(
                     eyeShape: QrEyeShape.circle,
@@ -123,6 +121,7 @@ class WalletCard extends StatelessWidget {
                   ),
                 ),
               ),
+              const Gap(10),
             ],
           ),
         ],

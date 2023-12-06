@@ -3,7 +3,7 @@ import 'dart:async';
 import 'package:lebedoo_assets/views/controllers/abstracts/view_controller.dart';
 import 'package:tools_flutter_project/tools_flutter_project.dart';
 
-class RecevoirPaiementVctl extends ViewController {
+class CodeQRGeneratorVctl extends ViewController {
   String? qrData;
   Timer? timer;
 

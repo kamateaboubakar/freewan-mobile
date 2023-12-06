@@ -1,5 +1,6 @@
 import 'package:wan_mobile/models/paiement/mode_paiement.dart';
 import 'package:tools_flutter_project/tools_flutter_project.dart';
+
 class MobileMoney extends MoyenPaiements {
   @override
   int? id;
@@ -46,4 +47,16 @@ class MobileMoney extends MoyenPaiements {
 
   @override
   String get typePaiment => "MM";
+  String get provider {
+    switch (numeroTelephone.value.substring(0, 2)) {
+      case "01":
+        return "Moov Money";
+      case "05":
+        return "MTN Money";
+      case "07":
+        return "Orange Money";
+      default:
+        return "Mobile Money";
+    }
+  }
 }

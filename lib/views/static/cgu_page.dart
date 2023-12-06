@@ -6,7 +6,7 @@ class CGUPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: const Text('CGU')),
+      appBar: AppBar(title: const Text("Conditions Générales d'Utilisation")),
       body: const SingleChildScrollView(
         padding: EdgeInsets.all(10),
         child: ListTile(

@@ -40,7 +40,23 @@ class ButtonMenu extends StatelessWidget {
         padding: const EdgeInsets.all(10),
         child: Column(
           children: [
-            Expanded(flex: iconFlex, child: icon),
+            Expanded(
+              flex: iconFlex,
+              child: Container(
+                padding: const EdgeInsets.all(3),
+                decoration: BoxDecoration(
+                  shape: BoxShape.circle,
+                  color: Colors.blue.shade50,
+                  border: Border.all(
+                    color: Colors.blue.shade100,
+                  ),
+                ),
+                child: ClipRRect(
+                  borderRadius: BorderRadius.circular(10),
+                  child: icon,
+                ),
+              ),
+            ),
             const SizedBox(height: 5),
             Visibility(
               visible: title != null,

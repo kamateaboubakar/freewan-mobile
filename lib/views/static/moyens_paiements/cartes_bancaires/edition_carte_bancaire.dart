@@ -1,10 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_credit_card/credit_card_widget.dart';
 import 'package:lebedoo_assets/lebedoo_assets.dart';
-import 'package:lebedoo_assets/themes/asset_colors.dart';
 import 'package:tools_flutter_project/tools_flutter_project.dart';
-import 'package:tools_flutter_project/widgets/c_button.dart';
-import 'package:tools_flutter_project/widgets/c_textform_field.dart';
 import 'package:wan_mobile/tools/widgets/c_outlined_button.dart';
 import 'package:wan_mobile/views/controllers/paiement/edition_card_bank_vctl.dart';
 
@@ -40,12 +37,31 @@ class EditionCarteBancaire extends StatelessWidget {
                       onCreditCardWidgetChange: (creditCardBrand) {},
                     ),
                     COutlinedButton(
+                      borderColor: AssetColors.blue,
+                      textColor: AssetColors.blue,
+                      height: 40,
+                      minWidth: 200,
                       onPressed: ctl.scanCard,
-                      child: const Text("Scanner la carte"),
+                      child: const Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          Icon(
+                            Icons.document_scanner_rounded,
+                            color: AssetColors.blue,
+                          ),
+                          Gap(10),
+                          Text("Scanner la carte"),
+                        ],
+                      ),
                     ),
-                    const Gap(10),
+                    const Gap(20),
                     const TextDivider(
-                      text: Text("Saisir les informations de la carte"),
+                      text: Text(
+                        "Saisir les informations de la carte",
+                        style: TextStyle(
+                          fontSize: 16,
+                        ),
+                      ),
                     ),
                     const Gap(30),
                     CTextFormField(
@@ -63,11 +79,6 @@ class EditionCarteBancaire extends StatelessWidget {
                       maxLength: 16,
                       hintText: "Numéro de Carte",
                       keyboardType: TextInputType.number,
-                      suffixIcon: Image.asset(
-                        "assets/images/master_card.png",
-                        width: 32,
-                        height: 29,
-                      ),
                       onChanged: (value) {
                         ctl.numCardCtl.text = value;
                         ctl.update();
@@ -116,46 +127,19 @@ class EditionCarteBancaire extends StatelessWidget {
                       },
                     ),
                     const SizedBox(height: 10),
-                    Row(
-                      children: [
-                        Expanded(
-                          child: CButton(
-                            color: Colors.white,
-                            shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(8),
-                              side: const BorderSide(
-                                width: 1,
-                                color: AssetColors.blueButton,
-                              ),
-                            ),
-                            height: 48,
-                            onPressed: () => Get.back(),
-                            child: const Text(
-                              "Annuler",
-                              style: TextStyle(
-                                fontWeight: FontWeight.bold,
-                                color: AssetColors.blueButton,
-                              ),
-                            ),
-                          ),
+                    CButton(
+                      color: AssetColors.blue,
+                      borderRadius: 8,
+                      height: 50,
+                      minWidth: double.infinity,
+                      onPressed: ctl.addCard,
+                      child: const Text(
+                        "Confirmer",
+                        style: TextStyle(
+                          fontWeight: FontWeight.bold,
                         ),
-                        const SizedBox(width: 16),
-                        Expanded(
-                          child: CButton(
-                            color: AssetColors.blue,
-                            borderRadius: 8,
-                            height: 48,
-                            onPressed: ctl.addCard,
-                            child: const Text(
-                              "Confirmer",
-                              style: TextStyle(
-                                fontWeight: FontWeight.bold,
-                              ),
-                            ),
-                          ),
-                        ),
-                      ],
-                    )
+                      ),
+                    ),
                   ],
                 ),
               ),

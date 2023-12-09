@@ -31,23 +31,23 @@ class MoyensPaiementsPage extends StatelessWidget {
           ListTile(
             leading: CircleAvatar(
               child: Image.asset(
+                "assets/images/icons/carte-bancaire_lbd.png",
+                width: 30,
+              ),
+            ),
+            title: const Text("Cartes prépayées"),
+            onTap: () => Get.to(() => const CartesBancairesPage()),
+            trailing: const Icon(Icons.arrow_forward),
+          ),
+          ListTile(
+            leading: CircleAvatar(
+              child: Image.asset(
                 "assets/images/icons/compte-bancaire.png",
                 width: 30,
               ),
             ),
             title: const Text("Comptes bancaires"),
             onTap: () => Get.to(() => const CompteBancairePage()),
-            trailing: const Icon(Icons.arrow_forward),
-          ),
-          ListTile(
-            leading: CircleAvatar(
-              child: Image.asset(
-                "assets/images/icons/carte-bancaire_lbd.png",
-                width: 30,
-              ),
-            ),
-            title: const Text("Cartes bancaires"),
-            onTap: () => Get.to(() => const CartesBancairesPage()),
             trailing: const Icon(Icons.arrow_forward),
           ),
           ListTile(

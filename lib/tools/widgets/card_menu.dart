@@ -7,17 +7,20 @@ class CardMenu extends StatelessWidget {
   final String? title;
   final String? externalTitle;
   final double height;
+  final int crossAxisCount;
 
   final List<ButtonMenu> children;
 
   final EdgeInsetsGeometry margin;
-  const CardMenu(
-      {this.margin = const EdgeInsets.only(bottom: 10),
-      this.title,
-      this.height = 150,
-      this.externalTitle,
-      this.children = const [],
-      super.key});
+  const CardMenu({
+    this.margin = const EdgeInsets.only(bottom: 10),
+    this.title,
+    this.height = 150,
+    this.externalTitle,
+    this.children = const [],
+    this.crossAxisCount = 4,
+    super.key,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -71,8 +74,8 @@ class CardMenu extends StatelessWidget {
                 padding: const EdgeInsets.only(top: 7),
                 physics: const NeverScrollableScrollPhysics(),
                 shrinkWrap: true,
-                gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                  crossAxisCount: 4,
+                gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                  crossAxisCount: crossAxisCount,
                   childAspectRatio: .85,
                 ),
                 children: children,

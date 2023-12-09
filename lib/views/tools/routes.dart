@@ -21,6 +21,7 @@ class Routes extends ViewController {
         ),
         RouteItem(
           groupe: "Transactions",
+          isHidden: true,
           menuId: MenuButtonEnum.annulerTransfert,
           button: ButtonMenu(
             icon: Image.asset("assets/images/icons/annuler_transfert.png"),
@@ -517,22 +518,28 @@ class Routes extends ViewController {
       ];
 
   List<RouteItem> routesByList({List<MenuButtonEnum> menus = const []}) =>
-      routes.where((e) => menus.contains(e.menuId)).toList();
+      routes
+          .where((e) => menus.contains(e.menuId))
+          .where((e) => !e.isHidden)
+          .toList();
 
   List<RouteItem> routesByGroup({String? groupe}) => routes
       .where((e) => e.groupe.value.isNotEmpty)
+      .where((e) => !e.isHidden)
       .where((e) => e.groupe == groupe)
       .toList();
 
   List<RouteItem> search({String? value}) => routes
       .where((e) => e.button.title.value.isNotEmpty)
+      .where((e) => !e.isHidden)
       .where((e) => e.button.title.value
           .toLowerCase()
           .contains(value.value.toLowerCase()))
       .toList();
 
   List<String> get groupes => routes
-      .where((e) => e.groupe.value.isNotEmpty)
+      .where((e) => e.groupe.value.isNotEmpty && !e.isHidden)
+      .where((e) => !e.isHidden)
       .map((e) => e.groupe.value)
       .toSet()
       .toList()

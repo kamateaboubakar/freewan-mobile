@@ -1,9 +1,7 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:get/get.dart';
 import 'package:lebedoo_assets/lebedoo_assets.dart';
-import 'package:lebedoo_assets/themes/app_theme.dart';
 import 'package:tools_flutter_project/tools/env/env.dart';
 import 'package:wan_mobile/tools/services/notification_service.dart';
 

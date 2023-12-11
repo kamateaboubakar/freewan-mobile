@@ -69,6 +69,7 @@ class ButtonMenu extends StatelessWidget {
                     maxLines: 3,
                     maxFontSize: 16,
                     minFontSize: 9,
+                    overflow: TextOverflow.ellipsis,
                     style: const TextStyle(
                       fontWeight: FontWeight.bold,
                     ),

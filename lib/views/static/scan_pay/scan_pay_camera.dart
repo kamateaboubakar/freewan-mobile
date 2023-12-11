@@ -1,9 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:lebedoo_assets/lebedoo_assets.dart';
 import 'package:qr_code_scanner/qr_code_scanner.dart';
+import 'package:wan_mobile/tools/widgets/c_outlined_button.dart';
 import 'package:wan_mobile/views/controllers/scan_pay/scan_pay_camera_vctl.dart';
 
 import 'package:lebedoo_assets/themes/asset_colors.dart';
+import 'package:wan_mobile/views/static/qr_code/qr_code_page.dart';
 
 class ScanPayCamera extends StatelessWidget {
   final String route;
@@ -18,40 +21,29 @@ class ScanPayCamera extends StatelessWidget {
           appBar: AppBar(
             backgroundColor: Colors.transparent,
             foregroundColor: Colors.white,
-            // actions: [
-            //   IconButton(
-            //       onPressed: () => Get.off(
-            //             () => const PaiementMontant(
-            //               isForMontant: true,
-            //             ),
-            //           ),
-            //       icon: const Icon(Icons.keyboard)),
-            //   IconButton(
-            //     onPressed: () => Get.off(
-            //       () => const PaiementMontant(),
-            //     ),
-            //     icon: const Icon(Icons.qr_code),
-            //   ),
-            // ],
+            actions: [
+              FutureBuilder<bool?>(
+                future: ctl.controller?.getFlashStatus(),
+                builder: (context, snapshot) {
+                  if (snapshot.data != null) {
+                    return IconButton(
+                      color: snapshot.data! ? Colors.blue : Colors.white60,
+                      onPressed: () {
+                        ctl.controller?.toggleFlash();
+                        ctl.update();
+                      },
+                      icon: const Icon(Icons.flash_on),
+                    );
+                  } else {
+                    return const SizedBox.shrink();
+                  }
+                },
+              ),
+            ],
           ),
           extendBodyBehindAppBar: true,
           floatingActionButtonLocation:
               FloatingActionButtonLocation.centerFloat,
-          //TODO
-          // floatingActionButton: FloatingActionButton.extended(
-          //   backgroundColor: AssetColors.blueButton,
-          //   onPressed: () => Get.off(() => const PaiementMontant()),
-          //   label: const Row(
-          //     children: [
-          //       Icon(Icons.keyboard_alt, size: 19),
-          //       SizedBox(width: 10),
-          //       Text(
-          //         "Pas de QR, Payez via ID",
-          //         style: TextStyle(),
-          //       )
-          //     ],
-          //   ),
-          // ),
           body: Stack(
             children: [
               QRView(
@@ -60,35 +52,25 @@ class ScanPayCamera extends StatelessWidget {
                 overlay: QrScannerOverlayShape(
                   borderRadius: 30,
                   borderWidth: 30,
+                  cutOutWidth: Get.width - 50,
+                  cutOutHeight: Get.width - 50,
                   borderColor: Colors.white,
                 ),
               ),
               Align(
-                alignment: const Alignment(0, .5),
-                child: FutureBuilder<bool?>(
-                  future: ctl.controller?.getFlashStatus(),
-                  builder: (context, snapshot) {
-                    if (snapshot.data != null) {
-                      return MaterialButton(
-                        elevation: 5,
-                        shape: const CircleBorder(),
-                        height: 50,
-                        minWidth: 50,
-                        color: snapshot.data! ? Colors.white : Colors.white60,
-                        textColor: AssetColors.blueButton,
-                        onPressed: () {
-                          ctl.controller?.toggleFlash();
-                          ctl.update();
-                        },
-                        child: const Icon(
-                          Icons.flash_on,
-                          size: 35,
-                        ),
-                      );
-                    } else {
-                      return const SizedBox.shrink();
-                    }
-                  },
+                alignment: const Alignment(0, .7),
+                child: COutlinedButton(
+                  borderColor: Colors.white,
+                  onPressed: () => Get.to(() => const QrCodePage()),
+                  child: const Row(
+                    mainAxisSize: MainAxisSize.min,
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Icon(Icons.qr_code),
+                      Gap(10),
+                      Text("Mon QR code"),
+                    ],
+                  ),
                 ),
               ),
             ],

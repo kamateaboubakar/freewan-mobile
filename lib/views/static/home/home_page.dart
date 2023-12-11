@@ -5,7 +5,6 @@ import 'package:lebedoo_assets/lebedoo_assets.dart';
 import 'package:tools_flutter_project/tools_flutter_project.dart';
 import 'package:wan_mobile/tools/const/const.dart';
 import 'package:wan_mobile/tools/widgets/button_menu.dart';
-import 'package:wan_mobile/tools/widgets/c_outlined_button.dart';
 import 'package:wan_mobile/tools/widgets/card_menu.dart';
 import 'package:wan_mobile/tools/widgets/grid_menu.dart';
 import 'package:wan_mobile/tools/widgets/pageable_menu.dart';
@@ -36,6 +35,7 @@ class HomePage extends StatelessWidget {
             leadingWidth: 45,
             // backgroundColor: AssetColors.blue,
             // foregroundColor: Colors.white,
+            foregroundColor: AssetColors.blue,
             backgroundColor: Colors.transparent,
             leading: Builder(builder: (context) {
               return Padding(
@@ -402,10 +402,11 @@ class HomePage extends StatelessWidget {
                                               (e) => e.categorie == "pub_bas")
                                           .toList(),
                                     ),
-                                    Container(
-                                      child: Row(
-                                        children: [
-                                          Expanded(
+                                    Row(
+                                      children: [
+                                        Expanded(
+                                          child: Padding(
+                                            padding: const EdgeInsets.all(8.0),
                                             child: Column(
                                               children: [
                                                 const AutoSizeText(
@@ -441,13 +442,13 @@ class HomePage extends StatelessWidget {
                                               ],
                                             ),
                                           ),
-                                          Expanded(
-                                            child: Lottie.asset(
-                                              "assets/lotties/animation_lmw1phml.json",
-                                            ),
-                                          )
-                                        ],
-                                      ),
+                                        ),
+                                        Expanded(
+                                          child: Lottie.asset(
+                                            "assets/lotties/animation_lmw1phml.json",
+                                          ),
+                                        )
+                                      ],
                                     ),
                                     const ListTile(
                                       title: Text(

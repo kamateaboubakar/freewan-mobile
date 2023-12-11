@@ -3,9 +3,9 @@ import 'package:lebedoo_assets/lebedoo_assets.dart';
 import 'package:tools_flutter_project/tools_flutter_project.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'package:wan_mobile/tools/const/const.dart';
-
 import 'package:wan_mobile/views/controllers/home/home_page_vctl.dart';
 import 'package:wan_mobile/views/static/adresse/adresse_list_page.dart';
+import 'package:wan_mobile/views/static/agence_a_proximite/agence_a_proximite.dart';
 import 'package:wan_mobile/views/static/auth/profil_page.dart';
 import 'package:wan_mobile/views/static/cgu_page.dart';
 import 'package:wan_mobile/views/static/home/qr_login/qr_login.dart';
@@ -133,7 +133,7 @@ class HomeDrawer extends StatelessWidget {
                           ),
                         ),
                         title: const Text("Agences à proximité"),
-                        onTap: () => Get.to(() => const AdresseListPage()),
+                        onTap: () => Get.to(() => const AgenceAProximite()),
                       ),
                       ListTile(
                         style: ListTileStyle.drawer,
@@ -191,6 +191,7 @@ class HomeDrawer extends StatelessWidget {
             Image.asset(
               "assets/images/abidjan-vectoriel.png",
               color: AssetColors.blue.withOpacity(.5),
+              colorBlendMode: BlendMode.srcATop,
             ),
             const ListTile(
               style: ListTileStyle.drawer,

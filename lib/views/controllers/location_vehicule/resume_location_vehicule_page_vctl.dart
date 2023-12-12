@@ -1,9 +1,8 @@
-import 'package:get/get.dart';
+import 'package:lebedoo_assets/lebedoo_assets.dart';
+import 'package:lebedoo_assets/models/location_model.dart';
 import 'package:tools_flutter_project/tools/types/int.dart';
 import 'package:tools_flutter_project/tools_flutter_project.dart';
 import 'package:wan_mobile/api/controllers/location_vehicule/location_vehicule_ctl.dart';
-import 'package:wan_mobile/tools/services/location_service.dart';
-import 'package:wan_mobile/models/location_model.dart';
 import 'package:wan_mobile/models/location_vehicule/booking.dart';
 import 'package:wan_mobile/models/location_vehicule/car.dart';
 import 'package:wan_mobile/models/location_vehicule/mode_paiement.dart';

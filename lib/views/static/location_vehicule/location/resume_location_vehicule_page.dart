@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_image_slideshow/flutter_image_slideshow.dart';
-import 'package:get/get.dart';
+import 'package:lebedoo_assets/lebedoo_assets.dart';
 import 'package:tools_flutter_project/tools/types/int.dart';
 import 'package:wan_mobile/models/location_vehicule/car.dart';
 import 'package:tools_flutter_project/tools_flutter_project.dart';

@@ -1,4 +1,4 @@
-import 'package:get/get.dart';
+import 'package:lebedoo_assets/lebedoo_assets.dart';
 
 class EditionTontinePageVctl extends GetxController {
   int selectedVersement = 0;

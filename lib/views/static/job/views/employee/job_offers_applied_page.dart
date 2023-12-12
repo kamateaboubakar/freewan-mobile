@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:wan_mobile/models/job/apply_job.dart';
-import 'package:get/get.dart';
+import 'package:lebedoo_assets/lebedoo_assets.dart';
 import 'package:wan_mobile/views/static/job/views/employee/apply_job_description_page.dart';
 
 import '../../../../../tools/widgets/error_view.dart';

@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
+import 'package:lebedoo_assets/lebedoo_assets.dart';
 
 class ChooseLanguagePage extends StatelessWidget {
   const ChooseLanguagePage({super.key});

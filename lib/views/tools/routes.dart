@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
+import 'package:lebedoo_assets/lebedoo_assets.dart';
 import 'package:lebedoo_assets/lebedoo_assets.dart';
 import 'package:tools_flutter_project/tools_flutter_project.dart';
 import 'package:wan_mobile/tools/widgets/button_menu.dart';
@@ -227,7 +227,7 @@ class Routes extends ViewController {
           groupe: "Centres d’intérêts",
           menuId: MenuButtonEnum.parisSportifs,
           button: ButtonMenu(
-            icon: Image.asset("assets/images/icons/paris.png"),
+            icon: Image.asset("assets/images/icons/paris.gif"),
             title: "Paris sportifs",
             onPressed: () {},
           ),

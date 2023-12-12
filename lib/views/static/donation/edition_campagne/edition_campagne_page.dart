@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
+import 'package:lebedoo_assets/lebedoo_assets.dart';
 import 'package:wan_mobile/models/don/campagne.dart';
 import 'package:wan_mobile/views/controllers/donation/edition_donation_page_vctl.dart';
 import 'package:wan_mobile/views/static/donation/edition_campagne/besoin_finance_campagne_page.dart';

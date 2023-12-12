@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
+import 'package:lebedoo_assets/lebedoo_assets.dart';
 import 'package:tools_flutter_project/tools/types/int.dart';
 import 'package:wan_mobile/models/scolarite/search_etudiant_result.dart';
 

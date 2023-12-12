@@ -2,7 +2,7 @@ import 'dart:math';
 
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
-import 'package:get/get.dart';
+import 'package:lebedoo_assets/lebedoo_assets.dart';
 import 'package:wan_mobile/models/app_notification.dart';
 import 'package:wan_mobile/views/static/notification/notification_list_page.dart';
 

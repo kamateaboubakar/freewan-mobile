@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
+import 'package:lebedoo_assets/lebedoo_assets.dart';
 import 'package:wan_mobile/views/static/job/views/employee/employee_views.dart';
 
 import 'employer/employer_views.dart';

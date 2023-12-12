@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_credit_card/credit_card_widget.dart';
-import 'package:get/get.dart';
+import 'package:lebedoo_assets/lebedoo_assets.dart';
 import 'package:tools_flutter_project/tools_flutter_project.dart';
 import 'package:lebedoo_assets/themes/asset_colors.dart';
 import 'package:wan_mobile/tools/widgets/c_outlined_button.dart';

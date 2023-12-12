@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
+import 'package:lebedoo_assets/lebedoo_assets.dart';
 import 'package:wan_mobile/tools/const/const.dart';
 import 'package:wan_mobile/views/controllers/achat_unite/achat_unite_page_vctl.dart';
 import 'package:webview_flutter/webview_flutter.dart';

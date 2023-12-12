@@ -1,11 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
 import 'package:lebedoo_assets/lebedoo_assets.dart';
 import 'package:qr_code_scanner/qr_code_scanner.dart';
 import 'package:wan_mobile/tools/widgets/c_outlined_button.dart';
 import 'package:wan_mobile/views/controllers/scan_pay/scan_pay_camera_vctl.dart';
-
-import 'package:lebedoo_assets/themes/asset_colors.dart';
 import 'package:wan_mobile/views/static/qr_code/qr_code_page.dart';
 
 class ScanPayCamera extends StatelessWidget {

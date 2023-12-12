@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
+import 'package:lebedoo_assets/lebedoo_assets.dart';
 import 'package:wan_mobile/views/static/tv_bills/tv_bills_forumla_list_page.dart';
 
 import '../../../tools/widgets/account_selection_item.dart';

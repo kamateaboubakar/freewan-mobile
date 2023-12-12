@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:lebedoo_assets/themes/asset_colors.dart';
 import 'package:wan_mobile/models/job/apply_job.dart';
-import 'package:get/get.dart';
+import 'package:lebedoo_assets/lebedoo_assets.dart';
 import 'package:wan_mobile/views/controllers/job/job_application_list_vctl.dart';
 import 'package:wan_mobile/views/static/job/views/employee/application_job_description_page.dart';
 

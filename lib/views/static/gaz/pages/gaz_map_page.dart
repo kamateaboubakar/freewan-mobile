@@ -1,11 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_map/flutter_map.dart';
-import 'package:get/get.dart';
 import 'package:latlong2/latlong.dart';
 import 'package:sliding_up_panel/sliding_up_panel.dart';
 import 'package:speech_bubble/speech_bubble.dart';
 import 'package:tools_flutter_project/tools_flutter_project.dart';
-import 'package:wan_mobile/tools/services/location_service.dart';
+import 'package:lebedoo_assets/lebedoo_assets.dart' hide Marker;
 
 import 'package:wan_mobile/views/controllers/gaz/gas_shop_vctl.dart';
 import 'package:wan_mobile/views/controllers/gaz/gas_vctl.dart';

@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
+import 'package:lebedoo_assets/lebedoo_assets.dart';
 import 'package:wan_mobile/views/static/loyer/locataire/formulaire_code_maison_loyer.dart';
 import 'package:wan_mobile/views/static/loyer/proprio/bien_immobilier_page.dart';
 

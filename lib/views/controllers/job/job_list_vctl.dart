@@ -1,4 +1,4 @@
-import 'package:get/get.dart';
+import 'package:lebedoo_assets/lebedoo_assets.dart';
 import 'package:wan_mobile/api/controllers/job_api_ctl.dart';
 import 'package:wan_mobile/models/job/jobs_sector.dart';
 import 'package:tools_flutter_project/tools/http/http_response.dart';

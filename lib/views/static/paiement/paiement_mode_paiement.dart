@@ -1,6 +1,6 @@
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
+import 'package:lebedoo_assets/lebedoo_assets.dart';
 import 'package:wan_mobile/models/moyen_paiement.dart';
 import 'package:wan_mobile/views/static/paiement/paiement_choix_carte.dart';
 import 'package:wan_mobile/views/static/paiement/paiement_choix_numero.dart';

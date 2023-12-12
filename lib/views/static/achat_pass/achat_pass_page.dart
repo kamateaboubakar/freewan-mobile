@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
+import 'package:lebedoo_assets/lebedoo_assets.dart';
 import 'package:webview_flutter/webview_flutter.dart';
 
 import '../../controllers/achat_pass/achat_pass_page_vctl.dart';

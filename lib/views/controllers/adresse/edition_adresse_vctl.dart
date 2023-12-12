@@ -1,12 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
+import 'package:lebedoo_assets/lebedoo_assets.dart';
+import 'package:lebedoo_assets/models/location_model.dart';
 import 'package:tools_flutter_project/tools_flutter_project.dart';
 import 'package:wan_mobile/api/controllers/auth/adresse_api_ctl.dart';
-import 'package:wan_mobile/tools/services/location_service.dart';
 import 'package:wan_mobile/models/adresse.dart';
-import 'package:wan_mobile/models/location_model.dart';
-
-
 import 'package:lebedoo_assets/views/controllers/abstracts/view_controller.dart';
 
 class EditionAdresseVctl extends ViewController {

@@ -2,14 +2,13 @@ import 'dart:async';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_map/flutter_map.dart';
-import 'package:get/get.dart';
-import 'package:latlong2/latlong.dart';
-import 'package:lebedoo_assets/themes/asset_colors.dart';
+import 'package:lebedoo_assets/lebedoo_assets.dart' hide Marker;
+import 'package:lebedoo_assets/models/location_model.dart';
 import 'package:tools_flutter_project/tools_flutter_project.dart';
-import 'package:wan_mobile/models/location_model.dart';
 import 'package:wan_mobile/models/shop.dart';
 import 'package:wan_mobile/views/controllers/gaz/gas_vctl.dart';
 import '../../../../tools/widgets/address_type_item.dart';
+import 'package:latlong2/latlong.dart';
 
 class GazDeliveryMapPage extends StatefulWidget {
   const GazDeliveryMapPage({Key? key}) : super(key: key);

@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
+import 'package:lebedoo_assets/lebedoo_assets.dart';
 import 'package:wan_mobile/views/controllers/location_vehicule/edition_location_vehicule_vctl.dart';
 import 'package:wan_mobile/views/static/location_vehicule/mes_voitures/edition_location/edition_detail_vehicule_location.dart';
 import 'package:wan_mobile/views/static/location_vehicule/mes_voitures/edition_location/edition_image_vehicule.dart';

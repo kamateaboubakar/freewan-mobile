@@ -66,7 +66,7 @@ packages:
     source: hosted
     version: "2.1.1"
   cached_network_image:
-    dependency: "direct main"
+    dependency: transitive
     description:
       name: cached_network_image
       sha256: f98972704692ba679db144261172a8e20feb145636c617af0eb4022132a6797f
@@ -121,6 +121,15 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "1.18.0"
+  construction:
+    dependency: "direct main"
+    description:
+      path: "."
+      ref: main
+      resolved-ref: "7f1a2b7efdeb56e9b935c467399f0106d1f1dfbb"
+      url: "https://github.com/Lebedoo/lebedoo-construction.git"
+    source: git
+    version: "1.0.0+1"
   convert:
     dependency: transitive
     description:
@@ -193,14 +202,6 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "3.0.0"
-  dotted_border:
-    dependency: transitive
-    description:
-      name: dotted_border
-      sha256: "108837e11848ca776c53b30bc870086f84b62ed6e01c503ed976e8f8c7df9c04"
-      url: "https://pub.dev"
-    source: hosted
-    version: "2.1.0"
   dropdown_search:
     dependency: "direct main"
     description:
@@ -680,6 +681,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "0.2.1+1"
+  input_quantity:
+    dependency: transitive
+    description:
+      name: input_quantity
+      sha256: "27278a6780584aa59833f08def3a14bac42b72fc42a41d831a626d7ba7738615"
+      url: "https://pub.dev"
+    source: hosted
+    version: "2.2.0"
   intl:
     dependency: "direct main"
     description:
@@ -688,13 +697,6 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "0.18.1"
-  job:
-    dependency: "direct main"
-    description:
-      path: "../modules/job"
-      relative: true
-    source: path
-    version: "1.0.1+2"
   js:
     dependency: transitive
     description:
@@ -730,9 +732,11 @@ packages:
   lebedoo_assets:
     dependency: "direct main"
     description:
-      path: "../modules/lebedoo_assets"
-      relative: true
-    source: path
+      path: "."
+      ref: main
+      resolved-ref: "2558aee6dd8915fdd8a3623f85b8ce008dc37e2e"
+      url: "https://github.com/Lebedoo/lebedoo-assets.git"
+    source: git
     version: "1.0.6+7"
   linkify:
     dependency: transitive
@@ -854,6 +858,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "0.5.0"
+  material_floating_search_bar_2:
+    dependency: transitive
+    description:
+      name: material_floating_search_bar_2
+      sha256: ab0c6d209d9491f98dd4c72f2641d0ba1dd35c87effca1f23d8679bece43add0
+      url: "https://pub.dev"
+    source: hosted
+    version: "0.5.0"
   meta:
     dependency: transitive
     description:
@@ -910,22 +922,6 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "1.8.3"
-  path_drawing:
-    dependency: transitive
-    description:
-      name: path_drawing
-      sha256: bbb1934c0cbb03091af082a6389ca2080345291ef07a5fa6d6e078ba8682f977
-      url: "https://pub.dev"
-    source: hosted
-    version: "1.0.1"
-  path_parsing:
-    dependency: transitive
-    description:
-      name: path_parsing
-      sha256: e3e67b1629e6f7e8100b367d3db6ba6af4b1f0bb80f64db18ef1fbabd2fa9ccf
-      url: "https://pub.dev"
-    source: hosted
-    version: "1.0.1"
   path_provider:
     dependency: transitive
     description:
@@ -978,42 +974,50 @@ packages:
     dependency: "direct main"
     description:
       name: permission_handler
-      sha256: bc56bfe9d3f44c3c612d8d393bd9b174eb796d706759f9b495ac254e4294baa5
+      sha256: "860c6b871c94c78e202dc69546d4d8fd84bd59faeb36f8fb9888668a53ff4f78"
       url: "https://pub.dev"
     source: hosted
-    version: "10.4.5"
+    version: "11.1.0"
   permission_handler_android:
     dependency: transitive
     description:
       name: permission_handler_android
-      sha256: "59c6322171c29df93a22d150ad95f3aa19ed86542eaec409ab2691b8f35f9a47"
+      sha256: "2f1bec180ee2f5665c22faada971a8f024761f632e93ddc23310487df52dcfa6"
       url: "https://pub.dev"
     source: hosted
-    version: "10.3.6"
+    version: "12.0.1"
   permission_handler_apple:
     dependency: transitive
     description:
       name: permission_handler_apple
-      sha256: "99e220bce3f8877c78e4ace901082fb29fa1b4ebde529ad0932d8d664b34f3f5"
+      sha256: "1a816084338ada8d574b1cb48390e6e8b19305d5120fe3a37c98825bacc78306"
       url: "https://pub.dev"
     source: hosted
-    version: "9.1.4"
+    version: "9.2.0"
+  permission_handler_html:
+    dependency: transitive
+    description:
+      name: permission_handler_html
+      sha256: "11b762a8c123dced6461933a88ea1edbbe036078c3f9f41b08886e678e7864df"
+      url: "https://pub.dev"
+    source: hosted
+    version: "0.1.0+2"
   permission_handler_platform_interface:
     dependency: transitive
     description:
       name: permission_handler_platform_interface
-      sha256: "6760eb5ef34589224771010805bea6054ad28453906936f843a8cc4d3a55c4a4"
+      sha256: d87349312f7eaf6ce0adaf668daf700ac5b06af84338bd8b8574dfbd93ffe1a1
       url: "https://pub.dev"
     source: hosted
-    version: "3.12.0"
+    version: "4.0.2"
   permission_handler_windows:
     dependency: transitive
     description:
       name: permission_handler_windows
-      sha256: cc074aace208760f1eee6aa4fae766b45d947df85bc831cde77009cdb4720098
+      sha256: "1e8640c1e39121128da6b816d236e714d2cf17fac5a105dd6acdd3403a628004"
       url: "https://pub.dev"
     source: hosted
-    version: "0.1.3"
+    version: "0.2.0"
   petitparser:
     dependency: transitive
     description:
@@ -1022,13 +1026,6 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "5.4.0"
-  pharmacie:
-    dependency: "direct main"
-    description:
-      path: "../modules/pharmacie"
-      relative: true
-    source: path
-    version: "1.0.0+1"
   photo_view:
     dependency: transitive
     description:
@@ -1125,16 +1122,8 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "1.0.2+1"
-  read_more_text:
-    dependency: transitive
-    description:
-      name: read_more_text
-      sha256: "769750959f26a71408eb912e1b1e714713f72bf3efcc3f89e53c31b11101376c"
-      url: "https://pub.dev"
-    source: hosted
-    version: "0.0.5"
   readmore:
-    dependency: "direct main"
+    dependency: transitive
     description:
       name: readmore
       sha256: "99c2483202f7c7e98c50834d72be2b119aefecf4497ca1960ae9d5f418eb1481"
@@ -1157,6 +1146,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "3.0.1"
+  shape_of_view_null_safe:
+    dependency: transitive
+    description:
+      name: shape_of_view_null_safe
+      sha256: "0179b77beff9c88b7ab334237431c48196e093b706db7f99f29bcac8ad49bbff"
+      url: "https://pub.dev"
+    source: hosted
+    version: "2.0.0"
   share_plus:
     dependency: transitive
     description:
@@ -1383,10 +1380,10 @@ packages:
     description:
       path: "."
       ref: main
-      resolved-ref: f136a468d2442e9659ab7b8685fc72c14e20c2d5
+      resolved-ref: "2cdb1a727dc3ba14296982694dc32c97804e4e86"
       url: "https://github.com/Isofth/tools_flutter_project.git"
     source: git
-    version: "0.5.7"
+    version: "0.5.9"
   typed_data:
     dependency: transitive
     description:
@@ -1404,7 +1401,7 @@ packages:
     source: hosted
     version: "0.3.1"
   url_launcher:
-    dependency: "direct main"
+    dependency: transitive
     description:
       name: url_launcher
       sha256: b1c9e98774adf8820c96fbc7ae3601231d324a7d5ebd8babe27b6dfac91357ba
@@ -1565,4 +1562,4 @@ packages:
     version: "6.3.0"
 sdks:
   dart: ">=3.2.0-194.0.dev <4.0.0"
-  flutter: ">=3.13.0"
+  flutter: ">=3.16.0"

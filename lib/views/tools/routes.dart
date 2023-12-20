@@ -1,3 +1,4 @@
+import 'package:construction/views/static/construction_home_page.dart';
 import 'package:flutter/material.dart';
 import 'package:lebedoo_assets/lebedoo_assets.dart';
 import 'package:lebedoo_assets/lebedoo_assets.dart';
@@ -165,7 +166,7 @@ class Routes extends ViewController {
           button: ButtonMenu(
             icon: Image.asset("assets/images/icons/icons8-brique-96.png"),
             title: "Matériaux construction",
-            onPressed: () {},
+            onPressed: () => Get.to(() => const ConstructionHomePage()),
           ),
         ),
         RouteItem(

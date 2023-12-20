@@ -22,51 +22,92 @@ class HomeDrawer extends StatelessWidget {
         width: Get.width - 80,
         child: Column(
           children: [
-            UserAccountsDrawerHeader(
-              margin: EdgeInsets.zero,
+            Container(
+              height: 200,
+              padding: const EdgeInsets.all(10),
+              width: double.infinity,
               decoration: BoxDecoration(
                 image: DecorationImage(
+                  image: Image.asset("assets/images/image_pont.jpeg").image,
                   fit: BoxFit.cover,
-                  opacity: .78,
-                  image: Image.asset("assets/images/pont-cocody.jpg").image,
-                  colorFilter: const ColorFilter.mode(
-                    AssetColors.blue,
-                    BlendMode.exclusion,
+                ),
+              ),
+              child: Row(
+                children: [
+                  CircleAvatar(
+                    radius: 30,
+                    child: Image.asset(
+                      "assets/images/icons/user_profil.png",
+                      height: 45,
+                      color: Colors.white,
+                    ),
                   ),
-                ),
+                  Expanded(
+                    child: Padding(
+                      padding: const EdgeInsets.only(bottom: 30),
+                      child: ListTile(
+                        title: Text(
+                          ctl.user.fullName,
+                          textAlign: TextAlign.end,
+                          style: const TextStyle(
+                            color: Colors.black,
+                            fontWeight: FontWeight.bold,
+                            fontSize: 20,
+                          ),
+                        ),
+                      ),
+                    ),
+                  ),
+                ],
               ),
-              currentAccountPicture: CircleAvatar(
-                backgroundColor: AssetColors.blue,
-                child: Image.asset(
-                  "assets/images/icons/user_profil.png",
-                  height: 45,
-                  color: Colors.white,
-                ),
-              ),
-              accountName: Text(
-                "Akwaba, ${ctl.appCtl.user.firstPrenom}",
-                maxLines: 1,
-                style: const TextStyle(
-                  fontSize: 17,
-                  fontWeight: FontWeight.bold,
-                ),
-              ),
-              accountEmail: Text(
-                ctl.appCtl.user.phoneNumber.value,
-                style: const TextStyle(
-                  fontSize: 15,
-                  fontWeight: FontWeight.bold,
-                ),
-              ),
-              // otherAccountsPictures: [
-              //   IconButton(
-              //     tooltip: "Déconnexion",
-              //     onPressed: ctl.logout,
-              //     color: Colors.white,
-              //     icon: const Icon(Icons.logout),
-              //   ),
-              // ],
             ),
+            // UserAccountsDrawerHeader(
+            //   margin: EdgeInsets.zero,
+            //   decoration: BoxDecoration(
+            //     image: DecorationImage(
+            //       fit: BoxFit.cover,
+            //       opacity: .78,
+            //       image: Image.asset("assets/images/image_pont.jpeg").image,
+            //       // colorFilter: const ColorFilter.mode(
+            //       //   AssetColors.blue,
+            //       //   BlendMode.exclusion,
+            //       // ),
+            //     ),
+            //   ),
+            //   currentAccountPicture: CircleAvatar(
+            //     backgroundColor: AssetColors.blue,
+            //     child: Image.asset(
+            //       "assets/images/icons/user_profil.png",
+            //       height: 45,
+            //       color: Colors.white,
+            //     ),
+            //   ),
+            //   accountName: const Text(
+            //     "",
+            //     maxLines: 1,
+            //     style: TextStyle(
+            //       fontSize: 22,
+            //       fontWeight: FontWeight.bold,
+            //       color: Colors.black,
+            //     ),
+            //   ),
+            //   accountEmail: Text(
+            //     ctl.appCtl.user.fullName,
+            //     style: const TextStyle(
+            //       fontSize: 20,
+            //       fontWeight: FontWeight.bold,
+            //       color: Colors.black,
+            //     ),
+            //   ),
+            //   // otherAccountsPictures: [
+            //   //   IconButton(
+            //   //     tooltip: "Déconnexion",
+            //   //     onPressed: ctl.logout,
+            //   //     color: Colors.white,
+            //   //     icon: const Icon(Icons.logout),
+            //   //   ),
+            //   // ],
+            // ),
             Expanded(
               child: Stack(
                 children: [
@@ -190,8 +231,8 @@ class HomeDrawer extends StatelessWidget {
             ),
             Image.asset(
               "assets/images/abidjan-vectoriel.png",
-              color: AssetColors.blue.withOpacity(.5),
-              colorBlendMode: BlendMode.srcATop,
+              // color: AssetColors.blue.withOpacity(.5),
+              // colorBlendMode: BlendMode.srcATop,
             ),
             const ListTile(
               style: ListTileStyle.drawer,

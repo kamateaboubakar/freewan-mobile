@@ -42,7 +42,7 @@ dependencies:
   date_format: ^2.0.5
   advance_expansion_tile: ^1.0.2
   flutter_countdown_timer: ^4.1.0
-  permission_handler: ^10.4.3
+  permission_handler: ^11.1.0
   qr_code_scanner: ^1.0.1
   lottie: ^2.3.2
   flutter_credit_card: ^3.0.6
@@ -68,9 +68,7 @@ dependencies:
   icofont_flutter: ^1.4.0
   flutter_scrolling_fab_animated: ^0.1.4
   path: ^1.8.2
-  url_launcher: ^6.1.11
   qr_flutter: ^4.1.0
-  readmore: ^2.2.0
   flutter_rating_bar: ^4.0.1
   rating_summary: ^1.0.2+1
   webview_flutter: ^4.2.2
@@ -79,23 +77,28 @@ dependencies:
   onscreen_num_keyboard: ^1.0.4
   pin_code_fields: ^8.0.1
   flutter_chat_ui: ^1.6.9
-  cached_network_image: ^3.2.3
   firebase_messaging: ^14.6.7
   credit_card_scanner: ^1.0.5
   flutter_local_notifications: ^15.1.1
 
   # Modules Lebedoo
-  job:
-    path: ../modules/job
-  pharmacie:
-    path: ../modules/pharmacie
+  # job:
+  #   path: ../modules/job
+  # pharmacie:
+  #   path: ../modules/pharmacie
 
   lebedoo_assets:
-    path: ../modules/lebedoo_assets
+    git: 
+      url: https://github.com/Lebedoo/lebedoo-assets.git
+      ref: main
 
   tools_flutter_project:
     git: 
       url: https://github.com/Isofth/tools_flutter_project.git
+      ref: main
+  construction:
+    git: 
+      url: https://github.com/Lebedoo/lebedoo-construction.git
       ref: main
 
   # FIN Modules Lebedoo
@@ -131,6 +134,7 @@ flutter:
     - assets/images/don/
     - assets/job/
     - assets/pharmacie/
+    - assets/construction/
     - assets/.env
   #   - images/a_dot_ham.jpeg
 

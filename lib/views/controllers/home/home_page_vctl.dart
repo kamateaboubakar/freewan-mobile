@@ -3,7 +3,6 @@ import 'package:lebedoo_assets/lebedoo_assets.dart';
 import 'package:sliding_up_panel/sliding_up_panel.dart';
 import 'package:wan_mobile/api/controllers/auth/user_api_ctl.dart';
 import 'package:wan_mobile/api/controllers/pubs/pub_api_ctl.dart';
-import 'package:wan_mobile/models/pubs/pub.dart';
 import 'package:wan_mobile/tools/const/const.dart';
 
 import 'package:wan_mobile/tools/services/notification_service.dart';
@@ -16,7 +15,7 @@ import 'package:wan_mobile/views/tools/routes.dart';
 class HomePageVctl extends ViewController {
   Routes routes = Routes();
 
-  List<Pub> ads = [];
+  List<Img> ads = [];
 
   bool displayWelcome;
   int nbNotif = 0;

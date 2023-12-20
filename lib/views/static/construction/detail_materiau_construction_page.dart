@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:lebedoo_assets/lebedoo_assets.dart';
-import 'package:readmore/readmore.dart';
 
 import 'package:tools_flutter_project/tools_flutter_project.dart';
 import 'package:wan_mobile/tools/widgets/c_outlined_button.dart';

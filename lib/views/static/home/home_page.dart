@@ -8,8 +8,6 @@ import 'package:wan_mobile/tools/widgets/button_menu.dart';
 import 'package:wan_mobile/tools/widgets/card_menu.dart';
 import 'package:wan_mobile/tools/widgets/grid_menu.dart';
 import 'package:wan_mobile/tools/widgets/pageable_menu.dart';
-import 'package:wan_mobile/tools/widgets/pub_banner.dart';
-import 'package:wan_mobile/tools/widgets/pub_slider_banner.dart';
 import 'package:wan_mobile/views/controllers/home/home_page_vctl.dart';
 import 'package:wan_mobile/views/static/home/categorized_home.dart';
 import 'package:wan_mobile/views/static/home/home_drawer.dart';
@@ -180,8 +178,8 @@ class HomePage extends StatelessWidget {
                                 controller: scrollController,
                                 child: Column(
                                   children: [
-                                    PubSliderBanner(
-                                      pubs: ctl.ads
+                                    ImageSlideBanner(
+                                      images: ctl.ads
                                           .where((e) => e.categorie == "main")
                                           .toList(),
                                     ),
@@ -250,7 +248,7 @@ class HomePage extends StatelessWidget {
                                             (e) => Padding(
                                               padding: const EdgeInsets.only(
                                                   right: 10),
-                                              child: PubBanner(pub: e),
+                                              child: ImageBanner(image: e),
                                             ),
                                           )
                                           .toList(),
@@ -298,8 +296,8 @@ class HomePage extends StatelessWidget {
                                         ),
                                     ),
                                     const Gap(20),
-                                    PubSliderBanner(
-                                      pubs: ctl.ads
+                                    ImageSlideBanner(
+                                      images: ctl.ads
                                           .where(
                                             (e) => e.categorie == "lonaci",
                                           )
@@ -362,11 +360,13 @@ class HomePage extends StatelessWidget {
                                           .where(
                                             (e) => e.categorie == "en_affiche",
                                           )
-                                          .map((e) => Padding(
-                                                padding: const EdgeInsets.only(
-                                                    right: 20),
-                                                child: PubBanner(pub: e),
-                                              ))
+                                          .map(
+                                            (e) => Padding(
+                                              padding: const EdgeInsets.only(
+                                                  right: 20),
+                                              child: ImageBanner(image: e),
+                                            ),
+                                          )
                                           .toList(),
                                     ),
                                     const Gap(20),
@@ -392,14 +392,14 @@ class HomePage extends StatelessWidget {
                                                   padding:
                                                       const EdgeInsets.only(
                                                           right: 10),
-                                                  child: PubBanner(pub: e),
+                                                  child: ImageBanner(image: e),
                                                 ))
                                             .toList()),
                                     const Gap(20),
-                                    PubSliderBanner(
-                                      pubs: ctl.ads
+                                    ImageSlideBanner(
+                                      images: ctl.ads
                                           .where(
-                                              (e) => e.categorie == "pub_bas")
+                                              (e) => e.categorie == "image_bas")
                                           .toList(),
                                     ),
                                     Row(

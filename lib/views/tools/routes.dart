@@ -516,6 +516,51 @@ class Routes extends ViewController {
             onPressed: () {},
           ),
         ),
+        RouteItem(
+          groupe: "Centres d'intérêts",
+          menuId: MenuButtonEnum.commissariats,
+          button: ButtonMenu(
+            icon: Image.asset("assets/images/icons/policier.png"),
+            title: "Commissaires",
+            onPressed: () {},
+          ),
+        ),
+        RouteItem(
+          groupe: "Paris sportifs",
+          menuId: MenuButtonEnum.oneXBet,
+          button: ButtonMenu(
+            icon: Image.asset("assets/images/1xbet.png"),
+            title: "1xBet",
+            onPressed: () {},
+          ),
+        ),
+        RouteItem(
+          groupe: "Paris sportifs",
+          menuId: MenuButtonEnum.pmu,
+          button: ButtonMenu(
+            icon: Image.asset("assets/images/pmu.png"),
+            title: "PMU",
+            onPressed: () {},
+          ),
+        ),
+        RouteItem(
+          groupe: "Paris sportifs",
+          menuId: MenuButtonEnum.betclic,
+          button: ButtonMenu(
+            icon: Image.asset("assets/images/betclic.png"),
+            title: "Betclic",
+            onPressed: () {},
+          ),
+        ),
+        RouteItem(
+          groupe: "Paris sportifs",
+          menuId: MenuButtonEnum.premierBet,
+          button: ButtonMenu(
+            icon: Image.asset("assets/images/premier_bet.jpg"),
+            title: "Premier Bet",
+            onPressed: () {},
+          ),
+        ),
       ];
 
   List<RouteItem> routesByList({List<MenuButtonEnum> menus = const []}) =>

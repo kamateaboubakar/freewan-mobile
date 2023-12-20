@@ -296,6 +296,21 @@ class HomePage extends StatelessWidget {
                                         ),
                                     ),
                                     const Gap(20),
+                                    CardMenu(
+                                      title: "Paris sportifs",
+                                      children: ctl.routes
+                                          .routesByList(
+                                            menus: [
+                                              MenuButtonEnum.oneXBet,
+                                              MenuButtonEnum.pmu,
+                                              MenuButtonEnum.premierBet,
+                                              MenuButtonEnum.betclic,
+                                            ],
+                                          )
+                                          .map((e) => e.button)
+                                          .toList(),
+                                    ),
+                                    const Gap(20),
                                     ImageSlideBanner(
                                       images: ctl.ads
                                           .where(
@@ -313,6 +328,7 @@ class HomePage extends StatelessWidget {
                                             MenuButtonEnum.cadeaux,
                                             MenuButtonEnum.vouchers,
                                             MenuButtonEnum.nounous,
+                                            MenuButtonEnum.commissariats,
                                           ])
                                           .map((e) => e.button)
                                           .toList(),

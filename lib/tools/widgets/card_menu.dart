@@ -15,7 +15,7 @@ class CardMenu extends StatelessWidget {
   const CardMenu({
     this.margin = const EdgeInsets.only(bottom: 10),
     this.title,
-    this.height = 150,
+    this.height = 200,
     this.externalTitle,
     this.children = const [],
     this.crossAxisCount = 4,

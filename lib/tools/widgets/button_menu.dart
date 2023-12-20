@@ -9,13 +9,15 @@ class ButtonMenu extends StatelessWidget {
   final double? height;
   final String? categorie;
   final int iconFlex;
+  final int titleFlex;
   final BorderSide side;
 
   final void Function()? onPressed;
 
   const ButtonMenu({
     this.minWidth,
-    this.iconFlex = 1,
+    this.iconFlex = 2,
+    this.titleFlex = 2,
     this.height,
     this.categorie,
     required this.icon,
@@ -27,57 +29,61 @@ class ButtonMenu extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialButton(
-      minWidth: minWidth,
-      height: height,
-      padding: EdgeInsets.zero,
-      shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.circular(10),
-        side: side,
-      ),
-      onPressed: onPressed,
-      child: Padding(
-        padding: const EdgeInsets.all(10),
-        child: Column(
-          children: [
-            Expanded(
-              flex: iconFlex,
-              child: Container(
-                padding: const EdgeInsets.all(3),
-                decoration: BoxDecoration(
-                  shape: BoxShape.circle,
-                  color: Colors.blue.shade50,
-                  border: Border.all(
-                    color: Colors.blue.shade100,
+    return Tooltip(
+      message: title.value.replaceAll("\n", " "),
+      child: MaterialButton(
+        minWidth: minWidth,
+        height: height,
+        padding: EdgeInsets.zero,
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(10),
+          side: side,
+        ),
+        onPressed: onPressed,
+        child: Padding(
+          padding: const EdgeInsets.all(10),
+          child: Column(
+            children: [
+              Expanded(
+                flex: iconFlex,
+                child: Container(
+                  padding: const EdgeInsets.all(3),
+                  decoration: BoxDecoration(
+                    shape: BoxShape.circle,
+                    color: Colors.blue.shade50,
+                    border: Border.all(
+                      color: Colors.blue.shade100,
+                    ),
+                  ),
+                  child: ClipRRect(
+                    borderRadius: BorderRadius.circular(10),
+                    child: icon,
                   ),
                 ),
-                child: ClipRRect(
-                  borderRadius: BorderRadius.circular(10),
-                  child: icon,
-                ),
               ),
-            ),
-            const SizedBox(height: 5),
-            Visibility(
-              visible: title != null,
-              child: Expanded(
-                child: Padding(
-                  padding: const EdgeInsets.all(2),
-                  child: AutoSizeText(
-                    title.value,
-                    textAlign: TextAlign.center,
-                    maxLines: 3,
-                    maxFontSize: 16,
-                    minFontSize: 9,
-                    overflow: TextOverflow.ellipsis,
-                    style: const TextStyle(
-                      fontWeight: FontWeight.bold,
+              const SizedBox(height: 5),
+              Visibility(
+                visible: title != null,
+                child: Expanded(
+                  flex: titleFlex,
+                  child: Padding(
+                    padding: const EdgeInsets.all(2),
+                    child: AutoSizeText(
+                      title.value,
+                      textAlign: TextAlign.center,
+                      maxLines: 3,
+                      maxFontSize: 16,
+                      minFontSize: 9,
+                      overflow: TextOverflow.ellipsis,
+                      style: const TextStyle(
+                        fontWeight: FontWeight.bold,
+                      ),
                     ),
                   ),
                 ),
               ),
-            ),
-          ],
+            ],
+          ),
         ),
       ),
     );

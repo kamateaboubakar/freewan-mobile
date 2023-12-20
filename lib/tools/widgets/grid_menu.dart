@@ -10,7 +10,11 @@ class GridMenu extends StatelessWidget {
   final double height;
   final double width;
   final ScrollController? listController;
-
+  final Color backgroundColor;
+  final EdgeInsetsGeometry? padding;
+  final double mainAxisSpacing;
+  final double crossAxisSpacing;
+  final double childAspectRatio;
   const GridMenu({
     this.title,
     required this.menus,
@@ -19,6 +23,11 @@ class GridMenu extends StatelessWidget {
     this.width = 250,
     this.children = const [],
     this.listController,
+    this.backgroundColor = Colors.white,
+    this.padding = const EdgeInsets.all(10),
+    this.mainAxisSpacing = 3,
+    this.crossAxisSpacing = 3,
+    this.childAspectRatio = 1.0,
     super.key,
   });
 
@@ -46,21 +55,27 @@ class GridMenu extends StatelessWidget {
               children: [
                 Container(
                   width: width,
+                  height: height,
                   decoration: BoxDecoration(
-                    color: Colors.white,
+                    color: backgroundColor,
                     borderRadius: BorderRadius.circular(10),
                   ),
                   child: GridView(
-                    padding: const EdgeInsets.all(10),
+                    padding: padding,
                     physics: const NeverScrollableScrollPhysics(),
                     gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
                       crossAxisCount: crossAxisCount,
+                      mainAxisSpacing: mainAxisSpacing,
+                      crossAxisSpacing: crossAxisSpacing,
+                      childAspectRatio: childAspectRatio,
                     ),
                     children: menus,
                   ),
                 ),
                 const Gap(20),
-                Row(children: children),
+                Row(
+                  children: children,
+                ),
               ],
             ),
           ),

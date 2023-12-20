@@ -119,7 +119,7 @@ class Routes extends ViewController {
           menuId: MenuButtonEnum.comptesBancaires,
           button: ButtonMenu(
             icon: Image.asset("assets/images/icons/bank.png"),
-            title: "Comptes bancaires",
+            title: "Banks & microfinances",
             onPressed: () {},
           ),
         ),
@@ -484,16 +484,16 @@ class Routes extends ViewController {
           menuId: MenuButtonEnum.ticketBus,
           button: ButtonMenu(
             icon: Image.asset("assets/images/icons/bus_car.png"),
-            title: "Ticket de Bus",
+            title: "Tickets\nde Bus",
             onPressed: () {},
           ),
         ),
         RouteItem(
           groupe: "Voyage",
-          menuId: MenuButtonEnum.ticketTrain,
+          menuId: MenuButtonEnum.ticketBateauBus,
           button: ButtonMenu(
-            icon: Image.asset("assets/images/icons/icons8-train-64.png"),
-            title: "Ticket de train",
+            icon: Image.asset("assets/images/icons/bateau.png"),
+            title: "Tickets\nBateau Bus",
             onPressed: () {},
           ),
         ),
@@ -503,7 +503,7 @@ class Routes extends ViewController {
           button: ButtonMenu(
             icon: Image.asset(
                 "assets/images/icons/icons8-avion-vue-de-face-64.png"),
-            title: "Billet d'avion",
+            title: "Billets\nd'avion",
             onPressed: () {},
           ),
         ),
@@ -517,11 +517,11 @@ class Routes extends ViewController {
           ),
         ),
         RouteItem(
-          groupe: "Centres d'intérêts",
+          groupe: "Centres d’intérêts",
           menuId: MenuButtonEnum.commissariats,
           button: ButtonMenu(
             icon: Image.asset("assets/images/icons/policier.png"),
-            title: "Commissaires",
+            title: "Commissariats",
             onPressed: () {},
           ),
         ),
@@ -558,6 +558,33 @@ class Routes extends ViewController {
           button: ButtonMenu(
             icon: Image.asset("assets/images/premier_bet.jpg"),
             title: "Premier Bet",
+            onPressed: () {},
+          ),
+        ),
+        RouteItem(
+          groupe: "Cartes & comptes",
+          menuId: MenuButtonEnum.emettreCarteCredit,
+          button: ButtonMenu(
+            icon: Image.asset("assets/images/icons/carte-bancaire_lbd.png"),
+            title: "Emettre cartes virtuelles",
+            onPressed: () {},
+          ),
+        ),
+        RouteItem(
+          groupe: "Cartes & comptes",
+          menuId: MenuButtonEnum.commanderCarteCredit,
+          button: ButtonMenu(
+            icon: Image.asset("assets/images/icons/carte-bancaire_lbd.png"),
+            title: "Commandez une carte",
+            onPressed: () {},
+          ),
+        ),
+        RouteItem(
+          groupe: "Voyages",
+          menuId: MenuButtonEnum.ticketCar,
+          button: ButtonMenu(
+            icon: Image.asset("assets/images/icons/car.png"),
+            title: "Tickets\nde car",
             onPressed: () {},
           ),
         ),

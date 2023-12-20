@@ -15,7 +15,6 @@ class SplashscreenVctl extends ViewController {
     var res = await Cache.getString(CacheKey.login.name);
     if (res != null) {
       Map<String, dynamic> cache = json.decode(res);
-
       String phone = cache["phone"];
       Get.off(() => PasswordPage(phone: phone));
     } else {

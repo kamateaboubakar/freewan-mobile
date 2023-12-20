@@ -16,6 +16,7 @@ class _CategorizedHomeState extends State<CategorizedHome> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colors.white,
       appBar: AppBar(title: const Text("Fonctionnalités")),
       body: GetBuilder<CategorizedHomeVctl>(
         init: CategorizedHomeVctl(),

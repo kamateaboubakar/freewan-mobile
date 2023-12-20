@@ -42,7 +42,7 @@ enum MenuButtonEnum {
   stade,
   concert,
   ticketBus,
-  ticketTrain,
+  ticketBateauBus,
   billetAvion,
   hotels,
   rechargeYango,
@@ -54,4 +54,7 @@ enum MenuButtonEnum {
   pmu,
   premierBet,
   betclic,
+  emettreCarteCredit,
+  commanderCarteCredit,
+  ticketCar,
 }

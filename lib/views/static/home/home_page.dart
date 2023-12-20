@@ -46,8 +46,8 @@ class HomePage extends StatelessWidget {
             }),
             title: Image.asset(
               Const.inLineAppLogo,
-              width: 100,
-              height: 80,
+              width: 130,
+              height: 110,
               // color: Colors.white,
             ),
             actions: [
@@ -149,7 +149,7 @@ class HomePage extends StatelessWidget {
                     builder: (context, scrollController) {
                       return Container(
                         decoration: BoxDecoration(
-                          color: Colors.blue.shade50,
+                          color: Colors.blue.shade100,
                           borderRadius: const BorderRadius.vertical(
                               top: Radius.circular(20)),
                         ),
@@ -179,6 +179,7 @@ class HomePage extends StatelessWidget {
                                 child: Column(
                                   children: [
                                     ImageSlideBanner(
+                                      height: 130,
                                       images: ctl.ads
                                           .where((e) => e.categorie == "main")
                                           .toList(),
@@ -233,12 +234,18 @@ class HomePage extends StatelessWidget {
                                       ],
                                     ),
                                     GridMenu(
+                                      mainAxisSpacing: 5,
+                                      crossAxisSpacing: 5,
+                                      padding: const EdgeInsets.all(3),
+                                      backgroundColor: Colors.blue.shade100,
                                       title: "Cartes & comptes",
                                       listController: scrollController,
                                       menus: ctl.routes
                                           .routesByList(menus: [
                                             MenuButtonEnum.comptesBancaires,
                                             MenuButtonEnum.cartesBancaires,
+                                            MenuButtonEnum.commanderCarteCredit,
+                                            MenuButtonEnum.emettreCarteCredit,
                                           ])
                                           .map((e) => e.button)
                                           .toList(),
@@ -363,6 +370,10 @@ class HomePage extends StatelessWidget {
                                     ),
                                     const Gap(20),
                                     GridMenu(
+                                      mainAxisSpacing: 5,
+                                      crossAxisSpacing: 5,
+                                      padding: const EdgeInsets.all(3),
+                                      backgroundColor: Colors.blue.shade100,
                                       title: "Divertissement",
                                       listController: scrollController,
                                       menus: ctl.routes
@@ -387,15 +398,24 @@ class HomePage extends StatelessWidget {
                                     ),
                                     const Gap(20),
                                     GridMenu(
+                                        mainAxisSpacing: 5,
+                                        crossAxisSpacing: 5,
+                                        childAspectRatio: .9,
+                                        padding: const EdgeInsets.all(3),
+                                        backgroundColor: Colors.blue.shade100,
                                         title: "Voyages",
+                                        crossAxisCount: 3,
+                                        width: 350,
                                         listController: scrollController,
                                         menus: ctl.routes
                                             .routesByList(
                                               menus: [
                                                 MenuButtonEnum.ticketBus,
-                                                MenuButtonEnum.ticketTrain,
+                                                MenuButtonEnum.ticketBateauBus,
                                                 MenuButtonEnum.billetAvion,
+                                                MenuButtonEnum.ticketCar,
                                                 MenuButtonEnum.hotels,
+                                                MenuButtonEnum.pharmacie,
                                               ],
                                             )
                                             .map((e) => e.button)
@@ -417,6 +437,11 @@ class HomePage extends StatelessWidget {
                                           .where(
                                               (e) => e.categorie == "image_bas")
                                           .toList(),
+                                    ),
+                                    ClipRRect(
+                                      borderRadius: BorderRadius.circular(10),
+                                      child: Image.asset(
+                                          "assets/images/5594188.jpg"),
                                     ),
                                     Row(
                                       children: [

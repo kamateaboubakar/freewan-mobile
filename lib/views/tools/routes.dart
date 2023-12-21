@@ -1,7 +1,6 @@
 import 'package:construction/views/static/construction_home_page.dart';
 import 'package:flutter/material.dart';
 import 'package:lebedoo_assets/lebedoo_assets.dart';
-import 'package:lebedoo_assets/lebedoo_assets.dart';
 import 'package:tools_flutter_project/tools_flutter_project.dart';
 import 'package:wan_mobile/tools/widgets/button_menu.dart';
 import 'package:lebedoo_assets/views/controllers/abstracts/view_controller.dart';

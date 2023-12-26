@@ -20,7 +20,6 @@ class HomePageVctl extends ViewController {
   bool displayWelcome;
   int nbNotif = 0;
   var scrollController = ScrollController();
-  var isScrolling = false.obs;
   bool hideAmount = true;
 
   HomePageVctl(this.displayWelcome);

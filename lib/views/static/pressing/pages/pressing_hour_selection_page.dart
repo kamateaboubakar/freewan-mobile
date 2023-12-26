@@ -2,9 +2,7 @@ import 'dart:async';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_map/flutter_map.dart';
-import 'package:latlong2/latlong.dart';
 import 'package:lebedoo_assets/lebedoo_assets.dart' hide Marker;
-import 'package:lebedoo_assets/themes/asset_colors.dart';
 import 'package:tools_flutter_project/functions/tools.dart';
 import 'package:tools_flutter_project/widgets/c_button.dart';
 import 'package:wan_mobile/models/pressing/pressing.dart';

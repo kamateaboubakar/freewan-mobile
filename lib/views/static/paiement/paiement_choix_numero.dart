@@ -1,11 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:lebedoo_assets/lebedoo_assets.dart';
-
 import 'package:tools_flutter_project/tools_flutter_project.dart';
 import 'package:wan_mobile/views/controllers/paiement/paiement_choix_numero_vctl.dart';
 import 'package:wan_mobile/views/static/paiement/paiement_pay_recap.dart';
-
-import 'package:lebedoo_assets/themes/asset_colors.dart';
 import '../bills/bills_views.dart';
 
 class PaiementChoixNumero extends StatelessWidget {
@@ -88,89 +85,89 @@ class PaiementChoixNumero extends StatelessWidget {
                           )
                           .toList(),
                     ),
-                    AddAccountButton(
-                      title: "Ajouter un autre numéro",
-                      onTap: () => Tools.openBottomSheet(
-                        Container(
-                          padding: const EdgeInsets.only(
-                            right: 30,
-                            left: 30,
-                            top: 35,
-                            bottom: 19,
-                          ),
-                          height: 222,
-                          decoration: const BoxDecoration(
-                            color: Colors.white,
-                            borderRadius: BorderRadius.only(
-                              topLeft: Radius.circular(15),
-                              topRight: Radius.circular(15),
-                            ),
-                          ),
-                          child: Form(
-                            key: ctl.formKey,
-                            child: Column(
-                              children: [
-                                const Text(
-                                  "Entrez le numéro de paiement",
-                                  style: TextStyle(
-                                    fontSize: 16,
-                                    fontWeight: FontWeight.w500,
-                                  ),
-                                ),
-                                const SizedBox(height: 10),
-                                CTextFormField(
-                                  controller: ctl.telCtl,
-                                  hintText: "Enter your mobile number",
-                                  keyboardType: TextInputType.number,
-                                  require: true,
-                                ),
-                                const SizedBox(height: 10),
-                                Row(
-                                  children: [
-                                    Expanded(
-                                      child: CButton(
-                                        color: Colors.white,
-                                        shape: RoundedRectangleBorder(
-                                          borderRadius:
-                                              BorderRadius.circular(8),
-                                          side: const BorderSide(
-                                            width: 1,
-                                            color: AssetColors.blueButton,
-                                          ),
-                                        ),
-                                        height: 48,
-                                        onPressed: () => Get.back(),
-                                        child: const Text(
-                                          "Annuler",
-                                          style: TextStyle(
-                                            fontWeight: FontWeight.bold,
-                                            color: AssetColors.blueButton,
-                                          ),
-                                        ),
-                                      ),
-                                    ),
-                                    const SizedBox(width: 16),
-                                    Expanded(
-                                      child: CButton(
-                                        borderRadius: 8,
-                                        height: 48,
-                                        onPressed: ctl.addMobileMoney,
-                                        child: const Text(
-                                          "Confirmer",
-                                          style: TextStyle(
-                                            fontWeight: FontWeight.bold,
-                                          ),
-                                        ),
-                                      ),
-                                    ),
-                                  ],
-                                )
-                              ],
-                            ),
-                          ),
-                        ),
-                      ),
-                    )
+                    // AddAccountButton(
+                    //   title: "Ajouter un autre numéro",
+                    //   onTap: () => Tools.openBottomSheet(
+                    //     Container(
+                    //       padding: const EdgeInsets.only(
+                    //         right: 30,
+                    //         left: 30,
+                    //         top: 35,
+                    //         bottom: 19,
+                    //       ),
+                    //       height: 222,
+                    //       decoration: const BoxDecoration(
+                    //         color: Colors.white,
+                    //         borderRadius: BorderRadius.only(
+                    //           topLeft: Radius.circular(15),
+                    //           topRight: Radius.circular(15),
+                    //         ),
+                    //       ),
+                    //       child: Form(
+                    //         key: ctl.formKey,
+                    //         child: Column(
+                    //           children: [
+                    //             const Text(
+                    //               "Entrez le numéro de paiement",
+                    //               style: TextStyle(
+                    //                 fontSize: 16,
+                    //                 fontWeight: FontWeight.w500,
+                    //               ),
+                    //             ),
+                    //             const SizedBox(height: 10),
+                    //             CTextFormField(
+                    //               controller: ctl.telCtl,
+                    //               hintText: "Enter your mobile number",
+                    //               keyboardType: TextInputType.number,
+                    //               require: true,
+                    //             ),
+                    //             const SizedBox(height: 10),
+                    //             Row(
+                    //               children: [
+                    //                 Expanded(
+                    //                   child: CButton(
+                    //                     color: Colors.white,
+                    //                     shape: RoundedRectangleBorder(
+                    //                       borderRadius:
+                    //                           BorderRadius.circular(8),
+                    //                       side: const BorderSide(
+                    //                         width: 1,
+                    //                         color: AssetColors.blueButton,
+                    //                       ),
+                    //                     ),
+                    //                     height: 48,
+                    //                     onPressed: () => Get.back(),
+                    //                     child: const Text(
+                    //                       "Annuler",
+                    //                       style: TextStyle(
+                    //                         fontWeight: FontWeight.bold,
+                    //                         color: AssetColors.blueButton,
+                    //                       ),
+                    //                     ),
+                    //                   ),
+                    //                 ),
+                    //                 const SizedBox(width: 16),
+                    //                 Expanded(
+                    //                   child: CButton(
+                    //                     borderRadius: 8,
+                    //                     height: 48,
+                    //                     onPressed: ctl.addMobileMoney,
+                    //                     child: const Text(
+                    //                       "Confirmer",
+                    //                       style: TextStyle(
+                    //                         fontWeight: FontWeight.bold,
+                    //                       ),
+                    //                     ),
+                    //                   ),
+                    //                 ),
+                    //               ],
+                    //             )
+                    //           ],
+                    //         ),
+                    //       ),
+                    //     ),
+                    //   ),
+                    // )
                   ],
                 ),
               ),

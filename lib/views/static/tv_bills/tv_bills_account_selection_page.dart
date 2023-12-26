@@ -31,10 +31,10 @@ class TvBillsAccountSelectionPage extends StatelessWidget {
                 Get.to(() => TvBillsFormulaListPage(route: route));
               },
             ),
-            AddAccountButton(
-              title: "Payer pour un autre compte",
-              onTap: () {},
-            )
+            // AddAccountButton(
+            //   title: "Payer pour un autre compte",
+            //   onTap: () {},
+            // )
           ],
         ),
       ),

@@ -12,6 +12,9 @@ class ButtonMenu extends StatelessWidget {
   final int titleFlex;
   final BorderSide side;
   final Color backgroundColor;
+  final Color? iconBackgroundColor;
+  final Color? iconBorderColor;
+  final ShapeBorder? shape;
 
   final void Function()? onPressed;
 
@@ -26,8 +29,42 @@ class ButtonMenu extends StatelessWidget {
     this.onPressed,
     this.side = BorderSide.none,
     this.backgroundColor = Colors.white,
+    this.iconBackgroundColor,
+    this.iconBorderColor,
+    this.shape,
     super.key,
   });
+
+  ButtonMenu copyWith({
+    Widget? icon,
+    String? title,
+    double? minWidth,
+    double? height,
+    String? categorie,
+    int? iconFlex,
+    int? titleFlex,
+    BorderSide? side,
+    Color? backgroundColor,
+    Color? iconBackgroundColor,
+    Color? iconBorderColor,
+    ShapeBorder? shape,
+  }) {
+    return ButtonMenu(
+      icon: icon ?? this.icon,
+      title: title ?? this.title,
+      onPressed: onPressed,
+      side: side ?? this.side,
+      backgroundColor: backgroundColor ?? this.backgroundColor,
+      iconFlex: iconFlex ?? this.iconFlex,
+      titleFlex: titleFlex ?? this.titleFlex,
+      minWidth: minWidth ?? this.minWidth,
+      height: height ?? this.height,
+      iconBackgroundColor: iconBackgroundColor ?? this.iconBackgroundColor,
+      iconBorderColor: iconBorderColor ?? this.backgroundColor,
+      categorie: categorie ?? this.categorie,
+      shape: shape ?? this.shape,
+    );
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -51,37 +88,40 @@ class ButtonMenu extends StatelessWidget {
           children: [
             Expanded(
               flex: iconFlex,
-              child: Container(
-                padding: const EdgeInsets.all(3),
-                decoration: BoxDecoration(
-                  shape: BoxShape.circle,
-                  color: Colors.blue.shade50,
-                  border: Border.all(
-                    color: Colors.blue.shade100,
+              child: Center(
+                child: Container(
+                  padding: const EdgeInsets.all(3),
+                  decoration: BoxDecoration(
+                    shape: BoxShape.circle,
+                    color: iconBackgroundColor ?? Colors.blue.shade50,
+                    border: Border.all(
+                      color: iconBorderColor ?? Colors.blue.shade100,
+                    ),
                   ),
-                ),
-                child: ClipRRect(
-                  borderRadius: BorderRadius.circular(10),
-                  child: icon,
+                  child: ClipRRect(
+                    borderRadius: BorderRadius.circular(10),
+                    child: icon,
+                  ),
                 ),
               ),
             ),
-            const SizedBox(height: 5),
             Visibility(
               visible: title != null,
               child: Expanded(
                 flex: titleFlex,
                 child: Padding(
                   padding: const EdgeInsets.all(2),
-                  child: AutoSizeText(
-                    title.value,
-                    textAlign: TextAlign.center,
-                    maxLines: 3,
-                    maxFontSize: 16,
-                    minFontSize: 9,
-                    overflow: TextOverflow.ellipsis,
-                    style: const TextStyle(
-                      fontWeight: FontWeight.bold,
+                  child: Center(
+                    child: AutoSizeText(
+                      title.value,
+                      textAlign: TextAlign.center,
+                      maxLines: 3,
+                      maxFontSize: 16,
+                      minFontSize: 9,
+                      overflow: TextOverflow.ellipsis,
+                      style: const TextStyle(
+                        fontWeight: FontWeight.bold,
+                      ),
                     ),
                   ),
                 ),

@@ -96,16 +96,16 @@ class PaiementChoixCart extends StatelessWidget {
                             ),
                           )
                           .toList()),
-                  AddAccountButton(
-                    title: "Ajouter un autre carte bancaire",
-                    onTap: () =>
-                        Get.to(() => const EditionCardBank())?.then((value) {
-                      if (value != null) {
-                        ctl.cards.add(value);
-                        ctl.update();
-                      }
-                    }),
-                  )
+                  // AddAccountButton(
+                  //   title: "Ajouter un autre carte bancaire",
+                  //   onTap: () =>
+                  //       Get.to(() => const EditionCardBank())?.then((value) {
+                  //     if (value != null) {
+                  //       ctl.cards.add(value);
+                  //       ctl.update();
+                  //     }
+                  //   }),
+                  // )
                 ],
               ),
             ),

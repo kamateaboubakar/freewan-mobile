@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:lebedoo_assets/lebedoo_assets.dart';
-
 import '../bills_views.dart';
 
 class BillsReferenceSelectionPage extends StatelessWidget {
@@ -58,10 +57,10 @@ class BillsReferenceSelectionPage extends StatelessWidget {
                 onTap: () => Get.to(const BillsListPage()),
               ),
             ),
-            AddAccountButton(
-              title: "Payer pour un autre compteur",
-              onTap: () {},
-            )
+            // AddAccountButton(
+            //   title: "Payer pour un autre compteur",
+            //   onTap: () {},
+            // )
           ],
         ),
       ),

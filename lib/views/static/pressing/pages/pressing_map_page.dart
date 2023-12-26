@@ -1,9 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_map/flutter_map.dart';
 import 'package:lebedoo_assets/lebedoo_assets.dart' hide Marker;
-import 'package:latlong2/latlong.dart';
 import 'package:sliding_up_panel/sliding_up_panel.dart';
-import 'package:speech_bubble/speech_bubble.dart';
 import 'package:tools_flutter_project/tools_flutter_project.dart';
 import 'package:wan_mobile/models/pressing/pressing.dart';
 import 'package:wan_mobile/tools/const/const.dart';
@@ -94,63 +92,57 @@ class _PressingMapPageState extends State<PressingMapPage> {
                           height: 65,
                           point: LatLng(
                               pressings[i].latitude!, pressings[i].longitude!),
-                          child: SpeechBubble(
-                            padding: EdgeInsets.zero,
-                            borderRadius: 14,
-                            color: Colors.red,
-                            width: 250,
-                            child: Column(
-                              children: [
-                                ListTile(
-                                  dense: true,
-                                  horizontalTitleGap: 0,
-                                  textColor: Colors.white,
-                                  leading: CircleAvatar(
-                                    radius: 15,
-                                    backgroundColor: Colors.white,
-                                    child: Image.asset(
-                                      'assets/images/icons/boutique.png',
-                                      height: 20,
-                                      width: 20,
-                                    ),
+                          child: Column(
+                            children: [
+                              ListTile(
+                                dense: true,
+                                horizontalTitleGap: 0,
+                                textColor: Colors.white,
+                                leading: CircleAvatar(
+                                  radius: 15,
+                                  backgroundColor: Colors.white,
+                                  child: Image.asset(
+                                    'assets/images/icons/boutique.png',
+                                    height: 20,
+                                    width: 20,
                                   ),
-                                  title: Text(
-                                    pressings[i].name!,
-                                    maxLines: 1,
-                                  ),
-                                  subtitle: Text(
-                                    pressings[i].address!,
-                                    maxLines: 1,
-                                  ),
-                                  trailing: Row(
-                                    mainAxisSize: MainAxisSize.min,
-                                    children: [
-                                      Text(
-                                        "${pressings[i].distance(_pressingController.userLocation!.toLatLng())}km",
-                                        maxLines: 1,
-                                      ),
-                                      const SizedBox(width: 5),
-                                      const Icon(
-                                        Icons.arrow_forward_ios,
-                                        color: Colors.white,
-                                        size: 12,
-                                      ),
-                                    ],
-                                  ),
-                                  onTap: () {
-                                    _pressingController
-                                        .updatePressing(pressings[i]);
-                                    _mapController.move(
-                                      LatLng(
-                                        pressings[i].latitude!,
-                                        pressings[i].longitude!,
-                                      ),
-                                      mapZoom,
-                                    );
-                                  },
                                 ),
-                              ],
-                            ),
+                                title: Text(
+                                  pressings[i].name!,
+                                  maxLines: 1,
+                                ),
+                                subtitle: Text(
+                                  pressings[i].address!,
+                                  maxLines: 1,
+                                ),
+                                trailing: Row(
+                                  mainAxisSize: MainAxisSize.min,
+                                  children: [
+                                    Text(
+                                      "${pressings[i].distance(_pressingController.userLocation!.toLatLng())}km",
+                                      maxLines: 1,
+                                    ),
+                                    const SizedBox(width: 5),
+                                    const Icon(
+                                      Icons.arrow_forward_ios,
+                                      color: Colors.white,
+                                      size: 12,
+                                    ),
+                                  ],
+                                ),
+                                onTap: () {
+                                  _pressingController
+                                      .updatePressing(pressings[i]);
+                                  _mapController.move(
+                                    LatLng(
+                                      pressings[i].latitude!,
+                                      pressings[i].longitude!,
+                                    ),
+                                    mapZoom,
+                                  );
+                                },
+                              ),
+                            ],
                           ),
                         ),
                         // Marker(

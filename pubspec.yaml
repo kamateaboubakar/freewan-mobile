@@ -16,7 +16,7 @@ publish_to: 'none' # Remove this line if you wish to publish to pub.dev
 # https://developer.apple.com/library/archive/documentation/General/Reference/InfoPlistKeyReference/Articles/CoreFoundationKeys.html
 # In Windows, build-name is used as the major, minor, and patch parts
 # of the product and file versions while build-number is used as the build suffix.
-version: 1.0.31+32
+version: 1.0.32+33
 
 environment:
   sdk: '>=3.0.5 <4.0.0'
@@ -55,15 +55,12 @@ dependencies:
   file_picker: ^5.3.1
   intl: ^0.18.1
   fluttertoast: ^8.2.1
-  speech_bubble: ^0.0.9
 
   # The following adds the Cupertino Icons font to your application.
   # Use with the CupertinoIcons class for iOS style icons.
   flutter_map: ^6.0.1
   location: ^4.4.0
-  geocoding: ^2.1.1
   cupertino_icons: ^1.0.2
-  sliding_up_panel: ^2.0.0+1
   flutter_image_slideshow: ^0.1.5
   icofont_flutter: ^1.4.0
   flutter_scrolling_fab_animated: ^0.1.4
@@ -99,6 +96,10 @@ dependencies:
   construction:
     git: 
       url: https://github.com/Lebedoo/lebedoo-construction.git
+      ref: main
+  guide_urbain:
+    git: 
+      url: https://github.com/Lebedoo/lebedoo-guide-urbain-mobile.git
       ref: main
 
   # FIN Modules Lebedoo

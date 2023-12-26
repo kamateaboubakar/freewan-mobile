@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:lebedoo_assets/lebedoo_assets.dart';
 import 'package:tools_flutter_project/tools_flutter_project.dart';
-import 'package:url_launcher/url_launcher.dart';
 import 'package:wan_mobile/tools/const/const.dart';
 import 'package:wan_mobile/views/controllers/home/home_page_vctl.dart';
 import 'package:wan_mobile/views/static/adresse/adresse_list_page.dart';
@@ -61,53 +60,6 @@ class HomeDrawer extends StatelessWidget {
                 ],
               ),
             ),
-            // UserAccountsDrawerHeader(
-            //   margin: EdgeInsets.zero,
-            //   decoration: BoxDecoration(
-            //     image: DecorationImage(
-            //       fit: BoxFit.cover,
-            //       opacity: .78,
-            //       image: Image.asset("assets/images/image_pont.jpeg").image,
-            //       // colorFilter: const ColorFilter.mode(
-            //       //   AssetColors.blue,
-            //       //   BlendMode.exclusion,
-            //       // ),
-            //     ),
-            //   ),
-            //   currentAccountPicture: CircleAvatar(
-            //     backgroundColor: AssetColors.blue,
-            //     child: Image.asset(
-            //       "assets/images/icons/user_profil.png",
-            //       height: 45,
-            //       color: Colors.white,
-            //     ),
-            //   ),
-            //   accountName: const Text(
-            //     "",
-            //     maxLines: 1,
-            //     style: TextStyle(
-            //       fontSize: 22,
-            //       fontWeight: FontWeight.bold,
-            //       color: Colors.black,
-            //     ),
-            //   ),
-            //   accountEmail: Text(
-            //     ctl.appCtl.user.fullName,
-            //     style: const TextStyle(
-            //       fontSize: 20,
-            //       fontWeight: FontWeight.bold,
-            //       color: Colors.black,
-            //     ),
-            //   ),
-            //   // otherAccountsPictures: [
-            //   //   IconButton(
-            //   //     tooltip: "Déconnexion",
-            //   //     onPressed: ctl.logout,
-            //   //     color: Colors.white,
-            //   //     icon: const Icon(Icons.logout),
-            //   //   ),
-            //   // ],
-            // ),
             Expanded(
               child: Stack(
                 children: [

@@ -101,6 +101,10 @@ dependencies:
     git: 
       url: https://github.com/Lebedoo/lebedoo-guide-urbain-mobile.git
       ref: main
+  mapping_gab:
+    git: 
+      url: https://github.com/Lebedoo/lebedoo-mapping-gab-mobile.git
+      ref: main
 
   # FIN Modules Lebedoo
 

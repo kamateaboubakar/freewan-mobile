@@ -126,7 +126,7 @@ packages:
     description:
       path: "."
       ref: main
-      resolved-ref: "1c8cf03865ffe471799e4ca8a4407f08242217b2"
+      resolved-ref: "512f98913a9680f4cafdff0ddd33dc0541af476a"
       url: "https://github.com/Lebedoo/lebedoo-construction.git"
     source: git
     version: "1.0.0+1"
@@ -383,6 +383,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "5.1.0"
+  flutter_easyloading:
+    dependency: transitive
+    description:
+      name: flutter_easyloading
+      sha256: ba21a3c883544e582f9cc455a4a0907556714e1e9cf0eababfcb600da191d17c
+      url: "https://pub.dev"
+    source: hosted
+    version: "3.0.5"
   flutter_image_slideshow:
     dependency: "direct main"
     description:
@@ -503,6 +511,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "6.2.0"
+  flutter_spinkit:
+    dependency: transitive
+    description:
+      name: flutter_spinkit
+      sha256: b39c753e909d4796906c5696a14daf33639a76e017136c8d82bf3e620ce5bb8e
+      url: "https://pub.dev"
+    source: hosted
+    version: "5.2.0"
   flutter_test:
     dependency: "direct dev"
     description: flutter
@@ -743,7 +759,7 @@ packages:
     description:
       path: "."
       ref: main
-      resolved-ref: "2f217ed7aaac8f9686f6189e0e39d823073ed4cf"
+      resolved-ref: "5979c4b8b4eeebea4f9858a899749a22ecacd9e9"
       url: "https://github.com/Lebedoo/lebedoo-assets.git"
     source: git
     version: "1.0.8+9"
@@ -851,6 +867,15 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "2.7.0"
+  mapping_gab:
+    dependency: "direct main"
+    description:
+      path: "."
+      ref: main
+      resolved-ref: "29729dcbf2f50f9874644aeb38a95ddbb2a70aa4"
+      url: "https://github.com/Lebedoo/lebedoo-mapping-gab-mobile.git"
+    source: git
+    version: "1.0.0+1"
   maps_toolkit:
     dependency: transitive
     description:

@@ -1,9 +1,9 @@
 import 'package:lebedoo_assets/lebedoo_assets.dart';
+import 'package:lebedoo_wallets_transactions/models/carte_bancaire.dart';
+import 'package:lebedoo_wallets_transactions/models/mobile_money.dart';
+import 'package:lebedoo_wallets_transactions/models/moyen_paiements.dart';
 import 'package:tools_flutter_project/tools_flutter_project.dart';
 import 'package:wan_mobile/api/controllers/account_transaction/account_transaction_api_ctl.dart';
-import 'package:wan_mobile/models/paiement/carte_bancaire.dart';
-import 'package:wan_mobile/models/paiement/mobile_money.dart';
-import 'package:wan_mobile/models/paiement/mode_paiement.dart';
 import 'package:wan_mobile/models/solde_historique/account_transaction.dart';
 import 'package:wan_mobile/tools/const/paiement/account_transaction_status.dart';
 import 'package:wan_mobile/tools/services/notification_service.dart';
@@ -41,11 +41,11 @@ class PaiementRecapVctl extends ViewController {
       trx.frais = frais.toString();
       trx.service = service;
       trx.recevedId = userDestinationId;
-      trx.modePayment = moyenPaiement.typePaiment;
+      // trx.modePayment = moyenPaiement.typePaiment;
       if (moyenPaiement is MobileMoney) {
         var moyPaie = (moyenPaiement as MobileMoney);
-        if (!moyPaie.numeroTelephone.value.contains("+")) {
-          trx.numberPayment = "+225${moyPaie.numeroTelephone.value}";
+        if (!moyPaie.numero.value.contains("+")) {
+          trx.numberPayment = "+225${moyPaie.numero.value}";
         }
       } else {
         trx.numberPayment = (moyenPaiement as CarteBancaire).numeroCarte;

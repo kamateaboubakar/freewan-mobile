@@ -8,7 +8,7 @@ import 'package:wan_mobile/views/static/agence_a_proximite/agence_a_proximite.da
 import 'package:wan_mobile/views/static/auth/profil_page.dart';
 import 'package:wan_mobile/views/static/cgu_page.dart';
 import 'package:wan_mobile/views/static/home/qr_login/qr_login.dart';
-import 'package:wan_mobile/views/static/moyens_paiements/moyens_paiements_page.dart';
+import 'package:lebedoo_wallets_transactions/views/static/moyens_paiements/moyens_paiements_page.dart';
 
 class HomeDrawer extends StatelessWidget {
   final HomePageVctl ctl;

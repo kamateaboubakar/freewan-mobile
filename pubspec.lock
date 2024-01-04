@@ -126,7 +126,7 @@ packages:
     description:
       path: "."
       ref: main
-      resolved-ref: "512f98913a9680f4cafdff0ddd33dc0541af476a"
+      resolved-ref: "965023aa7683643658ec2ea91a0484248cb1b871"
       url: "https://github.com/Lebedoo/lebedoo-construction.git"
     source: git
     version: "1.0.0+1"
@@ -606,7 +606,7 @@ packages:
     description:
       path: "."
       ref: main
-      resolved-ref: "56401c2425f69a119bab3247473b11cd01f7eb8a"
+      resolved-ref: fffc3e04be04b5a0b1e8078bbfe9f354634de564
       url: "https://github.com/Lebedoo/lebedoo-guide-urbain-mobile.git"
     source: git
     version: "1.0.0+1"
@@ -759,10 +759,19 @@ packages:
     description:
       path: "."
       ref: main
-      resolved-ref: "5979c4b8b4eeebea4f9858a899749a22ecacd9e9"
+      resolved-ref: "5c98585c4bd49394f97a1ba8411c2399b5cb5784"
       url: "https://github.com/Lebedoo/lebedoo-assets.git"
     source: git
     version: "1.0.8+9"
+  lebedoo_wallets_transactions:
+    dependency: "direct main"
+    description:
+      path: "."
+      ref: main
+      resolved-ref: afc37431f80429b5b7cb7282dbce6f53723846a4
+      url: "https://github.com/Lebedoo/lebedoo-wallets-transactions-mobile.git"
+    source: git
+    version: "1.0.0+1"
   linkify:
     dependency: transitive
     description:
@@ -872,7 +881,7 @@ packages:
     description:
       path: "."
       ref: main
-      resolved-ref: "29729dcbf2f50f9874644aeb38a95ddbb2a70aa4"
+      resolved-ref: "1698f3a3efb2eaa7ed2d834ddd124a1ac5d65db7"
       url: "https://github.com/Lebedoo/lebedoo-mapping-gab-mobile.git"
     source: git
     version: "1.0.0+1"

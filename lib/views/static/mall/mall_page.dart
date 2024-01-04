@@ -8,7 +8,7 @@ class MallPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text("Mall"),
+        title: const Text("Lebedoo Mall"),
       ),
       body: GridView.count(
         crossAxisCount: 3,

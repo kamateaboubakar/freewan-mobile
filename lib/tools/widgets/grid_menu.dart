@@ -1,3 +1,4 @@
+import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 import 'package:tools_flutter_project/tools_flutter_project.dart';
 import 'package:wan_mobile/tools/widgets/button_menu.dart';
@@ -15,11 +16,12 @@ class GridMenu extends StatelessWidget {
   final double mainAxisSpacing;
   final double crossAxisSpacing;
   final double childAspectRatio;
+  final Widget trailing;
   const GridMenu({
     this.title,
     required this.menus,
     this.crossAxisCount = 2,
-    this.height = 310,
+    this.height = 325,
     this.width = 250,
     this.children = const [],
     this.listController,
@@ -28,6 +30,7 @@ class GridMenu extends StatelessWidget {
     this.mainAxisSpacing = 3,
     this.crossAxisSpacing = 3,
     this.childAspectRatio = 1.0,
+    this.trailing = const SizedBox.shrink(),
     super.key,
   });
 
@@ -37,23 +40,35 @@ class GridMenu extends StatelessWidget {
       height: height,
       child: Column(
         children: [
-          (title.value.isEmpty)
-              ? const SizedBox.shrink()
-              : ListTile(
-                  title: Text(
-                    title.value,
-                    style: const TextStyle(
-                      fontSize: 22,
-                      fontWeight: FontWeight.bold,
-                    ),
-                  ),
-                ),
+          Row(
+            children: [
+              Expanded(
+                child: (title.value.isEmpty)
+                    ? const SizedBox.shrink()
+                    : ListTile(
+                        title: AutoSizeText(
+                          title.value,
+                          minFontSize: 10,
+                          maxLines: 2,
+                          maxFontSize: 22,
+                          style: const TextStyle(
+                            fontSize: 22,
+                            fontWeight: FontWeight.bold,
+                          ),
+                        ),
+                      ),
+              ),
+              trailing
+            ],
+          ),
           Expanded(
             child: ListView(
               scrollDirection: Axis.horizontal,
               controller: listController,
               children: [
                 Container(
+                  margin: EdgeInsets.zero,
+                  padding: EdgeInsets.zero,
                   width: width,
                   height: height,
                   decoration: BoxDecoration(
@@ -72,10 +87,7 @@ class GridMenu extends StatelessWidget {
                     children: menus,
                   ),
                 ),
-                const Gap(20),
-                Row(
-                  children: children,
-                ),
+                Row(children: children),
               ],
             ),
           ),

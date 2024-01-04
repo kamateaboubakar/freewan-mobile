@@ -1,10 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:lebedoo_assets/lebedoo_assets.dart';
-import 'package:lebedoo_assets/themes/asset_colors.dart';
 import 'package:tools_flutter_project/tools/types/int.dart';
-import 'package:wan_mobile/models/paiement/mode_paiement.dart';
-
 import 'package:tools_flutter_project/tools_flutter_project.dart';
+import 'package:lebedoo_wallets_transactions/models/moyen_paiements.dart';
 import 'package:wan_mobile/views/controllers/paiement/paiement_pay_recap_vctl.dart';
 
 class PaiementRecap extends StatelessWidget {

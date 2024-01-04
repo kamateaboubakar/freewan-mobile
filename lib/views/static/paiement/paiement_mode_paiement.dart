@@ -1,7 +1,7 @@
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 import 'package:lebedoo_assets/lebedoo_assets.dart';
-import 'package:wan_mobile/models/moyen_paiement.dart';
+import 'package:lebedoo_wallets_transactions/models/moyen_paiements.dart';
 import 'package:wan_mobile/views/static/paiement/paiement_choix_carte.dart';
 import 'package:wan_mobile/views/static/paiement/paiement_choix_numero.dart';
 
@@ -22,17 +22,7 @@ class PaiementModePaiement extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    List<MoyenPaiement> moyensPaiements = [
-      MoyenPaiement(
-        label: "Mobile Money",
-        icon: "assets/images/icons/mobile_money.png",
-      ),
-      MoyenPaiement(
-        label: "Carte Bancaire/Prépayée",
-        icon: "assets/images/icons/carte_bancaire.png",
-        isMobileMoney: false,
-      ),
-    ];
+    List<MoyenPaiements> moyensPaiements = [];
 
     return Scaffold(
       appBar: AppBar(
@@ -54,7 +44,7 @@ class PaiementModePaiement extends StatelessWidget {
             var item = moyensPaiements[index];
             return InkWell(
               onTap: () {
-                if (item.isMobileMoney) {
+                if (false) {
                   Get.to(() => PaiementChoixNumero(
                         route: route,
                         motifPaiement: motifPaiement,
@@ -88,16 +78,16 @@ class PaiementModePaiement extends StatelessWidget {
                   children: [
                     ClipRRect(
                       borderRadius: BorderRadius.circular(8),
-                      child: SizedBox(
+                      child: const SizedBox(
                         width: 50,
                         height: 50,
-                        child: Center(
-                          child: Image.asset(
-                            item.icon,
-                            width: 35,
-                            height: 35,
-                          ),
-                        ),
+                        // child: Center(
+                        //   child: Image.asset(
+                        //     item.icon,
+                        //     width: 35,
+                        //     height: 35,
+                        //   ),
+                        // ),
                       ),
                     ),
                     const SizedBox(height: 10),

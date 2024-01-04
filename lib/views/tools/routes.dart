@@ -590,6 +590,33 @@ class Routes extends ViewController {
             onPressed: () {},
           ),
         ),
+        RouteItem(
+          groupe: GroupeRoute.parisSportifs,
+          menuId: MenuButtonEnum.sportCash,
+          button: ButtonMenu(
+            icon: Image.asset("assets/images/sportcash.png"),
+            title: "SportCash",
+            onPressed: () {},
+          ),
+        ),
+        RouteItem(
+          groupe: GroupeRoute.parisSportifs,
+          menuId: MenuButtonEnum.lotoBonheur,
+          button: ButtonMenu(
+            icon: Image.asset("assets/images/lotobonheur.jpg"),
+            title: "lotoBonheur",
+            onPressed: () {},
+          ),
+        ),
+        RouteItem(
+          groupe: GroupeRoute.parisSportifs,
+          menuId: MenuButtonEnum.virtualGames,
+          button: ButtonMenu(
+            icon: Image.asset("assets/images/virtualGames.jpg"),
+            title: "virtualGames",
+            onPressed: () {},
+          ),
+        ),
       ];
 
   List<RouteItem> routesByList({List<MenuButtonEnum> menus = const []}) =>

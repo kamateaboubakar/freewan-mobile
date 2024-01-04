@@ -6,12 +6,14 @@ import 'package:tools_flutter_project/tools_flutter_project.dart';
 import 'package:wan_mobile/tools/const/const.dart';
 import 'package:wan_mobile/tools/widgets/button_menu.dart';
 import 'package:wan_mobile/tools/widgets/card_menu.dart';
+import 'package:wan_mobile/tools/widgets/container_menu.dart';
 import 'package:wan_mobile/tools/widgets/grid_menu.dart';
 import 'package:wan_mobile/tools/widgets/pageable_menu.dart';
 import 'package:wan_mobile/views/controllers/home/home_page_vctl.dart';
 import 'package:wan_mobile/views/static/home/sub_home_page/categorized_home.dart';
 import 'package:wan_mobile/views/static/home/home_drawer.dart';
 import 'package:wan_mobile/views/static/home/sub_home_page/more_option_home_page.dart';
+import 'package:wan_mobile/views/static/mall/mall_page.dart';
 import 'package:wan_mobile/views/static/notification/notification_list_page.dart';
 import 'package:wan_mobile/views/static/scan_pay/scan_pay_camera.dart';
 import 'package:wan_mobile/views/tools/menu_button_enum.dart';
@@ -298,11 +300,7 @@ class HomePage extends StatelessWidget {
                                     children: ctl.ads
                                         .where((e) => e.categorie == "pret")
                                         .map(
-                                          (e) => Padding(
-                                            padding: const EdgeInsets.only(
-                                                right: 10),
-                                            child: ImageBanner(image: e),
-                                          ),
+                                          (e) => ImageBanner(image: e),
                                         )
                                         .toList(),
                                   ),
@@ -346,26 +344,35 @@ class HomePage extends StatelessWidget {
                                         ),
                                       ),
                                   ),
-                                  const Gap(20),
-                                  CardMenu(
-                                    title: "Paris sportifs",
-                                    children: ctl.routes
-                                        .routesByList(
-                                          menus: [
-                                            MenuButtonEnum.oneXBet,
-                                            MenuButtonEnum.pmu,
-                                            MenuButtonEnum.premierBet,
-                                            MenuButtonEnum.betclic,
-                                          ],
+                                  const Gap(10),
+                                  GridMenu(
+                                    mainAxisSpacing: 5,
+                                    crossAxisSpacing: 5,
+                                    padding: const EdgeInsets.all(3),
+                                    backgroundColor: Colors.blue.shade100,
+                                    title: "Gagnez de l'argent avec la Lonaci",
+                                    trailing: Image.asset(
+                                      "assets/images/42ba0891133d09b46e2edd0537c2f2265350876d-1.png",
+                                      width: 120,
+                                    ),
+                                    listController: scrollController,
+                                    menus: ctl.routes
+                                        .routesByList(menus: [
+                                          MenuButtonEnum.pmu,
+                                          MenuButtonEnum.sportCash,
+                                          MenuButtonEnum.lotoBonheur,
+                                          MenuButtonEnum.casinoCash,
+                                          MenuButtonEnum.virtualGames,
+                                        ])
+                                        .map(
+                                          (e) => e.button
+                                              .copyWith(displayName: false),
                                         )
-                                        .map((e) => e.button)
                                         .toList(),
-                                  ),
-                                  const Gap(20),
-                                  ImageSlideBanner(
-                                    images: ctl.ads
-                                        .where(
-                                          (e) => e.categorie == "lonaci",
+                                    children: ctl.ads
+                                        .where((e) => e.categorie == "lonaci")
+                                        .map(
+                                          (e) => ImageBanner(image: e),
                                         )
                                         .toList(),
                                   ),
@@ -382,6 +389,33 @@ class HomePage extends StatelessWidget {
                                           MenuButtonEnum.guideUrbain,
                                         ])
                                         .map((e) => e.button)
+                                        .toList(),
+                                  ),
+                                  const Gap(20),
+                                  GridMenu(
+                                    mainAxisSpacing: 5,
+                                    crossAxisSpacing: 5,
+                                    padding: const EdgeInsets.all(3),
+                                    backgroundColor: Colors.blue.shade100,
+                                    title: "Gagnez de l'argent avec Lebedoo",
+                                    listController: scrollController,
+                                    menus: ctl.routes
+                                        .routesByList(menus: [
+                                          MenuButtonEnum.oneXBet,
+                                          MenuButtonEnum.premierBet,
+                                          MenuButtonEnum.betclic,
+                                        ])
+                                        .map(
+                                          (e) => e.button
+                                              .copyWith(displayName: false),
+                                        )
+                                        .toList(),
+                                    children: ctl.ads
+                                        .where((e) =>
+                                            e.categorie == "lebedoo-paris")
+                                        .map(
+                                          (e) => ImageBanner(image: e),
+                                        )
                                         .toList(),
                                   ),
                                   const Gap(20),
@@ -479,10 +513,22 @@ class HomePage extends StatelessWidget {
                                             (e) => e.categorie == "image_bas")
                                         .toList(),
                                   ),
-                                  ClipRRect(
-                                    borderRadius: BorderRadius.circular(10),
-                                    child: Image.asset(
-                                        "assets/images/5594188.jpg"),
+                                  ContainerMenu(
+                                    padding: EdgeInsets.zero,
+                                    externalTitle: "Lebedoo Mall",
+                                    child: GestureDetector(
+                                      onTap: () =>
+                                          Get.to(() => const MallPage()),
+                                      child: ClipRRect(
+                                        borderRadius: BorderRadius.circular(10),
+                                        child: Image.asset(
+                                          "assets/images/5594188.jpg",
+                                          height: 200,
+                                          width: double.infinity,
+                                          fit: BoxFit.cover,
+                                        ),
+                                      ),
+                                    ),
                                   ),
                                   Row(
                                     children: [

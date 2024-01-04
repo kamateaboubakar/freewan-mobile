@@ -3,10 +3,8 @@ import 'package:lebedoo_assets/lebedoo_assets.dart';
 import 'package:tools_flutter_project/tools/types/int.dart';
 import 'package:tools_flutter_project/tools_flutter_project.dart';
 import 'package:wan_mobile/api/controllers/paiement/wallet_api_ctl.dart';
-import 'package:wan_mobile/models/paiement/mobile_money.dart';
-import 'package:wan_mobile/tools/const/paiement/wallet_account_typ.dart';
-
 import 'package:lebedoo_assets/views/controllers/abstracts/view_controller.dart';
+import 'package:lebedoo_wallets_transactions/models/mobile_money.dart';
 
 class PaiementChoixNumeroVctl extends ViewController {
   List<MobileMoney> mobileMoneys = [];
@@ -30,10 +28,8 @@ class PaiementChoixNumeroVctl extends ViewController {
     if (formKey.currentState!.validate()) {
       await pr.show();
       var item = MobileMoney();
-      item.numeroTelephone = appCtl.user.countryCallingCode.value + telCtl.text;
-      item.idUser = appCtl.user.id.value.toString();
-      item.categorieId = WalletAccountType.catMobileMoney;
-      item.userId = 1;
+      item.numero = appCtl.user.countryCallingCode.value + telCtl.text;
+      item.userId = appCtl.user.id;
 
       var res = await WalletApiCtl().addMobileMoney(mobileMoney: item);
       await pr.hide();

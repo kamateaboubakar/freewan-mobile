@@ -1,9 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:lebedoo_assets/lebedoo_assets.dart';
-import 'package:tools_flutter_project/tools_flutter_project.dart';
+import 'package:tools_flutter_project/tools/types/string.dart';
 import 'package:wan_mobile/views/controllers/paiement/paiement_choix_numero_vctl.dart';
 import 'package:wan_mobile/views/static/paiement/paiement_pay_recap.dart';
-import '../bills/bills_views.dart';
 
 class PaiementChoixNumero extends StatelessWidget {
   final String motifPaiement;
@@ -57,7 +56,7 @@ class PaiementChoixNumero extends StatelessWidget {
                                   ),
                                 ),
                                 subtitle: Text(
-                                  e.numeroTelephone.value,
+                                  e.numero.value,
                                   style: const TextStyle(
                                     color: Color.fromRGBO(0, 0, 0, 1),
                                     fontWeight: FontWeight.bold,

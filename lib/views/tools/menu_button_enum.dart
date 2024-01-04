@@ -57,4 +57,8 @@ enum MenuButtonEnum {
   cartesVirtuelles,
   commanderCarteCredit,
   ticketCar,
+  sportCash,
+  casinoCash,
+  lotoBonheur,
+  virtualGames,
 }

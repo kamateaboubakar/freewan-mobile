@@ -1,9 +1,9 @@
 import 'package:lebedoo_assets/lebedoo_assets.dart';
 import 'package:lebedoo_assets/tools/web/app_http_hearders.dart';
 import 'package:lebedoo_assets/tools/web/web_request.dart';
+import 'package:lebedoo_wallets_transactions/models/carte_bancaire.dart';
+import 'package:lebedoo_wallets_transactions/models/mobile_money.dart';
 import 'package:tools_flutter_project/tools/types/map.dart';
-import 'package:wan_mobile/models/paiement/carte_bancaire.dart';
-import 'package:wan_mobile/models/paiement/mobile_money.dart';
 import 'package:tools_flutter_project/tools/http/http_response.dart';
 
 class WalletApiCtl {

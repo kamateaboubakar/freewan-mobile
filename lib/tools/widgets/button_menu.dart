@@ -15,6 +15,7 @@ class ButtonMenu extends StatelessWidget {
   final Color? iconBackgroundColor;
   final Color? iconBorderColor;
   final ShapeBorder? shape;
+  final bool displayName;
 
   final void Function()? onPressed;
 
@@ -32,6 +33,7 @@ class ButtonMenu extends StatelessWidget {
     this.iconBackgroundColor,
     this.iconBorderColor,
     this.shape,
+    this.displayName = true,
     super.key,
   });
 
@@ -48,8 +50,10 @@ class ButtonMenu extends StatelessWidget {
     Color? iconBackgroundColor,
     Color? iconBorderColor,
     ShapeBorder? shape,
+    bool? displayName,
   }) {
     return ButtonMenu(
+      displayName: displayName ?? this.displayName,
       icon: icon ?? this.icon,
       title: title ?? this.title,
       onPressed: onPressed,
@@ -106,7 +110,7 @@ class ButtonMenu extends StatelessWidget {
               ),
             ),
             Visibility(
-              visible: title != null,
+              visible: title != null && displayName,
               child: Expanded(
                 flex: titleFlex,
                 child: Padding(

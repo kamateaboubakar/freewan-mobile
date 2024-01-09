@@ -61,4 +61,13 @@ enum MenuButtonEnum {
   casinoCash,
   lotoBonheur,
   virtualGames,
+  coursesChevauxLebedoo,
+  parisFootBallLebedoo,
+  casinoLebedoo,
+  rouletteLebedoo,
+  transactionsRecentes,
+  virgin,
+  nintendo,
+  playstation,
+  xbox,
 }

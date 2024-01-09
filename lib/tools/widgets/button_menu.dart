@@ -16,6 +16,7 @@ class ButtonMenu extends StatelessWidget {
   final Color? iconBorderColor;
   final ShapeBorder? shape;
   final bool displayName;
+  final bool withCircleIcon;
 
   final void Function()? onPressed;
 
@@ -34,6 +35,7 @@ class ButtonMenu extends StatelessWidget {
     this.iconBorderColor,
     this.shape,
     this.displayName = true,
+    this.withCircleIcon = true,
     super.key,
   });
 
@@ -51,6 +53,7 @@ class ButtonMenu extends StatelessWidget {
     Color? iconBorderColor,
     ShapeBorder? shape,
     bool? displayName,
+    bool? withCircleIcon,
   }) {
     return ButtonMenu(
       displayName: displayName ?? this.displayName,
@@ -67,6 +70,7 @@ class ButtonMenu extends StatelessWidget {
       iconBorderColor: iconBorderColor ?? this.backgroundColor,
       categorie: categorie ?? this.categorie,
       shape: shape ?? this.shape,
+      withCircleIcon: withCircleIcon ?? this.withCircleIcon,
     );
   }
 
@@ -95,13 +99,15 @@ class ButtonMenu extends StatelessWidget {
               child: Center(
                 child: Container(
                   padding: const EdgeInsets.all(3),
-                  decoration: BoxDecoration(
-                    shape: BoxShape.circle,
-                    color: iconBackgroundColor ?? Colors.blue.shade50,
-                    border: Border.all(
-                      color: iconBorderColor ?? Colors.blue.shade100,
-                    ),
-                  ),
+                  decoration: (withCircleIcon)
+                      ? BoxDecoration(
+                          shape: BoxShape.circle,
+                          color: iconBackgroundColor ?? Colors.blue.shade50,
+                          border: Border.all(
+                            color: iconBorderColor ?? Colors.blue.shade100,
+                          ),
+                        )
+                      : null,
                   child: ClipRRect(
                     borderRadius: BorderRadius.circular(10),
                     child: icon,

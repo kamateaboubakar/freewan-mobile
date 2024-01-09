@@ -3,7 +3,7 @@ import 'package:lebedoo_assets/lebedoo_assets.dart';
 import 'package:tools_flutter_project/tools_flutter_project.dart';
 
 import 'package:wan_mobile/views/controllers/home/categorized_home_vctl.dart';
-import 'package:wan_mobile/views/tools/routes.dart';
+import 'package:wan_mobile/views/routes/routes.dart';
 
 class CategorizedHome extends StatefulWidget {
   const CategorizedHome({super.key});

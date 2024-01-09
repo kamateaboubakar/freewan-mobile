@@ -1,5 +1,5 @@
 import 'package:lebedoo_assets/views/controllers/abstracts/view_controller.dart';
-import 'package:wan_mobile/views/tools/routes.dart';
+import 'package:wan_mobile/views/routes/routes.dart';
 
 class CategorizedHomeVctl extends ViewController {
   late String selectedCategorie;

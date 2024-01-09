@@ -46,6 +46,7 @@ class GridMenu extends StatelessWidget {
                 child: (title.value.isEmpty)
                     ? const SizedBox.shrink()
                     : ListTile(
+                        contentPadding: EdgeInsets.zero,
                         title: AutoSizeText(
                           title.value,
                           minFontSize: 10,
@@ -58,6 +59,7 @@ class GridMenu extends StatelessWidget {
                         ),
                       ),
               ),
+              const Gap(5),
               trailing
             ],
           ),

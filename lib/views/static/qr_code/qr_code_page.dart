@@ -14,6 +14,22 @@ class QrCodePage extends StatelessWidget {
       appBar: AppBar(
         title: const Text("Mon Code QR"),
       ),
+      bottomNavigationBar: const ListTile(
+        dense: true,
+        title: Text(
+          "Powered by",
+          textAlign: TextAlign.center,
+          style: TextStyle(color: Colors.white),
+        ),
+        subtitle: Text(
+          "Freewan",
+          textAlign: TextAlign.center,
+          style: TextStyle(
+            color: Colors.white,
+            fontWeight: FontWeight.bold,
+          ),
+        ),
+      ),
       body: GetBuilder<CodeQRGeneratorVctl>(
           init: CodeQRGeneratorVctl(),
           builder: (ctl) {
@@ -22,52 +38,50 @@ class QrCodePage extends StatelessWidget {
               child: Center(
                 child: Column(
                   children: [
+                    // Card(
+                    //   shape: RoundedRectangleBorder(
+                    //     borderRadius: BorderRadius.circular(30),
+                    //   ),
+                    //   child: Container(
+                    //     width: double.infinity,
+                    //     height: 100,
+                    //     padding: const EdgeInsets.all(8.0),
+                    //     child: Center(
+                    //       child: Image.asset(
+                    //         "assets/images/lebedoo_inline_logo.png",
+                    //       ),
+                    //     ),
+                    //   ),
+                    // ),
                     Expanded(
-                      child: Center(
-                        child: Container(
-                          padding: const EdgeInsets.all(10),
-                          decoration: BoxDecoration(
-                            color: Colors.white,
-                            borderRadius: BorderRadius.circular(20),
-                          ),
-                          child: Column(
-                            mainAxisSize: MainAxisSize.min,
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: [
-                              Image.asset(
-                                "assets/images/lebedoo_inline_logo.png",
-                                width: 120,
+                      child: SizedBox(
+                        height: 200,
+                        child: Column(
+                          mainAxisSize: MainAxisSize.min,
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            Container(
+                              padding: const EdgeInsets.all(7),
+                              margin: const EdgeInsets.all(20),
+                              decoration: BoxDecoration(
+                                color: Colors.white,
+                                borderRadius: BorderRadius.circular(20),
                               ),
-                              const Gap(20),
-                              QrImageView(
-                                embeddedImage:
-                                    Image.asset("assets/images/lebedoo.png")
-                                        .image,
-                                data: ctl.qrData.value,
-                                size: 350,
-                                eyeStyle: const QrEyeStyle(
-                                  color: AssetColors.blue,
-                                ),
-                                dataModuleStyle: const QrDataModuleStyle(
-                                  color: AssetColors.blue,
+                              child: Center(
+                                child: QrImageView(
+                                  data: ctl.qrData.value,
+                                  version: 13,
+                                  eyeStyle: const QrEyeStyle(
+                                    color: AssetColors.blue,
+                                  ),
+                                  dataModuleStyle: const QrDataModuleStyle(
+                                    color: AssetColors.blue,
+                                  ),
                                 ),
                               ),
-                            ],
-                          ),
+                            ),
+                          ],
                         ),
-                      ),
-                    ),
-                    const ListTile(
-                      dense: true,
-                      title: Text(
-                        "Powered by",
-                        textAlign: TextAlign.center,
-                        style: TextStyle(color: Colors.white),
-                      ),
-                      subtitle: Text(
-                        "Freewan",
-                        textAlign: TextAlign.center,
-                        style: TextStyle(color: Colors.white),
                       ),
                     ),
                   ],

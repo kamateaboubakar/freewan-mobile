@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:lebedoo_assets/lebedoo_assets.dart';
-import 'package:sliding_up_panel/sliding_up_panel.dart';
 import 'package:wan_mobile/api/controllers/auth/user_api_ctl.dart';
 import 'package:wan_mobile/api/controllers/pubs/pub_api_ctl.dart';
 import 'package:wan_mobile/tools/const/const.dart';
@@ -10,7 +9,7 @@ import 'package:wan_mobile/tools/services/notification_service.dart';
 import 'package:tools_flutter_project/tools_flutter_project.dart';
 import 'package:lebedoo_assets/views/controllers/abstracts/view_controller.dart';
 import 'package:wan_mobile/views/static/auth/phone_auth/phone_auth.dart';
-import 'package:wan_mobile/views/tools/routes.dart';
+import 'package:wan_mobile/views/routes/routes.dart';
 
 class HomePageVctl extends ViewController {
   Routes routes = Routes();

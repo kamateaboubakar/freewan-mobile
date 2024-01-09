@@ -152,9 +152,10 @@ class HomeDrawer extends StatelessWidget {
                             color: Colors.white,
                           ),
                         ),
-                        title: const Text("Partager l'application"),
+                        title: const Text("Inviter des amis"),
                         onTap: () => ctl.shareAppText(
-                            codeParrain: ctl.appCtl.user.ownerCode.value),
+                          codeParrain: ctl.appCtl.user.ownerCode.value,
+                        ),
                       ),
                       ListTile(
                         style: ListTileStyle.drawer,

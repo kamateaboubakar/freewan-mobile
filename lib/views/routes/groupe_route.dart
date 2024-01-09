@@ -8,4 +8,5 @@ abstract class GroupeRoute {
   static const divertissement = "Divertissement";
   static const facturesEtAbonnements = "Factures et abonnements";
   static const eGov = "E-Gov";
+  static const vouchers = "Vouchers";
 }

@@ -15,25 +15,29 @@ class AnswerSecurityQuestionPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GetBuilder<AnswerSecurityQuestionPageVctl>(
-        init: AnswerSecurityQuestionPageVctl(
-            question: question, password: password, phone: phone),
-        builder: (ctl) {
-          return Scaffold(
-            appBar: AppBar(
-              title: const Text("Répondre à la question"),
-            ),
-            body: SingleChildScrollView(
-              padding: const EdgeInsets.all(20),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Image.asset(
-                    Const.inLineAppLogo,
-                    width: 120,
-                    height: 80,
-                  ),
-                  const SizedBox(height: 10),
-                  const Text(
+      init: AnswerSecurityQuestionPageVctl(
+        question: question,
+        password: password,
+        phone: phone,
+      ),
+      builder: (ctl) {
+        return Scaffold(
+          appBar: AppBar(
+            title: const Text("Répondre à la question"),
+          ),
+          body: SingleChildScrollView(
+            padding: const EdgeInsets.all(20),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Image.asset(
+                  Const.inLineAppLogo,
+                  width: 120,
+                  height: 80,
+                ),
+                const ListTile(
+                  contentPadding: EdgeInsets.zero,
+                  title: Text(
                     "Question de sécurité",
                     style: TextStyle(
                       fontSize: 20,
@@ -41,31 +45,29 @@ class AnswerSecurityQuestionPage extends StatelessWidget {
                       fontWeight: FontWeight.bold,
                     ),
                   ),
-                  const SizedBox(height: 20),
-                  Text(
-                    "${question.label}",
-                    style: const TextStyle(
-                      fontSize: 16,
-                    ),
-                  ),
-                  const SizedBox(height: 20),
-                  CTextFormField(
-                    autofocus: true,
-                    controller: ctl.answerCtl,
-                    hintText: "Réponse",
-                  ),
-                  const SizedBox(height: 20),
-                  CButton(
-                    height: 50,
-                    color: AssetColors.blue,
-                    minWidth: double.infinity,
-                    onPressed: () => ctl.submit(),
-                    child: const Text("Valider"),
-                  )
-                ],
-              ),
+                ),
+                ListTile(
+                  contentPadding: EdgeInsets.zero,
+                  title: Text(question.label.value),
+                ),
+                const SizedBox(height: 20),
+                CTextFormField(
+                  controller: ctl.answerCtl,
+                  hintText: "Saisir la reponse",
+                ),
+                const SizedBox(height: 20),
+                CButton(
+                  height: 50,
+                  color: AssetColors.blue,
+                  minWidth: double.infinity,
+                  onPressed: () => ctl.submit(),
+                  child: const Text("Valider"),
+                )
+              ],
             ),
-          );
-        });
+          ),
+        );
+      },
+    );
   }
 }

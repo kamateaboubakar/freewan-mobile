@@ -93,21 +93,34 @@ dependencies:
     git: 
       url: https://github.com/Isofth/tools_flutter_project.git
       ref: main
+
   construction:
     git: 
       url: https://github.com/Lebedoo/lebedoo-construction.git
       ref: main
+
   guide_urbain:
     git: 
       url: https://github.com/Lebedoo/lebedoo-guide-urbain-mobile.git
       ref: main
+
   mapping_gab:
     git: 
       url: https://github.com/Lebedoo/lebedoo-mapping-gab-mobile.git
       ref: main
+
   lebedoo_wallets_transactions:
     git: 
       url: https://github.com/Lebedoo/lebedoo-wallets-transactions-mobile.git
+      ref: main
+
+  brasserie:
+    git:
+      url: https://github.com/Lebedoo/brasserie-mobile.git
+      ref: main
+  cave:
+    git:
+      url: https://github.com/Lebedoo/cave-mobile.git
       ref: main
 
   # FIN Modules Lebedoo
@@ -146,6 +159,8 @@ flutter:
     - assets/construction/
     - assets/.env
     - assets/wallets_transactions/
+    - assets/brasserie/
+    - assets/cave/
   #   - images/a_dot_ham.jpeg
 
   # An image asset can refer to one or more resolution-specific "variants", see

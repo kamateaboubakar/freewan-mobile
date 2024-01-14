@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:lebedoo_assets/lebedoo_assets.dart';
 import 'package:tools_flutter_project/tools/env/env.dart';
+import 'package:wan_mobile/firebase_options.dart';
 import 'package:wan_mobile/tools/services/notification_service.dart';
 
 import 'views/static/splashscreen.dart';
@@ -19,7 +20,7 @@ void main() async {
     ],
   );
 
-  await Firebase.initializeApp();
+  await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
 
   await NotificationService.setup();
 

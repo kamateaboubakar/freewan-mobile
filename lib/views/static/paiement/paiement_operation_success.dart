@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:lebedoo_assets/lebedoo_assets.dart';
-import 'package:lebedoo_assets/themes/asset_colors.dart';
-import 'package:lottie/lottie.dart';
 import 'package:tools_flutter_project/tools_flutter_project.dart';
 import 'package:wan_mobile/views/static/home/home_page.dart';
 

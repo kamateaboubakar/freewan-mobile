@@ -1,3 +1,5 @@
+import 'package:brasserie/views/static/brasserie_home_page.dart';
+import 'package:cave/views/static/cave_home_page.dart';
 import 'package:construction/views/static/construction_home_page.dart';
 import 'package:flutter/material.dart';
 import 'package:guide_urbain/views/static/guide_urbain_home_page.dart';
@@ -215,7 +217,7 @@ class Routes extends ViewController {
           button: ButtonMenu(
             icon: Image.asset("assets/images/icons/icons8-liquor-shelf-64.png"),
             title: "Brasserie",
-            onPressed: () {},
+            onPressed: () => Get.to(() => const BrasserieHomePage()),
           ),
         ),
         RouteItem(
@@ -224,7 +226,7 @@ class Routes extends ViewController {
           button: ButtonMenu(
             icon: Image.asset("assets/images/icons/caves.png"),
             title: "Caves",
-            onPressed: () {},
+            onPressed: () => Get.to(() => const CaveHomePage()),
           ),
         ),
         RouteItem(

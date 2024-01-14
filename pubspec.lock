@@ -65,6 +65,15 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "2.1.1"
+  brasserie:
+    dependency: "direct main"
+    description:
+      path: "."
+      ref: main
+      resolved-ref: "2d6de944a08ad4d031484c8738389f0cb9f5689c"
+      url: "https://github.com/Lebedoo/brasserie-mobile.git"
+    source: git
+    version: "1.0.0+1"
   cached_network_image:
     dependency: transitive
     description:
@@ -97,6 +106,15 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "4.2.1"
+  cave:
+    dependency: "direct main"
+    description:
+      path: "."
+      ref: main
+      resolved-ref: "4d94d5a801d69fc4e906b145cd21d88ad668d95d"
+      url: "https://github.com/Lebedoo/cave-mobile.git"
+    source: git
+    version: "1.0.0+1"
   characters:
     dependency: transitive
     description:
@@ -126,7 +144,7 @@ packages:
     description:
       path: "."
       ref: main
-      resolved-ref: "965023aa7683643658ec2ea91a0484248cb1b871"
+      resolved-ref: "5895f092195888f9fe541794b77981f5b8ae1737"
       url: "https://github.com/Lebedoo/lebedoo-construction.git"
     source: git
     version: "1.0.0+1"
@@ -759,7 +777,7 @@ packages:
     description:
       path: "."
       ref: main
-      resolved-ref: "5c98585c4bd49394f97a1ba8411c2399b5cb5784"
+      resolved-ref: "5b0f4772d9f8b49c4491f049d33e0e4bf560e59b"
       url: "https://github.com/Lebedoo/lebedoo-assets.git"
     source: git
     version: "1.0.8+9"
@@ -768,7 +786,7 @@ packages:
     description:
       path: "."
       ref: main
-      resolved-ref: afc37431f80429b5b7cb7282dbce6f53723846a4
+      resolved-ref: "7e0cf07caf7b7ac0c1cc89d62ab17d48bc7d3237"
       url: "https://github.com/Lebedoo/lebedoo-wallets-transactions-mobile.git"
     source: git
     version: "1.0.0+1"

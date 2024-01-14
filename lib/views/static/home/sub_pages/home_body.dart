@@ -124,6 +124,7 @@ class HomeBody extends StatelessWidget {
                             GridMenu(
                               mainAxisSpacing: 5,
                               crossAxisSpacing: 5,
+                              childAspectRatio: .95,
                               padding: const EdgeInsets.all(3),
                               backgroundColor: Colors.blue.shade100,
                               title: "Cartes & comptes",

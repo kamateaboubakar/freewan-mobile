@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:lebedoo_assets/lebedoo_assets.dart';
 import 'package:wan_mobile/views/static/scan_pay/scan_pay_camera.dart';
-import 'package:wan_mobile/views/routes/menu_button_enum.dart';
+import 'package:lebedoo_assets/const/feature_dictionnary.dart';
 import 'package:wan_mobile/views/routes/routes.dart';
 
 class FloatingMenuButton extends StatelessWidget {
@@ -32,8 +32,8 @@ class FloatingMenuButton extends StatelessWidget {
                       child: Row(
                         children: routes
                             .routesByList(menus: [
-                              MenuButtonEnum.cartesBancaires,
-                              MenuButtonEnum.transfertArgent,
+                              FeatureDictionnary.cartesBancaires,
+                              FeatureDictionnary.transfertArgent,
                             ])
                             .map(
                               (e) => Expanded(
@@ -50,8 +50,8 @@ class FloatingMenuButton extends StatelessWidget {
                       child: Row(
                         children: routes
                             .routesByList(menus: [
-                              MenuButtonEnum.ticketBus,
-                              MenuButtonEnum.retraitArgent,
+                              FeatureDictionnary.ticketBus,
+                              FeatureDictionnary.retraitArgent,
                             ])
                             .map(
                               (e) => Expanded(

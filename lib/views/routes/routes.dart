@@ -1,23 +1,29 @@
 import 'package:brasserie/views/static/brasserie_home_page.dart';
 import 'package:cave/views/static/cave_home_page.dart';
+import 'package:commande_carte_bancaire/views/static/commande_carte_bancaire_home.dart';
 import 'package:construction/views/static/construction_home_page.dart';
 import 'package:flutter/material.dart';
 import 'package:guide_urbain/views/static/guide_urbain_home_page.dart';
+import 'package:lebedoo_assets/const/feature_dictionnary.dart';
 import 'package:lebedoo_assets/lebedoo_assets.dart';
+import 'package:lebedoo_wallets_transactions/views/static/moyens_paiements/cartes_bancaires/cartes_bancaires_page.dart';
+import 'package:lebedoo_wallets_transactions/views/static/moyens_paiements/compte_bancaire/compte_bancaire_page.dart';
 import 'package:mapping_gab/views/static/mapping_gab_home_page.dart';
 import 'package:tools_flutter_project/tools_flutter_project.dart';
 import 'package:wan_mobile/tools/widgets/button_menu.dart';
 import 'package:lebedoo_assets/views/controllers/abstracts/view_controller.dart';
+import 'package:wan_mobile/views/static/gaz/gaz_view.dart';
 import 'package:wan_mobile/views/static/home/cross_home_page/more_option_home_page.dart';
 import 'package:wan_mobile/views/routes/groupe_route.dart';
-import 'package:wan_mobile/views/routes/menu_button_enum.dart';
 import 'package:wan_mobile/views/routes/route_item.dart';
+import 'package:wan_mobile/views/static/job/views/employee/employee_views.dart';
+import 'package:wan_mobile/views/static/pressing/pressing_view.dart';
 
 class Routes extends ViewController {
   List<RouteItem> get routes => [
         RouteItem(
           groupe: GroupeRoute.transactions,
-          id: MenuButtonEnum.retraitArgent,
+          id: FeatureDictionnary.retraitArgent,
           button: ButtonMenu(
             icon: Image.asset("assets/images/icons/gain.png"),
             title: "Retraits d'argent",
@@ -27,7 +33,7 @@ class Routes extends ViewController {
         RouteItem(
           groupe: GroupeRoute.transactions,
           isHidden: true,
-          id: MenuButtonEnum.annulerTransfert,
+          id: FeatureDictionnary.annulerTransfert,
           button: ButtonMenu(
             icon: Image.asset("assets/images/icons/annuler_transfert.png"),
             title: "Annuler transfert",
@@ -36,7 +42,7 @@ class Routes extends ViewController {
         ),
         RouteItem(
           groupe: GroupeRoute.transactions,
-          id: MenuButtonEnum.paiementsAchats,
+          id: FeatureDictionnary.paiementsAchats,
           button: ButtonMenu(
             icon: Image.asset("assets/images/icons/depense.png"),
             title: "Paiements & achats",
@@ -44,11 +50,11 @@ class Routes extends ViewController {
               () => const MoreOptionHomePage(
                 groupeTitle: "Paiements & achats",
                 menus: {
-                  MenuButtonEnum.paiementTimbres,
-                  MenuButtonEnum.paiementContravention,
-                  MenuButtonEnum.factureEau,
-                  MenuButtonEnum.factureElectricite,
-                  MenuButtonEnum.rechargeYango,
+                  FeatureDictionnary.paiementTimbres,
+                  FeatureDictionnary.paiementContravention,
+                  FeatureDictionnary.factureEau,
+                  FeatureDictionnary.factureElectricite,
+                  FeatureDictionnary.rechargeYango,
                 },
               ),
             ),
@@ -56,7 +62,7 @@ class Routes extends ViewController {
         ),
         RouteItem(
           groupe: GroupeRoute.transactions,
-          id: MenuButtonEnum.depotArgent,
+          id: FeatureDictionnary.depotArgent,
           button: ButtonMenu(
             icon: Image.asset("assets/images/icons/depot_argent.png"),
             title: "Dépôt d'argent",
@@ -65,7 +71,7 @@ class Routes extends ViewController {
         ),
         RouteItem(
           groupe: GroupeRoute.transactions,
-          id: MenuButtonEnum.bankToWaller,
+          id: FeatureDictionnary.bankToWaller,
           button: ButtonMenu(
             icon: Image.asset("assets/images/icons/bank_to_wallet.png"),
             title: "Bank To Wallet",
@@ -74,7 +80,7 @@ class Routes extends ViewController {
         ),
         RouteItem(
           groupe: GroupeRoute.transactions,
-          id: MenuButtonEnum.transfertArgent,
+          id: FeatureDictionnary.transfertArgent,
           button: ButtonMenu(
             withCircleIcon: false,
             icon: Image.asset("assets/images/icons8-envoyé.gif"),
@@ -83,9 +89,9 @@ class Routes extends ViewController {
               () => const MoreOptionHomePage(
                 groupeTitle: "Transfert d'argent",
                 menus: {
-                  MenuButtonEnum.bankToWaller,
-                  MenuButtonEnum.wallerToBank,
-                  MenuButtonEnum.annulerTransfert,
+                  FeatureDictionnary.bankToWaller,
+                  FeatureDictionnary.wallerToBank,
+                  FeatureDictionnary.annulerTransfert,
                 },
               ),
             ),
@@ -93,7 +99,7 @@ class Routes extends ViewController {
         ),
         RouteItem(
           groupe: GroupeRoute.transactions,
-          id: MenuButtonEnum.wallerToBank,
+          id: FeatureDictionnary.wallerToBank,
           button: ButtonMenu(
             icon: Image.asset("assets/images/icons/wallet_to_bank.png"),
             title: "Wallet To Bank",
@@ -102,7 +108,7 @@ class Routes extends ViewController {
         ),
         RouteItem(
           groupe: GroupeRoute.transactions,
-          id: MenuButtonEnum.historiqueTransactions,
+          id: FeatureDictionnary.historiqueTransactions,
           button: ButtonMenu(
             icon: Image.asset("assets/images/icons/historique_transaction.png"),
             title: "Historique transactions",
@@ -112,16 +118,16 @@ class Routes extends ViewController {
         //-----------------------------
         RouteItem(
           groupe: GroupeRoute.cartesEtComptes,
-          id: MenuButtonEnum.cartesBancaires,
+          id: FeatureDictionnary.cartesBancaires,
           button: ButtonMenu(
-            icon: Image.asset("assets/images/icons/carte-bancaire_lbd.png"),
-            title: "Cartes bancaires",
-            onPressed: () {},
+            icon: Image.asset("assets/images/icons/compte-bancaire.png"),
+            title: "Comptes bancaires",
+            onPressed: () => Get.to(() => const CompteBancairePage()),
           ),
         ),
         RouteItem(
           groupe: GroupeRoute.cartesEtComptes,
-          id: MenuButtonEnum.comptesBancaires,
+          id: FeatureDictionnary.comptesBancaires,
           button: ButtonMenu(
             icon: Image.asset("assets/images/icons/bank.png"),
             title: "Banks & microfinances",
@@ -131,7 +137,7 @@ class Routes extends ViewController {
         //-----------------------------
         RouteItem(
           groupe: GroupeRoute.centresInterets,
-          id: MenuButtonEnum.gabAProximite,
+          id: FeatureDictionnary.gabAProximite,
           button: ButtonMenu(
             icon: Image.asset("assets/images/icons/carte_gab.png"),
             title: "GAB à proximité",
@@ -140,7 +146,7 @@ class Routes extends ViewController {
         ),
         RouteItem(
           groupe: GroupeRoute.centresInterets,
-          id: MenuButtonEnum.restaurant,
+          id: FeatureDictionnary.restaurant,
           button: ButtonMenu(
             icon: Image.asset("assets/images/icons/restaurant.png"),
             title: "Restaurant",
@@ -149,25 +155,25 @@ class Routes extends ViewController {
         ),
         RouteItem(
           groupe: GroupeRoute.centresInterets,
-          id: MenuButtonEnum.gaz,
+          id: FeatureDictionnary.gaz,
           button: ButtonMenu(
             icon: Image.asset("assets/images/icons/gaz.png"),
             title: "GAZ",
-            onPressed: () {},
+            onPressed: () => Get.to(() => const GazMapPage()),
           ),
         ),
         RouteItem(
           groupe: GroupeRoute.centresInterets,
-          id: MenuButtonEnum.pressing,
+          id: FeatureDictionnary.pressing,
           button: ButtonMenu(
             icon: Image.asset("assets/images/icons/icons8-repassage-64.png"),
             title: "Pressing",
-            onPressed: () {},
+            onPressed: () => Get.to(() => const PressingMapPage()),
           ),
         ),
         RouteItem(
           groupe: GroupeRoute.centresInterets,
-          id: MenuButtonEnum.materiauxConstruction,
+          id: FeatureDictionnary.materiauxConstruction,
           button: ButtonMenu(
             icon: Image.asset("assets/images/icons/icons8-brique-96.png"),
             title: "Matériaux construction",
@@ -176,7 +182,7 @@ class Routes extends ViewController {
         ),
         RouteItem(
           groupe: GroupeRoute.centresInterets,
-          id: MenuButtonEnum.fraisScolarite,
+          id: FeatureDictionnary.fraisScolarite,
           button: ButtonMenu(
             icon:
                 Image.asset("assets/images/icons/icons8-etudiant-homme-64.png"),
@@ -186,7 +192,7 @@ class Routes extends ViewController {
         ),
         RouteItem(
           groupe: GroupeRoute.centresInterets,
-          id: MenuButtonEnum.loyer,
+          id: FeatureDictionnary.loyer,
           button: ButtonMenu(
             icon: Image.asset("assets/images/icons/paiement_loyer.png"),
             title: "Loyer",
@@ -195,16 +201,16 @@ class Routes extends ViewController {
         ),
         RouteItem(
           groupe: GroupeRoute.centresInterets,
-          id: MenuButtonEnum.jobs,
+          id: FeatureDictionnary.jobs,
           button: ButtonMenu(
             icon: Image.asset("assets/images/icons/icons8-mallette.gif"),
             title: "Jobs",
-            onPressed: () {},
+            onPressed: () => Get.to(() => const JobHomePage()),
           ),
         ),
         RouteItem(
           groupe: GroupeRoute.centresInterets,
-          id: MenuButtonEnum.pharmacie,
+          id: FeatureDictionnary.pharmacie,
           button: ButtonMenu(
             icon: Image.asset("assets/images/icons/pharmacie.png"),
             title: "Pharmacie",
@@ -213,7 +219,7 @@ class Routes extends ViewController {
         ),
         RouteItem(
           groupe: GroupeRoute.centresInterets,
-          id: MenuButtonEnum.brasserie,
+          id: FeatureDictionnary.brasserie,
           button: ButtonMenu(
             icon: Image.asset("assets/images/icons/icons8-liquor-shelf-64.png"),
             title: "Brasserie",
@@ -222,7 +228,7 @@ class Routes extends ViewController {
         ),
         RouteItem(
           groupe: GroupeRoute.centresInterets,
-          id: MenuButtonEnum.caves,
+          id: FeatureDictionnary.caves,
           button: ButtonMenu(
             icon: Image.asset("assets/images/icons/caves.png"),
             title: "Caves",
@@ -231,16 +237,7 @@ class Routes extends ViewController {
         ),
         RouteItem(
           groupe: GroupeRoute.centresInterets,
-          id: MenuButtonEnum.parisSportifs,
-          button: ButtonMenu(
-            icon: Image.asset("assets/images/icons/paris.gif"),
-            title: GroupeRoute.parisSportifs,
-            onPressed: () {},
-          ),
-        ),
-        RouteItem(
-          groupe: GroupeRoute.centresInterets,
-          id: MenuButtonEnum.achatUnite,
+          id: FeatureDictionnary.achatUnite,
           button: ButtonMenu(
             icon: Image.asset("assets/images/icons/achat_unite.png"),
             title: "Achat unités",
@@ -249,7 +246,7 @@ class Routes extends ViewController {
         ),
         RouteItem(
           groupe: GroupeRoute.centresInterets,
-          id: MenuButtonEnum.achatPass,
+          id: FeatureDictionnary.achatPass,
           button: ButtonMenu(
             icon: Image.asset("assets/images/icons/acaht_data.png"),
             title: "Achat pass internet",
@@ -258,7 +255,7 @@ class Routes extends ViewController {
         ),
         RouteItem(
           groupe: GroupeRoute.centresInterets,
-          id: MenuButtonEnum.locationVehicules,
+          id: FeatureDictionnary.locationVehicules,
           button: ButtonMenu(
             icon: Image.asset("assets/images/icons/location-de-voiture.png"),
             title: "Location de voitures",
@@ -268,7 +265,7 @@ class Routes extends ViewController {
         //-----------------------------
         RouteItem(
           groupe: GroupeRoute.serviceInnovant,
-          id: MenuButtonEnum.tontine,
+          id: FeatureDictionnary.tontine,
           button: ButtonMenu(
             icon: Image.asset("assets/images/icons/tontine.png"),
             title: "Tontines",
@@ -277,7 +274,7 @@ class Routes extends ViewController {
         ),
         RouteItem(
           groupe: GroupeRoute.serviceInnovant,
-          id: MenuButtonEnum.dons,
+          id: FeatureDictionnary.dons,
           button: ButtonMenu(
             icon: Image.asset("assets/images/icons/don.png"),
             title: "Dons",
@@ -286,7 +283,7 @@ class Routes extends ViewController {
         ),
         RouteItem(
           groupe: GroupeRoute.serviceInnovant,
-          id: MenuButtonEnum.cadeaux,
+          id: FeatureDictionnary.cadeaux,
           button: ButtonMenu(
             icon: Image.asset("assets/images/icons/icons8-cadeau.gif"),
             title: "Cadeaux",
@@ -295,7 +292,7 @@ class Routes extends ViewController {
         ),
         RouteItem(
           groupe: GroupeRoute.serviceInnovant,
-          id: MenuButtonEnum.vouchers,
+          id: FeatureDictionnary.vouchers,
           button: ButtonMenu(
             icon: Image.asset("assets/images/icons/voucher.png"),
             title: "Vouchers",
@@ -303,10 +300,10 @@ class Routes extends ViewController {
               () => const MoreOptionHomePage(
                 groupeTitle: "Vouchers",
                 menus: {
-                  MenuButtonEnum.nintendo,
-                  MenuButtonEnum.virgin,
-                  MenuButtonEnum.xbox,
-                  MenuButtonEnum.playstation,
+                  FeatureDictionnary.nintendo,
+                  FeatureDictionnary.virgin,
+                  FeatureDictionnary.xbox,
+                  FeatureDictionnary.playstation,
                 },
               ),
             ),
@@ -314,7 +311,7 @@ class Routes extends ViewController {
         ),
         RouteItem(
           groupe: GroupeRoute.serviceInnovant,
-          id: MenuButtonEnum.nounous,
+          id: FeatureDictionnary.nounous,
           button: ButtonMenu(
             icon: Image.asset("assets/images/icons/nounou.png"),
             title: "Nounous",
@@ -324,7 +321,7 @@ class Routes extends ViewController {
         //-----------------------------
         RouteItem(
           groupe: GroupeRoute.eGov,
-          id: MenuButtonEnum.paiementTimbres,
+          id: FeatureDictionnary.paiementTimbres,
           button: ButtonMenu(
             icon: Image.asset("assets/images/icons/timbre.png"),
             title: "Paiement de timbres",
@@ -333,7 +330,7 @@ class Routes extends ViewController {
         ),
         RouteItem(
           groupe: GroupeRoute.eGov,
-          id: MenuButtonEnum.paimenentTaxes,
+          id: FeatureDictionnary.paimenentTaxes,
           button: ButtonMenu(
             icon: Image.asset("assets/images/icons/taxe.png"),
             title: "Paiement de taxes",
@@ -342,7 +339,7 @@ class Routes extends ViewController {
         ),
         RouteItem(
           groupe: GroupeRoute.eGov,
-          id: MenuButtonEnum.paiementContravention,
+          id: FeatureDictionnary.paiementContravention,
           button: ButtonMenu(
             icon: Image.asset("assets/images/icons/sifflet.png"),
             title: "Paiement\ncontravention",
@@ -352,7 +349,7 @@ class Routes extends ViewController {
         //-----------------------------
         RouteItem(
           groupe: GroupeRoute.facturesEtAbonnements,
-          id: MenuButtonEnum.factureElectricite,
+          id: FeatureDictionnary.factureElectricite,
           button: ButtonMenu(
             icon: Image.asset("assets/images/icons/cie.png"),
             title: "Factures d'électricité",
@@ -361,7 +358,7 @@ class Routes extends ViewController {
         ),
         RouteItem(
           groupe: GroupeRoute.facturesEtAbonnements,
-          id: MenuButtonEnum.factureEau,
+          id: FeatureDictionnary.factureEau,
           button: ButtonMenu(
             icon: Image.asset("assets/images/icons/SODECI.png"),
             title: "Factures d'eau",
@@ -370,7 +367,7 @@ class Routes extends ViewController {
         ),
         RouteItem(
           groupe: GroupeRoute.facturesEtAbonnements,
-          id: MenuButtonEnum.canalPlus,
+          id: FeatureDictionnary.canalPlus,
           button: ButtonMenu(
             withCircleIcon: false,
             icon: Image.asset("assets/images/icons/Canal.png"),
@@ -380,7 +377,7 @@ class Routes extends ViewController {
         ),
         RouteItem(
           groupe: GroupeRoute.facturesEtAbonnements,
-          id: MenuButtonEnum.abonnementTele,
+          id: FeatureDictionnary.abonnementTele,
           button: ButtonMenu(
             icon: Image.asset("assets/images/icons/tv.png"),
             title: "Abonnement\ntélé",
@@ -388,8 +385,8 @@ class Routes extends ViewController {
               () => const MoreOptionHomePage(
                 groupeTitle: "Abonnement télé",
                 menus: {
-                  MenuButtonEnum.canalPlus,
-                  MenuButtonEnum.netflix,
+                  FeatureDictionnary.canalPlus,
+                  FeatureDictionnary.netflix,
                 },
               ),
             ),
@@ -397,7 +394,7 @@ class Routes extends ViewController {
         ),
         RouteItem(
           groupe: GroupeRoute.facturesEtAbonnements,
-          id: MenuButtonEnum.abonnementFibre,
+          id: FeatureDictionnary.abonnementFibre,
           button: ButtonMenu(
             icon: Image.asset("assets/images/icons/abonnement_fibre.png"),
             title: "Abonnement\nfibre",
@@ -406,7 +403,7 @@ class Routes extends ViewController {
         ),
         RouteItem(
           groupe: GroupeRoute.facturesEtAbonnements,
-          id: MenuButtonEnum.abonnementPeage,
+          id: FeatureDictionnary.abonnementPeage,
           button: ButtonMenu(
             icon: Image.asset("assets/images/icons/abonnement_payage.png"),
             title: "Abonnement\npéage",
@@ -415,7 +412,7 @@ class Routes extends ViewController {
         ),
         RouteItem(
           groupe: GroupeRoute.facturesEtAbonnements,
-          id: MenuButtonEnum.netflix,
+          id: FeatureDictionnary.netflix,
           button: ButtonMenu(
             icon: Image.asset("assets/images/icons/netflix.png"),
             title: "Netflix",
@@ -425,7 +422,7 @@ class Routes extends ViewController {
         //-----------------------------
         RouteItem(
           groupe: GroupeRoute.divertissement,
-          id: MenuButtonEnum.tickets,
+          id: FeatureDictionnary.tickets,
           button: ButtonMenu(
             icon: Image.asset("assets/images/icons/icons8-ticket.gif"),
             title: "Tickets",
@@ -433,9 +430,9 @@ class Routes extends ViewController {
               () => const MoreOptionHomePage(
                 groupeTitle: "Tickets",
                 menus: {
-                  MenuButtonEnum.cinema,
-                  MenuButtonEnum.stade,
-                  MenuButtonEnum.concert,
+                  FeatureDictionnary.cinema,
+                  FeatureDictionnary.stade,
+                  FeatureDictionnary.concert,
                 },
               ),
             ),
@@ -443,7 +440,7 @@ class Routes extends ViewController {
         ),
         RouteItem(
           groupe: GroupeRoute.divertissement,
-          id: MenuButtonEnum.evenements,
+          id: FeatureDictionnary.evenements,
           button: ButtonMenu(
             icon: Image.asset("assets/images/icons/icons8-events-64.png"),
             title: "Evénements",
@@ -452,8 +449,8 @@ class Routes extends ViewController {
                 groupeTitle: "Evénements",
                 //TODO à completer
                 menus: {
-                  MenuButtonEnum.tickets,
-                  MenuButtonEnum.evenements,
+                  FeatureDictionnary.tickets,
+                  FeatureDictionnary.evenements,
                 },
               ),
             ),
@@ -461,7 +458,7 @@ class Routes extends ViewController {
         ),
         RouteItem(
           groupe: GroupeRoute.divertissement,
-          id: MenuButtonEnum.cinema,
+          id: FeatureDictionnary.cinema,
           button: ButtonMenu(
             icon: Image.asset("assets/images/icons/icons8-film.gif"),
             title: "Cinéma",
@@ -470,7 +467,7 @@ class Routes extends ViewController {
         ),
         RouteItem(
           groupe: GroupeRoute.divertissement,
-          id: MenuButtonEnum.stade,
+          id: FeatureDictionnary.stade,
           button: ButtonMenu(
             icon: Image.asset("assets/images/icons/icons8-stade-100.png"),
             title: "Stade",
@@ -479,7 +476,7 @@ class Routes extends ViewController {
         ),
         RouteItem(
           groupe: GroupeRoute.divertissement,
-          id: MenuButtonEnum.concert,
+          id: FeatureDictionnary.concert,
           button: ButtonMenu(
             icon: Image.asset("assets/images/icons/icons8-concert.gif"),
             title: "Concert",
@@ -489,7 +486,7 @@ class Routes extends ViewController {
         //-----------------------------
         RouteItem(
           groupe: GroupeRoute.voyages,
-          id: MenuButtonEnum.ticketBus,
+          id: FeatureDictionnary.ticketBus,
           button: ButtonMenu(
             icon: Image.asset("assets/images/icons/bus_car.png"),
             title: "Tickets\nde Bus",
@@ -498,7 +495,7 @@ class Routes extends ViewController {
         ),
         RouteItem(
           groupe: GroupeRoute.voyages,
-          id: MenuButtonEnum.ticketBateauBus,
+          id: FeatureDictionnary.ticketBateauBus,
           button: ButtonMenu(
             icon: Image.asset("assets/images/icons/bateau.png"),
             title: "Tickets\nBateau Bus",
@@ -507,7 +504,7 @@ class Routes extends ViewController {
         ),
         RouteItem(
           groupe: GroupeRoute.voyages,
-          id: MenuButtonEnum.billetAvion,
+          id: FeatureDictionnary.billetAvion,
           button: ButtonMenu(
             icon: Image.asset(
                 "assets/images/icons/icons8-avion-vue-de-face-64.png"),
@@ -517,7 +514,7 @@ class Routes extends ViewController {
         ),
         RouteItem(
           groupe: GroupeRoute.voyages,
-          id: MenuButtonEnum.hotels,
+          id: FeatureDictionnary.hotels,
           button: ButtonMenu(
             icon: Image.asset("assets/images/icons/icons8-hotel.png"),
             title: "Hôtels",
@@ -526,7 +523,7 @@ class Routes extends ViewController {
         ),
         RouteItem(
           groupe: GroupeRoute.centresInterets,
-          id: MenuButtonEnum.guideUrbain,
+          id: FeatureDictionnary.guideUrbain,
           button: ButtonMenu(
             icon: Image.asset("assets/images/icons/guide_urbain.gif"),
             title: "Guide urbain",
@@ -535,7 +532,7 @@ class Routes extends ViewController {
         ),
         RouteItem(
           groupe: GroupeRoute.parisSportifs,
-          id: MenuButtonEnum.oneXBet,
+          id: FeatureDictionnary.oneXBet,
           button: ButtonMenu(
             withCircleIcon: false,
             icon: Image.asset("assets/images/1xbet.png"),
@@ -545,7 +542,7 @@ class Routes extends ViewController {
         ),
         RouteItem(
           groupe: GroupeRoute.parisSportifs,
-          id: MenuButtonEnum.pmu,
+          id: FeatureDictionnary.pmu,
           button: ButtonMenu(
             withCircleIcon: false,
             icon: Image.asset("assets/images/pmu.png"),
@@ -555,7 +552,7 @@ class Routes extends ViewController {
         ),
         RouteItem(
           groupe: GroupeRoute.parisSportifs,
-          id: MenuButtonEnum.betclic,
+          id: FeatureDictionnary.betclic,
           button: ButtonMenu(
             withCircleIcon: false,
             icon: Image.asset("assets/images/betclic.png"),
@@ -565,7 +562,7 @@ class Routes extends ViewController {
         ),
         RouteItem(
           groupe: GroupeRoute.parisSportifs,
-          id: MenuButtonEnum.premierBet,
+          id: FeatureDictionnary.premierBet,
           button: ButtonMenu(
             withCircleIcon: false,
             icon: Image.asset("assets/images/premier_bet.jpg"),
@@ -575,25 +572,27 @@ class Routes extends ViewController {
         ),
         RouteItem(
           groupe: GroupeRoute.cartesEtComptes,
-          id: MenuButtonEnum.cartesVirtuelles,
+          id: FeatureDictionnary.cartesVirtuelles,
           button: ButtonMenu(
-            icon: Image.asset("assets/images/icons/carte_virtuelle.png"),
+            icon: Image.asset("assets/images/icons/carte_bancaire.png"),
             title: "Cartes virtuelles",
-            onPressed: () {},
+            onPressed: () => Get.to(() => const CartesBancairesPage()),
           ),
         ),
         RouteItem(
           groupe: GroupeRoute.cartesEtComptes,
-          id: MenuButtonEnum.commanderCarteCredit,
+          id: FeatureDictionnary.commanderCarteCredit,
           button: ButtonMenu(
-            icon: Image.asset("assets/images/icons/carte-bancaire_lbd.png"),
+            icon: Image.asset(
+              "assets/images/icons/commande_carte_bancaire.gif",
+            ),
             title: "Commandez une carte",
-            onPressed: () {},
+            onPressed: () => Get.to(() => const CommandeCarteBancaireHome()),
           ),
         ),
         RouteItem(
           groupe: GroupeRoute.voyages,
-          id: MenuButtonEnum.ticketCar,
+          id: FeatureDictionnary.ticketCar,
           button: ButtonMenu(
             icon: Image.asset("assets/images/icons/car.png"),
             title: "Tickets\nde car",
@@ -602,7 +601,7 @@ class Routes extends ViewController {
         ),
         RouteItem(
           groupe: GroupeRoute.parisSportifs,
-          id: MenuButtonEnum.sportCash,
+          id: FeatureDictionnary.sportCash,
           button: ButtonMenu(
             withCircleIcon: false,
             icon: Image.asset("assets/images/sportcash.png"),
@@ -612,7 +611,7 @@ class Routes extends ViewController {
         ),
         RouteItem(
           groupe: GroupeRoute.parisSportifs,
-          id: MenuButtonEnum.lotoBonheur,
+          id: FeatureDictionnary.lotoBonheur,
           button: ButtonMenu(
             withCircleIcon: false,
             icon: Image.asset("assets/images/lotobonheur.jpg"),
@@ -622,7 +621,7 @@ class Routes extends ViewController {
         ),
         RouteItem(
           groupe: GroupeRoute.parisSportifs,
-          id: MenuButtonEnum.virtualGames,
+          id: FeatureDictionnary.virtualGames,
           button: ButtonMenu(
             withCircleIcon: false,
             icon: Image.asset("assets/images/virtualGames.jpg"),
@@ -632,7 +631,7 @@ class Routes extends ViewController {
         ),
         RouteItem(
           groupe: GroupeRoute.parisSportifs,
-          id: MenuButtonEnum.rouletteLebedoo,
+          id: FeatureDictionnary.rouletteLebedoo,
           button: ButtonMenu(
             icon: Image.asset("assets/images/icons/icons8-roulette-80.png"),
             title: "Roulette Lebedoo",
@@ -641,7 +640,7 @@ class Routes extends ViewController {
         ),
         RouteItem(
           groupe: GroupeRoute.parisSportifs,
-          id: MenuButtonEnum.coursesChevauxLebedoo,
+          id: FeatureDictionnary.coursesChevauxLebedoo,
           button: ButtonMenu(
             icon: Image.asset("assets/images/icons/icons8-horse-racing-96.png"),
             title: "Courses chevaux Lebedoo",
@@ -650,7 +649,7 @@ class Routes extends ViewController {
         ),
         RouteItem(
           groupe: GroupeRoute.parisSportifs,
-          id: MenuButtonEnum.parisFootBallLebedoo,
+          id: FeatureDictionnary.parisFootBallLebedoo,
           button: ButtonMenu(
             icon: Image.asset("assets/images/icons/icons8-bet-62.png"),
             title: "Paris Football Lebedoo",
@@ -659,7 +658,7 @@ class Routes extends ViewController {
         ),
         RouteItem(
           groupe: GroupeRoute.parisSportifs,
-          id: MenuButtonEnum.casinoLebedoo,
+          id: FeatureDictionnary.casinoLebedoo,
           button: ButtonMenu(
             icon: Image.asset("assets/images/icons/icons8-casino-48.png"),
             title: "Casino Lebedoo",
@@ -668,7 +667,7 @@ class Routes extends ViewController {
         ),
         RouteItem(
           groupe: GroupeRoute.vouchers,
-          id: MenuButtonEnum.virgin,
+          id: FeatureDictionnary.virgin,
           button: ButtonMenu(
             icon: Image.asset("assets/images/Virgin-logo.png"),
             title: "Virgin",
@@ -677,7 +676,7 @@ class Routes extends ViewController {
         ),
         RouteItem(
           groupe: GroupeRoute.transactions,
-          id: MenuButtonEnum.historiqueTransactions,
+          id: FeatureDictionnary.historiqueTransactions,
           button: ButtonMenu(
             icon: Image.asset("assets/images/icons/historique_transaction.png"),
             title: "Transactions\nrécentes",
@@ -686,7 +685,7 @@ class Routes extends ViewController {
         ),
         RouteItem(
           groupe: GroupeRoute.vouchers,
-          id: MenuButtonEnum.nintendo,
+          id: FeatureDictionnary.nintendo,
           button: ButtonMenu(
             withCircleIcon: false,
             icon: Image.asset("assets/images/Nintendo_logo.png"),
@@ -696,7 +695,7 @@ class Routes extends ViewController {
         ),
         RouteItem(
           groupe: GroupeRoute.vouchers,
-          id: MenuButtonEnum.nintendo,
+          id: FeatureDictionnary.nintendo,
           button: ButtonMenu(
             icon: Image.asset("assets/images/Steam_icon.png"),
             title: "Steam",
@@ -705,7 +704,7 @@ class Routes extends ViewController {
         ),
         RouteItem(
           groupe: GroupeRoute.vouchers,
-          id: MenuButtonEnum.nintendo,
+          id: FeatureDictionnary.nintendo,
           button: ButtonMenu(
             withCircleIcon: false,
             icon: Image.asset("assets/images/Xbox_store.jpg"),
@@ -715,7 +714,7 @@ class Routes extends ViewController {
         ),
         RouteItem(
           groupe: GroupeRoute.vouchers,
-          id: MenuButtonEnum.playstation,
+          id: FeatureDictionnary.playstation,
           button: ButtonMenu(
             withCircleIcon: false,
             icon: Image.asset("assets/images/playstation_store.png"),
@@ -723,9 +722,18 @@ class Routes extends ViewController {
             onPressed: () {},
           ),
         ),
+        RouteItem(
+          groupe: GroupeRoute.vouchers,
+          id: FeatureDictionnary.taxi,
+          button: ButtonMenu(
+            icon: Image.asset("assets/images/icons/taxi.png"),
+            title: "Taxis",
+            onPressed: () {},
+          ),
+        ),
       ];
 
-  List<RouteItem> routesByList({List<MenuButtonEnum> menus = const []}) =>
+  List<RouteItem> routesByList({List<FeatureDictionnary> menus = const []}) =>
       routes
           .where((e) => menus.contains(e.id))
           .where((e) => !e.isHidden)

@@ -7,7 +7,7 @@
 	<key>CFBundleDevelopmentRegion</key>
 	<string>$(DEVELOPMENT_LANGUAGE)</string>
 	<key>CFBundleDisplayName</key>
-	<string>Lebedoo</string>
+	<string>LeBedoo</string>
 	<key>CFBundleExecutable</key>
 	<string>$(EXECUTABLE_NAME)</string>
 	<key>CFBundleIdentifier</key>
@@ -27,19 +27,19 @@
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
 	<key>NSCameraUsageDescription</key>
-	<string></string>
+	<string>L'application a besoin d'accéder à votre appareil photo</string>
 	<key>NSFaceIDUsageDescription</key>
-	<string>WAN a besoin d'accéder au capteur FaceID pour vous permettre de vous authentifier.</string>
+	<string>L'application a besoin d'accéder au capteur FaceID pour vous permettre de vous authentifier.</string>
 	<key>NSLocationAlwaysAndWhenInUseUsageDescription</key>
-	<string>WAN a besoin d'accéder à votre position pour trouver les services les plus proches de vous</string>
+	<string>WL'applicationAN a besoin d'accéder à votre position pour trouver les services les plus proches de vous</string>
 	<key>NSLocationAlwaysUsageDescription</key>
-	<string>WAN a besoin d'accéder à votre position pour trouver les services les plus proches de vous</string>
+	<string>L'application a besoin d'accéder à votre position pour trouver les services les plus proches de vous</string>
 	<key>NSLocationWhenInUseUsageDescription</key>
-	<string>WAN a besoin d'accéder à votre position pour trouver les services les plus proches de vous</string>
+	<string>L'application a besoin d'accéder à votre position pour trouver les services les plus proches de vous</string>
 	<key>NSMicrophoneUsageDescription</key>
 	<string></string>
 	<key>NSPhotoLibraryUsageDescription</key>
-	<string>WAN a besoin d'accéder à votre caméra pour trouver les services les plus proches de vous</string>
+	<string>L'application a besoin d'accéder à votre caméra pour trouver les services les plus proches de vous</string>
 	<key>UIApplicationSupportsIndirectInputEvents</key>
 	<true/>
 	<key>UIBackgroundModes</key>

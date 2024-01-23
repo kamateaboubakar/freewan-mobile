@@ -1,12 +1,12 @@
 import 'package:wan_mobile/tools/widgets/button_menu.dart';
-import 'package:wan_mobile/views/routes/menu_button_enum.dart';
+import 'package:lebedoo_assets/const/feature_dictionnary.dart';
 
 class RouteItem {
   bool isFeature = true;
   bool isHidden;
   String? title;
   String? groupe;
-  MenuButtonEnum id;
+  FeatureDictionnary id;
   ButtonMenu button;
 
   RouteItem(

@@ -108,7 +108,6 @@ class UserApiCtl {
           "password": password,
         }.parseToJson(),
         headers: AppHttpHeaders.headers,
-        displayRequest: true,
       );
 
       var body = HttpResponse.decodeBody(res);

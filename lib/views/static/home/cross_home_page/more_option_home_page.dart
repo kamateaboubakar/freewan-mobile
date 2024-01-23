@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:wan_mobile/tools/widgets/card_menu.dart';
-import 'package:wan_mobile/views/routes/menu_button_enum.dart';
+import 'package:lebedoo_assets/const/feature_dictionnary.dart';
 import 'package:wan_mobile/views/routes/routes.dart';
 
 class MoreOptionHomePage extends StatelessWidget {
-  final Set<MenuButtonEnum> menus;
+  final Set<FeatureDictionnary> menus;
   final String groupeTitle;
   const MoreOptionHomePage(
       {required this.groupeTitle, required this.menus, super.key});

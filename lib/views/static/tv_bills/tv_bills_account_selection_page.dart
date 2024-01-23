@@ -3,7 +3,6 @@ import 'package:lebedoo_assets/lebedoo_assets.dart';
 import 'package:wan_mobile/views/static/tv_bills/tv_bills_forumla_list_page.dart';
 
 import '../../../tools/widgets/account_selection_item.dart';
-import '../bills/widgets/add_account_button.dart';
 
 class TvBillsAccountSelectionPage extends StatelessWidget {
   final String route;

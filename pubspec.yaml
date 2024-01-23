@@ -16,7 +16,7 @@ publish_to: 'none' # Remove this line if you wish to publish to pub.dev
 # https://developer.apple.com/library/archive/documentation/General/Reference/InfoPlistKeyReference/Articles/CoreFoundationKeys.html
 # In Windows, build-name is used as the major, minor, and patch parts
 # of the product and file versions while build-number is used as the build suffix.
-version: 1.0.33+34
+version: 1.0.34+35
 
 environment:
   sdk: '>=3.0.5 <4.0.0'
@@ -122,6 +122,10 @@ dependencies:
     git:
       url: https://github.com/Lebedoo/cave-mobile.git
       ref: main
+  commande_carte_bancaire:
+    git:
+      url: https://github.com/Lebedoo/commande-carte-banquaire-mobile.git
+      ref: main
 
   # FIN Modules Lebedoo
 
@@ -159,21 +163,12 @@ flutter:
     - assets/construction/
     - assets/.env
     - assets/wallets_transactions/
+    - assets/wallets_transactions/lotties/
     - assets/brasserie/
     - assets/cave/
-  #   - images/a_dot_ham.jpeg
+  
 
-  # An image asset can refer to one or more resolution-specific "variants", see
-  # https://flutter.dev/assets-and-images/#resolution-aware
 
-  # For details regarding adding assets from package dependencies, see
-  # https://flutter.dev/assets-and-images/#from-packages
-
-  # To add custom fonts to your application, add a fonts section here,
-  # in this "flutter" section. Each entry in this list should have a
-  # "family" key with the font family name, and a "fonts" key with a
-  # list giving the asset and other descriptors for the font. For
-  # example:
   fonts:
     - family: cooljazz
       fonts:

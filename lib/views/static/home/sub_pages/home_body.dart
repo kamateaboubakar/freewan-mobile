@@ -11,7 +11,7 @@ import 'package:wan_mobile/tools/widgets/pageable_menu.dart';
 import 'package:wan_mobile/views/controllers/home/home_page_vctl.dart';
 import 'package:wan_mobile/views/static/home/cross_home_page/more_option_home_page.dart';
 import 'package:wan_mobile/views/static/mall/mall_page.dart';
-import 'package:wan_mobile/views/routes/menu_button_enum.dart';
+import 'package:lebedoo_assets/const/feature_dictionnary.dart';
 
 class HomeBody extends StatelessWidget {
   final HomePageVctl ctl;
@@ -77,10 +77,10 @@ class HomeBody extends StatelessWidget {
                               title: "Transactions",
                               children: ctl.routes
                                   .routesByList(menus: [
-                                    MenuButtonEnum.retraitArgent,
-                                    MenuButtonEnum.paiementsAchats,
-                                    MenuButtonEnum.depotArgent,
-                                    MenuButtonEnum.transfertArgent,
+                                    FeatureDictionnary.retraitArgent,
+                                    FeatureDictionnary.paiementsAchats,
+                                    FeatureDictionnary.depotArgent,
+                                    FeatureDictionnary.transfertArgent,
                                   ])
                                   .map((e) => e.button)
                                   .toList(),
@@ -131,10 +131,10 @@ class HomeBody extends StatelessWidget {
                               listController: scrollController,
                               menus: ctl.routes
                                   .routesByList(menus: [
-                                    MenuButtonEnum.comptesBancaires,
-                                    MenuButtonEnum.cartesBancaires,
-                                    MenuButtonEnum.commanderCarteCredit,
-                                    MenuButtonEnum.cartesVirtuelles,
+                                    FeatureDictionnary.comptesBancaires,
+                                    FeatureDictionnary.cartesBancaires,
+                                    FeatureDictionnary.commanderCarteCredit,
+                                    FeatureDictionnary.cartesVirtuelles,
                                   ])
                                   .map((e) => e.button)
                                   .toList(),
@@ -150,13 +150,13 @@ class HomeBody extends StatelessWidget {
                               title: "Centres d’intérêts",
                               children: ctl.routes
                                   .routesByList(menus: [
-                                    MenuButtonEnum.gabAProximite,
-                                    MenuButtonEnum.restaurant,
-                                    MenuButtonEnum.gaz,
-                                    MenuButtonEnum.pressing,
-                                    MenuButtonEnum.materiauxConstruction,
-                                    MenuButtonEnum.fraisScolarite,
-                                    MenuButtonEnum.loyer,
+                                    FeatureDictionnary.gabAProximite,
+                                    FeatureDictionnary.restaurant,
+                                    FeatureDictionnary.gaz,
+                                    FeatureDictionnary.pressing,
+                                    FeatureDictionnary.materiauxConstruction,
+                                    FeatureDictionnary.fraisScolarite,
+                                    FeatureDictionnary.loyer,
                                   ])
                                   .map((e) => e.button)
                                   .toList()
@@ -170,14 +170,13 @@ class HomeBody extends StatelessWidget {
                                       () => const MoreOptionHomePage(
                                         groupeTitle: "Centres d'intérêts",
                                         menus: {
-                                          MenuButtonEnum.jobs,
-                                          MenuButtonEnum.pharmacie,
-                                          MenuButtonEnum.brasserie,
-                                          MenuButtonEnum.caves,
-                                          MenuButtonEnum.parisSportifs,
-                                          MenuButtonEnum.achatPass,
-                                          MenuButtonEnum.achatUnite,
-                                          MenuButtonEnum.locationVehicules,
+                                          FeatureDictionnary.jobs,
+                                          FeatureDictionnary.pharmacie,
+                                          FeatureDictionnary.brasserie,
+                                          FeatureDictionnary.caves,
+                                          FeatureDictionnary.achatPass,
+                                          FeatureDictionnary.achatUnite,
+                                          FeatureDictionnary.locationVehicules,
                                         },
                                       ),
                                     ),
@@ -199,14 +198,14 @@ class HomeBody extends StatelessWidget {
                               crossAxisCount: 3,
                               menus: ctl.routes
                                   .routesByList(menus: [
-                                    MenuButtonEnum.pmu,
-                                    MenuButtonEnum.sportCash,
-                                    MenuButtonEnum.lotoBonheur,
-                                    MenuButtonEnum.casinoCash,
-                                    MenuButtonEnum.virtualGames,
-                                    MenuButtonEnum.oneXBet,
-                                    MenuButtonEnum.premierBet,
-                                    MenuButtonEnum.betclic,
+                                    FeatureDictionnary.pmu,
+                                    FeatureDictionnary.sportCash,
+                                    FeatureDictionnary.lotoBonheur,
+                                    FeatureDictionnary.casinoCash,
+                                    FeatureDictionnary.virtualGames,
+                                    FeatureDictionnary.oneXBet,
+                                    FeatureDictionnary.premierBet,
+                                    FeatureDictionnary.betclic,
                                   ])
                                   .map(
                                     (e) =>
@@ -225,12 +224,12 @@ class HomeBody extends StatelessWidget {
                               title: "Services innovants",
                               children: ctl.routes
                                   .routesByList(menus: [
-                                    MenuButtonEnum.tontine,
-                                    MenuButtonEnum.dons,
-                                    MenuButtonEnum.cadeaux,
-                                    MenuButtonEnum.vouchers,
-                                    MenuButtonEnum.nounous,
-                                    MenuButtonEnum.guideUrbain,
+                                    FeatureDictionnary.tontine,
+                                    FeatureDictionnary.dons,
+                                    FeatureDictionnary.cadeaux,
+                                    FeatureDictionnary.vouchers,
+                                    FeatureDictionnary.nounous,
+                                    FeatureDictionnary.guideUrbain,
                                   ])
                                   .map((e) => e.button)
                                   .toList(),
@@ -245,10 +244,10 @@ class HomeBody extends StatelessWidget {
                               listController: scrollController,
                               menus: ctl.routes
                                   .routesByList(menus: [
-                                    MenuButtonEnum.coursesChevauxLebedoo,
-                                    MenuButtonEnum.casinoLebedoo,
-                                    MenuButtonEnum.parisFootBallLebedoo,
-                                    MenuButtonEnum.rouletteLebedoo,
+                                    FeatureDictionnary.coursesChevauxLebedoo,
+                                    FeatureDictionnary.casinoLebedoo,
+                                    FeatureDictionnary.parisFootBallLebedoo,
+                                    FeatureDictionnary.rouletteLebedoo,
                                   ])
                                   .map((e) => e.button)
                                   .toList(),
@@ -264,9 +263,9 @@ class HomeBody extends StatelessWidget {
                               title: "E-Gov",
                               children: ctl.routes
                                   .routesByList(menus: [
-                                    MenuButtonEnum.paiementTimbres,
-                                    MenuButtonEnum.paimenentTaxes,
-                                    MenuButtonEnum.paiementContravention,
+                                    FeatureDictionnary.paiementTimbres,
+                                    FeatureDictionnary.paimenentTaxes,
+                                    FeatureDictionnary.paiementContravention,
                                   ])
                                   .map((e) => e.button)
                                   .toList(),
@@ -276,12 +275,12 @@ class HomeBody extends StatelessWidget {
                               title: "Factures et abonnements",
                               children: ctl.routes
                                   .routesByList(menus: [
-                                    MenuButtonEnum.factureElectricite,
-                                    MenuButtonEnum.factureEau,
-                                    MenuButtonEnum.abonnementTele,
-                                    MenuButtonEnum.abonnementFibre,
-                                    MenuButtonEnum.abonnementPeage,
-                                    MenuButtonEnum.abonnementTele,
+                                    FeatureDictionnary.factureElectricite,
+                                    FeatureDictionnary.factureEau,
+                                    FeatureDictionnary.abonnementTele,
+                                    FeatureDictionnary.abonnementFibre,
+                                    FeatureDictionnary.abonnementPeage,
+                                    FeatureDictionnary.abonnementTele,
                                   ])
                                   .map((e) => e.button)
                                   .toList(),
@@ -296,8 +295,8 @@ class HomeBody extends StatelessWidget {
                               listController: scrollController,
                               menus: ctl.routes
                                   .routesByList(menus: [
-                                    MenuButtonEnum.tickets,
-                                    MenuButtonEnum.evenements,
+                                    FeatureDictionnary.tickets,
+                                    FeatureDictionnary.evenements,
                                   ])
                                   .map((e) => e.button)
                                   .toList(),
@@ -327,11 +326,12 @@ class HomeBody extends StatelessWidget {
                                 menus: ctl.routes
                                     .routesByList(
                                       menus: [
-                                        MenuButtonEnum.ticketBus,
-                                        MenuButtonEnum.ticketBateauBus,
-                                        MenuButtonEnum.billetAvion,
-                                        MenuButtonEnum.ticketCar,
-                                        MenuButtonEnum.hotels,
+                                        FeatureDictionnary.ticketBus,
+                                        FeatureDictionnary.ticketBateauBus,
+                                        FeatureDictionnary.billetAvion,
+                                        FeatureDictionnary.ticketCar,
+                                        FeatureDictionnary.hotels,
+                                        FeatureDictionnary.taxi,
                                       ],
                                     )
                                     .map((e) => e.button)

@@ -7,11 +7,7 @@ class PubApiCtl {
   Future<HttpResponse<List<Img>>> getAll() async {
     try {
       var res = await WebRequest(
-        body: const BodyObject(
-          service: "api/v1/pubs/all",
-          port: 8088,
-        ),
-        displayRequest: true,
+        body: const BodyObject(service: "api/v1/pubs/all", port: 8088),
         headers: AppHttpHeaders.authHeaders,
       ).send();
       var body = HttpResponse.decodeBody(res);

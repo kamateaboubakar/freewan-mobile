@@ -169,7 +169,7 @@ packages:
     description:
       path: "."
       ref: main
-      resolved-ref: c791920b5d8482f83add78b466844723eb8108d2
+      resolved-ref: "46b32e9b80648aae082e1cd5c40e08f65868e10e"
       url: "https://github.com/Lebedoo/lebedoo-construction.git"
     source: git
     version: "1.0.0+1"
@@ -221,6 +221,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "1.0.6"
+  dartx:
+    dependency: transitive
+    description:
+      name: dartx
+      sha256: "8b25435617027257d43e6508b5fe061012880ddfdaa75a71d607c3de2a13d244"
+      url: "https://pub.dev"
+    source: hosted
+    version: "1.2.0"
   date_format:
     dependency: "direct main"
     description:
@@ -237,6 +245,30 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "0.7.10"
+  device_info_plus:
+    dependency: transitive
+    description:
+      name: device_info_plus
+      sha256: "0042cb3b2a76413ea5f8a2b40cec2a33e01d0c937e91f0f7c211fde4f7739ba6"
+      url: "https://pub.dev"
+    source: hosted
+    version: "9.1.1"
+  device_info_plus_platform_interface:
+    dependency: transitive
+    description:
+      name: device_info_plus_platform_interface
+      sha256: d3b01d5868b50ae571cd1dc6e502fc94d956b665756180f7b16ead09e836fd64
+      url: "https://pub.dev"
+    source: hosted
+    version: "7.0.0"
+  diacritic:
+    dependency: transitive
+    description:
+      name: diacritic
+      sha256: "96db5db6149cbe4aa3cfcbfd170aca9b7648639be7e48025f9d458517f807fe4"
+      url: "https://pub.dev"
+    source: hosted
+    version: "0.1.5"
   diffutil_dart:
     dependency: transitive
     description:
@@ -253,6 +285,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "2.1.0"
+  downloadsfolder:
+    dependency: transitive
+    description:
+      name: downloadsfolder
+      sha256: "82940b2e0d6e0eaf1c461682b5131e63fd02168cf520a31912f734f789b816b8"
+      url: "https://pub.dev"
+    source: hosted
+    version: "0.0.5"
   dropdown_search:
     dependency: "direct main"
     description:
@@ -843,7 +883,7 @@ packages:
     description:
       path: "."
       ref: main
-      resolved-ref: f243812c6a43915e54eab918d2f15f4e4dee94f7
+      resolved-ref: a6affbfd75b66046d1a9625bdfa69eb17ce0c905
       url: "https://github.com/Lebedoo/lebedoo-wallets-transactions-mobile.git"
     source: git
     version: "1.0.0+1"
@@ -1040,6 +1080,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "1.0.4"
+  open_file_plus:
+    dependency: transitive
+    description:
+      name: open_file_plus
+      sha256: f087e32722ffe4bac71925e7a1a9848a1008fd789e47c6628da3ed7845922227
+      url: "https://pub.dev"
+    source: hosted
+    version: "3.4.1"
   path:
     dependency: "direct main"
     description:
@@ -1509,6 +1557,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "1.0.0"
+  time:
+    dependency: transitive
+    description:
+      name: time
+      sha256: ad8e018a6c9db36cb917a031853a1aae49467a93e0d464683e029537d848c221
+      url: "https://pub.dev"
+    source: hosted
+    version: "2.1.4"
   timezone:
     dependency: transitive
     description:
@@ -1678,6 +1734,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "5.2.0"
+  win32_registry:
+    dependency: transitive
+    description:
+      name: win32_registry
+      sha256: "41fd8a189940d8696b1b810efb9abcf60827b6cbfab90b0c43e8439e3a39d85a"
+      url: "https://pub.dev"
+    source: hosted
+    version: "1.1.2"
   wkt_parser:
     dependency: transitive
     description:

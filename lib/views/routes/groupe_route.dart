@@ -9,4 +9,5 @@ abstract class GroupeRoute {
   static const facturesEtAbonnements = "Factures et abonnements";
   static const eGov = "E-Gov";
   static const vouchers = "Vouchers";
+  static const taxi = "Voyages - Taxis";
 }

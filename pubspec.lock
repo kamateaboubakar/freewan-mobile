@@ -160,7 +160,7 @@ packages:
     description:
       path: "."
       ref: main
-      resolved-ref: "2d0b4090ec981bfe2fc7b9776d08df64dee03439"
+      resolved-ref: "1ad263879ed445e23a9c0408c9de00b11dfa98f5"
       url: "https://github.com/Lebedoo/commande-carte-banquaire-mobile.git"
     source: git
     version: "1.0.0+1"
@@ -269,6 +269,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "2.0.5"
+  external_app_launcher:
+    dependency: "direct main"
+    description:
+      name: external_app_launcher
+      sha256: fb55cddd706c62ede11056750d5e018ef379820e09739e967873211dd537d833
+      url: "https://pub.dev"
+    source: hosted
+    version: "3.1.0"
   fake_async:
     dependency: transitive
     description:
@@ -826,7 +834,7 @@ packages:
     description:
       path: "."
       ref: main
-      resolved-ref: "3f3a08cc828235ef23571881baca3d0ea43e68dd"
+      resolved-ref: "97713a76340dfc6b90ec93a204e3744694113478"
       url: "https://github.com/Lebedoo/lebedoo-assets.git"
     source: git
     version: "1.0.10+11"

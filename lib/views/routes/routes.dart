@@ -2,6 +2,7 @@ import 'package:brasserie/views/static/brasserie_home_page.dart';
 import 'package:cave/views/static/cave_home_page.dart';
 import 'package:commande_carte_bancaire/views/static/commande_carte_bancaire_home.dart';
 import 'package:construction/views/static/construction_home_page.dart';
+import 'package:external_app_launcher/external_app_launcher.dart';
 import 'package:flutter/material.dart';
 import 'package:guide_urbain/views/static/guide_urbain_home_page.dart';
 import 'package:lebedoo_assets/const/feature_dictionnary.dart';
@@ -728,16 +729,85 @@ class Routes extends ViewController {
           button: ButtonMenu(
             icon: Image.asset("assets/images/icons/taxi.png"),
             title: "Taxis",
+            onPressed: () => Get.to(
+              () => const MoreOptionHomePage(
+                groupeTitle: GroupeRoute.taxi,
+                menus: {
+                  FeatureDictionnary.treiizeTaxi,
+                  FeatureDictionnary.yango,
+                },
+              ),
+            ),
+          ),
+        ),
+        RouteItem(
+          groupe: GroupeRoute.voyages,
+          id: FeatureDictionnary.yango,
+          button: ButtonMenu(
+            icon: Image.asset("assets/images/yango.png"),
+            title: "Yango",
+            onPressed: () async {
+              await LaunchApp.openApp(
+                androidPackageName: 'com.yandex.yango',
+                iosUrlScheme:
+                    'https://apps.apple.com/fr/app/yango-more-than-taxi/id1437157286',
+                appStoreLink:
+                    'https://apps.apple.com/fr/app/yango-more-than-taxi/id1437157286',
+                openStore: false,
+              );
+            },
+          ),
+        ),
+        RouteItem(
+          groupe: GroupeRoute.voyages,
+          id: FeatureDictionnary.treiizeTaxi,
+          button: ButtonMenu(
+            icon: Image.asset("assets/images/treiize_taxi.jpeg"),
+            title: "Treiize Taxi",
+            onPressed: () {},
+          ),
+        ),
+        RouteItem(
+          groupe: GroupeRoute.parisSportifs,
+          id: FeatureDictionnary.tirageGhana,
+          button: ButtonMenu(
+            withCircleIcon: false,
+            icon: Image.asset("assets/images/tirageghana.jpg"),
+            title: "Tirage Ghana",
+            onPressed: () {},
+          ),
+        ),
+        RouteItem(
+          groupe: GroupeRoute.cartesEtComptes,
+          id: FeatureDictionnary.rechargeCartePrepayee,
+          button: ButtonMenu(
+            icon:
+                Image.asset("assets/images/icons/recharge_carte_prepayee.png"),
+            title: "Recharge de carte",
             onPressed: () {},
           ),
         ),
       ];
 
-  List<RouteItem> routesByList({List<FeatureDictionnary> menus = const []}) =>
-      routes
+  List<RouteItem> routesByList(
+      {Set<FeatureDictionnary> menus = const {}, bool sorted = true}) {
+    var res = <RouteItem>[];
+    if (sorted) {
+      res = routes
           .where((e) => menus.contains(e.id))
           .where((e) => !e.isHidden)
-          .toList();
+          .toList()
+        ..sort((a, b) => a.title.value.compareTo(b.title.value));
+    } else {
+      for (var e in menus) {
+        res.addAll(routes
+            .where((element) => element.id == e)
+            .where((element) => !element.isHidden)
+            .toList());
+      }
+    }
+    return res;
+  }
 
   List<RouteItem> routesByGroup({String? groupe}) => routes
       .where((e) => e.groupe.value.isNotEmpty)

@@ -31,10 +31,10 @@ class FloatingMenuButton extends StatelessWidget {
                     Expanded(
                       child: Row(
                         children: routes
-                            .routesByList(menus: [
+                            .routesByList(menus: {
                               FeatureDictionnary.cartesBancaires,
                               FeatureDictionnary.transfertArgent,
-                            ])
+                            })
                             .map(
                               (e) => Expanded(
                                 child: e.button.copyWith(
@@ -49,10 +49,10 @@ class FloatingMenuButton extends StatelessWidget {
                     Expanded(
                       child: Row(
                         children: routes
-                            .routesByList(menus: [
+                            .routesByList(menus: {
                               FeatureDictionnary.ticketBus,
                               FeatureDictionnary.retraitArgent,
-                            ])
+                            })
                             .map(
                               (e) => Expanded(
                                 child: Center(

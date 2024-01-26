@@ -19,7 +19,7 @@ class MoreOptionHomePage extends StatelessWidget {
         children: [
           CardMenu(
             children: Routes()
-                .routesByList(menus: menus.toList())
+                .routesByList(menus: menus.toSet())
                 .map((e) => e.button)
                 .toList(),
           ),

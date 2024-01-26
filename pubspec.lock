@@ -834,7 +834,7 @@ packages:
     description:
       path: "."
       ref: main
-      resolved-ref: "97713a76340dfc6b90ec93a204e3744694113478"
+      resolved-ref: c520c6bb6b3e0f3b16452a746c57f898e7dadb75
       url: "https://github.com/Lebedoo/lebedoo-assets.git"
     source: git
     version: "1.0.10+11"
@@ -872,7 +872,7 @@ packages:
     source: hosted
     version: "1.0.1"
   local_auth:
-    dependency: "direct main"
+    dependency: transitive
     description:
       name: local_auth
       sha256: "27679ed8e0d7daab2357db6bb7076359e083a56b295c0c59723845301da6aed9"

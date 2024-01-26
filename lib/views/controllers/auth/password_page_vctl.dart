@@ -1,13 +1,8 @@
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:lebedoo_assets/lebedoo_assets.dart';
-import 'package:local_auth/local_auth.dart';
-import 'package:local_auth_android/local_auth_android.dart';
-import 'package:local_auth_ios/local_auth_ios.dart';
+import 'package:lebedoo_assets/services/biometric_auth_service.dart';
 import 'package:tools_flutter_project/tools_flutter_project.dart';
-
 import 'package:wan_mobile/api/controllers/auth/user_api_ctl.dart';
-
 import 'package:lebedoo_assets/views/controllers/abstracts/view_controller.dart';
 import 'package:wan_mobile/tools/cache/cache_keys.dart';
 import 'package:wan_mobile/views/static/auth/answer_security_question_page.dart';
@@ -18,7 +13,6 @@ class PasswordPageVctl extends ViewController {
   var passwordCtl = TextEditingController();
   String phone;
 
-  final LocalAuthentication _auth = LocalAuthentication();
   bool supportBiometrics = false;
   bool hasAlreadyAuthenticated = false;
 
@@ -51,43 +45,20 @@ class PasswordPageVctl extends ViewController {
   }
 
   Future<void> _checkBiometric() async {
-    supportBiometrics = await _auth.canCheckBiometrics;
+    supportBiometrics = await BiometricAuthService.isAvailable;
     update();
   }
 
   Future<void> biometricAuthenticate() async {
-    if (supportBiometrics) {
+    var result = await BiometricAuthService.check();
+    if (result.status) {
       var password = await Cache.getString(CacheKey.password.name);
       if (password != null) {
-        try {
-          hasAlreadyAuthenticated = true;
-          update();
-          var result = await _auth.authenticate(
-            localizedReason: "Authentifiez-vous pour continuer",
-            authMessages: const [
-              AndroidAuthMessages(
-                signInTitle: 'Authentifiez-vous',
-                cancelButton: 'Entrer le mot de passe',
-              ),
-              IOSAuthMessages(
-                cancelButton: 'Entrer le mot de passe',
-              ),
-            ],
-          );
-          if (result) {
-            passwordCtl.text = password;
-            submit();
-          }
-        } catch (e) {
-          if (kDebugMode) {
-            Tools.messageBox(
-              message:
-                  "Désolé, un problème est survenu pendant l'authentification."
-                  " Veuillez réessayer.",
-            );
-            print(e);
-          }
-        }
+        hasAlreadyAuthenticated = true;
+        update();
+
+        passwordCtl.text = password;
+        submit();
       } else {
         hasAlreadyAuthenticated = false;
         update();

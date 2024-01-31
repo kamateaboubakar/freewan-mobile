@@ -31,13 +31,13 @@
 	<key>NSFaceIDUsageDescription</key>
 	<string>L'application a besoin d'accéder au capteur FaceID pour vous permettre de vous authentifier.</string>
 	<key>NSLocationAlwaysAndWhenInUseUsageDescription</key>
-	<string>WL'applicationAN a besoin d'accéder à votre position pour trouver les services les plus proches de vous</string>
+	<string>L'applicationAN a besoin d'accéder à votre position pour trouver les services les plus proches de vous</string>
 	<key>NSLocationAlwaysUsageDescription</key>
 	<string>L'application a besoin d'accéder à votre position pour trouver les services les plus proches de vous</string>
 	<key>NSLocationWhenInUseUsageDescription</key>
 	<string>L'application a besoin d'accéder à votre position pour trouver les services les plus proches de vous</string>
-	<key>NSMicrophoneUsageDescription</key>
-	<string></string>
+	<!-- <key>NSMicrophoneUsageDescription</key>
+	<string></string> -->
 	<key>NSPhotoLibraryUsageDescription</key>
 	<string>L'application a besoin d'accéder à votre caméra pour trouver les services les plus proches de vous</string>
 	<key>UIApplicationSupportsIndirectInputEvents</key>

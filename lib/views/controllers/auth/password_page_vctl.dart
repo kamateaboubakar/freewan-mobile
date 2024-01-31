@@ -50,10 +50,10 @@ class PasswordPageVctl extends ViewController {
   }
 
   Future<void> biometricAuthenticate() async {
-    var result = await BiometricAuthService.check();
-    if (result.status) {
-      var password = await Cache.getString(CacheKey.password.name);
-      if (password != null) {
+    var password = await Cache.getString(CacheKey.password.name);
+    if (password != null) {
+      var result = await BiometricAuthService.check();
+      if (result.status) {
         hasAlreadyAuthenticated = true;
         update();
 

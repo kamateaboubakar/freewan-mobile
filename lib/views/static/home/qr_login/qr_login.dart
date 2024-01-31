@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:lebedoo_assets/lebedoo_assets.dart';
-import 'package:lebedoo_assets/themes/asset_colors.dart';
 import 'package:qr_code_scanner/qr_code_scanner.dart';
 import 'package:wan_mobile/views/controllers/home/qr_login/qr_login_vctl.dart';
 
@@ -13,6 +12,11 @@ class QrLogin extends StatelessWidget {
         init: QrLoginVctl(),
         builder: (ctl) {
           return Scaffold(
+            extendBodyBehindAppBar: true,
+            appBar: AppBar(
+              backgroundColor: Colors.transparent,
+              foregroundColor: Colors.white,
+            ),
             body: Stack(
               children: [
                 QRView(
@@ -21,6 +25,8 @@ class QrLogin extends StatelessWidget {
                   overlay: QrScannerOverlayShape(
                     borderRadius: 30,
                     borderWidth: 30,
+                    cutOutWidth: Get.width - 50,
+                    cutOutHeight: Get.width - 50,
                     borderColor: Colors.white,
                   ),
                 ),

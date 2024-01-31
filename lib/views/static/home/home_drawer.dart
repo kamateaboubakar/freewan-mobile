@@ -9,6 +9,7 @@ import 'package:wan_mobile/views/static/auth/profil_page.dart';
 import 'package:wan_mobile/views/static/cgu_page.dart';
 import 'package:wan_mobile/views/static/home/qr_login/qr_login.dart';
 import 'package:lebedoo_wallets_transactions/views/static/moyens_paiements/moyens_paiements_page.dart';
+import 'package:wan_mobile/views/static/marchands/marchand_register_page.dart';
 
 class HomeDrawer extends StatelessWidget {
   final HomePageVctl ctl;
@@ -142,6 +143,17 @@ class HomeDrawer extends StatelessWidget {
                           Uri.parse("https://wa.me/${Const.supportWhatsapp}"),
                           mode: LaunchMode.externalApplication,
                         ),
+                      ),
+                      ListTile(
+                        style: ListTileStyle.drawer,
+                        leading: CircleAvatar(
+                          child: Image.asset(
+                            "assets/images/icons/boutique.png",
+                            height: 30,
+                          ),
+                        ),
+                        title: const Text("Devenir marchand"),
+                        onTap: () => Get.to(() => const MarchandRegisterPage()),
                       ),
                       ListTile(
                         style: ListTileStyle.drawer,

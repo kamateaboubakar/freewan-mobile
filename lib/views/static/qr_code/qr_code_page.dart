@@ -14,19 +14,22 @@ class QrCodePage extends StatelessWidget {
       appBar: AppBar(
         title: const Text("Mon Code QR"),
       ),
-      bottomNavigationBar: const ListTile(
-        dense: true,
-        title: Text(
-          "Powered by",
-          textAlign: TextAlign.center,
-          style: TextStyle(color: Colors.white),
-        ),
-        subtitle: Text(
-          "Freewan",
-          textAlign: TextAlign.center,
-          style: TextStyle(
-            color: Colors.white,
-            fontWeight: FontWeight.bold,
+      bottomNavigationBar: const Padding(
+        padding: EdgeInsets.only(bottom: 20),
+        child: ListTile(
+          dense: true,
+          title: Text(
+            "Powered by",
+            textAlign: TextAlign.center,
+            style: TextStyle(color: Colors.white),
+          ),
+          subtitle: Text(
+            "Freewan",
+            textAlign: TextAlign.center,
+            style: TextStyle(
+              color: Colors.white,
+              fontWeight: FontWeight.bold,
+            ),
           ),
         ),
       ),

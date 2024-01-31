@@ -142,7 +142,7 @@ class Routes extends ViewController {
           button: ButtonMenu(
             icon: Image.asset("assets/images/icons/carte_gab.png"),
             title: "GAB à proximité",
-            onPressed: () => Get.to(() => const MappingGabHomePage()),
+            onPressed: () => Get.to(() => MappingGabHomePage()),
           ),
         ),
         RouteItem(

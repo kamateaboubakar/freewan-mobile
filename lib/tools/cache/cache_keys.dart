@@ -1,1 +1,1 @@
-enum CacheKey { login, password }
+enum CacheKey { login, password, usedFeatures }

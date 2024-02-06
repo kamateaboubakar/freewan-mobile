@@ -1,3 +1,4 @@
+import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 import 'package:tools_flutter_project/tools_flutter_project.dart';
 
@@ -62,8 +63,12 @@ class CardMenu extends StatelessWidget {
             children: [
               Visibility(
                 visible: title != null,
-                child: Text(
+                child: AutoSizeText(
                   title.value,
+                  maxFontSize: 22,
+                  minFontSize: 20,
+                  maxLines: 1,
+                  overflow: TextOverflow.fade,
                   style: const TextStyle(
                     fontSize: 22,
                     fontWeight: FontWeight.bold,

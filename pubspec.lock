@@ -874,7 +874,7 @@ packages:
     description:
       path: "."
       ref: main
-      resolved-ref: "24a2e8c02ae4016d78f7c4958c7334b2f857c81f"
+      resolved-ref: "7cee9734b5c576cb67a4aff090fd996face01d68"
       url: "https://github.com/Lebedoo/lebedoo-assets.git"
     source: git
     version: "1.0.10+11"

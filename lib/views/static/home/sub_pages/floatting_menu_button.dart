@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:lebedoo_assets/lebedoo_assets.dart';
+import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 import 'package:wan_mobile/views/static/scan_pay/scan_pay_camera.dart';
 import 'package:lebedoo_assets/const/feature_dictionnary.dart';
-import 'package:wan_mobile/views/routes/routes.dart';
+import 'package:wan_mobile/routes/routes.dart';
 
 class FloatingMenuButton extends StatelessWidget {
   final Routes routes;
@@ -16,58 +17,64 @@ class FloatingMenuButton extends StatelessWidget {
           alignment: Alignment.bottomCenter,
           child: Container(
             height: 77,
-            margin: const EdgeInsets.only(bottom: 5, left: 10, right: 10),
-            child: Card(
-              elevation: 6,
-              shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(20),
-                side: BorderSide(color: Colors.grey.shade100),
-              ),
-              child: Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 7),
-                child: Row(
-                  mainAxisSize: MainAxisSize.min,
-                  children: [
-                    Expanded(
-                      child: Row(
-                        children: routes
-                            .routesByList(menus: {
-                              FeatureDictionnary.cartesBancaires,
-                              FeatureDictionnary.transfertArgent,
-                            })
-                            .map(
-                              (e) => Expanded(
+            margin: const EdgeInsets.only(
+              bottom: 5,
+              left: 15,
+              right: 15,
+            ),
+            decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(20),
+              color: Colors.white,
+              boxShadow: const [
+                BoxShadow(color: AssetColors.blue, blurRadius: 20),
+                // BoxShadow(color: Colors.blue, blurRadius: 20),
+              ],
+            ),
+            child: Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 7),
+              child: Row(
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  Expanded(
+                    child: Row(
+                      children: routes
+                          .routesByList(menus: {
+                            FeatureDictionnary.cartesBancaires,
+                            FeatureDictionnary.transfertArgent,
+                          })
+                          .map(
+                            (e) => Expanded(
+                              child: e.button.copyWith(
+                                iconBackgroundColor: Colors.transparent,
+                                backgroundColor: Colors.transparent,
+                              ),
+                            ),
+                          )
+                          .toList(),
+                    ),
+                  ),
+                  const Gap(85),
+                  Expanded(
+                    child: Row(
+                      children: routes
+                          .routesByList(menus: {
+                            FeatureDictionnary.ticketBus,
+                            FeatureDictionnary.retraitArgent,
+                          })
+                          .map(
+                            (e) => Expanded(
+                              child: Center(
                                 child: e.button.copyWith(
                                   iconBackgroundColor: Colors.transparent,
+                                  backgroundColor: Colors.transparent,
                                 ),
                               ),
-                            )
-                            .toList(),
-                      ),
+                            ),
+                          )
+                          .toList(),
                     ),
-                    const Gap(85),
-                    Expanded(
-                      child: Row(
-                        children: routes
-                            .routesByList(menus: {
-                              FeatureDictionnary.ticketBus,
-                              FeatureDictionnary.retraitArgent,
-                            })
-                            .map(
-                              (e) => Expanded(
-                                child: Center(
-                                  child: e.button.copyWith(
-                                    iconBackgroundColor: Colors.transparent,
-                                    backgroundColor: Colors.transparent,
-                                  ),
-                                ),
-                              ),
-                            )
-                            .toList(),
-                      ),
-                    ),
-                  ],
-                ),
+                  ),
+                ],
               ),
             ),
           ),

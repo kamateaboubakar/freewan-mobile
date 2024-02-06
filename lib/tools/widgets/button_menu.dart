@@ -1,6 +1,8 @@
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 import 'package:tools_flutter_project/tools_flutter_project.dart';
+import 'package:wan_mobile/routes/tools/abstracts/route_action.dart';
+import 'package:wan_mobile/routes/tools/actions/no_action.dart';
 
 class ButtonMenu extends StatelessWidget {
   final Widget icon;
@@ -17,8 +19,7 @@ class ButtonMenu extends StatelessWidget {
   final ShapeBorder? shape;
   final bool displayName;
   final bool withCircleIcon;
-
-  final void Function()? onPressed;
+  final RouteAction action;
 
   const ButtonMenu({
     this.minWidth,
@@ -28,7 +29,7 @@ class ButtonMenu extends StatelessWidget {
     this.categorie,
     required this.icon,
     this.title,
-    this.onPressed,
+    this.action = const NoAction(),
     this.side = BorderSide.none,
     this.backgroundColor = Colors.white,
     this.iconBackgroundColor,
@@ -59,7 +60,7 @@ class ButtonMenu extends StatelessWidget {
       displayName: displayName ?? this.displayName,
       icon: icon ?? this.icon,
       title: title ?? this.title,
-      onPressed: onPressed,
+      action: action,
       side: side ?? this.side,
       backgroundColor: backgroundColor ?? this.backgroundColor,
       iconFlex: iconFlex ?? this.iconFlex,
@@ -91,7 +92,7 @@ class ButtonMenu extends StatelessWidget {
           borderRadius: BorderRadius.circular(10),
           side: side,
         ),
-        onPressed: onPressed,
+        onPressed: () => action.handle(),
         child: Column(
           children: [
             Expanded(

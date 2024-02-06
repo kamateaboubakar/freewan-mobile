@@ -21,10 +21,10 @@ class PhoneAuthVctl extends ViewController {
     if (selectedPays?.id != null) {
       if (phoneCtl.text.isNotEmpty) {
         if (acceptCgu) {
-          await pr.show();
+          await EasyLoading.show(maskType: EasyLoadingMaskType.black);
           var res = await UserApiCtl()
               .loginPhone(phone: phoneCtl.text, paysId: selectedPays!.id!);
-          await pr.hide();
+          await EasyLoading.dismiss();
           if (res.status) {
             if (res.data == null) {
               await Get.to(() => PasswordPage(phone: phoneCtl.text));
@@ -55,7 +55,7 @@ class PhoneAuthVctl extends ViewController {
             message: "Veuillez saisir un numéro de téléphone valide SVP.");
       }
     } else {
-      Tools.messageBox(message: "Le code pays n'est pas valide.");
+      Tools.messageBox(message: "Veuillez sélectionner un pays valide SVP.");
     }
 
     // if (selectedPays != null) {

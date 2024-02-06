@@ -1,5 +1,6 @@
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
+import 'package:lebedoo_assets/lebedoo_assets.dart';
 import 'package:tools_flutter_project/tools_flutter_project.dart';
 import 'package:wan_mobile/tools/widgets/button_menu.dart';
 
@@ -72,7 +73,7 @@ class GridMenu extends StatelessWidget {
                   margin: EdgeInsets.zero,
                   padding: EdgeInsets.zero,
                   width: width,
-                  height: height,
+                  height: height.sp,
                   decoration: BoxDecoration(
                     color: backgroundColor,
                     borderRadius: BorderRadius.circular(10),

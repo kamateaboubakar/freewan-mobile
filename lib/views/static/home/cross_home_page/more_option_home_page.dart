@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:wan_mobile/tools/widgets/card_menu.dart';
 import 'package:lebedoo_assets/const/feature_dictionnary.dart';
-import 'package:wan_mobile/views/routes/routes.dart';
+import 'package:wan_mobile/routes/routes.dart';
 
 class MoreOptionHomePage extends StatelessWidget {
   final Set<FeatureDictionnary> menus;

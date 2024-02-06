@@ -6,17 +6,21 @@ import 'package:external_app_launcher/external_app_launcher.dart';
 import 'package:flutter/material.dart';
 import 'package:guide_urbain/views/static/guide_urbain_home_page.dart';
 import 'package:lebedoo_assets/const/feature_dictionnary.dart';
-import 'package:lebedoo_assets/lebedoo_assets.dart';
 import 'package:lebedoo_wallets_transactions/views/static/moyens_paiements/cartes_bancaires/cartes_bancaires_page.dart';
 import 'package:lebedoo_wallets_transactions/views/static/moyens_paiements/compte_bancaire/compte_bancaire_page.dart';
 import 'package:mapping_gab/views/static/mapping_gab_home_page.dart';
 import 'package:tools_flutter_project/tools_flutter_project.dart';
+import 'package:wan_mobile/routes/tools/actions/go_to_more_page_action.dart';
+import 'package:wan_mobile/routes/tools/actions/go_to_page_action.dart';
+import 'package:wan_mobile/routes/tools/actions/on_pressed_action.dart';
 import 'package:wan_mobile/tools/widgets/button_menu.dart';
 import 'package:lebedoo_assets/views/controllers/abstracts/view_controller.dart';
+import 'package:wan_mobile/views/static/assurances/assurances_home_page.dart';
+import 'package:wan_mobile/views/static/bank_micro_finance/bank_home_page.dart';
+import 'package:wan_mobile/views/static/bank_micro_finance/micro_finance_home_page.dart';
 import 'package:wan_mobile/views/static/gaz/gaz_view.dart';
-import 'package:wan_mobile/views/static/home/cross_home_page/more_option_home_page.dart';
-import 'package:wan_mobile/views/routes/groupe_route.dart';
-import 'package:wan_mobile/views/routes/route_item.dart';
+import 'package:wan_mobile/routes/groupe_route.dart';
+import 'package:wan_mobile/routes/route_item.dart';
 import 'package:wan_mobile/views/static/job/views/employee/employee_views.dart';
 import 'package:wan_mobile/views/static/pressing/pressing_view.dart';
 
@@ -28,7 +32,6 @@ class Routes extends ViewController {
           button: ButtonMenu(
             icon: Image.asset("assets/images/icons/gain.png"),
             title: "Retraits d'argent",
-            onPressed: () {},
           ),
         ),
         RouteItem(
@@ -38,7 +41,6 @@ class Routes extends ViewController {
           button: ButtonMenu(
             icon: Image.asset("assets/images/icons/annuler_transfert.png"),
             title: "Annuler transfert",
-            onPressed: () {},
           ),
         ),
         RouteItem(
@@ -47,17 +49,15 @@ class Routes extends ViewController {
           button: ButtonMenu(
             icon: Image.asset("assets/images/icons/depense.png"),
             title: "Paiements & achats",
-            onPressed: () => Get.to(
-              () => const MoreOptionHomePage(
-                groupeTitle: "Paiements & achats",
-                menus: {
-                  FeatureDictionnary.paiementTimbres,
-                  FeatureDictionnary.paiementContravention,
-                  FeatureDictionnary.factureEau,
-                  FeatureDictionnary.factureElectricite,
-                  FeatureDictionnary.rechargeYango,
-                },
-              ),
+            action: const GoToMorePageAction(
+              groupeTitle: "Paiements & achats",
+              menus: {
+                FeatureDictionnary.paiementTimbres,
+                FeatureDictionnary.paiementContravention,
+                FeatureDictionnary.factureEau,
+                FeatureDictionnary.factureElectricite,
+                FeatureDictionnary.rechargeYango,
+              },
             ),
           ),
         ),
@@ -67,7 +67,6 @@ class Routes extends ViewController {
           button: ButtonMenu(
             icon: Image.asset("assets/images/icons/depot_argent.png"),
             title: "Dépôt d'argent",
-            onPressed: () {},
           ),
         ),
         RouteItem(
@@ -76,7 +75,6 @@ class Routes extends ViewController {
           button: ButtonMenu(
             icon: Image.asset("assets/images/icons/bank_to_wallet.png"),
             title: "Bank To Wallet",
-            onPressed: () {},
           ),
         ),
         RouteItem(
@@ -86,15 +84,13 @@ class Routes extends ViewController {
             withCircleIcon: false,
             icon: Image.asset("assets/images/icons8-envoyé.gif"),
             title: "Transfert d'argent",
-            onPressed: () => Get.to(
-              () => const MoreOptionHomePage(
-                groupeTitle: "Transfert d'argent",
-                menus: {
-                  FeatureDictionnary.bankToWaller,
-                  FeatureDictionnary.wallerToBank,
-                  FeatureDictionnary.annulerTransfert,
-                },
-              ),
+            action: const GoToMorePageAction(
+              groupeTitle: "Transfert d'argent",
+              menus: {
+                FeatureDictionnary.bankToWaller,
+                FeatureDictionnary.wallerToBank,
+                FeatureDictionnary.annulerTransfert,
+              },
             ),
           ),
         ),
@@ -104,7 +100,6 @@ class Routes extends ViewController {
           button: ButtonMenu(
             icon: Image.asset("assets/images/icons/wallet_to_bank.png"),
             title: "Wallet To Bank",
-            onPressed: () {},
           ),
         ),
         RouteItem(
@@ -113,7 +108,6 @@ class Routes extends ViewController {
           button: ButtonMenu(
             icon: Image.asset("assets/images/icons/historique_transaction.png"),
             title: "Historique transactions",
-            onPressed: () {},
           ),
         ),
         //-----------------------------
@@ -123,16 +117,22 @@ class Routes extends ViewController {
           button: ButtonMenu(
             icon: Image.asset("assets/images/icons/compte-bancaire.png"),
             title: "Comptes bancaires",
-            onPressed: () => Get.to(() => const CompteBancairePage()),
+            action: const GoToRouteAction(
+              feature: FeatureDictionnary.cartesBancaires,
+              page: CompteBancairePage(),
+            ),
           ),
         ),
         RouteItem(
           groupe: GroupeRoute.cartesEtComptes,
-          id: FeatureDictionnary.comptesBancaires,
+          id: FeatureDictionnary.banks,
           button: ButtonMenu(
             icon: Image.asset("assets/images/icons/bank.png"),
-            title: "Banks & microfinances",
-            onPressed: () {},
+            title: "Banques",
+            action: const GoToRouteAction(
+              feature: FeatureDictionnary.banks,
+              page: BankHomePage(),
+            ),
           ),
         ),
         //-----------------------------
@@ -142,7 +142,10 @@ class Routes extends ViewController {
           button: ButtonMenu(
             icon: Image.asset("assets/images/icons/carte_gab.png"),
             title: "GAB à proximité",
-            onPressed: () => Get.to(() => MappingGabHomePage()),
+            action: GoToRouteAction(
+              feature: FeatureDictionnary.gabAProximite,
+              page: MappingGabHomePage(),
+            ),
           ),
         ),
         RouteItem(
@@ -151,7 +154,6 @@ class Routes extends ViewController {
           button: ButtonMenu(
             icon: Image.asset("assets/images/icons/restaurant.png"),
             title: "Restaurant",
-            onPressed: () {},
           ),
         ),
         RouteItem(
@@ -160,7 +162,10 @@ class Routes extends ViewController {
           button: ButtonMenu(
             icon: Image.asset("assets/images/icons/gaz.png"),
             title: "GAZ",
-            onPressed: () => Get.to(() => const GazMapPage()),
+            action: const GoToRouteAction(
+              feature: FeatureDictionnary.gaz,
+              page: GazMapPage(),
+            ),
           ),
         ),
         RouteItem(
@@ -169,7 +174,10 @@ class Routes extends ViewController {
           button: ButtonMenu(
             icon: Image.asset("assets/images/icons/icons8-repassage-64.png"),
             title: "Pressing",
-            onPressed: () => Get.to(() => const PressingMapPage()),
+            action: const GoToRouteAction(
+              feature: FeatureDictionnary.pressing,
+              page: PressingMapPage(),
+            ),
           ),
         ),
         RouteItem(
@@ -178,7 +186,10 @@ class Routes extends ViewController {
           button: ButtonMenu(
             icon: Image.asset("assets/images/icons/icons8-brique-96.png"),
             title: "Matériaux construction",
-            onPressed: () => Get.to(() => const ConstructionHomePage()),
+            action: const GoToRouteAction(
+              feature: FeatureDictionnary.materiauxConstruction,
+              page: ConstructionHomePage(),
+            ),
           ),
         ),
         RouteItem(
@@ -188,7 +199,6 @@ class Routes extends ViewController {
             icon:
                 Image.asset("assets/images/icons/icons8-etudiant-homme-64.png"),
             title: "Frais scolarité",
-            onPressed: () {},
           ),
         ),
         RouteItem(
@@ -197,7 +207,6 @@ class Routes extends ViewController {
           button: ButtonMenu(
             icon: Image.asset("assets/images/icons/paiement_loyer.png"),
             title: "Loyer",
-            onPressed: () {},
           ),
         ),
         RouteItem(
@@ -206,7 +215,10 @@ class Routes extends ViewController {
           button: ButtonMenu(
             icon: Image.asset("assets/images/icons/icons8-mallette.gif"),
             title: "Jobs",
-            onPressed: () => Get.to(() => const JobHomePage()),
+            action: const GoToRouteAction(
+              feature: FeatureDictionnary.jobs,
+              page: JobHomePage(),
+            ),
           ),
         ),
         RouteItem(
@@ -215,7 +227,6 @@ class Routes extends ViewController {
           button: ButtonMenu(
             icon: Image.asset("assets/images/icons/pharmacie.png"),
             title: "Pharmacie",
-            onPressed: () {},
           ),
         ),
         RouteItem(
@@ -224,7 +235,10 @@ class Routes extends ViewController {
           button: ButtonMenu(
             icon: Image.asset("assets/images/icons/icons8-liquor-shelf-64.png"),
             title: "Brasserie",
-            onPressed: () => Get.to(() => const BrasserieHomePage()),
+            action: const GoToRouteAction(
+              feature: FeatureDictionnary.brasserie,
+              page: BrasserieHomePage(),
+            ),
           ),
         ),
         RouteItem(
@@ -233,7 +247,10 @@ class Routes extends ViewController {
           button: ButtonMenu(
             icon: Image.asset("assets/images/icons/caves.png"),
             title: "Caves",
-            onPressed: () => Get.to(() => const CaveHomePage()),
+            action: const GoToRouteAction(
+              feature: FeatureDictionnary.caves,
+              page: CaveHomePage(),
+            ),
           ),
         ),
         RouteItem(
@@ -242,7 +259,6 @@ class Routes extends ViewController {
           button: ButtonMenu(
             icon: Image.asset("assets/images/icons/achat_unite.png"),
             title: "Achat unités",
-            onPressed: () {},
           ),
         ),
         RouteItem(
@@ -251,7 +267,6 @@ class Routes extends ViewController {
           button: ButtonMenu(
             icon: Image.asset("assets/images/icons/acaht_data.png"),
             title: "Achat pass internet",
-            onPressed: () {},
           ),
         ),
         RouteItem(
@@ -260,7 +275,6 @@ class Routes extends ViewController {
           button: ButtonMenu(
             icon: Image.asset("assets/images/icons/location-de-voiture.png"),
             title: "Location de voitures",
-            onPressed: () {},
           ),
         ),
         //-----------------------------
@@ -270,7 +284,6 @@ class Routes extends ViewController {
           button: ButtonMenu(
             icon: Image.asset("assets/images/icons/tontine.png"),
             title: "Tontines",
-            onPressed: () {},
           ),
         ),
         RouteItem(
@@ -279,7 +292,6 @@ class Routes extends ViewController {
           button: ButtonMenu(
             icon: Image.asset("assets/images/icons/don.png"),
             title: "Dons",
-            onPressed: () {},
           ),
         ),
         RouteItem(
@@ -288,7 +300,6 @@ class Routes extends ViewController {
           button: ButtonMenu(
             icon: Image.asset("assets/images/icons/icons8-cadeau.gif"),
             title: "Cadeaux",
-            onPressed: () {},
           ),
         ),
         RouteItem(
@@ -297,16 +308,14 @@ class Routes extends ViewController {
           button: ButtonMenu(
             icon: Image.asset("assets/images/icons/voucher.png"),
             title: "Vouchers",
-            onPressed: () => Get.to(
-              () => const MoreOptionHomePage(
-                groupeTitle: "Vouchers",
-                menus: {
-                  FeatureDictionnary.nintendo,
-                  FeatureDictionnary.virgin,
-                  FeatureDictionnary.xbox,
-                  FeatureDictionnary.playstation,
-                },
-              ),
+            action: const GoToMorePageAction(
+              groupeTitle: "Vouchers",
+              menus: {
+                FeatureDictionnary.nintendo,
+                FeatureDictionnary.virgin,
+                FeatureDictionnary.xbox,
+                FeatureDictionnary.playstation,
+              },
             ),
           ),
         ),
@@ -316,7 +325,6 @@ class Routes extends ViewController {
           button: ButtonMenu(
             icon: Image.asset("assets/images/icons/nounou.png"),
             title: "Nounous",
-            onPressed: () {},
           ),
         ),
         //-----------------------------
@@ -326,7 +334,6 @@ class Routes extends ViewController {
           button: ButtonMenu(
             icon: Image.asset("assets/images/icons/timbre.png"),
             title: "Paiement de timbres",
-            onPressed: () {},
           ),
         ),
         RouteItem(
@@ -335,7 +342,6 @@ class Routes extends ViewController {
           button: ButtonMenu(
             icon: Image.asset("assets/images/icons/taxe.png"),
             title: "Paiement de taxes",
-            onPressed: () {},
           ),
         ),
         RouteItem(
@@ -344,7 +350,6 @@ class Routes extends ViewController {
           button: ButtonMenu(
             icon: Image.asset("assets/images/icons/sifflet.png"),
             title: "Paiement\ncontravention",
-            onPressed: () {},
           ),
         ),
         //-----------------------------
@@ -354,7 +359,6 @@ class Routes extends ViewController {
           button: ButtonMenu(
             icon: Image.asset("assets/images/icons/cie.png"),
             title: "Factures d'électricité",
-            onPressed: () {},
           ),
         ),
         RouteItem(
@@ -363,7 +367,6 @@ class Routes extends ViewController {
           button: ButtonMenu(
             icon: Image.asset("assets/images/icons/SODECI.png"),
             title: "Factures d'eau",
-            onPressed: () {},
           ),
         ),
         RouteItem(
@@ -373,7 +376,6 @@ class Routes extends ViewController {
             withCircleIcon: false,
             icon: Image.asset("assets/images/icons/Canal.png"),
             title: "Canal+",
-            onPressed: () {},
           ),
         ),
         RouteItem(
@@ -382,14 +384,12 @@ class Routes extends ViewController {
           button: ButtonMenu(
             icon: Image.asset("assets/images/icons/tv.png"),
             title: "Abonnement\ntélé",
-            onPressed: () => Get.to(
-              () => const MoreOptionHomePage(
-                groupeTitle: "Abonnement télé",
-                menus: {
-                  FeatureDictionnary.canalPlus,
-                  FeatureDictionnary.netflix,
-                },
-              ),
+            action: const GoToMorePageAction(
+              groupeTitle: "Abonnement télé",
+              menus: {
+                FeatureDictionnary.canalPlus,
+                FeatureDictionnary.netflix,
+              },
             ),
           ),
         ),
@@ -399,7 +399,6 @@ class Routes extends ViewController {
           button: ButtonMenu(
             icon: Image.asset("assets/images/icons/abonnement_fibre.png"),
             title: "Abonnement\nfibre",
-            onPressed: () {},
           ),
         ),
         RouteItem(
@@ -408,7 +407,6 @@ class Routes extends ViewController {
           button: ButtonMenu(
             icon: Image.asset("assets/images/icons/abonnement_payage.png"),
             title: "Abonnement\npéage",
-            onPressed: () {},
           ),
         ),
         RouteItem(
@@ -417,7 +415,6 @@ class Routes extends ViewController {
           button: ButtonMenu(
             icon: Image.asset("assets/images/icons/netflix.png"),
             title: "Netflix",
-            onPressed: () {},
           ),
         ),
         //-----------------------------
@@ -426,16 +423,14 @@ class Routes extends ViewController {
           id: FeatureDictionnary.tickets,
           button: ButtonMenu(
             icon: Image.asset("assets/images/icons/icons8-ticket.gif"),
-            title: "Tickets",
-            onPressed: () => Get.to(
-              () => const MoreOptionHomePage(
-                groupeTitle: "Tickets",
-                menus: {
-                  FeatureDictionnary.cinema,
-                  FeatureDictionnary.stade,
-                  FeatureDictionnary.concert,
-                },
-              ),
+            title: "E-tickets",
+            action: const GoToMorePageAction(
+              groupeTitle: "Tickets",
+              menus: {
+                FeatureDictionnary.cinema,
+                FeatureDictionnary.stade,
+                FeatureDictionnary.concert,
+              },
             ),
           ),
         ),
@@ -445,15 +440,13 @@ class Routes extends ViewController {
           button: ButtonMenu(
             icon: Image.asset("assets/images/icons/icons8-events-64.png"),
             title: "Evénements",
-            onPressed: () => Get.to(
-              () => const MoreOptionHomePage(
-                groupeTitle: "Evénements",
-                //TODO à completer
-                menus: {
-                  FeatureDictionnary.tickets,
-                  FeatureDictionnary.evenements,
-                },
-              ),
+            action: const GoToMorePageAction(
+              groupeTitle: "Evénements",
+              //TODO à completer
+              menus: {
+                FeatureDictionnary.tickets,
+                FeatureDictionnary.evenements,
+              },
             ),
           ),
         ),
@@ -463,7 +456,6 @@ class Routes extends ViewController {
           button: ButtonMenu(
             icon: Image.asset("assets/images/icons/icons8-film.gif"),
             title: "Cinéma",
-            onPressed: () {},
           ),
         ),
         RouteItem(
@@ -472,7 +464,6 @@ class Routes extends ViewController {
           button: ButtonMenu(
             icon: Image.asset("assets/images/icons/icons8-stade-100.png"),
             title: "Stade",
-            onPressed: () {},
           ),
         ),
         RouteItem(
@@ -481,7 +472,6 @@ class Routes extends ViewController {
           button: ButtonMenu(
             icon: Image.asset("assets/images/icons/icons8-concert.gif"),
             title: "Concert",
-            onPressed: () {},
           ),
         ),
         //-----------------------------
@@ -491,7 +481,6 @@ class Routes extends ViewController {
           button: ButtonMenu(
             icon: Image.asset("assets/images/icons/bus_car.png"),
             title: "Tickets\nde Bus",
-            onPressed: () {},
           ),
         ),
         RouteItem(
@@ -500,7 +489,6 @@ class Routes extends ViewController {
           button: ButtonMenu(
             icon: Image.asset("assets/images/icons/bateau.png"),
             title: "Tickets\nBateau Bus",
-            onPressed: () {},
           ),
         ),
         RouteItem(
@@ -510,7 +498,6 @@ class Routes extends ViewController {
             icon: Image.asset(
                 "assets/images/icons/icons8-avion-vue-de-face-64.png"),
             title: "Billets\nd'avion",
-            onPressed: () {},
           ),
         ),
         RouteItem(
@@ -519,7 +506,6 @@ class Routes extends ViewController {
           button: ButtonMenu(
             icon: Image.asset("assets/images/icons/icons8-hotel.png"),
             title: "Hôtels",
-            onPressed: () {},
           ),
         ),
         RouteItem(
@@ -528,7 +514,10 @@ class Routes extends ViewController {
           button: ButtonMenu(
             icon: Image.asset("assets/images/icons/guide_urbain.gif"),
             title: "Guide urbain",
-            onPressed: () => Get.to(() => const GuideUrbainHomePage()),
+            action: const GoToRouteAction(
+              feature: FeatureDictionnary.guideUrbain,
+              page: GuideUrbainHomePage(),
+            ),
           ),
         ),
         RouteItem(
@@ -538,7 +527,6 @@ class Routes extends ViewController {
             withCircleIcon: false,
             icon: Image.asset("assets/images/1xbet.png"),
             title: "1xBet",
-            onPressed: () {},
           ),
         ),
         RouteItem(
@@ -548,7 +536,6 @@ class Routes extends ViewController {
             withCircleIcon: false,
             icon: Image.asset("assets/images/pmu.png"),
             title: "PMU",
-            onPressed: () {},
           ),
         ),
         RouteItem(
@@ -558,7 +545,6 @@ class Routes extends ViewController {
             withCircleIcon: false,
             icon: Image.asset("assets/images/betclic.png"),
             title: "Betclic",
-            onPressed: () {},
           ),
         ),
         RouteItem(
@@ -568,7 +554,6 @@ class Routes extends ViewController {
             withCircleIcon: false,
             icon: Image.asset("assets/images/premier_bet.jpg"),
             title: "Premier Bet",
-            onPressed: () {},
           ),
         ),
         RouteItem(
@@ -577,7 +562,10 @@ class Routes extends ViewController {
           button: ButtonMenu(
             icon: Image.asset("assets/images/icons/carte_bancaire.png"),
             title: "Cartes virtuelles",
-            onPressed: () => Get.to(() => const CartesBancairesPage()),
+            action: const GoToRouteAction(
+              feature: FeatureDictionnary.cartesVirtuelles,
+              page: CartesBancairesPage(),
+            ),
           ),
         ),
         RouteItem(
@@ -588,7 +576,10 @@ class Routes extends ViewController {
               "assets/images/icons/commande_carte_bancaire.gif",
             ),
             title: "Commandez une carte",
-            onPressed: () => Get.to(() => const CommandeCarteBancaireHome()),
+            action: const GoToRouteAction(
+              feature: FeatureDictionnary.commanderCarteCredit,
+              page: CommandeCarteBancaireHome(),
+            ),
           ),
         ),
         RouteItem(
@@ -597,7 +588,6 @@ class Routes extends ViewController {
           button: ButtonMenu(
             icon: Image.asset("assets/images/icons/car.png"),
             title: "Tickets\nde car",
-            onPressed: () {},
           ),
         ),
         RouteItem(
@@ -607,7 +597,6 @@ class Routes extends ViewController {
             withCircleIcon: false,
             icon: Image.asset("assets/images/sportcash.png"),
             title: "SportCash",
-            onPressed: () {},
           ),
         ),
         RouteItem(
@@ -617,7 +606,6 @@ class Routes extends ViewController {
             withCircleIcon: false,
             icon: Image.asset("assets/images/lotobonheur.jpg"),
             title: "lotoBonheur",
-            onPressed: () {},
           ),
         ),
         RouteItem(
@@ -627,7 +615,6 @@ class Routes extends ViewController {
             withCircleIcon: false,
             icon: Image.asset("assets/images/virtualGames.jpg"),
             title: "virtualGames",
-            onPressed: () {},
           ),
         ),
         RouteItem(
@@ -636,7 +623,6 @@ class Routes extends ViewController {
           button: ButtonMenu(
             icon: Image.asset("assets/images/icons/icons8-roulette-80.png"),
             title: "Roulette Lebedoo",
-            onPressed: () {},
           ),
         ),
         RouteItem(
@@ -645,7 +631,6 @@ class Routes extends ViewController {
           button: ButtonMenu(
             icon: Image.asset("assets/images/icons/icons8-horse-racing-96.png"),
             title: "Courses chevaux Lebedoo",
-            onPressed: () {},
           ),
         ),
         RouteItem(
@@ -654,7 +639,6 @@ class Routes extends ViewController {
           button: ButtonMenu(
             icon: Image.asset("assets/images/icons/icons8-bet-62.png"),
             title: "Paris Football Lebedoo",
-            onPressed: () {},
           ),
         ),
         RouteItem(
@@ -663,7 +647,6 @@ class Routes extends ViewController {
           button: ButtonMenu(
             icon: Image.asset("assets/images/icons/icons8-casino-48.png"),
             title: "Casino Lebedoo",
-            onPressed: () {},
           ),
         ),
         RouteItem(
@@ -672,7 +655,6 @@ class Routes extends ViewController {
           button: ButtonMenu(
             icon: Image.asset("assets/images/Virgin-logo.png"),
             title: "Virgin",
-            onPressed: () {},
           ),
         ),
         RouteItem(
@@ -681,7 +663,6 @@ class Routes extends ViewController {
           button: ButtonMenu(
             icon: Image.asset("assets/images/icons/historique_transaction.png"),
             title: "Transactions\nrécentes",
-            onPressed: () {},
           ),
         ),
         RouteItem(
@@ -691,7 +672,6 @@ class Routes extends ViewController {
             withCircleIcon: false,
             icon: Image.asset("assets/images/Nintendo_logo.png"),
             title: "Ninintendo",
-            onPressed: () {},
           ),
         ),
         RouteItem(
@@ -700,7 +680,6 @@ class Routes extends ViewController {
           button: ButtonMenu(
             icon: Image.asset("assets/images/Steam_icon.png"),
             title: "Steam",
-            onPressed: () {},
           ),
         ),
         RouteItem(
@@ -710,7 +689,6 @@ class Routes extends ViewController {
             withCircleIcon: false,
             icon: Image.asset("assets/images/Xbox_store.jpg"),
             title: "Xbox",
-            onPressed: () {},
           ),
         ),
         RouteItem(
@@ -720,7 +698,6 @@ class Routes extends ViewController {
             withCircleIcon: false,
             icon: Image.asset("assets/images/playstation_store.png"),
             title: "Playstation",
-            onPressed: () {},
           ),
         ),
         RouteItem(
@@ -729,14 +706,12 @@ class Routes extends ViewController {
           button: ButtonMenu(
             icon: Image.asset("assets/images/icons/taxi.png"),
             title: "Taxis",
-            onPressed: () => Get.to(
-              () => const MoreOptionHomePage(
-                groupeTitle: GroupeRoute.taxi,
-                menus: {
-                  FeatureDictionnary.treiizeTaxi,
-                  FeatureDictionnary.yango,
-                },
-              ),
+            action: const GoToMorePageAction(
+              groupeTitle: GroupeRoute.taxi,
+              menus: {
+                FeatureDictionnary.treiizeTaxi,
+                FeatureDictionnary.yango,
+              },
             ),
           ),
         ),
@@ -746,16 +721,18 @@ class Routes extends ViewController {
           button: ButtonMenu(
             icon: Image.asset("assets/images/yango.png"),
             title: "Yango",
-            onPressed: () async {
-              await LaunchApp.openApp(
-                androidPackageName: 'com.yandex.yango',
-                iosUrlScheme:
-                    'https://apps.apple.com/fr/app/yango-more-than-taxi/id1437157286',
-                appStoreLink:
-                    'https://apps.apple.com/fr/app/yango-more-than-taxi/id1437157286',
-                openStore: false,
-              );
-            },
+            action: OnPressedAction(
+              onPressed: () async {
+                await LaunchApp.openApp(
+                  androidPackageName: 'com.yandex.yango',
+                  iosUrlScheme:
+                      'https://apps.apple.com/fr/app/yango-more-than-taxi/id1437157286',
+                  appStoreLink:
+                      'https://apps.apple.com/fr/app/yango-more-than-taxi/id1437157286',
+                  openStore: false,
+                );
+              },
+            ),
           ),
         ),
         RouteItem(
@@ -764,7 +741,6 @@ class Routes extends ViewController {
           button: ButtonMenu(
             icon: Image.asset("assets/images/treiize_taxi.jpeg"),
             title: "Treiize Taxi",
-            onPressed: () {},
           ),
         ),
         RouteItem(
@@ -774,7 +750,6 @@ class Routes extends ViewController {
             withCircleIcon: false,
             icon: Image.asset("assets/images/tirageghana.jpg"),
             title: "Tirage Ghana",
-            onPressed: () {},
           ),
         ),
         RouteItem(
@@ -784,7 +759,38 @@ class Routes extends ViewController {
             icon:
                 Image.asset("assets/images/icons/recharge_carte_prepayee.png"),
             title: "Recharge de carte",
-            onPressed: () {},
+          ),
+        ),
+        RouteItem(
+          groupe: GroupeRoute.centresInterets,
+          id: FeatureDictionnary.assurances,
+          button: ButtonMenu(
+            icon: Image.asset("assets/images/icons/assurance.png"),
+            title: "E-assurances",
+            action: const GoToRouteAction(
+              feature: FeatureDictionnary.assurances,
+              page: AssurancesHomePage(),
+            ),
+          ),
+        ),
+        RouteItem(
+          groupe: GroupeRoute.centresInterets,
+          id: FeatureDictionnary.microfinances,
+          button: ButtonMenu(
+            icon: Image.asset("assets/images/icons/microfinances.png"),
+            title: "Micro-finances",
+            action: const GoToRouteAction(
+              feature: FeatureDictionnary.microfinances,
+              page: MicroFinanceHomePage(),
+            ),
+          ),
+        ),
+        RouteItem(
+          groupe: GroupeRoute.centresInterets,
+          id: FeatureDictionnary.avanceSurSalaire,
+          button: ButtonMenu(
+            icon: Image.asset("assets/images/icons/avance_sur_salaire.png"),
+            title: "AVS",
           ),
         ),
       ];

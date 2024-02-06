@@ -49,6 +49,7 @@ class BottomSheetPhoneAuth extends StatelessWidget {
                 ),
                 const SizedBox(height: 14),
                 const CTextFormField(
+                  autofocus: false,
                   fillColor: Color.fromRGBO(247, 250, 255, 1),
                   hintText: "Recherchez votre code pays",
                 ),

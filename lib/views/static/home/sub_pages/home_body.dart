@@ -2,14 +2,13 @@ import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 import 'package:lebedoo_assets/lebedoo_assets.dart';
 import 'package:tools_flutter_project/tools_flutter_project.dart';
+import 'package:wan_mobile/routes/tools/actions/go_to_more_page_action.dart';
 import 'package:wan_mobile/tools/const/const.dart';
 import 'package:wan_mobile/tools/widgets/button_menu.dart';
 import 'package:wan_mobile/tools/widgets/card_menu.dart';
-import 'package:wan_mobile/tools/widgets/container_menu.dart';
 import 'package:wan_mobile/tools/widgets/grid_menu.dart';
-import 'package:wan_mobile/tools/widgets/pageable_menu.dart';
 import 'package:wan_mobile/views/controllers/home/home_page_vctl.dart';
-import 'package:wan_mobile/views/static/home/cross_home_page/more_option_home_page.dart';
+import 'package:wan_mobile/views/static/home/sub_pages/transaction_recurrente_section.dart';
 import 'package:wan_mobile/views/static/mall/mall_page.dart';
 import 'package:lebedoo_assets/const/feature_dictionnary.dart';
 
@@ -23,7 +22,7 @@ class HomeBody extends StatelessWidget {
       child: Stack(
         children: [
           SizedBox(
-            height: Get.height * 0.4,
+            height: (Get.height * 0.4).sp,
             child: Image.asset(
               "assets/images/pub_lbd.png",
               fit: BoxFit.fitWidth,
@@ -86,41 +85,7 @@ class HomeBody extends StatelessWidget {
                                   .toList(),
                             ),
                             const Gap(20),
-                            PageableMenu(
-                              title: "Transactions reccurentes",
-                              children: [
-                                ButtonMenu(
-                                  icon:
-                                      Image.asset("assets/images/icons/tv.png"),
-                                  title: "Abonnement\ntélé",
-                                  onPressed: () {},
-                                ),
-                                ButtonMenu(
-                                  icon: Image.asset(
-                                      "assets/images/icons/gain.png"),
-                                  title: "Retraits d'argent",
-                                  onPressed: () {},
-                                ),
-                                ButtonMenu(
-                                  icon: Image.asset(
-                                      "assets/images/icons/depense.png"),
-                                  title: "Paiements",
-                                  onPressed: () {},
-                                ),
-                                ButtonMenu(
-                                  icon: Image.asset(
-                                      "assets/images/icons/Canal.png"),
-                                  title: "Canal+",
-                                  onPressed: () {},
-                                ),
-                                ButtonMenu(
-                                  icon: Image.asset(
-                                      "assets/images/icons/wallet_to_bank.png"),
-                                  title: "Wallet To Bank",
-                                  onPressed: () {},
-                                ),
-                              ],
-                            ),
+                            TransactionRecurrenteSection(ctl.routes),
                             GridMenu(
                               mainAxisSpacing: 5,
                               crossAxisSpacing: 5,
@@ -137,6 +102,9 @@ class HomeBody extends StatelessWidget {
                                     FeatureDictionnary.commanderCarteCredit,
                                     FeatureDictionnary.cartesVirtuelles,
                                     FeatureDictionnary.rechargeCartePrepayee,
+                                    FeatureDictionnary.banks,
+                                    FeatureDictionnary.microfinances,
+                                    FeatureDictionnary.avanceSurSalaire,
                                   })
                                   .map((e) => e.button)
                                   .toList(),
@@ -151,36 +119,35 @@ class HomeBody extends StatelessWidget {
                             CardMenu(
                               title: "Centres d’intérêts",
                               children: ctl.routes
-                                  .routesByList(menus: {
+                                  .routesByList(sorted: false, menus: {
+                                    FeatureDictionnary.assurances,
                                     FeatureDictionnary.gabAProximite,
                                     FeatureDictionnary.restaurant,
                                     FeatureDictionnary.gaz,
                                     FeatureDictionnary.pressing,
                                     FeatureDictionnary.materiauxConstruction,
-                                    FeatureDictionnary.fraisScolarite,
                                     FeatureDictionnary.loyer,
                                   })
                                   .map((e) => e.button)
                                   .toList()
                                 ..add(
-                                  ButtonMenu(
+                                  const ButtonMenu(
                                     title: "Voir plus",
-                                    icon: const CircleAvatar(
+                                    icon: CircleAvatar(
                                       child: Icon(Icons.arrow_forward),
                                     ),
-                                    onPressed: () => Get.to(
-                                      () => const MoreOptionHomePage(
-                                        groupeTitle: "Centres d'intérêts",
-                                        menus: {
-                                          FeatureDictionnary.jobs,
-                                          FeatureDictionnary.pharmacie,
-                                          FeatureDictionnary.brasserie,
-                                          FeatureDictionnary.caves,
-                                          FeatureDictionnary.achatPass,
-                                          FeatureDictionnary.achatUnite,
-                                          FeatureDictionnary.locationVehicules,
-                                        },
-                                      ),
+                                    action: GoToMorePageAction(
+                                      groupeTitle: "Centres d'intérêts",
+                                      menus: {
+                                        FeatureDictionnary.fraisScolarite,
+                                        FeatureDictionnary.jobs,
+                                        FeatureDictionnary.pharmacie,
+                                        FeatureDictionnary.brasserie,
+                                        FeatureDictionnary.caves,
+                                        FeatureDictionnary.achatPass,
+                                        FeatureDictionnary.achatUnite,
+                                        FeatureDictionnary.locationVehicules,
+                                      },
                                     ),
                                   ),
                                 ),
@@ -354,71 +321,89 @@ class HomeBody extends StatelessWidget {
                                   .where((e) => e.categorie == "image_bas")
                                   .toList(),
                             ),
-                            ContainerMenu(
-                              padding: EdgeInsets.zero,
-                              child: GestureDetector(
-                                onTap: () => Get.to(() => const MallPage()),
-                                child: ClipRRect(
-                                  borderRadius: BorderRadius.circular(10),
-                                  child: Image.asset(
-                                    "assets/images/lebedoo_mall.jpeg",
-                                    height: 200,
-                                    width: double.infinity,
-                                    fit: BoxFit.contain,
-                                  ),
+                            GestureDetector(
+                              onTap: () => Get.to(() => const MallPage()),
+                              child: ClipRRect(
+                                borderRadius: BorderRadius.circular(20),
+                                child: Image.asset(
+                                  "assets/images/lebedoo_mall.jpeg",
+                                  // height: 200,
+                                  width: double.infinity,
+                                  fit: BoxFit.contain,
                                 ),
                               ),
                             ),
-                            Row(
-                              children: [
-                                Expanded(
-                                  child: Padding(
-                                    padding: const EdgeInsets.all(8.0),
-                                    child: Column(
-                                      children: [
-                                        const AutoSizeText(
-                                          "🚀 Profitez de tous les avantages "
-                                          "de ${Const.appName} avec vos amis 🎉✨.",
-                                          textAlign: TextAlign.center,
-                                          maxLines: 4,
-                                          minFontSize: 15,
-                                          maxFontSize: 20,
-                                        ),
-                                        const Gap(10),
-                                        CButton(
-                                          borderRadius: 20,
-                                          color: AssetColors.blue,
-                                          onPressed: () => ctl.shareAppText(
-                                              codeParrain: ctl
-                                                  .appCtl.user.ownerCode.value),
-                                          child: Row(
-                                            mainAxisAlignment:
-                                                MainAxisAlignment.center,
-                                            children: [
-                                              Image.asset(
-                                                "assets/images/icons/partager.png",
-                                                width: 20,
-                                                color: Colors.white,
-                                              ),
-                                              // Icon(Icons.share),
-                                              const Gap(10),
-                                              const Text("Inviter un ami"),
-                                            ],
+                            // ContainerMenu(
+                            //   margin: EdgeInsets.zero,
+                            //   borderRadius: BorderRadius.circular(20),
+                            //   padding: EdgeInsets.zero,
+                            //   child: GestureDetector(
+                            //     onTap: () => Get.to(() => const MallPage()),
+                            //     child: ClipRRect(
+                            //       borderRadius: BorderRadius.circular(20),
+                            //       child: Image.asset(
+                            //         "assets/images/lebedoo_mall.jpeg",
+                            //         height: 200,
+                            //         width: double.infinity,
+                            //         fit: BoxFit.contain,
+                            //       ),
+                            //     ),
+                            //   ),
+                            // ),
+                            GestureDetector(
+                              onTap: () => ctl.shareAppText(
+                                  codeParrain: ctl.appCtl.user.ownerCode.value),
+                              child: Row(
+                                children: [
+                                  Expanded(
+                                    child: Padding(
+                                      padding: const EdgeInsets.all(8.0),
+                                      child: Column(
+                                        children: [
+                                          const AutoSizeText(
+                                            "🚀 Profitez de tous les avantages "
+                                            "de ${Const.appName} avec vos amis 🎉✨.",
+                                            textAlign: TextAlign.center,
+                                            maxLines: 4,
+                                            minFontSize: 10,
+                                            maxFontSize: 20,
                                           ),
-                                        ),
-                                      ],
+                                          const Gap(10),
+                                          CButton(
+                                            borderRadius: 20,
+                                            color: AssetColors.blue,
+                                            onPressed: () => ctl.shareAppText(
+                                                codeParrain: ctl.appCtl.user
+                                                    .ownerCode.value),
+                                            child: Row(
+                                              mainAxisAlignment:
+                                                  MainAxisAlignment.center,
+                                              children: [
+                                                Image.asset(
+                                                  "assets/images/icons/partager.png",
+                                                  width: 20,
+                                                  color: Colors.white,
+                                                ),
+                                                // Icon(Icons.share),
+                                                const Gap(10),
+                                                const Text("Inviter un ami"),
+                                              ],
+                                            ),
+                                          ),
+                                        ],
+                                      ),
                                     ),
                                   ),
-                                ),
-                                Expanded(
-                                  child: Lottie.asset(
-                                      "assets/lotties/animation_lmw1phml.json"),
-                                )
-                              ],
+                                  Expanded(
+                                    child: Lottie.asset(
+                                        "assets/lotties/animation_lmw1phml.json"),
+                                  )
+                                ],
+                              ),
                             ),
                             const ListTile(
                               title: Text(
-                                "${Const.appName} © 2023 - V${Const.appVersion}",
+                                "${Const.appName} © 2024 - V${Const.appVersion}",
                                 textAlign: TextAlign.center,
                                 style: TextStyle(
                                   fontSize: 12,

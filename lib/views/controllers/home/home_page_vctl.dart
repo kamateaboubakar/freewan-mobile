@@ -9,7 +9,7 @@ import 'package:wan_mobile/tools/services/notification_service.dart';
 import 'package:tools_flutter_project/tools_flutter_project.dart';
 import 'package:lebedoo_assets/views/controllers/abstracts/view_controller.dart';
 import 'package:wan_mobile/views/static/auth/phone_auth/phone_auth.dart';
-import 'package:wan_mobile/views/routes/routes.dart';
+import 'package:wan_mobile/routes/routes.dart';
 
 class HomePageVctl extends ViewController {
   Routes routes = Routes();

@@ -1,3 +1,4 @@
+import 'package:wan_mobile/routes/tools/abstracts/route_action.dart';
 import 'package:wan_mobile/tools/widgets/button_menu.dart';
 import 'package:lebedoo_assets/const/feature_dictionnary.dart';
 
@@ -8,6 +9,7 @@ class RouteItem {
   String? groupe;
   FeatureDictionnary id;
   ButtonMenu button;
+  RouteAction? action;
 
   RouteItem(
       {this.title,

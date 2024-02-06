@@ -19,10 +19,10 @@ class PasswordPageVctl extends ViewController {
   PasswordPageVctl(this.phone);
 
   Future<void> submit() async {
-    await pr.show();
+    await EasyLoading.show(maskType: EasyLoadingMaskType.black);
     var res = await userApiCtrl.authenticate(
         phone: phone, password: passwordCtl.text);
-    await pr.hide();
+    await EasyLoading.dismiss();
     if (res.status) {
       await Cache.setString(CacheKey.password.name, passwordCtl.text);
 
@@ -37,7 +37,9 @@ class PasswordPageVctl extends ViewController {
 
   Future<void> logout() async {
     var rep = await Tools.showChoiceMessage(
-        message: "Voulez-vous vraiment vous déconnecter ?");
+      message: "Voulez-vous vraiment vous déconnecter ?",
+      secondaryColor: AssetColors.blue,
+    );
     if (rep == true) {
       await Cache.clear();
       Get.offAll(() => const PhoneAuth());

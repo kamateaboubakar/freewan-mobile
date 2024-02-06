@@ -21,12 +21,12 @@ class AnswerSecurityQuestionPageVctl extends ViewController {
 
   Future<void> submit() async {
     if (answerCtl.text.isNotEmpty) {
-      await pr.show();
+      await EasyLoading.show(maskType: EasyLoadingMaskType.black);
       var res = await UserApiCtl().answerSecurityQuestionLogin(
           phone: phone,
           securityQuestionId: question.id!,
           answer: answerCtl.text);
-      await pr.hide();
+      await EasyLoading.dismiss();
       if (res.status) {
         await Cache.setString(CacheKey.login.name,
             {"phone": phone, "password": password}.parseToJson());

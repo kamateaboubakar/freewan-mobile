@@ -6,6 +6,7 @@ class ContainerMenu extends StatelessWidget {
   final String? externalTitle;
   final double height;
   final int crossAxisCount;
+  final BorderRadiusGeometry? borderRadius;
 
   final Widget child;
 
@@ -20,6 +21,7 @@ class ContainerMenu extends StatelessWidget {
     this.child = const SizedBox.shrink(),
     this.crossAxisCount = 4,
     super.key,
+    this.borderRadius,
   });
 
   @override
@@ -46,7 +48,7 @@ class ContainerMenu extends StatelessWidget {
               width: .2,
               color: const Color.fromRGBO(218, 218, 218, 1),
             ),
-            borderRadius: BorderRadius.circular(10),
+            borderRadius: borderRadius ?? BorderRadius.circular(10),
             color: Colors.white,
             boxShadow: [
               BoxShadow(

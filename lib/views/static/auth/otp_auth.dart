@@ -4,7 +4,6 @@ import 'package:flutter_countdown_timer/flutter_countdown_timer.dart';
 import 'package:flutter_otp_text_field/flutter_otp_text_field.dart';
 import 'package:lebedoo_assets/lebedoo_assets.dart';
 import 'package:lebedoo_assets/models/pays.dart';
-import 'package:lebedoo_assets/themes/asset_colors.dart';
 import 'package:wan_mobile/tools/const/const.dart';
 import 'package:wan_mobile/views/controllers/auth/opt_auth_vctl.dart';
 

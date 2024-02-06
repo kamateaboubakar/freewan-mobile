@@ -2,6 +2,7 @@ import 'package:date_format/date_format.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/foundation.dart';
 import 'package:intl/intl.dart';
+import 'package:lebedoo_assets/lebedoo_assets.dart';
 import 'package:share_plus/share_plus.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:wan_mobile/tools/const/const.dart';
@@ -112,7 +113,7 @@ class Functions {
 
   static Future<void> shareAppText({required String codeParrain}) async {
     Share.share(
-        """😀 hey, inscris-toi sur *${Const.appName}* avec mon code de parrain : *$codeParrain*
+        """😀 hey, inscris-toi sur *${AppConst.appName}* avec mon code de parrain : *$codeParrain*
 
 Le premier Hub de service ivoirien totalement digital.
 

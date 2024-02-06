@@ -1,1 +1,1 @@
-enum CacheKey { login, password, usedFeatures }
+enum CacheKey { login, password, usedFeatures, floatingToolsButton }

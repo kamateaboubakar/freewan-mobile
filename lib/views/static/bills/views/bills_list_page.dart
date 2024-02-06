@@ -31,7 +31,7 @@ class _BillsListPageState extends State<BillsListPage> {
               child: Column(
                 children: [
                   Image.asset(
-                    'assets/images/cie.png',
+                    'assets/images/icons/cie.png',
                     height: 50,
                   ),
                   const SizedBox(height: 10),

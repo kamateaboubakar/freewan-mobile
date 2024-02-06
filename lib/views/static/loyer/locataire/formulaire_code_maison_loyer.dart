@@ -36,6 +36,7 @@ class FormulaireCodeMaisonLoyer extends StatelessWidget {
                     const SizedBox(height: 17),
                     CButton(
                       height: 50,
+                      color: AssetColors.blue,
                       minWidth: double.infinity,
                       onPressed: () => ctl.submit(),
                       child: const Text("Valider"),

@@ -51,7 +51,7 @@ class GridMenu extends StatelessWidget {
                         title: AutoSizeText(
                           title.value,
                           minFontSize: 10,
-                          maxLines: 2,
+                          maxLines: 1,
                           maxFontSize: 22,
                           style: const TextStyle(
                             fontSize: 22,

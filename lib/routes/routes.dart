@@ -9,22 +9,32 @@ import 'package:lebedoo_assets/const/feature_dictionnary.dart';
 import 'package:lebedoo_wallets_transactions/views/static/moyens_paiements/cartes_bancaires/cartes_bancaires_page.dart';
 import 'package:lebedoo_wallets_transactions/views/static/moyens_paiements/compte_bancaire/compte_bancaire_page.dart';
 import 'package:mapping_gab/views/static/mapping_gab_home_page.dart';
-import 'package:tools_flutter_project/tools_flutter_project.dart';
+import 'package:wan_mobile/routes/tools/favorite_routes_mixin.dart';
+import 'package:wan_mobile/routes/tools/routes_mixin.dart';
 import 'package:wan_mobile/routes/tools/actions/go_to_more_page_action.dart';
 import 'package:wan_mobile/routes/tools/actions/go_to_page_action.dart';
 import 'package:wan_mobile/routes/tools/actions/on_pressed_action.dart';
 import 'package:wan_mobile/tools/widgets/button_menu.dart';
 import 'package:lebedoo_assets/views/controllers/abstracts/view_controller.dart';
+import 'package:wan_mobile/views/static/achat_fibre/achat_fibre_page.dart';
+import 'package:wan_mobile/views/static/achat_pass/achat_pass_page.dart';
+import 'package:wan_mobile/views/static/achat_unite/achat_unite_page.dart';
 import 'package:wan_mobile/views/static/assurances/assurances_home_page.dart';
 import 'package:wan_mobile/views/static/bank_micro_finance/bank_home_page.dart';
 import 'package:wan_mobile/views/static/bank_micro_finance/micro_finance_home_page.dart';
+import 'package:wan_mobile/views/static/bills/bills_views.dart';
+import 'package:wan_mobile/views/static/donation/campagne_page.dart';
 import 'package:wan_mobile/views/static/gaz/gaz_view.dart';
 import 'package:wan_mobile/routes/groupe_route.dart';
 import 'package:wan_mobile/routes/route_item.dart';
 import 'package:wan_mobile/views/static/job/views/employee/employee_views.dart';
+import 'package:wan_mobile/views/static/location_vehicule/location_vehicule.dart';
+import 'package:wan_mobile/views/static/loyer/loyer_bottom_sheet.dart';
 import 'package:wan_mobile/views/static/pressing/pressing_view.dart';
+import 'package:wan_mobile/views/static/scolarite/scolarite_page.dart';
 
-class Routes extends ViewController {
+class Routes extends ViewController with RoutesMixin, FavoriteRoutesMixin {
+  @override
   List<RouteItem> get routes => [
         RouteItem(
           groupe: GroupeRoute.transactions,
@@ -199,6 +209,10 @@ class Routes extends ViewController {
             icon:
                 Image.asset("assets/images/icons/icons8-etudiant-homme-64.png"),
             title: "Frais scolarité",
+            action: const GoToRouteAction(
+              feature: FeatureDictionnary.fraisScolarite,
+              page: ScolaritePage(),
+            ),
           ),
         ),
         RouteItem(
@@ -207,6 +221,10 @@ class Routes extends ViewController {
           button: ButtonMenu(
             icon: Image.asset("assets/images/icons/paiement_loyer.png"),
             title: "Loyer",
+            action: const GoToRouteAction(
+              feature: FeatureDictionnary.loyer,
+              page: LoyerBottomSheet(),
+            ),
           ),
         ),
         RouteItem(
@@ -259,6 +277,10 @@ class Routes extends ViewController {
           button: ButtonMenu(
             icon: Image.asset("assets/images/icons/achat_unite.png"),
             title: "Achat unités",
+            action: const GoToRouteAction(
+              feature: FeatureDictionnary.achatUnite,
+              page: AchatUnitePage(),
+            ),
           ),
         ),
         RouteItem(
@@ -267,6 +289,10 @@ class Routes extends ViewController {
           button: ButtonMenu(
             icon: Image.asset("assets/images/icons/acaht_data.png"),
             title: "Achat pass internet",
+            action: const GoToRouteAction(
+              feature: FeatureDictionnary.achatUnite,
+              page: AchatPassPage(),
+            ),
           ),
         ),
         RouteItem(
@@ -275,6 +301,10 @@ class Routes extends ViewController {
           button: ButtonMenu(
             icon: Image.asset("assets/images/icons/location-de-voiture.png"),
             title: "Location de voitures",
+            action: const GoToRouteAction(
+              feature: FeatureDictionnary.locationVehicules,
+              page: LocationVehicule(),
+            ),
           ),
         ),
         //-----------------------------
@@ -292,6 +322,10 @@ class Routes extends ViewController {
           button: ButtonMenu(
             icon: Image.asset("assets/images/icons/don.png"),
             title: "Dons",
+            action: const GoToRouteAction(
+              feature: FeatureDictionnary.dons,
+              page: DonationPage(),
+            ),
           ),
         ),
         RouteItem(
@@ -359,6 +393,10 @@ class Routes extends ViewController {
           button: ButtonMenu(
             icon: Image.asset("assets/images/icons/cie.png"),
             title: "Factures d'électricité",
+            action: const GoToRouteAction(
+              feature: FeatureDictionnary.factureElectricite,
+              page: BillsReferenceSelectionPage(),
+            ),
           ),
         ),
         RouteItem(
@@ -399,6 +437,10 @@ class Routes extends ViewController {
           button: ButtonMenu(
             icon: Image.asset("assets/images/icons/abonnement_fibre.png"),
             title: "Abonnement\nfibre",
+            action: const GoToRouteAction(
+              feature: FeatureDictionnary.abonnementFibre,
+              page: AchatFibrePage(),
+            ),
           ),
         ),
         RouteItem(
@@ -794,46 +836,4 @@ class Routes extends ViewController {
           ),
         ),
       ];
-
-  List<RouteItem> routesByList(
-      {Set<FeatureDictionnary> menus = const {}, bool sorted = true}) {
-    var res = <RouteItem>[];
-    if (sorted) {
-      res = routes
-          .where((e) => menus.contains(e.id))
-          .where((e) => !e.isHidden)
-          .toList()
-        ..sort((a, b) => a.title.value.compareTo(b.title.value));
-    } else {
-      for (var e in menus) {
-        res.addAll(routes
-            .where((element) => element.id == e)
-            .where((element) => !element.isHidden)
-            .toList());
-      }
-    }
-    return res;
-  }
-
-  List<RouteItem> routesByGroup({String? groupe}) => routes
-      .where((e) => e.groupe.value.isNotEmpty)
-      .where((e) => !e.isHidden)
-      .where((e) => e.groupe == groupe)
-      .toList();
-
-  List<RouteItem> search({String? value}) => routes
-      .where((e) => e.button.title.value.isNotEmpty)
-      .where((e) => !e.isHidden)
-      .where((e) => e.button.title.value
-          .toLowerCase()
-          .contains(value.value.toLowerCase()))
-      .toList();
-
-  List<String> get groupes => routes
-      .where((e) => e.groupe.value.isNotEmpty && !e.isHidden)
-      .where((e) => !e.isHidden)
-      .map((e) => e.groupe.value)
-      .toSet()
-      .toList()
-    ..sort((a, b) => a.compareTo(b));
 }

@@ -26,7 +26,7 @@ class BillsAddReferencePage extends StatelessWidget {
                 child: Column(
                   children: [
                     Image.asset(
-                      'assets/images/cie.png',
+                      'assets/images/icons/cie.png',
                       height: 50,
                     ),
                     const SizedBox(height: 10),

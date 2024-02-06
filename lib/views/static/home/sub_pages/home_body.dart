@@ -158,10 +158,10 @@ class HomeBody extends StatelessWidget {
                               crossAxisSpacing: 5,
                               padding: const EdgeInsets.all(3),
                               backgroundColor: Colors.blue.shade100,
-                              title: "Gagnez de l'argent avec la Lonaci",
+                              title: "Gagnez de l'argent avec",
                               trailing: Image.asset(
                                 "assets/images/42ba0891133d09b46e2edd0537c2f2265350876d-1.png",
-                                width: 120,
+                                width: 90,
                               ),
                               listController: scrollController,
                               crossAxisCount: 3,
@@ -333,23 +333,6 @@ class HomeBody extends StatelessWidget {
                                 ),
                               ),
                             ),
-                            // ContainerMenu(
-                            //   margin: EdgeInsets.zero,
-                            //   borderRadius: BorderRadius.circular(20),
-                            //   padding: EdgeInsets.zero,
-                            //   child: GestureDetector(
-                            //     onTap: () => Get.to(() => const MallPage()),
-                            //     child: ClipRRect(
-                            //       borderRadius: BorderRadius.circular(20),
-                            //       child: Image.asset(
-                            //         "assets/images/lebedoo_mall.jpeg",
-                            //         height: 200,
-                            //         width: double.infinity,
-                            //         fit: BoxFit.contain,
-                            //       ),
-                            //     ),
-                            //   ),
-                            // ),
                             GestureDetector(
                               onTap: () => ctl.shareAppText(
                                   codeParrain: ctl.appCtl.user.ownerCode.value),
@@ -362,7 +345,7 @@ class HomeBody extends StatelessWidget {
                                         children: [
                                           const AutoSizeText(
                                             "🚀 Profitez de tous les avantages "
-                                            "de ${Const.appName} avec vos amis 🎉✨.",
+                                            "de ${AppConst.appName} avec vos amis 🎉✨.",
                                             textAlign: TextAlign.center,
                                             maxLines: 4,
                                             minFontSize: 10,
@@ -396,14 +379,15 @@ class HomeBody extends StatelessWidget {
                                   ),
                                   Expanded(
                                     child: Lottie.asset(
-                                        "assets/lotties/animation_lmw1phml.json"),
+                                      "assets/lotties/animation_lmw1phml.json",
+                                    ),
                                   )
                                 ],
                               ),
                             ),
                             const ListTile(
                               title: Text(
-                                "${Const.appName} © 2024 - V${Const.appVersion}",
+                                "${AppConst.appName} © 2024 - V${Const.appVersion}",
                                 textAlign: TextAlign.center,
                                 style: TextStyle(
                                   fontSize: 12,

@@ -20,6 +20,7 @@ class ButtonMenu extends StatelessWidget {
   final bool displayName;
   final bool withCircleIcon;
   final RouteAction action;
+  final void Function()? onLongPress;
 
   const ButtonMenu({
     this.minWidth,
@@ -37,6 +38,7 @@ class ButtonMenu extends StatelessWidget {
     this.shape,
     this.displayName = true,
     this.withCircleIcon = true,
+    this.onLongPress,
     super.key,
   });
 
@@ -55,12 +57,14 @@ class ButtonMenu extends StatelessWidget {
     ShapeBorder? shape,
     bool? displayName,
     bool? withCircleIcon,
+    RouteAction? action,
+    void Function()? onLongPress,
   }) {
     return ButtonMenu(
       displayName: displayName ?? this.displayName,
       icon: icon ?? this.icon,
       title: title ?? this.title,
-      action: action,
+      action: action ?? this.action,
       side: side ?? this.side,
       backgroundColor: backgroundColor ?? this.backgroundColor,
       iconFlex: iconFlex ?? this.iconFlex,
@@ -72,6 +76,7 @@ class ButtonMenu extends StatelessWidget {
       categorie: categorie ?? this.categorie,
       shape: shape ?? this.shape,
       withCircleIcon: withCircleIcon ?? this.withCircleIcon,
+      onLongPress: onLongPress ?? this.onLongPress,
     );
   }
 
@@ -81,6 +86,7 @@ class ButtonMenu extends StatelessWidget {
       message: title.value.replaceAll("\n", " "),
       child: MaterialButton(
         color: backgroundColor,
+        onLongPress: onLongPress,
         elevation: 0,
         highlightElevation: 0,
         highlightColor: Colors.blue.shade50,

@@ -134,6 +134,7 @@ class RegisterPageVctl extends ViewController {
 
   Future<bool> onBack() async {
     var res = await Tools.showChoiceMessage(
+        title: AppConst.appName,
         message: "Voulez-vous quitter la page d'inscription ?");
     if (res == true) {
       Get.off(() => const PhoneAuth());

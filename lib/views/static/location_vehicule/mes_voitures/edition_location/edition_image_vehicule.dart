@@ -1,5 +1,6 @@
 import 'dart:io';
 import 'package:flutter/material.dart';
+import 'package:lebedoo_assets/lebedoo_assets.dart';
 import 'package:lebedoo_assets/themes/asset_colors.dart';
 import 'package:tools_flutter_project/tools_flutter_project.dart';
 import 'package:wan_mobile/tools/widgets/c_outlined_button.dart';
@@ -51,7 +52,9 @@ class EditionImageVehicule extends StatelessWidget {
               tooltip: "Ouvrir la galérie",
               onPressed: () async {
                 var rep = await Tools.showChoiceMessage(
-                    message: "Voulez-vous supprimer toutes  les images ?");
+                  title: AppConst.appName,
+                  message: "Voulez-vous supprimer toutes  les images ?",
+                );
                 if (rep == true) {
                   ctl.images.clear();
                   ctl.update();
@@ -94,7 +97,9 @@ class EditionImageVehicule extends StatelessWidget {
                               textColor: Colors.white,
                               onPressed: () async {
                                 var rep = await Tools.showChoiceMessage(
-                                    message: "Voulez-vous supprimer l'image ?");
+                                  title: AppConst.appName,
+                                  message: "Voulez-vous supprimer l'image ?",
+                                );
                                 if (rep == true) {
                                   ctl.images.remove(e);
                                   ctl.update();

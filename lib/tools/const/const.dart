@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:lebedoo_assets/lebedoo_assets.dart';
 
 abstract class Const {
-  static const String appName = "Lebedoo";
-  static const String appVersion = '1.0.38';
+  static const String appVersion = '1.0.40';
   static const Color primaryColor = Color.fromRGBO(0, 159, 249, 1);
   static const Color secondaryColor = Color.fromRGBO(0, 0, 0, 0.5);
   static const primaryFonts = "";
@@ -29,5 +29,5 @@ abstract class Const {
 
   static const appStoreLink = "http://148.113.143.59:8183/";
   static const playStoreLink = "http://148.113.143.59:8183/";
-  static const appSlogan = "Dans LEBEDOO y'a tous dedans";
+  static const appSlogan = "Dans ${AppConst.appName} y'a tous dedans";
 }

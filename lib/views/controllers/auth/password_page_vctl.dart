@@ -37,6 +37,7 @@ class PasswordPageVctl extends ViewController {
 
   Future<void> logout() async {
     var rep = await Tools.showChoiceMessage(
+      title: AppConst.appName,
       message: "Voulez-vous vraiment vous déconnecter ?",
       secondaryColor: AssetColors.blue,
     );

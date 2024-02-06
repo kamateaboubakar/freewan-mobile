@@ -29,8 +29,10 @@ class PaiementRecapVctl extends ViewController {
       this.userDestinationId});
 
   Future<void> submit() async {
-    var rep =
-        await Tools.showChoiceMessage(message: "Confirmer-vous le paiement ?");
+    var rep = await Tools.showChoiceMessage(
+      title: AppConst.appName,
+      message: "Confirmer-vous le paiement ?",
+    );
     if (rep == true) {
       await pr.show();
       var trx = AccountTransaction();

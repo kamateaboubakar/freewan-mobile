@@ -126,6 +126,7 @@ class EditionMaisonForm extends StatelessWidget {
                           const Gap(20),
                           CButton(
                             height: 50,
+                            color: AssetColors.blue,
                             minWidth: double.infinity,
                             onPressed: () => ctl.submit(),
                             child: const Text("Valider"),

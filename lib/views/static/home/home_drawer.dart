@@ -204,7 +204,7 @@ class HomeDrawer extends StatelessWidget {
               dense: true,
               contentPadding: EdgeInsets.zero,
               title: Text(
-                "${Const.appName} © 2024 - V${Const.appVersion}",
+                "${AppConst.appName} © 2024 - V${Const.appVersion}",
                 textAlign: TextAlign.center,
                 style: TextStyle(
                   fontSize: 12,

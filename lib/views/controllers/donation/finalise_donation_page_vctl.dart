@@ -24,6 +24,7 @@ class FinaliseDonPageVctl extends ViewController {
         montant = null;
         update();
         var rep = await Tools.showChoiceMessage(
+            title: AppConst.appName,
             message: "Effectué avec succès. Voulez-vous faire un autre don ?");
         if (rep != true) {
           Get.back();

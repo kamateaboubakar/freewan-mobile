@@ -33,7 +33,7 @@ class BillsCompanySelectionDialog extends StatelessWidget {
           ),
           ListTile(
             leading: Image.asset(
-              "assets/images/cie.png",
+              "assets/images/icons/cie.png",
               width: 48,
               height: 48,
             ),

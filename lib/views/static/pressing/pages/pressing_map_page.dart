@@ -1,10 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_map/flutter_map.dart';
 import 'package:lebedoo_assets/lebedoo_assets.dart' hide Marker;
-import 'package:sliding_up_panel/sliding_up_panel.dart';
 import 'package:tools_flutter_project/tools_flutter_project.dart';
 import 'package:wan_mobile/models/pressing/pressing.dart';
-import 'package:wan_mobile/tools/const/const.dart';
 import 'package:wan_mobile/views/controllers/pressing/pressing_vctl.dart';
 import 'package:wan_mobile/views/static/pressing/pages/pages.dart';
 
@@ -79,7 +77,7 @@ class _PressingMapPageState extends State<PressingMapPage> {
                       Marker(
                         point: _pressingController.userLocation!.toLatLng(),
                         child: Image.asset(
-                          'assets/images/icons/marker_map.gif',
+                          'assets/images/icons/marqueur.gif',
                           width: 100,
                           height: 100,
                         ),
@@ -244,7 +242,7 @@ class _PressingMapPageState extends State<PressingMapPage> {
     }
     Tools.messageBox(
       message:
-          "${Const.appName} a besoin d'accéder à votre position pour trouver les services les plus proches de vous",
+          "${AppConst.appName} a besoin d'accéder à votre position pour trouver les services les plus proches de vous",
       onConfirm: () async {
         var isGranted = await LocationService.requestLocationPermission();
         if (!isGranted) {

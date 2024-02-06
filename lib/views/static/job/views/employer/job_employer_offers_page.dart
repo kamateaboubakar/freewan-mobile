@@ -187,8 +187,10 @@ class _JobEmployerOffersPageState extends State<JobEmployerOffersPage> {
           },
           deleteCall: () async {
             var result = await Tools.showChoiceMessage(
-                message:
-                    "Voulez-vous supprimer l'offre : ${jobOffer.label} - ${jobOffer.company!.name!}?");
+              title: AppConst.appName,
+              message:
+                  "Voulez-vous supprimer l'offre : ${jobOffer.label} - ${jobOffer.company!.name!}?",
+            );
             if (result != null && result) {
               _deleteJobOffer(jobOffer);
             }

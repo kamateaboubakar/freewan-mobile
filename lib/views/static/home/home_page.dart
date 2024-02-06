@@ -67,7 +67,7 @@ class HomePage extends StatelessWidget {
           drawer: HomeDrawer(ctl),
           floatingActionButtonLocation:
               FloatingActionButtonLocation.centerFloat,
-          floatingActionButton: FloatingMenuButton(ctl.routes),
+          floatingActionButton: FloatingMenuButton(ctl),
           body: HomeBody(ctl),
         );
       },

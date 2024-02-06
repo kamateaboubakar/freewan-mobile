@@ -35,7 +35,7 @@ class BillsReferenceSelectionPage extends StatelessWidget {
                 subtitle: Row(
                   children: [
                     Image.asset(
-                      "assets/images/cie.png",
+                      "assets/images/icons/cie.png",
                       width: 45,
                       height: 45,
                     ),

@@ -22,7 +22,9 @@ class PaiementLoyerPageVctl extends ViewController {
   Future<void> submit() async {
     if (selectedMois != null && anneeCtl.text.isNumericOnly) {
       var rep = await Tools.showChoiceMessage(
-          message: "Confirmez-vous le paiement ?");
+        title: AppConst.appName,
+        message: "Confirmez-vous le paiement ?",
+      );
       if (rep == true) {
         await pr.show();
         var verPaiement = await LoyerApiCtl().checkPaiement(

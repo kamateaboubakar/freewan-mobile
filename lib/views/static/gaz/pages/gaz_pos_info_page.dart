@@ -491,8 +491,10 @@ class _GazPosInfoPageState extends State<GazPosInfoPage> {
   }
 
   _submitPayment() async {
-    var rep =
-        await Tools.showChoiceMessage(message: "Confirmez-vous le paiement ?");
+    var rep = await Tools.showChoiceMessage(
+      title: AppConst.appName,
+      message: "Confirmez-vous le paiement ?",
+    );
     if (rep == true) {
       var page = Get.currentRoute;
       await Get.to(

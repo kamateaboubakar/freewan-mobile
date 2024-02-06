@@ -1,94 +1,26 @@
-import 'package:flutter/material.dart';
 import 'package:lebedoo_assets/lebedoo_assets.dart';
 import 'package:wan_mobile/api/controllers/auth/user_api_ctl.dart';
 import 'package:wan_mobile/api/controllers/pubs/pub_api_ctl.dart';
+import 'package:wan_mobile/routes/tools/actions/go_to_page_action.dart';
 import 'package:wan_mobile/tools/const/const.dart';
-
 import 'package:wan_mobile/tools/services/notification_service.dart';
-
 import 'package:tools_flutter_project/tools_flutter_project.dart';
 import 'package:lebedoo_assets/views/controllers/abstracts/view_controller.dart';
 import 'package:wan_mobile/views/static/auth/phone_auth/phone_auth.dart';
 import 'package:wan_mobile/routes/routes.dart';
+import 'package:wan_mobile/views/static/home/sub_pages/welcome_message_modal.dart';
 
 class HomePageVctl extends ViewController {
   Routes routes = Routes();
-
   List<Img> ads = [];
-
   bool displayWelcome;
-  int nbNotif = 0;
-  var scrollController = ScrollController();
-  bool hideAmount = true;
 
   HomePageVctl(this.displayWelcome);
 
-  PanelController panelController = PanelController();
-
-  int currentAds = 0;
-  bool smallButton = false;
-
   _displayWelcomeMessage() {
-    WidgetsBinding.instance.addPostFrameCallback((_) {
-      if (displayWelcome) {
-        Tools.openModal(
-          Container(
-            // width: Get.width,
-            height: 500,
-
-            // margin: const EdgeInsets.symmetric(horizontal: 10),
-            padding: const EdgeInsets.all(30),
-            decoration: BoxDecoration(
-              color: const Color.fromRGBO(16, 54, 162, 1),
-              borderRadius: BorderRadius.circular(10),
-            ),
-            child: Column(
-              children: [
-                Text(
-                  "BIENVENUE ${appCtl.user.lastName} !",
-                  style: const TextStyle(
-                    color: Colors.white,
-                    fontSize: 20,
-                    fontWeight: FontWeight.w600,
-                  ),
-                  textAlign: TextAlign.center,
-                ),
-                Expanded(
-                  child: Center(
-                    child: Column(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        Image.asset("assets/images/96325-party-hat.png"),
-                        const Text(
-                          "Vous pouvez maintenant payer pour tous vos services avec "
-                          "1 seule application",
-                          style: TextStyle(color: Colors.white, fontSize: 15),
-                          textAlign: TextAlign.center,
-                        ),
-                      ],
-                    ),
-                  ),
-                ),
-                CButton(
-                  height: 48,
-                  minWidth: 255,
-                  color: const Color.fromRGBO(0, 159, 249, 1),
-                  onPressed: () => Get.back(),
-                  child: const Text(
-                    "Super! j’ai hâte!",
-                    style: TextStyle(
-                      color: Colors.white,
-                      fontSize: 16,
-                      fontWeight: FontWeight.bold,
-                    ),
-                  ),
-                )
-              ],
-            ),
-          ),
-        );
-      }
-    });
+    if (displayWelcome) {
+      Tools.openModal(WelcomeMessageModal(lastName: user.lastName.value));
+    }
   }
 
   @override
@@ -96,13 +28,14 @@ class HomePageVctl extends ViewController {
     super.onReady();
     _displayWelcomeMessage();
     getPubs();
+    _loadFavoriteButtons();
   }
 
   Future<void> logout() async {
     var res = await Tools.showChoiceMessage(
+      title: AppConst.appName,
       message: "Voulez-vous vraiment vous déconnecter ?",
       secondaryColor: AssetColors.blue,
-      title: AppConst.appName,
     );
     if (res == true) {
       await pr.show();
@@ -142,7 +75,7 @@ class HomePageVctl extends ViewController {
 
   Future<void> shareAppText({required String codeParrain}) async {
     Share.share(
-        """😀 hey, inscris-toi sur *${Const.appName}* avec mon code de parrain : *$codeParrain*
+        """😀 hey, inscris-toi sur *${AppConst.appName}* avec mon code de parrain : *$codeParrain*
 
 Le premier Hub de service ivoirien totalement digital.
 
@@ -157,5 +90,10 @@ PlayStore : ${Const.playStoreLink}
   void onInit() {
     super.onInit();
     _initNotificationListener();
+  }
+
+  void _loadFavoriteButtons() async {
+    // routes.getAllFavoritesButtons();
+    GoToRouteAction.loadStats();
   }
 }

@@ -68,4 +68,10 @@ class GoToRouteAction extends RouteAction {
       return [];
     }
   }
+
+  static void loadStats() {
+    _getStats().then((value) {
+      _streamController.add(value);
+    });
+  }
 }

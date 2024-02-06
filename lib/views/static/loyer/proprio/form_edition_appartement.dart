@@ -140,6 +140,7 @@ class FormEditionAppartement extends StatelessWidget {
                   ),
                   const SizedBox(height: 20),
                   CButton(
+                    color: AssetColors.blue,
                     height: 50,
                     onPressed: () => ctl.submit(),
                     child: Text((item?.id != null)

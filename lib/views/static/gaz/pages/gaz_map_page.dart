@@ -86,7 +86,7 @@ class _GazMapPageState extends State<GazMapPage> {
                       Marker(
                         point: _gazController.userLocation!.toLatLng(),
                         child: Image.asset(
-                          'assets/images/icons/marker_map.gif',
+                          'assets/images/icons/marqueur.gif',
                           width: 100,
                           height: 100,
                         ),

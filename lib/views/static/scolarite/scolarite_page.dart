@@ -60,6 +60,7 @@ class ScolaritePage extends StatelessWidget {
                   const Gap(10),
                   CButton(
                     height: 50,
+                    color: AssetColors.blue,
                     onPressed: ctl.submit,
                     child: const Text("Valider"),
                   ),

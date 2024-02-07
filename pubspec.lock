@@ -42,7 +42,7 @@ packages:
     source: hosted
     version: "2.11.0"
   auto_size_text:
-    dependency: "direct main"
+    dependency: transitive
     description:
       name: auto_size_text
       sha256: "3f5261cd3fb5f2a9ab4e2fc3fba84fd9fcaac8821f20a1d4e71f557521b22599"
@@ -86,7 +86,7 @@ packages:
     description:
       path: "."
       ref: main
-      resolved-ref: fe27944d1310ab8d6abe66d72e9b6826bd4c9417
+      resolved-ref: "73ff381c1297f0ffb3dd1c6b956fc05dc5bfdfa9"
       url: "https://github.com/Lebedoo/brasserie-mobile.git"
     source: git
     version: "1.0.0+1"
@@ -794,7 +794,7 @@ packages:
     description:
       path: "."
       ref: main
-      resolved-ref: b15499877772210175f2196bc6a71db147a98b5f
+      resolved-ref: "049fd1b1c43a0701c8d2384c8cc2e6c489d4541d"
       url: "https://github.com/Lebedoo/lebedoo-assets.git"
     source: git
     version: "1.0.10+11"

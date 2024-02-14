@@ -2,15 +2,16 @@ import 'package:tools_flutter_project/tools/types/map.dart';
 
 class MarchandRequest {
   String? nom;
-  String? prenom;
+  String? prenoms;
   String? email;
   String? tel;
+  String? tel2;
   String? password;
   int? countryId;
 
   MarchandRequest(
       {this.nom,
-      this.prenom,
+      this.prenoms,
       this.email,
       this.tel,
       this.password,
@@ -18,10 +19,11 @@ class MarchandRequest {
 
   Json toJson() {
     final Map<String, dynamic> data = <String, dynamic>{};
-    data['last_name'] = nom;
-    data['first_name'] = prenom;
+    data['nom'] = nom;
+    data['prenoms'] = prenoms;
     data['email'] = email;
     data['tel'] = tel;
+    data['tel2'] = tel2;
     data['password'] = password;
     data['country_id'] = countryId;
     data['login'] = tel;

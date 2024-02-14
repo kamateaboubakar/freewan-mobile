@@ -6,13 +6,12 @@ import 'package:wan_mobile/views/controllers/scan_pay/scan_pay_camera_vctl.dart'
 import 'package:wan_mobile/views/static/qr_code/qr_code_page.dart';
 
 class ScanPayCamera extends StatelessWidget {
-  final String route;
-  const ScanPayCamera(this.route, {super.key});
+  const ScanPayCamera({super.key});
 
   @override
   Widget build(BuildContext context) {
     return GetBuilder<ScanPayCameraVctl>(
-      init: ScanPayCameraVctl(route),
+      init: ScanPayCameraVctl(),
       builder: (ctl) {
         return Scaffold(
           appBar: AppBar(

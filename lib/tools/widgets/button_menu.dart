@@ -21,6 +21,7 @@ class ButtonMenu extends StatelessWidget {
   final bool withCircleIcon;
   final RouteAction action;
   final void Function()? onLongPress;
+  final bool testable;
 
   const ButtonMenu({
     this.minWidth,
@@ -40,6 +41,7 @@ class ButtonMenu extends StatelessWidget {
     this.withCircleIcon = true,
     this.onLongPress,
     super.key,
+    this.testable = false,
   });
 
   ButtonMenu copyWith({
@@ -59,6 +61,7 @@ class ButtonMenu extends StatelessWidget {
     bool? withCircleIcon,
     RouteAction? action,
     void Function()? onLongPress,
+    bool? testable,
   }) {
     return ButtonMenu(
       displayName: displayName ?? this.displayName,
@@ -77,6 +80,7 @@ class ButtonMenu extends StatelessWidget {
       shape: shape ?? this.shape,
       withCircleIcon: withCircleIcon ?? this.withCircleIcon,
       onLongPress: onLongPress ?? this.onLongPress,
+      testable: testable ?? this.testable,
     );
   }
 
@@ -99,52 +103,55 @@ class ButtonMenu extends StatelessWidget {
           side: side,
         ),
         onPressed: () => action.handle(),
-        child: Column(
-          children: [
-            Expanded(
-              flex: iconFlex,
-              child: Center(
-                child: Container(
-                  padding: const EdgeInsets.all(3),
-                  decoration: (withCircleIcon)
-                      ? BoxDecoration(
-                          shape: BoxShape.circle,
-                          color: iconBackgroundColor ?? Colors.blue.shade50,
-                          border: Border.all(
-                            color: iconBorderColor ?? Colors.blue.shade100,
-                          ),
-                        )
-                      : null,
-                  child: ClipRRect(
-                    borderRadius: BorderRadius.circular(10),
-                    child: icon,
+        child: Badge(
+          isLabelVisible: testable,
+          child: Column(
+            children: [
+              Expanded(
+                flex: iconFlex,
+                child: Center(
+                  child: Container(
+                    padding: const EdgeInsets.all(3),
+                    decoration: (withCircleIcon)
+                        ? BoxDecoration(
+                            shape: BoxShape.circle,
+                            color: iconBackgroundColor ?? Colors.blue.shade50,
+                            border: Border.all(
+                              color: iconBorderColor ?? Colors.blue.shade100,
+                            ),
+                          )
+                        : null,
+                    child: ClipRRect(
+                      borderRadius: BorderRadius.circular(10),
+                      child: icon,
+                    ),
                   ),
                 ),
               ),
-            ),
-            Visibility(
-              visible: title != null && displayName,
-              child: Expanded(
-                flex: titleFlex,
-                child: Padding(
-                  padding: const EdgeInsets.all(2),
-                  child: Center(
-                    child: AutoSizeText(
-                      title.value,
-                      textAlign: TextAlign.center,
-                      maxLines: 3,
-                      maxFontSize: 16,
-                      minFontSize: 9,
-                      overflow: TextOverflow.ellipsis,
-                      style: const TextStyle(
-                        fontWeight: FontWeight.bold,
+              Visibility(
+                visible: title != null && displayName,
+                child: Expanded(
+                  flex: titleFlex,
+                  child: Padding(
+                    padding: const EdgeInsets.all(2),
+                    child: Center(
+                      child: AutoSizeText(
+                        title.value,
+                        textAlign: TextAlign.center,
+                        maxLines: 3,
+                        maxFontSize: 16,
+                        minFontSize: 9,
+                        overflow: TextOverflow.ellipsis,
+                        style: const TextStyle(
+                          fontWeight: FontWeight.bold,
+                        ),
                       ),
                     ),
                   ),
                 ),
               ),
-            ),
-          ],
+            ],
+          ),
         ),
       ),
     );

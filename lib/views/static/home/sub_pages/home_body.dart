@@ -2,6 +2,7 @@ import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 import 'package:lebedoo_assets/lebedoo_assets.dart';
 import 'package:tools_flutter_project/tools_flutter_project.dart';
+import 'package:wan_mobile/routes/groupe_route.dart';
 import 'package:wan_mobile/routes/tools/actions/go_to_more_page_action.dart';
 import 'package:wan_mobile/tools/const/const.dart';
 import 'package:wan_mobile/tools/widgets/button_menu.dart';
@@ -73,7 +74,7 @@ class HomeBody extends StatelessWidget {
                             ),
                             const Gap(20),
                             CardMenu(
-                              title: "Transactions",
+                              title: GroupeRoute.transactions,
                               children: ctl.routes
                                   .routesByList(menus: {
                                     FeatureDictionnary.retraitArgent,
@@ -93,7 +94,7 @@ class HomeBody extends StatelessWidget {
                               crossAxisCount: 3,
                               padding: const EdgeInsets.all(3),
                               backgroundColor: Colors.blue.shade100,
-                              title: "Cartes & comptes",
+                              title: GroupeRoute.cartesEtComptes,
                               listController: scrollController,
                               menus: ctl.routes
                                   .routesByList(menus: {
@@ -117,7 +118,7 @@ class HomeBody extends StatelessWidget {
                             ),
                             const Gap(20),
                             CardMenu(
-                              title: "Centres d’intérêts",
+                              title: GroupeRoute.centresInterets,
                               children: ctl.routes
                                   .routesByList(sorted: false, menus: {
                                     FeatureDictionnary.assurances,
@@ -127,6 +128,10 @@ class HomeBody extends StatelessWidget {
                                     FeatureDictionnary.pressing,
                                     FeatureDictionnary.materiauxConstruction,
                                     FeatureDictionnary.loyer,
+                                    FeatureDictionnary.numerosUtils,
+                                    FeatureDictionnary.jobs,
+                                    FeatureDictionnary.brasserie,
+                                    FeatureDictionnary.caves,
                                   })
                                   .map((e) => e.button)
                                   .toList()
@@ -134,16 +139,12 @@ class HomeBody extends StatelessWidget {
                                   const ButtonMenu(
                                     title: "Voir plus",
                                     icon: CircleAvatar(
-                                      child: Icon(Icons.arrow_forward),
-                                    ),
+                                        child: Icon(Icons.arrow_forward)),
                                     action: GoToMorePageAction(
-                                      groupeTitle: "Centres d'intérêts",
+                                      groupeTitle: GroupeRoute.centresInterets,
                                       menus: {
                                         FeatureDictionnary.fraisScolarite,
-                                        FeatureDictionnary.jobs,
                                         FeatureDictionnary.pharmacie,
-                                        FeatureDictionnary.brasserie,
-                                        FeatureDictionnary.caves,
                                         FeatureDictionnary.achatPass,
                                         FeatureDictionnary.achatUnite,
                                         FeatureDictionnary.locationVehicules,
@@ -192,14 +193,13 @@ class HomeBody extends StatelessWidget {
                             ),
                             const Gap(20),
                             CardMenu(
-                              title: "Services innovants",
+                              title: GroupeRoute.serviceInnovant,
                               children: ctl.routes
                                   .routesByList(menus: {
                                     FeatureDictionnary.tontine,
                                     FeatureDictionnary.dons,
                                     FeatureDictionnary.cadeaux,
                                     FeatureDictionnary.vouchers,
-                                    FeatureDictionnary.nounous,
                                     FeatureDictionnary.guideUrbain,
                                   })
                                   .map((e) => e.button)
@@ -231,7 +231,7 @@ class HomeBody extends StatelessWidget {
                             ),
                             const Gap(20),
                             CardMenu(
-                              title: "E-Gov",
+                              title: GroupeRoute.eGov,
                               children: ctl.routes
                                   .routesByList(menus: {
                                     FeatureDictionnary.paiementTimbres,
@@ -261,7 +261,7 @@ class HomeBody extends StatelessWidget {
                               crossAxisSpacing: 5,
                               padding: const EdgeInsets.all(3),
                               backgroundColor: Colors.blue.shade100,
-                              title: "Divertissement",
+                              title: GroupeRoute.divertissement,
                               listController: scrollController,
                               menus: ctl.routes
                                   .routesByList(menus: {
@@ -289,7 +289,7 @@ class HomeBody extends StatelessWidget {
                                 childAspectRatio: .9,
                                 padding: const EdgeInsets.all(3),
                                 backgroundColor: Colors.blue.shade100,
-                                title: "Voyages",
+                                title: GroupeRoute.voyages,
                                 crossAxisCount: 3,
                                 width: 350,
                                 listController: scrollController,
@@ -309,11 +309,13 @@ class HomeBody extends StatelessWidget {
                                 children: ctl.ads
                                     .where((e) =>
                                         e.categorie == "reservation_billet")
-                                    .map((e) => Padding(
-                                          padding:
-                                              const EdgeInsets.only(right: 10),
-                                          child: ImageBanner(image: e),
-                                        ))
+                                    .map(
+                                      (e) => Padding(
+                                        padding:
+                                            const EdgeInsets.only(right: 10),
+                                        child: ImageBanner(image: e),
+                                      ),
+                                    )
                                     .toList()),
                             const Gap(20),
                             ImageSlideBanner(

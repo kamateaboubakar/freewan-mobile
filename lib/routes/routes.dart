@@ -30,6 +30,7 @@ import 'package:wan_mobile/routes/route_item.dart';
 import 'package:wan_mobile/views/static/job/views/employee/employee_views.dart';
 import 'package:wan_mobile/views/static/location_vehicule/location_vehicule.dart';
 import 'package:wan_mobile/views/static/loyer/loyer_bottom_sheet.dart';
+import 'package:wan_mobile/views/static/numeros_utils/numeros_utils_home_page.dart';
 import 'package:wan_mobile/views/static/pressing/pressing_view.dart';
 import 'package:wan_mobile/views/static/scolarite/scolarite_page.dart';
 
@@ -125,6 +126,7 @@ class Routes extends ViewController with RoutesMixin, FavoriteRoutesMixin {
           groupe: GroupeRoute.cartesEtComptes,
           id: FeatureDictionnary.cartesBancaires,
           button: ButtonMenu(
+            testable: true,
             icon: Image.asset("assets/images/icons/compte-bancaire.png"),
             title: "Comptes bancaires",
             action: const GoToRouteAction(
@@ -139,6 +141,7 @@ class Routes extends ViewController with RoutesMixin, FavoriteRoutesMixin {
           button: ButtonMenu(
             icon: Image.asset("assets/images/icons/bank.png"),
             title: "Banques",
+            testable: true,
             action: const GoToRouteAction(
               feature: FeatureDictionnary.banks,
               page: BankHomePage(),
@@ -170,6 +173,7 @@ class Routes extends ViewController with RoutesMixin, FavoriteRoutesMixin {
           groupe: GroupeRoute.centresInterets,
           id: FeatureDictionnary.gaz,
           button: ButtonMenu(
+            testable: true,
             icon: Image.asset("assets/images/icons/gaz.png"),
             title: "GAZ",
             action: const GoToRouteAction(
@@ -182,6 +186,7 @@ class Routes extends ViewController with RoutesMixin, FavoriteRoutesMixin {
           groupe: GroupeRoute.centresInterets,
           id: FeatureDictionnary.pressing,
           button: ButtonMenu(
+            testable: true,
             icon: Image.asset("assets/images/icons/icons8-repassage-64.png"),
             title: "Pressing",
             action: const GoToRouteAction(
@@ -206,6 +211,7 @@ class Routes extends ViewController with RoutesMixin, FavoriteRoutesMixin {
           groupe: GroupeRoute.centresInterets,
           id: FeatureDictionnary.fraisScolarite,
           button: ButtonMenu(
+            testable: true,
             icon:
                 Image.asset("assets/images/icons/icons8-etudiant-homme-64.png"),
             title: "Frais scolarité",
@@ -219,6 +225,7 @@ class Routes extends ViewController with RoutesMixin, FavoriteRoutesMixin {
           groupe: GroupeRoute.centresInterets,
           id: FeatureDictionnary.loyer,
           button: ButtonMenu(
+            testable: true,
             icon: Image.asset("assets/images/icons/paiement_loyer.png"),
             title: "Loyer",
             action: const GoToRouteAction(
@@ -231,6 +238,7 @@ class Routes extends ViewController with RoutesMixin, FavoriteRoutesMixin {
           groupe: GroupeRoute.centresInterets,
           id: FeatureDictionnary.jobs,
           button: ButtonMenu(
+            testable: true,
             icon: Image.asset("assets/images/icons/icons8-mallette.gif"),
             title: "Jobs",
             action: const GoToRouteAction(
@@ -251,6 +259,7 @@ class Routes extends ViewController with RoutesMixin, FavoriteRoutesMixin {
           groupe: GroupeRoute.centresInterets,
           id: FeatureDictionnary.brasserie,
           button: ButtonMenu(
+            testable: true,
             icon: Image.asset("assets/images/icons/icons8-liquor-shelf-64.png"),
             title: "Brasserie",
             action: const GoToRouteAction(
@@ -299,6 +308,7 @@ class Routes extends ViewController with RoutesMixin, FavoriteRoutesMixin {
           groupe: GroupeRoute.centresInterets,
           id: FeatureDictionnary.locationVehicules,
           button: ButtonMenu(
+            testable: true,
             icon: Image.asset("assets/images/icons/location-de-voiture.png"),
             title: "Location de voitures",
             action: const GoToRouteAction(
@@ -340,6 +350,7 @@ class Routes extends ViewController with RoutesMixin, FavoriteRoutesMixin {
           groupe: GroupeRoute.serviceInnovant,
           id: FeatureDictionnary.vouchers,
           button: ButtonMenu(
+            testable: true,
             icon: Image.asset("assets/images/icons/voucher.png"),
             title: "Vouchers",
             action: const GoToMorePageAction(
@@ -351,14 +362,6 @@ class Routes extends ViewController with RoutesMixin, FavoriteRoutesMixin {
                 FeatureDictionnary.playstation,
               },
             ),
-          ),
-        ),
-        RouteItem(
-          groupe: GroupeRoute.serviceInnovant,
-          id: FeatureDictionnary.nounous,
-          button: ButtonMenu(
-            icon: Image.asset("assets/images/icons/nounou.png"),
-            title: "Nounous",
           ),
         ),
         //-----------------------------
@@ -420,6 +423,7 @@ class Routes extends ViewController with RoutesMixin, FavoriteRoutesMixin {
           groupe: GroupeRoute.facturesEtAbonnements,
           id: FeatureDictionnary.abonnementTele,
           button: ButtonMenu(
+            testable: true,
             icon: Image.asset("assets/images/icons/tv.png"),
             title: "Abonnement\ntélé",
             action: const GoToMorePageAction(
@@ -554,6 +558,7 @@ class Routes extends ViewController with RoutesMixin, FavoriteRoutesMixin {
           groupe: GroupeRoute.centresInterets,
           id: FeatureDictionnary.guideUrbain,
           button: ButtonMenu(
+            testable: true,
             icon: Image.asset("assets/images/icons/guide_urbain.gif"),
             title: "Guide urbain",
             action: const GoToRouteAction(
@@ -602,6 +607,7 @@ class Routes extends ViewController with RoutesMixin, FavoriteRoutesMixin {
           groupe: GroupeRoute.cartesEtComptes,
           id: FeatureDictionnary.cartesVirtuelles,
           button: ButtonMenu(
+            testable: true,
             icon: Image.asset("assets/images/icons/carte_bancaire.png"),
             title: "Cartes virtuelles",
             action: const GoToRouteAction(
@@ -614,6 +620,7 @@ class Routes extends ViewController with RoutesMixin, FavoriteRoutesMixin {
           groupe: GroupeRoute.cartesEtComptes,
           id: FeatureDictionnary.commanderCarteCredit,
           button: ButtonMenu(
+            testable: true,
             icon: Image.asset(
               "assets/images/icons/commande_carte_bancaire.gif",
             ),
@@ -700,14 +707,6 @@ class Routes extends ViewController with RoutesMixin, FavoriteRoutesMixin {
           ),
         ),
         RouteItem(
-          groupe: GroupeRoute.transactions,
-          id: FeatureDictionnary.historiqueTransactions,
-          button: ButtonMenu(
-            icon: Image.asset("assets/images/icons/historique_transaction.png"),
-            title: "Transactions\nrécentes",
-          ),
-        ),
-        RouteItem(
           groupe: GroupeRoute.vouchers,
           id: FeatureDictionnary.nintendo,
           button: ButtonMenu(
@@ -746,6 +745,7 @@ class Routes extends ViewController with RoutesMixin, FavoriteRoutesMixin {
           groupe: GroupeRoute.vouchers,
           id: FeatureDictionnary.taxi,
           button: ButtonMenu(
+            testable: true,
             icon: Image.asset("assets/images/icons/taxi.png"),
             title: "Taxis",
             action: const GoToMorePageAction(
@@ -807,6 +807,7 @@ class Routes extends ViewController with RoutesMixin, FavoriteRoutesMixin {
           groupe: GroupeRoute.centresInterets,
           id: FeatureDictionnary.assurances,
           button: ButtonMenu(
+            testable: true,
             icon: Image.asset("assets/images/icons/assurance.png"),
             title: "E-assurances",
             action: const GoToRouteAction(
@@ -833,6 +834,19 @@ class Routes extends ViewController with RoutesMixin, FavoriteRoutesMixin {
           button: ButtonMenu(
             icon: Image.asset("assets/images/icons/avance_sur_salaire.png"),
             title: "AVS",
+          ),
+        ),
+        RouteItem(
+          groupe: GroupeRoute.centresInterets,
+          id: FeatureDictionnary.numerosUtils,
+          button: ButtonMenu(
+            testable: true,
+            icon: Image.asset("assets/images/icons/carnet_adresses.png"),
+            title: "Numéros utils",
+            action: GoToRouteAction(
+              feature: FeatureDictionnary.numerosUtils,
+              page: NumerosUtilsHomePage(),
+            ),
           ),
         ),
       ];

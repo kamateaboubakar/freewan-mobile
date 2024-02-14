@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:lebedoo_assets/const/feature_dictionnary.dart';
 import 'package:lebedoo_assets/lebedoo_assets.dart';
 import 'package:tools_flutter_project/tools_flutter_project.dart';
+import 'package:wan_mobile/routes/route_item.dart';
 import 'package:wan_mobile/routes/routes.dart';
 import 'package:wan_mobile/routes/tools/actions/on_pressed_action.dart';
 import 'package:wan_mobile/tools/const/floating_tool_postion_enum.dart';
@@ -50,43 +51,33 @@ class AllButtonsPage extends StatelessWidget {
                     children: routes
                         .search(value: ctl.search)
                         .map(
-                          (e) => Badge(
-                            isLabelVisible: currentId == e.id,
-                            largeSize: 30,
-                            backgroundColor: Colors.transparent,
-                            label: const Icon(
-                              Icons.cancel,
-                              color: Colors.red,
-                            ),
-                            child: e.button.copyWith(
-                              action: OnPressedAction(
-                                onPressed: () async {
-                                  if (currentId == e.id) {
-                                    var rep = await Tools.showChoiceMessage(
-                                      title: AppConst.appName,
-                                      secondaryColor: AssetColors.blue,
-                                      message:
-                                          "Voulez-vous supprimer ce raccourci ?",
-                                    );
-                                    if (rep == true) {
-                                      await EasyLoading.show(
-                                          maskType: EasyLoadingMaskType.black);
-                                      await routes
-                                          .removeFavorisToolsButton(postion);
-                                      await EasyLoading.dismiss();
-                                      Get.back();
-                                    }
-                                  } else {
-                                    await EasyLoading.show(
-                                        maskType: EasyLoadingMaskType.black);
-                                    await routes.setFavorisToolsButton(
-                                        postion, e.id);
-                                    await EasyLoading.dismiss();
-                                    Get.back();
-                                  }
-                                },
+                          (e) => Column(
+                            children: [
+                              Expanded(
+                                child: e.button.copyWith(
+                                  action: OnPressedAction(
+                                    onPressed: () => onRemoveButton(e),
+                                  ),
+                                ),
                               ),
-                            ),
+                              Visibility(
+                                visible: currentId == e.id,
+                                child: GestureDetector(
+                                  onTap: () => onRemoveButton(e),
+                                  child: Container(
+                                    height: 30,
+                                    width: double.infinity,
+                                    color: Colors.red,
+                                    child: const Center(
+                                      child: Icon(
+                                        Icons.cancel,
+                                        color: Colors.white,
+                                      ),
+                                    ),
+                                  ),
+                                ),
+                              ),
+                            ],
                           ),
                         )
                         .toList(),
@@ -96,5 +87,26 @@ class AllButtonsPage extends StatelessWidget {
             ),
           );
         });
+  }
+
+  void onRemoveButton(RouteItem e) async {
+    if (currentId == e.id) {
+      var rep = await Tools.showChoiceMessage(
+        title: AppConst.appName,
+        secondaryColor: AssetColors.blue,
+        message: "Voulez-vous supprimer ce raccourci ?",
+      );
+      if (rep == true) {
+        await EasyLoading.show(maskType: EasyLoadingMaskType.black);
+        await routes.removeFavorisToolsButton(postion);
+        await EasyLoading.dismiss();
+        Get.back();
+      }
+    } else {
+      await EasyLoading.show(maskType: EasyLoadingMaskType.black);
+      await routes.setFavorisToolsButton(postion, e.id);
+      await EasyLoading.dismiss();
+      Get.back();
+    }
   }
 }

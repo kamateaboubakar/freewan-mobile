@@ -10,7 +10,7 @@ abstract class MarchandApi {
     try {
       var res = await WebRequest.nativRequest(
         verbe: RequestVerbeEnum.POST,
-        "${AppConst.serverUrl}:8081/api/marchand/auth/register",
+        "${AppConst.serverUrl}:8099/api/auth/register",
         headers: AppHttpHeaders.headers,
         body: marchand.toJson().parseToJson(),
       );

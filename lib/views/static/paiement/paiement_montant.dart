@@ -5,26 +5,22 @@ import 'package:wan_mobile/views/controllers/paiement/paiement_montant_vctl.dart
 
 class PaiementMontant extends StatelessWidget {
   final User receiver;
-  final String route;
-  const PaiementMontant(this.route, {required this.receiver, super.key});
+  const PaiementMontant({required this.receiver, super.key});
 
   @override
   Widget build(BuildContext context) {
     return GetBuilder<PaiementMontantVctl>(
-        init: PaiementMontantVctl(receiver.id!, route),
+        init: PaiementMontantVctl(receiver.id!),
         builder: (ctl) {
           return Scaffold(
-            appBar: AppBar(
-              backgroundColor: Colors.white,
-              foregroundColor: Colors.black,
-              title: const Text("Montant"),
-            ),
+            appBar: AppBar(title: const Text("Montant")),
             bottomNavigationBar: Padding(
               padding: const EdgeInsets.all(20),
               child: SizedBox(
                 height: 50,
                 width: Get.width,
                 child: CButton(
+                  color: AssetColors.blue,
                   height: 48,
                   minWidth: 149,
                   borderRadius: 8,

@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:lebedoo_assets/lebedoo_assets.dart';
+import 'package:lebedoo_assets/models/transaction/transaction_param.dart';
+import 'package:lebedoo_assets/models/transaction/user_transaction.dart';
 import 'package:qr_code_scanner/qr_code_scanner.dart';
 import 'package:tools_flutter_project/tools/types/int.dart';
 import 'package:tools_flutter_project/tools_flutter_project.dart';
@@ -10,13 +12,9 @@ import 'package:wan_mobile/views/static/paiement/paiement_montant.dart';
 // import 'package:qrscan/qrscan.dart' as scanner;
 
 class ScanPayCameraVctl extends ViewController {
-  String route;
-
   final GlobalKey qrKey = GlobalKey(debugLabel: 'QR');
 
   QRViewController? controller;
-
-  ScanPayCameraVctl(this.route);
 
   onQRViewCreated(QRViewController ctl) {
     if (controller == null) {
@@ -36,7 +34,7 @@ class ScanPayCameraVctl extends ViewController {
             var qrAccount = qrData[0];
             var res = await UserApiCtl().checkUserQrCode(qrAccount: qrAccount);
             if (res.status) {
-              Get.off(() => PaiementMontant(route, receiver: res.data!));
+              Get.off(() => PaiementMontant(receiver: res.data!));
             } else {
               await controller!.resumeCamera();
               Tools.showToast(message: res.message);

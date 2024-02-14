@@ -17,6 +17,7 @@ class NotificationListPage extends StatelessWidget {
           init: NotificationListPageVctl(),
           builder: (ctl) {
             return WrapperBodyListView(
+              primaryColor: AssetColors.blue,
               loading: false,
               onRefresh: ctl.fetchNotifications,
               children: ctl.notifs

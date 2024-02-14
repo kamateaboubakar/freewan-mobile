@@ -122,10 +122,7 @@ class FloatingMenuButton extends StatelessWidget {
                       ),
                       elevation: 0,
                       backgroundColor: AssetColors.blue,
-                      onPressed: () {
-                        var page = Get.currentRoute;
-                        Get.to(() => ScanPayCamera(page));
-                      },
+                      onPressed: () => Get.to(() => const ScanPayCamera()),
                       child: Image.asset(
                         "assets/images/icons/scan_float_button.png",
                         width: 25,

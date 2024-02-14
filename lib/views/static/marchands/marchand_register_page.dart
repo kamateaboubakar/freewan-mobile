@@ -57,6 +57,13 @@ class MarchandRegisterPage extends StatelessWidget {
                   labelText: "Téléphone",
                   keyboardType: TextInputType.number,
                 ),
+                CTextFormField(
+                  maxLength: ctl.selectedPays?.phoneNumberLength,
+                  minLength: ctl.selectedPays?.phoneNumberLength,
+                  controller: ctl.tel2Ctl,
+                  labelText: "Téléphone 2",
+                  keyboardType: TextInputType.number,
+                ),
                 const Gap(10),
                 const TextDivider(text: Text("Mot de passe")),
                 const Gap(10),
@@ -65,16 +72,16 @@ class MarchandRegisterPage extends StatelessWidget {
                   controller: ctl.passwordCtl,
                   obscureText: ctl.hidePass,
                   labelText: "Mot de passe",
-                  maxLength: 4,
-                  minLength: 4,
+                  maxLength: 5,
+                  minLength: 5,
                 ),
                 CTextFormField(
                   require: true,
                   controller: ctl.confirmPasswordCtl,
                   labelText: "Confirmation du mot de passe",
                   obscureText: ctl.hidePass,
-                  maxLength: 4,
-                  minLength: 4,
+                  maxLength: 5,
+                  minLength: 5,
                   validator: (value) {
                     if (value.value.isEmpty) {
                       return "Ce champ est obligatoire";

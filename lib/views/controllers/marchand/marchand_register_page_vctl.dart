@@ -13,6 +13,7 @@ class MarchandRegisterPageVctl extends ViewController {
   var prenomCtl = TextEditingController();
   var emailCtl = TextEditingController();
   var telCtl = TextEditingController();
+  var tel2Ctl = TextEditingController();
   var passwordCtl = TextEditingController();
   var confirmPasswordCtl = TextEditingController();
   Pays? selectedPays;
@@ -31,9 +32,10 @@ class MarchandRegisterPageVctl extends ViewController {
     if (formKey.currentState!.validate()) {
       var marchand = MarchandRequest();
       marchand.nom = nomCtl.text;
-      marchand.prenom = prenomCtl.text;
+      marchand.prenoms = prenomCtl.text;
       marchand.email = emailCtl.text;
       marchand.tel = telCtl.text;
+      marchand.tel2 = tel2Ctl.text;
       marchand.password = passwordCtl.text;
       marchand.countryId = selectedPays?.id;
       await EasyLoading.show(maskType: EasyLoadingMaskType.black);

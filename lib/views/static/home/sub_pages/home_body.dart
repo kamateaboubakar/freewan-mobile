@@ -77,10 +77,11 @@ class HomeBody extends StatelessWidget {
                               title: GroupeRoute.transactions,
                               children: ctl.routes
                                   .routesByList(menus: {
-                                    FeatureDictionnary.retraitArgent,
+                                    // FeatureDictionnary.retraitArgent,
                                     FeatureDictionnary.paiementsAchats,
                                     FeatureDictionnary.depotArgent,
                                     FeatureDictionnary.transfertArgent,
+                                    FeatureDictionnary.historiqueTransactions,
                                   })
                                   .map((e) => e.button)
                                   .toList(),

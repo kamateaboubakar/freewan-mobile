@@ -6,6 +6,7 @@ import 'package:external_app_launcher/external_app_launcher.dart';
 import 'package:flutter/material.dart';
 import 'package:guide_urbain/views/static/guide_urbain_home_page.dart';
 import 'package:lebedoo_assets/const/feature_dictionnary.dart';
+import 'package:lebedoo_assets/models/transaction/user_transaction.dart';
 import 'package:lebedoo_wallets_transactions/views/static/moyens_paiements/cartes_bancaires/cartes_bancaires_page.dart';
 import 'package:lebedoo_wallets_transactions/views/static/moyens_paiements/compte_bancaire/compte_bancaire_page.dart';
 import 'package:mapping_gab/views/static/mapping_gab_home_page.dart';
@@ -122,19 +123,19 @@ class Routes extends ViewController with RoutesMixin, FavoriteRoutesMixin {
           ),
         ),
         //-----------------------------
-        RouteItem(
-          groupe: GroupeRoute.cartesEtComptes,
-          id: FeatureDictionnary.cartesBancaires,
-          button: ButtonMenu(
-            testable: true,
-            icon: Image.asset("assets/images/icons/compte-bancaire.png"),
-            title: "Comptes bancaires",
-            action: const GoToRouteAction(
-              feature: FeatureDictionnary.cartesBancaires,
-              page: CompteBancairePage(),
-            ),
-          ),
-        ),
+        // RouteItem(
+        //   groupe: GroupeRoute.cartesEtComptes,
+        //   id: FeatureDictionnary.cartesBancaires,
+        //   button: ButtonMenu(
+        //     testable: true,
+        //     icon: Image.asset("assets/images/icons/compte-bancaire.png"),
+        //     title: "Comptes bancaires",
+        //     action: const GoToRouteAction(
+        //       feature: FeatureDictionnary.cartesBancaires,
+        //       page: CompteBancairePage(),
+        //     ),
+        //   ),
+        // ),
         RouteItem(
           groupe: GroupeRoute.cartesEtComptes,
           id: FeatureDictionnary.banks,
@@ -603,19 +604,19 @@ class Routes extends ViewController with RoutesMixin, FavoriteRoutesMixin {
             title: "Premier Bet",
           ),
         ),
-        RouteItem(
-          groupe: GroupeRoute.cartesEtComptes,
-          id: FeatureDictionnary.cartesVirtuelles,
-          button: ButtonMenu(
-            testable: true,
-            icon: Image.asset("assets/images/icons/carte_bancaire.png"),
-            title: "Cartes virtuelles",
-            action: const GoToRouteAction(
-              feature: FeatureDictionnary.cartesVirtuelles,
-              page: CartesBancairesPage(),
-            ),
-          ),
-        ),
+        // RouteItem(
+        //   groupe: GroupeRoute.cartesEtComptes,
+        //   id: FeatureDictionnary.cartesVirtuelles,
+        //   button: ButtonMenu(
+        //     testable: true,
+        //     icon: Image.asset("assets/images/icons/carte_bancaire.png"),
+        //     title: "Cartes virtuelles",
+        //     action: const GoToRouteAction(
+        //       feature: FeatureDictionnary.cartesVirtuelles,
+        //       page: CartesBancairesPage(),
+        //     ),
+        //   ),
+        // ),
         RouteItem(
           groupe: GroupeRoute.cartesEtComptes,
           id: FeatureDictionnary.commanderCarteCredit,

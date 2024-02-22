@@ -60,9 +60,9 @@ class AnswerSecurityQuestionPage extends StatelessWidget {
                   height: 50,
                   color: AssetColors.blue,
                   minWidth: double.infinity,
-                  onPressed: () => ctl.submit(),
+                  onPressed: ctl.submit,
                   child: const Text("Valider"),
-                )
+                ),
               ],
             ),
           ),

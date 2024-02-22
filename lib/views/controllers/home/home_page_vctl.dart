@@ -38,7 +38,7 @@ class HomePageVctl extends ViewController {
       secondaryColor: AssetColors.blue,
     );
     if (res == true) {
-      await pr.show();
+      await EasyLoading.show(maskType: EasyLoadingMaskType.black);
       var res = await UserApiCtl().logout();
       await pr.hide();
       if (res.status) {

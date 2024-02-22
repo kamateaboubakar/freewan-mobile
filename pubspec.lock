@@ -803,7 +803,7 @@ packages:
     description:
       path: "."
       ref: main
-      resolved-ref: "38f1126ad8a1730ed94600b18daa0713f02e5144"
+      resolved-ref: ffaa5915edcab2ea761dd1493d89b4409b55d183
       url: "https://github.com/Lebedoo/lebedoo-wallets-transactions-mobile.git"
     source: git
     version: "1.0.0+1"

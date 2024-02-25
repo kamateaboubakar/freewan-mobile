@@ -16,7 +16,7 @@ publish_to: 'none' # Remove this line if you wish to publish to pub.dev
 # https://developer.apple.com/library/archive/documentation/General/Reference/InfoPlistKeyReference/Articles/CoreFoundationKeys.html
 # In Windows, build-name is used as the major, minor, and patch parts
 # of the product and file versions while build-number is used as the build suffix.
-version: 1.0.44+45
+version: 1.0.45+46
 
 environment:
   sdk: '>=3.0.5 <4.0.0'
@@ -125,6 +125,10 @@ dependencies:
     git:
       url: https://github.com/Lebedoo/commande-carte-banquaire-mobile.git
       ref: main
+  lbd_e_assurance:
+    git:
+      url: https://github.com/Lebedoo/e-assurance-mobile.git
+      ref: main
 
   # FIN Modules Lebedoo
 
@@ -168,6 +172,7 @@ flutter:
     - assets/images/assurances/
     - assets/images/banques/
     - assets/images/microfinances/
+    - assets/e_assurance/
   
 
 

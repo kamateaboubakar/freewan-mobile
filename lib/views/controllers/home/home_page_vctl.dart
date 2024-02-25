@@ -40,7 +40,7 @@ class HomePageVctl extends ViewController {
     if (res == true) {
       await EasyLoading.show(maskType: EasyLoadingMaskType.black);
       var res = await UserApiCtl().logout();
-      await pr.hide();
+      await EasyLoading.dismiss();
       if (res.status) {
         await Cache.clear();
         Get.off(() => const PhoneAuth());

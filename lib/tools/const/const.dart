@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:lebedoo_assets/lebedoo_assets.dart';
 
 abstract class Const {
-  static const String appVersion = '1.0.45';
+  static const String appVersion = '1.0.46';
   static const Color primaryColor = Color.fromRGBO(0, 159, 249, 1);
   static const Color secondaryColor = Color.fromRGBO(0, 0, 0, 0.5);
   static const primaryFonts = "";

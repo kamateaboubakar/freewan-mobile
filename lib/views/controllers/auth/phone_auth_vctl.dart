@@ -3,11 +3,9 @@ import 'package:lebedoo_assets/lebedoo_assets.dart';
 import 'package:lebedoo_assets/models/pays.dart';
 import 'package:tools_flutter_project/tools_flutter_project.dart';
 import 'package:wan_mobile/api/controllers/auth/user_api_ctl.dart';
-
 import 'package:lebedoo_assets/views/controllers/abstracts/view_controller.dart';
 import 'package:wan_mobile/views/static/auth/otp_auth.dart';
 import 'package:wan_mobile/views/static/auth/password_page.dart';
-import 'package:wan_mobile/views/static/auth/register/register_page.dart';
 
 class PhoneAuthVctl extends ViewController {
   var phoneCtl = TextEditingController();
@@ -33,9 +31,7 @@ class PhoneAuthVctl extends ViewController {
                 () => OPTAuth(
                   phone: phoneCtl.text,
                   selectedPays: selectedPays!,
-                  onSubmit: (code) => submitOtp(
-                      code, selectedPays!.callingCode.value + phoneCtl.text),
-                  resendOtp: () => submit(),
+                  otp: res.data!,
                 ),
               );
             }
@@ -82,20 +78,5 @@ class PhoneAuthVctl extends ViewController {
     // } else {
     //   Tools.messageBox(message: "Veuillez sélectionner votre région SVP.");
     // }
-  }
-
-  Future<void> submitOtp(String code, String phone) async {
-    if (code.isNotEmpty) {
-      await pr.show();
-      var res = await UserApiCtl().verifyOtp(phone: phone, code: code);
-      await pr.hide();
-      if (res.status) {
-        Get.to(() => RegisterPage(selectedPays!, phoneCtl.text));
-      } else {
-        Tools.messageBox(message: res.message);
-      }
-    } else {
-      Tools.messageBox(message: "Désolé, le code saisi n'est pas valide.");
-    }
   }
 }

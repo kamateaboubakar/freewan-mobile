@@ -4,21 +4,23 @@ import 'package:flutter_countdown_timer/flutter_countdown_timer.dart';
 import 'package:flutter_otp_text_field/flutter_otp_text_field.dart';
 import 'package:lebedoo_assets/lebedoo_assets.dart';
 import 'package:lebedoo_assets/models/pays.dart';
+import 'package:tools_flutter_project/tools/types/string.dart';
+import 'package:tools_flutter_project/tools_flutter_project.dart';
+import 'package:wan_mobile/models/auth/otp_session.dart';
 import 'package:wan_mobile/tools/const/const.dart';
-import 'package:wan_mobile/views/controllers/auth/opt_auth_vctl.dart';
+import 'package:wan_mobile/views/controllers/auth/otp_auth_vctl.dart';
 
 class OPTAuth extends StatelessWidget {
-  final void Function(String code) onSubmit;
-  final void Function() resendOtp;
   final String phone;
   final Pays? selectedPays;
+  final OtpSession otp;
 
-  const OPTAuth(
-      {required this.onSubmit,
-      required this.phone,
-      required this.resendOtp,
-      super.key,
-      this.selectedPays});
+  const OPTAuth({
+    required this.otp,
+    required this.phone,
+    this.selectedPays,
+    super.key,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -27,8 +29,12 @@ class OPTAuth extends StatelessWidget {
         backgroundColor: Colors.transparent,
         automaticallyImplyLeading: false,
       ),
-      body: GetBuilder<OptAuthVctl>(
-        init: OptAuthVctl(),
+      body: GetBuilder<OtpAuthVctl>(
+        init: OtpAuthVctl(
+          otp: otp,
+          phone: phone,
+          selectedPays: selectedPays!,
+        ),
         builder: (ctl) {
           return SingleChildScrollView(
             padding: const EdgeInsets.all(20),
@@ -51,13 +57,32 @@ class OPTAuth extends StatelessWidget {
                 ),
                 const SizedBox(height: 10),
                 const Text(
-                  "We sent you the code via SMS",
+                  "Nous vous avons envoyé le code par SMS",
                   style: TextStyle(
-                    fontSize: 13,
+                    fontSize: 18,
+                    fontWeight: FontWeight.bold,
                     color: Color.fromRGBO(38, 82, 140, 1),
                   ),
                 ),
-                const SizedBox(height: 27),
+                const Gap(20),
+                Center(
+                  child: CountdownTimer(
+                    endTime:
+                        ctl.otp.endDate.toDateTime()!.millisecondsSinceEpoch +
+                            1000,
+                    widgetBuilder: (context, time) {
+                      return Text(
+                        "${time?.min ?? "0"}:${time?.sec ?? "00"}",
+                        style: const TextStyle(
+                          color: AssetColors.blueButton,
+                          fontWeight: FontWeight.bold,
+                          fontSize: 40,
+                        ),
+                      );
+                    },
+                  ),
+                ),
+                const Gap(20),
                 OtpTextField(
                   numberOfFields: 4,
                   fieldWidth: 60,
@@ -70,44 +95,21 @@ class OPTAuth extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   borderColor: Const.primaryColor,
                   showFieldAsBox: true,
-                  onCodeChanged: (String code) {},
-                  onSubmit: onSubmit,
+                  onSubmit: ctl.submitOtp,
                 ),
-                const SizedBox(height: 20),
+                const Gap(40),
                 Row(
+                  mainAxisAlignment: MainAxisAlignment.end,
                   children: [
-                    Expanded(
-                      child: CountdownTimer(
-                        endTime: DateTime.now()
-                                .add(const Duration(minutes: 3))
-                                .millisecondsSinceEpoch +
-                            1000,
-                        widgetBuilder: (context, time) {
-                          return Text(
-                            "${time?.min ?? "0"}:${time?.sec ?? "00"}",
-                            style: const TextStyle(
-                              color: AssetColors.blueButton,
-                              fontWeight: FontWeight.w500,
-                              fontSize: 11,
-                            ),
-                          );
-                        },
-                      ),
-                    ),
-                    Text.rich(
-                      TextSpan(
-                        text: "Pas encore reçu ? ",
-                        children: [
-                          TextSpan(
-                            text: "Cliquez ici pour renvoyer",
-                            style: const TextStyle(
-                              color: Color.fromRGBO(181, 196, 216, 1),
-                            ),
-                            recognizer: TapGestureRecognizer()
-                              ..onTap = () => resendOtp,
-                          ),
-                        ],
-                        style: const TextStyle(fontSize: 11),
+                    CButton(
+                      color: Colors.transparent,
+                      textColor: AssetColors.blue,
+                      onPressed: ctl.resendOtp,
+                      child: const Text(
+                        "Renvoyer le code",
+                        style: TextStyle(
+                          fontWeight: FontWeight.bold,
+                        ),
                       ),
                     ),
                   ],

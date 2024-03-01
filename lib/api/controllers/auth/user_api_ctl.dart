@@ -2,6 +2,7 @@ import 'package:lebedoo_assets/lebedoo_assets.dart';
 import 'package:lebedoo_assets/tools/web/app_http_hearders.dart';
 import 'package:lebedoo_assets/tools/web/web_request.dart';
 import 'package:tools_flutter_project/tools/types/map.dart';
+import 'package:wan_mobile/models/auth/otp_session.dart';
 
 import 'package:wan_mobile/tools/utils/functions.dart';
 
@@ -37,20 +38,26 @@ class UserApiCtl {
     }
   }
 
-  Future<HttpResponse<int>> loginPhone(
+  Future<HttpResponse<OtpSession>> loginPhone(
       {required String phone, required int paysId}) async {
     try {
       var res = await WebRequest.nativRequest(
-        AppHttpHeaders.baseUrl(module: "auth/phoneAuth/$phone/$paysId"),
+        verbe: RequestVerbeEnum.POST,
+        AppHttpHeaders.baseUrl(module: "auth/phoneAuth"),
         headers: AppHttpHeaders.headers,
+        body: {
+          "login": phone,
+          "country_id": paysId,
+        }.parseToJson(),
       );
       var body = HttpResponse.decodeBody(res);
       if (body.status) {
         if (body.data["status"] == true) {
-          if (body.data["data"] is int) {
-            return HttpResponse.success(data: body.data["data"]);
-          } else {
+          if (body.data["data"] is String) {
             return HttpResponse.success(data: null);
+          } else {
+            return HttpResponse.success(
+                data: OtpSession.fromJson(body.data["data"]));
           }
         } else {
           if (body.data["message"] == null) {

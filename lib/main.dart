@@ -5,6 +5,7 @@ import 'package:lebedoo_assets/lebedoo_assets.dart';
 import 'package:tools_flutter_project/tools/env/env.dart';
 import 'package:wan_mobile/firebase_options.dart';
 import 'package:wan_mobile/tools/services/notification_service.dart';
+import 'package:wan_mobile/views/static/home/home_page.dart';
 
 import 'views/static/splashscreen.dart';
 
@@ -29,6 +30,9 @@ void main() async {
       builder: EasyLoading.init(),
       debugShowCheckedModeBanner: false,
       theme: AppTheme.light,
+      routes: {
+        "/home": (context) => const HomePage(),
+      },
       home: const ScreenUtilInit(
         designSize: Size(360, 690),
         minTextAdapt: true,

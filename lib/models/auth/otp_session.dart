@@ -1,3 +1,5 @@
+import 'package:tools_flutter_project/tools_flutter_project.dart';
+
 class OtpSession {
   int? id;
   String? createdAt;
@@ -33,4 +35,7 @@ class OtpSession {
     data['otp'] = otp;
     return data;
   }
+
+  int get toValueDateEnd =>
+      endDate!.toDateTime()!.millisecondsSinceEpoch + 1000;
 }

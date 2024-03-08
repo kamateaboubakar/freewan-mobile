@@ -5,6 +5,7 @@ import 'package:tools_flutter_project/tools_flutter_project.dart';
 import 'package:wan_mobile/routes/groupe_route.dart';
 import 'package:wan_mobile/routes/tools/actions/go_to_more_page_action.dart';
 import 'package:wan_mobile/tools/const/const.dart';
+import 'package:wan_mobile/tools/services/share_app.dart';
 import 'package:wan_mobile/tools/widgets/button_menu.dart';
 import 'package:wan_mobile/tools/widgets/card_menu.dart';
 import 'package:wan_mobile/tools/widgets/grid_menu.dart';
@@ -337,7 +338,7 @@ class HomeBody extends StatelessWidget {
                               ),
                             ),
                             GestureDetector(
-                              onTap: () => ctl.shareAppText(
+                              onTap: () => ShareApp.share(
                                   codeParrain: ctl.appCtl.user.ownerCode.value),
                               child: Row(
                                 children: [
@@ -358,7 +359,7 @@ class HomeBody extends StatelessWidget {
                                           CButton(
                                             borderRadius: 20,
                                             color: AssetColors.blue,
-                                            onPressed: () => ctl.shareAppText(
+                                            onPressed: () => ShareApp.share(
                                                 codeParrain: ctl.appCtl.user
                                                     .ownerCode.value),
                                             child: Row(

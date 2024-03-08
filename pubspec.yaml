@@ -33,14 +33,12 @@ dependencies:
   carousel_slider: ^4.2.1
   smooth_page_indicator: ^1.0.1
   shimmer: ^2.0.0
-  badges: ^3.1.0
   dropdown_search: ^5.0.5
   progress_dialog_null_safe: ^1.0.6
-  flutter_otp_text_field: ^1.1.1
+  otp_text_field: ^1.1.3
   shared_preferences: ^2.0.15
   date_format: ^2.0.5
   advance_expansion_tile: ^1.0.2
-  flutter_countdown_timer: ^4.1.0
   permission_handler: ^11.1.0
   qr_code_scanner: ^1.0.1
   lottie: ^2.3.2
@@ -54,6 +52,9 @@ dependencies:
   file_picker: ^5.3.1
   intl: ^0.18.1
   fluttertoast: ^8.2.1
+  flutter_timer_countdown: ^1.0.7
+  badges: ^3.1.2
+  babstrap_settings_screen: ^0.1.6
 
   # The following adds the Cupertino Icons font to your application.
   # Use with the CupertinoIcons class for iOS style icons.
@@ -116,6 +117,7 @@ dependencies:
     git:
       url: https://github.com/Lebedoo/brasserie-mobile.git
       ref: main
+
   cave:
     git:
       url: https://github.com/Lebedoo/cave-mobile.git
@@ -125,9 +127,15 @@ dependencies:
     git:
       url: https://github.com/Lebedoo/commande-carte-banquaire-mobile.git
       ref: main
+
   lbd_e_assurance:
     git:
       url: https://github.com/Lebedoo/e-assurance-mobile.git
+      ref: main
+
+  lebedoo_achat_unite:
+    git:
+      url: https://github.com/Lebedoo/achat_unite_mobile.git
       ref: main
 
   # FIN Modules Lebedoo
@@ -173,6 +181,7 @@ flutter:
     - assets/images/banques/
     - assets/images/microfinances/
     - assets/e_assurance/
+    - assets/achat_unite/
   
 
 

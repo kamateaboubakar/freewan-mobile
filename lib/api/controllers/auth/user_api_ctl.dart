@@ -1,4 +1,5 @@
 import 'package:lebedoo_assets/lebedoo_assets.dart';
+import 'package:lebedoo_assets/models/pays.dart';
 import 'package:lebedoo_assets/tools/web/app_http_hearders.dart';
 import 'package:lebedoo_assets/tools/web/web_request.dart';
 import 'package:tools_flutter_project/tools/types/map.dart';
@@ -9,12 +10,14 @@ import 'package:wan_mobile/tools/utils/functions.dart';
 import 'package:tools_flutter_project/tools/http/http_response.dart';
 
 class UserApiCtl {
-  Future<HttpResponse<User>> register(User user) async {
+  Future<HttpResponse<User>> register(User user, int paysId) async {
     try {
+      var params = user.toJson();
+      params.addAll({"country_id": paysId});
       var res = await WebRequest.nativRequest(
         verbe: RequestVerbeEnum.POST,
         AppHttpHeaders.baseUrl(module: "auth/register"),
-        body: user.toJson().parseToJson(),
+        body: params.parseToJson(),
         headers: AppHttpHeaders.headers,
       );
       var body = HttpResponse.decodeBody(res);
@@ -75,13 +78,16 @@ class UserApiCtl {
   }
 
   Future<HttpResponse<bool>> verifyOtp(
-      {required String code, required String phone}) async {
+      {required String code, required String fullPhone}) async {
     try {
       var response = await WebRequest.nativRequest(
         verbe: RequestVerbeEnum.POST,
         AppHttpHeaders.baseUrl(module: "auth/checkOTP"),
         headers: AppHttpHeaders.headers,
-        body: {"fullPhoneNumber": phone, "otp": code}.parseToJson(),
+        body: {
+          "fullPhoneNumber": fullPhone,
+          "otp": code,
+        }.parseToJson(),
       );
       var body = HttpResponse.decodeBody(response);
       if (body.status) {
@@ -97,7 +103,7 @@ class UserApiCtl {
           return HttpResponse.success(data: true);
         }
       } else {
-        return HttpResponse.error();
+        return HttpResponse.error(message: body.message);
       }
     } catch (e, st) {
       return HttpResponse.error(systemError: e, systemtraceError: st);
@@ -258,6 +264,59 @@ class UserApiCtl {
         return HttpResponse.error(
             message: "Nous n'avons pas pu récupérer le token.");
       }
+    } catch (e, st) {
+      return HttpResponse.error(systemError: e, systemtraceError: st);
+    }
+  }
+
+  Future<HttpResponse<User>> updateProfil({
+    required String firstName,
+    required String lastName,
+    required String email,
+  }) async {
+    try {
+      var res = await WebRequest.nativRequest(
+        verbe: RequestVerbeEnum.PUT,
+        AppHttpHeaders.baseUrl(module: "auth/update"),
+        body: {
+          "first_name": firstName,
+          "last_name": lastName,
+          "email": email,
+        }.parseToJson(),
+        headers: AppHttpHeaders.authHeaders,
+      );
+      var body = HttpResponse.decodeBody(res);
+      if (body.status) {
+        return HttpResponse.success(
+          data: User.fromJson(body.data["data"]),
+        );
+      }
+      return HttpResponse.error(message: body.message);
+    } catch (e, st) {
+      return HttpResponse.error(systemError: e, systemtraceError: st);
+    }
+  }
+
+  Future<HttpResponse<bool>> updatePassword({
+    required String oldPassword,
+    required String newPassword,
+  }) async {
+    try {
+      var res = await WebRequest.nativRequest(
+        verbe: RequestVerbeEnum.PUT,
+        AppHttpHeaders.baseUrl(module: "auth/password/update"),
+        body: {
+          "oldPassword": oldPassword,
+          "password": newPassword,
+        }.parseToJson(),
+        headers: AppHttpHeaders.authHeaders,
+      );
+      var body = HttpResponse.decodeBody(res);
+      if (body.status) {
+        AppHttpHeaders.jwtToken = body.data["token"];
+        return HttpResponse.success(data: true);
+      }
+      return HttpResponse.error(message: body.message);
     } catch (e, st) {
       return HttpResponse.error(systemError: e, systemtraceError: st);
     }

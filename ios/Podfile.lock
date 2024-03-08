@@ -1,6 +1,8 @@
 PODS:
   - advance_expansion_tile (0.0.1):
     - Flutter
+  - babstrap_settings_screen (0.0.1):
+    - Flutter
   - credit_card_scanner (0.0.1):
     - Flutter
     - GoogleMLKit/TextRecognition
@@ -127,7 +129,7 @@ PODS:
   - GTMSessionFetcher/Core (2.3.0)
   - image_picker_ios (0.0.1):
     - Flutter
-  - local_auth_ios (0.0.1):
+  - local_auth_darwin (0.0.1):
     - Flutter
   - location (0.0.1):
     - Flutter
@@ -190,6 +192,7 @@ PODS:
 
 DEPENDENCIES:
   - advance_expansion_tile (from `.symlinks/plugins/advance_expansion_tile/ios`)
+  - babstrap_settings_screen (from `.symlinks/plugins/babstrap_settings_screen/ios`)
   - credit_card_scanner (from `.symlinks/plugins/credit_card_scanner/ios`)
   - device_info_plus (from `.symlinks/plugins/device_info_plus/ios`)
   - downloadsfolder (from `.symlinks/plugins/downloadsfolder/ios`)
@@ -202,7 +205,7 @@ DEPENDENCIES:
   - fluttertoast (from `.symlinks/plugins/fluttertoast/ios`)
   - geocoding_ios (from `.symlinks/plugins/geocoding_ios/ios`)
   - image_picker_ios (from `.symlinks/plugins/image_picker_ios/ios`)
-  - local_auth_ios (from `.symlinks/plugins/local_auth_ios/ios`)
+  - local_auth_darwin (from `.symlinks/plugins/local_auth_darwin/darwin`)
   - location (from `.symlinks/plugins/location/ios`)
   - open_file_plus (from `.symlinks/plugins/open_file_plus/ios`)
   - path_provider_foundation (from `.symlinks/plugins/path_provider_foundation/darwin`)
@@ -244,6 +247,8 @@ SPEC REPOS:
 EXTERNAL SOURCES:
   advance_expansion_tile:
     :path: ".symlinks/plugins/advance_expansion_tile/ios"
+  babstrap_settings_screen:
+    :path: ".symlinks/plugins/babstrap_settings_screen/ios"
   credit_card_scanner:
     :path: ".symlinks/plugins/credit_card_scanner/ios"
   device_info_plus:
@@ -268,8 +273,8 @@ EXTERNAL SOURCES:
     :path: ".symlinks/plugins/geocoding_ios/ios"
   image_picker_ios:
     :path: ".symlinks/plugins/image_picker_ios/ios"
-  local_auth_ios:
-    :path: ".symlinks/plugins/local_auth_ios/ios"
+  local_auth_darwin:
+    :path: ".symlinks/plugins/local_auth_darwin/darwin"
   location:
     :path: ".symlinks/plugins/location/ios"
   open_file_plus:
@@ -293,6 +298,7 @@ EXTERNAL SOURCES:
 
 SPEC CHECKSUMS:
   advance_expansion_tile: 3670d843a04cc64d762ab6b5ae2fa525d10345c0
+  babstrap_settings_screen: 535097da0fa521a47fef6f6678ff2b464ee15937
   credit_card_scanner: 2c3c58d821ec493cb42cf7c782dc461f516c212b
   device_info_plus: c6fb39579d0f423935b0c9ce7ee2f44b71b9fce6
   DKImagePickerController: b512c28220a2b8ac7419f21c491fc8534b7601ac
@@ -318,7 +324,7 @@ SPEC CHECKSUMS:
   GoogleUtilitiesComponents: 679b2c881db3b615a2777504623df6122dd20afe
   GTMSessionFetcher: 3a63d75eecd6aa32c2fc79f578064e1214dfdec2
   image_picker_ios: 99dfe1854b4fa34d0364e74a78448a0151025425
-  local_auth_ios: 1ba1475238daa33a6ffa2a29242558437be435ac
+  local_auth_darwin: c7e464000a6a89e952235699e32b329457608d98
   location: 3a2eed4dd2fab25e7b7baf2a9efefe82b512d740
   MLImage: 7bb7c4264164ade9bf64f679b40fb29c8f33ee9b
   MLKitCommon: c1b791c3e667091918d91bda4bba69a91011e390

@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:tools_flutter_project/widgets/c_textform_field.dart';
-import 'package:tools_flutter_project/widgets/c_dropdown_field.dart';
+import 'package:lebedoo_assets/lebedoo_assets.dart';
+import 'package:tools_flutter_project/tools_flutter_project.dart';
 import 'package:wan_mobile/views/controllers/auth/register_page_vctl.dart';
+import 'package:wan_mobile/views/static/auth/register/question_security_form.dart';
 
 class SecurityQuestionRegister extends StatelessWidget {
   final RegisterPageVctl ctl;
@@ -9,172 +10,66 @@ class SecurityQuestionRegister extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Form(
-      key: ctl.questionFormKey,
-      child: Padding(
-        padding: const EdgeInsets.all(20),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            const Text(
-              "Questions de sécurité",
-              style: TextStyle(
-                fontSize: 20,
-                fontWeight: FontWeight.bold,
-                color: Color.fromRGBO(7, 21, 60, 1),
+    return Padding(
+      padding: const EdgeInsets.only(top: 10),
+      child: Column(
+        children: List.generate(ctl.selectedQuestions.length, (index) {
+          var e = ctl.selectedQuestions[index];
+          return ListTile(
+            leading: CircleAvatar(
+              backgroundColor: (e.answer != null) ? Colors.green : Colors.grey,
+              radius: 14,
+              child: Icon(
+                (e.answer != null) ? Icons.check : Icons.question_mark_sharp,
+                size: 17,
               ),
             ),
-            const Text(
-              "5 questions pour récupérer votre compte en cas de bésoin",
-              style: TextStyle(
-                fontSize: 13,
-                color: Color.fromRGBO(38, 82, 140, 1),
+            contentPadding: EdgeInsets.zero,
+            title: Text(
+              e.id == null ? "Sélectionnez une question" : e.label.value,
+              maxLines: 1,
+              overflow: TextOverflow.ellipsis,
+            ),
+            trailing: Visibility(
+              visible: e.id != null,
+              child: IconButton(
+                tooltip: "Supprimer la réponse",
+                splashRadius: 20,
+                onPressed: () async {
+                  var rep = await Tools.showChoiceMessage(
+                    title: AppConst.appName,
+                    message: "Voulez-vous vraiment supprimer cette réponse ?",
+                    secondaryColor: AssetColors.blue,
+                  );
+                  if (rep == true) {
+                    ctl.selectedQuestions[index] = SecurityQuestion();
+                    ctl.update();
+                  }
+                },
+                icon: const Icon(
+                  Icons.cancel,
+                  color: Colors.red,
+                ),
               ),
             ),
-            Expanded(
-              child: ListView(
-                  physics: const BouncingScrollPhysics(),
-                  padding: const EdgeInsets.symmetric(vertical: 20),
-                  children: [
-                    Container(
-                      margin: const EdgeInsets.only(bottom: 30),
-                      width: double.infinity,
-                      child: Column(
-                        children: [
-                          CDropdownField(
-                              require: true,
-                              hintText: "Question 1",
-                              items: ctl.getAvailaibleQuestions,
-                              selectedItem: ctl.q1,
-                              itemAsString: (e) => e.label ?? "Question 1",
-                              onChanged: (value) {
-                                ctl.q1 = value!;
-                                ctl.update();
-                              }),
-                          CTextFormField(
-                              require: true,
-                              initialValue: ctl.q1.answer,
-                              enabled: ctl.q1.id != null,
-                              hintText: "La réponse ici",
-                              onChanged: (value) {
-                                ctl.q1.answer = value;
-                                ctl.update();
-                              }),
-                        ],
-                      ),
-                    ),
-                    Container(
-                      margin: const EdgeInsets.only(bottom: 30),
-                      width: double.infinity,
-                      child: Column(
-                        children: [
-                          CDropdownField(
-                              require: true,
-                              hintText: "Question 2",
-                              selectedItem: ctl.q2,
-                              items: ctl.getAvailaibleQuestions,
-                              itemAsString: (e) => e.label ?? "Question 2",
-                              onChanged: (value) {
-                                ctl.q2 = value!;
-                                ctl.update();
-                              }),
-                          CTextFormField(
-                              require: true,
-                              initialValue: ctl.q2.answer,
-                              hintText: "La réponse ici",
-                              enabled: ctl.q2.id != null,
-                              onChanged: (value) {
-                                ctl.q2.answer = value;
-                                ctl.update();
-                              }),
-                        ],
-                      ),
-                    ),
-                    Container(
-                      margin: const EdgeInsets.only(bottom: 30),
-                      width: double.infinity,
-                      child: Column(
-                        children: [
-                          CDropdownField(
-                              require: true,
-                              hintText: "Question 3",
-                              selectedItem: ctl.q3,
-                              items: ctl.getAvailaibleQuestions,
-                              itemAsString: (e) => e.label ?? "Question 3",
-                              onChanged: (value) {
-                                ctl.q3 = value!;
-                                ctl.update();
-                              }),
-                          CTextFormField(
-                              initialValue: ctl.q3.answer,
-                              require: true,
-                              hintText: "La réponse ici",
-                              enabled: ctl.q3.id != null,
-                              onChanged: (value) {
-                                ctl.q3.answer = value;
-                                ctl.update();
-                              }),
-                        ],
-                      ),
-                    ),
-                    Container(
-                      margin: const EdgeInsets.only(bottom: 30),
-                      width: double.infinity,
-                      child: Column(
-                        children: [
-                          CDropdownField(
-                              require: true,
-                              hintText: "Question 4",
-                              selectedItem: ctl.q4,
-                              items: ctl.getAvailaibleQuestions,
-                              itemAsString: (e) => e.label ?? "Question 4",
-                              onChanged: (value) {
-                                ctl.q4 = value!;
-                                ctl.update();
-                              }),
-                          CTextFormField(
-                              initialValue: ctl.q4.answer,
-                              require: true,
-                              hintText: "La réponse ici",
-                              enabled: ctl.q4.id != null,
-                              onChanged: (value) {
-                                ctl.q4.answer = value;
-                                ctl.update();
-                              }),
-                        ],
-                      ),
-                    ),
-                    Container(
-                      margin: const EdgeInsets.only(bottom: 30),
-                      width: double.infinity,
-                      child: Column(
-                        children: [
-                          CDropdownField(
-                              require: true,
-                              hintText: "Question 5",
-                              selectedItem: ctl.q5,
-                              items: ctl.getAvailaibleQuestions,
-                              itemAsString: (e) => e.label ?? "Question 5",
-                              onChanged: (value) {
-                                ctl.q5 = value!;
-                                ctl.update();
-                              }),
-                          CTextFormField(
-                              require: true,
-                              hintText: "La réponse ici",
-                              enabled: ctl.q5.id != null,
-                              initialValue: ctl.q5.answer,
-                              onChanged: (value) {
-                                ctl.q5.answer = value;
-                                ctl.update();
-                              }),
-                        ],
-                      ),
-                    ),
-                  ]),
-            ),
-          ],
-        ),
+            subtitle:
+                e.answer != null ? const Text("Cliquez pour modifier") : null,
+            onTap: () async {
+              var res = await Get.to(
+                () => QuestionSecurityForm(
+                    e,
+                    ctl.selectedQuestions
+                        .where((e) => e.id != null)
+                        .map((e) => e.id!)
+                        .toList()),
+              );
+              if (res is SecurityQuestion) {
+                ctl.selectedQuestions[index] = res;
+                ctl.update();
+              }
+            },
+          );
+        }),
       ),
     );
   }

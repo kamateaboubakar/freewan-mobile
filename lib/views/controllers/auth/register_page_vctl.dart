@@ -1,16 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:lebedoo_assets/lebedoo_assets.dart';
 import 'package:lebedoo_assets/models/pays.dart';
+import 'package:tools_flutter_project/tools/types/int.dart';
 import 'package:tools_flutter_project/tools_flutter_project.dart';
-import 'package:wan_mobile/api/controllers/security_question_ctl.dart';
 import 'package:wan_mobile/api/controllers/auth/user_api_ctl.dart';
 import 'package:lebedoo_assets/views/controllers/abstracts/view_controller.dart';
+import 'package:wan_mobile/models/auth/credentials.dart';
 import 'package:wan_mobile/views/static/auth/phone_auth/phone_auth.dart';
 import 'package:wan_mobile/views/static/home/home_page.dart';
-import '../../../tools/cache/cache_keys.dart';
 
 class RegisterPageVctl extends ViewController {
-  var pageCtl = PageController();
   var currentStep = 0;
   List<Pays> pays = [];
   Pays selectedPays;
@@ -18,11 +17,9 @@ class RegisterPageVctl extends ViewController {
 
   RegisterPageVctl(this.selectedPays, this.phone);
 
-  SecurityQuestion q1 = SecurityQuestion();
-  SecurityQuestion q2 = SecurityQuestion();
-  SecurityQuestion q3 = SecurityQuestion();
-  SecurityQuestion q4 = SecurityQuestion();
-  SecurityQuestion q5 = SecurityQuestion();
+  List<SecurityQuestion> selectedQuestions =
+      List.generate(5, (index) => SecurityQuestion());
+
   List<SecurityQuestion> securityQuestions = [];
 
   var nomCtl = TextEditingController();
@@ -32,11 +29,8 @@ class RegisterPageVctl extends ViewController {
   var passwordCtl = TextEditingController();
   var confirmPasswordCtl = TextEditingController();
 
-  var pageController = PageController();
-
   var infoUserFormkey = GlobalKey<FormState>();
   var passFormKey = GlobalKey<FormState>();
-  var questionFormKey = GlobalKey<FormState>();
 
   nextStep() {
     if (currentStep < 4) {
@@ -48,9 +42,14 @@ class RegisterPageVctl extends ViewController {
           }
           break;
         case 1:
-          if (questionFormKey.currentState!.validate()) {
+          if (!selectedQuestions.any((e) => e.id == null)) {
             currentStep = 2;
             update();
+          } else {
+            Tools.messageBox(
+                title: AppConst.appName,
+                message:
+                    "Veuillez sélectionner 5 questions de securité avant de continuer.");
           }
           break;
         case 2:
@@ -61,9 +60,6 @@ class RegisterPageVctl extends ViewController {
                 message: "Les mots de passe ne correspondent pas.");
           }
       }
-
-      pageController.animateToPage(currentStep,
-          duration: const Duration(milliseconds: 500), curve: Curves.ease);
       update();
     } else {
       //Question
@@ -74,40 +70,30 @@ class RegisterPageVctl extends ViewController {
   prevStep() {
     if (currentStep > 0) {
       currentStep--;
-      pageController.animateToPage(currentStep,
-          duration: const Duration(milliseconds: 500), curve: Curves.ease);
       update();
     }
   }
 
   Future<void> _submit() async {
-    if (selectedQuestions
-        .where((e) => e?.id == null && e?.answer == null)
-        .isEmpty) {
-      await pr.show();
-      var user = User();
-      user.email = emailCtl.text.trim();
-      user.lastName = nomCtl.text.trim();
-      user.firstName = prenomCtl.text.trim();
-      user.phoneNumber = phone;
-      user.birthDate = dateNaissanceCtl.date;
-      user.countryCallingCode = selectedPays.callingCode;
-      user.password = confirmPasswordCtl.text;
-      user.securityQuestions = selectedQuestions.map((e) => e!).toList();
-      var res = await UserApiCtl().register(user);
-      await pr.hide();
-      if (res.status) {
-        await Cache.setString(CacheKey.login.name, phone);
-        await Cache.setString(CacheKey.password.name, passwordCtl.text);
-        appCtl.user = user;
-        Get.offAll(() => const HomePage(displayWelcome: true));
-      } else {
-        Tools.messageBox(message: res.message);
-      }
+    await EasyLoading.show(maskType: EasyLoadingMaskType.black);
+    var user = User();
+    user.email = emailCtl.text.trim().toLowerCase();
+    user.lastName = nomCtl.text.trim();
+    user.firstName = prenomCtl.text.trim();
+    user.phoneNumber = phone;
+    user.birthDate = dateNaissanceCtl.date;
+    user.countryCallingCode = selectedPays.callingCode;
+    user.password = confirmPasswordCtl.text;
+    user.securityQuestions = selectedQuestions.map((e) => e).toList();
+    var res = await UserApiCtl().register(user, selectedPays.id.value);
+    await EasyLoading.dismiss();
+    if (res.status) {
+      var creds = Credentials(phone: phone, password: passwordCtl.text);
+      await creds.save();
+      appCtl.user = res.data!;
+      Get.offAll(() => const HomePage(displayWelcome: true));
     } else {
-      Tools.messageBox(
-          message: "Vous devez sélectionner 5 questions de sécurités pour"
-              " continuer votre inscription.");
+      Tools.messageBox(message: res.message);
     }
   }
 
@@ -116,20 +102,6 @@ class RegisterPageVctl extends ViewController {
     emailCtl.dispose();
     passwordCtl.dispose();
     super.dispose();
-  }
-
-  List<SecurityQuestion> get getAvailaibleQuestions => securityQuestions
-      .where((e) => selectedQuestions.where((q) => e.id == q?.id).isEmpty)
-      .toList();
-
-  void selectQuestion({required SecurityQuestion e, required int index}) {
-    var state = selectedQuestions.contains(e);
-    if (!state) {
-      selectedQuestions[index] = e;
-      update();
-    } else {
-      Tools.messageBox(message: "Cette question est déjà utilisée.");
-    }
   }
 
   Future<bool> onBack() async {
@@ -142,22 +114,4 @@ class RegisterPageVctl extends ViewController {
     }
     return false;
   }
-
-  @override
-  void onReady() {
-    super.onReady();
-    _fetchSecurityQuestion();
-  }
-
-  Future<void> _fetchSecurityQuestion() async {
-    await pr.show();
-    var res = await SecurityQuestionCtl().getAll();
-    await pr.hide();
-    if (res.status) {
-      securityQuestions = res.data!;
-      update();
-    }
-  }
-
-  List<SecurityQuestion?> get selectedQuestions => [q1, q2, q3, q4, q5];
 }

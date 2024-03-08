@@ -2,7 +2,6 @@ import 'package:lebedoo_assets/lebedoo_assets.dart';
 import 'package:wan_mobile/api/controllers/auth/user_api_ctl.dart';
 import 'package:wan_mobile/api/controllers/pubs/pub_api_ctl.dart';
 import 'package:wan_mobile/routes/tools/actions/go_to_page_action.dart';
-import 'package:wan_mobile/tools/const/const.dart';
 import 'package:wan_mobile/tools/services/notification_service.dart';
 import 'package:tools_flutter_project/tools_flutter_project.dart';
 import 'package:lebedoo_assets/views/controllers/abstracts/view_controller.dart';
@@ -71,19 +70,6 @@ class HomePageVctl extends ViewController {
     } else {
       Tools.messageBox(message: res.message);
     }
-  }
-
-  Future<void> shareAppText({required String codeParrain}) async {
-    Share.share(
-        """😀 hey, inscris-toi sur *${AppConst.appName}* avec mon code de parrain : *$codeParrain*
-
-Le premier Hub de service ivoirien totalement digital.
-
-Téléchargez directement l'application sur :
-AppStore : ${Const.appStoreLink}
-PlayStore : ${Const.playStoreLink}
-
-🥳🥳 ${Const.appSlogan}""");
   }
 
   @override

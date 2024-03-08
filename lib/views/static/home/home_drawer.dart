@@ -4,10 +4,11 @@ import 'package:lebedoo_assets/models/transaction/user_transaction.dart';
 import 'package:tools_flutter_project/tools/types/int.dart';
 import 'package:tools_flutter_project/tools_flutter_project.dart';
 import 'package:wan_mobile/tools/const/const.dart';
+import 'package:wan_mobile/tools/services/share_app.dart';
 import 'package:wan_mobile/views/controllers/home/home_page_vctl.dart';
 import 'package:wan_mobile/views/static/adresse/adresse_list_page.dart';
 import 'package:wan_mobile/views/static/agence_a_proximite/agence_a_proximite.dart';
-import 'package:wan_mobile/views/static/auth/profil_page.dart';
+import 'package:wan_mobile/views/static/auth/profil/profil_page.dart';
 import 'package:wan_mobile/views/static/cgu_page.dart';
 import 'package:wan_mobile/views/static/home/qr_login/qr_login.dart';
 import 'package:lebedoo_wallets_transactions/views/static/moyens_paiements/moyens_paiements_page.dart';
@@ -84,7 +85,8 @@ class HomeDrawer extends StatelessWidget {
                           ),
                         ),
                         title: const Text("Mon profil"),
-                        onTap: () => Get.to(() => const ProfilPage()),
+                        onTap: () => Get.to(() => const ProfilPage())
+                            ?.then((value) => ctl.update()),
                       ),
                       ListTile(
                         style: ListTileStyle.drawer,
@@ -171,7 +173,7 @@ class HomeDrawer extends StatelessWidget {
                           ),
                         ),
                         title: const Text("Inviter des amis"),
-                        onTap: () => ctl.shareAppText(
+                        onTap: () => ShareApp.share(
                           codeParrain: ctl.appCtl.user.ownerCode.value,
                         ),
                       ),

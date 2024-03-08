@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_otp_text_field/flutter_otp_text_field.dart';
+// import 'package:flutter_otp_text_field/flutter_otp_text_field.dart';
 import 'package:lebedoo_assets/lebedoo_assets.dart';
 import 'package:wan_mobile/tools/const/const.dart';
 import 'package:tools_flutter_project/tools_flutter_project.dart';
@@ -97,20 +97,20 @@ class ScanPayOperationEnCours extends StatelessWidget {
                 ),
               ),
               const SizedBox(height: 20),
-              OtpTextField(
-                numberOfFields: 4,
-                fieldWidth: 60,
-                borderWidth: 1,
-                focusedBorderColor: Const.primaryColor,
-                enabledBorderColor: const Color.fromRGBO(38, 82, 140, 0.34),
-                filled: true,
-                fillColor: Colors.white,
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                borderColor: Const.primaryColor,
-                showFieldAsBox: true,
-                onCodeChanged: (String code) {},
-                onSubmit: (code) {},
-              ),
+              // OtpTextField(
+              //   numberOfFields: 4,
+              //   fieldWidth: 60,
+              //   borderWidth: 1,
+              //   focusedBorderColor: Const.primaryColor,
+              //   enabledBorderColor: const Color.fromRGBO(38, 82, 140, 0.34),
+              //   filled: true,
+              //   fillColor: Colors.white,
+              //   mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              //   borderColor: Const.primaryColor,
+              //   showFieldAsBox: true,
+              //   onCodeChanged: (String code) {},
+              //   onSubmit: (code) {},
+              // ),
             ],
           ),
         ),

@@ -4,6 +4,7 @@ import 'package:lebedoo_assets/services/biometric_auth_service.dart';
 import 'package:tools_flutter_project/tools_flutter_project.dart';
 import 'package:wan_mobile/api/controllers/auth/user_api_ctl.dart';
 import 'package:lebedoo_assets/views/controllers/abstracts/view_controller.dart';
+import 'package:wan_mobile/models/auth/credentials.dart';
 import 'package:wan_mobile/tools/cache/cache_keys.dart';
 import 'package:wan_mobile/views/static/auth/answer_security_question_page.dart';
 import 'package:wan_mobile/views/static/auth/phone_auth/phone_auth.dart';
@@ -15,22 +16,28 @@ class PasswordPageVctl extends ViewController {
 
   bool supportBiometrics = false;
   bool hasAlreadyAuthenticated = false;
+  bool biometricAuthStatus = true;
 
   PasswordPageVctl(this.phone);
 
   Future<void> submit() async {
     await EasyLoading.show(maskType: EasyLoadingMaskType.black);
     var res = await userApiCtrl.authenticate(
-        phone: phone, password: passwordCtl.text);
+      phone: phone,
+      password: passwordCtl.text,
+    );
     await EasyLoading.dismiss();
     if (res.status) {
-      await Cache.setString(CacheKey.password.name, passwordCtl.text);
-
+      await Get.to(
+        () => AnswerSecurityQuestionPage(
+          res.data!,
+          phone,
+          passwordCtl.text,
+        ),
+      );
       passwordCtl.clear();
-      Get.to(
-          () => AnswerSecurityQuestionPage(res.data!, phone, passwordCtl.text));
     } else {
-      Tools.messageBox(message: res.message);
+      Tools.messageBox(title: AppConst.appName, message: res.message);
       passwordCtl.clear();
     }
   }
@@ -52,15 +59,20 @@ class PasswordPageVctl extends ViewController {
     update();
   }
 
+  Future<void> _getBiometricStatus() async {
+    var res = await Cache.getBool(CacheKey.biometricAuthStatus.name);
+    biometricAuthStatus = res ?? false;
+    update();
+  }
+
   Future<void> biometricAuthenticate() async {
-    var password = await Cache.getString(CacheKey.password.name);
-    if (password != null) {
+    var creds = await Credentials.fromCache();
+    if (creds != null && creds.password.value.isNotEmpty) {
       var result = await BiometricAuthService.check();
       if (result.status) {
         hasAlreadyAuthenticated = true;
+        passwordCtl.text = creds.password.value;
         update();
-
-        passwordCtl.text = password;
         submit();
       } else {
         hasAlreadyAuthenticated = false;
@@ -72,7 +84,10 @@ class PasswordPageVctl extends ViewController {
   @override
   void onReady() async {
     super.onReady();
+    await _getBiometricStatus();
     await _checkBiometric();
-    await biometricAuthenticate();
+    if (biometricAuthStatus) {
+      await biometricAuthenticate();
+    }
   }
 }

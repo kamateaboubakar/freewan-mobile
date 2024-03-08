@@ -19,7 +19,6 @@ import 'package:wan_mobile/tools/widgets/button_menu.dart';
 import 'package:lebedoo_assets/views/controllers/abstracts/view_controller.dart';
 import 'package:wan_mobile/views/static/achat_fibre/achat_fibre_page.dart';
 import 'package:wan_mobile/views/static/achat_pass/achat_pass_page.dart';
-import 'package:wan_mobile/views/static/achat_unite/achat_unite_page.dart';
 import 'package:wan_mobile/views/static/assurances/assurances_home_page.dart';
 import 'package:wan_mobile/views/static/bank_micro_finance/bank_home_page.dart';
 import 'package:wan_mobile/views/static/bank_micro_finance/micro_finance_home_page.dart';
@@ -34,6 +33,7 @@ import 'package:wan_mobile/views/static/loyer/loyer_bottom_sheet.dart';
 import 'package:wan_mobile/views/static/numeros_utils/numeros_utils_home_page.dart';
 import 'package:wan_mobile/views/static/pressing/pressing_view.dart';
 import 'package:wan_mobile/views/static/scolarite/scolarite_page.dart';
+import 'package:lebedoo_achat_unite/views/static/achat_unite_home_page.dart';
 
 class Routes extends ViewController with RoutesMixin, FavoriteRoutesMixin {
   @override
@@ -154,6 +154,7 @@ class Routes extends ViewController with RoutesMixin, FavoriteRoutesMixin {
           groupe: GroupeRoute.centresInterets,
           id: FeatureDictionnary.gabAProximite,
           button: ButtonMenu(
+            testable: true,
             icon: Image.asset("assets/images/icons/carte_gab.png"),
             title: "GAB à proximité",
             action: GoToRouteAction(
@@ -200,6 +201,7 @@ class Routes extends ViewController with RoutesMixin, FavoriteRoutesMixin {
           groupe: GroupeRoute.centresInterets,
           id: FeatureDictionnary.materiauxConstruction,
           button: ButtonMenu(
+            testable: true,
             icon: Image.asset("assets/images/icons/icons8-brique-96.png"),
             title: "Matériaux construction",
             action: const GoToRouteAction(
@@ -289,7 +291,7 @@ class Routes extends ViewController with RoutesMixin, FavoriteRoutesMixin {
             title: "Achat unités",
             action: const GoToRouteAction(
               feature: FeatureDictionnary.achatUnite,
-              page: AchatUnitePage(),
+              page: AchatUniteHomePage(),
             ),
           ),
         ),

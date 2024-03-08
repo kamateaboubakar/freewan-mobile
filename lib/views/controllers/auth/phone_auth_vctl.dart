@@ -4,7 +4,7 @@ import 'package:lebedoo_assets/models/pays.dart';
 import 'package:tools_flutter_project/tools_flutter_project.dart';
 import 'package:wan_mobile/api/controllers/auth/user_api_ctl.dart';
 import 'package:lebedoo_assets/views/controllers/abstracts/view_controller.dart';
-import 'package:wan_mobile/views/static/auth/otp_auth.dart';
+import 'package:wan_mobile/views/static/auth/otp_auth_page.dart';
 import 'package:wan_mobile/views/static/auth/password_page.dart';
 
 class PhoneAuthVctl extends ViewController {
@@ -20,15 +20,18 @@ class PhoneAuthVctl extends ViewController {
       if (phoneCtl.text.isNotEmpty) {
         if (acceptCgu) {
           await EasyLoading.show(maskType: EasyLoadingMaskType.black);
-          var res = await UserApiCtl()
-              .loginPhone(phone: phoneCtl.text, paysId: selectedPays!.id!);
+          var res = await UserApiCtl().loginPhone(
+            phone: phoneCtl.text,
+            paysId: selectedPays!.id!,
+          );
           await EasyLoading.dismiss();
+
           if (res.status) {
             if (res.data == null) {
               await Get.to(() => PasswordPage(phone: phoneCtl.text));
             } else {
               await Get.to(
-                () => OPTAuth(
+                () => OPTAuthPage(
                   phone: phoneCtl.text,
                   selectedPays: selectedPays!,
                   otp: res.data!,
@@ -53,30 +56,5 @@ class PhoneAuthVctl extends ViewController {
     } else {
       Tools.messageBox(message: "Veuillez sélectionner un pays valide SVP.");
     }
-
-    // if (selectedPays != null) {
-    //   if (telCtl.text.isNotEmpty) {
-    //     // await pr.show();
-    //     // var codePays = selectedPays!.callingCode;
-
-    //     // var phone = "$codePays${telCtl.text}";
-    //     // var res = await UserApiCtl().loginPhone(phone);
-    //     // await pr.hide();
-    //     // if (res.status) {
-    //     //   Get.to(() => OPTAuth(phone: phone, selectedPays: selectedPays!));
-    //     // } else {
-    //     //   Tools.messageBox(message: res.message);
-    //     // }
-    //     Get.to(() => OPTAuth(
-    //           phone: telCtl.text,
-    //           selectedPays: selectedPays!,
-    //         ));
-    //   } else {
-    //     Tools.messageBox(
-    //         message: "Veuillez entrer un numéro de téléphone valide SVP.");
-    //   }
-    // } else {
-    //   Tools.messageBox(message: "Veuillez sélectionner votre région SVP.");
-    // }
   }
 }

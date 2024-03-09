@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:lebedoo_assets/lebedoo_assets.dart';
 import 'package:qr_code_scanner/qr_code_scanner.dart';
+import 'package:tools_flutter_project/tools_flutter_project.dart';
 import 'package:wan_mobile/tools/widgets/c_outlined_button.dart';
 import 'package:wan_mobile/views/controllers/scan_pay/scan_pay_camera_vctl.dart';
 import 'package:wan_mobile/views/static/qr_code/qr_code_page.dart';
+import 'package:wan_mobile/views/static/scan_pay/paiement_link_page.dart';
 
 class ScanPayCamera extends StatelessWidget {
   const ScanPayCamera({super.key});
@@ -54,9 +56,10 @@ class ScanPayCamera extends StatelessWidget {
                 ),
               ),
               Align(
-                alignment: const Alignment(0, .7),
+                alignment: const Alignment(0, .6),
                 child: COutlinedButton(
                   borderColor: Colors.white,
+                  borderRadius: 10,
                   onPressed: () => Get.to(() => const QrCodePage()),
                   child: const Row(
                     mainAxisSize: MainAxisSize.min,
@@ -65,6 +68,26 @@ class ScanPayCamera extends StatelessWidget {
                       Icon(Icons.qr_code),
                       Gap(10),
                       Text("Mon QR code"),
+                    ],
+                  ),
+                ),
+              ),
+              Align(
+                alignment: const Alignment(0, .75),
+                child: CButton(
+                  color: AssetColors.blue,
+                  height: 40,
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(10),
+                  ),
+                  onPressed: () => Get.to(() => const PaiementLinkPage()),
+                  child: const Row(
+                    mainAxisSize: MainAxisSize.min,
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Icon(Icons.link),
+                      Gap(10),
+                      Text("Liens de paiement"),
                     ],
                   ),
                 ),

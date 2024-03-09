@@ -840,6 +840,42 @@ packages:
       url: "https://github.com/Lebedoo/lebedoo-assets.git"
     source: git
     version: "1.0.10+11"
+  lebedoo_don:
+    dependency: "direct main"
+    description:
+      path: "."
+      ref: main
+      resolved-ref: "43c9ddda8cda463334db72954d6b64a4c7c09f4c"
+      url: "https://github.com/Lebedoo/donation_mobile.git"
+    source: git
+    version: "1.0.0+1"
+  lebedoo_facture_eau:
+    dependency: "direct main"
+    description:
+      path: "."
+      ref: main
+      resolved-ref: f2ff3c092fcb5d580153b6448963df44cfcb4e53
+      url: "https://github.com/Lebedoo/facture_eau.git"
+    source: git
+    version: "1.0.0+1"
+  lebedoo_facture_electricite:
+    dependency: "direct main"
+    description:
+      path: "."
+      ref: main
+      resolved-ref: f8293ef4b2587b14e80768fbb695a54bd939c005
+      url: "https://github.com/Lebedoo/facture_electricite.git"
+    source: git
+    version: "1.0.0+1"
+  lebedoo_peage:
+    dependency: "direct main"
+    description:
+      path: "."
+      ref: main
+      resolved-ref: "556b3999c0711fa5afdd6d10d7c55c9b254b492b"
+      url: "https://github.com/Lebedoo/peage.git"
+    source: git
+    version: "1.0.0+1"
   lebedoo_wallets_transactions:
     dependency: "direct main"
     description:

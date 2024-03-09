@@ -6,9 +6,10 @@ import 'package:external_app_launcher/external_app_launcher.dart';
 import 'package:flutter/material.dart';
 import 'package:guide_urbain/views/static/guide_urbain_home_page.dart';
 import 'package:lebedoo_assets/const/feature_dictionnary.dart';
-import 'package:lebedoo_assets/models/transaction/user_transaction.dart';
-import 'package:lebedoo_wallets_transactions/views/static/moyens_paiements/cartes_bancaires/cartes_bancaires_page.dart';
-import 'package:lebedoo_wallets_transactions/views/static/moyens_paiements/compte_bancaire/compte_bancaire_page.dart';
+import 'package:lebedoo_don/views/static/don_home_page.dart';
+import 'package:lebedoo_facture_eau/views/static/paiement_facture_eau_home_page.dart';
+import 'package:lebedoo_facture_electricite/views/static/paiement_facture_electricite_home_page.dart';
+import 'package:lebedoo_peage/views/static/peage_home_page.dart';
 import 'package:mapping_gab/views/static/mapping_gab_home_page.dart';
 import 'package:wan_mobile/routes/tools/favorite_routes_mixin.dart';
 import 'package:wan_mobile/routes/tools/routes_mixin.dart';
@@ -22,8 +23,6 @@ import 'package:wan_mobile/views/static/achat_pass/achat_pass_page.dart';
 import 'package:wan_mobile/views/static/assurances/assurances_home_page.dart';
 import 'package:wan_mobile/views/static/bank_micro_finance/bank_home_page.dart';
 import 'package:wan_mobile/views/static/bank_micro_finance/micro_finance_home_page.dart';
-import 'package:wan_mobile/views/static/bills/bills_views.dart';
-import 'package:wan_mobile/views/static/donation/campagne_page.dart';
 import 'package:wan_mobile/views/static/gaz/gaz_view.dart';
 import 'package:wan_mobile/routes/groupe_route.dart';
 import 'package:wan_mobile/routes/route_item.dart';
@@ -287,6 +286,7 @@ class Routes extends ViewController with RoutesMixin, FavoriteRoutesMixin {
           groupe: GroupeRoute.centresInterets,
           id: FeatureDictionnary.achatUnite,
           button: ButtonMenu(
+            testable: true,
             icon: Image.asset("assets/images/icons/achat_unite.png"),
             title: "Achat unités",
             action: const GoToRouteAction(
@@ -333,11 +333,12 @@ class Routes extends ViewController with RoutesMixin, FavoriteRoutesMixin {
           groupe: GroupeRoute.serviceInnovant,
           id: FeatureDictionnary.dons,
           button: ButtonMenu(
+            testable: true,
             icon: Image.asset("assets/images/icons/don.png"),
             title: "Dons",
             action: const GoToRouteAction(
               feature: FeatureDictionnary.dons,
-              page: DonationPage(),
+              page: DonHomePage(),
             ),
           ),
         ),
@@ -397,11 +398,12 @@ class Routes extends ViewController with RoutesMixin, FavoriteRoutesMixin {
           groupe: GroupeRoute.facturesEtAbonnements,
           id: FeatureDictionnary.factureElectricite,
           button: ButtonMenu(
+            testable: true,
             icon: Image.asset("assets/images/icons/cie.png"),
             title: "Factures d'électricité",
             action: const GoToRouteAction(
               feature: FeatureDictionnary.factureElectricite,
-              page: BillsReferenceSelectionPage(),
+              page: FactureElectriciteHomePage(),
             ),
           ),
         ),
@@ -409,8 +411,13 @@ class Routes extends ViewController with RoutesMixin, FavoriteRoutesMixin {
           groupe: GroupeRoute.facturesEtAbonnements,
           id: FeatureDictionnary.factureEau,
           button: ButtonMenu(
+            testable: true,
             icon: Image.asset("assets/images/icons/SODECI.png"),
             title: "Factures d'eau",
+            action: const GoToRouteAction(
+              feature: FeatureDictionnary.factureEau,
+              page: FactureEauHomePage(),
+            ),
           ),
         ),
         RouteItem(
@@ -454,8 +461,13 @@ class Routes extends ViewController with RoutesMixin, FavoriteRoutesMixin {
           groupe: GroupeRoute.facturesEtAbonnements,
           id: FeatureDictionnary.abonnementPeage,
           button: ButtonMenu(
+            testable: true,
             icon: Image.asset("assets/images/icons/abonnement_payage.png"),
             title: "Abonnement\npéage",
+            action: const GoToRouteAction(
+              feature: FeatureDictionnary.abonnementPeage,
+              page: PeageHomePage(),
+            ),
           ),
         ),
         RouteItem(

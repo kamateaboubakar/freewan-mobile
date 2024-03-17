@@ -137,22 +137,32 @@ dependencies:
     git:
       url: https://github.com/Lebedoo/achat_unite_mobile.git
       ref: main
+
   lebedoo_peage:
     git:
       url: https://github.com/Lebedoo/peage.git
       ref: main
+
   lebedoo_don:
     git:
       url: https://github.com/Lebedoo/donation_mobile.git
       ref: main
+
   lebedoo_facture_eau:
     git:
       url: https://github.com/Lebedoo/facture_eau.git
       ref: main
+
   lebedoo_facture_electricite:
     git:
       url: https://github.com/Lebedoo/facture_electricite.git
       ref: main
+  
+  lebedoo_loyer:
+    git:
+      url: https://github.com/Lebedoo/lebedoo_loyer_mobile.git
+      ref: main
+
 
   # FIN Modules Lebedoo
 
@@ -199,6 +209,7 @@ flutter:
     - assets/e_assurance/
     - assets/achat_unite/
     - assets/peage/
+    - assets/loyer/
   
 
 

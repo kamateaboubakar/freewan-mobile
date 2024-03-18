@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:lebedoo_assets/lebedoo_assets.dart';
 import 'package:lebedoo_assets/services/biometric_auth_service.dart';
+import 'package:lebedoo_assets/views/controllers/abstracts/view_controller.dart';
 import 'package:tools_flutter_project/tools_flutter_project.dart';
 import 'package:wan_mobile/api/controllers/auth/user_api_ctl.dart';
-import 'package:lebedoo_assets/views/controllers/abstracts/view_controller.dart';
 import 'package:wan_mobile/models/auth/credentials.dart';
 import 'package:wan_mobile/tools/cache/cache_keys.dart';
 import 'package:wan_mobile/views/static/auth/answer_security_question_page.dart';
@@ -61,7 +61,7 @@ class PasswordPageVctl extends ViewController {
 
   Future<void> _getBiometricStatus() async {
     var res = await Cache.getBool(CacheKey.biometricAuthStatus.name);
-    biometricAuthStatus = res ?? false;
+    biometricAuthStatus = res ?? true;
     update();
   }
 

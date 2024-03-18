@@ -7,7 +7,7 @@ class ProfilPageVctl extends ViewController {
 
   Future<void> _getbiometricAuthStatus() async {
     var res = await Cache.getBool(CacheKey.biometricAuthStatus.name);
-    biometricAuthStatus = res ?? false;
+    biometricAuthStatus = res ?? true;
     update();
   }
 

@@ -81,34 +81,36 @@ class PasswordPage extends StatelessWidget {
                 ),
               ),
               const Divider(height: 0),
-              NumericKeyboard(
-                onKeyboardTap: (String text) {
-                  if (ctl.passwordCtl.text.length < 5) {
-                    ctl.passwordCtl.text += text;
-                    if (ctl.passwordCtl.text.length == 5) {
-                      ctl.submit();
+              SafeArea(
+                child: NumericKeyboard(
+                  onKeyboardTap: (String text) {
+                    if (ctl.passwordCtl.text.length < 5) {
+                      ctl.passwordCtl.text += text;
+                      if (ctl.passwordCtl.text.length == 5) {
+                        ctl.submit();
+                      }
                     }
-                  }
-                },
-                rightButtonFn: () {
-                  if (ctl.passwordCtl.text.isNotEmpty) {
-                    ctl.passwordCtl.text = ctl.passwordCtl.text
-                        .substring(0, ctl.passwordCtl.text.length - 1);
-                  }
-                },
-                leftButtonFn: ctl.biometricAuthenticate,
-                leftIcon: Visibility(
-                  visible:
-                      (ctl.supportBiometrics && ctl.hasAlreadyAuthenticated),
-                  child: const Icon(Icons.fingerprint),
+                  },
+                  rightButtonFn: () {
+                    if (ctl.passwordCtl.text.isNotEmpty) {
+                      ctl.passwordCtl.text = ctl.passwordCtl.text
+                          .substring(0, ctl.passwordCtl.text.length - 1);
+                    }
+                  },
+                  leftButtonFn: ctl.biometricAuthenticate,
+                  leftIcon: Visibility(
+                    visible:
+                        (ctl.supportBiometrics && ctl.hasAlreadyAuthenticated),
+                    child: const Icon(Icons.fingerprint),
+                  ),
+                  rightIcon: const Icon(Icons.backspace),
+                  textStyle: TextStyle(
+                    fontSize: 23.sp,
+                    color: Colors.black,
+                    fontWeight: FontWeight.bold,
+                  ),
                 ),
-                rightIcon: const Icon(Icons.backspace),
-                textStyle: TextStyle(
-                  fontSize: 23.sp,
-                  color: Colors.black,
-                  fontWeight: FontWeight.bold,
-                ),
-              )
+              ),
             ],
           ),
         );

@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:lebedoo_assets/lebedoo_assets.dart';
 import 'package:lebedoo_assets/models/pays.dart';
+import 'package:lebedoo_assets/views/controllers/abstracts/view_controller.dart';
 import 'package:tools_flutter_project/tools_flutter_project.dart';
 import 'package:wan_mobile/api/controllers/auth/user_api_ctl.dart';
-import 'package:lebedoo_assets/views/controllers/abstracts/view_controller.dart';
 import 'package:wan_mobile/views/static/auth/otp_auth_page.dart';
 import 'package:wan_mobile/views/static/auth/password_page.dart';
 
@@ -20,7 +20,7 @@ class PhoneAuthVctl extends ViewController {
       if (phoneCtl.text.isNotEmpty) {
         if (acceptCgu) {
           await EasyLoading.show(maskType: EasyLoadingMaskType.black);
-          var res = await UserApiCtl().loginPhone(
+          var res = await UserApiCtl.loginPhone(
             phone: phoneCtl.text,
             paysId: selectedPays!.id!,
           );

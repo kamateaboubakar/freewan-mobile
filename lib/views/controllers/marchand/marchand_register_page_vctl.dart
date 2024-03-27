@@ -3,8 +3,8 @@ import 'package:lebedoo_assets/lebedoo_assets.dart';
 import 'package:lebedoo_assets/models/pays.dart';
 import 'package:lebedoo_assets/views/controllers/abstracts/view_controller.dart';
 import 'package:tools_flutter_project/tools_flutter_project.dart';
+import 'package:wan_mobile/api/controllers/auth/pays_api_ctl.dart';
 import 'package:wan_mobile/api/controllers/marchand/marchand_api.dart';
-import 'package:wan_mobile/api/controllers/pays_api_ctl.dart';
 import 'package:wan_mobile/models/marchand/marchand_request.dart';
 
 class MarchandRegisterPageVctl extends ViewController {
@@ -20,7 +20,7 @@ class MarchandRegisterPageVctl extends ViewController {
   bool hidePass = true;
 
   Future<List<Pays>> getPays() async {
-    var res = await PaysApiCtl().getAll();
+    var res = await PaysApiCtl.getAll();
     if (res.status) {
       return res.data!;
     } else {

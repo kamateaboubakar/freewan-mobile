@@ -1,14 +1,13 @@
 import 'package:lebedoo_assets/lebedoo_assets.dart';
 import 'package:lebedoo_assets/tools/web/app_http_hearders.dart';
 import 'package:lebedoo_assets/tools/web/web_request.dart';
-
 import 'package:tools_flutter_project/tools/http/http_response.dart';
 
 class SecurityQuestionCtl {
-  Future<HttpResponse<List<SecurityQuestion>>> getAll() async {
+  static Future<HttpResponse<List<SecurityQuestion>>> getAll() async {
     try {
       var res = await WebRequest.nativRequest(
-        AppHttpHeaders.baseUrl(module: "security-questions/all"),
+        AppHttpHeaders.baseUrl(module: "api/v1/security-questions/all"),
         headers: AppHttpHeaders.headers,
       );
 

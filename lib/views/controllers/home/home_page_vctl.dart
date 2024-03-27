@@ -1,12 +1,12 @@
 import 'package:lebedoo_assets/lebedoo_assets.dart';
+import 'package:lebedoo_assets/views/controllers/abstracts/view_controller.dart';
+import 'package:tools_flutter_project/tools_flutter_project.dart';
 import 'package:wan_mobile/api/controllers/auth/user_api_ctl.dart';
 import 'package:wan_mobile/api/controllers/pubs/pub_api_ctl.dart';
+import 'package:wan_mobile/routes/routes.dart';
 import 'package:wan_mobile/routes/tools/actions/go_to_page_action.dart';
 import 'package:wan_mobile/tools/services/notification_service.dart';
-import 'package:tools_flutter_project/tools_flutter_project.dart';
-import 'package:lebedoo_assets/views/controllers/abstracts/view_controller.dart';
 import 'package:wan_mobile/views/static/auth/phone_auth/phone_auth.dart';
-import 'package:wan_mobile/routes/routes.dart';
 import 'package:wan_mobile/views/static/home/sub_pages/welcome_message_modal.dart';
 
 class HomePageVctl extends ViewController {
@@ -38,7 +38,7 @@ class HomePageVctl extends ViewController {
     );
     if (res == true) {
       await EasyLoading.show(maskType: EasyLoadingMaskType.black);
-      var res = await UserApiCtl().logout();
+      var res = await UserApiCtl.logout();
       await EasyLoading.dismiss();
       if (res.status) {
         await Cache.clear();
@@ -51,7 +51,7 @@ class HomePageVctl extends ViewController {
 
   Future<void> _initNotificationListener() async {
     //Update the fcmToken
-    var res = await UserApiCtl().updateFCMToken();
+    var res = await UserApiCtl.updateFCMToken();
     if (res.status) {
       //listen the remote notification
       NotificationService.listNotification(
@@ -63,7 +63,7 @@ class HomePageVctl extends ViewController {
   }
 
   Future<void> getPubs() async {
-    var res = await PubApiCtl().getAll();
+    var res = await PubApiCtl.getAll();
     if (res.status) {
       ads = res.data!;
       update();

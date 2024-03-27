@@ -14,7 +14,7 @@ class UpdateProfilPageVctl extends ViewController {
   Future<void> submit() async {
     if (formKey.currentState!.validate()) {
       await EasyLoading.show();
-      var res = await UserApiCtl().updateProfil(
+      var res = await UserApiCtl.updateProfil(
         firstName: firtNameCtl.text.trim(),
         lastName: lastNameCtl.text.trim(),
         email: emailCtl.text.trim(),

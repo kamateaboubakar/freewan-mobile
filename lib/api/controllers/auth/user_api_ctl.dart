@@ -1,22 +1,20 @@
 import 'package:lebedoo_assets/lebedoo_assets.dart';
-import 'package:lebedoo_assets/models/pays.dart';
 import 'package:lebedoo_assets/tools/web/app_http_hearders.dart';
 import 'package:lebedoo_assets/tools/web/web_request.dart';
+import 'package:tools_flutter_project/tools/http/http_response.dart';
 import 'package:tools_flutter_project/tools/types/map.dart';
 import 'package:wan_mobile/models/auth/otp_session.dart';
-
 import 'package:wan_mobile/tools/utils/functions.dart';
 
-import 'package:tools_flutter_project/tools/http/http_response.dart';
-
 class UserApiCtl {
-  Future<HttpResponse<User>> register(User user, int paysId) async {
+  static String module = "auth-center/api/v1/auth";
+  static Future<HttpResponse<User>> register(User user, int paysId) async {
     try {
       var params = user.toJson();
       params.addAll({"country_id": paysId});
       var res = await WebRequest.nativRequest(
         verbe: RequestVerbeEnum.POST,
-        AppHttpHeaders.baseUrl(module: "auth/register"),
+        AppHttpHeaders.baseUrl(module: "$module/register"),
         body: params.parseToJson(),
         headers: AppHttpHeaders.headers,
       );
@@ -32,7 +30,7 @@ class UserApiCtl {
     }
   }
 
-  Future<HttpResponse<bool>> saveUsersSecuriteQuestionAnswers(
+  static Future<HttpResponse<bool>> saveUsersSecuriteQuestionAnswers(
       SecurityQuestion question, String userId) async {
     try {
       return HttpResponse.success(data: true);
@@ -41,12 +39,12 @@ class UserApiCtl {
     }
   }
 
-  Future<HttpResponse<OtpSession>> loginPhone(
+  static Future<HttpResponse<OtpSession>> loginPhone(
       {required String phone, required int paysId}) async {
     try {
       var res = await WebRequest.nativRequest(
         verbe: RequestVerbeEnum.POST,
-        AppHttpHeaders.baseUrl(module: "auth/phoneAuth"),
+        AppHttpHeaders.baseUrl(module: "$module/phoneAuth"),
         headers: AppHttpHeaders.headers,
         body: {
           "login": phone,
@@ -77,12 +75,12 @@ class UserApiCtl {
     }
   }
 
-  Future<HttpResponse<bool>> verifyOtp(
+  static Future<HttpResponse<bool>> verifyOtp(
       {required String code, required String fullPhone}) async {
     try {
       var response = await WebRequest.nativRequest(
         verbe: RequestVerbeEnum.POST,
-        AppHttpHeaders.baseUrl(module: "auth/checkOTP"),
+        AppHttpHeaders.baseUrl(module: "$module/checkOTP"),
         headers: AppHttpHeaders.headers,
         body: {
           "fullPhoneNumber": fullPhone,
@@ -110,12 +108,12 @@ class UserApiCtl {
     }
   }
 
-  Future<HttpResponse<SecurityQuestion>> authenticate(
+  static Future<HttpResponse<SecurityQuestion>> authenticate(
       {required String phone, required String password}) async {
     try {
       var res = await WebRequest.nativRequest(
         verbe: RequestVerbeEnum.POST,
-        AppHttpHeaders.baseUrl(module: "auth/checkPassword"),
+        AppHttpHeaders.baseUrl(module: "$module/checkPassword"),
         body: {
           "login": phone,
           "password": password,
@@ -140,14 +138,14 @@ class UserApiCtl {
     }
   }
 
-  Future<HttpResponse<User>> answerSecurityQuestionLogin(
+  static Future<HttpResponse<User>> answerSecurityQuestionLogin(
       {required String phone,
       required int securityQuestionId,
       required String answer}) async {
     try {
       var res = await WebRequest.nativRequest(
         verbe: RequestVerbeEnum.POST,
-        AppHttpHeaders.baseUrl(module: "auth/checkSecurityQuestionAnswer"),
+        AppHttpHeaders.baseUrl(module: "$module/checkSecurityQuestionAnswer"),
         body: {
           "login": phone,
           "security_question_id": securityQuestionId,
@@ -171,10 +169,10 @@ class UserApiCtl {
     }
   }
 
-  Future<HttpResponse<User>> getUserProfil() async {
+  static Future<HttpResponse<User>> getUserProfil() async {
     try {
       var res = await WebRequest.nativRequest(
-        AppHttpHeaders.baseUrl(module: "profile"),
+        AppHttpHeaders.baseUrl(module: "$module/profile"),
         headers: AppHttpHeaders.authHeaders,
       );
       var body = HttpResponse.decodeBody(res);
@@ -189,10 +187,10 @@ class UserApiCtl {
     }
   }
 
-  Future<HttpResponse<User>> getUserProfilById(String userId) async {
+  static Future<HttpResponse<User>> getUserProfilById(String userId) async {
     try {
       var res = await WebRequest.nativRequest(
-        AppHttpHeaders.baseUrl(module: "admin/api/v1/accounts/$userId"),
+        AppHttpHeaders.baseUrl(module: "$module/profile/$userId"),
         headers: AppHttpHeaders.authHeaders,
       );
       var body = HttpResponse.decodeBody(res);
@@ -207,11 +205,11 @@ class UserApiCtl {
     }
   }
 
-  Future<HttpResponse<bool>> logout() async {
+  static Future<HttpResponse<bool>> logout() async {
     try {
       var res = await WebRequest.nativRequest(
         verbe: RequestVerbeEnum.POST,
-        AppHttpHeaders.baseUrl(module: "auth/logout"),
+        AppHttpHeaders.baseUrl(module: "$module/logout"),
         headers: AppHttpHeaders.authHeaders,
       );
       var body = HttpResponse.decodeBody(res);
@@ -225,12 +223,12 @@ class UserApiCtl {
     }
   }
 
-  Future<HttpResponse<User>> checkUserQrCode(
+  static Future<HttpResponse<User>> checkUserQrCode(
       {required String qrAccount}) async {
     try {
       var res = await WebRequest.nativRequest(
         verbe: RequestVerbeEnum.POST,
-        AppHttpHeaders.baseUrl(module: "auth/profil/qrAccount"),
+        AppHttpHeaders.baseUrl(module: "$module/profil/qrAccount"),
         body: {"qrAccount": qrAccount}.parseToJson(),
         headers: AppHttpHeaders.authHeaders,
       );
@@ -245,13 +243,13 @@ class UserApiCtl {
     }
   }
 
-  Future<HttpResponse<bool>> updateFCMToken() async {
+  static Future<HttpResponse<bool>> updateFCMToken() async {
     try {
       var token = await Functions.getFcmToken();
       if (token != null) {
         var res = await WebRequest.nativRequest(
           verbe: RequestVerbeEnum.POST,
-          AppHttpHeaders.baseUrl(module: "auth/updateFcmToken"),
+          AppHttpHeaders.baseUrl(module: "$module/updateFcmToken"),
           body: {"fcm_token": token}.parseToJson(),
           headers: AppHttpHeaders.authHeaders,
         );
@@ -269,7 +267,7 @@ class UserApiCtl {
     }
   }
 
-  Future<HttpResponse<User>> updateProfil({
+  static Future<HttpResponse<User>> updateProfil({
     required String firstName,
     required String lastName,
     required String email,
@@ -277,7 +275,7 @@ class UserApiCtl {
     try {
       var res = await WebRequest.nativRequest(
         verbe: RequestVerbeEnum.PUT,
-        AppHttpHeaders.baseUrl(module: "auth/update"),
+        AppHttpHeaders.baseUrl(module: "$module/update"),
         body: {
           "first_name": firstName,
           "last_name": lastName,
@@ -297,14 +295,14 @@ class UserApiCtl {
     }
   }
 
-  Future<HttpResponse<bool>> updatePassword({
+  static Future<HttpResponse<bool>> updatePassword({
     required String oldPassword,
     required String newPassword,
   }) async {
     try {
       var res = await WebRequest.nativRequest(
         verbe: RequestVerbeEnum.PUT,
-        AppHttpHeaders.baseUrl(module: "auth/password/update"),
+        AppHttpHeaders.baseUrl(module: "$module/password/update"),
         body: {
           "oldPassword": oldPassword,
           "password": newPassword,
@@ -319,6 +317,26 @@ class UserApiCtl {
       return HttpResponse.error(message: body.message);
     } catch (e, st) {
       return HttpResponse.error(systemError: e, systemtraceError: st);
+    }
+  }
+
+  static Future<HttpResponse<bool>> qrLogin(
+      {required String userId, required String qrCode}) async {
+    try {
+      var res = await WebRequest.nativRequest(
+        verbe: RequestVerbeEnum.GET,
+        AppHttpHeaders.baseUrl(module: "$module/qrLogin/setUser"),
+        body: {"qrCode": qrCode}.parseToJson(),
+        headers: AppHttpHeaders.authHeaders,
+      );
+      var body = HttpResponse.decodeBody(res);
+      if (body.status) {
+        return HttpResponse.success(data: true);
+      } else {
+        return HttpResponse.error(message: body.message);
+      }
+    } catch (e) {
+      return HttpResponse.error();
     }
   }
 }

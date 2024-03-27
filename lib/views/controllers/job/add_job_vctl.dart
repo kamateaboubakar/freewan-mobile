@@ -1,22 +1,23 @@
 import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:lebedoo_assets/lebedoo_assets.dart';
 import 'package:lebedoo_assets/models/pays.dart';
+import 'package:lebedoo_assets/views/controllers/abstracts/view_controller.dart';
+import 'package:tools_flutter_project/tools/http/http_response.dart';
 import 'package:tools_flutter_project/tools/types/int.dart';
+import 'package:wan_mobile/api/controllers/auth/pays_api_ctl.dart';
 import 'package:wan_mobile/api/controllers/contract_type_api_ctrl.dart';
 import 'package:wan_mobile/api/controllers/file_api_ctl.dart';
 import 'package:wan_mobile/api/controllers/job_api_ctl.dart';
 import 'package:wan_mobile/api/controllers/job_category_api_ctrl.dart';
 import 'package:wan_mobile/api/controllers/job_sector_api_ctl.dart';
-import 'package:wan_mobile/api/controllers/pays_api_ctl.dart';
 import 'package:wan_mobile/api/controllers/work_experience_api_ctrl.dart';
 import 'package:wan_mobile/models/job/category.dart';
 import 'package:wan_mobile/models/job/job_offer.dart';
 import 'package:wan_mobile/models/job/work_experience.dart';
-
-import 'package:lebedoo_assets/views/controllers/abstracts/view_controller.dart';
-import 'package:tools_flutter_project/tools/http/http_response.dart';
 import 'package:wan_mobile/views/static/job/views/employer/add_job_offer_description_page.dart';
+
 import '../../../api/controllers/company_api_ctl.dart';
 import '../../../models/job/add_job.dart';
 import '../../../models/job/company.dart';
@@ -29,7 +30,6 @@ class AddJobController extends ViewController {
   final ContractTypeApiCtl _contractTypeApiCtl = ContractTypeApiCtl();
   final JobSectorApiCtrl _jobSectorApiCtl = JobSectorApiCtrl();
   final CompanyApiCtl _companyApiCtrl = CompanyApiCtl();
-  final PaysApiCtl _paysApiCtl = PaysApiCtl();
   final FileApiCtl _uploadFileCtl = FileApiCtl();
   final WorkExperienceApiCtl _workExperienceCtl = WorkExperienceApiCtl();
   final JobCategoryApiCtl _jobCategoryCtl = JobCategoryApiCtl();
@@ -133,7 +133,7 @@ class AddJobController extends ViewController {
   }
 
   Future<List<Pays>> getPays() async {
-    var res = await _paysApiCtl.getAll();
+    var res = await PaysApiCtl.getAll();
     if (res.status) {
       return res.data!;
     } else {

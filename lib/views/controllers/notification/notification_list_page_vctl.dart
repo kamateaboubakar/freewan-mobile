@@ -1,9 +1,8 @@
 import 'package:lebedoo_assets/lebedoo_assets.dart';
+import 'package:lebedoo_assets/views/controllers/abstracts/view_controller.dart';
 import 'package:tools_flutter_project/tools_flutter_project.dart';
 import 'package:wan_mobile/api/controllers/auth/notification_api_ctl.dart';
 import 'package:wan_mobile/models/app_notification.dart';
-
-import 'package:lebedoo_assets/views/controllers/abstracts/view_controller.dart';
 import 'package:wan_mobile/views/static/notification/detail_notification_page.dart';
 
 class NotificationListPageVctl extends ViewController {
@@ -13,9 +12,10 @@ class NotificationListPageVctl extends ViewController {
     if (appCtl.notifAccount.value > 0) {
       appCtl.notifAccount.value = 0;
     }
-    await pr.show();
-    var res = await NotificationApiCtl().getNotifications();
-    await pr.hide();
+
+    await EasyLoading.show(maskType: EasyLoadingMaskType.black);
+    var res = await NotificationApiCtl.getNotifications();
+    await EasyLoading.dismiss();
     if (res.status) {
       notifs = res.data!
         ..sort((a, b) => b.createdAt.value.compareTo(a.createdAt.value));
@@ -27,9 +27,9 @@ class NotificationListPageVctl extends ViewController {
 
   Future<void> setReaded(AppNotification e) async {
     if (e.id != null) {
-      await pr.show();
-      var res = await NotificationApiCtl().setRead(e.id!);
-      await pr.hide();
+      await EasyLoading.show(maskType: EasyLoadingMaskType.black);
+      var res = await NotificationApiCtl.setRead(e.id!);
+      await EasyLoading.dismiss();
       if (res.status) {
         e.isRead = true;
         update();

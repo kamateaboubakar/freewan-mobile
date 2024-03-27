@@ -24,7 +24,7 @@ class OtpAuthPageVctl extends GetxController {
   Future<void> submitOtp() async {
     if (codeCtl.text.isNotEmpty) {
       await EasyLoading.show(maskType: EasyLoadingMaskType.black);
-      var res = await UserApiCtl().verifyOtp(
+      var res = await UserApiCtl.verifyOtp(
           fullPhone: "${selectedPays.callingCode.value}$phone",
           code: codeCtl.text);
       await EasyLoading.dismiss();
@@ -52,7 +52,7 @@ class OtpAuthPageVctl extends GetxController {
     );
     if (rep == true) {
       await EasyLoading.show(maskType: EasyLoadingMaskType.black);
-      var res = await UserApiCtl().loginPhone(
+      var res = await UserApiCtl.loginPhone(
         phone: phone,
         paysId: selectedPays.id!,
       );

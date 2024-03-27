@@ -5,10 +5,11 @@ import 'package:tools_flutter_project/tools/http/http_response.dart';
 import 'package:wan_mobile/models/app_notification.dart';
 
 class NotificationApiCtl {
-  Future<HttpResponse<List<AppNotification>>> getNotifications() async {
+  static String module = "auth-center/api/v1/notifications";
+  static Future<HttpResponse<List<AppNotification>>> getNotifications() async {
     try {
       var res = await WebRequest.nativRequest(
-        AppHttpHeaders.baseUrl(module: "notifications/userNotifications"),
+        AppHttpHeaders.baseUrl(module: "$module/userNotifications"),
         headers: AppHttpHeaders.authHeaders,
       );
       var body = HttpResponse.decodeBody(res);
@@ -25,11 +26,11 @@ class NotificationApiCtl {
     }
   }
 
-  Future<HttpResponse<bool>> setRead(int notificationId) async {
+  static Future<HttpResponse<bool>> setRead(int notificationId) async {
     try {
       var response = await WebRequest.nativRequest(
         verbe: RequestVerbeEnum.PUT,
-        AppHttpHeaders.baseUrl(module: "notifications/setRead/$notificationId"),
+        AppHttpHeaders.baseUrl(module: "$module/setRead/$notificationId"),
         headers: AppHttpHeaders.authHeaders,
       );
 

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:lebedoo_assets/lebedoo_assets.dart';
 import 'package:tools_flutter_project/tools_flutter_project.dart';
-import 'package:wan_mobile/api/controllers/security_question_ctl.dart';
+import 'package:wan_mobile/api/controllers/auth/security_question_ctl.dart';
 
 class QuestionSecurityFormVctl extends GetxController {
   SecurityQuestion? question;
@@ -18,7 +18,7 @@ class QuestionSecurityFormVctl extends GetxController {
   }
 
   Future<List<SecurityQuestion>> fetchSecurityQuestion() async {
-    var res = await SecurityQuestionCtl().getAll();
+    var res = await SecurityQuestionCtl.getAll();
     if (res.status) {
       return res.data!..removeWhere((e) => selectedQuestionsId.contains(e.id));
     } else {

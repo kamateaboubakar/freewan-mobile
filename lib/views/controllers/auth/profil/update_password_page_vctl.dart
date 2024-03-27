@@ -14,7 +14,7 @@ class UpdatePasswordPageVctl extends ViewController {
   Future<void> submit() async {
     if (formKey.currentState!.validate()) {
       await EasyLoading.show(maskType: EasyLoadingMaskType.black);
-      var res = await UserApiCtl().updatePassword(
+      var res = await UserApiCtl.updatePassword(
         oldPassword: oldPassCtl.text.trim(),
         newPassword: newPassCtl.text.trim(),
       );

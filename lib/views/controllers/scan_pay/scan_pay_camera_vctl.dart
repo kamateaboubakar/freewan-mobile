@@ -1,11 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:lebedoo_assets/lebedoo_assets.dart';
+import 'package:lebedoo_assets/views/controllers/abstracts/view_controller.dart';
 import 'package:qr_code_scanner/qr_code_scanner.dart';
 import 'package:tools_flutter_project/tools/types/int.dart';
 import 'package:tools_flutter_project/tools_flutter_project.dart';
 import 'package:wan_mobile/api/controllers/auth/user_api_ctl.dart';
-
-import 'package:lebedoo_assets/views/controllers/abstracts/view_controller.dart';
 import 'package:wan_mobile/views/static/paiement/paiement_montant.dart';
 // import 'package:qrscan/qrscan.dart' as scanner;
 
@@ -30,7 +29,7 @@ class ScanPayCameraVctl extends ViewController {
           if (validDate.isAfter(DateTime.now())) {
             await controller!.stopCamera();
             var qrAccount = qrData[0];
-            var res = await UserApiCtl().checkUserQrCode(qrAccount: qrAccount);
+            var res = await UserApiCtl.checkUserQrCode(qrAccount: qrAccount);
             if (res.status) {
               Get.off(() => PaiementMontant(receiver: res.data!));
             } else {

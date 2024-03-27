@@ -4,10 +4,11 @@ import 'package:lebedoo_assets/tools/web/web_request.dart';
 import 'package:tools_flutter_project/tools/http/http_response.dart';
 
 class PubApiCtl {
-  Future<HttpResponse<List<Img>>> getAll() async {
+  static String module = "api/v1/pubs";
+  static Future<HttpResponse<List<Img>>> getAll() async {
     try {
       var res = await WebRequest(
-        body: const BodyObject(service: "api/v1/pubs/all", port: 8088),
+        body: BodyObject(service: "$module/all", port: 8088),
         headers: AppHttpHeaders.authHeaders,
       ).send();
       var body = HttpResponse.decodeBody(res);

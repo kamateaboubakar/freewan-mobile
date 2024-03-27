@@ -10,7 +10,6 @@ import 'package:wan_mobile/views/static/auth/answer_security_question_page.dart'
 import 'package:wan_mobile/views/static/auth/phone_auth/phone_auth.dart';
 
 class PasswordPageVctl extends ViewController {
-  final userApiCtrl = Get.put(UserApiCtl());
   var passwordCtl = TextEditingController();
   String phone;
 
@@ -22,7 +21,7 @@ class PasswordPageVctl extends ViewController {
 
   Future<void> submit() async {
     await EasyLoading.show(maskType: EasyLoadingMaskType.black);
-    var res = await userApiCtrl.authenticate(
+    var res = await UserApiCtl.authenticate(
       phone: phone,
       password: passwordCtl.text,
     );

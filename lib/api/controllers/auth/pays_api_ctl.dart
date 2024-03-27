@@ -1,14 +1,13 @@
 import 'package:lebedoo_assets/models/pays.dart';
 import 'package:lebedoo_assets/tools/web/app_http_hearders.dart';
 import 'package:lebedoo_assets/tools/web/web_request.dart';
-
 import 'package:tools_flutter_project/tools/http/http_response.dart';
 
 class PaysApiCtl {
-  Future<HttpResponse<List<Pays>>> getAll() async {
+  static Future<HttpResponse<List<Pays>>> getAll() async {
     try {
       var res = await WebRequest.nativRequest(
-          AppHttpHeaders.baseUrl(module: "countries/all"),
+          AppHttpHeaders.baseUrl(module: "auth-center/api/v1/countries/all"),
           headers: AppHttpHeaders.headers);
       var body = HttpResponse.decodeBody(res);
 

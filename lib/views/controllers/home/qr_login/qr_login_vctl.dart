@@ -1,11 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:lebedoo_assets/lebedoo_assets.dart';
+import 'package:lebedoo_assets/views/controllers/abstracts/view_controller.dart';
 import 'package:qr_code_scanner/qr_code_scanner.dart';
 import 'package:tools_flutter_project/tools/types/int.dart';
 import 'package:tools_flutter_project/tools_flutter_project.dart';
-import 'package:wan_mobile/api/controllers/qr_login/qr_login_api_ctl.dart';
-
-import 'package:lebedoo_assets/views/controllers/abstracts/view_controller.dart';
+import 'package:wan_mobile/api/controllers/auth/user_api_ctl.dart';
 
 class QrLoginVctl extends ViewController {
   final GlobalKey qrKey = GlobalKey(debugLabel: 'QR');
@@ -13,8 +12,8 @@ class QrLoginVctl extends ViewController {
 
   Future<void> onScan(String code) async {
     await pr.show();
-    var res = await QrLoginApiCtl()
-        .setUser(qrCode: code, userId: appCtl.user.id.value.toString());
+    var res = await UserApiCtl.qrLogin(
+        qrCode: code, userId: appCtl.user.id.value.toString());
     await pr.hide();
     if (res.status) {
       Get.back();

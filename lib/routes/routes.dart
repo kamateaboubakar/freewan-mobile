@@ -28,7 +28,6 @@ import 'package:wan_mobile/views/static/bank_micro_finance/bank_home_page.dart';
 import 'package:wan_mobile/views/static/bank_micro_finance/micro_finance_home_page.dart';
 import 'package:wan_mobile/views/static/gaz/gaz_view.dart';
 import 'package:wan_mobile/views/static/job/views/employee/employee_views.dart';
-import 'package:wan_mobile/views/static/location_vehicule/location_vehicule.dart';
 import 'package:wan_mobile/views/static/loyer/loyer_bottom_sheet.dart';
 import 'package:wan_mobile/views/static/numeros_utils/numeros_utils_home_page.dart';
 import 'package:wan_mobile/views/static/pressing/pressing_view.dart';
@@ -311,13 +310,12 @@ class Routes extends ViewController with RoutesMixin, FavoriteRoutesMixin {
           groupe: GroupeRoute.centresInterets,
           id: FeatureDictionnary.locationVehicules,
           button: ButtonMenu(
-            testable: true,
             icon: Image.asset("assets/images/icons/location-de-voiture.png"),
             title: "Location de voitures",
-            action: const GoToRouteAction(
-              feature: FeatureDictionnary.locationVehicules,
-              page: LocationVehicule(),
-            ),
+            // action: const GoToRouteAction(
+            //   feature: FeatureDictionnary.locationVehicules,
+            //   page: LocationVehicule(),
+            // ),
           ),
         ),
         //-----------------------------
